@@ -1,0 +1,366 @@
+{
+  "run": "8e68b302-4eb3-4114-9e11-3c48337b460d",
+  "environment": "fixed test",
+  "transport": "Real loopback HTTP after injected synthetic login/seed; not hosted acceptance",
+  "users": 5,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [],
+  "seedMs": 10644.845459,
+  "databaseGrowthBytes": 93478912,
+  "execution": {
+    "workers": 1,
+    "poolPerWorker": 5,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "transport": "HTTP 127.0.0.1:4191; per-browser keep-alive agent; least-pending HTTP requests over private Unix sockets",
+    "scope": "Test-only gateway/threads; injected login/seed; client IP not forwarded to Unix-socket backends; not authentication-rate-limit or production-runtime acceptance"
+  },
+  "trials": [
+    {
+      "index": 0,
+      "round": 0,
+      "check": "full",
+      "mutations": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 3125.6955419999995
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 3164.3053330000002
+        },
+        {
+          "user": 2,
+          "status": 200,
+          "ms": 3125.236583
+        },
+        {
+          "user": 3,
+          "status": 200,
+          "ms": 3173.958417
+        },
+        {
+          "user": 4,
+          "status": 200,
+          "ms": 3123.9450419999994
+        }
+      ],
+      "reads": [
+        {
+          "user": 0,
+          "status": 503,
+          "ms": 3090.3393749999996
+        },
+        {
+          "user": 1,
+          "status": 503,
+          "ms": 3089.1657079999986
+        },
+        {
+          "user": 2,
+          "status": 503,
+          "ms": 3086.754083
+        },
+        {
+          "user": 3,
+          "status": 503,
+          "ms": 3090.3548339999998
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 3090.478083
+        },
+        {
+          "user": 0,
+          "status": 503,
+          "ms": 3090.6784590000007
+        },
+        {
+          "user": 1,
+          "status": 503,
+          "ms": 3091.29025
+        },
+        {
+          "user": 2,
+          "status": 503,
+          "ms": 3091.453875000001
+        },
+        {
+          "user": 3,
+          "status": 503,
+          "ms": 3091.739791
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 3091.0165419999994
+        }
+      ],
+      "recoveries": 0
+    },
+    {
+      "index": 1,
+      "round": 0,
+      "check": "undo",
+      "mutations": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 2630.905125000001
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 2673.997083000002
+        },
+        {
+          "user": 2,
+          "status": 200,
+          "ms": 2629.589500000002
+        },
+        {
+          "user": 3,
+          "status": 200,
+          "ms": 2653.774792
+        },
+        {
+          "user": 4,
+          "status": 200,
+          "ms": 2630.5239169999986
+        }
+      ],
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 2672.099624999999
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 2681.7799160000013
+        },
+        {
+          "user": 2,
+          "status": 200,
+          "ms": 2671.589084000001
+        },
+        {
+          "user": 3,
+          "status": 200,
+          "ms": 2671.2224159999987
+        },
+        {
+          "user": 4,
+          "status": 200,
+          "ms": 2671.3531250000015
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 2681.258791
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 2693.8917500000007
+        },
+        {
+          "user": 2,
+          "status": 200,
+          "ms": 2680.9091249999983
+        },
+        {
+          "user": 3,
+          "status": 200,
+          "ms": 2681.426207999999
+        },
+        {
+          "user": 4,
+          "status": 200,
+          "ms": 2681.520875000002
+        }
+      ],
+      "recoveries": 0
+    },
+    {
+      "index": 2,
+      "round": 1,
+      "check": "full",
+      "mutations": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 2995.7117080000025
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 2996.594000000001
+        },
+        {
+          "user": 2,
+          "status": 200,
+          "ms": 2997.1251250000023
+        },
+        {
+          "user": 3,
+          "status": 200,
+          "ms": 3047.164958000001
+        },
+        {
+          "user": 4,
+          "status": 200,
+          "ms": 3018.4822920000006
+        }
+      ],
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 3020.912959000001
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 3031.896625000001
+        },
+        {
+          "user": 2,
+          "status": 200,
+          "ms": 3031.8979169999984
+        },
+        {
+          "user": 3,
+          "status": 200,
+          "ms": 3035.215750000003
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 3004.2114170000023
+        },
+        {
+          "user": 0,
+          "status": 503,
+          "ms": 3004.2375839999986
+        },
+        {
+          "user": 1,
+          "status": 503,
+          "ms": 3004.270542000002
+        },
+        {
+          "user": 2,
+          "status": 503,
+          "ms": 3004.4990410000028
+        },
+        {
+          "user": 3,
+          "status": 503,
+          "ms": 3004.5687080000025
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 3004.6039170000004
+        }
+      ],
+      "recoveries": 0
+    },
+    {
+      "index": 3,
+      "round": 1,
+      "check": "undo",
+      "mutations": [
+        {
+          "user": 0,
+          "status": 503,
+          "ms": 5494.616792000001
+        },
+        {
+          "user": 1,
+          "status": 503,
+          "ms": 5494.931959000001
+        },
+        {
+          "user": 2,
+          "status": 503,
+          "ms": 5497.109458999999
+        },
+        {
+          "user": 3,
+          "status": 503,
+          "ms": 5494.870834000001
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 5496.135291999999
+        }
+      ],
+      "reads": [
+        {
+          "user": 0,
+          "status": 503,
+          "ms": 3009.2759579999984
+        },
+        {
+          "user": 1,
+          "status": 503,
+          "ms": 3009.3351669999975
+        },
+        {
+          "user": 2,
+          "status": 503,
+          "ms": 3009.3956660000003
+        },
+        {
+          "user": 3,
+          "status": 503,
+          "ms": 3009.4635000000017
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 3009.5148750000008
+        },
+        {
+          "user": 0,
+          "status": 503,
+          "ms": 3009.543749999997
+        },
+        {
+          "user": 1,
+          "status": 503,
+          "ms": 3009.7139169999973
+        },
+        {
+          "user": 2,
+          "status": 503,
+          "ms": 3009.784584000001
+        },
+        {
+          "user": 3,
+          "status": 503,
+          "ms": 3009.8336659999986
+        },
+        {
+          "user": 4,
+          "status": 503,
+          "ms": 3009.870749999998
+        }
+      ],
+      "recoveries": 5
+    }
+  ],
+  "error": "exact_retry\n\n503 !== 200\n",
+  "cleanupErrors": [],
+  "cleaned": true
+}

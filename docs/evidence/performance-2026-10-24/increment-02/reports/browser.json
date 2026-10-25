@@ -1,0 +1,446 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.performance.config.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.performance.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/performance/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4180 dist-review",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "local.performance.spec.ts",
+      "file": "local.performance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dense two-year profile retains check, Undo and draft durability while measuring the real adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5093,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[chromium] RISE capacity: argument received\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: initialized\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: session started\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.draft\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.draft\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[chromium] RISE capacity: saved habit.draft\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:40:45.562Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "local-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIGVuZ2luZSAvIHJlYWwgSW5kZXhlZERCIGRpc2NvdmVyeTsgbmV4dEZyYW1lIGlzIGFuIG9wcG9ydHVuaXR5IHRvIHBhaW50LCBub3QgbWVhc3VyZWQgVUkgZmVlZGJhY2suIE5vIHBoeXNpY2FsIE5GUiBhY2NlcHRhbmNlLiIsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAiZGF0ZSI6ICIyMDI2LTEwLTI0IiwKICAiaGFiaXRzIjogMTAwLAogICJkYXlzIjogNzMwLAogICJvY2N1cnJlbmNlcyI6IDczMDAwLAogICJwcm9maWxlQnl0ZXMiOiAxMDc1NDI5NiwKICAic3RhcnR1cE1zIjogMTMxLjI5OTk5OTk1MjMxNjI4LAogICJzYW1wbGVzIjogWwogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxMTMuMzk5OTk5OTc2MTU4MTQsCiAgICAgICJuZXh0RnJhbWVNcyI6IDExMy41LAogICAgICAiZHVyYWJsZU1zIjogMzM0LjM5OTk5OTk3NjE1ODE0CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAiZGlzcGF0Y2hNcyI6IDE0OC44OTk5OTk5NzYxNTgxNCwKICAgICAgIm5leHRGcmFtZU1zIjogMTQ5LAogICAgICAiZHVyYWJsZU1zIjogMzcyCiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxMDkuMjAwMDAwMDQ3NjgzNzIsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEwOS4yMDAwMDAwNDc2ODM3MiwKICAgICAgImR1cmFibGVNcyI6IDMyNi42MDAwMDAwMjM4NDE4NgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJkaXNwYXRjaE1zIjogMTE0Ljc5OTk5OTk1MjMxNjI4LAogICAgICAibmV4dEZyYW1lTXMiOiAxMTUsCiAgICAgICJkdXJhYmxlTXMiOiAzMzUuNjAwMDAwMDIzODQxODYKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTM1LjcwMDAwMDA0NzY4MzcyLAogICAgICAibmV4dEZyYW1lTXMiOiAxMzUuNzAwMDAwMDQ3NjgzNzIsCiAgICAgICJkdXJhYmxlTXMiOiAzNjYuMTAwMDAwMDIzODQxODYKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEwOS44MDAwMDAwNzE1MjU1NywKICAgICAgIm5leHRGcmFtZU1zIjogMTA5Ljg5OTk5OTk3NjE1ODE0LAogICAgICAiZHVyYWJsZU1zIjogMzM1LjUKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAiZGlzcGF0Y2hNcyI6IDExNC4yMDAwMDAwNDc2ODM3MiwKICAgICAgIm5leHRGcmFtZU1zIjogMTE0LjM5OTk5OTk3NjE1ODE0LAogICAgICAiZHVyYWJsZU1zIjogMzQyLjcwMDAwMDA0NzY4MzcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTQ5LjY5OTk5OTkyODQ3NDQzLAogICAgICAibmV4dEZyYW1lTXMiOiAxNDkuNzk5OTk5OTUyMzE2MjgsCiAgICAgICJkdXJhYmxlTXMiOiAzNzUuNzk5OTk5OTUyMzE2MwogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTIyLjUsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEyMi43MDAwMDAwNDc2ODM3MiwKICAgICAgImR1cmFibGVNcyI6IDM0Ny42MDAwMDAwMjM4NDE4NgogICAgfQogIF0sCiAgImludmFyaWFudHMiOiAiQ2hlY2sgdGhlbiBVbmRvIHByZXNlcnZlcyBhbGwgaGlzdG9yeS9YUDsgZHJhZnQgYW5kIHJldmlzaW9uIHN1cnZpdmUgcmVvcGVuaW5nOyBvcmlnaW5hbCByZWNvdmVyeSBzb3VyY2Ugc3RheXMgbnVsbC4iCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "104f1662bbe6eca12bb7-b0a8abce551cbbf92480",
+          "file": "local.performance.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "dense two-year profile retains check, Undo and draft durability while measuring the real adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5977,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[webkit] RISE capacity: argument received\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: initialized\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: session started\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.draft\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.draft\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[webkit] RISE capacity: saved habit.draft\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:40:51.077Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "local-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIGVuZ2luZSAvIHJlYWwgSW5kZXhlZERCIGRpc2NvdmVyeTsgbmV4dEZyYW1lIGlzIGFuIG9wcG9ydHVuaXR5IHRvIHBhaW50LCBub3QgbWVhc3VyZWQgVUkgZmVlZGJhY2suIE5vIHBoeXNpY2FsIE5GUiBhY2NlcHRhbmNlLiIsCiAgImJyb3dzZXIiOiAiMjcuMiIsCiAgImRhdGUiOiAiMjAyNi0xMC0yNCIsCiAgImhhYml0cyI6IDEwMCwKICAiZGF5cyI6IDczMCwKICAib2NjdXJyZW5jZXMiOiA3MzAwMCwKICAicHJvZmlsZUJ5dGVzIjogMTA3NTQyOTYsCiAgInN0YXJ0dXBNcyI6IDEzNCwKICAic2FtcGxlcyI6IFsKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJkaXNwYXRjaE1zIjogMTA3LAogICAgICAibmV4dEZyYW1lTXMiOiAxMDcsCiAgICAgICJkdXJhYmxlTXMiOiAzOTcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTA0LAogICAgICAibmV4dEZyYW1lTXMiOiAxMDQsCiAgICAgICJkdXJhYmxlTXMiOiA0MjQKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEwNCwKICAgICAgIm5leHRGcmFtZU1zIjogMTA1LAogICAgICAiZHVyYWJsZU1zIjogMzg1CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxMDUsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEwNywKICAgICAgImR1cmFibGVNcyI6IDM5MwogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxMDYsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEwNiwKICAgICAgImR1cmFibGVNcyI6IDQyNgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTEwLAogICAgICAibmV4dEZyYW1lTXMiOiAxMTIsCiAgICAgICJkdXJhYmxlTXMiOiAzOTIKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAiZGlzcGF0Y2hNcyI6IDEwMywKICAgICAgIm5leHRGcmFtZU1zIjogMTAzLAogICAgICAiZHVyYWJsZU1zIjogMzg2CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEwNCwKICAgICAgIm5leHRGcmFtZU1zIjogMTA2LAogICAgICAiZHVyYWJsZU1zIjogNDI3CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxMDIsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEwMywKICAgICAgImR1cmFibGVNcyI6IDM4NwogICAgfQogIF0sCiAgImludmFyaWFudHMiOiAiQ2hlY2sgdGhlbiBVbmRvIHByZXNlcnZlcyBhbGwgaGlzdG9yeS9YUDsgZHJhZnQgYW5kIHJldmlzaW9uIHN1cnZpdmUgcmVvcGVuaW5nOyBvcmlnaW5hbCByZWNvdmVyeSBzb3VyY2Ugc3RheXMgbnVsbC4iCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "104f1662bbe6eca12bb7-93ff4b9441923d2e704f",
+          "file": "local.performance.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "dense two-year profile retains check, Undo and draft durability while measuring the real adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9149,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "[firefox] RISE capacity: argument received\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: initialized\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: session started\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.draft\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.draft\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.check\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.correct\n"
+                    },
+                    {
+                      "text": "[firefox] RISE capacity: saved habit.draft\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:40:57.575Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "local-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIGVuZ2luZSAvIHJlYWwgSW5kZXhlZERCIGRpc2NvdmVyeTsgbmV4dEZyYW1lIGlzIGFuIG9wcG9ydHVuaXR5IHRvIHBhaW50LCBub3QgbWVhc3VyZWQgVUkgZmVlZGJhY2suIE5vIHBoeXNpY2FsIE5GUiBhY2NlcHRhbmNlLiIsCiAgImJyb3dzZXIiOiAiMTU3LjAiLAogICJkYXRlIjogIjIwMjYtMTAtMjQiLAogICJoYWJpdHMiOiAxMDAsCiAgImRheXMiOiA3MzAsCiAgIm9jY3VycmVuY2VzIjogNzMwMDAsCiAgInByb2ZpbGVCeXRlcyI6IDEwNzU0Mjk2LAogICJzdGFydHVwTXMiOiAzNDYsCiAgInNhbXBsZXMiOiBbCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAiZGlzcGF0Y2hNcyI6IDE3OSwKICAgICAgIm5leHRGcmFtZU1zIjogMTgwLAogICAgICAiZHVyYWJsZU1zIjogNjg1CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAiZGlzcGF0Y2hNcyI6IDE4NCwKICAgICAgIm5leHRGcmFtZU1zIjogMTg0LAogICAgICAiZHVyYWJsZU1zIjogNjg2CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxODEsCiAgICAgICJuZXh0RnJhbWVNcyI6IDE4MiwKICAgICAgImR1cmFibGVNcyI6IDY4MQogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJkaXNwYXRjaE1zIjogMTcxLAogICAgICAibmV4dEZyYW1lTXMiOiAxNzEsCiAgICAgICJkdXJhYmxlTXMiOiA2NTEKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTgyLAogICAgICAibmV4dEZyYW1lTXMiOiAxODIsCiAgICAgICJkdXJhYmxlTXMiOiA2NTcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAiZGlzcGF0Y2hNcyI6IDE4NCwKICAgICAgIm5leHRGcmFtZU1zIjogMTg0LAogICAgICAiZHVyYWJsZU1zIjogNjY0CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxNzksCiAgICAgICJuZXh0RnJhbWVNcyI6IDE3OSwKICAgICAgImR1cmFibGVNcyI6IDY2NwogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxNzAsCiAgICAgICJuZXh0RnJhbWVNcyI6IDE3MSwKICAgICAgImR1cmFibGVNcyI6IDY2MQogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTgwLAogICAgICAibmV4dEZyYW1lTXMiOiAxODAsCiAgICAgICJkdXJhYmxlTXMiOiA2NjMKICAgIH0KICBdLAogICJpbnZhcmlhbnRzIjogIkNoZWNrIHRoZW4gVW5kbyBwcmVzZXJ2ZXMgYWxsIGhpc3RvcnkvWFA7IGRyYWZ0IGFuZCByZXZpc2lvbiBzdXJ2aXZlIHJlb3BlbmluZzsgb3JpZ2luYWwgcmVjb3Zlcnkgc291cmNlIHN0YXlzIG51bGwuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "104f1662bbe6eca12bb7-951ba605ab22e7b07d81",
+          "file": "local.performance.spec.ts",
+          "line": 8,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T10:40:45.222Z",
+    "duration": 22185.813,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "implementation": "validated row comparison only",
+  "capacity": "FAIL",
+  "recoveryAndCleanup": "PASS",
+  "commands": [
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "sourceCases": 282,
+      "log": "logs/check.log"
+    },
+    {
+      "command": "node --import tsx --test tests/personal-records.test.ts tests/account-commands.test.ts",
+      "exit": 0,
+      "cases": 6,
+      "log": "logs/domain.log"
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='no-op account commands retain' tests/infra/personal.test.ts",
+      "exit": 0,
+      "cases": 1,
+      "log": "logs/targeted-database.log"
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/personal.test.ts tests/infra/sync.test.ts tests/infra/recovery.test.ts tests/infra/lifecycle.test.ts tests/infra/group-export.test.ts",
+      "exit": 0,
+      "cases": 48,
+      "log": "logs/database.log"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts smoke",
+      "exit": 0,
+      "report": "smoke.json"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts full",
+      "exit": 1,
+      "report": "full.json"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "logs/docs.log"
+    }
+  ],
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11",
+    "transport": "Fastify inject; fixed test"
+  },
+  "newBrowserClaims": false,
+  "cloudProvisioned": false
+}

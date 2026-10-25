@@ -1,0 +1,65 @@
+{
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 100,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "pool": 5,
+  "seedMs": 277852.9985,
+  "historyAndXpRestored": true,
+  "cleanupErrors": [],
+  "cleaned": true,
+  "exitCode": 1,
+  "mixed": {
+    "phase": "complete",
+    "scope": "Fixed-test scheduled mixed load; real API/session/RLS with injected transport and existing SharedContent reader; client-state convergence, not browser paint",
+    "rounds": 4,
+    "roundMs": 30000,
+    "pollMs": 15000,
+    "measuredMs": 136014.360959,
+    "users": 100,
+    "families": 50,
+    "personal": {
+      "planned": 400,
+      "accepted": 120,
+      "failed": 75,
+      "deferred": 205,
+      "p95Ms": 9101.86162500002,
+      "p95ScheduledMs": 9359.11837500002,
+      "maxMs": 12062.459249999956,
+      "maxSchedulingLateMs": 2631.313792000001
+    },
+    "shared": {
+      "planned": 200,
+      "accepted": 10,
+      "failed": 49,
+      "deferred": 141,
+      "p95Ms": 6115.438458000019,
+      "p95ScheduledMs": 6121.284333000076,
+      "maxMs": 6115.438458000019,
+      "maxSchedulingLateMs": 2633.0247500000405
+    },
+    "convergence": {
+      "expected": 200,
+      "accepted": 10,
+      "observed": 8,
+      "over15SecondsOrMissing": 7,
+      "p95Ms": 61110.777333000035,
+      "maxMs": 61110.777333000035
+    },
+    "exactRecoveryAndSharedReadback": true,
+    "finalPersonalRevision": 6,
+    "passed": false
+  },
+  "recoveryRequests": 470,
+  "firstStatuses": {
+    "200": 130,
+    "503": 124,
+    "0": 346
+  },
+  "pollStatuses": {
+    "200": 1036,
+    "503": 387,
+    "409": 1
+  }
+}

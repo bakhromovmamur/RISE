@@ -1,0 +1,79 @@
+{
+  "task": "RELEASE-01",
+  "date": "2026-10-25",
+  "localInstallation": {
+    "readOnlyComparison": true,
+    "applicationTables": 62,
+    "applicationDataIdentical": true,
+    "configurationFiles": 5,
+    "configurationIdentical": true,
+    "rawRecordsAndHashesPublished": false,
+    "finalPostSuiteComparisonIdentical": true
+  },
+  "baselineFiles": 4924,
+  "changedExistingFiles": [
+    "PRODUCT.md",
+    "ARCHITECTURE.md",
+    "README.md",
+    "TASKS.md",
+    "VERIFICATION.md",
+    "tests/backup.browser.spec.ts",
+    "tests/prayer-live.browser.spec.ts",
+    "tests/accessibility.browser.spec.ts",
+    "tests/russian.browser.spec.ts",
+    "docs/PWA.md",
+    "scripts/serve-pwa-test-build.mjs",
+    ".impeccable/hook.cache.json",
+    "src/pwa/client.ts",
+    ".impeccable/review/user-375.png",
+    ".impeccable/review/desktop-delivery.png",
+    ".impeccable/review/desktop.png",
+    ".impeccable/review/mobile-times.png",
+    ".impeccable/review/mobile.png",
+    ".impeccable/review/user-430.png",
+    "tests/infra/server-backup.test.ts",
+    "tests/pwa/lifecycle.pwa.spec.ts"
+  ],
+  "missingBaselineFiles": [],
+  "protectedSource": {
+    "files": 221,
+    "changed": [
+      "src/pwa/client.ts"
+    ],
+    "missing": []
+  },
+  "frozenVisualReferences": {
+    "files": 799,
+    "changed": [],
+    "missing": []
+  },
+  "datedHistoricalEvidence": {
+    "files": 3065,
+    "changed": [],
+    "missing": []
+  },
+  "lockfileUnchanged": true,
+  "legacyCaptures": {
+    "initialRunRegenerated": 11,
+    "stillDifferentFromInitial": [
+      ".impeccable/review/user-375.png",
+      ".impeccable/review/desktop-delivery.png",
+      ".impeccable/review/desktop.png",
+      ".impeccable/review/mobile-times.png",
+      ".impeccable/review/mobile.png",
+      ".impeccable/review/user-430.png"
+    ],
+    "checkedAfterOutputPathFix": 64,
+    "changedAfterOutputPathFix": []
+  },
+  "personalBrowserOrigins": "No fixtures or browser automation loaded 4173, 4190 or 4192; isolation guard used throughout. Browser storage was not exported for this audit.",
+  "sourceReview": "Only src/pwa/client.ts changed among src/server/public/infra. No CSS/artwork/domain/backend/schema/persisted-format changes.",
+  "finalAuditAt": "2026-10-24T22:19:18.151700+00:00",
+  "testPortsAfterRun": {
+    "4180": "closed",
+    "4181": "closed",
+    "4182": "closed",
+    "4191": "closed"
+  },
+  "finalProtectedFileComparisonPassed": 4084
+}

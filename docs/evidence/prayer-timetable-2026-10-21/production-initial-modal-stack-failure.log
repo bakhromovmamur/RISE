@@ -1,0 +1,233 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts
+
+[WebServer] (node:39314) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 39 tests using 2 workers
+
+(node:39324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39323) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (1.4s)
+  ✓   1 [chromium] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (2.2s)
+  ✓   4 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (676ms)
+  ✓   3 [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.6s)
+  ✓   5 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (724ms)
+  ✓   6 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (745ms)
+  ✓   7 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (666ms)
+  ✓   8 [chromium] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (837ms)
+  ✓   9 [chromium] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (1.4s)
+  ✓  10 [chromium] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (1.8s)
+  ✓  11 [chromium] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (1.9s)
+  ✓  12 [chromium] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.1s)
+(node:39373) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [webkit] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (3.3s)
+  ✓  15 [webkit] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (1.1s)
+  ✓  16 [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (2.6s)
+  ✓  17 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (967ms)
+  ✓  18 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (1.0s)
+  ✓  19 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (875ms)
+  ✓  20 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (915ms)
+  ✓  21 [webkit] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (1.2s)
+  ✓  22 [webkit] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (3.1s)
+  ✓  23 [webkit] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (3.3s)
+  ✓  24 [webkit] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (3.5s)
+  ✓  25 [webkit] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.9s)
+  ✘  13 [chromium] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (30.7s)
+(node:39568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  27 [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (10.0s)
+  ✓  28 [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (2.2s)
+  ✓  29 [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (6.9s)
+  ✓  30 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (3.7s)
+  ✘  26 [webkit] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (31.3s)
+(node:39648) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  31 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (1.8s)
+  ✓  33 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (1.9s)
+  ✓  34 [firefox] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (3.2s)
+  ✓  32 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (5.6s)
+  ✓  35 [firefox] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (5.9s)
+  ✓  36 [firefox] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (5.9s)
+  ✓  37 [firefox] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (4.5s)
+  ✓  38 [firefox] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (3.1s)
+  ✘  39 [firefox] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (32.1s)
+
+
+  1) [chromium] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('tab', { name: 'Today', exact: true })
+        - locator resolved to <button class="" role="tab" tabindex="-1" id="tab-today" aria-selected="false" aria-controls="panel-today">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        55 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      91 |   expect(configured.timezone).toBe("America/New_York");
+      92 |   await page.keyboard.press("Escape");
+    > 93 |   await page.getByRole("tab", { name: "Today", exact: true }).click();
+         |                                                               ^
+      94 |   await page.getByRole("button", { name: /^Isha, Ready to record/ }).click();
+      95 |   await dialog(page).getByRole("button", { name: "Prayed on time", exact: true }).click();
+      96 |   const recorded = await stored(page);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/prayer.production.spec.ts:93:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('tab', { name: 'Today', exact: true })
+        - locator resolved to <button class="" role="tab" tabindex="-1" id="tab-today" aria-selected="false" aria-controls="panel-today">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        52 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      91 |   expect(configured.timezone).toBe("America/New_York");
+      92 |   await page.keyboard.press("Escape");
+    > 93 |   await page.getByRole("tab", { name: "Today", exact: true }).click();
+         |                                                               ^
+      94 |   await page.getByRole("button", { name: /^Isha, Ready to record/ }).click();
+      95 |   await dialog(page).getByRole("button", { name: "Prayed on time", exact: true }).click();
+      96 |   const recorded = await stored(page);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/prayer.production.spec.ts:93:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('tab', { name: 'Today', exact: true })
+        - locator resolved to <button class="" role="tab" tabindex="-1" id="tab-today" aria-selected="false" aria-controls="panel-today">…</button>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        53 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="life-screen live-prayer-setup">…</div> from <div>…</div> subtree intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+        - waiting for element to be visible, enabled and stable
+
+
+      91 |   expect(configured.timezone).toBe("America/New_York");
+      92 |   await page.keyboard.press("Escape");
+    > 93 |   await page.getByRole("tab", { name: "Today", exact: true }).click();
+         |                                                               ^
+      94 |   await page.getByRole("button", { name: /^Isha, Ready to record/ }).click();
+      95 |   await dialog(page).getByRole("button", { name: "Prayed on time", exact: true }).click();
+      96 |   const recorded = await stored(page);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/prayer.production.spec.ts:93:63
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/prayer.production-first-ca-fe76b-le-after-selecting-New-York-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York 
+    [webkit] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York 
+    [firefox] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York 
+  36 passed (2.0m)

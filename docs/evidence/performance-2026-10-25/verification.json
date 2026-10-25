@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-25T09:54:16.420012+00:00",
+  "source": {
+    "command": "npm run check",
+    "testsPassed": 317,
+    "failed": 0,
+    "lintTypesBuilds": "pass"
+  },
+  "databaseTestsPassed": 39,
+  "checks": [
+    {
+      "name": "database",
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/personal.test.ts tests/infra/sync.test.ts tests/infra/recovery.test.ts tests/infra/shared-priorities.test.ts tests/infra/push-cancellation.test.ts",
+      "start": "2026-10-25T09:40:23.257Z",
+      "end": "2026-10-25T09:40:50.080Z",
+      "exitCode": 0
+    },
+    {
+      "name": "performance",
+      "command": "npx playwright test --config playwright.performance.config.ts",
+      "start": "2026-10-25T09:40:50.080Z",
+      "end": "2026-10-25T09:41:26.619Z",
+      "exitCode": 0
+    },
+    {
+      "name": "feedback",
+      "command": "npx playwright test --config playwright.performance-production.config.ts",
+      "start": "2026-10-25T09:41:26.620Z",
+      "end": "2026-10-25T09:41:41.100Z",
+      "exitCode": 0
+    },
+    {
+      "name": "storage",
+      "command": "npx playwright test tests/storage.browser.spec.ts tests/recovery.browser.spec.ts tests/backup.browser.spec.ts --workers=1",
+      "start": "2026-10-25T09:41:41.100Z",
+      "end": "2026-10-25T09:43:33.660Z",
+      "exitCode": 0
+    },
+    {
+      "name": "sync",
+      "command": "npm run test:sync",
+      "start": "2026-10-25T09:43:33.661Z",
+      "end": "2026-10-25T09:50:01.535Z",
+      "exitCode": 0
+    },
+    {
+      "name": "pwa",
+      "command": "npm run test:pwa",
+      "start": "2026-10-25T09:50:13.195Z",
+      "end": "2026-10-25T09:53:27.369Z",
+      "exitCode": 0
+    }
+  ],
+  "browserReports": {
+    "performance": {
+      "startTime": "2026-10-25T09:40:51.168Z",
+      "duration": 35422.397,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "feedback": {
+      "startTime": "2026-10-25T09:41:27.794Z",
+      "duration": 13285.231,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "storage": {
+      "startTime": "2026-10-25T09:41:42.717Z",
+      "duration": 110924.88100000001,
+      "expected": 84,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "sync": {
+      "startTime": "2026-10-25T09:43:34.093Z",
+      "duration": 387414.05700000003,
+      "expected": 69,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "pwa": {
+      "startTime": "2026-10-25T09:50:13.629Z",
+      "duration": 193724.23599999998,
+      "expected": 63,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "browserTotalPassed": 225,
+  "correctnessRegressionStatus": "pass",
+  "performanceAcceptance": "not met; five-account API and desktop save/feedback targets still fail",
+  "fullMixedCapacity": "blocked before fixtures by unchanged >12 GiB disk guard",
+  "taskStatus": "IN PROGRESS",
+  "cloudProvisioning": "pending"
+}

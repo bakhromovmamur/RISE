@@ -1,0 +1,172 @@
+{
+  "run": "120ab218-31cf-4cb9-963a-6e6bea9ac026",
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 402.03758300000027,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 388.46600000000035,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 2109.7659999999996,
+  "databaseGrowthBytes": 18751488,
+  "queryComparison": {
+    "scope": "Read-only restricted actor transaction; all 73000 ordered occurrence values; five alternating rounds; separate EXPLAIN excludes transfer; no application change",
+    "samples": [
+      {
+        "round": 0,
+        "kind": "direct",
+        "ms": 199.0186249999997,
+        "cpuMs": 107.043,
+        "rows": 73000,
+        "executionMs": 48.277,
+        "planningMs": 0.205,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Limit"
+      },
+      {
+        "round": 0,
+        "kind": "aggregate",
+        "ms": 379.3955000000001,
+        "cpuMs": 91.345,
+        "rows": 73000,
+        "executionMs": 122.053,
+        "planningMs": 0.166,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Aggregate"
+      },
+      {
+        "round": 1,
+        "kind": "aggregate",
+        "ms": 232.29025000000001,
+        "cpuMs": 80.046,
+        "rows": 73000,
+        "executionMs": 122.648,
+        "planningMs": 0.138,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Aggregate"
+      },
+      {
+        "round": 1,
+        "kind": "direct",
+        "ms": 129.474917,
+        "cpuMs": 63.638,
+        "rows": 73000,
+        "executionMs": 50.818,
+        "planningMs": 0.126,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Limit"
+      },
+      {
+        "round": 2,
+        "kind": "direct",
+        "ms": 109.85737499999959,
+        "cpuMs": 59.796,
+        "rows": 73000,
+        "executionMs": 44.394,
+        "planningMs": 0.121,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Limit"
+      },
+      {
+        "round": 2,
+        "kind": "aggregate",
+        "ms": 224.32379200000014,
+        "cpuMs": 62.336,
+        "rows": 73000,
+        "executionMs": 121.328,
+        "planningMs": 0.146,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Aggregate"
+      },
+      {
+        "round": 3,
+        "kind": "aggregate",
+        "ms": 216.38495899999998,
+        "cpuMs": 61.978,
+        "rows": 73000,
+        "executionMs": 105.785,
+        "planningMs": 0.103,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Aggregate"
+      },
+      {
+        "round": 3,
+        "kind": "direct",
+        "ms": 86.06775000000016,
+        "cpuMs": 58.336,
+        "rows": 73000,
+        "executionMs": 49.012,
+        "planningMs": 0.125,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Limit"
+      },
+      {
+        "round": 4,
+        "kind": "direct",
+        "ms": 132.72520799999984,
+        "cpuMs": 77.012,
+        "rows": 73000,
+        "executionMs": 56.053,
+        "planningMs": 0.173,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Limit"
+      },
+      {
+        "round": 4,
+        "kind": "aggregate",
+        "ms": 276.54483399999936,
+        "cpuMs": 50.332,
+        "rows": 73000,
+        "executionMs": 123.098,
+        "planningMs": 0.239,
+        "sharedHits": 3215,
+        "sharedReads": 0,
+        "node": "Aggregate"
+      }
+    ],
+    "dateStyleAndTimezoneParity": true,
+    "emptySelection": true
+  },
+  "reads": {
+    "samplesMs": [
+      249.0069999999996
+    ],
+    "totalBytes": 15732318
+  },
+  "historyAndXpRestored": true,
+  "firstAttempts": {
+    "count": 2,
+    "accepted": 2,
+    "failed": 0,
+    "p95Ms": 402.03758300000027,
+    "maxMs": 402.03758300000027
+  },
+  "localPersonalGate": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

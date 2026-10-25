@@ -1,0 +1,175 @@
+--- before/src/App.tsx
++++ after/src/App.tsx
+@@ -378,6 +378,15 @@
+           <div
+             className={`app-shell ${state.prefs.reduceMotion ? "reduce-motion" : ""}`}
+             data-theme={theme}
++            onClickCapture={event => {
++              // WebKit does not focus clicked buttons. Capture the actual opener
++              // before its action creates a sheet, without moving the viewport.
++              const control = event.target instanceof Element
++                ? event.target.closest<HTMLElement>("button,a[href],summary") : null;
++              if (control && !control.matches(":disabled") && !control.closest("[hidden],[inert]")) {
++                control.focus({ preventScroll: true });
++              }
++            }}
+           >
+             <PwaNotice />
+             <div
+--- before/src/components.tsx
++++ after/src/components.tsx
+@@ -332,8 +332,17 @@
+           root.querySelectorAll<HTMLElement>(
+             'button,input,select,textarea,a[href],summary,[tabindex]',
+           ),
+-        ).filter((el) => el.tabIndex >= 0 && !el.matches(":disabled") && !el.closest("[inert]") &&
+-          el.getClientRects().length && getComputedStyle(el).visibility === "visible");
++        ).filter((el) => {
++          if (el.tabIndex < 0 || el.matches(":disabled") || el.closest("[hidden],[inert]") ||
++            !el.getClientRects().length || getComputedStyle(el).visibility !== "visible") return false;
++          // Closed details can retain layout boxes for their hidden controls.
++          // Only their summary participates in the keyboard order.
++          for (let parent = el.parentElement; parent && parent !== root; parent = parent.parentElement) {
++            if (parent instanceof HTMLDetailsElement && !parent.open &&
++              !parent.querySelector(":scope > summary")?.contains(el)) return false;
++          }
++          return true;
++        });
+         // WebKit can skip buttons in its native Tab order. A boundary-only trap
+         // then misses the last editable field and lets focus leave the dialog.
+         e.preventDefault();
+@@ -345,6 +354,22 @@
+       }
+     };
+     document.addEventListener("keydown", listener);
++    const content = root?.querySelector<HTMLElement>(".sheet-content");
++    let focusFrame = 0;
++    const revealFocus = () => {
++      cancelAnimationFrame(focusFrame);
++      focusFrame = requestAnimationFrame(() => {
++        const focused = document.activeElement;
++        if (!content || !(focused instanceof HTMLElement) || !content.contains(focused)) return;
++        const field = focused.getBoundingClientRect(), viewport = content.getBoundingClientRect();
++        const top = viewport.top + 8, bottom = viewport.bottom - 8;
++        if (field.top < top || field.height > bottom - top) content.scrollTop += field.top - top;
++        else if (field.bottom > bottom) content.scrollTop += field.bottom - bottom;
++      });
++    };
++    root?.addEventListener("focusin", revealFocus);
++    const resize = new ResizeObserver(revealFocus);
++    if (content) resize.observe(content);
+     // Conditional steps can remove the focused button (for example, "I'm up").
+     // Keep keyboard focus in the active sheet instead of dropping it on the page.
+     const observer = new MutationObserver(() => {
+@@ -352,6 +377,9 @@
+     });
+     if (root) observer.observe(root, { childList: true, subtree: true });
+     return () => {
++      cancelAnimationFrame(focusFrame);
++      resize.disconnect();
++      root?.removeEventListener("focusin", revealFocus);
+       observer.disconnect();
+       document.removeEventListener("keydown", listener);
+     };
+--- before/src/data/StorageNotice.tsx
++++ after/src/data/StorageNotice.tsx
+@@ -59,7 +59,7 @@
+   return <details className="settings-disclosure"><summary>{t.summary}</summary>
+     <p>{summary.provenance === "demo-or-mixed" ? t.mixed : t.legacy}</p>
+     <p>{t.date}: {summary.importedAt.slice(0, 10)} · {t.habits}: {summary.habits} · {t.checks}: {summary.habitChecks} · {t.prayers}: {summary.prayerChecks}</p>
+-    <button onClick={() => { void exportRecovery(session).catch(() => window.alert(t.failedExport)); }}>{t.export}</button>
++    <button className="storage-recovery-download" onClick={() => { void exportRecovery(session).catch(() => window.alert(t.failedExport)); }}>{t.export}</button>
+   </details>;
+ }
+ export function StorageStatus({ session, visible = false }: { session: JourneySession; visible?: boolean }) {
+--- before/src/styles.css
++++ after/src/styles.css
+@@ -529,11 +529,13 @@
+ .text-button {
+   display: flex;
+   align-items: center;
++  justify-content: flex-end;
+   gap: 3px;
+   color: var(--green);
+   font-weight: 600;
+   font-size: 0.8125rem;
+   min-height: 44px;
++  min-width: 44px;
+   padding: 0;
+ }
+ .section-title {
+@@ -1516,7 +1518,7 @@
+   display: none;
+ }
+ .sheet-header {
+-  height: 62px;
++  min-height: 62px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+@@ -1527,15 +1529,21 @@
+ }
+ .sheet.full .sheet-header {
+   padding-top: max(12px, env(safe-area-inset-top));
+-  height: 67px;
++  min-height: 67px;
+ }
+ .sheet-header h2 {
++  min-width: 0;
++  overflow-wrap: anywhere;
+   font-size: 0.9375rem;
+   text-align: center;
+   letter-spacing: 0;
+ }
+ .header-spacer {
+   width: 44px;
++}
++.sheet-header .icon-button,
++.header-spacer {
++  flex-shrink: 0;
+ }
+ .sheet-content {
+   padding: 24px 20px max(30px, env(safe-area-inset-bottom));
+@@ -1738,7 +1746,7 @@
+ }
+ .form-grid {
+   display: grid;
+-  grid-template-columns: 1fr 1fr;
++  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+   gap: 13px;
+ }
+ .form-grid > .field {
+@@ -2560,6 +2568,10 @@
+   margin: 3px;
+   min-height: 44px;
+ }
++.storage-recovery-download {
++  min-height: 44px;
++  min-width: 44px;
++}
+ .storage-recovery {
+   max-height: 100%;
+   overflow-y: auto;
+@@ -3082,7 +3094,7 @@
+     bottom: calc(94px + env(safe-area-inset-bottom));
+   }
+   .sheet.full .sheet-header {
+-    height: calc(64px + env(safe-area-inset-top));
++    min-height: calc(64px + env(safe-area-inset-top));
+   }
+   .show-review .studio-sidebar {
+     padding: 20px;
+@@ -3127,10 +3139,12 @@
+     right: -14px;
+   }
+   .weekday-selector {
++    display: grid;
++    grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+     gap: 3px;
+   }
+   .weekday-selector > button {
+-    min-width: 38px;
++    min-width: 44px;
+   }
+   .sheet-content {
+     padding-left: 18px;

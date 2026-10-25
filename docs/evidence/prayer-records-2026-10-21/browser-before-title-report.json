@@ -1,0 +1,1558 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "tests/prayer-records.browser.spec.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.browser.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.browser.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.browser.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.browser.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.browser.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.browser.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4180 dist-review",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "prayer-records.browser.spec.ts",
+      "file": "prayer-records.browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "saved future-dated history stays correctable after a backward clock change",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1183,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:56.404Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-3b3b4af77eb4371f4035",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "pause defaults to the original overnight Isha date and resumes without hiding earlier gaps",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1317,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:56.404Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-649548002abcbb096c68",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "unfinished Fajr draft retains its original date across midnight and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 888,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:57.864Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-ee6f10b541752fd0846a",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "preview stop, backup and acknowledgment leave a different dated live alarm untouched",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 778,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:57.990Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-d895a9b284f160a95b56",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "preview of today's stopped live alert cannot acknowledge it; actual acknowledgment cancels only its dated wake alerts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 718,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:58.761Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-eb66ace6052ef9c71082",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "overnight break expires in the open form without losing its note or reusing its wrap-up minute",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:58.774Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-9e52a4e477534d3faa0b",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "prayer records and dated planning layout en-light-375-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 871,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:59.484Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-371eee4c00e5b8f02341",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout en-dark-1440-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 917,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:55:59.599Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-bee73b2eda995ed55ebb",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout ru-light-393-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 839,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:00.361Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-68c081037ca9a290817b",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout ru-dark-320-200",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 498,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                      "column": 85,
+                      "line": 161
+                    },
+                    "snippet": "  159 |   const capture = async (name: string) => {\n  160 |     await expect(dialog(page)).toBeVisible();\n> 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n      |                                                                                     ^\n  162 |     await page.locator(\".app-shell\").screenshot({ path: testInfo.outputPath(`${name}.png`) });\n  163 |   };\n  164 |   await plan(page, language); await capture(\"dated-fajr\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                        "column": 85,
+                        "line": 161
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  159 |   const capture = async (name: string) => {\n  160 |     await expect(dialog(page)).toBeVisible();\n> 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n      |                                                                                     ^\n  162 |     await page.locator(\".app-shell\").screenshot({ path: testInfo.outputPath(`${name}.png`) });\n  163 |   };\n  164 |   await plan(page, language); await capture(\"dated-fajr\");\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:00.522Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                    "column": 85,
+                    "line": 161
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-dd7b2920de76d5571c55",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout uz-light-430-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 932,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:01.306Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-2b5fa4cc88802eca9f22",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout uz-dark-375-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 829,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:01.205Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-3af41820e63543ba246a",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "saved future-dated history stays correctable after a backward clock change",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1688,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:02.283Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-aa46e76db94098108a2e",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "pause defaults to the original overnight Isha date and resumes without hiding earlier gaps",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1891,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:02.526Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-9fc3ebfddbe7180becca",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "unfinished Fajr draft retains its original date across midnight and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1013,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:04.814Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-a0f2ca3ea9deabcc3da5",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "preview stop, backup and acknowledgment leave a different dated live alarm untouched",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 855,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:05.021Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-2a17c16729919ffe5288",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "preview of today's stopped live alert cannot acknowledge it; actual acknowledgment cancels only its dated wake alerts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 851,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:05.842Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-bcdfd1638a3373678b4f",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "overnight break expires in the open form without losing its note or reusing its wrap-up minute",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1026,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:05.883Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-0b461c4d693ced1af2e6",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "prayer records and dated planning layout en-light-375-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1055,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:06.700Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-c97235cac9134abfb3f1",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout en-dark-1440-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1167,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:06.915Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-7e7651891bbf0002c7a0",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout ru-light-393-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 986,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:07.761Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-c656821e29c154b29e0c",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout ru-dark-320-200",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 605,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                      "column": 85,
+                      "line": 161
+                    },
+                    "snippet": "  159 |   const capture = async (name: string) => {\n  160 |     await expect(dialog(page)).toBeVisible();\n> 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n      |                                                                                     ^\n  162 |     await page.locator(\".app-shell\").screenshot({ path: testInfo.outputPath(`${name}.png`) });\n  163 |   };\n  164 |   await plan(page, language); await capture(\"dated-fajr\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                        "column": 85,
+                        "line": 161
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  159 |   const capture = async (name: string) => {\n  160 |     await expect(dialog(page)).toBeVisible();\n> 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n      |                                                                                     ^\n  162 |     await page.locator(\".app-shell\").screenshot({ path: testInfo.outputPath(`${name}.png`) });\n  163 |   };\n  164 |   await plan(page, language); await capture(\"dated-fajr\");\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:08.092Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-webkit/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-webkit/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                    "column": 85,
+                    "line": 161
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-f91a730ccd3ad5d930a0",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout uz-light-430-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 988,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:08.754Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-3f1915d70dd297c8b38a",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout uz-dark-375-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1082,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:09.004Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-04f66108aed8d7c06f9a",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "saved future-dated history stays correctable after a backward clock change",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1836,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:09.984Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-ab0129e0f6aa96327515",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 37,
+          "column": 1
+        },
+        {
+          "title": "pause defaults to the original overnight Isha date and resumes without hiding earlier gaps",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2060,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:10.470Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-96d0a8788c01dcd4b4a3",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "unfinished Fajr draft retains its original date across midnight and reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1103,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:12.777Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-ec28356989f3964aac1e",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "preview stop, backup and acknowledgment leave a different dated live alarm untouched",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1127,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:13.365Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-7626afca6f7b651b7ede",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 89,
+          "column": 1
+        },
+        {
+          "title": "preview of today's stopped live alert cannot acknowledge it; actual acknowledgment cancels only its dated wake alerts",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1072,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:13.885Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-7a1ab3fb10b4e0009f16",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "overnight break expires in the open form without losing its note or reusing its wrap-up minute",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1109,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:14.497Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-0d513c86e31e02b06b14",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 126,
+          "column": 1
+        },
+        {
+          "title": "prayer records and dated planning layout en-light-375-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1168,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:14.965Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-a491fe18b1da763d03d9",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout en-dark-1440-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1270,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:15.611Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-9caa80638a7c7334283a",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout ru-light-393-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1197,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:16.139Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-9cb7131000415e7ce22b",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout ru-dark-320-200",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 744,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                      "column": 85,
+                      "line": 161
+                    },
+                    "snippet": "  159 |   const capture = async (name: string) => {\n  160 |     await expect(dialog(page)).toBeVisible();\n> 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n      |                                                                                     ^\n  162 |     await page.locator(\".app-shell\").screenshot({ path: testInfo.outputPath(`${name}.png`) });\n  163 |   };\n  164 |   await plan(page, language); await capture(\"dated-fajr\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                        "column": 85,
+                        "line": 161
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  159 |   const capture = async (name: string) => {\n  160 |     await expect(dialog(page)).toBeVisible();\n> 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n      |                                                                                     ^\n  162 |     await page.locator(\".app-shell\").screenshot({ path: testInfo.outputPath(`${name}.png`) });\n  163 |   };\n  164 |   await plan(page, language); await capture(\"dated-fajr\");\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:16.887Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts",
+                    "column": 85,
+                    "line": 161
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-b925d7401a0a08fd6b34",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout uz-light-430-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1161,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:17.344Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-68092af7091d429ee345",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        },
+        {
+          "title": "prayer records and dated planning layout uz-dark-375-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1583,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T14:56:18.120Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "cd1607b77286a980bebb-29efbfc66a4931d314d0",
+          "file": "prayer-records.browser.spec.ts",
+          "line": 154,
+          "column": 13
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T14:55:55.745Z",
+    "duration": 24630.478,
+    "expected": 33,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

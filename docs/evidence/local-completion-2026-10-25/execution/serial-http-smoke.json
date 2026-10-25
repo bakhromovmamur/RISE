@@ -1,0 +1,536 @@
+{
+  "run": "580fc839-8125-4fc8-8a3c-6104fe5927a9",
+  "environment": "fixed test",
+  "transport": "Real loopback HTTP after injected synthetic login/seed; not hosted acceptance",
+  "users": 2,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [],
+  "seedMs": 3735.51975,
+  "databaseGrowthBytes": 8192,
+  "execution": {
+    "runtime": "private serial reference using current createApp/database/Sessions",
+    "workerThreads": 0,
+    "serialPoolSize": 5,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "transport": "HTTP 127.0.0.1:4191; per-synthetic-browser keep-alive agent; current app source through prior single-process runtime",
+    "scope": "Synthetic login/seed injected before starting normal runtime; measured operations and final readback use actual HTTP; not hosted acceptance"
+  },
+  "mixed": {
+    "phase": "complete",
+    "scope": "Fixed-test scheduled mixed load over real loopback HTTP; existing SharedContent reader; injected synthetic login/seed; not browser paint or hosted acceptance",
+    "rounds": 4,
+    "roundMs": 30000,
+    "pollMs": 15000,
+    "measuredMs": 136002.07579099998,
+    "users": 2,
+    "families": 1,
+    "samples": [
+      {
+        "kind": "personal",
+        "subject": 0,
+        "round": 0,
+        "status": 200,
+        "ms": 570.7842499999997,
+        "lateMs": 3.5845409999992626,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "shared",
+        "subject": 0,
+        "round": 0,
+        "status": 200,
+        "ms": 79.7489170000008,
+        "lateMs": 2.1839579999978014,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 1,
+        "round": 0,
+        "status": 200,
+        "ms": 1551.4801250000019,
+        "lateMs": 0.649915999998484,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 0,
+        "round": 1,
+        "status": 200,
+        "ms": 1942.288625000001,
+        "lateMs": 1.282416000001831,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 1,
+        "round": 1,
+        "status": 200,
+        "ms": 1401.707709000002,
+        "lateMs": 0.8620410000003176,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "shared",
+        "subject": 0,
+        "round": 1,
+        "status": 200,
+        "ms": 1420.8217920000025,
+        "lateMs": 3.586166000000958,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 0,
+        "round": 2,
+        "status": 200,
+        "ms": 1433.1573750000025,
+        "lateMs": 2.2802499999961583,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "shared",
+        "subject": 0,
+        "round": 2,
+        "status": 200,
+        "ms": 69.58966699999291,
+        "lateMs": 2.475957999995444,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 1,
+        "round": 2,
+        "status": 200,
+        "ms": 1173.2087919999904,
+        "lateMs": 1.3694159999868134,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 0,
+        "round": 3,
+        "status": 200,
+        "ms": 1673.0897910000058,
+        "lateMs": 0.24183299999276642,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "shared",
+        "subject": 0,
+        "round": 3,
+        "status": 200,
+        "ms": 60.1596669999999,
+        "lateMs": 1.5721249999915017,
+        "recovery": false,
+        "deferred": false
+      },
+      {
+        "kind": "personal",
+        "subject": 1,
+        "round": 3,
+        "status": 200,
+        "ms": 1294.5729160000046,
+        "lateMs": 3.2814999999973224,
+        "recovery": false,
+        "deferred": false
+      }
+    ],
+    "polls": [
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 58.06812499999978,
+        "lateMs": 1.8272909999996045,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 530.2572920000002,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 542.481667,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 52.61966600000051,
+        "lateMs": 0.7072499999994761,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 26.169082999998864,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 42.49983299999985,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 102.73033299999952,
+        "lateMs": 2.7786249999990105,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 45.225375000001804,
+        "lateMs": 0.0008749999979045242,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 25.136665999998513,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 45.26224999999977,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 37.504916999998386,
+        "lateMs": 0.5284580000006827,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 21.647000000000844,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 38.203292000001966,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 1956.1365000000005,
+        "lateMs": 3.817041000002064,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 42.10862499999348,
+        "lateMs": 0.8685830000031274,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 68.46908400000393,
+        "lateMs": 2.769165999998222,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 19.23687500000233,
+        "lateMs": 0.0006670000002486631,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 15.520041000003403,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 29.304291000000376,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 45.42016700000386,
+        "lateMs": 3.4283329999962007,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 1450.2690830000065,
+        "lateMs": 3.9492499999978463,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 15.960582999992766,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 31.359708000003593,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 56.51704099999915,
+        "lateMs": 1.9551249999931315,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 45.802791000009165,
+        "lateMs": 0.3088749999878928,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 18.0435839999991,
+        "lateMs": 0.0003330000035930425,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 15.645457999999053,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 30.035542000012356,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 65.88754199999676,
+        "lateMs": 1.0064159999892581,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 23.512749999994412,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 46.343665999986115,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 1688.7565420000028,
+        "lateMs": 0.810790999996243,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 68.99154199998884,
+        "lateMs": 3.60283299999719,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 61.24020799998834,
+        "lateMs": 4.097957999998471,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 1252.9874169999966,
+        "lateMs": 0.000291000003926456,
+        "collection": "groups"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 15.488375000000815,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 28.958124999990105,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 164.61066700000083,
+        "lateMs": 3.1439159999863477,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 42.76095900000655,
+        "lateMs": 1.4631659999868134,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 24.310958000001847,
+        "lateMs": 0,
+        "collection": "tasks"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 46.50604199999361,
+        "lateMs": 0,
+        "collection": "occurrences"
+      },
+      {
+        "user": 1,
+        "status": 200,
+        "ms": 70.44595900000422,
+        "lateMs": 4.4569159999955446,
+        "collection": "groups"
+      },
+      {
+        "user": 0,
+        "status": 200,
+        "ms": 36.41745799998171,
+        "lateMs": 1.115749999997206,
+        "collection": "groups"
+      }
+    ],
+    "observations": [
+      {
+        "group": 0,
+        "round": 0,
+        "observer": 1,
+        "revision": 5,
+        "completed": true,
+        "acceptedAt": 15082.009999999998,
+        "observedMs": 7496.106
+      },
+      {
+        "group": 0,
+        "round": 1,
+        "observer": 0,
+        "revision": 6,
+        "completed": false,
+        "acceptedAt": 46424.481791,
+        "observedMs": 15063.689459000008
+      },
+      {
+        "group": 0,
+        "round": 2,
+        "observer": 1,
+        "revision": 7,
+        "completed": true,
+        "acceptedAt": 75072.18729100001,
+        "observedMs": 7542.510333999991
+      },
+      {
+        "group": 0,
+        "round": 3,
+        "observer": 0,
+        "revision": 8,
+        "completed": false,
+        "acceptedAt": 105061.95454100001,
+        "observedMs": 15030.028958999988
+      }
+    ],
+    "personal": {
+      "planned": 8,
+      "accepted": 8,
+      "failed": 0,
+      "deferred": 0,
+      "p95Ms": 1942.288625000001,
+      "p95ScheduledMs": 1943.5710410000029,
+      "maxMs": 1942.288625000001,
+      "maxSchedulingLateMs": 3.5845409999992626
+    },
+    "shared": {
+      "planned": 4,
+      "accepted": 4,
+      "failed": 0,
+      "deferred": 0,
+      "p95Ms": 1420.8217920000025,
+      "p95ScheduledMs": 1424.4079580000034,
+      "maxMs": 1420.8217920000025,
+      "maxSchedulingLateMs": 3.586166000000958
+    },
+    "convergence": {
+      "expected": 4,
+      "accepted": 4,
+      "observed": 4,
+      "over15SecondsOrMissing": 2,
+      "p95Ms": 15063.689459000008,
+      "maxMs": 15063.689459000008
+    },
+    "exactRecoveryAndSharedReadback": true,
+    "finalPersonalRevision": 6,
+    "passed": false
+  },
+  "reads": {
+    "samplesMs": [
+      1165.2422499999811,
+      632.4084999999905
+    ],
+    "totalBytes": 31464636
+  },
+  "historyAndXpRestored": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

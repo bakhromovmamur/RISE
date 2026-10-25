@@ -1,0 +1,68 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test tests/(navigation|russian|uzbek).browser.spec.ts$ --workers=1
+
+[WebServer] (node:57787) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 51 tests using 1 worker
+
+(node:57788) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (926ms)
+  ✓   2 [chromium] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (752ms)
+  ✓   3 [chromium] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (1.5s)
+  ✓   4 [chromium] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (854ms)
+  ✓   5 [chromium] › tests/russian.browser.spec.ts:10:1 › animated long prayer sheets keep their header and exit controls inside the phone (2.9s)
+  ✓   6 [chromium] › tests/russian.browser.spec.ts:47:1 › language switching and reload preserve all existing content and progress (763ms)
+  ✓   7 [chromium] › tests/russian.browser.spec.ts:58:1 › all four tabs and their details contain Russian UI and preserve week selection (675ms)
+  ✓   8 [chromium] › tests/russian.browser.spec.ts:65:1 › Russian prayer setup, reminders, save-and-stop and Fajr stay functional (1.2s)
+  ✓   9 [chromium] › tests/russian.browser.spec.ts:79:1 › Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent (648ms)
+  ✓  10 [chromium] › tests/russian.browser.spec.ts:87:1 › Russian family tasks, shopping lists and squad previews remain local (1.1s)
+  ✓  11 [chromium] › tests/russian.browser.spec.ts:99:1 › Russian period pause, readiness and empty setup have translated working controls (708ms)
+  ✓  12 [chromium] › tests/russian.browser.spec.ts:106:1 › Russian goals, rewards, reflection and settings expose translated forms and validation (1.2s)
+  ✓  13 [chromium] › tests/russian.browser.spec.ts:117:1 › Russian onboarding, responsive navigation, large text and dark appearance remain usable (1.6s)
+  ✓  14 [chromium] › tests/uzbek.browser.spec.ts:17:1 › Uzbek language changes and reload retain authored content and the complete saved journey (738ms)
+  ✓  15 [chromium] › tests/uzbek.browser.spec.ts:30:1 › Uzbek habit actions preserve tiny/full/undo XP and expose translated validation (693ms)
+  ✓  16 [chromium] › tests/uzbek.browser.spec.ts:43:1 › Uzbek goal and reward forms retain authored names and never award habit XP (857ms)
+  ✓  17 [chromium] › tests/uzbek.browser.spec.ts:57:1 › Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text (4.9s)
+(node:57839) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [webkit] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.3s)
+  ✓  19 [webkit] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (941ms)
+  ✓  20 [webkit] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (1.7s)
+  ✓  21 [webkit] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (992ms)
+  ✓  22 [webkit] › tests/russian.browser.spec.ts:10:1 › animated long prayer sheets keep their header and exit controls inside the phone (3.1s)
+  ✓  23 [webkit] › tests/russian.browser.spec.ts:47:1 › language switching and reload preserve all existing content and progress (911ms)
+  ✓  24 [webkit] › tests/russian.browser.spec.ts:58:1 › all four tabs and their details contain Russian UI and preserve week selection (891ms)
+  ✓  25 [webkit] › tests/russian.browser.spec.ts:65:1 › Russian prayer setup, reminders, save-and-stop and Fajr stay functional (1.5s)
+  ✓  26 [webkit] › tests/russian.browser.spec.ts:79:1 › Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent (867ms)
+  ✓  27 [webkit] › tests/russian.browser.spec.ts:87:1 › Russian family tasks, shopping lists and squad previews remain local (1.5s)
+  ✓  28 [webkit] › tests/russian.browser.spec.ts:99:1 › Russian period pause, readiness and empty setup have translated working controls (873ms)
+  ✓  29 [webkit] › tests/russian.browser.spec.ts:106:1 › Russian goals, rewards, reflection and settings expose translated forms and validation (1.6s)
+  ✓  30 [webkit] › tests/russian.browser.spec.ts:117:1 › Russian onboarding, responsive navigation, large text and dark appearance remain usable (1.8s)
+  ✓  31 [webkit] › tests/uzbek.browser.spec.ts:17:1 › Uzbek language changes and reload retain authored content and the complete saved journey (909ms)
+  ✓  32 [webkit] › tests/uzbek.browser.spec.ts:30:1 › Uzbek habit actions preserve tiny/full/undo XP and expose translated validation (883ms)
+  ✓  33 [webkit] › tests/uzbek.browser.spec.ts:43:1 › Uzbek goal and reward forms retain authored names and never award habit XP (1.1s)
+  ✓  34 [webkit] › tests/uzbek.browser.spec.ts:57:1 › Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text (6.0s)
+(node:57915) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  35 [firefox] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.5s)
+  ✓  36 [firefox] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (1.1s)
+  ✓  37 [firefox] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (2.2s)
+  ✓  38 [firefox] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (1.3s)
+  ✓  39 [firefox] › tests/russian.browser.spec.ts:10:1 › animated long prayer sheets keep their header and exit controls inside the phone (3.5s)
+  ✓  40 [firefox] › tests/russian.browser.spec.ts:47:1 › language switching and reload preserve all existing content and progress (1.0s)
+  ✓  41 [firefox] › tests/russian.browser.spec.ts:58:1 › all four tabs and their details contain Russian UI and preserve week selection (1.0s)
+  ✓  42 [firefox] › tests/russian.browser.spec.ts:65:1 › Russian prayer setup, reminders, save-and-stop and Fajr stay functional (1.7s)
+  ✓  43 [firefox] › tests/russian.browser.spec.ts:79:1 › Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent (942ms)
+  ✓  44 [firefox] › tests/russian.browser.spec.ts:87:1 › Russian family tasks, shopping lists and squad previews remain local (1.9s)
+  ✓  45 [firefox] › tests/russian.browser.spec.ts:99:1 › Russian period pause, readiness and empty setup have translated working controls (1.0s)
+  ✓  46 [firefox] › tests/russian.browser.spec.ts:106:1 › Russian goals, rewards, reflection and settings expose translated forms and validation (1.8s)
+  ✓  47 [firefox] › tests/russian.browser.spec.ts:117:1 › Russian onboarding, responsive navigation, large text and dark appearance remain usable (2.3s)
+  ✓  48 [firefox] › tests/uzbek.browser.spec.ts:17:1 › Uzbek language changes and reload retain authored content and the complete saved journey (1.1s)
+  ✓  49 [firefox] › tests/uzbek.browser.spec.ts:30:1 › Uzbek habit actions preserve tiny/full/undo XP and expose translated validation (1.1s)
+  ✓  50 [firefox] › tests/uzbek.browser.spec.ts:43:1 › Uzbek goal and reward forms retain authored names and never award habit XP (1.2s)
+  ✓  51 [firefox] › tests/uzbek.browser.spec.ts:57:1 › Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text (7.9s)
+
+  51 passed (1.4m)

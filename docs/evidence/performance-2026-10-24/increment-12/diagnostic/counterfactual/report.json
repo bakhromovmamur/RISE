@@ -1,0 +1,1202 @@
+{
+  "run": "525046f7-2957-4835-886a-ee35e8c81c50",
+  "environment": "fixed test",
+  "transport": "Real loopback HTTP after injected synthetic login/seed; not hosted acceptance",
+  "users": 2,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [],
+  "seedMs": 4117.872292,
+  "databaseGrowthBytes": 16384,
+  "execution": {
+    "workers": 1,
+    "poolPerWorker": 5,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "transport": "HTTP 127.0.0.1:4191; per-browser keep-alive agent; least-pending HTTP requests over private Unix sockets",
+    "scope": "Test-only gateway/threads; injected login/seed; client IP not forwarded to Unix-socket backends; not authentication-rate-limit or production-runtime acceptance"
+  },
+  "trials": [
+    {
+      "index": 0,
+      "round": 0,
+      "scenario": "same-and-other",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 576.2872500000003
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 564.3663749999996
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 572.9229589999995
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 580.7997079999996
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 587.9603749999997
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 593.8568340000002
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 600.5294170000006
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 35.87141700000029
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 49.11204100000032
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 60.31687499999953
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 69.40637499999957
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 78.91379099999995
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 88.50641700000051
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 1,
+      "round": 0,
+      "scenario": "same-and-other",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 443.73754199999985
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 425.79100000000017
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 432.95816600000035
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 444.0606660000003
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 454.0069999999996
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 466.43712499999947
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 477.56879200000003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 12.78504200000043
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 21.39758299999994
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 29.278040999999575
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 39.3925420000005
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 47.684166999999434
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 68.13441700000021
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 2,
+      "round": 0,
+      "scenario": "other-only",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 447.3069579999992
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 16.037334000000556
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 23.634665999999925
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 31.241500000000087
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 38.55916700000034
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 45.60095799999999
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 52.74487499999941
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 59.68229100000008
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 67.04908299999988
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 102.925792
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 164.23525000000063
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 386.91254200000003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 393.87474999999995
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 3,
+      "round": 0,
+      "scenario": "other-only",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 417.10170800000014
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 10.740582999999788
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 18.187832999999955
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 26.39166699999987
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 33.44087500000023
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 41.08675000000039
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 93.6723750000001
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 141.42262500000015
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 363.12058400000024
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 370.1104999999998
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 377.2943749999995
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 383.8827919999994
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 392.6162920000006
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 4,
+      "round": 1,
+      "scenario": "other-only",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 388.5295420000002
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 9.877790999999888
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 16.608165999999983
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 23.401708000000326
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 30.45245900000009
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 36.56645800000024
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 42.65620899999976
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 109.16170899999997
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 327.3662910000003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 336.265625
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 343.9485829999994
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 351.47800000000007
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 360.6380829999998
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 5,
+      "round": 1,
+      "scenario": "other-only",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 375.3929170000001
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 9.928791000000274
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 16.867709000000104
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 23.21716600000036
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 29.50891700000011
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 98.91449999999986
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 306.82850000000053
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 325.46229199999925
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 332.66412499999933
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 339.6856250000001
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 349.2512080000006
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 355.85054200000013
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 362.095292
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 6,
+      "round": 1,
+      "scenario": "same-and-other",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 395.43358400000034
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 387.19266700000026
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 401.83841699999994
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 411.7762499999999
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 435.268333
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 445.53858299999956
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 452.6827919999996
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 9.517749999999978
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 16.327540999999655
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 23.511583000000428
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 29.826750000000175
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 36.474874999999884
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 116.36891699999978
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 7,
+      "round": 1,
+      "scenario": "same-and-other",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 386.14029200000004
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 368.5257500000007
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 377.94158400000015
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 384.943874999999
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 392.8264999999992
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 399.7544999999991
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 407.4233750000003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 10.411042000001544
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 17.64679200000137
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 24.07220799999959
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 30.598540999999386
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 37.19074999999975
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 44.00799999999981
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 8,
+      "round": 2,
+      "scenario": "same-and-other",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 429.32524999999987
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 410.13183299999946
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 416.5684590000001
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 423.4095840000009
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 429.68695800000023
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 435.85675000000083
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 441.93616699999984
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 9.091167000000496
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 17.315292000001136
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 24.077917000000525
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 34.199249999999665
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 44.15699999999924
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 140.98300000000017
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 9,
+      "round": 2,
+      "scenario": "same-and-other",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 488.82324999999946
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 470.40187499999956
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 477.34470800000054
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 487.98570800000016
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 494.6446250000008
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 502.8480419999996
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 509.1480419999989
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 11.460833000001003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 25.076124999999593
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 35.985500000000684
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 44.880457999999635
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 52.30945800000154
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 69.83820900000137
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 10,
+      "round": 2,
+      "scenario": "other-only",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 408.8987909999996
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 11.054292000000714
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 17.347708999999668
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 24.169332999999824
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 30.7288750000007
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 37.35020799999984
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 122.00591699999859
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 342.34050000000025
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 350.52408300000025
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 360.67070799999965
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 371.72379199999887
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 381.57695799999965
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 388.5796250000003
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 11,
+      "round": 2,
+      "scenario": "other-only",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 440.48345899999913
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 10.72362499999872
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 18.181666000000405
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 27.122167000001355
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 42.715667000000394
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 120.57516599999872
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 168.51166700000067
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 376.0899580000005
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 385.59191700000156
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 395.7063330000001
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 411.7409580000003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 420.10420800000065
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 426.15408299999945
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 12,
+      "round": 3,
+      "scenario": "other-only",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 401.61016700000073
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 9.530875000000378
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 15.91295799999898
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 22.586041999998997
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 28.909708999999566
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 35.247041999999055
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 133.4656670000004
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 343.28499999999985
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 351.77895799999897
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 358.7816249999996
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 365.2278750000005
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 374.70787500000006
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 384.3739999999998
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 13,
+      "round": 3,
+      "scenario": "other-only",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 447.91633399999955
+      },
+      "reads": [
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 11.075291000001016
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 20.824208
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 27.988999999999578
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 35.76354199999878
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 42.48591699999997
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 173.86762500000077
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 381.45637499999975
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 396.8140000000003
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 404.1861659999995
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 411.1840000000011
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 420.0184169999993
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 426.58400000000074
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 14,
+      "round": 3,
+      "scenario": "same-and-other",
+      "check": "full",
+      "mutation": {
+        "status": 200,
+        "ms": 429.56741599999987
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 411.7207920000001
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 418.67858400000114
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 425.40208300000086
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 432.51416699999936
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 438.97554200000013
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 445.3000840000004
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 9.528374999999869
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 17.12958299999991
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 24.2554999999993
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 30.953750000000582
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 38.100500000000466
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 119.53141599999981
+        }
+      ],
+      "recovered": false
+    },
+    {
+      "index": 15,
+      "round": 3,
+      "scenario": "same-and-other",
+      "check": "undo",
+      "mutation": {
+        "status": 200,
+        "ms": 406.3406249999989
+      },
+      "reads": [
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 386.90920899999946
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 393.6634589999994
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 400.73912500000006
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 407.20266699999956
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 413.4647499999992
+        },
+        {
+          "user": 0,
+          "status": 200,
+          "ms": 419.634
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 16.627832999998645
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 24.61962500000118
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 31.322583000001032
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 37.87187500000073
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 54.140292000000045
+        },
+        {
+          "user": 1,
+          "status": 200,
+          "ms": 133.05970799999886
+        }
+      ],
+      "recovered": false
+    }
+  ],
+  "exactReplay": true,
+  "reads": {
+    "samplesMs": [
+      325.85504199999923,
+      323.1062920000004
+    ],
+    "totalBytes": 31464637
+  },
+  "historyAndXpRestored": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

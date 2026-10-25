@@ -1,0 +1,524 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.infrastructure.config.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.infrastructure.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/infra/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.infrastructure.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/infra/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.infrastructure.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/infra/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.infrastructure.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/infra/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "testIgnore": [],
+        "testMatch": "**/*.infrastructure.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4191",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/infra/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "testIgnore": [],
+        "testMatch": "**/*.infrastructure.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4191",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/infra/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra",
+        "testIgnore": [],
+        "testMatch": "**/*.infrastructure.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4191",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/infra/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "node --import tsx scripts/infra/serve-test-backend.ts",
+      "url": "http://127.0.0.1:4191/api/v1/health/ready",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "backend.infrastructure.spec.ts",
+      "file": "backend.infrastructure.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real backend keeps production entry, chosen habits and durable check-ins intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1173,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:57:58.462Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-41630f8d1b11003a1550",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "backend serves a working public offline shell without caching health/private endpoints",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 841,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:57:59.975Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-089530fe9dd06ab30d03",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "only the production public files and safe health metadata are exposed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 49,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:00.825Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-a0c121306efec9d8f7a3",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "real backend keeps production entry, chosen habits and durable check-ins intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1896,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:01.281Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-e86709a418cb72951b8b",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "backend serves a working public offline shell without caching health/private endpoints",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2714,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:03.927Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-1025543c0aa02cd27a7c",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "only the production public files and safe health metadata are exposed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 136,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:06.676Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-12ac010965bc62df461f",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 38,
+          "column": 1
+        },
+        {
+          "title": "real backend keeps production entry, chosen habits and durable check-ins intact",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6975,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:07.873Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-db228edc2b5138cb20b7",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "backend serves a working public offline shell without caching health/private endpoints",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1975,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:16.548Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-ed8cf793ebe4e18e81d6",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 19,
+          "column": 1
+        },
+        {
+          "title": "only the production public files and safe health metadata are exposed",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 79,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-22T18:58:18.544Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "811b8a2abe86ccaab1e3-88b63e972f65427dbc84",
+          "file": "backend.infrastructure.spec.ts",
+          "line": 38,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-22T18:57:57.247Z",
+    "duration": 21946.453,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

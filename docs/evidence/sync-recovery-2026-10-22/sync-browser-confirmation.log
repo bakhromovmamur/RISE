@@ -1,0 +1,65 @@
+
+> rise-prototype@1.0.0 test:sync
+> playwright test --config playwright.sync.config.ts
+
+[WebServer] (node:21285) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 48 tests using 1 worker
+
+(node:21286) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/sync/account.sync.spec.ts:10:1 › sign-in never uploads a guest; reviewed import preserves the device profile and excludes private device fields (2.6s)
+  ✓   2 [chromium] › tests/sync/account.sync.spec.ts:23:1 › two independent browser devices converge through real sessions without duplicating habit XP (6.6s)
+  ✓   3 [chromium] › tests/sync/account.sync.spec.ts:33:1 › remembered offline changes survive reload and reconnect; sign-out clears only the account cache (19.0s)
+  ✓   4 [chromium] › tests/sync/account.sync.spec.ts:48:1 › a lost command response retries the same operation once and session-only mode stores no private cache (3.1s)
+  ✓   5 [chromium] › tests/sync/account.sync.spec.ts:54:1 › expired remembered work stays locked to its owner through another account and resumes after reauthentication (7.4s)
+  ✓   6 [chromium] › tests/sync/account.sync.spec.ts:67:1 › pending account sign-out offers recovery and requires explicit discard consent (3.7s)
+  ✓   7 [chromium] › tests/sync/account.sync.spec.ts:76:1 › a failed account cache transaction commits neither state nor outbox and retries without false success (3.7s)
+  ✓   8 [chromium] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in en with the existing design (4.2s)
+  ✓   9 [chromium] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in uz with the existing design (4.2s)
+  ✓  10 [chromium] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in ru with the existing design (4.3s)
+  ✓  11 [chromium] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in en using existing components (2.7s)
+  ✓  12 [chromium] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in uz using existing components (2.7s)
+  ✓  13 [chromium] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in ru using existing components (2.7s)
+  ✓  14 [chromium] › tests/sync/recovery.sync.spec.ts:15:1 › a conflict offers explicit account/local choices and retains the original actions in durable recovery (7.3s)
+  ✓  15 [chromium] › tests/sync/recovery.sync.spec.ts:24:1 › legacy format-one queues older than 90 days survive reload and require a fresh reviewed operation (4.8s)
+  ✓  16 [chromium] › tests/sync/recovery.sync.spec.ts:31:1 › failed recovery storage and a stale review cannot drop intent or replace newer account records (5.1s)
+(node:21498) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [webkit] › tests/sync/account.sync.spec.ts:10:1 › sign-in never uploads a guest; reviewed import preserves the device profile and excludes private device fields (2.8s)
+  ✓  18 [webkit] › tests/sync/account.sync.spec.ts:23:1 › two independent browser devices converge through real sessions without duplicating habit XP (6.3s)
+  ✓  19 [webkit] › tests/sync/account.sync.spec.ts:33:1 › remembered offline changes survive reload and reconnect; sign-out clears only the account cache (3.6s)
+  ✓  20 [webkit] › tests/sync/account.sync.spec.ts:48:1 › a lost command response retries the same operation once and session-only mode stores no private cache (3.1s)
+  ✓  21 [webkit] › tests/sync/account.sync.spec.ts:54:1 › expired remembered work stays locked to its owner through another account and resumes after reauthentication (6.9s)
+  ✓  22 [webkit] › tests/sync/account.sync.spec.ts:67:1 › pending account sign-out offers recovery and requires explicit discard consent (3.7s)
+  ✓  23 [webkit] › tests/sync/account.sync.spec.ts:76:1 › a failed account cache transaction commits neither state nor outbox and retries without false success (3.7s)
+  ✓  24 [webkit] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in en with the existing design (3.3s)
+  ✓  25 [webkit] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in uz with the existing design (3.4s)
+  ✓  26 [webkit] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in ru with the existing design (3.3s)
+  ✓  27 [webkit] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in en using existing components (1.6s)
+  ✓  28 [webkit] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in uz using existing components (1.7s)
+  ✓  29 [webkit] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in ru using existing components (1.7s)
+  ✓  30 [webkit] › tests/sync/recovery.sync.spec.ts:15:1 › a conflict offers explicit account/local choices and retains the original actions in durable recovery (6.9s)
+  ✓  31 [webkit] › tests/sync/recovery.sync.spec.ts:24:1 › legacy format-one queues older than 90 days survive reload and require a fresh reviewed operation (4.9s)
+  ✓  32 [webkit] › tests/sync/recovery.sync.spec.ts:31:1 › failed recovery storage and a stale review cannot drop intent or replace newer account records (5.3s)
+(node:21551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  33 [firefox] › tests/sync/account.sync.spec.ts:10:1 › sign-in never uploads a guest; reviewed import preserves the device profile and excludes private device fields (3.3s)
+  ✓  34 [firefox] › tests/sync/account.sync.spec.ts:23:1 › two independent browser devices converge through real sessions without duplicating habit XP (7.0s)
+  ✓  35 [firefox] › tests/sync/account.sync.spec.ts:33:1 › remembered offline changes survive reload and reconnect; sign-out clears only the account cache (20.1s)
+  ✓  36 [firefox] › tests/sync/account.sync.spec.ts:48:1 › a lost command response retries the same operation once and session-only mode stores no private cache (3.4s)
+  ✓  37 [firefox] › tests/sync/account.sync.spec.ts:54:1 › expired remembered work stays locked to its owner through another account and resumes after reauthentication (8.1s)
+  ✓  38 [firefox] › tests/sync/account.sync.spec.ts:67:1 › pending account sign-out offers recovery and requires explicit discard consent (4.4s)
+  ✓  39 [firefox] › tests/sync/account.sync.spec.ts:76:1 › a failed account cache transaction commits neither state nor outbox and retries without false success (4.3s)
+  ✓  40 [firefox] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in en with the existing design (3.9s)
+  ✓  41 [firefox] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in uz with the existing design (4.1s)
+  ✓  42 [firefox] › tests/sync/layout.sync.spec.ts:9:48 › sync consent reflows in ru with the existing design (3.9s)
+  ✓  43 [firefox] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in en using existing components (2.0s)
+  ✓  44 [firefox] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in uz using existing components (2.0s)
+  ✓  45 [firefox] › tests/sync/recovery-layout.sync.spec.ts:10:47 › recovery review reflows in ru using existing components (2.0s)
+  ✓  46 [firefox] › tests/sync/recovery.sync.spec.ts:15:1 › a conflict offers explicit account/local choices and retains the original actions in durable recovery (13.7s)
+  ✓  47 [firefox] › tests/sync/recovery.sync.spec.ts:24:1 › legacy format-one queues older than 90 days survive reload and require a fresh reviewed operation (6.0s)
+  ✓  48 [firefox] › tests/sync/recovery.sync.spec.ts:31:1 › failed recovery storage and a stale review cannot drop intent or replace newer account records (6.0s)
+
+  48 passed (4.1m)

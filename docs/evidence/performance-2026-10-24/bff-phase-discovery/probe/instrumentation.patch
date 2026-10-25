@@ -1,0 +1,92 @@
+--- original/server/auth/sessions.ts
++++ instrumented/server/auth/sessions.ts
+@@ -1,3 +1,4 @@
++import { phase, instrumentClient } from "../diagnostics.ts";
+ import type pg from "pg";
+ import type { ServerConfig } from "../config.ts";
+ import type { AccountSession, CodeChallenge } from "../../src/contracts/auth.ts";
+@@ -33,7 +34,7 @@
+   private readonly pool: pg.Pool;
+   constructor(config: ServerConfig, pool: pg.Pool, auth?: AuthProvider) { this.config = config; this.pool = pool; this.crypto = secrets(config.sessionKey, config.installationId); this.auth = auth ?? provider(config); }
+   private async transaction<T>(run: (client: pg.PoolClient) => Promise<T>) {
+-    const client = await this.pool.connect();
++    const client = instrumentClient(await phase("pool.acquire", () => this.pool.connect()));
+     try { await client.query("begin"); const result = await run(client); await client.query("commit"); return result; }
+     catch (error) { await client.query("rollback"); throw error; }
+     finally { client.release(); }
+@@ -225,7 +226,7 @@
+   /** A restricted database transaction with identity taken only from this verified BFF session. */
+   async asActor<T>(input: AuthInput, mutation: boolean, run: (client: pg.PoolClient, actor: string, metadata:NonNullable<AccountSession["account"]>) => Promise<T>): Promise<T> {
+     if (!validOpaque(input.session) || !validOpaque(input.context)) throw new AuthError(401, "sign_in_required");
+-    const current = await this.read(input); // Includes refresh and current provider/account checks.
++    const current = await phase("auth.read", () => this.read(input)); // Includes refresh and current provider/account checks.
+     if (!current.view.signedIn) throw new AuthError(401, "sign_in_required");
+     return this.transaction(async client => {
+       if (mutation) await this.csrf(client, input);
+--- original/server/personal/repository.ts
++++ instrumented/server/personal/repository.ts
+@@ -1,3 +1,4 @@
++import { phase, syncPhase } from "../diagnostics.ts";
+ import {cancelForCommand} from "../push/cancellation.ts";
+ import { createHash } from "node:crypto";
+ import type pg from "pg";
+@@ -37,7 +38,7 @@
+   await lock(client, actor, true);
+   const current = await revision(client, actor);
+   if (!current) return { initialized: false, revision: 0, xp: 0, records: null };
+-  const records = await readRecords(client, actor), state = hydrate(records), xp = await total(client, actor);
++  const records = await phase("personal.readRecords", () => readRecords(client, actor)), state = syncPhase("personal.hydrate", () => hydrate(records)), xp = await phase("personal.total", () => total(client, actor));
+   if (xp !== xpTotal(state)) throw new Error("personal_total_mismatch");
+   return { initialized: true, revision: current, xp, records };
+ }
+@@ -73,7 +74,7 @@
+     before = {};
+   } else {
+     if (!current) throw new AuthError(409, "initialize_required");
+-    before = await readRecords(client, actor); const state = hydrate(before); started = String(before.profiles[0].started_on);
++    before = await phase("personal.readRecords", () => readRecords(client, actor)); const state = syncPhase("personal.hydrate", () => hydrate(before)); started = String(before.profiles[0].started_on);
+     const command = operation.command;
+     let context = { date: localDate(state.timezone, new Date(now)), timezone: state.timezone, now };
+     if (captured) {
+@@ -103,7 +104,7 @@
+           if (state.prayers.days[command.date]?.entries[id].check) day.entries[id] = structuredClone(state.prayers.days[command.date].entries[id]);
+         }
+         next = { ...state, prayers: { ...state.prayers, preferences: command.preferences, days: { ...state.prayers.days, [command.date]: day } } };
+-      } else next = applyDomainCommand(state, command, context,{sharedPriorities:await authorizePriorityReferences(client,state,command)});
++      } else { const sharedPriorities = await phase("personal.priorities", () => authorizePriorityReferences(client,state,command)); next = syncPhase("personal.domain", () => applyDomainCommand(state, command, context, {sharedPriorities})); }
+     }
+     catch (error) {
+       if(error instanceof AuthError)throw error;
+@@ -112,11 +113,12 @@
+       throw error;
+     }
+   }
+-  validateState(next);
++  syncPhase("personal.validate", () => validateState(next));
+   const nextRevision = current + 1;
+-  await writeRecords(client, actor, nextRevision, before, project(next, started),operation.operationId);
+-  await cancelForCommand(client,actor,operation.command);
+-  const xp = await total(client, actor);
++  const desired = syncPhase("personal.project", () => project(next, started));
++  await phase("personal.writeRecords", () => writeRecords(client, actor, nextRevision, before, desired,operation.operationId));
++  await phase("personal.cancel", () => cancelForCommand(client,actor,operation.command));
++  const xp = await phase("personal.total", () => total(client, actor));
+   if (xp !== xpTotal(next)) throw new Error("personal_total_mismatch");
+   const result = { operationId: operation.operationId, operationRevision: nextRevision, xp };
+   await client.query("insert into rise.personal_receipts (owner_id, operation_id, request_hash, result, revision) values ($1,$2,$3,$4,$5)", [actor, operation.operationId, requestHash, result, nextRevision]);
+--- original/server/app.ts
++++ instrumented/server/app.ts
+@@ -1,3 +1,4 @@
++import { beginRequest, endRequest } from "./diagnostics.ts";
+ import Fastify from "fastify";
+ import { randomUUID } from "node:crypto";
+ import { readFile, realpath, stat } from "node:fs/promises";
+@@ -18,6 +19,8 @@
+   const html = await readFile(resolve(directory, "index.html"), "utf8");
+   if (!/<meta\s+name="rise-build"\s+content="production"/.test(html) || /name="rise-build"\s+content="review"/.test(html)) throw new Error("production_static_build_required");
+   const app = Fastify({ logger: false, genReqId: () => randomUUID(), requestTimeout: 15000, connectionTimeout: 10000, bodyLimit: 65536, trustProxy: false, onProtoPoisoning: "error", onConstructorPoisoning: "error" });
++  app.addHook("onRequest", (request, _reply, done) => beginRequest(request, done));
++  app.addHook("onResponse", async (request, reply) => endRequest(request, reply.statusCode));
+   app.addHook("onRequest", async (request, reply) => {
+     reply.header("X-Request-Id", request.id).header("X-Content-Type-Options", "nosniff").header("Referrer-Policy", "strict-origin-when-cross-origin").header("Cache-Control", "no-store");
+     if (request.headers.host !== new URL(config.origin).host || request.headers.origin && request.headers.origin !== config.origin) return reply.code(403).send({ error: "origin_not_allowed" });

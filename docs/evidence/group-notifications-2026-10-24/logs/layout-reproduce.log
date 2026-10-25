@@ -1,0 +1,42 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts layout.groups.spec.ts --project=chromium --grep · en
+
+[WebServer] (node:33442) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:33444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (15.8s)
+  ✘  2 [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en (15.3s)
+(node:33525) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (15.5s)
+
+
+  1) [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en 
+
+    Error: {"scene":"notification-device","theme":"light","width":320,"scale":200,"within":false,"header":{"x":0,"y":0,"width":320,"height":64,"top":0,"right":320,"bottom":64,"left":0},"title":{"x":62,"y":-2,"width":196,"height":72,"top":-2,"right":258,"bottom":70,"left":62}}
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      38 |    const header=await dialog.locator('.sheet-header').evaluate(el=>{const h=el.getBoundingClientRect(),t=el.querySelector('h2')!.getBoundingClientRect();return {within:t.top>=h.top&&t.bottom<=h.bottom&&t.left>=h.left&&t.right<=h.right,header:h.toJSON(),title:t.toJSON()};});
+      39 |    if(!header.within)await dialog.screenshot({path:info.outputPath(`groups-failed-header-${scene}-${language}-${theme}-${width}-${scale}.png`)}); // Unverified visual fixture only; no credentials.
+    > 40 |    expect(header.within,JSON.stringify({scene,theme,width,scale,...header})).toBe(true);
+         |                                                                              ^
+      41 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+      42 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(scene==='settings-enabled'){await page.getByRole('switch',{name:t('notifications'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      43 |   }
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:40:78)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:53:423
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-491b0-and-recoverable-errors-·-en-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en 
+  2 passed (48.5s)

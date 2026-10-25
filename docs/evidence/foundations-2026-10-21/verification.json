@@ -1,0 +1,110 @@
+{
+  "recordedAt": "2026-10-21",
+  "tasks": [
+    "FND-01",
+    "FND-02"
+  ],
+  "requirements": [
+    "PRD-01",
+    "PRD-17",
+    "SEC-06"
+  ],
+  "environment": {
+    "os": "macOS 26.6.2 (25G83)",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "cleanInstall": {
+    "command": "npm ci",
+    "passed": true,
+    "installedPackages": 140,
+    "auditedPackages": 141,
+    "auditFindings": 0
+  },
+  "check": {
+    "command": "npm run check",
+    "passed": true,
+    "toolchain": true,
+    "lint": true,
+    "appTestsConfigTypes": true,
+    "domainTestsPassed": 71,
+    "toolingTestsPassed": 1,
+    "build": true,
+    "warnings": [
+      "Existing minified main bundle exceeds 500 kB. Performance gate remains in QUALITY-03."
+    ]
+  },
+  "browser": {
+    "command": "npm run test:browser",
+    "stats": {
+      "startTime": "2026-10-21T05:48:19.798Z",
+      "duration": 203768.038,
+      "expected": 207,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "passedByProject": {
+      "chromium": 69,
+      "webkit": 69,
+      "firefox": 69
+    },
+    "externalOriginsAllowed": false,
+    "personalProfileUsed": false,
+    "server": "temporary immutable build copy, 127.0.0.1:4180"
+  },
+  "visual": {
+    "command": "npm run test:visual",
+    "stats": {
+      "startTime": "2026-10-21T05:48:19.798Z",
+      "duration": 76242.804,
+      "expected": 48,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "images": 720,
+    "threshold": 0,
+    "maxDiffPixels": 0,
+    "goldensUpdated": false,
+    "manifest": "visual-manifest.json",
+    "server": "temporary immutable build copy, 127.0.0.1:4182"
+  },
+  "integrity": {
+    "baseline": "source-baseline.json",
+    "changedExistingFiles": [
+      "package-lock.json",
+      "package.json",
+      "playwright.config.ts",
+      "src/components.tsx",
+      "tests/balanced.browser.spec.ts",
+      "tests/full-day.browser.spec.ts",
+      "tests/journey.browser.spec.ts",
+      "tests/life.browser.spec.ts",
+      "tests/navigation.browser.spec.ts",
+      "tests/prayer-live.browser.spec.ts",
+      "tests/prayers.test.ts",
+      "tests/progress.browser.spec.ts",
+      "tests/recovery.browser.spec.ts",
+      "tests/russian.browser.spec.ts",
+      "tests/today.browser.spec.ts",
+      "tests/you.browser.spec.ts"
+    ],
+    "designAndArtworkUnchanged": true,
+    "applicationChange": "Sheet keyboard focus containment in WebKit; no domain, screen markup or CSS changes."
+  },
+  "hostedCIExecuted": false,
+  "gitRemoteConfigured": false,
+  "deployed": false,
+  "limitations": [
+    "No physical mobile-device acceptance",
+    "No backend, production entry, durable repository, account sync or background Web Push implementation in this batch",
+    "Golden images are specific to the recorded macOS/Chromium environment"
+  ]
+}

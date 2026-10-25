@@ -1,0 +1,156 @@
+{
+  "verifiedAt": "2026-10-22T09:22:01.311Z",
+  "timezone": "Asia/Tashkent",
+  "environment": {
+    "os": "Darwin 25.6.0 arm64",
+    "node": "24.16.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "check": {
+    "command": "npm run check",
+    "tests": 169,
+    "passed": 169,
+    "failed": 0,
+    "productionBuild": true,
+    "reviewBuild": true
+  },
+  "database": {
+    "command": "npm run test:infra",
+    "tests": 36,
+    "passed": 36,
+    "failed": 0
+  },
+  "sync": {
+    "command": "npm run test:sync",
+    "startTime": "2026-10-22T09:13:03.059Z",
+    "duration": 161631.714,
+    "expected": 30,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ],
+    "realSessionCases": 21,
+    "visualOnlyCases": 9,
+    "layoutStates": 324
+  },
+  "auth": {
+    "command": "npm run test:auth",
+    "startTime": "2026-10-22T09:15:45.061Z",
+    "duration": 29032.556,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "backend": {
+    "command": "npm run test:backend",
+    "startTime": "2026-10-22T09:16:14.432Z",
+    "duration": 6365.332,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "journeys": {
+    "command": "npm run test:browser",
+    "startTime": "2026-10-22T05:51:11.531Z",
+    "duration": 316804.54199999996,
+    "expected": 378,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "pwa": {
+    "command": "npm run test:pwa",
+    "startTime": "2026-10-22T09:08:23.128Z",
+    "duration": 79832.92099999999,
+    "expected": 42,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "visual": {
+    "command": "npm run test:visual",
+    "startTime": "2026-10-22T05:50:08.909Z",
+    "duration": 59710.74,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      ""
+    ],
+    "comparisons": 720,
+    "updatedReferences": false
+  },
+  "production": {
+    "command": "npm run test:production",
+    "uniqueChecks": 39,
+    "initialPassed": 37,
+    "initialTimeouts": 2,
+    "retryCommand": "npm run test:production -- --project=firefox --workers=1 -g 'production exports|new production entry'",
+    "retry": {
+      "startTime": "2026-10-22T09:08:19.049Z",
+      "duration": 3716.054,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "projects": [
+        "chromium",
+        "webkit",
+        "firefox"
+      ]
+    },
+    "allUniqueChecksPassedAfterTargetedRerun": true
+  },
+  "advisors": {
+    "local": "No issues found",
+    "test": "No issues found",
+    "threshold": "warn; fail-on warn"
+  },
+  "boundaries": {
+    "cloudProvisioned": false,
+    "deployed": false,
+    "externalEmailSent": false,
+    "user4173Accessed": false,
+    "automaticGuestUpload": false,
+    "gitInitialized": false,
+    "physicalDevicesCertified": false
+  },
+  "limits": [
+    "SYNC-02 entity conflicts/tombstones/stale rebase remain pending; no silent renumbering.",
+    "Full projected snapshots are paginated; no incremental feed yet.",
+    "Two independent contexts with real managed sessions are desktop-engine evidence, not physical devices.",
+    "Local 4190 browser startup smoke incomplete in WebKit/Firefox; 4191 BFF suites pass in all three engines. See runtime-health.json and INFRA-01 follow-up."
+  ]
+}

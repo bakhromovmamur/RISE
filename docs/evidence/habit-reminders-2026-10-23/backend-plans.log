@@ -1,0 +1,61 @@
+✔ plan replay, generation CAS, privacy validation and transactional replacement (729.146917ms)
+✔ duplicate workers, durable restart leases, stale lease and accepted terminal receipt (237.426ms)
+✔ transient failures retry within expiry; offline/late windows expire without sending (202.883917ms)
+✔ invalid endpoint retires subscription; logout cancels leased jobs (439.74125ms)
+✔ unrelated users and direct public roles cannot access plans; worker cannot alter intent (688.995709ms)
+✔ primary takeover is explicit; competing generations commit once and failed writes roll back (333.7655ms)
+✔ quiet suppression defaults on; explicit plan override and coverage counts remain honest (166.912958ms)
+✔ acknowledgment cancels only dated wake jobs, preserves prayer records/XP and rejects stale worker (473.937583ms)
+✔ cancel receipts cannot cancel a later generation on lost-reply retry (216.81725ms)
+✔ dispatch and cancellation serialize: before-send stops, submitted sends cannot be recalled (482.445ms)
+✔ plan readiness is current, installation-scoped and excludes obsolete subscription versions (764.7375ms)
+✖ habit plans validate saved eligibility, cancel completion/archive transactionally and dispatch through local transport (174.103167ms)
+✖ habit quiet hours cannot inherit the prayer override and disabling preferences cancels all coverage (165.495666ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 11
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5613.110375
+
+✖ failing tests:
+
+test at tests/infra/push-plans.test.ts:1:15218
+✖ habit plans validate saved eligibility, cancel completion/archive transactionally and dispatch through local transport (174.103167ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"invalid_command","messageKey":"personal.invalid_command","retryable":false,"requestId":"86d47684-3873-45a6-ac82-320e377d2a23"}}
+  
+  422 !== 200
+  
+      at command (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/push-plans.test.ts:135:176)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/push-plans.test.ts:138:2)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 422,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/infra/push-plans.test.ts:1:17784
+✖ habit quiet hours cannot inherit the prayer override and disabling preferences cancels all coverage (165.495666ms)
+  AssertionError [ERR_ASSERTION]: {"error":{"code":"invalid_command","messageKey":"personal.invalid_command","retryable":false,"requestId":"ddf0caee-ad02-4fc3-8b5c-b13146f85981"}}
+  
+  422 !== 200
+  
+      at command (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/push-plans.test.ts:159:169)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/push-plans.test.ts:161:2)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 422,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

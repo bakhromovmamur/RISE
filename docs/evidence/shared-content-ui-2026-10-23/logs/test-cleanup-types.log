@@ -1,0 +1,8 @@
+
+> rise-prototype@1.0.0 lint
+> oxlint src server infra tests scripts public/notifications-sw.js *.config.ts --deny-warnings
+
+
+> rise-prototype@1.0.0 typecheck
+> tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tools.json && tsc --noEmit -p tsconfig.server.json
+

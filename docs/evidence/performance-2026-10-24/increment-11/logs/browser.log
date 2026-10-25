@@ -1,0 +1,46 @@
+[WebServer] (node:82406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 33 tests using 1 worker
+
+(node:82408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (1.0s)
+  ✓   2 [chromium] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.3s)
+  ✓   3 [chromium] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (33.9s)
+  ✓   4 [chromium] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (3.7s)
+  ✓   5 [chromium] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (18.6s)
+  ✓   6 [chromium] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (4.9s)
+  ✓   7 [chromium] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.6s)
+  ✓   8 [chromium] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (7.4s)
+  ✓   9 [chromium] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (4.4s)
+  ✓  10 [chromium] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (4.1s)
+  ✓  11 [chromium] › tests/groups/squads.groups.spec.ts:73:2 › delayed preview response › closing a pending preview cannot replace the newer reviewed draft (3.6s)
+(node:82539) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [webkit] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (2.0s)
+  ✓  13 [webkit] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.6s)
+  ✓  14 [webkit] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.4s)
+  ✓  15 [webkit] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (3.7s)
+  ✓  16 [webkit] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (18.7s)
+  ✓  17 [webkit] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (4.9s)
+  ✓  18 [webkit] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.7s)
+  ✓  19 [webkit] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (7.8s)
+  ✓  20 [webkit] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (4.3s)
+  ✓  21 [webkit] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (4.0s)
+  ✓  22 [webkit] › tests/groups/squads.groups.spec.ts:73:2 › delayed preview response › closing a pending preview cannot replace the newer reviewed draft (3.7s)
+(node:82701) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  23 [firefox] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (1.4s)
+  ✓  24 [firefox] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (5.2s)
+  ✓  25 [firefox] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (35.7s)
+  ✓  26 [firefox] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (4.4s)
+  ✓  27 [firefox] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (19.4s)
+  ✓  28 [firefox] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (5.7s)
+  ✓  29 [firefox] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.8s)
+  ✓  30 [firefox] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (8.8s)
+  ✓  31 [firefox] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (5.3s)
+  ✓  32 [firefox] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (4.8s)
+  ✓  33 [firefox] › tests/groups/squads.groups.spec.ts:73:2 › delayed preview response › closing a pending preview cannot replace the newer reviewed draft (4.0s)
+
+  33 passed (4.7m)

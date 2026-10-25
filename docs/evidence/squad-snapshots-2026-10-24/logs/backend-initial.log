@@ -1,0 +1,100 @@
+✔ squad preview requires verified owner, consent selections and current membership; hostile private fields fail closed (947.319958ms)
+✔ publication equals the committed preview after private corrections and discloses only chosen aggregate fields (1750.363792ms)
+✔ authors alone edit and withdraw, each member controls only their own encouragement and owners can remove abuse (926.987792ms)
+✔ preview expiry, hashes, source revision and cross-account/group IDs cannot substitute a different approved snapshot (534.947625ms)
+✔ lost replies replay exact receipt after expiry and later edits; competing previews require explicit fresh review (424.98175ms)
+✔ withdrawal erases active payloads and previews, preserves a removal barrier and stays available after archive (706.044416ms)
+✔ membership removal immediately fences feed, preview, pending publication and previously accepted receipts (500.658375ms)
+✔ forced RLS and narrow grants protect drafts, author identities, mutations and cross-group references (474.812667ms)
+✔ receipt insertion failure rolls back publication, preview consumption and revision together (262.727458ms)
+✔ preview and post quotas stay bounded without a worker, Unicode round-trips and expired preview cleanup is narrow (573.854583ms)
+✔ squad feed pages contain at most twenty exact posts and changed group revisions reject continuation (588.6615ms)
+✖ suppression removes authored posts, reactions and drafts before provider completion and terminal replay purges restored copies (552.041209ms)
+✖ failed suppression rolls back squad erasure and group deletion cascades all shared and preview rows (539.336291ms)
+✖ /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts (5.953167ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 11
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9117.423083
+
+✖ failing tests:
+
+test at tests/infra/squads.test.ts:1:22922
+✖ suppression removes authored posts, reactions and drafts before provider completion and terminal replay purges restored copies (552.041209ms)
+  error: new row for relation "squad_posts" violates check constraint "squad_posts_check"
+      at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg-pool/index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts:194:167)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    length: 500,
+    severity: 'ERROR',
+    code: '23514',
+    detail: 'Failing row contains (c487a02b-7d10-46e6-bd0d-748e247e9008, f2ec252d-fcac-4382-baf0-4a374f2193c6, ebc797d2-38f0-4111-b44d-579bb89d8d14, 2bd79a0b-8cb1-4eea-8c99-ade04b934c4d, 2026-10-18, published, {"note": "Deleted authored snapshot", "week": "2026-10-19"}, 5, 2026-10-23 18:51:25.884+00, 2026-10-23 18:51:25.884+00).',
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: 'rise',
+    table: 'squad_posts',
+    column: undefined,
+    dataType: undefined,
+    constraint: 'squad_posts_check',
+    file: 'execMain.c',
+    line: '2074',
+    routine: 'ExecConstraints'
+  }
+
+test at tests/infra/squads.test.ts:1:26091
+✖ failed suppression rolls back squad erasure and group deletion cascades all shared and preview rows (539.336291ms)
+  AssertionError [ERR_ASSERTION]: squad_status:unavailable
+  
+  503 !== 200
+  
+      at send (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts:23:129)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async command (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts:24:69)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts:206:2)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/infra/squads.test.ts:1:814
+✖ /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts (5.953167ms)
+  error: update or delete on table "memberships" violates foreign key constraint "squad_reactions_group_id_member_id_fkey" on table "squad_reactions"
+      at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg-pool/index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/squads.test.ts:18:26)
+      at async TestHook.run (node:internal/test_runner/test:1313:7)
+      at async Test.runHook (node:internal/test_runner/test:1198:9)
+      at async after (node:internal/test_runner/test:1251:9)
+      at async Test.run (node:internal/test_runner/test:1332:7) {
+    length: 420,
+    severity: 'ERROR',
+    code: '23503',
+    detail: 'Key (group_id, id)=(f6a4cecf-886a-4ef4-85a4-a70a87794817, f56dd4c9-2de0-48e3-ad89-477101d16db6) is still referenced from table "squad_reactions".',
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: 'rise',
+    table: 'squad_reactions',
+    column: undefined,
+    dataType: undefined,
+    constraint: 'squad_reactions_group_id_member_id_fkey',
+    file: 'ri_triggers.c',
+    line: '2612',
+    routine: 'ri_ReportViolation'
+  }

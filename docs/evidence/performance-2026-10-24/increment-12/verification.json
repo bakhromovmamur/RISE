@@ -1,0 +1,132 @@
+{
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07",
+    "SEC-01",
+    "SEC-02"
+  ],
+  "date": "2026-10-24",
+  "status": "IN PROGRESS",
+  "commands": [
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "cases": 294
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/auth.test.ts tests/infra/personal.test.ts",
+      "exit": 0,
+      "cases": 24
+    },
+    {
+      "command": "npm run test:infra",
+      "exit": 1,
+      "passed": 168,
+      "failed": 1,
+      "failure": "large retained invitation ownership transfer returned 503; exact cause not captured"
+    },
+    {
+      "command": "focused unchanged invitation-transfer recheck",
+      "exit": 0,
+      "cases": 1
+    },
+    {
+      "command": "node --import /tmp/rise-session-admission-sql-timing.mjs --import tsx --test --test-concurrency=1 tests/infra/*.test.ts",
+      "exit": 0,
+      "cases": 169
+    },
+    {
+      "command": "npm run test:auth",
+      "exit": 0,
+      "cases": 21,
+      "flaky": 0
+    },
+    {
+      "command": "npm run test:sync",
+      "exit": 0,
+      "cases": 69,
+      "flaky": 0
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts smoke",
+      "exit": 0
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed",
+      "exit": 1,
+      "capacity": "FAIL",
+      "exactRecoveryHistoryXpSharedReadbackCleanup": "PASS",
+      "exactRecoveries": 470
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-session-wait-probe/run.mts",
+      "modes": [
+        "baseline",
+        "counterfactual",
+        "implementation"
+      ],
+      "exits": [
+        0,
+        0,
+        0
+      ],
+      "captureEach": 228
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-concurrent-session-probe/run.mts",
+      "modes": [
+        "baseline",
+        "implementation",
+        "baseline-repeat"
+      ],
+      "exits": [
+        0,
+        0,
+        1
+      ],
+      "captureEach": [
+        170,
+        170,
+        106
+      ],
+      "baselineRepeat": "Exact retry 503; full history/replay verification not completed; exact cleanup passed"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "documents": 37,
+      "links": 608,
+      "anchors": 61,
+      "tasks": 38,
+      "requirements": 20
+    }
+  ],
+  "preservation": {
+    "protectedFilesChecked": 2924,
+    "priorSealedFilesChecked": 667,
+    "protectedDifferencesFromIncrement03": [
+      "server/auth/sessions.ts",
+      "server/personal/records.ts"
+    ],
+    "serverWriterMatchesIncrement10": true,
+    "sourceFilesChecked": 55,
+    "buildFilesChecked": 52,
+    "frontendBuildsIdenticalToIncrement11": true,
+    "applicationChanges": [
+      "server/auth/admission.ts",
+      "server/auth/sessions.ts"
+    ],
+    "testChanges": [
+      "tests/session-admission.test.ts",
+      "tests/infra/auth.test.ts"
+    ],
+    "relativeLinksChecked": 39,
+    "testPortReleased": true,
+    "probeProcessesTerminated": true,
+    "savedPreviewAccessed": false,
+    "cloudProvisioned": false,
+    "schemaPolicyDependencyStorageUiChanged": false
+  },
+  "decision": "Retain bounded isolation fix; no capacity acceptance. Focus next on per-command CPU/allocations instead of repeating full runtime experiments."
+}

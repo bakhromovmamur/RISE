@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-25",
+  "originalFindings": [
+    "WebKit sign-in form unavailable before initial login",
+    "Chromium rollout code rejected before activation",
+    "Group sender test expected no unrelated due work; observed 35 jobs"
+  ],
+  "reproductions": [
+    {
+      "command": "npm run test:auth -- --project=webkit --grep 'keeps a usable sign-in form'",
+      "source": "original WorkspaceSession",
+      "result": "FAIL: Account receives a superseded null identity; Email address remains absent",
+      "stats": {
+        "startTime": "2026-10-25T07:19:38.503Z",
+        "duration": 6768.6140000000005,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:groups -- --project=webkit --grep 'encrypted group delivery'",
+      "source": "original sender test with one deliberately unrelated due job",
+      "result": "FAIL: global queue assertion expected 0, received 1"
+    },
+    {
+      "command": "npm run test:auth -- --project=webkit --grep 'after the newer failure has settled'",
+      "source": "initial candidate cleared the latest settled promise",
+      "result": "FAIL: late older response loses the newer failure; error alert absent"
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='slow provider' tests/infra/auth.test.ts",
+      "source": "original quota transaction spans provider calls",
+      "result": "FAIL 2: both request and verification block another context on the shared-IP advisory lock until the unchanged database deadline"
+    }
+  ],
+  "passingDiagnostics": [
+    {
+      "command": "npm run test:sync -- --project=webkit --grep 'account export and explicit device cleanup' --repeat-each=10",
+      "passed": 10
+    },
+    {
+      "command": "private auth-probe.ts (real local provider, BFF and database)",
+      "passed": 40
+    },
+    {
+      "command": "private Chromium browser sign-in probe, 40 repeats",
+      "stats": {
+        "startTime": "2026-10-25T07:14:00.107Z",
+        "duration": 50139.33,
+        "expected": 40,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "private Chromium browser sign-in probe, 150 repeats",
+      "stats": {
+        "startTime": "2026-10-25T07:15:37.748Z",
+        "duration": 178982.159,
+        "expected": 150,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "discardedAttempts": [
+    "Private direct-Auth probe initially had a SQL string quoting error; corrected before execution.",
+    "Initial identity fixture allowed the real request timeout to expire while advancing the virtual clock; discarded as proof. Corrected fixture keeps the Account request below its deadline.",
+    "Initial queue fixture omitted millisecond truncation on an expiry; its check-constraint failure was corrected before reproducing the queue assertion.",
+    "Private rollout configuration initially inherited the temporary directory as server cwd; startup failed before tests and was corrected.",
+    "Initial full auth run: 25 pass, two new fixture failures because real-time advancement fired the timer before the expected second request, plus a background route teardown error. Fixture now pauses the clock and awaits outstanding routes; no timeout increased.",
+    "Diagnostic 15-repeat rollout was intentionally stopped after five passing cases to investigate newly discovered server log causes; ten cases skipped, exit 130. This is not counted as a completed green suite.",
+    "Continuation check: 315/316 passed; the existing renewal recheck watchdog expired during Docker/database workload overlap. Isolated unchanged test passed in 555 ms. Full check rerun sequentially; no source/test deadline change."
+  ],
+  "historicalInvalidCodeCause": "Original Auth log at 06:29:22 UTC records /otp HTTP 500 after 5.04 seconds with transaction context cancellation. BFF correctly kept provider_ready false. A template HTTP 404 at 06:29:17 UTC was also observed. The stale template mount is repaired; causation between that 404 and the transaction timeout is not established.",
+  "historicalUnavailableCause": "Original PostgreSQL log at 06:40:32.653 UTC records a statement timeout on pg_advisory_xact_lock($1::bigint). The exact HMAC subject was not logged. New deterministic shared-IP request/verification cases reproduce that lock timeout on the original code.",
+  "followupEnvironmentRestart": "On continuation, prior temporary files and test processes were absent and Docker was offline. Source changes and repository reports survived. Docker was started normally; only fixed local/test stacks were verified. New logs remain private under .rise-infra."
+}

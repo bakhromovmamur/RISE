@@ -1,0 +1,542 @@
+{
+  "captureId": "81743dff-3a98-4f28-b044-3c37eece0d8e",
+  "scope": "All requests after fixture seeding, including group setup, measurement, recovery, replay, readback and logout",
+  "maximumPending": 1,
+  "rejected": 0,
+  "timing": [
+    {
+      "id": 1,
+      "started": 1792851813952.3267,
+      "ms": 528.015625,
+      "headersMs": 527.550048828125
+    },
+    {
+      "id": 2,
+      "started": 1792851814481.6345,
+      "ms": 21.4013671875,
+      "headersMs": 21.25537109375
+    },
+    {
+      "id": 3,
+      "started": 1792851814503.9714,
+      "ms": 408.03759765625,
+      "headersMs": 407.8291015625
+    },
+    {
+      "id": 4,
+      "started": 1792851814912.6223,
+      "ms": 10.8564453125,
+      "headersMs": 10.72509765625
+    },
+    {
+      "id": 5,
+      "started": 1792851814923.9526,
+      "ms": 276.94189453125,
+      "headersMs": 244.673828125
+    },
+    {
+      "id": 6,
+      "started": 1792851815308.5063,
+      "ms": 19.645263671875,
+      "headersMs": 19.496826171875
+    }
+  ],
+  "workers": [
+    {
+      "poolMax": 3,
+      "requests": 3,
+      "maximumPending": 1,
+      "counts": {
+        "personal": 2,
+        "shared": 0,
+        "other": 1
+      },
+      "metrics": {
+        "scope": "Fixed-test aggregate phases only; async spans overlap parent spans; query wall time includes client/event-loop work, not pure database CPU",
+        "completed": [
+          {
+            "id": 1,
+            "family": "personalCommand",
+            "started": 1792851813954.9807,
+            "phases": {
+              "pool.acquire": {
+                "count": 2,
+                "ms": 0.11037399999997888,
+                "cpuMs": 0
+              },
+              "db.transaction": {
+                "count": 6,
+                "ms": 3.911209999999926,
+                "cpuMs": 0
+              },
+              "db.otherRead": {
+                "count": 31,
+                "ms": 37.5797070000001,
+                "cpuMs": 0
+              },
+              "db.otherWrite": {
+                "count": 13,
+                "ms": 24.136206000000016,
+                "cpuMs": 0
+              },
+              "db.auth": {
+                "count": 6,
+                "ms": 6.032957999999951,
+                "cpuMs": 0
+              },
+              "db.activeSession": {
+                "count": 4,
+                "ms": 6.11587499999996,
+                "cpuMs": 0
+              },
+              "auth.read": {
+                "count": 1,
+                "ms": 19.277625,
+                "cpuMs": 0
+              },
+              "db.ownerLock": {
+                "count": 1,
+                "ms": 0.702624999999955,
+                "cpuMs": 0
+              },
+              "db.occurrenceRead": {
+                "count": 1,
+                "ms": 173.17125000000004,
+                "cpuMs": 0
+              },
+              "personal.readRecords": {
+                "count": 1,
+                "ms": 204.83899999999994,
+                "cpuMs": 0
+              },
+              "personal.hydrate": {
+                "count": 1,
+                "ms": 83.197,
+                "cpuMs": 77.662
+              },
+              "personal.priorities": {
+                "count": 1,
+                "ms": 0.06729099999995469,
+                "cpuMs": 0
+              },
+              "personal.domain": {
+                "count": 1,
+                "ms": 45.71129199999996,
+                "cpuMs": 45.639
+              },
+              "personal.validate": {
+                "count": 1,
+                "ms": 49.668000000000006,
+                "cpuMs": 47.613
+              },
+              "personal.project": {
+                "count": 1,
+                "ms": 30.704584000000068,
+                "cpuMs": 29.895
+              },
+              "personal.writeRecords": {
+                "count": 1,
+                "ms": 31.266583000000082,
+                "cpuMs": 0
+              },
+              "personal.cancel": {
+                "count": 1,
+                "ms": 1.979832999999985,
+                "cpuMs": 0
+              },
+              "db.total": {
+                "count": 1,
+                "ms": 28.563959000000068,
+                "cpuMs": 0
+              },
+              "personal.total": {
+                "count": 1,
+                "ms": 28.59529100000009,
+                "cpuMs": 0
+              }
+            },
+            "status": 200,
+            "ms": 524.74169921875
+          },
+          {
+            "id": 3,
+            "family": "personalCommand",
+            "started": 1792851814504.3035,
+            "phases": {
+              "pool.acquire": {
+                "count": 2,
+                "ms": 0.043248999999946136,
+                "cpuMs": 0
+              },
+              "db.transaction": {
+                "count": 6,
+                "ms": 2.9538340000001426,
+                "cpuMs": 0
+              },
+              "db.otherRead": {
+                "count": 31,
+                "ms": 14.660626999999977,
+                "cpuMs": 0
+              },
+              "db.otherWrite": {
+                "count": 13,
+                "ms": 17.094791000000214,
+                "cpuMs": 0
+              },
+              "db.auth": {
+                "count": 6,
+                "ms": 1.7552919999998267,
+                "cpuMs": 0
+              },
+              "db.activeSession": {
+                "count": 4,
+                "ms": 2.1497079999999187,
+                "cpuMs": 0
+              },
+              "auth.read": {
+                "count": 1,
+                "ms": 4.776292000000012,
+                "cpuMs": 0
+              },
+              "db.ownerLock": {
+                "count": 1,
+                "ms": 0.20583399999998164,
+                "cpuMs": 0
+              },
+              "db.occurrenceRead": {
+                "count": 1,
+                "ms": 114.78612499999997,
+                "cpuMs": 0
+              },
+              "personal.readRecords": {
+                "count": 1,
+                "ms": 129.03104099999996,
+                "cpuMs": 0
+              },
+              "personal.hydrate": {
+                "count": 1,
+                "ms": 59.270667,
+                "cpuMs": 58.372
+              },
+              "personal.priorities": {
+                "count": 1,
+                "ms": 0.00433300000008785,
+                "cpuMs": 0
+              },
+              "personal.domain": {
+                "count": 1,
+                "ms": 42.053499999999985,
+                "cpuMs": 42.038
+              },
+              "personal.validate": {
+                "count": 1,
+                "ms": 50.89912499999991,
+                "cpuMs": 43.482
+              },
+              "personal.project": {
+                "count": 1,
+                "ms": 30.608457999999928,
+                "cpuMs": 28.558
+              },
+              "personal.writeRecords": {
+                "count": 1,
+                "ms": 35.86829200000011,
+                "cpuMs": 0
+              },
+              "personal.cancel": {
+                "count": 1,
+                "ms": 1.8684590000000298,
+                "cpuMs": 0
+              },
+              "db.total": {
+                "count": 1,
+                "ms": 40.8532909999999,
+                "cpuMs": 0
+              },
+              "personal.total": {
+                "count": 1,
+                "ms": 40.861625000000004,
+                "cpuMs": 0
+              }
+            },
+            "status": 200,
+            "ms": 407.457275390625
+          },
+          {
+            "id": 5,
+            "family": "personalRead",
+            "started": 1792851814924.1868,
+            "phases": {
+              "pool.acquire": {
+                "count": 2,
+                "ms": 0.03887399999985064,
+                "cpuMs": 0
+              },
+              "db.transaction": {
+                "count": 6,
+                "ms": 2.3339579999999387,
+                "cpuMs": 0
+              },
+              "db.otherRead": {
+                "count": 28,
+                "ms": 14.017456999999922,
+                "cpuMs": 0
+              },
+              "db.otherWrite": {
+                "count": 2,
+                "ms": 0.5937910000000102,
+                "cpuMs": 0
+              },
+              "db.auth": {
+                "count": 5,
+                "ms": 1.5019160000001648,
+                "cpuMs": 0
+              },
+              "db.activeSession": {
+                "count": 4,
+                "ms": 2.131125000000111,
+                "cpuMs": 0
+              },
+              "auth.read": {
+                "count": 1,
+                "ms": 4.545624999999973,
+                "cpuMs": 0
+              },
+              "db.ownerLock": {
+                "count": 1,
+                "ms": 0.281833000000006,
+                "cpuMs": 0
+              },
+              "db.occurrenceRead": {
+                "count": 1,
+                "ms": 115.08929199999989,
+                "cpuMs": 0
+              },
+              "personal.readRecords": {
+                "count": 1,
+                "ms": 128.63033399999995,
+                "cpuMs": 0
+              },
+              "personal.hydrate": {
+                "count": 1,
+                "ms": 54.420459000000164,
+                "cpuMs": 53.481
+              },
+              "db.total": {
+                "count": 1,
+                "ms": 23.377915999999914,
+                "cpuMs": 0
+              },
+              "personal.total": {
+                "count": 1,
+                "ms": 23.429333999999926,
+                "cpuMs": 0
+              }
+            },
+            "status": 200,
+            "ms": 276.82080078125
+          }
+        ],
+        "resources": [
+          {
+            "at": 1792851815464.2017,
+            "intervalMs": 1732.918416,
+            "threadCpuMs": 830.606,
+            "eventLoop": {
+              "idle": 849.725674,
+              "active": 883.1966170404205,
+              "utilization": 0.5096573698698067
+            },
+            "heapUsed": 151230208,
+            "heapTotal": 286539776,
+            "rssProcess": 532594688,
+            "gc": {
+              "count": 35,
+              "totalMs": 73.40137553215027,
+              "maxMs": 8.344791889190674
+            }
+          }
+        ],
+        "dropped": 0
+      }
+    },
+    {
+      "poolMax": 2,
+      "requests": 3,
+      "maximumPending": 1,
+      "counts": {
+        "personal": 2,
+        "shared": 0,
+        "other": 1
+      },
+      "metrics": {
+        "scope": "Fixed-test aggregate phases only; async spans overlap parent spans; query wall time includes client/event-loop work, not pure database CPU",
+        "completed": [
+          {
+            "id": 2,
+            "family": "personalCommand",
+            "started": 1792851814484.0483,
+            "phases": {
+              "pool.acquire": {
+                "count": 2,
+                "ms": 0.16133399999989706,
+                "cpuMs": 0
+              },
+              "db.transaction": {
+                "count": 6,
+                "ms": 2.092791000000034,
+                "cpuMs": 0
+              },
+              "db.otherRead": {
+                "count": 7,
+                "ms": 4.453918999999928,
+                "cpuMs": 0
+              },
+              "db.otherWrite": {
+                "count": 2,
+                "ms": 1.3960419999999658,
+                "cpuMs": 0
+              },
+              "db.auth": {
+                "count": 6,
+                "ms": 3.0409989999999425,
+                "cpuMs": 0
+              },
+              "db.activeSession": {
+                "count": 4,
+                "ms": 3.454207999999994,
+                "cpuMs": 0
+              },
+              "auth.read": {
+                "count": 1,
+                "ms": 10.76887499999998,
+                "cpuMs": 0
+              },
+              "db.ownerLock": {
+                "count": 1,
+                "ms": 0.26845800000000963,
+                "cpuMs": 0
+              }
+            },
+            "status": 200,
+            "ms": 18.99853515625
+          },
+          {
+            "id": 4,
+            "family": "personalCommand",
+            "started": 1792851814912.9658,
+            "phases": {
+              "pool.acquire": {
+                "count": 2,
+                "ms": 0.05254100000001927,
+                "cpuMs": 0
+              },
+              "db.transaction": {
+                "count": 6,
+                "ms": 1.7659180000002834,
+                "cpuMs": 0
+              },
+              "db.otherRead": {
+                "count": 7,
+                "ms": 2.6521659999996245,
+                "cpuMs": 0
+              },
+              "db.otherWrite": {
+                "count": 2,
+                "ms": 0.6840829999998732,
+                "cpuMs": 0
+              },
+              "db.auth": {
+                "count": 6,
+                "ms": 1.9255839999998443,
+                "cpuMs": 0
+              },
+              "db.activeSession": {
+                "count": 4,
+                "ms": 2.1067500000001473,
+                "cpuMs": 0
+              },
+              "auth.read": {
+                "count": 1,
+                "ms": 5.22262499999988,
+                "cpuMs": 0
+              },
+              "db.ownerLock": {
+                "count": 1,
+                "ms": 0.2687909999999647,
+                "cpuMs": 0
+              }
+            },
+            "status": 200,
+            "ms": 10.38623046875
+          },
+          {
+            "id": 6,
+            "family": "other",
+            "started": 1792851815308.819,
+            "phases": {
+              "pool.acquire": {
+                "count": 1,
+                "ms": 0.03604200000017954,
+                "cpuMs": 0
+              },
+              "db.transaction": {
+                "count": 2,
+                "ms": 3.118458000000146,
+                "cpuMs": 0
+              },
+              "db.auth": {
+                "count": 4,
+                "ms": 2.605458000000226,
+                "cpuMs": 0
+              },
+              "db.otherRead": {
+                "count": 1,
+                "ms": 0.4172079999998459,
+                "cpuMs": 0
+              },
+              "db.activeSession": {
+                "count": 1,
+                "ms": 1.1017080000001442,
+                "cpuMs": 0
+              },
+              "db.ownerLock": {
+                "count": 1,
+                "ms": 0.2854589999999462,
+                "cpuMs": 0
+              },
+              "db.otherWrite": {
+                "count": 3,
+                "ms": 5.631457999999839,
+                "cpuMs": 0
+              }
+            },
+            "status": 200,
+            "ms": 19.1591796875
+          }
+        ],
+        "resources": [
+          {
+            "at": 1792851815464.2712,
+            "intervalMs": 1596.0259170000002,
+            "threadCpuMs": 85.33,
+            "eventLoop": {
+              "idle": 1509.66925,
+              "active": 86.35958315086373,
+              "utilization": 0.05410903697796833
+            },
+            "heapUsed": 24821112,
+            "heapTotal": 38141952,
+            "rssProcess": 532643840,
+            "gc": {
+              "count": 4,
+              "totalMs": 1.5019161701202393,
+              "maxMs": 0.7580831050872803
+            }
+          }
+        ],
+        "dropped": 0
+      }
+    }
+  ]
+}

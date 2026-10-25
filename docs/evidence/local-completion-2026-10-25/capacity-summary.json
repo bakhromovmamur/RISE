@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-25",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "command": "node --import tsx scripts/infra/check-account-load.ts mixed",
+  "environment": "fixed test; original single-process runtime, injected transport; no hosted acceptance",
+  "users": 100,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrences": 7300000,
+  "restrictedPool": 5,
+  "personal": {
+    "planned": 400,
+    "accepted": 400,
+    "failed": 0,
+    "deferred": 0,
+    "p95Ms": 4097.253541999962,
+    "p95ScheduledMs": 4129.027208000014,
+    "maxMs": 5428.21416600002,
+    "maxSchedulingLateMs": 390.20020800002385
+  },
+  "shared": {
+    "planned": 200,
+    "accepted": 113,
+    "failed": 41,
+    "deferred": 46,
+    "p95Ms": 5341.552999999956,
+    "p95ScheduledMs": 5341.552999999956,
+    "maxMs": 5741.283125000016,
+    "maxSchedulingLateMs": 361.76158300001407
+  },
+  "convergence": {
+    "expected": 200,
+    "accepted": 113,
+    "observed": 113,
+    "over15SecondsOrMissing": 30,
+    "p95Ms": 18687.972458000004,
+    "maxMs": 21094.194916000008
+  },
+  "exactRecoveries": 87,
+  "exactRecoveryAndSharedReadback": true,
+  "historyAndXpRestored": true,
+  "cleaned": true,
+  "cleanupErrors": [],
+  "passed": false,
+  "reportSha256": "1aba7b2a7b93117e61535775be464c58e825302ccd48791c36e3cb80f275397f",
+  "workerFullAttempt": {
+    "command": "node --import tsx .rise-infra/local-completion-20261025/http/run.mts mixed",
+    "result": "insufficient_host_disk_headroom",
+    "availableGiB": 11.774085998535156,
+    "requiredFreeGiBStrictlyGreaterThan": 12,
+    "fixturesCreated": false,
+    "guardChanged": false
+  }
+}

@@ -1,0 +1,129 @@
+[WebServer] (node:58135) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 2 workers
+
+(node:58139) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58138) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/prayer-records.browser.spec.ts:37:1 › saved future-dated history stays correctable after a backward clock change (1.1s)
+  ✓   1 [chromium] › tests/prayer-records.browser.spec.ts:52:1 › pause defaults to the original overnight Isha date and resumes without hiding earlier gaps (1.2s)
+  ✓   3 [chromium] › tests/prayer-records.browser.spec.ts:74:1 › unfinished Fajr draft retains its original date across midnight and reload (765ms)
+  ✓   4 [chromium] › tests/prayer-records.browser.spec.ts:89:1 › preview stop, backup and acknowledgment leave a different dated live alarm untouched (716ms)
+  ✓   5 [chromium] › tests/prayer-records.browser.spec.ts:104:1 › preview of today's stopped live alert cannot acknowledge it; actual acknowledgment cancels only its dated wake alerts (1.1s)
+  ✓   6 [chromium] › tests/prayer-records.browser.spec.ts:126:1 › overnight break expires in the open form without losing its note or reusing its wrap-up minute (1.1s)
+  ✓   7 [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout en-light-375-100 (883ms)
+  ✓   8 [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout en-dark-1440-100 (975ms)
+  ✓   9 [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout ru-light-393-100 (769ms)
+  ✘  10 [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout ru-dark-320-200 (541ms)
+(node:58214) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  11 [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout uz-light-430-200 (30.1s)
+  ✘  12 [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout uz-dark-375-100 (30.1s)
+
+
+  1) [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout ru-dark-320-200 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      159 |   const capture = async (name: string) => {
+      160 |     await expect(dialog(page)).toBeVisible();
+    > 161 |     expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+          |                                                                                     ^
+      162 |     await page.screenshot({ path: testInfo.outputPath(`${name}.png`) });
+      163 |   };
+      164 |   await plan(page, language); await capture("dated-fajr");
+        at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:161:85)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/prayer-records.browser-pra-468d0-ning-layout-ru-dark-320-200-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout uz-light-430-200 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('tab', { name: 'You', exact: true })
+
+
+      23 | async function preferences(page: Page, language: Language = "en") {
+      24 |   const t = createTranslator(language);
+    > 25 |   await closeSheets(page); await page.getByRole("tab", { name: t("You"), exact: true }).click();
+         |                                                                                         ^
+      26 |   await page.getByRole("button", { name: new RegExp(`^${t("Prayer preferences")}`) }).click();
+      27 | }
+      28 | async function plan(page: Page, language: Language = "en") {
+        at preferences (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:25:89)
+        at plan (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:29:3)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/prayer-records.browser-pra-11204-ing-layout-uz-light-430-200-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/prayer-records.browser-pra-11204-ing-layout-uz-light-430-200-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/prayer-records.browser-pra-11204-ing-layout-uz-light-430-200-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/prayer-records.browser-pra-11204-ing-layout-uz-light-430-200-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout uz-dark-375-100 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('tab', { name: 'You', exact: true })
+
+
+      23 | async function preferences(page: Page, language: Language = "en") {
+      24 |   const t = createTranslator(language);
+    > 25 |   await closeSheets(page); await page.getByRole("tab", { name: t("You"), exact: true }).click();
+         |                                                                                         ^
+      26 |   await page.getByRole("button", { name: new RegExp(`^${t("Prayer preferences")}`) }).click();
+      27 | }
+      28 | async function plan(page: Page, language: Language = "en") {
+        at preferences (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:25:89)
+        at plan (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:29:3)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.browser.spec.ts:164:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/prayer-records.browser-pra-759fa-ning-layout-uz-dark-375-100-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/prayer-records.browser-pra-759fa-ning-layout-uz-dark-375-100-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/prayer-records.browser-pra-759fa-ning-layout-uz-dark-375-100-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/prayer-records.browser-pra-759fa-ning-layout-uz-dark-375-100-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout ru-dark-320-200 
+    [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout uz-light-430-200 
+    [chromium] › tests/prayer-records.browser.spec.ts:154:13 › prayer records and dated planning layout uz-dark-375-100 
+  9 passed (36.1s)

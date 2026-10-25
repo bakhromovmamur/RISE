@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-22T19:54:08.338Z",
+  "localStopped": true,
+  "testStopped": true,
+  "retainedOwnVolumes": [
+    "supabase_db_rise-local-0b488bde",
+    "supabase_db_rise-test-0b488bde"
+  ],
+  "unrelatedContainersRetained": true,
+  "unrelated": [
+    "investor-passport-local-app-1",
+    "trading_platform_redis",
+    "trading_platform_postgres",
+    "cryptoattack-postgres"
+  ],
+  "preview4173StillListening": true,
+  "previewDataAccessed": false,
+  "previewStartedOnFreePort": true,
+  "previewCommand": "node node_modules/vite/bin/vite.js preview --host 127.0.0.1 --port 4173 --strictPort",
+  "cloudProvisioned": false,
+  "deployed": false,
+  "commands": [
+    "npm run infra:stop -- test",
+    "npm run infra:stop -- local"
+  ]
+}

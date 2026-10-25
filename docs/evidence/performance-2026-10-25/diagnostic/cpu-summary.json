@@ -1,0 +1,180 @@
+{
+  "scope": "Whole process including seeding, commands, reads, assertions and cleanup; not exclusively mutation CPU. Sampling overhead applies. No request values captured.",
+  "samples": [
+    {
+      "function": "(idle)",
+      "source": "",
+      "selfSampledMs": 10500.34
+    },
+    {
+      "function": "",
+      "source": "src/data/validation.ts",
+      "selfSampledMs": 740.462
+    },
+    {
+      "function": "parseRow",
+      "source": "node_modules/pg/lib/result.js",
+      "selfSampledMs": 431.373
+    },
+    {
+      "function": "structuredClone",
+      "source": "node:internal/worker/js_transferable",
+      "selfSampledMs": 416.835
+    },
+    {
+      "function": "(garbage collector)",
+      "source": "",
+      "selfSampledMs": 349.247
+    },
+    {
+      "function": "",
+      "source": ".rise-infra/quality03-20261025/five-account.ts",
+      "selfSampledMs": 330.711
+    },
+    {
+      "function": "utf8Slice",
+      "source": "",
+      "selfSampledMs": 197.126
+    },
+    {
+      "function": "parseJsonPayload",
+      "source": "node_modules/light-my-request/lib/response.js",
+      "selfSampledMs": 150.334
+    },
+    {
+      "function": "readFileUtf8",
+      "source": "",
+      "selfSampledMs": 144.581
+    },
+    {
+      "function": "(program)",
+      "source": "",
+      "selfSampledMs": 113.334
+    },
+    {
+      "function": "unique",
+      "source": "src/data/storedState.ts",
+      "selfSampledMs": 112.667
+    },
+    {
+      "function": "serialize",
+      "source": "node_modules/fastify/lib/reply.js",
+      "selfSampledMs": 102.999
+    },
+    {
+      "function": "sameJson",
+      "source": "server/personal/records.ts",
+      "selfSampledMs": 87.791
+    },
+    {
+      "function": "",
+      "source": "",
+      "selfSampledMs": 87.335
+    },
+    {
+      "function": "",
+      "source": "server/personal/records.ts",
+      "selfSampledMs": 84.08
+    },
+    {
+      "function": "",
+      "source": "src/contracts/personalRecords.ts",
+      "selfSampledMs": 83.582
+    },
+    {
+      "function": "writev",
+      "source": "",
+      "selfSampledMs": 80.579
+    },
+    {
+      "function": "toString",
+      "source": "node:buffer",
+      "selfSampledMs": 74.835
+    },
+    {
+      "function": "pick",
+      "source": "src/contracts/personalRecords.ts",
+      "selfSampledMs": 73.372
+    },
+    {
+      "function": "writeRecords",
+      "source": "server/personal/records.ts",
+      "selfSampledMs": 72.335
+    },
+    {
+      "function": "parseDataRowMessage",
+      "source": "node_modules/pg-protocol/dist/parser.js",
+      "selfSampledMs": 66.542
+    },
+    {
+      "function": "",
+      "source": "src/model.ts",
+      "selfSampledMs": 58.585
+    },
+    {
+      "function": "keyCheck",
+      "source": "node:internal/util/comparisons",
+      "selfSampledMs": 53.333
+    },
+    {
+      "function": "internalModuleStat",
+      "source": "",
+      "selfSampledMs": 52.212
+    },
+    {
+      "function": "project",
+      "source": "src/contracts/personalRecords.ts",
+      "selfSampledMs": 50.126
+    },
+    {
+      "function": "lineLengths",
+      "source": "node:internal/source_map/source_map_cache",
+      "selfSampledMs": 48.126
+    },
+    {
+      "function": "RegExp: ^\\S+$",
+      "source": "",
+      "selfSampledMs": 47.584
+    },
+    {
+      "function": "byParent",
+      "source": "src/contracts/personalRecords.ts",
+      "selfSampledMs": 43.876
+    },
+    {
+      "function": "validateProfile",
+      "source": "src/data/storedState.ts",
+      "selfSampledMs": 41.498
+    },
+    {
+      "function": "object",
+      "source": "src/data/validation.ts",
+      "selfSampledMs": 33.374
+    },
+    {
+      "function": "objectComparisonStart",
+      "source": "node:internal/util/comparisons",
+      "selfSampledMs": 30.918
+    },
+    {
+      "function": "_handleDataRow",
+      "source": "node_modules/pg/lib/client.js",
+      "selfSampledMs": 29.082
+    },
+    {
+      "function": "",
+      "source": "src/data/storedState.ts",
+      "selfSampledMs": 26.542
+    },
+    {
+      "function": "objEquiv",
+      "source": "node:internal/util/comparisons",
+      "selfSampledMs": 26.5
+    },
+    {
+      "function": "innerDeepEqual",
+      "source": "node:internal/util/comparisons",
+      "selfSampledMs": 25.083
+    }
+  ]
+}

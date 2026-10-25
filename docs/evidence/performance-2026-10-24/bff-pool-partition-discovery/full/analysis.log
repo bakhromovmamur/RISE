@@ -1,0 +1,41 @@
+Gate {'personal': {'planned': 400, 'accepted': 237, 'failed': 48, 'deferred': 115, 'p95Ms': 6187.525916999963, 'p95ScheduledMs': 6201.559791999927, 'maxMs': 7371.067708000017, 'maxSchedulingLateMs': 39.056333000015}, 'shared': {'planned': 200, 'accepted': 100, 'failed': 28, 'deferred': 72, 'p95Ms': 4948.954499999993, 'p95ScheduledMs': 4950.824790999992, 'maxMs': 7210.974166000029, 'maxSchedulingLateMs': 26.658500000019558}, 'convergence': {'expected': 200, 'accepted': 100, 'observed': 89, 'over15SecondsOrMissing': 44, 'p95Ms': 29456.529625000025, 'maxMs': 60613.650708}, 'passed': False}
+freshPersonal request {'count': 237, 'sum': 786259.7294921875, 'p50': 3353.052978515625, 'p95': 5650.402587890625, 'max': 7162.284912109375} worker start lag {'count': 237, 'sum': 30051.466796875, 'p50': 12.99365234375, 'p95': 500.62890625, 'max': 1140.642578125}
+  auth.read mean 1063.8 p95 2745.0
+  db.activeSession mean 17.7 p95 37.8
+  db.auth mean 16.0 p95 49.7
+  db.occurrenceRead mean 473.5 p95 888.2
+  db.otherRead mean 266.7 p95 877.4
+  db.otherWrite mean 157.6 p95 581.6
+  db.ownerLock mean 1.6 p95 3.9
+  db.total mean 98.8 p95 472.7
+  db.transaction mean 12.6 p95 29.8
+  personal.cancel mean 13.8 p95 25.1
+  personal.domain mean 97.4 p95 136.2
+  personal.hydrate mean 135.5 p95 197.7
+  personal.priorities mean 0.0 p95 0.1
+  personal.project mean 71.7 p95 108.7
+  personal.readRecords mean 718.8 p95 1698.6
+  personal.total mean 98.8 p95 472.7
+  personal.validate mean 108.4 p95 159.1
+  personal.writeRecords mean 180.6 p95 606.2
+  pool.acquire mean 1792.7 p95 3844.7
+groupsRead request {'count': 1028, 'sum': 1922850.9289550781, 'p50': 1860.021484375, 'p95': 4351.09033203125, 'max': 6353.5478515625} worker start lag {'count': 1028, 'sum': 85873.82080078125, 'p50': 0.59765625, 'p95': 429.340087890625, 'max': 1128.177978515625}
+  auth.read mean 1041.3 p95 3020.6
+  db.activeSession mean 9.8 p95 24.1
+  db.auth mean 32.1 p95 44.2
+  db.otherRead mean 19.5 p95 37.7
+  db.otherWrite mean 4.0 p95 8.3
+  db.transaction mean 13.9 p95 29.3
+  pool.acquire mean 1790.3 p95 4223.7
+sharedCommand request {'count': 128, 'sum': 356945.31298828125, 'p50': 2920.91162109375, 'p95': 5038.996826171875, 'max': 7208.176513671875} worker start lag {'count': 128, 'sum': 15102.416748046875, 'p50': 18.2879638671875, 'p95': 466.97998046875, 'max': 832.052490234375}
+  auth.read mean 1410.2 p95 3237.3
+  db.activeSession mean 11.3 p95 19.2
+  db.auth mean 424.6 p95 1744.1
+  db.otherRead mean 17.9 p95 41.6
+  db.otherWrite mean 7.0 p95 20.9
+  db.ownerLock mean 1.0 p95 3.7
+  db.sharedChange mean 5.1 p95 12.6
+  db.transaction mean 11.2 p95 37.3
+  pool.acquire mean 2309.4 p95 4812.5
+Worker resources {'0': {'intervals': 26, 'threadCpuPercent': {'count': 26, 'sum': 1451.3239654168276, 'p50': 59.52515720867454, 'p95': 78.79272724522441, 'max': 80.48944252627062}, 'eventLoopUtilization': {'count': 26, 'sum': 16.27422846399628, 'p50': 0.717437993004115, 'p95': 0.8722729915350247, 'max': 0.8732697763776456}, 'heapUsed': {'count': 26, 'sum': 7505201456, 'p50': 214393820.0, 'p95': 685233664, 'max': 709391904}, 'gcTotalMs': 6669.637471437454}, '1': {'intervals': 26, 'threadCpuPercent': {'count': 26, 'sum': 1410.4404139333783, 'p50': 56.52684810961728, 'p95': 75.34419101128843, 'max': 76.47392579977983}, 'eventLoopUtilization': {'count': 26, 'sum': 15.872151818925424, 'p50': 0.6587646273021217, 'p95': 0.8221916125912857, 'max': 0.8227965357364218}, 'heapUsed': {'count': 26, 'sum': 7850753032, 'p50': 330219196.0, 'p95': 494348688, 'max': 607331400}, 'gcTotalMs': 6431.887452363968}}
+Host/DB {'samples': 27, 'failed': 0, 'activeVacuumSamples': 0, 'load1': {'count': 27, 'sum': 262.89599609375, 'p50': 8.87744140625, 'p95': 16.9453125, 'max': 17.34716796875}, 'freeBytes': {'count': 27, 'sum': 5007294464, 'p50': 190119936, 'p95': 350535680, 'max': 355041280}}

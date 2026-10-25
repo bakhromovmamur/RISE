@@ -1,0 +1,64 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts
+
+[WebServer] (node:31227) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:31226) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 42 tests using 1 worker
+
+(node:31233) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31233) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓   1 [chromium] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (376ms)
+  ✓   2 [chromium] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (7.5s)
+  ✓   3 [chromium] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.3s)
+  ✓   4 [chromium] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.4s)
+  ✓   5 [chromium] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.0s)
+  ✓   6 [chromium] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.5s)
+  ✓   7 [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan (2.5s)
+  ✓   8 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (4.5s)
+  ✓   9 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (4.4s)
+  ✓  10 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (4.4s)
+  ✓  11 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en (2.6s)
+  ✓  12 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru (2.7s)
+  ✓  13 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · uz (2.7s)
+  ✓  14 [chromium] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (6.5s)
+(node:31352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31352) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  15 [webkit] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (719ms)
+  ✓  16 [webkit] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (8.2s)
+  ✓  17 [webkit] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.4s)
+  ✓  18 [webkit] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.4s)
+  ✓  19 [webkit] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.2s)
+  ✓  20 [webkit] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.6s)
+  ✓  21 [webkit] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan (2.6s)
+  ✓  22 [webkit] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (3.4s)
+  ✓  23 [webkit] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (3.4s)
+  ✓  24 [webkit] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (3.4s)
+  ✓  25 [webkit] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en (2.7s)
+  ✓  26 [webkit] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru (2.7s)
+  ✓  27 [webkit] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · uz (2.7s)
+  ✓  28 [webkit] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (7.1s)
+(node:31759) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:31759) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  29 [firefox] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (779ms)
+  ✓  30 [firefox] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (8.0s)
+  ✓  31 [firefox] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.7s)
+  ✓  32 [firefox] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.7s)
+  ✓  33 [firefox] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.4s)
+  ✓  34 [firefox] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.8s)
+  ✓  35 [firefox] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan (3.0s)
+  ✓  36 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (6.8s)
+  ✓  37 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (5.6s)
+  ✓  38 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (4.2s)
+  ✓  39 [firefox] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en (3.2s)
+  ✓  40 [firefox] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru (3.2s)
+  ✓  41 [firefox] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · uz (3.2s)
+  ✓  42 [firefox] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (7.4s)
+
+  42 passed (2.4m)

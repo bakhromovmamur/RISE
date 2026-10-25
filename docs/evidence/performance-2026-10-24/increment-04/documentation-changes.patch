@@ -1,0 +1,97 @@
+--- a/ARCHITECTURE.md
++++ b/ARCHITECTURE.md
+@@ -67,6 +67,8 @@
+ The application stores a validated schema-4 profile in IndexedDB and retains the exact legacy localStorage source for recovery. Atomic revisioned writes, backup preview and restore are implemented locally. Domain functions are mostly pure or clone/update state. The calendar, habit-calendar, prayer-ID and pause modules break the existing domain import cycles without changing screen imports. The command/repository/initial-state runtime graph contains no UI modules; see the [boundary inventory](docs/evidence/commands-entry-2026-10-21/module-boundaries.json).
+ 
+ Production first use creates an empty profile on the real device calendar. The separate review entry initializes fictional fixtures only on isolated loopback origins. Guest/review family and squad records remain illustrative; explicitly selected accounts use the local/test membership, family-content and squad-snapshot boundaries below. Versioned private export, staged validation, explicit replacement and same-device rollback are implemented; imported shared content stays in read-only repository archives. The single root service worker owns a verified public offline shell and validated notification clicks; PUSH-01–04 and GROUP-04 add bounded generic test/reminder/group handling, durable scheduling and current-session receive authorization. See [the implemented PWA lifecycle](docs/PWA.md).
++
++Group management and editing screens load through `DeferredGroupScreen` and `GroupScreenBody`. Today task rows and shared status/retry controls remain in the initial graph through `TodayGroups`, `SharedToday` and `GroupStatus`. Only module code is cached across openings; forms retain their existing scope and lifecycle. Loading and recoverable download errors use the existing sheet, localized copy and keyboard focus behavior. Group CSS remains in its original global cascade position. The public offline shell precaches the deferred chunk, preserving cold offline access; this split reduces initial page code, not total installed download size. See [performance evidence](docs/evidence/performance-2026-10-24/increment-04/README.md).
+ 
+ Real calculation, date-specific manual timetables and native schedule reconciliation already exist. They are implementation foundations, not a production backend. Native folders are generated/synced, not device-verified.
+ 
+@@ -464,7 +466,7 @@
+ 
+ FND-01/FND-02 add a [reproducible visual baseline and local/CI checks](docs/evidence/foundations-2026-10-21/README.md): exact runtime/dependency pins, application/test/config type checks, correctness linting, three browser engines and isolated test origins. Hosted CI and physical-device acceptance are not implied by local automation.
+ 
+-Known risks remain: the whole-state compatibility path for local collaboration simulations/review, mixed demo/live histories, partial Uzbek coverage, a large current JS bundle, incomplete cloud provisioning decisions, and best-effort platform notification delivery. The [operating decision record](docs/INFRASTRUCTURE-DECISIONS.md) captures confirmed launch markets, intended domain and cost ceiling alongside unresolved provider/region/ownership details.
++Known risks remain: the whole-state compatibility path for local collaboration simulations/review, mixed demo/live histories, a large current JS bundle, incomplete cloud provisioning decisions, and best-effort platform notification delivery. English/Russian/Uzbek coverage has [local QUALITY-01 acceptance](docs/evidence/localization-2026-10-24/README.md); physical language/accessibility acceptance remains open. The [operating decision record](docs/INFRASTRUCTURE-DECISIONS.md) captures confirmed launch markets, intended domain and cost ceiling alongside unresolved provider/region/ownership details.
+ 
+ ## 13. Document maintenance
+ 
+--- a/PRODUCT.md
++++ b/PRODUCT.md
+@@ -1,4 +1,6 @@
+ # RISE
++
++> Local loading update, 24 October 2026: family/squad sheets now handle delayed or interrupted screen downloads with English, Russian and Uzbek loading/retry states. Today tasks remain immediately available, and the installed offline shell retains every group screen. Existing forms, keyboard focus and saved records are preserved. [Implementation, measurements and verification scope](docs/evidence/performance-2026-10-24/increment-04/README.md).
+ 
+ > QUALITY-02 implementation, 24 October 2026: priority, weekday and original-recovery download controls retain usable 44 px targets. Narrow/enlarged habit forms stack, long sheet titles wrap, closed disclosure contents stay out of the keyboard loop, and focused fields remain reachable within a shortened sheet. Clicked sheet openers receive focus before navigation, including WebKit. The four tabs, existing visual system, exact recovery bytes and durable drafts are preserved. [Local evidence](docs/evidence/accessibility-2026-10-24/README.md) and [physical acceptance matrix](docs/MOBILE-ACCESSIBILITY.md); physical accessibility and supported-device certification remain pending.
+ 
+--- a/TASKS.md
++++ b/TASKS.md
+@@ -350,11 +350,12 @@
+ - Inject API outages, lost acknowledgments, worker restarts, storage quota and flaky connections.
+ - Accept NFR-01–05/07 evidence, bounded queue growth and no silent data loss.
+ 
+-- Local work started after QUALITY-02 acceptance on 24 October 2026. First measure the 100-habit/two-year workload through existing public state, command and storage interfaces, then target demonstrated bottlenecks while preserving failure/recovery behavior and the visual baseline. The current production entry is about 1.28 MB (393 kB gzip); size alone is not a mobile timing result. Hosted 100-user staging and physical mobile Web Vitals remain pending.
++- Local work started after QUALITY-02 acceptance on 24 October 2026. First measure the 100-habit/two-year workload through existing public state, command and storage interfaces, then target demonstrated bottlenecks while preserving failure/recovery behavior and the visual baseline. The initial production entry was about 1.28 MB (393 kB gzip); size alone is not a mobile timing result. Hosted 100-user staging and physical mobile Web Vitals remain pending.
+ - Initial three-sample desktop probe preserves all 73,000 occurrence records and XP, with median account hydration 425.4 ms and stored-profile parsing 230.9 ms. These are discovery measurements, not NFR acceptance; real storage/browser measurement and optimization follow. [Work-in-progress evidence](docs/evidence/performance-2026-10-24/README.md).
+ - Increment 1 removes repeated hydration scans, JSON safety walks and check-in materialization. Final Node hydration/parsing medians are 57.5/76.0 ms; Chromium's dense-profile durable check median improves from 691.9 to 399.6 ms. Three-engine storage measurements still exceed the 250 ms target and do not establish p95/device acceptance. Final application checks pass 277 unit/tooling, 3 dense-profile browser, 16 database and 54 storage/recovery cases, plus 48 visual cases / 720 unchanged references. The initial Firefox benchmark transfer timeout and corrected JSON transport are retained in the evidence. QUALITY-03 remains IN PROGRESS for further optimization, actual UI/load and capacity/resilience evidence.
+ - Increment 2 compiles trusted schema field lists and removes short-string/ID allocations while preserving Unicode and rejection semantics. The source gate passes 279 cases; dense-profile and storage/recovery checks pass 3/54. Durable check medians improve to 335.6/393/667 ms in Chromium/WebKit/Firefox. All remain above the target; no p95, physical or complete-product acceptance is claimed. Exact samples and build scopes are appended to the same evidence report.
+ - Increment 3 removes duplicate repository snapshot copying after the adapter transfers an isolated result. Mutation/replay tests preserve returned-view and durable-state independence. Final checks pass 280 source cases, 6 large-profile measurements, 57 storage/recovery cases, 3 production feedback probes and 54 production-entry cases. Durable check medians are 300.6/346/608 ms; production DOM feedback samples are 146.6/136/239 ms. Both targets remain unmet. [Exact source/build scope, phase timings and the corrected UI probe](docs/evidence/performance-2026-10-24/increment-03/README.md). No persisted format or design change.
++- Increment 4 defers group management/editing code while keeping Today rows eager. The initial production entry drops by 96,228 bytes (7.5%); the public worker still precaches all screens. Localized download retry, close-during-load focus and cold offline opening are verified. Final checks pass 280 source cases, 66 production cases, 45 PWA cases, 48 local journeys, 108 account-backed group cases and 48 visual cases / 720 unchanged references. [Exact evidence and tradeoffs](docs/evidence/performance-2026-10-24/increment-04/README.md). CSS is byte-identical; persisted formats, assets and existing forms remain. Entry size is not Web Vitals acceptance, and dense-profile latency/capacity/resilience work remains open.
+ 
+ #### SAFE-01 — Integrated security verification
+ 
+@@ -463,7 +464,7 @@
+ | R-02 | Browser notification limitations and races | Engineering/QA | PUSH-02, PUSH-03, PUSH-05 |
+ | R-03 | Concurrent edits alter records/XP | Backend/QA | SYNC-02 |
+ | R-04 | Membership/backup restores private access | Security | GROUP-05, SAFE-01, OPS-02 |
+-| R-05 | Existing partial Uzbek and large bundle | Frontend | QUALITY-01, QUALITY-03 |
++| R-05 | Large bundle; localization now locally accepted | Frontend | QUALITY-01, QUALITY-03 |
+ | R-06 | UI drift during infrastructure work | Frontend/QA | FND-01, QUALITY-01 |
+ | R-07 | Missing runtime/build/deployment governance | Engineering/Operations | FND-02, INFRA-01, OPS-03 |
+ 
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -488,3 +488,9 @@
+ The local repository transfers its adapter's detached state without a second full-history copy. Source and real IndexedDB tests preserve callback/read/result/replay isolation and durable history. Checks pass **280 unit/tooling**, **6 large-profile**, **57 storage/recovery**, **3 production feedback** and **54 production-entry cases**. [The increment report](docs/evidence/performance-2026-10-24/increment-03/README.md) records exact commands, before/after phases, source/build hashes and the initial review-build probe failure corrected by production isolation.
+ 
+ Durable check medians are **300.6/346/608 ms** in Chromium/WebKit/Firefox; production DOM completion samples are **146.6/136/239 ms**. Neither target is met, and these samples do not establish p95 or physical paint/INP acceptance. Formats, UI, CSS, artwork, frozen references and the saved 4173 profile remain intact. QUALITY-03 stays IN PROGRESS; cloud provisioning remains pending.
++
++## 24 October 2026 — QUALITY-03 performance increment 4
++
++Group management/editing screens load on demand while Today rows remain eager. The initial production entry is **96,228 bytes smaller (7.5%)**. The complete worker shell still precaches all public screens; the split adds a small overall code overhead and does not establish mobile Web Vitals. Existing screen bodies, CSS bytes, saved formats, artwork and all frozen references remain unchanged. Localized loading/error/retry and close-during-load focus use the existing sheet.
++
++Final checks pass **280 unit/tooling**, **66 production**, **45 real-worker PWA**, **48 local family/squad/You journeys**, **108 account-backed group cases** and **48 visual cases / 720 comparisons**. [The evidence](docs/evidence/performance-2026-10-24/increment-04/README.md) records exact builds, commands, extraction checks, download/offline recovery, initial stylesheet/probe corrections and the protected-file audit. Types/lint also pass with the final tests. No visual reference was regenerated and the saved 4173 profile was not accessed. QUALITY-03 remains IN PROGRESS for outstanding latency, capacity/resilience and hosted/physical acceptance; cloud provisioning stays pending.
+--- a/docs/PERFORMANCE.md
++++ b/docs/PERFORMANCE.md
+@@ -22,6 +22,8 @@
+ 
+ Node probes separately measure validation, parsing, account projection/reconstruction and a pure domain check. They establish where CPU work occurs, not network, browser rendering or database latency. Current work and exact scopes are in [the performance evidence](evidence/performance-2026-10-24/README.md).
+ 
++Group screen code is deferred until its sheet opens; Today rows remain immediately available. Bundle comparisons must use the same build and compression method. The real worker still precaches every public chunk, so initial entry savings do not establish reduced total offline download or faster mobile Web Vitals. Validate failed-download retry, close-during-load focus, cold offline access and unchanged loaded-screen visuals whenever this boundary changes.
++
+ ## Preserve correctness while optimizing
+ 
+ Unknown JSON still receives the same size, depth, record-count, prototype, accessor, field, date and reference checks. Parsing must not silently truncate history or drop unknown safe extensions. A descriptor walk may reduce allocations but must never invoke a getter. Account reconstruction must retain per-parent ordering, explicit prayer records, snapshots and retired-milestone behavior.
+--- a/docs/evidence/performance-2026-10-24/README.md
++++ b/docs/evidence/performance-2026-10-24/README.md
+@@ -64,3 +64,7 @@
+ ## Increment 3 — repository ownership and production feedback
+ 
+ [The verified increment](increment-03/README.md) removes a second whole-profile copy after an already-isolated adapter result. Public mutation/replay tests preserve ownership and durable history. The source gate passes 280 cases; three-engine checks pass 6 session/repository measurements, 57 storage/recovery cases, 3 real production UI measurements and 54 production-entry cases. Durable check medians are now 300.6/346/608 ms. Production DOM feedback samples are 146.6/136/239 ms, so both performance targets remain unmet. The initial wrong-build UI assertion and corrected production setup are retained. No UI, CSS, assets, schema, dependency or reference changes; QUALITY-03 remains IN PROGRESS.
++
++## Increment 4 — deferred group screens
++
++[The verified increment](increment-04/README.md) moves group management/editing code out of the initial entry while retaining immediate Today rows and the existing component bodies. The entry falls by 96,228 bytes (7.5%); the complete offline shell still caches every screen, and the two split code files add 2,559 bytes overall. Localized loading/retry, keyboard focus, close-during-load recovery and cold offline opening are verified. Checks pass 280 source cases, 66 production, 45 PWA, 48 local journeys, 108 account-backed group cases and 48 visual cases / 720 unchanged references. CSS remains byte-identical. This is a bundle/loading change, not physical Web Vitals or dense-profile latency acceptance; QUALITY-03 remains IN PROGRESS.
+--- a/.impeccable/design.json
++++ b/.impeccable/design.json
+@@ -1,6 +1,6 @@
+ {
+   "schemaVersion": 2,
+-  "generatedAt": "2026-10-19T19:19:19Z",
++  "generatedAt": "2026-10-24T10:52:58Z",
+   "title": "Design System: RISE",
+   "extensions": {
+     "colorMeta": {

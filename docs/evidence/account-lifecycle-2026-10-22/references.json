@@ -1,0 +1,11 @@
+{
+  "checkedOn": "2026-10-22",
+  "primarySources": [
+    {"url":"https://supabase.com/changelog.md","use":"Current changelog review; retained local PostgreSQL 17.11 and CLI 2.121.0, no hosted change"},
+    {"url":"https://supabase.com/docs/guides/auth/managing-user-data","use":"Deletion does not itself revoke old JWTs; explicit current-session suppression and cascading owned data"},
+    {"url":"https://supabase.com/docs/guides/auth/sessions","use":"Verified session identifiers and current session/account checks"},
+    {"url":"https://supabase.com/docs/reference/javascript/auth-admin-deleteuser","use":"Administrative user deletion belongs in a separate trusted server process"},
+    {"url":"https://supabase.com/docs/guides/database/postgres/row-level-security#call-functions-with-select","use":"Cached scalar claim lookups in the freshness policy"}
+  ],
+  "verification": "Behavior was verified against real retained local/test stacks, not inferred from documentation alone."
+}

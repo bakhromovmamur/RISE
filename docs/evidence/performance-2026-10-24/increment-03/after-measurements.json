@@ -1,0 +1,464 @@
+[
+  {
+    "engine": "chromium",
+    "measurement": "local-capacity-measurements",
+    "scope": "Desktop engine / real IndexedDB discovery; nextFrame is an opportunity to paint, not measured UI feedback. No physical NFR acceptance.",
+    "browser": "156.0.8078.4",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "profileBytes": 10754296,
+    "startupMs": 132.89999997615814,
+    "samples": [
+      {
+        "action": "habit.check",
+        "dispatchMs": 113.09999990463257,
+        "nextFrameMs": 113.39999997615814,
+        "durableMs": 300.59999990463257
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 149,
+        "nextFrameMs": 149.10000002384186,
+        "durableMs": 335.7000000476837
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 109.89999997615814,
+        "nextFrameMs": 110,
+        "durableMs": 294
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 115.60000002384186,
+        "nextFrameMs": 115.89999997615814,
+        "durableMs": 306.10000002384186
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 135.80000007152557,
+        "nextFrameMs": 135.89999997615814,
+        "durableMs": 325.10000002384186
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 122.79999995231628,
+        "nextFrameMs": 123,
+        "durableMs": 307.7000000476837
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 112.19999992847443,
+        "nextFrameMs": 112.39999997615814,
+        "durableMs": 299.1999999284744
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 131.79999995231628,
+        "nextFrameMs": 131.89999997615814,
+        "durableMs": 318.5
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 113.79999995231628,
+        "nextFrameMs": 113.89999997615814,
+        "durableMs": 298.6999999284744
+      }
+    ],
+    "invariants": "Check then Undo preserves all history/XP; draft and revision survive reopening; original recovery source stays null."
+  },
+  {
+    "engine": "webkit",
+    "measurement": "local-capacity-measurements",
+    "scope": "Desktop engine / real IndexedDB discovery; nextFrame is an opportunity to paint, not measured UI feedback. No physical NFR acceptance.",
+    "browser": "27.2",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "profileBytes": 10754296,
+    "startupMs": 131,
+    "samples": [
+      {
+        "action": "habit.check",
+        "dispatchMs": 105,
+        "nextFrameMs": 106,
+        "durableMs": 346
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 101,
+        "nextFrameMs": 101,
+        "durableMs": 332
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 102,
+        "nextFrameMs": 102,
+        "durableMs": 337
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 105,
+        "nextFrameMs": 105,
+        "durableMs": 340
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 101,
+        "nextFrameMs": 101,
+        "durableMs": 337
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 105,
+        "nextFrameMs": 105,
+        "durableMs": 357
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 122,
+        "nextFrameMs": 122,
+        "durableMs": 366
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 105,
+        "nextFrameMs": 105,
+        "durableMs": 344
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 103,
+        "nextFrameMs": 104,
+        "durableMs": 342
+      }
+    ],
+    "invariants": "Check then Undo preserves all history/XP; draft and revision survive reopening; original recovery source stays null."
+  },
+  {
+    "engine": "firefox",
+    "measurement": "local-capacity-measurements",
+    "scope": "Desktop engine / real IndexedDB discovery; nextFrame is an opportunity to paint, not measured UI feedback. No physical NFR acceptance.",
+    "browser": "157.0",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "profileBytes": 10754296,
+    "startupMs": 362,
+    "samples": [
+      {
+        "action": "habit.check",
+        "dispatchMs": 181,
+        "nextFrameMs": 181,
+        "durableMs": 608
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 183,
+        "nextFrameMs": 183,
+        "durableMs": 626
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 173,
+        "nextFrameMs": 173,
+        "durableMs": 600
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 191,
+        "nextFrameMs": 191,
+        "durableMs": 633
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 172,
+        "nextFrameMs": 172,
+        "durableMs": 607
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 175,
+        "nextFrameMs": 175,
+        "durableMs": 600
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 175,
+        "nextFrameMs": 175,
+        "durableMs": 604
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 184,
+        "nextFrameMs": 184,
+        "durableMs": 610
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 172,
+        "nextFrameMs": 172,
+        "durableMs": 613
+      }
+    ],
+    "invariants": "Check then Undo preserves all history/XP; draft and revision survive reopening; original recovery source stays null."
+  },
+  {
+    "engine": "chromium",
+    "measurement": "repository-capacity-measurements",
+    "scope": "Desktop repository phases; includes real strict IndexedDB transactions, no rendered UI or device/p95 acceptance.",
+    "browser": "156.0.8078.4",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "samples": [
+      {
+        "action": "habit.check",
+        "readValidateMs": 66.69999992847443,
+        "reducerMs": 38.700000047683716,
+        "validateWriteCloneMs": 84.29999995231628,
+        "repositoryMs": 0.40000009536743164,
+        "totalMs": 190.20000004768372
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 68.69999992847443,
+        "reducerMs": 38.60000002384186,
+        "validateWriteCloneMs": 82.70000004768372,
+        "repositoryMs": 0.10000002384185791,
+        "totalMs": 190.10000002384186
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 70.30000007152557,
+        "reducerMs": 36.799999952316284,
+        "validateWriteCloneMs": 83.5,
+        "repositoryMs": 0.2999999523162842,
+        "totalMs": 190.89999997615814
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 81.5,
+        "reducerMs": 37.5,
+        "validateWriteCloneMs": 82,
+        "repositoryMs": 0.2999999523162842,
+        "totalMs": 201.29999995231628
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 69.30000007152557,
+        "reducerMs": 37.89999997615814,
+        "validateWriteCloneMs": 82.89999997615814,
+        "repositoryMs": 0.20000004768371582,
+        "totalMs": 190.30000007152557
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 67.79999995231628,
+        "reducerMs": 34.5,
+        "validateWriteCloneMs": 83.89999997615814,
+        "repositoryMs": 0.10000002384185791,
+        "totalMs": 186.29999995231628
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 66.79999995231628,
+        "reducerMs": 39.300000071525574,
+        "validateWriteCloneMs": 82.69999992847443,
+        "repositoryMs": 0.10000002384185791,
+        "totalMs": 188.89999997615814
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 69.39999997615814,
+        "reducerMs": 38.5,
+        "validateWriteCloneMs": 82.10000002384186,
+        "repositoryMs": 0.10000002384185791,
+        "totalMs": 190.10000002384186
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 68.69999992847443,
+        "reducerMs": 37.800000071525574,
+        "validateWriteCloneMs": 83.19999992847443,
+        "repositoryMs": 0.30000007152557373,
+        "totalMs": 190
+      }
+    ],
+    "invariants": "Check/Undo preserves history and XP; nine durable revisions; exact replay does not increment; original source unchanged."
+  },
+  {
+    "engine": "webkit",
+    "measurement": "repository-capacity-measurements",
+    "scope": "Desktop repository phases; includes real strict IndexedDB transactions, no rendered UI or device/p95 acceptance.",
+    "browser": "27.2",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "samples": [
+      {
+        "action": "habit.check",
+        "readValidateMs": 64,
+        "reducerMs": 50,
+        "validateWriteCloneMs": 121,
+        "repositoryMs": 1,
+        "totalMs": 236
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 63,
+        "reducerMs": 50,
+        "validateWriteCloneMs": 120,
+        "repositoryMs": 0,
+        "totalMs": 233
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 61,
+        "reducerMs": 48,
+        "validateWriteCloneMs": 120,
+        "repositoryMs": 0,
+        "totalMs": 229
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 62,
+        "reducerMs": 51,
+        "validateWriteCloneMs": 124,
+        "repositoryMs": 0,
+        "totalMs": 237
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 63,
+        "reducerMs": 49,
+        "validateWriteCloneMs": 121,
+        "repositoryMs": 0,
+        "totalMs": 233
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 64,
+        "reducerMs": 49,
+        "validateWriteCloneMs": 123,
+        "repositoryMs": 1,
+        "totalMs": 237
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 63,
+        "reducerMs": 49,
+        "validateWriteCloneMs": 120,
+        "repositoryMs": 0,
+        "totalMs": 232
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 63,
+        "reducerMs": 49,
+        "validateWriteCloneMs": 128,
+        "repositoryMs": 1,
+        "totalMs": 241
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 71,
+        "reducerMs": 50,
+        "validateWriteCloneMs": 122,
+        "repositoryMs": 0,
+        "totalMs": 243
+      }
+    ],
+    "invariants": "Check/Undo preserves history and XP; nine durable revisions; exact replay does not increment; original source unchanged."
+  },
+  {
+    "engine": "firefox",
+    "measurement": "repository-capacity-measurements",
+    "scope": "Desktop repository phases; includes real strict IndexedDB transactions, no rendered UI or device/p95 acceptance.",
+    "browser": "157.0",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "samples": [
+      {
+        "action": "habit.check",
+        "readValidateMs": 172,
+        "reducerMs": 67,
+        "validateWriteCloneMs": 203,
+        "repositoryMs": 0,
+        "totalMs": 442
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 168,
+        "reducerMs": 65,
+        "validateWriteCloneMs": 196,
+        "repositoryMs": 0,
+        "totalMs": 429
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 164,
+        "reducerMs": 76,
+        "validateWriteCloneMs": 199,
+        "repositoryMs": 1,
+        "totalMs": 440
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 166,
+        "reducerMs": 65,
+        "validateWriteCloneMs": 204,
+        "repositoryMs": 0,
+        "totalMs": 435
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 161,
+        "reducerMs": 64,
+        "validateWriteCloneMs": 196,
+        "repositoryMs": 0,
+        "totalMs": 421
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 163,
+        "reducerMs": 63,
+        "validateWriteCloneMs": 196,
+        "repositoryMs": 0,
+        "totalMs": 422
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 186,
+        "reducerMs": 65,
+        "validateWriteCloneMs": 196,
+        "repositoryMs": 0,
+        "totalMs": 447
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 165,
+        "reducerMs": 64,
+        "validateWriteCloneMs": 194,
+        "repositoryMs": 0,
+        "totalMs": 423
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 163,
+        "reducerMs": 60,
+        "validateWriteCloneMs": 198,
+        "repositoryMs": 0,
+        "totalMs": 421
+      }
+    ],
+    "invariants": "Check/Undo preserves history and XP; nine durable revisions; exact replay does not increment; original source unchanged."
+  }
+]

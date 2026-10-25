@@ -1,0 +1,150 @@
+{
+  "task": "OPS-04",
+  "requirements": [
+    "PRD-18",
+    "PRD-19",
+    "PRD-20"
+  ],
+  "date": "2026-10-25",
+  "timezone": "Asia/Tashkent",
+  "localStatus": "verified",
+  "cloudProvisioning": "pending",
+  "productionWebRelease": "c86bc7e9532f6158e490",
+  "commands": [
+    {
+      "command": "npm run check",
+      "result": "passed",
+      "tests": 312,
+      "includes": [
+        "toolchain",
+        "browser notices",
+        "lint",
+        "app/test/server types",
+        "production build",
+        "review build"
+      ]
+    },
+    {
+      "command": "npm run test:production -- --workers=1",
+      "result": "passed",
+      "stats": {
+        "startTime": "2026-10-24T19:27:07.032Z",
+        "duration": 149178.63600000003,
+        "expected": 75,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:pwa",
+      "result": "passed",
+      "stats": {
+        "startTime": "2026-10-24T19:29:40.636Z",
+        "duration": 101058.206,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "newOfflineHelpCases": 9
+    },
+    {
+      "command": "npm run test:browser -- diagnostics.browser.spec.ts",
+      "result": "passed",
+      "stats": {
+        "startTime": "2026-10-24T19:21:37.500Z",
+        "duration": 32614.538,
+        "expected": 18,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:visual -- --update-snapshots=missing",
+      "result": "passed",
+      "variants": 48,
+      "scope": "48 separately named settings-help references; historical references unchanged"
+    },
+    {
+      "command": "npm run test:visual",
+      "result": "passed",
+      "stats": {
+        "startTime": "2026-10-24T19:25:45.586Z",
+        "duration": 75447.756,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "comparisons": 720
+    },
+    {
+      "command": "node scripts/check-notices.mjs --inventory docs/evidence/launch-policies-2026-10-25/dependencies.json",
+      "result": "passed",
+      "browserPackages": 12,
+      "lockPackages": 315
+    },
+    {
+      "command": "npm run check:docs",
+      "result": "passed",
+      "documents": 42,
+      "links": 691,
+      "anchors": 62,
+      "tasks": 38,
+      "failures": 0
+    }
+  ],
+  "initialResults": [
+    {
+      "command": "npm run test:production",
+      "result": "75 passed before final explanatory retention sentence"
+    },
+    {
+      "command": "npm run test:production",
+      "result": "74 passed; one WebKit five-second saved-status timeout with parallel visual workload; complete sequential rerun passed without changes"
+    },
+    {
+      "command": "npm run test:visual",
+      "result": "26 intentional new Help-row differences against historical settings; 694 images identical; reviewed separate Settings references added"
+    }
+  ],
+  "notVerified": [
+    "Public contact/human response",
+    "Operating entity/processor/region and legal approval",
+    "App/artwork/full distribution rights approval",
+    "Cloud provisioning/hosted operation",
+    "Physical device acceptance"
+  ],
+  "testPortsListeningAfterCompletion": {
+    "4180": false,
+    "4181": false,
+    "4182": false,
+    "4191": false
+  },
+  "taskRegister": {
+    "DONE": 11,
+    "IN PROGRESS": 3,
+    "REVIEW": 21,
+    "TODO": 3
+  },
+  "changedExistingFiles": [
+    "PRODUCT.md",
+    "PRD.md",
+    "ARCHITECTURE.md",
+    "tsconfig.tsbuildinfo",
+    "README.md",
+    "TASKS.md",
+    "VERIFICATION.md",
+    "package.json",
+    "SECURITY.md",
+    "tests/visual/parity.visual.spec.ts",
+    "docs/INFRASTRUCTURE-DECISIONS.md",
+    "docs/ACCOUNT-LIFECYCLE.md",
+    ".github/workflows/ci.yml",
+    "src/you.css",
+    "src/Personal.tsx",
+    "src/account/text.ts"
+  ]
+}

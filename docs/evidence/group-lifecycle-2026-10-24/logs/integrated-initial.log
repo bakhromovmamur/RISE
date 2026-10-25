@@ -1,0 +1,63 @@
+✔ authorized shared archive retains full family history and archived content, omits removed items and every private projection (1075.504291ms)
+✔ squad archive includes exact published choices and viewer reaction only; staging, withdrawal and removal stay erased (1012.343917ms)
+✔ shared export requires current verified actor, Origin/CSRF, recent auth and exact reviewed revision (1165.268667ms)
+✔ left and removed members cannot export; remaining members retain opaque family references without departed names (2400.639958ms)
+✔ bounded keyset export includes more than one page of every family collection without truncation (1574.921959ms)
+✔ real concurrent mutation/removal between export pages rejects the entire file (3723.082167ms)
+✖ a real oversized shared history fails as a whole without truncation, data mutation or retained export files (4060.584958ms)
+✖ integrated ownership, deletion and backup replay preserve family history while erasing squad identity, previews and notification jobs (3458.874333ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 6
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19037.02825
+
+✖ failing tests:
+
+test at tests/infra/group-export.test.ts:1:13594
+✖ a real oversized shared history fails as a whole without truncation, data mutation or retained export files (4060.584958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 422
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-export.test.ts:119:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 422,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/infra/group-export.test.ts:1:14578
+✖ integrated ownership, deletion and backup replay preserve family history while erasing squad identity, previews and notification jobs (3458.874333ms)
+  error: column "source_user_id" does not exist
+      at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg-pool/index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-export.test.ts:147:17)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    length: 114,
+    severity: 'ERROR',
+    code: '42703',
+    detail: undefined,
+    hint: undefined,
+    position: '77',
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'parse_relation.c',
+    line: '3716',
+    routine: 'errorMissingColumn'
+  }

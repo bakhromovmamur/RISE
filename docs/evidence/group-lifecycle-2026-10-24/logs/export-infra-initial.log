@@ -1,0 +1,35 @@
+✔ authorized shared archive retains full family history and archived content, omits removed items and every private projection (1054.068916ms)
+✖ squad archive includes exact published choices and viewer reaction only; staging, withdrawal and removal stay erased (547.491458ms)
+✔ shared export requires current verified actor, Origin/CSRF, recent auth and exact reviewed revision (439.293208ms)
+✔ left and removed members cannot export; remaining members retain opaque family references without departed names (673.599042ms)
+✔ bounded keyset export includes more than one page of every family collection without truncation (537.276625ms)
+✔ real concurrent mutation/removal between export pages rejects the entire file (936.336125ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4553.930959
+
+✖ failing tests:
+
+test at tests/infra/group-export.test.ts:1:5698
+✖ squad archive includes exact published choices and viewer reaction only; staging, withdrawal and removal stay erased (547.491458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  409 !== 200
+  
+      at preview (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-export.test.ts:26:356)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-export.test.ts:49:2)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 409,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

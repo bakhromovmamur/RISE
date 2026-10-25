@@ -1,0 +1,53 @@
+[WebServer] (node:34888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 2 workers
+
+(node:34889) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34890) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/prayer-timetable.browser.spec.ts:62:1 › manual date and quarter-hour timezone own their overnight instants without repeating to adjacent dates (1.3s)
+  ✓  3 [chromium] › tests/prayer-timetable.browser.spec.ts:81:1 › a manual DST-gap date reports an error and retains saved state until the time is corrected (746ms)
+  ✓  4 [chromium] › tests/prayer-timetable.browser.spec.ts:100:1 › startup and resume after the rolling horizon preserve prior checked/manual dates (493ms)
+  ✓  5 [chromium] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings (771ms)
+  ✓  6 [chromium] › tests/prayer-timetable.browser.spec.ts:151:1 › polar resume exposes manual recovery and never offers fabricated calculated times (507ms)
+  ✓  7 [chromium] › tests/prayer-timetable.browser.spec.ts:167:1 › denied geolocation retains saved coordinates and allows city/manual recovery (556ms)
+  ✘  1 [chromium] › tests/prayer-timetable.browser.spec.ts:39:1 › manual UI edits replace calculated timestamps and remain unchanged after a method/location save (30.1s)
+
+
+  1) [chromium] › tests/prayer-timetable.browser.spec.ts:39:1 › manual UI edits replace calculated timestamps and remain unchanged after a method/location save 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('dialog').last().getByLabel('Calculation method', { exact: true })
+
+
+      50 |   await reloadSaved(page); await setup(page);
+      51 |   await dialog(page).getByLabel("City", { exact: true }).selectOption("London");
+    > 52 |   await dialog(page).getByLabel("Calculation method", { exact: true }).selectOption("MuslimWorldLeague");
+         |                                                                        ^
+      53 |   await dialog(page).getByLabel("Asr convention", { exact: true }).selectOption("Shafi");
+      54 |   await dialog(page).getByRole("button", { name: "Use these prayer times", exact: true }).click();
+      55 |   const changed = await stored(page);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-timetable.browser.spec.ts:52:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/prayer-timetable.browser-m-d5954-fter-a-method-location-save-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/prayer-timetable.browser-m-d5954-fter-a-method-location-save-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/prayer-timetable.browser-m-d5954-fter-a-method-location-save-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/prayer-timetable.browser-m-d5954-fter-a-method-location-save-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/prayer-timetable.browser.spec.ts:39:1 › manual UI edits replace calculated timestamps and remain unchanged after a method/location save 
+  6 passed (31.2s)

@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "commands": [
+    {
+      "command": "node --import tsx /tmp/rise-bff-thread-probe-optimized/run.mts smoke",
+      "exit": 0,
+      "gate": "PASS",
+      "report": "threads/smoke.json",
+      "log": "threads/smoke.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-thread-probe-optimized/run.mts mixed",
+      "exit": 0,
+      "gate": "PASS",
+      "report": "threads/mixed.json",
+      "log": "threads/mixed.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-probe/run.mts smoke",
+      "exit": 0,
+      "gate": "PASS",
+      "report": "http/smoke.json",
+      "log": "http/smoke.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-probe/run.mts mixed",
+      "exit": 1,
+      "gate": "FAIL",
+      "report": "http/mixed.json",
+      "log": "http/mixed.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --check /tmp/rise-bff-http-probe/router.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --check /tmp/rise-bff-http-probe/cluster.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='transient content failure' /tmp/rise-shared-error-repro.test.ts",
+      "exit": 1,
+      "scope": "Known recovery gap reproduced; not fixed",
+      "log": "reader-recovery-repro/repro.log"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "docs.log",
+      "documents": 37,
+      "links": 590,
+      "anchors": 59,
+      "failures": 0
+    }
+  ],
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11"
+  },
+  "productionRuntimeChanged": false,
+  "cloudProvisioned": false,
+  "browserDeviceClaims": false
+}

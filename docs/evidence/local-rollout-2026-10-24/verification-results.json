@@ -1,0 +1,32 @@
+{
+  "task": "OPS-03",
+  "status": "REVIEW",
+  "localAcceptance": true,
+  "cloudProvisioning": "pending",
+  "checks": {
+    "unitSequential": 311,
+    "database": 178,
+    "runtimeRaceShutdown": 1,
+    "rolloutBrowsers": 6,
+    "pwaBrowsers": 45,
+    "productionBrowsers": 66,
+    "backendBrowsers": 21,
+    "authBrowsers": 21,
+    "syncBrowsers": 69,
+    "renewalFocusedSubset": 13
+  },
+  "parallelCheckRepeat": {
+    "passed": 310,
+    "failed": 1,
+    "failure": "Existing push-renewal two-second deadline; focused and sequential reruns passed without changing logic or timeout."
+  },
+  "browserVersions": {
+    "Chromium": "156.0.8078.4",
+    "WebKit": "27.2",
+    "Firefox": "157.0"
+  },
+  "localFinalRelease": "7ccbe3e9cccae6eb0e27e968d0086c1f6cdbbbcaf10af5838a11213412bb4825",
+  "localHealth": "ready while running; stopped after verification",
+  "repeatedInterruptExit": 0,
+  "deploymentLockRemoved": true
+}

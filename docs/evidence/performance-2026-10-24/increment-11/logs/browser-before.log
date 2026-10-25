@@ -1,0 +1,37 @@
+[WebServer] (node:81938) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:81957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (24.0s)
+
+
+  1) [chromium] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator: getByRole('checkbox', { name: 'Complete Same revision task', exact: true })
+    Expected: enabled
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('checkbox', { name: 'Complete Same revision task', exact: true }) with timeout 20000ms
+      - waiting for getByRole('checkbox', { name: 'Complete Same revision task', exact: true })
+
+
+      20 |  unavailable=false;
+      21 |  // No focus/online event, edit, reload or retry click supplies the recovery.
+    > 22 |  await expect(page.getByRole('checkbox',{name:t('complete',['Same revision task']),exact:true})).toBeEnabled({timeout:20000});
+         |                                                                                                  ^
+      23 |  expect(successfulReads).toBeGreaterThan(0);expect((await readGroups(page)).find(g=>g.id===group.id)!.revision).toBe(revision);
+      24 |  expect(await stored(page)).toEqual(guest);expect((await(await page.request.get('/api/v1/personal')).json()).xp).toBe(0);
+      25 | });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/read-recovery.groups.spec.ts:22:98
+
+    Error Context: test-results/groups/browser/read-recovery.groups-an-un-52818-nother-edit-or-manual-retry-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry 

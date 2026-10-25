@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "PRD-13",
+    "PRD-14",
+    "PRD-15",
+    "PRD-17",
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "behavior": "Same-revision unavailable read recovery after fresh authorized metadata",
+  "commands": [
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-no-reuse-probe/run.mts smoke",
+      "exit": 0,
+      "report": "discovery/http-no-reuse/smoke.json"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-no-reuse-probe/run.mts mixed",
+      "exit": 1,
+      "report": "discovery/http-no-reuse/mixed.json",
+      "correctnessAndCleanup": "PASS",
+      "performance": "FAIL",
+      "source": "before reader changes"
+    },
+    {
+      "command": "node --import tsx --test /tmp/rise-reader-recovery-candidate/before-shared-reader.test.ts /tmp/rise-reader-recovery-candidate/before-squad-reader.test.ts /tmp/rise-reader-recovery-candidate/before-group-invitations.test.ts",
+      "exit": 1,
+      "cases": 19,
+      "expectedRecoveryFailures": 3,
+      "log": "discovery/reader/before.log"
+    },
+    {
+      "command": "node --import tsx --test tests/shared-reader.test.ts tests/squad-reader.test.ts tests/group-invitations.test.ts",
+      "exit": 0,
+      "cases": 21,
+      "log": "logs/readers.log"
+    },
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "sourceCases": 290,
+      "log": "logs/check.log",
+      "scope": "Final application source; precedes visual-only timestamp stabilization"
+    },
+    {
+      "command": "npx playwright test --config playwright.groups.config.ts tests/groups/read-recovery.groups.spec.ts --project chromium",
+      "exit": 1,
+      "expectedRecoveryFailure": true,
+      "log": "logs/browser-before.log",
+      "report": "reports/browser-before.json"
+    },
+    {
+      "command": "npx playwright test --config playwright.groups.config.ts tests/groups/read-recovery.groups.spec.ts tests/groups/content-recovery.groups.spec.ts tests/groups/content-pagination.groups.spec.ts tests/groups/invitations.groups.spec.ts tests/groups/squads.groups.spec.ts",
+      "exit": 0,
+      "cases": 33,
+      "log": "logs/browser.log",
+      "report": "reports/browser.json"
+    },
+    {
+      "command": "npx playwright test --config playwright.groups.config.ts tests/groups/content-layout.groups.spec.ts tests/groups/squad-layout.groups.spec.ts tests/groups/layout.groups.spec.ts --project chromium --grep '\u00b7 en'",
+      "runs": [
+        {
+          "scope": "initial before",
+          "exit": 0,
+          "cases": 3,
+          "log": "logs/layout-before.log",
+          "report": "reports/layout-before.json"
+        },
+        {
+          "scope": "initial after",
+          "exit": 0,
+          "cases": 3,
+          "log": "logs/layout-after.log",
+          "report": "reports/layout-after.json"
+        },
+        {
+          "scope": "fixed timestamps after",
+          "exit": 0,
+          "cases": 3,
+          "log": "logs/layout-fixed-after.log",
+          "report": "reports/layout-fixed-after.json"
+        }
+      ]
+    },
+    {
+      "command": "npx vite build --config /tmp/rise-reader-recovery-candidate/vite-baseline.config.mts",
+      "exit": 0,
+      "log": "logs/baseline-build.log",
+      "scope": "Temporary prior-reader bundle; all 24 production hashes match"
+    },
+    {
+      "command": "npx playwright test --config /tmp/rise-reader-recovery-candidate/playwright-baseline.config.mts tests/groups/content-layout.groups.spec.ts tests/groups/squad-layout.groups.spec.ts tests/groups/layout.groups.spec.ts --project chromium --grep '\u00b7 en'",
+      "exit": 0,
+      "cases": 3,
+      "log": "logs/layout-fixed-before.log",
+      "report": "reports/layout-fixed-before.json",
+      "initialSetupFailures": [
+        "logs/layout-fixed-before-initial.log",
+        "logs/layout-fixed-before-module.log"
+      ]
+    },
+    {
+      "command": "npm run typecheck",
+      "exit": 0,
+      "log": "logs/typecheck-final.log"
+    },
+    {
+      "command": "npm run lint",
+      "exit": 0,
+      "log": "logs/lint-final.log"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed",
+      "exit": 1,
+      "report": "mixed.json",
+      "log": "logs/mixed.log",
+      "correctnessAndCleanup": "PASS",
+      "performance": "FAIL",
+      "source": "final source"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "logs/docs.log"
+    }
+  ],
+  "visualComparison": {
+    "captures": 96,
+    "byteIdentical": 96,
+    "baselineProductionFilesMatched": 24,
+    "initialLiveTimestampDifferences": 9
+  },
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "serverRuntimeChanged": false,
+  "cloudProvisioned": false,
+  "physicalDeviceAcceptance": false
+}

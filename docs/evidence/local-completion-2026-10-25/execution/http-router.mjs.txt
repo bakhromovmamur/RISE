@@ -1,0 +1,54 @@
+import assert from 'node:assert/strict';
+import {fork} from 'node:child_process';
+import {Agent,request} from 'node:http';
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+import {createInterface} from 'node:readline';
+export async function install(h){
+ assert.equal(h.config.environment,'test');assert.equal(h.config.database.max,5);
+ assert.equal(h.config.host,'127.0.0.1');assert.equal(h.config.port,4191);
+ const require=createRequire(`${process.cwd()}/package.json`),parse=require('set-cookie-parser').parse;
+ await h.store.close();
+ const child=fork(resolve('server/main.ts'),[],{execArgv:['--import','tsx',`--env-file=${resolve('.rise-infra/test/server.env')}`],env:{PATH:process.env.PATH,HOME:process.env.HOME,TMPDIR:process.env.TMPDIR},stdio:['ignore','pipe','pipe','ipc']});
+ // No request envelopes, credentials, or unexpected child diagnostics are exposed.
+ child.stderr.resume();
+ const lines=createInterface({input:child.stdout});
+ let closed=false,failed=false,pending=0;
+ const exited=new Promise(resolve=>child.once('exit',(code,signal)=>{if(!closed)failed=true;resolve({code,signal});}));
+ child.on('error',()=>{failed=true;});
+ const agents=new Map();
+ h.close=async()=>{
+  assert.equal(pending,0,'test_http_requests_must_drain');closed=true;
+  for(const agent of agents.values())agent.destroy();
+  if(child.exitCode===null&&child.signalCode===null)child.kill('SIGTERM');
+  const force=setTimeout(()=>child.kill('SIGKILL'),25000);
+  const result=await exited;clearTimeout(force);lines.close();
+  await h.app.close();await h.admin.end();assert.equal(result.code,0,'test_http_runtime_close_failed');
+ };
+ await new Promise((resolve,reject)=>{
+  const timer=setTimeout(()=>done(new Error('test_http_start_timeout')),40000);
+  let settled=false;
+  const done=(error)=>{if(settled)return;settled=true;clearTimeout(timer);if(error)reject(error);else resolve();};
+  child.once('exit',()=>done(new Error('test_http_start_failed')));child.once('error',()=>done(new Error('test_http_start_failed')));
+  lines.on('line',line=>{try{const m=JSON.parse(line);if(m.event==='started')done();if(m.event==='startup_failed')done(new Error('test_http_start_failed'));}catch{}});
+ });
+ Object.defineProperty(h.app,'inject',{value:options=>new Promise((resolve,reject)=>{
+  if(closed||failed){reject(new Error('test_http_not_ready'));return;}
+  assert.match(options.url,/^\/api\/v1\//);
+  let agent=agents.get(options.remoteAddress);if(!agent){agent=new Agent({keepAlive:true});agents.set(options.remoteAddress,agent);}
+  const payload=options.payload===undefined?undefined:JSON.stringify(options.payload);
+  const headers={...options.headers,...(payload===undefined?{}:{'content-type':'application/json','content-length':Buffer.byteLength(payload)})};
+  pending++;let finished=false;
+  const finish=(error,result)=>{if(finished)return;finished=true;pending--;if(error)reject(new Error('test_http_request_failed'));else resolve(result);};
+  const req=request({hostname:'127.0.0.1',port:4191,path:options.url,method:options.method,headers,agent},res=>{
+   const chunks=[];let bytes=0;
+   res.on('data',chunk=>{bytes+=chunk.length;if(bytes>32*1024*1024){req.destroy();finish(true);}else chunks.push(chunk);});
+   res.on('error',()=>finish(true));
+   res.on('end',()=>{const body=Buffer.concat(chunks).toString('utf8');finish(false,{statusCode:res.statusCode,body,headers:res.headers,cookies:parse(res),json:()=>JSON.parse(body)});});
+  });
+  req.on('error',()=>finish(true));req.setTimeout(15000,()=>req.destroy());req.end(payload);
+ })});
+ const health=await h.app.inject({url:'/api/v1/health/ready',method:'GET',headers:{host:'127.0.0.1:4191'},remoteAddress:'health'});
+ assert.equal(health.statusCode,200,'test_http_runtime_not_ready');
+ return{runtime:'server/main.ts',workerThreads:5,poolPerWorker:1,totalBffConnections:5,parentBffPoolClosed:true,transport:'HTTP 127.0.0.1:4191; per-synthetic-browser keep-alive agent; normal bounded runtime',scope:'Synthetic login/seed injected before starting normal runtime; measured operations and final readback use actual HTTP; not hosted acceptance'};
+}

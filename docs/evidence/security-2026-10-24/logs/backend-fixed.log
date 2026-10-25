@@ -1,0 +1,67 @@
+
+> rise-prototype@1.0.0 test:backend
+> playwright test --config playwright.infrastructure.config.ts
+
+[WebServer] (node:5627) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:5635) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.0s)
+  ✓   2 [chromium] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (632ms)
+  ✓   3 [chromium] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (57ms)
+  ✓   4 [chromium] › tests/infra/security.infrastructure.spec.ts:4:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.5s)
+  ✓   5 [chromium] › tests/infra/security.infrastructure.spec.ts:63:1 › browser policy blocks injected script, handlers, evaluation and base replacement (387ms)
+  ✓   6 [chromium] › tests/infra/security.infrastructure.spec.ts:97:1 › authored markup stays inert plain text through legacy migration and reload (394ms)
+(node:5657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [webkit] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.3s)
+  ✓   8 [webkit] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (543ms)
+  ✓   9 [webkit] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (32ms)
+  ✓  10 [webkit] › tests/infra/security.infrastructure.spec.ts:4:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.6s)
+  ✘  11 [webkit] › tests/infra/security.infrastructure.spec.ts:63:1 › browser policy blocks injected script, handlers, evaluation and base replacement (474ms)
+(node:5729) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [webkit] › tests/infra/security.infrastructure.spec.ts:97:1 › authored markup stays inert plain text through legacy migration and reload (496ms)
+(node:5750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [firefox] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.3s)
+  ✓  14 [firefox] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (535ms)
+  ✓  15 [firefox] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (30ms)
+  ✓  16 [firefox] › tests/infra/security.infrastructure.spec.ts:4:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.6s)
+  ✓  17 [firefox] › tests/infra/security.infrastructure.spec.ts:63:1 › browser policy blocks injected script, handlers, evaluation and base replacement (421ms)
+  ✓  18 [firefox] › tests/infra/security.infrastructure.spec.ts:97:1 › authored markup stays inert plain text through legacy migration and reload (511ms)
+
+
+  1) [webkit] › tests/infra/security.infrastructure.spec.ts:63:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+
+    Error: page.evaluate: Error: synthetic_script_failed
+
+      70 |   await page.goto("/"); await stored(page);
+      71 |   const before = await stored(page);
+    > 72 |   const result = await page.evaluate(async () => {
+         |                             ^
+      73 |     const violations: string[] = [];
+      74 |     document.addEventListener("securitypolicyviolation", event => violations.push(event.effectiveDirective));
+      75 |     const marker = "safe01Executed";
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:72:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [webkit] › tests/infra/security.infrastructure.spec.ts:63:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+  17 passed (17.3s)

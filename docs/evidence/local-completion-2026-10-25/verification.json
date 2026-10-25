@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-25T15:02:15Z",
+  "scope": "Retained code; archived worker candidate is not active",
+  "environment": {
+    "os": "macOS 26.6.2 arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "commands": [
+    {
+      "command": "npm run check",
+      "startedAt": "2026-10-25T14:03:56Z",
+      "log": "check-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:04:11Z",
+      "logSha256": "09e2e46b0808ce0bc17ca7d2bb42f3c50b7cd1313e695265944d5c440076b213",
+      "passed": 334,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:browser",
+      "startedAt": "2026-10-25T14:04:11Z",
+      "log": "test-browser-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:09:53Z",
+      "logSha256": "ff497b1d96a8122c0eab7ae1b424c6c5be2d9fb8cfa0aadaf4086ec8bea5fe4c",
+      "planned": 459,
+      "passed": 459,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:production",
+      "startedAt": "2026-10-25T14:09:53Z",
+      "log": "test-production-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:11:31Z",
+      "logSha256": "c3187ecdc97cc8a4e60d792fa39ce4565631414319a40889b2a3a65846f94a52",
+      "planned": 78,
+      "passed": 78,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:pwa",
+      "startedAt": "2026-10-25T14:11:31Z",
+      "log": "test-pwa-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:14:51Z",
+      "logSha256": "84085814d123166a652700e7666c8e77db9fc897007d619314fb91bbb95422b2",
+      "planned": 63,
+      "passed": 63,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:visual",
+      "startedAt": "2026-10-25T14:14:51Z",
+      "log": "test-visual-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:15:49Z",
+      "logSha256": "ff50b6a9af81df606c10b60180904d77042036f5f055f549a8c5f680ed6a8fc9",
+      "planned": 48,
+      "passed": 48,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:backend",
+      "startedAt": "2026-10-25T14:15:49Z",
+      "log": "test-backend-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:16:04Z",
+      "logSha256": "fb0d37cb85c7e0a67e356daaa59fe10fdb41a55de879d6a5d30b47baf346f370",
+      "planned": 21,
+      "passed": 21,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:auth",
+      "startedAt": "2026-10-25T14:16:04Z",
+      "log": "test-auth-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:16:50Z",
+      "logSha256": "65776ba5f6e90d483134cd85b28ab6276863846ee26c1859e6f71d51c30109bc",
+      "planned": 30,
+      "passed": 30,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:sync",
+      "startedAt": "2026-10-25T14:16:50Z",
+      "log": "test-sync-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:23:28Z",
+      "logSha256": "f265b0b3c98d0f99b3bf529db40c402874de294418bae78fbef1fb6712dbd7bf",
+      "planned": 69,
+      "passed": 69,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:push",
+      "startedAt": "2026-10-25T14:23:28Z",
+      "log": "test-push-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T14:26:31Z",
+      "logSha256": "9b85df987355116c3ff951080850add880287c720f87fc0a753941b90153c540",
+      "planned": 54,
+      "passed": 54,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:groups",
+      "startedAt": "2026-10-25T14:26:31Z",
+      "log": "test-groups-final.log",
+      "exitCode": 1,
+      "completedAt": "2026-10-25T14:47:11Z",
+      "logSha256": "575384bc2305b9a588cecca1a98e9d7c742258b6de0163b877adbba6f378590f",
+      "planned": 111,
+      "passed": 108,
+      "failed": 3
+    },
+    {
+      "command": "npm run test:rollout",
+      "startedAt": "2026-10-25T14:54:09Z",
+      "log": "test-rollout-cache-miss.log",
+      "exitCode": 1,
+      "completedAt": "2026-10-25T14:54:10Z",
+      "failureStage": "offline release build before browser cases",
+      "failureCode": "ENOTCACHED",
+      "logSha256": "b2495d132535b6e9b0582296a7e0f60aeab47639a7828008152073b899ff412d",
+      "planned": 0,
+      "passed": 0,
+      "failed": 0,
+      "startupFailed": true
+    },
+    {
+      "command": "npm run test:rollout",
+      "startedAt": "2026-10-25T14:55:28Z",
+      "log": "test-rollout-final.log",
+      "exitCode": 0,
+      "completedAt": "2026-10-25T15:01:14Z",
+      "logSha256": "ac031a5d85e2abd6c0490173b3bc3274ef43189d033930cdf6c9271a928075a2",
+      "planned": 6,
+      "passed": 6,
+      "failed": 0
+    }
+  ],
+  "initialBrowserCasesPassed": 936,
+  "initialBrowserCasesFailed": 3,
+  "visualComparisons": 720,
+  "sourceHashes": {
+    ".gitignore": "e19bde4a14ea30bc02dc6c6ee8257b68653f3a61298541c355a5fafc2d6c0b7d",
+    "package.json": "42e148133f5f1bd0bf4774bbe3bb3621b7e32c0a4832b5aac7fe3660ba94fdb0",
+    "package-lock.json": "d8aeabb341292f0ff01e93d59240dbc6f25ed3d2550b07cf061ab04ea011c5b7",
+    "src/data/storedState.ts": "000b08490a45764576651ab51da6578f913d5494b2795af7998b4432994400e0",
+    "src/data/indexedDb.ts": "040077f9cf606c22ab1fc9791a874a9491bec7ab0ead1face5f44e9c1f9507b4",
+    "src/domain/personalCommands.ts": "c55beded563803cc415a660b123f4c85ae138e03eae9490feb9919bcc60df547",
+    "tests/state-envelope.test.ts": "4a87ebf5b5e420c54f72c81a1b7211b2cb54d58db968a5fd0c4c1e9b3a8e24e2",
+    "tests/personal-command-isolation.test.ts": "586b2ff17ec268447179f1a599bc0766b6470b8eb3c26c5c681a8b4cb8788b36",
+    "tests/storage.browser.spec.ts": "bf09a584ca1e900b12ee7aab5c54e51d1fff57f52c17da9d0f7e7292d57b9ba0",
+    "scripts/check-publication.mjs": "b965fc7eac18c7a15c2af2559d151f7bb0a6bad5c0775c8c23e7bacd7234ff40",
+    "tests/publication.test.ts": "d8d8fcc68edbef3cd2a8e620ea751f7736bb2c4bafb0b44d5b91776bf9d451a0",
+    "scripts/infra/release/package.ts": "6f2c468229f3d7ced0600d1f212d33db6dbb1c089b7fac087fd039a33336c61a",
+    "scripts/infra/release.ts": "83aa6727787434640f5b8a73da650c8d1a42c1fc2f348ed5c9857db5436c2a53",
+    "tests/release.test.ts": "0bda9e4e0076bc2877d5aab22d50c5e12087d29dc41b2e972e0b5887c9775bf1",
+    "server/main.ts": "4efef9fe95023062ca9c1367958802bc22ee69b2ad8acf062f08be4d561b27d2",
+    "server/app.ts": "f39c98d4850f7a8c7768a39ecfd097dd0093d667c1db58c2173afae714b0d6e4",
+    "server/operations/release.ts": "1d5ceb4ee20249e970dd042960f235b9187f851d45a0f8b5f2ee882b112e4cd7",
+    "scripts/infra/release/entry.ts": "eca10591dc9bc816e3025b5842d8b025af14561d1618a682dd814cf0c2b8390a"
+  },
+  "performanceGate": "FAIL; separate measurements preserved, not covered by regression pass",
+  "cloudProvisioning": "pending",
+  "agentGitCommitPush": false,
+  "documentation": {
+    "command": "npm run check:docs",
+    "exitCode": 0,
+    "documents": 45,
+    "links": 781,
+    "anchors": 63,
+    "tasks": 38,
+    "requirements": 20
+  },
+  "additionalEvidenceLinks": {
+    "checked": 96,
+    "failures": []
+  },
+  "publication": {
+    "command": "npm run check:publication",
+    "exitCode": 0,
+    "initializedRepository": false,
+    "candidateFiles": 5110,
+    "candidateBytes": 221440654,
+    "indexEntries": 0,
+    "knownSecretValues": 22,
+    "failures": [],
+    "scope": "Read-only candidate/index path and known-secret byte checks; not a complete secret, archive or personal-data audit."
+  },
+  "supplementalBrowserRepeats": {
+    "passed": 15,
+    "failed": 0,
+    "originalFailuresResolved": false
+  },
+  "productionFeedbackCorrectness": {
+    "passed": 3,
+    "failed": 0,
+    "latencyAccepted": false
+  },
+  "candidateCapacity": {
+    "completed": true,
+    "acceptedFirstIntentions": 291,
+    "plannedFirstIntentions": 600,
+    "exactRecoveries": 309,
+    "historyAndXpRestored": true,
+    "cleaned": true,
+    "passed": false,
+    "activeRuntimeChanged": false
+  },
+  "finalRetentionScope": "No cloud provisioning, project Git initialization, commit or push; no saved origin reset."
+}

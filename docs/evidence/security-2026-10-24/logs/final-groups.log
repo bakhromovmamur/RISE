@@ -1,0 +1,156 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts
+
+[WebServer] (node:10416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 111 tests using 1 worker
+
+(node:10419) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [chromium] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (8.6s)
+  ✓    2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (16.6s)
+  ✓    3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (16.6s)
+  ✓    4 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (16.1s)
+  ✓    5 [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (654ms)
+  ✓    6 [chromium] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.6s)
+  ✓    7 [chromium] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.3s)
+  ✓    8 [chromium] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.9s)
+  ✓    9 [chromium] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (3.6s)
+  ✓   10 [chromium] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (5.1s)
+  ✓   11 [chromium] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (3.6s)
+  ✓   12 [chromium] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (3.5s)
+  ✓   13 [chromium] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (3.8s)
+  ✓   14 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (31.8s)
+  ✓   15 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (31.4s)
+  ✓   16 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (31.6s)
+  ✓   17 [chromium] › tests/groups/lifecycle.groups.spec.ts:17:1 › deletion dismisses shared forms across tabs and a restored stale account cache cannot recover membership (6.1s)
+  ✓   18 [chromium] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.4s)
+  ✓   19 [chromium] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.6s)
+  ✓   20 [chromium] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.1s)
+  ✓   21 [chromium] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.7s)
+  ✓   22 [chromium] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.3s)
+  ✓   23 [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (2.6s)
+  ✓   24 [chromium] › tests/groups/notifications.groups.spec.ts:22:1 › group opt-in survives a lost reply without requesting device consent; explicit device enable is separate (4.0s)
+  ✓   25 [chromium] › tests/groups/notifications.groups.spec.ts:34:1 › a competing preference change requires review and preserves the chosen opt-in draft (3.7s)
+  ✓   26 [chromium] › tests/groups/notifications.groups.spec.ts:41:1 › encrypted group delivery uses current authorization and the real occurrence ledger without a prayer plan (4.2s)
+  ✓   27 [chromium] › tests/groups/priorities.groups.spec.ts:8:1 › a fourth dated shared priority offers ordered replacement and a deleted family preserves unrelated choices (5.2s)
+  ✓   28 [chromium] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (18.3s)
+  ✘   29 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (15.4s)
+(node:11132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   30 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (15.5s)
+  ✓   31 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (15.6s)
+  ✓   32 [chromium] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (4.8s)
+  ✓   33 [chromium] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.6s)
+  ✓   34 [chromium] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (8.1s)
+  ✓   35 [chromium] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (4.6s)
+  ✓   36 [chromium] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (4.0s)
+  ✓   37 [chromium] › tests/groups/squads.groups.spec.ts:73:2 › delayed preview response › closing a pending preview cannot replace the newer reviewed draft (3.1s)
+(node:11465) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   38 [webkit] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (8.9s)
+  ✓   39 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (16.4s)
+  ✓   40 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (16.3s)
+  ✓   41 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.5s)
+  ✓   42 [webkit] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (831ms)
+  ✓   43 [webkit] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.1s)
+  ✓   44 [webkit] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.4s)
+  ✓   45 [webkit] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.2s)
+  ✓   46 [webkit] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (3.6s)
+  ✓   47 [webkit] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (4.8s)
+  ✓   48 [webkit] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (3.6s)
+  ✓   49 [webkit] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (3.4s)
+  ✓   50 [webkit] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (3.5s)
+  ✓   51 [webkit] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (28.4s)
+  ✓   52 [webkit] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (28.2s)
+  ✓   53 [webkit] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (28.8s)
+  ✓   54 [webkit] › tests/groups/lifecycle.groups.spec.ts:17:1 › deletion dismisses shared forms across tabs and a restored stale account cache cannot recover membership (4.8s)
+  ✓   55 [webkit] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.2s)
+  ✓   56 [webkit] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.8s)
+  ✓   57 [webkit] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.0s)
+  ✓   58 [webkit] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.4s)
+  ✓   59 [webkit] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.3s)
+  ✓   60 [webkit] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.3s)
+  ✓   61 [webkit] › tests/groups/notifications.groups.spec.ts:22:1 › group opt-in survives a lost reply without requesting device consent; explicit device enable is separate (4.0s)
+  ✓   62 [webkit] › tests/groups/notifications.groups.spec.ts:34:1 › a competing preference change requires review and preserves the chosen opt-in draft (3.5s)
+  ✓   63 [webkit] › tests/groups/notifications.groups.spec.ts:41:1 › encrypted group delivery uses current authorization and the real occurrence ledger without a prayer plan (4.0s)
+  ✓   64 [webkit] › tests/groups/priorities.groups.spec.ts:8:1 › a fourth dated shared priority offers ordered replacement and a deleted family preserves unrelated choices (5.9s)
+  ✓   65 [webkit] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (18.7s)
+  ✓   66 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (14.6s)
+  ✓   67 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (14.7s)
+  ✓   68 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (14.5s)
+  ✓   69 [webkit] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (4.9s)
+  ✓   70 [webkit] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.3s)
+  ✓   71 [webkit] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (7.7s)
+  ✓   72 [webkit] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (4.6s)
+  ✓   73 [webkit] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (3.7s)
+  ✓   74 [webkit] › tests/groups/squads.groups.spec.ts:73:2 › delayed preview response › closing a pending preview cannot replace the newer reviewed draft (3.8s)
+(node:12430) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   75 [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (8.8s)
+  ✓   76 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (19.4s)
+  ✓   77 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (19.5s)
+  ✓   78 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (19.2s)
+  ✓   79 [firefox] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (865ms)
+  ✓   80 [firefox] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (5.1s)
+  ✓   81 [firefox] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (35.7s)
+  ✓   82 [firefox] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (9.0s)
+  ✓   83 [firefox] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (4.5s)
+  ✓   84 [firefox] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (5.5s)
+  ✓   85 [firefox] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (4.4s)
+  ✓   86 [firefox] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (4.2s)
+  ✓   87 [firefox] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (4.5s)
+  ✓   88 [firefox] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (36.0s)
+  ✓   89 [firefox] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (35.9s)
+  ✓   90 [firefox] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (36.1s)
+  ✓   91 [firefox] › tests/groups/lifecycle.groups.spec.ts:17:1 › deletion dismisses shared forms across tabs and a restored stale account cache cannot recover membership (6.1s)
+  ✓   92 [firefox] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (8.2s)
+  ✓   93 [firefox] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (4.5s)
+  ✓   94 [firefox] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.3s)
+  ✓   95 [firefox] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.6s)
+  ✓   96 [firefox] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (4.0s)
+  ✓   97 [firefox] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.5s)
+  ✓   98 [firefox] › tests/groups/notifications.groups.spec.ts:22:1 › group opt-in survives a lost reply without requesting device consent; explicit device enable is separate (4.7s)
+  ✓   99 [firefox] › tests/groups/notifications.groups.spec.ts:34:1 › a competing preference change requires review and preserves the chosen opt-in draft (3.8s)
+  ✓  100 [firefox] › tests/groups/notifications.groups.spec.ts:41:1 › encrypted group delivery uses current authorization and the real occurrence ledger without a prayer plan (4.4s)
+  ✓  101 [firefox] › tests/groups/priorities.groups.spec.ts:8:1 › a fourth dated shared priority offers ordered replacement and a deleted family preserves unrelated choices (7.4s)
+  ✓  102 [firefox] › tests/groups/read-recovery.groups.spec.ts:7:1 › an unavailable family read recovers on the normal metadata timer without another edit or manual retry (19.0s)
+  ✓  103 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (19.0s)
+  ✓  104 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (18.9s)
+  ✓  105 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (19.0s)
+  ✓  106 [firefox] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (5.7s)
+  ✓  107 [firefox] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (4.4s)
+  ✓  108 [firefox] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (8.0s)
+  ✓  109 [firefox] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (5.2s)
+  ✓  110 [firefox] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (4.6s)
+  ✓  111 [firefox] › tests/groups/squads.groups.spec.ts:73:2 › delayed preview response › closing a pending preview cannot replace the newer reviewed draft (4.1s)
+
+
+  1) [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en 
+
+    Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+    Call log:
+      - attempting scroll into view action
+        - waiting for element to be stable
+        - element is not stable
+      - retrying scroll into view action
+        - waiting for element to be stable
+
+
+      55 |    const overflow=await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1);if(overflow)await dialog.screenshot({path:info.outputPath(`squad-failing-${scene}-${language}-${width}-${scale}.png`)});expect(overflow,`${scene} ${theme} ${width}/${scale}`).toBe(false);
+      56 |    expect(await dialog.locator('.sheet-header').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.querySelector('h2')!.getBoundingClientRect();return b.top>=a.top&&b.bottom<=a.bottom&&b.left>=a.left&&b.right<=a.right;}),`${scene} header ${width}/${scale}`).toBe(true);
+    > 57 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+         |                                                                  ^
+      58 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200)){await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0));await dialog.screenshot({path:info.outputPath(`squad-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      59 |   }
+      60 |   await page.evaluate(()=>document.documentElement.style.fontSize='100%');await page.setViewportSize({width:393,height:852});
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:57:66)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:70:201
+
+    Error Context: test-results/groups/browser/squad-layout.groups-squad--bd92e-on-and-recovery-reflow-·-en-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en 
+  110 passed (18.9m)

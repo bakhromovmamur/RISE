@@ -1,0 +1,83 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test tests/(life|navigation|uzbek).browser.spec.ts$
+
+[WebServer] (node:49693) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 60 tests using 2 workers
+
+(node:49694) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (1.2s)
+  ✓   2 [chromium] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (1.4s)
+  ✓   3 [chromium] › tests/life.browser.spec.ts:59:1 › period pause and resume are reflected in Today and Progress without changing habits (1.9s)
+  ✓   4 [chromium] › tests/life.browser.spec.ts:79:1 › family task draft, assignment, repetition, pinning, completion and undo stay independent of XP (2.6s)
+  ✓   5 [chromium] › tests/life.browser.spec.ts:104:1 › shared lists create, edit, reorder, check and retain local changes (2.3s)
+  ✓   6 [chromium] › tests/life.browser.spec.ts:126:1 › squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal (2.3s)
+  ✓   7 [chromium] › tests/life.browser.spec.ts:150:1 › invitation simulation, member controls, archive and language are local and persistent (2.7s)
+  ✓   8 [chromium] › tests/life.browser.spec.ts:175:1 › readiness states, empty entry points and modal keyboard focus work without device permissions (2.3s)
+  ✓   9 [chromium] › tests/life.browser.spec.ts:196:1 › mobile widths and 200% text preserve readable prayer controls and persistent simulation labels (3.6s)
+  ✓  11 [chromium] › tests/life.browser.spec.ts:238:1 › owner transfer enables leaving, hides shared content and preserves private progress (2.5s)
+  ✓  12 [chromium] › tests/life.browser.spec.ts:256:1 › new control names match English and Uzbek, including optional prayer sharing (8.9s)
+  ✓  13 [chromium] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.9s)
+  ✓  10 [chromium] › tests/life.browser.spec.ts:214:1 › editing assignments and repeat schedules, task archive/restore and list uncheck retain history (16.6s)
+  ✓  14 [chromium] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (2.4s)
+  ✓  15 [chromium] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (6.0s)
+  ✓  16 [chromium] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (4.4s)
+  ✓  17 [chromium] › tests/uzbek.browser.spec.ts:17:1 › Uzbek language changes and reload retain authored content and the complete saved journey (2.3s)
+  ✓  18 [chromium] › tests/uzbek.browser.spec.ts:30:1 › Uzbek habit actions preserve tiny/full/undo XP and expose translated validation (1.8s)
+  ✓  19 [chromium] › tests/uzbek.browser.spec.ts:43:1 › Uzbek goal and reward forms retain authored names and never award habit XP (2.3s)
+(node:49920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  21 [webkit] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (3.4s)
+  ✓  22 [webkit] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (3.6s)
+  ✓  23 [webkit] › tests/life.browser.spec.ts:59:1 › period pause and resume are reflected in Today and Progress without changing habits (4.6s)
+  ✓  20 [chromium] › tests/uzbek.browser.spec.ts:57:1 › Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text (16.8s)
+(node:49955) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  24 [webkit] › tests/life.browser.spec.ts:79:1 › family task draft, assignment, repetition, pinning, completion and undo stay independent of XP (4.2s)
+  ✓  25 [webkit] › tests/life.browser.spec.ts:104:1 › shared lists create, edit, reorder, check and retain local changes (4.3s)
+  ✓  26 [webkit] › tests/life.browser.spec.ts:126:1 › squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal (4.2s)
+  ✓  28 [webkit] › tests/life.browser.spec.ts:175:1 › readiness states, empty entry points and modal keyboard focus work without device permissions (3.2s)
+  ✓  27 [webkit] › tests/life.browser.spec.ts:150:1 › invitation simulation, member controls, archive and language are local and persistent (4.6s)
+  ✓  29 [webkit] › tests/life.browser.spec.ts:196:1 › mobile widths and 200% text preserve readable prayer controls and persistent simulation labels (4.2s)
+  ✓  31 [webkit] › tests/life.browser.spec.ts:238:1 › owner transfer enables leaving, hides shared content and preserves private progress (2.0s)
+  ✓  32 [webkit] › tests/life.browser.spec.ts:256:1 › new control names match English and Uzbek, including optional prayer sharing (7.1s)
+  ✓  33 [webkit] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (2.5s)
+  ✓  30 [webkit] › tests/life.browser.spec.ts:214:1 › editing assignments and repeat schedules, task archive/restore and list uncheck retain history (16.5s)
+  ✓  34 [webkit] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (4.2s)
+  ✓  35 [webkit] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (9.0s)
+  ✓  36 [webkit] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (6.5s)
+  ✓  37 [webkit] › tests/uzbek.browser.spec.ts:17:1 › Uzbek language changes and reload retain authored content and the complete saved journey (2.9s)
+  ✓  38 [webkit] › tests/uzbek.browser.spec.ts:30:1 › Uzbek habit actions preserve tiny/full/undo XP and expose translated validation (2.9s)
+  ✓  39 [webkit] › tests/uzbek.browser.spec.ts:43:1 › Uzbek goal and reward forms retain authored names and never award habit XP (3.8s)
+(node:50061) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  40 [webkit] › tests/uzbek.browser.spec.ts:57:1 › Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text (19.7s)
+  ✓  41 [firefox] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (13.5s)
+(node:50096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  42 [firefox] › tests/life.browser.spec.ts:59:1 › period pause and resume are reflected in Today and Progress without changing habits (4.4s)
+  ✓  43 [firefox] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (5.4s)
+  ✓  44 [firefox] › tests/life.browser.spec.ts:79:1 › family task draft, assignment, repetition, pinning, completion and undo stay independent of XP (4.7s)
+  ✓  45 [firefox] › tests/life.browser.spec.ts:104:1 › shared lists create, edit, reorder, check and retain local changes (3.3s)
+  ✓  46 [firefox] › tests/life.browser.spec.ts:126:1 › squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal (3.8s)
+  ✓  47 [firefox] › tests/life.browser.spec.ts:150:1 › invitation simulation, member controls, archive and language are local and persistent (5.0s)
+  ✓  48 [firefox] › tests/life.browser.spec.ts:175:1 › readiness states, empty entry points and modal keyboard focus work without device permissions (3.9s)
+  ✓  49 [firefox] › tests/life.browser.spec.ts:196:1 › mobile widths and 200% text preserve readable prayer controls and persistent simulation labels (3.4s)
+  ✓  51 [firefox] › tests/life.browser.spec.ts:238:1 › owner transfer enables leaving, hides shared content and preserves private progress (1.5s)
+  ✓  52 [firefox] › tests/life.browser.spec.ts:256:1 › new control names match English and Uzbek, including optional prayer sharing (4.7s)
+  ✓  53 [firefox] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.5s)
+  ✓  54 [firefox] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (1.7s)
+  ✓  50 [firefox] › tests/life.browser.spec.ts:214:1 › editing assignments and repeat schedules, task archive/restore and list uncheck retain history (17.0s)
+  ✓  55 [firefox] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (5.6s)
+  ✓  56 [firefox] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (2.8s)
+  ✓  57 [firefox] › tests/uzbek.browser.spec.ts:17:1 › Uzbek language changes and reload retain authored content and the complete saved journey (2.7s)
+  ✓  58 [firefox] › tests/uzbek.browser.spec.ts:30:1 › Uzbek habit actions preserve tiny/full/undo XP and expose translated validation (1.8s)
+  ✓  59 [firefox] › tests/uzbek.browser.spec.ts:43:1 › Uzbek goal and reward forms retain authored names and never award habit XP (2.2s)
+  ✓  60 [firefox] › tests/uzbek.browser.spec.ts:57:1 › Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text (9.4s)
+
+  60 passed (2.7m)

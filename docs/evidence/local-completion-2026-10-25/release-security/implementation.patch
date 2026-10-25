@@ -1,0 +1,115 @@
+--- a/scripts/infra/release/package.ts
++++ b/scripts/infra/release/package.ts
+@@ -1,6 +1,6 @@
+ import {createHash,randomUUID} from 'node:crypto';
+ import {cp,mkdir,mkdtemp,readFile,readdir,readlink,realpath,lstat,writeFile,rename,rm,chmod} from 'node:fs/promises';
+-import {resolve,join,sep} from 'node:path';
++import {resolve,join,sep,dirname,basename} from 'node:path';
+ import {execFile} from 'node:child_process';
+ import {promisify} from 'node:util';
+ import {tmpdir} from 'node:os';
+@@ -10,6 +10,20 @@
+ export const releases=resolve(root,'.rise-infra/releases');
+ export const digest=(value:string|Uint8Array)=>createHash('sha256').update(value).digest('hex');
+ export const contracts={pwa:PWA_CONTRACT,accountCache:'1/2',pushDevice:1,accountApi:1};
++/** Only the freshly owned mkdtemp stage, never a retained release. Sealing makes
++ * directories read-only, so restore their owner write bit before discarding. */
++export async function discardBuildStage(directory:string){
++  if(!/^rise-release-build-[A-Za-z0-9]{6}$/.test(basename(directory))||await realpath(dirname(directory))!==await realpath(tmpdir()))throw new Error('invalid_release_build_stage');
++  try{await lstat(directory);}catch(error){if((error as NodeJS.ErrnoException).code==='ENOENT')return;throw error;}
++  async function writable(path:string){
++    const info=await lstat(path);
++    if(!info.isDirectory()||info.isSymbolicLink()||process.getuid&&info.uid!==process.getuid())throw new Error('invalid_release_build_stage');
++    await chmod(path,0o700);
++    for(const entry of await readdir(path,{withFileTypes:true}))if(entry.isDirectory())await writable(join(path,entry.name));
++  }
++  await writable(directory);
++  await rm(directory,{recursive:true,force:true});
++}
+ export interface ReleaseManifest {format:1;id:string;createdAt:string;node:string;platform:string;arch:string;webRelease:string;contracts:typeof contracts;migrations:Record<string,string>;files:Record<string,string>}
+ export function releaseDirectory(id:string){if(!/^[a-f0-9]{64}$/.test(id))throw new Error('invalid_release_id');return join(releases,id);}
+ /** Include dependencies and link targets: running a sealed release never resolves the mutable checkout's dependencies. */
+@@ -91,5 +105,9 @@
+     // Refuse ordinary accidental edits; integrity is also rechecked before every activation/start.
+     async function seal(path:string){for(const entry of await readdir(path,{withFileTypes:true})){const full=join(path,entry.name);if(entry.isDirectory())await seal(full);else if(entry.isFile())await chmod(full,(await lstat(full)).mode&0o111?0o500:0o400);}await chmod(path,0o500);}
+     await seal(directory);await chmod(directory,0o700);await rename(directory,releaseDirectory(manifest.id));await chmod(releaseDirectory(manifest.id),0o500);return manifest;
+-  }catch(error){await rm(directory,{recursive:true,force:true}).catch(()=>{});throw new Error('release_build_failed',{cause:error});}
++  }catch(error){
++    try{await discardBuildStage(directory);}
++    catch(cleanup){throw new Error('release_build_cleanup_failed',{cause:new AggregateError([error,cleanup],'release_build_and_cleanup_failed')});}
++    throw new Error('release_build_failed',{cause:error});
++  }
+ }
+--- a/scripts/infra/release.ts
++++ b/scripts/infra/release.ts
+@@ -12,4 +12,9 @@
+   else if(action==='serve'&&!id)await serveReleases(target);
+   else throw new Error('invalid_release_arguments');
+ }
+-main().catch(()=>{process.stderr.write('Local release operation failed; verify the package and protected configuration. Check deployment records if activation began. Data and schema were not downgraded.\n');process.exitCode=1;});
++main().catch(error=>{
++  process.stderr.write(error instanceof Error&&error.message==='release_build_cleanup_failed'
++    ?'Local release build failed and temporary build cleanup is incomplete; review local disk space and permissions before retrying. Saved data and retained releases were not removed.\n'
++    :'Local release operation failed; verify the package and protected configuration. Check deployment records if activation began. Data and schema were not downgraded.\n');
++  process.exitCode=1;
++});
+--- a/tests/release.test.ts
++++ b/tests/release.test.ts
+@@ -1,9 +1,9 @@
+ import {test} from 'node:test';
+ import assert from 'node:assert/strict';
+-import {mkdtemp,mkdir,writeFile,rm,symlink} from 'node:fs/promises';
++import {mkdtemp,mkdir,writeFile,rm,symlink,chmod,lstat,readFile} from 'node:fs/promises';
+ import {join} from 'node:path';
+ import {tmpdir} from 'node:os';
+-import {compatible,contracts,digest,inspectWeb,inventory,type ReleaseManifest} from '../scripts/infra/release/package.ts';
++import {compatible,contracts,digest,inspectWeb,inventory,discardBuildStage,type ReleaseManifest} from '../scripts/infra/release/package.ts';
+ 
+ test('rollout rejects schema drift, missing applied migrations and incompatible rollback without downgrading',()=>{
+   const migrations={'20261024000000_synthetic.sql':digest('synthetic')};
+@@ -34,3 +34,34 @@
+   await writeFile(join(root,'dist/index.html'),html+'changed');await assert.rejects(inspectWeb(root),/incomplete/);
+   await writeFile(join(root,'dist/index.html'),html.replace('production','review'));await assert.rejects(inspectWeb(root),/production_build/);
+ });
++
++test('failed build cleanup removes its sealed stage without changing a linked retained directory',async t=>{
++  const stage=await mkdtemp(join(tmpdir(),'rise-release-build-')),retained=await mkdtemp(join(tmpdir(),'rise-release-retained-'));
++  const nested=join(stage,'nested');await mkdir(nested);
++  t.after(async()=>{
++    await chmod(stage,0o700).catch(()=>{});await chmod(nested,0o700).catch(()=>{});
++    await rm(stage,{recursive:true,force:true});await chmod(retained,0o700);await rm(retained,{recursive:true,force:true});
++  });
++  await writeFile(join(nested,'entry.ts'),'synthetic staged code');await chmod(join(nested,'entry.ts'),0o400);
++  await writeFile(join(retained,'entry.ts'),'retained synthetic release');await chmod(join(retained,'entry.ts'),0o400);await chmod(retained,0o500);
++  await symlink(retained,join(stage,'linked-retained'));await chmod(nested,0o500);await chmod(stage,0o500);
++  await discardBuildStage(stage);
++  await assert.rejects(lstat(stage),{code:'ENOENT'});
++  assert.equal(await readFile(join(retained,'entry.ts'),'utf8'),'retained synthetic release');
++  assert.equal((await lstat(retained)).mode&0o777,0o500);
++  await discardBuildStage(stage); // Repeated cleanup of this now-absent stage is harmless.
++});
++
++test('build cleanup refuses other directories and root links without changing their contents',async t=>{
++  const retained=await mkdtemp(join(tmpdir(),'rise-release-retained-'));
++  const stage=await mkdtemp(join(tmpdir(),'rise-release-build-'));
++  t.after(async()=>{await rm(stage,{recursive:true,force:true});await rm(retained,{recursive:true,force:true});});
++  await writeFile(join(retained,'entry.ts'),'retained synthetic release');
++  await assert.rejects(discardBuildStage(retained),/invalid_release_build_stage/);
++  const nested=join(retained,'rise-release-build-Abc123');await mkdir(nested);
++  await assert.rejects(discardBuildStage(nested),/invalid_release_build_stage/);
++  await rm(stage,{recursive:true});await symlink(retained,stage);
++  await assert.rejects(discardBuildStage(stage),/invalid_release_build_stage/);
++  assert.equal(await readFile(join(retained,'entry.ts'),'utf8'),'retained synthetic release');
++  assert.ok((await lstat(nested)).isDirectory());
++});
+--- a/docs/LOCAL-ROLLOUT.md
++++ b/docs/LOCAL-ROLLOUT.md
+@@ -16,6 +16,8 @@
+ The command returns a release ID and web release ID. `.rise-infra/releases/<release-id>/` contains the frozen frontend, server/domain source, runtime dependencies and a content-addressed manifest. Files/directories are read-only. The manifest hashes dependencies and symlink targets as well as app files; symlinks cannot escape the package. The package excludes environment files, saved profiles, test entry points and native bundles. Browser output must be production-only, with a matching worker contract and every public asset digest present. A publication ID changes the worker release even when republishing the same source; screens and data formats do not change.
+ 
+ Packages are local, platform/architecture/Node-specific artifacts, not signed supply-chain attestations. Trusted filesystem ownership is still required. Keep the active and previous packages; no automatic release pruning is implemented.
++
++If packaging fails while sealing or publishing its temporary build, cleanup restores owner-write permission only on that build's directories before removal. It rejects paths outside the OS temporary build namespace and never follows symbolic links or prunes retained releases. An incomplete cleanup produces a separate sanitized error; review local disk space and permissions before retrying. This repairs the verified read-only-directory cleanup failure without changing package admission or saved data. [Focused regression and scope](evidence/local-completion-2026-10-25/release-security/README.md).
+ 
+ ## Select and serve
+ 

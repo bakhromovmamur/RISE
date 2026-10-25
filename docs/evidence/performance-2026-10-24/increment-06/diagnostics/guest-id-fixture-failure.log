@@ -1,0 +1,38 @@
+{
+  "scope": "One-owner full-history discovery through real session/BFF/database; injected HTTP transport, no hosted/device/100-user acceptance.",
+  "date": "2026-10-24",
+  "habits": 100,
+  "days": 730,
+  "occurrences": 73000,
+  "expectedXp": 1313990,
+  "cleanupMs": 16.037916999999993,
+  "cleaned": true
+}
+/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg/lib/client.js:694
+          Error.captureStackTrace(err)
+                ^
+
+error: invalid input syntax for type uuid: "capacity-habit-0"
+    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg/lib/client.js:694:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async <anonymous> (/private/tmp/rise-capacity-smoke.mts:27:5) {
+  length: 111,
+  severity: 'ERROR',
+  code: '22P02',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'uuid.c',
+  line: '138',
+  routine: 'string_to_uuid'
+}
+
+Node.js v24.16.0

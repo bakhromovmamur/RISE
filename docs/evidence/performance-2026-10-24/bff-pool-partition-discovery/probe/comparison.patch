@@ -1,0 +1,64 @@
+--- five/run.mts
++++ two/run.mts
+@@ -58,7 +58,7 @@
+  report.databaseGrowthBytes=Number((await h.admin.query('select pg_database_size(current_database()) as bytes')).rows[0].bytes)-before;
+  const counts=(await h.admin.query('select owner_id,count(*)::int as n from rise.habit_occurrences where owner_id=any($1::uuid[]) group by owner_id',[clients.map(c=>c.owner)])).rows;
+  assert.equal(counts.length,users);assert.ok(counts.every(row=>row.n===73000));
+- report.execution=await install(h);sampleResources();resourceTimer=setInterval(sampleResources,10000);report.transport='Real loopback HTTP after injected synthetic login/seed; not hosted acceptance';process.stderr.write('Five instrumented restricted BFF HTTP workers; least-pending routing and original five-connection budget\n');
++ report.execution=await install(h);sampleResources();resourceTimer=setInterval(sampleResources,10000);report.transport='Real loopback HTTP after injected synthetic login/seed; not hosted acceptance';process.stderr.write('Two instrumented restricted BFF HTTP workers (3+2 connections); least-pending routing and original five-connection budget\n');
+  if(mixed){
+   const progress:Record<string,unknown>={};report.mixed=progress;
+   const result=await mixedAccountLoad({clients,date,habitId:state.habits[0].id,expectedXp,running,progress,registerGroup:async(id,owner)=>{groups.push({id,owner});await saveManifest();}});
+--- five/router.mjs
++++ two/router.mjs
+@@ -42,5 +42,5 @@
+   if(child.connected)child.send({stop:true});const code=await exited;
+   await h.app.close();await h.admin.end();assert.equal(code,0,'test_http_gateway_close_failed');const stats=JSON.parse(await readFile(new URL(`./stats-${captureId}.json`,import.meta.url),'utf8'));assert.equal(stats.captureId,captureId,'current_capture_required');assert.ok(stats.workers.every(w=>w.metrics&&w.metrics.dropped===0&&w.requests===w.metrics.completed.length),'complete_worker_capture_required');assert.equal(stats.timing.length,stats.workers.reduce((n,w)=>n+w.requests,0),'complete_gateway_capture_required');await writeFile(new URL('./stats.json',import.meta.url),JSON.stringify(stats,null,2));
+  };
+- return{workers:5,poolPerWorker:1,totalBffConnections:5,parentBffPoolClosed:true,transport:'HTTP 127.0.0.1:4191; per-browser keep-alive agent; least-pending HTTP requests over private Unix sockets',scope:'Test-only gateway/threads; injected login/seed; client IP not forwarded to Unix-socket backends; not authentication-rate-limit or production-runtime acceptance'};
++ return{workers:2,poolPerWorker:[3,2],totalBffConnections:5,parentBffPoolClosed:true,transport:'HTTP 127.0.0.1:4191; per-browser keep-alive agent; least-pending HTTP requests over private Unix sockets',scope:'Test-only gateway/threads; injected login/seed; client IP not forwarded to Unix-socket backends; not authentication-rate-limit or production-runtime acceptance'};
+ }
+--- five/gateway.mjs
++++ two/gateway.mjs
+@@ -11,15 +11,15 @@
+  if(server?.listening)await new Promise(resolve=>server.close(resolve));
+  for(const e of workers)e.agent.destroy();
+  await Promise.all(workers.map(e=>e.exited?Promise.resolve():new Promise(resolve=>{e.worker.once('exit',resolve);e.worker.postMessage({stop:true});})));
+- const stats={captureId:process.env.RISE_PROBE_CAPTURE_ID,scope:'All requests after fixture seeding, including group setup, measurement, recovery, replay, readback and logout',maximumPending:maximum,rejected,timing,workers:workers.map(e=>({requests:e.count,maximumPending:e.maximum,counts:e.counts,metrics:e.metrics}))};
++ const stats={captureId:process.env.RISE_PROBE_CAPTURE_ID,scope:'All requests after fixture seeding, including group setup, measurement, recovery, replay, readback and logout',maximumPending:maximum,rejected,timing,workers:workers.map(e=>({poolMax:e.poolMax,requests:e.count,maximumPending:e.maximum,counts:e.counts,metrics:e.metrics}))};
+  await writeFile(new URL(`./stats-${process.env.RISE_PROBE_CAPTURE_ID}.json`,import.meta.url),JSON.stringify(stats,null,2));
+  await rm(directory,{recursive:true,force:true});process.exitCode=failed?1:0;process.disconnect?.();
+ }
+ process.on('message',m=>{if(m.stop)void stop();});process.on('SIGTERM',()=>{void stop();});process.on('SIGINT',()=>{void stop();});process.on('disconnect',()=>{void stop();});
+ try{
+- for(let i=0;i<5;i++){
+-  const socket=join(directory,`bff-${i}.sock`),worker=new Worker(new URL('./worker.mjs',import.meta.url),{workerData:{root,socket},execArgv:[]});
+-  const entry={worker,socket,agent:new Agent({keepAlive:true}),pending:0,count:0,maximum:0,exited:false,counts:{personal:0,shared:0,other:0}};workers.push(entry);
++ for(let i=0;i<2;i++){
++  const socket=join(directory,`bff-${i}.sock`),worker=new Worker(new URL('./worker.mjs',import.meta.url),{workerData:{root,socket,poolMax:i===0?3:2},execArgv:[]});
++  const entry={worker,socket,poolMax:i===0?3:2,agent:new Agent({keepAlive:true}),pending:0,count:0,maximum:0,exited:false,counts:{personal:0,shared:0,other:0}};workers.push(entry);
+   await new Promise((resolve,reject)=>{
+    const timer=setTimeout(()=>reject(new Error('test_worker_start_timeout')),30000);
+    worker.on('message',m=>{if(m.metrics)entry.metrics=m.metrics;if(m.ready){clearTimeout(timer);resolve();}});
+--- five/worker.mjs
++++ two/worker.mjs
+@@ -8,7 +8,8 @@
+ const [{loadConfig},{database},{createApp},{Sessions}]=await Promise.all(['config','database','app','auth/sessions'].map(p=>import(pathToFileURL(`${root}/server/${p}.ts`))));
+ const config=loadConfig(parseEnv(await readFile(`${original}/.rise-infra/test/server.env`,'utf8')));
+ if(config.environment!=='test'||config.database.max!==5||config.host!=='127.0.0.1'||config.port!==4191||typeof workerData.socket!=='string'||!workerData.socket.startsWith('/private/tmp/rise-balanced-')&&!workerData.socket.startsWith('/tmp/rise-balanced-'))throw new Error('fixed_test_required');
+-config.database.max=1;
++if(![2,3].includes(workerData.poolMax))throw new Error("fixed_pool_partition_required");
++config.database.max=workerData.poolMax;
+ const {diagnosticSnapshot}=await import(pathToFileURL(`${root}/server/diagnostics.ts`));
+ const store=database(config);let app,stopping=false;
+ async function stop(){if(stopping)return;stopping=true;try{if(app)await app.close();await store.close();}catch{process.exitCode=1;}parentPort.postMessage({metrics:diagnosticSnapshot()});parentPort.close();}
+--- five/analyze.py
++++ two/analyze.py
+@@ -1,6 +1,6 @@
+ from pathlib import Path
+ import json,math,statistics,collections
+-p=Path('/tmp/rise-bff-phase-probe');d=json.loads((p/'mixed.json').read_text());s=json.loads((p/'stats.json').read_text())
++p=Path('/tmp/rise-bff-two-thread-probe');d=json.loads((p/'mixed.json').read_text());s=json.loads((p/'stats.json').read_text())
+ rows=[dict(r,worker=i) for i,w in enumerate(s['workers']) for r in w['metrics']['completed']]
+ assert not any(w['metrics']['dropped'] for w in s['workers'])
+ assert len(rows)==len(s['timing'])

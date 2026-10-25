@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 test:sync
+> playwright test --config playwright.sync.config.ts tests/sync/recovery-layout.sync.spec.ts$
+
+[WebServer] (node:48528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:48542) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in en using existing components (7.2s)
+  ✓  2 [chromium] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in uz using existing components (4.8s)
+  ✓  3 [chromium] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in ru using existing components (4.5s)
+(node:48580) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [webkit] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in en using existing components (5.7s)
+  ✓  5 [webkit] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in uz using existing components (4.7s)
+  ✓  6 [webkit] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in ru using existing components (6.9s)
+(node:48696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [firefox] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in en using existing components (12.2s)
+  ✓  8 [firefox] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in uz using existing components (9.0s)
+  ✓  9 [firefox] › tests/sync/recovery-layout.sync.spec.ts:11:47 › recovery review reflows in ru using existing components (8.7s)
+
+  9 passed (1.2m)

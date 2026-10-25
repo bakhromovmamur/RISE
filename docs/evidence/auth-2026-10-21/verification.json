@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-21",
+  "scope": "Local-only AUTH-01; hosted provisioning pending",
+  "platform": "Darwin 25.6.0 arm64",
+  "node": "24.16.0",
+  "npm": "11.13.0",
+  "playwright": "1.64.1",
+  "browsers": {
+    "chromium": "156.0.8078.4",
+    "webkit": "27.2",
+    "firefox": "157.0"
+  },
+  "results": {
+    "auth": {
+      "startTime": "2026-10-21T18:30:44.266Z",
+      "duration": 38644.889,
+      "expected": 21,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "backend": {
+      "startTime": "2026-10-21T18:22:14.802Z",
+      "duration": 6915.179,
+      "expected": 9,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "journeys": {
+      "startTime": "2026-10-21T18:24:38.877Z",
+      "duration": 314510.765,
+      "expected": 378,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "production": {
+      "startTime": "2026-10-21T18:29:53.794Z",
+      "duration": 31817.522,
+      "expected": 39,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "pwa": {
+      "startTime": "2026-10-21T18:30:25.950Z",
+      "duration": 83881.183,
+      "expected": 42,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "visual": {
+      "startTime": "2026-10-21T18:21:51.849Z",
+      "duration": 57598.148,
+      "expected": 48,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "unitTests": {
+    "passed": 156,
+    "failed": 0
+  },
+  "databaseIntegration": {
+    "passed": 20,
+    "failed": 0
+  },
+  "cleanup": {
+    "stopped": [
+      "rise-test",
+      "rise-local"
+    ],
+    "volumesAndCredentialsRetained": true,
+    "unrelatedStacksUntouched": true
+  }
+}

@@ -1,0 +1,40 @@
+.you-profile { display: flex; align-items: center; gap: 14px; width: 100%; padding: 0 0 22px; text-align: left; }
+.you-profile .pip { flex-shrink: 0; }
+.you-profile > span { flex: 1; min-width: 0; }
+.you-profile strong { display: block; font-size: 1.125rem; line-height: 1.4; font-weight: 600; overflow-wrap: anywhere; }
+.you-profile small { display: block; font-size: .8125rem; line-height: 1.5; color: var(--muted); margin-top: 4px; }
+.you-profile > svg { flex-shrink: 0; color: var(--muted); }
+.you-destinations { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.you-destinations .group-row { min-height: 82px; padding: 16px 0; gap: 14px; }
+.you-destinations .row-copy > strong { font-size: 1rem; font-weight: 600; }
+.you-destinations .row-copy > small { font-size: .8125rem; }
+.you-destinations .row-icon, .you-destinations .group-row > svg { flex-shrink: 0; }
+.you-profile:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 10px; }
+.you-screen .screen-footer { margin-top: 24px; }
+.preferences-hub .group { margin-top: 18px; }
+.preferences-hub .group-row { min-height: 80px; }
+.settings-disclosure { border-bottom: 1px solid var(--line); }
+.settings-disclosure > summary { list-style: none; display: flex; align-items: center; gap: 12px; cursor: pointer; padding: 16px 0; min-height: 76px; }
+.settings-disclosure > summary::-webkit-details-marker { display: none; }
+.settings-disclosure > summary > span { flex: 1; min-width: 0; }
+.settings-disclosure > summary strong { display: block; font-size: .9375rem; font-weight: 600; line-height: 1.4; }
+.settings-disclosure > summary small { display: block; font-size: .75rem; line-height: 1.5; color: var(--muted); margin-top: 4px; }
+.settings-disclosure > summary svg { flex-shrink: 0; color: var(--muted); }
+.settings-disclosure[open] > summary > svg:last-child { transform: rotate(90deg); }
+.settings-disclosure > summary:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 10px; }
+.settings-disclosure > .fine-print { margin: 12px 0 20px; }
+.settings-disclosure .appearance-options { margin-top: 8px; }
+.settings-content .quiet-hours { flex-wrap: wrap; }
+.large-text .you-profile .pip { display: none; }
+.large-text .settings-content .appearance-options { flex-wrap: wrap; }
+.large-text .settings-content .appearance-options > button { flex: 1 1 100px; }
+@media (max-height: 800px) {
+  .you-profile { padding-bottom: 16px; }
+  .you-destinations .group-row { min-height: 76px; padding: 14px 0; }
+}
+@media (hover: hover) {
+  .you-profile:hover strong, .you-destinations .group-row:hover strong, .settings-disclosure > summary:hover strong { color: var(--green); }
+}
+
+.help-release, .help-notices { overflow-wrap: anywhere; }
+.help-notices { white-space: pre-wrap; font-family: inherit; }

@@ -1,0 +1,15 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts --project=firefox --workers=1 -g production exports|new production entry
+
+[WebServer] (node:8785) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:8787) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.7s)
+  ✓  2 [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (421ms)
+
+  2 passed (3.7s)

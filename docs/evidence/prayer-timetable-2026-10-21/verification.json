@@ -1,0 +1,66 @@
+{
+  "task": "PRAY-01",
+  "requirements": [
+    "PRD-09"
+  ],
+  "status": "passed",
+  "unitToolingTests": 126,
+  "publishedReferenceDates": 403,
+  "publishedSolarTimeComparisons": 2418,
+  "browserFullRegression": {
+    "startTime": "2026-10-21T13:58:12.594Z",
+    "duration": 417749.194,
+    "expected": 342,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "browserFinalPrayerDelivery": {
+    "startTime": "2026-10-21T14:06:48.784Z",
+    "duration": 79537.214,
+    "expected": 75,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "productionFinal": {
+    "startTime": "2026-10-21T14:04:40.713Z",
+    "duration": 40437.998,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "visualFinal": {
+    "startTime": "2026-10-21T14:06:49.289Z",
+    "duration": 76055.983,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "screenshots": 720,
+    "pixelTolerance": 0,
+    "referencesUpdated": false
+  },
+  "finalSourceInputs": 850,
+  "fullRegressionToFinalChanges": [
+    "src/Prayers.tsx",
+    "src/prayerModel.ts",
+    "tests/prayer-timetable.test.ts"
+  ],
+  "fullRegressionScope": "The final legacy-review guard keeps unresolved dates unconfirmed/pending and offers manual recovery in detail. Final unit, focused prayer/delivery, production and visual checks cover the completed build. The full regression was run immediately before this guard.",
+  "visualSourceChanges": [
+    "src/prayers.css"
+  ],
+  "formatVersions": {
+    "database": 1,
+    "repository": [
+      1,
+      2
+    ],
+    "domain": 4,
+    "backup": 1
+  },
+  "gitRepository": false,
+  "primaryProfileUsed": false
+}

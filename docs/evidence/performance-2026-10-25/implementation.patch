@@ -1,0 +1,48 @@
+--- a/src/data/validation.ts
++++ b/src/data/validation.ts
+@@ -28,13 +28,10 @@
+   if (typeof v !== "string" || (v.length > max && [...v].length > max) || (pattern && !pattern.test(v))) throw new StoredDataError(p);
+ };
+ export const bool = oneOf(true, false);
+-const idString = string(160, /^\S+$/u);
+-export const id: Check = (value, path) => {
+-  idString(value, path);
+-  if (typeof value === "string") {
+-    for (let i = 0; i < value.length; i++) if (value.charCodeAt(i) < 32) throw new StoredDataError(path);
+-  }
+-};
++// Keep the same Unicode length and whitespace/control exclusions in one scan.
++// Dense occurrence histories repeat these checks for every stored habit ID.
++// eslint-disable-next-line no-control-regex -- Explicitly reject the existing U+0000–U+001F range.
++export const id = string(160, /^[^\s\x00-\x1f]+$/u);
+ export const date: Check = (v, p) => {
+   string(10, /^\d{4}-\d{2}-\d{2}$/)(v, p);
+   if (typeof v !== "string" || !Number.isFinite(Date.parse(v)) || new Date(v).toISOString().slice(0, 10) !== v) throw new StoredDataError(p);
+--- a/tests/validation.test.ts
++++ b/tests/validation.test.ts
+@@ -84,3 +84,25 @@
+   for (const value of [{ name: "a" }, { name: "abc", count: 1 }, { name: "a", count: 3 }, [], null]) assert.throws(() => check(value, "row"), StoredDataError);
+   assert.throws(() => check({ name: "a", count: -1 }, "row"), error => error instanceof StoredDataError && error.path === "row.count");
+ });
++
++test("stored IDs reject whitespace and controls at every position while retaining Unicode identifiers", () => {
++  const check = shape({ record: shape({ id }) });
++  const whitespace = [0x20, 0x85, 0xa0, 0x1680, 0x2000, 0x2001, 0x2002, 0x2003, 0x2004, 0x2005,
++    0x2006, 0x2007, 0x2008, 0x2009, 0x200a, 0x2028, 0x2029, 0x202f, 0x205f, 0x3000, 0xfeff];
++  // U+0085 is not ECMAScript whitespace; existing identifiers containing it survive.
++  for (const code of [...Array.from({ length: 32 }, (_, i) => i), ...whitespace.filter(c => c !== 0x85)]) {
++    const character = String.fromCodePoint(code);
++    for (const value of [character + "id", "i" + character + "d", "id" + character]) {
++      assert.throws(() => check({ record: { id: value } }, "profile"), error =>
++        error instanceof StoredDataError && error.path === "profile.record.id");
++    }
++  }
++  for (const value of ["привычка", "odat-oʻqish", "a\u0085b", "a\u200bb", "a\u200db", "a\u007fb", "\ud800", "🌱".repeat(160)]) {
++    const row = { record: { id: value }, extension: "retain" };
++    check(row, "profile"); assert.equal(row.record.id, value); assert.equal(row.extension, "retain");
++  }
++  for (const value of ["", "🌱".repeat(161), 12, null, undefined]) {
++    assert.throws(() => check({ record: { id: value } }, "profile"), error =>
++      error instanceof StoredDataError && error.path === "profile.record.id");
++  }
++});

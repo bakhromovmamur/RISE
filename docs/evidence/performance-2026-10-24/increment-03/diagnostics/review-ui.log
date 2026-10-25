@@ -1,0 +1,137 @@
+[WebServer] (node:63622) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:63623) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls (6.6s)
+(node:63655) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [webkit] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls (7.2s)
+(node:63677) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [firefox] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls (7.7s)
+
+
+  1) [chromium] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.reviewer')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.reviewer') with timeout 5000ms
+      - waiting for locator('.reviewer')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      17 |   await page.goto("/");
+      18 |   await expect(page.getByRole("tab", { name: "Today", exact: true })).toBeVisible();
+    > 19 |   await expect(page.locator(".reviewer")).toHaveCount(0);
+         |                                           ^
+      20 |   await expect(page.locator('[data-storage-status="saved"]')).toBeVisible();
+      21 |   const card = page.locator(".priority-list article").filter({ has: page.getByRole("button", { name: "View Synthetic habit 0", exact: true }) });
+      22 |   const check = card.getByRole("button", { name: /Log 20 pages/ });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.reviewer')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.reviewer') with timeout 5000ms
+      - waiting for locator('.reviewer')
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      17 |   await page.goto("/");
+      18 |   await expect(page.getByRole("tab", { name: "Today", exact: true })).toBeVisible();
+    > 19 |   await expect(page.locator(".reviewer")).toHaveCount(0);
+         |                                           ^
+      20 |   await expect(page.locator('[data-storage-status="saved"]')).toBeVisible();
+      21 |   const card = page.locator(".priority-list article").filter({ has: page.getByRole("button", { name: "View Synthetic habit 0", exact: true }) });
+      22 |   const check = card.getByRole("button", { name: /Log 20 pages/ });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.reviewer')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.reviewer') with timeout 5000ms
+      - waiting for locator('.reviewer')
+        13 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      17 |   await page.goto("/");
+      18 |   await expect(page.getByRole("tab", { name: "Today", exact: true })).toBeVisible();
+    > 19 |   await expect(page.locator(".reviewer")).toHaveCount(0);
+         |                                           ^
+      20 |   await expect(page.locator('[data-storage-status="saved"]')).toBeVisible();
+      21 |   const card = page.locator(".priority-list article").filter({ has: page.getByRole("button", { name: "View Synthetic habit 0", exact: true }) });
+      22 |   const check = card.getByRole("button", { name: /Log 20 pages/ });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls 
+    [webkit] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls 
+    [firefox] › tests/performance/feedback.performance.spec.ts:7:1 › dense Today check-in measures visible feedback and durable status without reviewer controls 

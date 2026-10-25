@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-25T13:26:25.558588+00:00",
+  "scope": "local filesystem-only regression; no release packages installed/built/activated, no database/browser run",
+  "commands": [
+    {
+      "command": "node --import tsx --test --test-name-pattern='failed build cleanup' tests/release.test.ts",
+      "implementation": "original cleanup extracted without behavior change",
+      "exitCode": 1,
+      "failed": 1,
+      "symptom": "EACCES deleting a sealed temporary directory"
+    },
+    {
+      "command": "node --import tsx --test tests/release.test.ts",
+      "implementation": "corrected",
+      "exitCode": 0,
+      "passed": 5,
+      "failed": 0
+    },
+    {
+      "command": "npx oxlint scripts/infra/release/package.ts scripts/infra/release.ts tests/release.test.ts --deny-warnings",
+      "exitCode": 0
+    }
+  ],
+  "cloudProvisioning": "pending",
+  "savedProfilesAccessed": false,
+  "retainedReleasePackagesRemoved": false
+}

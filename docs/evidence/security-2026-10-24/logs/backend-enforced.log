@@ -1,0 +1,124 @@
+
+> rise-prototype@1.0.0 test:backend
+> playwright test --config playwright.infrastructure.config.ts
+
+[WebServer] (node:5216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 15 tests using 1 worker
+
+(node:5218) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.3s)
+  ✓   2 [chromium] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (597ms)
+  ✓   3 [chromium] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (42ms)
+  ✓   4 [chromium] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.3s)
+  ✘   5 [chromium] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement (519ms)
+(node:5232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [webkit] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.3s)
+  ✓   7 [webkit] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (501ms)
+  ✓   8 [webkit] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (37ms)
+  ✓   9 [webkit] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.4s)
+  ✘  10 [webkit] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement (492ms)
+(node:5255) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [firefox] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.3s)
+  ✓  12 [firefox] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (622ms)
+  ✓  13 [firefox] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (28ms)
+  ✓  14 [firefox] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.7s)
+  ✘  15 [firefox] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement (514ms)
+
+
+  1) [chromium] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+
+    Error: expect(received).toBeNull()
+
+    Received: "eval"
+
+      82 |     return { executed: document.documentElement.dataset[marker] ?? null, evaluationBlocked, baseUnchanged, violations };
+      83 |   });
+    > 84 |   expect(result.executed).toBeNull();
+         |                           ^
+      85 |   expect(result.evaluationBlocked).toBe(true); expect(result.baseUnchanged).toBe(true);
+      86 |   expect(result.violations.some(name => name.startsWith("script-src"))).toBe(true);
+      87 |   expect(result.violations).toContain("base-uri");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:84:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+
+    Error: expect(received).toBeNull()
+
+    Received: "eval"
+
+      82 |     return { executed: document.documentElement.dataset[marker] ?? null, evaluationBlocked, baseUnchanged, violations };
+      83 |   });
+    > 84 |   expect(result.executed).toBeNull();
+         |                           ^
+      85 |   expect(result.evaluationBlocked).toBe(true); expect(result.baseUnchanged).toBe(true);
+      86 |   expect(result.violations.some(name => name.startsWith("script-src"))).toBe(true);
+      87 |   expect(result.violations).toContain("base-uri");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:84:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+
+    Error: expect(received).toBeNull()
+
+    Received: "eval"
+
+      82 |     return { executed: document.documentElement.dataset[marker] ?? null, evaluationBlocked, baseUnchanged, violations };
+      83 |   });
+    > 84 |   expect(result.executed).toBeNull();
+         |                           ^
+      85 |   expect(result.evaluationBlocked).toBe(true); expect(result.baseUnchanged).toBe(true);
+      86 |   expect(result.violations.some(name => name.startsWith("script-src"))).toBe(true);
+      87 |   expect(result.violations).toContain("base-uri");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:84:27
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-br-3f65d-uation-and-base-replacement-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+    [webkit] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+    [firefox] › tests/infra/security.infrastructure.spec.ts:62:1 › browser policy blocks injected script, handlers, evaluation and base replacement 
+  12 passed (16.9s)

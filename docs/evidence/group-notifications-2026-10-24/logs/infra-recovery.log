@@ -1,0 +1,42 @@
+✔ unmuted legacy preferences never consent; explicit consent is separate, replayable and does not backfill (2460.415791ms)
+✔ real encrypted group dispatch is generic and exact current receiving authorization rejects substitutions (2497.318042ms)
+✔ squad notices reach only other opted-in members; reactions do not create messages and edits cancel prior presentation (2280.85775ms)
+✔ group quiet hours use the group timezone and cannot inherit a prayer quiet-hours override (830.031417ms)
+✔ leave, removal, archive, mute and disabling consent suppress future sends and accepted presentation (2389.897625ms)
+✔ source assignment and archive, installation retirement and logout cancel queued notices (1924.051542ms)
+✔ transient retries, stale leases, duplicate claims and expiry stay bounded and idempotent (739.954666ms)
+✔ message frequency and stopped-worker capacity suppress optional delivery without losing shared edits or replaying later (853.340458ms)
+✔ a removal racing provider acceptance waits for the checked dispatch then suppresses later presentation (512.957542ms)
+✔ notification tables and capabilities force RLS and grant neither shared text nor private identity authority to the sender (404.522375ms)
+✔ failed receipt or notification insertion rolls back content, revision and jobs together (428.971417ms)
+✔ account suppression erases recipient and source-actor notices before primary purge while retaining family content (791.388875ms)
+✔ source departure, subscription rotation and provider retirement invalidate only eligible installations (1520.448ms)
+✖ failed deletion rolls back notice erasure; retained suppression wins over restored notification and consent rows (818.895875ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18814.556542
+
+✖ failing tests:
+
+test at tests/infra/group-notifications.test.ts:1:22645
+✖ failed deletion rolls back notice erasure; retained suppression wins over restored notification and consent rows (818.895875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-notifications.test.ts:152:96)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

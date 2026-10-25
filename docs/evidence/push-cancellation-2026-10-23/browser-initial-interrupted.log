@@ -1,0 +1,90 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts
+
+[WebServer] (node:97174) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:97173) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 30 tests using 1 worker
+
+(node:97175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97175) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓   1 [chromium] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (353ms)
+  ✓   2 [chromium] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (7.6s)
+  ✓   3 [chromium] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.5s)
+  ✓   4 [chromium] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.5s)
+  ✓   5 [chromium] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (1.9s)
+  ✓   6 [chromium] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.4s)
+  ✘   7 [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan (1.0m)
+(node:97517) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (5.4s)
+  ✓   9 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (5.3s)
+  ✓  10 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (4.8s)
+(node:97586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:97586) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  11 [webkit] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (747ms)
+  ✓  12 [webkit] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (8.0s)
+  ✓  13 [webkit] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.8s)
+  ✓  14 [webkit] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.8s)
+  ✓  15 [webkit] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.7s)
+  ✓  16 [webkit] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.7s)
+  ✘  17 [webkit] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan (53.6s)
+
+
+  1) [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('tab', { name: 'You', exact: true })
+
+
+       at ../support/pushBrowser.ts:8
+
+       6 |  for(let n=0;n<5&&await page.getByRole("dialog").count();n++)await page.keyboard.press("Escape");
+       7 |  const t=createTranslator(language);
+    >  8 |  await page.getByRole("tab",{name:t("You","Siz"),exact:true}).click();
+         |                                                               ^
+       9 |  await page.getByRole("button",{name:new RegExp(`^${t("Prayer preferences","Namoz sozlamalari")} `)}).click();
+      10 |  await page.getByRole("button",{name:new RegExp(`^${t("Alarm readiness","Signal tayyorligi")} `)}).click();
+      11 |  await expect(page.getByRole("region",{name:pushText(language)("title"),exact:true})).toBeVisible();
+        at pushSheet (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/support/pushBrowser.ts:8:63)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/installations.push.spec.ts:55:2
+
+    Error Context: test-results/push/browser/installations.push-offline-ba682-ies-without-enabling-a-plan-chromium/error-context.md
+
+  2) [webkit] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan 
+
+    Test was interrupted.
+
+    Error: locator.click: Test ended.
+    Call log:
+      - waiting for getByRole('tab', { name: 'You', exact: true })
+
+
+       at ../support/pushBrowser.ts:8
+
+       6 |  for(let n=0;n<5&&await page.getByRole("dialog").count();n++)await page.keyboard.press("Escape");
+       7 |  const t=createTranslator(language);
+    >  8 |  await page.getByRole("tab",{name:t("You","Siz"),exact:true}).click();
+         |                                                               ^
+       9 |  await page.getByRole("button",{name:new RegExp(`^${t("Prayer preferences","Namoz sozlamalari")} `)}).click();
+      10 |  await page.getByRole("button",{name:new RegExp(`^${t("Alarm readiness","Signal tayyorligi")} `)}).click();
+      11 |  await expect(page.getByRole("region",{name:pushText(language)("title"),exact:true})).toBeVisible();
+        at pushSheet (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/support/pushBrowser.ts:8:63)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/installations.push.spec.ts:55:2
+
+    Error Context: test-results/push/browser/installations.push-offline-ba682-ies-without-enabling-a-plan-webkit/error-context.md
+
+  1 failed
+    [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan 
+  1 interrupted
+    [webkit] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan 
+  13 did not run
+  15 passed (2.7m)

@@ -1,0 +1,48 @@
+✔ maximum retained invitation history remains owner-only and paged while cleanup is stopped (5507.389ms)
+✔ maximum invitation frequency rejects the next new action while an exact accepted retry remains replayable (2534.882625ms)
+✔ invitation owner-set policy rechecks current membership and active sessions even with forged metadata (497.574125ms)
+✔ unmuted legacy preferences never consent; explicit consent is separate, replayable and does not backfill (996.925042ms)
+✔ real encrypted group dispatch is generic and exact current receiving authorization rejects substitutions (608.706459ms)
+✔ squad notices reach only other opted-in members; reactions do not create messages and edits cancel prior presentation (789.364041ms)
+✔ group quiet hours use the group timezone and cannot inherit a prayer quiet-hours override (1332.15825ms)
+✔ leave, removal, archive, mute and disabling consent suppress future sends and accepted presentation (2365.557917ms)
+✔ source assignment and archive, installation retirement and logout cancel queued notices (1556.515542ms)
+✔ transient retries, stale leases, duplicate claims and expiry stay bounded and idempotent (730.887334ms)
+✔ message frequency and stopped-worker capacity suppress optional delivery without losing shared edits or replaying later (576.27675ms)
+✔ a removal racing provider acceptance waits for the checked dispatch then suppresses later presentation (517.811792ms)
+✔ notification tables and capabilities force RLS and grant neither shared text nor private identity authority to the sender (468.947167ms)
+✔ failed receipt or notification insertion rolls back content, revision and jobs together (620.102958ms)
+✔ account suppression erases recipient and source-actor notices before primary purge while retaining family content (1080.540958ms)
+✔ source departure, subscription rotation and provider retirement invalidate only eligible installations (2263.07725ms)
+✔ failed deletion rolls back notice erasure; retained suppression wins over restored notification and consent rows (1118.122292ms)
+✔ both local stacks apply the committed migrations and expose the expected restricted environment (1104.701416ms)
+✔ each runtime identity can read its environment but cannot administer data, Auth or other roles (59.003333ms)
+✔ crossed databases, installation markers and privileged connections fail readiness (18.920334ms)
+✔ private local files are protected and never present in the web build (51.559917ms)
+✔ browser-safe local entry verifies the retained marker and rejects crossed installation identity (24.318ms)
+✔ BFF delivers the existing production files byte-for-byte under its own origin (78.138708ms)
+✔ synthetic Auth users are isolated; foreign JWTs and administrator tokens are refused (281.933458ms)
+✔ startup refuses a mismatched installation before opening its listener (185.397167ms)
+✔ rotating a worker login invalidates its old password without changing the BFF identity (27.657125ms)
+✔ unexpected direct grants on the BFF role fail readiness instead of expanding access (12.605709ms)
+✔ recent-auth export retains current and retired records, dates and derived XP (514.768875ms)
+✔ expired authentication blocks export/deletion; purpose-bound email reauthentication rotates cookies (1388.825042ms)
+✔ forged owners, missing confirmation, stale heads and CSRF leave records and sessions intact (195.468333ms)
+✔ deletion revokes every session and JWT immediately; lost-reply retry is idempotent and another owner survives (1544.35625ms)
+✔ failed enqueue rolls back suppression; failed purge retains suppression and retries after restart (190.385417ms)
+✔ a missing notification cleanup hook fails closed without deleting an account or its real job table (163.048917ms)
+✔ ordinary BFF cannot run purge, remove the ledger or read managed Auth; lifecycle cannot read journeys (13.772375ms)
+✔ retention starts after primary purge; unpurged and recently purged suppression survive cleanup (176.177291ms)
+✔ backup deletion replay suppresses a restored synthetic identity before purge and never restores access (288.635625ms)
+✔ lifecycle session-hash access is limited to suppressed subjects and never includes credential columns (136.207417ms)
+✔ a browser can deliberately sign in after primary purge without reviving its deleted identity (233.790417ms)
+✔ concurrent command and deletion either preserve the new revision for review or reject the revoked writer (1364.309916ms)
+✔ populated account purge removes historical children, staging, receipts and tokens while preserving another owner (492.726292ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33214.625

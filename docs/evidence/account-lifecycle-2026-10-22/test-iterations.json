@@ -1,0 +1,35 @@
+{
+  "scope": "DATA-04 local, synthetic data only",
+  "database": {
+    "initialFindings": [
+      "BFF Auth schema lookup denied; reused verified transaction claims",
+      "Managed Auth DELETE delegation unavailable; isolated supported admin purge",
+      "Provider successful deletion returns empty JSON; confirmed absence separately",
+      "Populated child history needed explicit profile-root cascade foreign keys"
+    ],
+    "finalIntegrationCases": 59,
+    "backupDrill": "One synthetic Auth/profile/session snapshot; access never enabled between restoration and authoritative replay"
+  },
+  "advisors": {
+    "initial": "One freshness-policy auth_rls_initplan warning",
+    "correction": "Scalar JWT claim lookup; additive migration",
+    "final": "Both environments report no warn/error issues"
+  },
+  "browser": {
+    "initialFocused": "New lifecycle functional/layout checks passed across three engines after correcting the test fault probe and populated purge path",
+    "fullRunFinding": "One existing Chromium remembered-offline reload exceeded 90 seconds; other 68 cases passed",
+    "testCorrection": "Bounded independent reconnect controls; DOM-ready reload plus explicit restored-account assertions",
+    "focusedOffline": "Three engines passed",
+    "focusRace": "A later two-tab lost-reply case exposed metadata focus refresh interrupting the active deletion request; coordinated action/refresh and one-time cross-tab deletion notification fixed the cause",
+    "finalFocused": "All 21 DATA-04 cases/layouts passed across three engines before the final full regression run",
+    "final": "69 full sync, 21 auth, 9 BFF, 378 journey, 39 production, 42 PWA and 720 visual comparisons passed; zero skipped/flaky results",
+    "capturingPolicy": "No real OTP/session traces, videos or automatic screenshots; images are visual-only metadata fixtures"
+  },
+  "visual": {
+    "rounds": "One batched inspection; one supporting-state fix batch and final confirmation",
+    "baselineUpdates": false
+  },
+  "profile4173Read": false,
+  "cloudProvisioned": false,
+  "finalTooling": "Final ledger preflight and populated staging fixture also passed lint/types, all 59 DB integrations and protected CLI/watcher smoke"
+}

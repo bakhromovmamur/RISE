@@ -1,0 +1,121 @@
+--- before/src/contracts/personalRecords.ts
++++ after/src/contracts/personalRecords.ts
+@@ -42,16 +42,29 @@
+ const str = (row: Row, key: string) => { const value = row[key]; if (typeof value !== "string") throw new Error("invalid_personal_record"); return value; };
+ const data = (row: Row) => object(row.data, "personal-record");
+ function single(records: Records, name: string) { if (records[name].length !== 1) throw new Error("incomplete_personal_records"); return records[name][0]; }
++/** Group once while retaining the database/cache row order within each parent. */
++function byParent(rows: Row[], key: string): Map<unknown, Row[]> {
++  const groups = new Map<unknown, Row[]>();
++  for (const row of rows) {
++    const parent = row[key], group = groups.get(parent);
++    if (group) group.push(row); else groups.set(parent, [row]);
++  }
++  return groups;
++}
+ 
+ /** A transient domain model, rebuilt from independent relational records. Never stored or accepted as a request. */
+ export function hydrate(records: Records): State {
+   const profile = single(records, "profiles"), preferences = single(records, "account_preferences");
+   const zone = str(profile, "timezone"), started = str(profile, "started_on"), settings = data(single(records, "prayer_settings"));
+-  const days = Object.fromEntries(records.habit_days.map(day => [str(day, "date"), records.habit_occurrences.filter(o => o.date === day.date).map(o => ({ ...data(o), habitId: o.habit_id, ...(o.check_kind === null ? {} : { check: o.check_kind }) }))]));
++  const occurrences = byParent(records.habit_occurrences, "date"), versions = byParent(records.habit_versions, "habit_id");
++  const windows = byParent(records.prayer_windows, "date"), reports = byParent(records.prayer_records, "date");
++  const goalHabits = byParent(records.goal_habits, "goal_id"), milestones = byParent(records.goal_milestones, "goal_id");
++  const priorities = byParent(records.daily_priorities, "date");
++  const days = Object.fromEntries(records.habit_days.map(day => [str(day, "date"), (occurrences.get(day.date) ?? []).map(o => ({ ...data(o), habitId: o.habit_id, ...(o.check_kind === null ? {} : { check: o.check_kind }) }))]));
+   const prayerDays = Object.fromEntries(records.prayer_days.map(day => [str(day, "date"), { ...data(day), entries: Object.fromEntries(PRAYERS.map(({ id }) => {
+-    const window = records.prayer_windows.find(w => w.date === day.date && w.prayer === id);
++    const window = windows.get(day.date)?.find(w => w.prayer === id);
+     if (!window) throw new Error("missing_prayer_window");
+-    const report = records.prayer_records.find(r => r.date === day.date && r.prayer === id);
++    const report = reports.get(day.date)?.find(r => r.prayer === id);
+     return [id, { ...data(window), ...(report ? { ...data(report), check: report.check_kind } : {}) }];
+   })) }]));
+   const work = records.saved_work_breaks.find(row => row.active === true);
+@@ -59,17 +72,17 @@
+   const candidate: unknown = {
+     ...base, name: profile.name, timezone: zone, demoDate: started, onboarded: profile.onboarded,
+     prefs: data(preferences), equipped: preferences.equipped_xp, selectedRewardId: preferences.selected_reward_id,
+-    habits: records.habits.map(h => ({ ...data(h), id: h.id, versions: records.habit_versions.filter(v => v.habit_id === h.id).map(v => ({ ...data(v), effective: v.effective })) })),
++    habits: records.habits.map(h => ({ ...data(h), id: h.id, versions: (versions.get(h.id) ?? []).map(v => ({ ...data(v), effective: v.effective })) })),
+     days, claimed: records.cosmetic_claims.map(row => row.xp),
+     goals: records.goals.map(g => ({ ...data(g), id: g.id,
+-      habitIds: records.goal_habits.filter(h => h.goal_id === g.id).map(h => h.habit_id),
+-      milestones: records.goal_milestones.filter(m => m.goal_id === g.id && m.retired === false).map(m => ({ ...data(m), id: m.id })),
++      habitIds: (goalHabits.get(g.id) ?? []).map(h => h.habit_id),
++      milestones: (milestones.get(g.id) ?? []).filter(m => m.retired === false).map(m => ({ ...data(m), id: m.id })),
+     })),
+     personalRewards: records.personal_rewards.map(r => ({ ...data(r), id: r.id,
+       condition: r.condition_kind === "goal" ? { kind: "goal", goalId: r.goal_id } : { kind: "weekly", week: r.week, target: Number(r.target) },
+       ...(r.previous_attempt_id === null ? {} : { previousAttemptId: r.previous_attempt_id }),
+     })),
+-    dailyPriorities: Object.fromEntries(records.priority_days.map(day => [str(day, "date"), records.daily_priorities.filter(p => p.date === day.date).map(p => p.kind === "habit" ? { kind: "habit", habitId: p.habit_id } : p.kind === "task" ? {kind:"task",groupId:p.group_id,taskId:p.task_id,date:p.task_date} : { kind: "milestone", goalId: p.goal_id, milestoneId: p.milestone_id })])),
++    dailyPriorities: Object.fromEntries(records.priority_days.map(day => [str(day, "date"), (priorities.get(day.date) ?? []).map(p => p.kind === "habit" ? { kind: "habit", habitId: p.habit_id } : p.kind === "task" ? {kind:"task",groupId:p.group_id,taskId:p.task_id,date:p.task_date} : { kind: "milestone", goalId: p.goal_id, milestoneId: p.milestone_id })])),
+     reflections: Object.fromEntries(records.reflections.map(r => [str(r, "date"), data(r)])),
+     prayers: { ...makePrayerState("fresh", typeof settings.started==="string"?settings.started:started, zone), preferences: settings.preferences, fajr: settings.fajr, days: prayerDays,
+       prepared: Object.fromEntries(records.fajr_plans.map(p => [str(p, "date"), data(p)])),
+--- before/src/data/storedState.ts
++++ after/src/data/storedState.ts
+@@ -52,6 +52,10 @@
+ function unique(ids: string[], path: string) { if (new Set(ids).size !== ids.length) throw new v.StoredDataError(path); }
+ export function validateState(value: unknown): asserts value is State {
+   v.validateJson(value);
++  validateProfile(value);
++}
++/** JSON safety was already checked by validateState or the bounded JSON parser. */
++function validateProfile(value: unknown): asserts value is State {
+   stateShape(value, "profile");
+   // All fields above have been checked before using the domain's typed representation.
+   const s = value as State;
+@@ -73,5 +77,5 @@
+   // Historical priority/reward references may outlive edited milestones. Preserve them.
+ }
+ export function parseStoredState(raw: string): State {
+-  const value = v.parseJson(raw); validateState(value); return value;
++  const value = v.parseJson(raw); validateProfile(value); return value;
+ }
+--- before/src/data/validation.ts
++++ after/src/data/validation.ts
+@@ -65,8 +65,11 @@
+     if (typeof v !== "object" || !v) throw new StoredDataError("JSON");
+     if (!Array.isArray(v) && ++records > 250000) throw new StoredDataError("record limit");
+     if (!Array.isArray(v)) object(v, "JSON");
+-    for (const [k, descriptor] of Object.entries(Object.getOwnPropertyDescriptors(v))) {
+-      if (["__proto__", "prototype", "constructor"].includes(k) || !("value" in descriptor)) throw new StoredDataError("unsafe key");
++    // Inspect descriptors without invoking accessors or allocating a descriptor
++    // dictionary plus entry pairs for every record in a large profile.
++    for (const k of Object.getOwnPropertyNames(v)) {
++      const descriptor = Object.getOwnPropertyDescriptor(v, k);
++      if (!descriptor || k === "__proto__" || k === "prototype" || k === "constructor" || !("value" in descriptor)) throw new StoredDataError("unsafe key");
+       visit(descriptor.value, depth + 1);
+     }
+   };
+--- before/src/domain/commands.ts
++++ after/src/domain/commands.ts
+@@ -1,4 +1,4 @@
+-import { archiveHabit, checkIn, correctHabitRecord, ensureDays, type State } from "../model";
++import { archiveHabit, checkIn, correctHabitRecord, type State } from "../model";
+ import { changeGoalStatus, completeMilestone, enjoyReward, setPriorities, priorityKey } from "../developmentModel";
+ import { getPrayerDay, recordPrayer, prayerMoment } from "../prayerModel";
+ import { acknowledgeFajr } from "../prayerSchedule";
+@@ -26,11 +26,15 @@
+   const date = context.date;
+   switch (c.kind) {
+     case "habit.check": case "habit.correct": {
+-      const calendar = c.kind === "habit.check" ? ensureDays(s, date) : s;
+-      const row = calendar.days[c.date]?.find(o => o.habitId === c.habitId);
++      requireRecord(c.kind === "habit.check" ? c.date === date : c.date <= date);
++      // These reducers are pure and check-in materializes its calendar already.
++      // Inspect that result instead of cloning/materializing the history twice.
++      const next = c.kind === "habit.check" ? checkIn(s, c.habitId, c.check, c.date, date) : correctHabitRecord(s, c.date, c.habitId, c.check, date);
++      // Undo can remove today's archived occurrence; its original record remains
++      // the authority for validating that explicit correction.
++      const row = s.days[c.date]?.find(o => o.habitId === c.habitId) ?? next.days[c.date]?.find(o => o.habitId === c.habitId);
+       requireRecord(row && (c.check !== "tiny" || row.tiny !== null));
+-      requireRecord(c.kind === "habit.check" ? c.date === date : c.date <= date);
+-      return c.kind === "habit.check" ? checkIn(s, c.habitId, c.check, c.date, date) : correctHabitRecord(s, c.date, c.habitId, c.check, date);
++      return next;
+     }
+     case "habit.archive":
+       requireRecord(s.habits.some(h => h.id === c.habitId));

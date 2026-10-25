@@ -1,0 +1,44 @@
+[WebServer] (node:60462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:60463) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/performance/local.performance.spec.ts:7:1 › dense two-year profile retains check, Undo and draft durability while measuring the real adapter (11.9s)
+(node:60490) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [webkit] › tests/performance/local.performance.spec.ts:7:1 › dense two-year profile retains check, Undo and draft durability while measuring the real adapter (11.9s)
+(node:60522) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [firefox] › tests/performance/local.performance.spec.ts:7:1 › dense two-year profile retains check, Undo and draft durability while measuring the real adapter (3.2m)
+
+
+  1) [firefox] › tests/performance/local.performance.spec.ts:7:1 › dense two-year profile retains check, Undo and draft durability while measuring the real adapter 
+
+    Test timeout of 180000ms exceeded.
+
+    Error: page.evaluate: Test timeout of 180000ms exceeded.
+
+       9 |   await page.goto("/?storage-test=1");
+      10 |   await expect(page.getByText("Storage test harness ready.")).toBeVisible();
+    > 11 |   const result = await page.evaluate(async ({ state, date, draft }) => {
+         |                             ^
+      12 |     const api = window.riseStorageTest, store = await api.openDeviceStore();
+      13 |     // A new isolated IndexedDB profile avoids the unrelated localStorage quota.
+      14 |     await store.initialize(null, await api.prepareProfile(null, state)); store.close();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/local.performance.spec.ts:11:29
+
+    Error Context: test-results/performance/browser/local.performance-dense-tw-66c08--measuring-the-real-adapter-firefox/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/performance/browser/local.performance-dense-tw-66c08--measuring-the-real-adapter-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/performance/browser/local.performance-dense-tw-66c08--measuring-the-real-adapter-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [firefox] › tests/performance/local.performance.spec.ts:7:1 › dense two-year profile retains check, Undo and draft durability while measuring the real adapter 
+  2 passed (3.6m)

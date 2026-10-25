@@ -1,0 +1,102 @@
+{
+  "task": "DATA-03",
+  "status": "passed",
+  "recordedAt": "2026-10-21T12:59:38.206860+00:00",
+  "requirements": [
+    "PRD-05",
+    "PRD-06",
+    "PRD-07",
+    "PRD-08",
+    "PRD-12",
+    "PRD-16",
+    "PRD-19"
+  ],
+  "environment": {
+    "os": "macOS 26.6.2 (25G83)",
+    "architecture": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "commands": {
+    "npm run check": {
+      "passed": true,
+      "unitDomainToolingTests": 104,
+      "lint": "passed",
+      "types": "passed",
+      "productionBuild": "passed",
+      "reviewBuild": "passed"
+    },
+    "npm run test:browser": {
+      "startTime": "2026-10-21T12:52:26.349Z",
+      "duration": 322125.428,
+      "expected": 297,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "npm run test:production": {
+      "startTime": "2026-10-21T12:52:34.622Z",
+      "duration": 18264.425,
+      "expected": 27,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "npm run test:visual": {
+      "startTime": "2026-10-21T12:57:28.796Z",
+      "duration": 78689.71,
+      "expected": 48,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "screenshots": 720,
+      "threshold": 0,
+      "maxDiffPixels": 0,
+      "goldensUpdated": false
+    }
+  },
+  "isolation": {
+    "origins": [
+      "http://127.0.0.1:4180",
+      "http://127.0.0.1:4181",
+      "http://127.0.0.1:4182"
+    ],
+    "personal4173Accessed": false,
+    "externalBrowserRequests": "blocked by fixture",
+    "realProfilesUsed": false
+  },
+  "preservation": {
+    "databaseVersion": 1,
+    "repositoryFormats": [
+      1,
+      2
+    ],
+    "domainSchema": 4,
+    "portableBackupVersion": 1,
+    "dependenciesChanged": false,
+    "cssArtworkDesignChanged": false,
+    "sourceFilesMissing": false
+  },
+  "verificationWorkspace": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker",
+  "projectWorkspace": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker",
+  "verifiedInputCount": 839,
+  "inputMismatches": [],
+  "executionNotes": [
+    "Earlier verification during iCloud offloading used an isolated npm ci --offline with unchanged manifests; inputs matched the rehydrated project.",
+    "All final check, full browser, production and visual runs were executed directly in the project after the inline confirmation guard was added.",
+    "The final browser suite includes a real IndexedDB transaction-lock test proving no Fajr save confirmation appears before the pending commit completes."
+  ],
+  "limitations": [
+    "Physical mobile devices and OS power-loss durability not tested.",
+    "Cloud sync, authenticated collaboration, PWA background delivery and deployment remain separate tasks.",
+    "Local private command receipts are retained until explicit clear; compaction/retention remains future work.",
+    "Existing large JavaScript bundle warning remains."
+  ],
+  "earlierTemporaryVerificationWorkspace": "/var/folders/4f/7x5bzhzj5pj6sd331bz4110h0000gn/T/rise-data03-verification-1tyxz4xi"
+}

@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/squad-layout.groups.spec.ts
+
+[WebServer] (node:12932) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:12933) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (15.9s)
+  ✓  2 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (15.4s)
+  ✓  3 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (15.5s)
+(node:13000) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (15.7s)
+  ✓  5 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (15.3s)
+  ✓  6 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (15.1s)
+(node:13088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (19.6s)
+  ✓  8 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (19.6s)
+  ✓  9 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (19.7s)
+
+  9 passed (2.6m)

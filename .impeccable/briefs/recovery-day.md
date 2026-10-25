@@ -1,0 +1,22 @@
+# A difficult day in RISE
+
+Mode: Operate. Refine the existing four-tab prototype without a new visual direction.
+
+REQUEST: Walk through missed Fajr, distraction by vibecoding and unfinished habits; show recovery without guilt or erased progress and fix confusing steps.
+
+EVIDENCE: Advanced the completed full-day rehearsal to the next day without resetting its 280 XP, scarf, goal milestone or reward history. An unlogged Fajr remained pending until explicitly marked missed. The record then emphasized zero streak and a primary on-time correction without a helpful return. An open Asr save form remained on its old step-away prompt after its window ended. Today's smaller-plan and tiny-habit capabilities existed but were not offered in that context.
+
+DIRECTION: Preserve porcelain/forest/mint, system type, Pip and existing sheets. Make missed/later prayer records honest and supportive, with a direct Today return and explicit corrections. Adapt expired work breaks in place without losing drafts or recording prayers. Offer a tiny first step and the existing priority editor when a day needs easing. Explain that unfinished habit occurrences remain in history rather than becoming an automatic backlog. Streak breaks remain truthful; records, XP, earned rewards and goals are preserved.
+
+BOUNDARY: No schema/storage/domain-rule changes, automatic forgiveness, invented completion, spiritual judgment, real alarms, services or permission requests. Use a labelled Difficult day fixture with prior fictional accomplishments and initially unrecorded Fajr. Keep the primary 4173 profile intact. Reviewer clocks change time only.
+
+FINISH: Continuous isolated browser rehearsal through the next morning; meaningful tests for record/correction, expired reminders, drafts, lightened priorities, unchanged earnings and next-day behavior. Bounded phone/desktop/dark/large-text inspection, independent finish review and docs update; walkthrough, screenshots and refreshed ZIP.
+
+
+COMPLETION — 2026-10-21: Missed/later prayer detail now gives an honest streak explanation, a direct Today return and clearly labelled corrections. Expired save/away work-break views update in place and retain notes; returning can leave prayer unlogged. Today offers the tiny action first and the existing priority editor to lighten a plan, with bedtime copy explaining date-specific unfinished history and a new scheduled plan tomorrow. No schema, storage-key or domain-rule change; prior XP, goals, earned rewards and independent prayer history remain intact.
+
+REHEARSAL: The Difficult day fixture was loaded once on isolated port 4174, starting Tuesday Oct 20 at 08:00 with 280 XP and labelled prior accomplishments. The continuous path covered missed Fajr, on-time Dhuhr, an expired open Asr note, explicit later Asr, on-time Maghrib/Isha, one tiny reading check-in, retained earned coffee, a dated Fajr plan, reload and next-morning on-time Fajr. Final state is Wednesday Oct 21 at 05:35 with 290 XP. Fajr restarted at one with its best retained. Unfinished habits remained in Tuesday history without a duplicate backlog. The main port-4173 profile was preserved and confirmed by the owner’s read-only reload.
+
+VERIFICATION: Owner-reported 53 domain and 50 Chromium browser tests passed (103 total); full browser run 31.7 s. After the final chronological checkpoint/window-time correction, build index-B4wVnNki.js / index-BOhwQIzY.css and all three recovery scenarios passed again (11.7 s). Fourteen actual in-app-browser captures cover requested 375/393/430, desktop, light/dark and English 200% text; the manifest records actual dimensions and capture builds. The owner inspected all images in one bounded pass. Fresh independent finish review returned ship with no material findings within this scope. The reviewer opened all 14 actual images, verified dimensions/hashes/public-copy identity and inspected relevant source/tests; tests and the live rehearsal were not rerun.
+
+DOCUMENTATION: README.md, app/workspace PRODUCT.md, VERIFICATION.md and screens/README.md now describe the recovery flow and current shared rehearsal state. The PRODUCT.md copies are byte-identical. DIFFICULT-DAY-WALKTHROUGH.md is the parent-owned replay guide. Only the stale current-origin sentence in FULL-DAY-WALKTHROUGH.md was clarified; its completed-day history remains. The documentation check records file/link validation and limits. ZIP refresh remains the implementation owner’s delivery step. DESIGN.md, the design sidecar, product code, tests and artwork were not changed by the documenter.

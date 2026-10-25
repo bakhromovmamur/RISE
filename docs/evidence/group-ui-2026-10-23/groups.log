@@ -1,0 +1,44 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts
+
+[WebServer] (node:78909) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 27 tests using 1 worker
+
+(node:78917) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (14.3s)
+  ✓   2 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (13.7s)
+  ✓   3 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (13.4s)
+  ✓   4 [chromium] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.8s)
+  ✓   5 [chromium] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.7s)
+  ✓   6 [chromium] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.3s)
+  ✓   7 [chromium] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.6s)
+  ✓   8 [chromium] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.6s)
+  ✓   9 [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.5s)
+(node:79015) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (15.3s)
+  ✓  11 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (13.9s)
+  ✓  12 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (13.6s)
+  ✓  13 [webkit] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.6s)
+  ✓  14 [webkit] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (4.0s)
+  ✓  15 [webkit] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.4s)
+  ✓  16 [webkit] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.5s)
+  ✓  17 [webkit] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.5s)
+  ✓  18 [webkit] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.5s)
+(node:79118) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (17.4s)
+  ✓  20 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (16.7s)
+  ✓  21 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (16.8s)
+  ✓  22 [firefox] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (9.4s)
+  ✓  23 [firefox] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (5.0s)
+  ✓  24 [firefox] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (6.2s)
+  ✓  25 [firefox] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (8.3s)
+  ✓  26 [firefox] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (4.4s)
+  ✓  27 [firefox] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (4.7s)
+
+  27 passed (4.0m)

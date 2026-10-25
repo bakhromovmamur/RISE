@@ -1,0 +1,41 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts
+
+[WebServer] (node:93179) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 24 tests using 1 worker
+
+(node:93180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (7.8s)
+  ✓   2 [chromium] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.4s)
+  ✓   3 [chromium] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.6s)
+  ✓   4 [chromium] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.0s)
+  ✓   5 [chromium] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.5s)
+  ✓   6 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (3.2s)
+  ✓   7 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (3.2s)
+  ✓   8 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (3.2s)
+(node:93254) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [webkit] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (8.6s)
+  ✓  10 [webkit] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.4s)
+  ✓  11 [webkit] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (1.6s)
+  ✓  12 [webkit] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.0s)
+  ✓  13 [webkit] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.5s)
+  ✓  14 [webkit] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (2.5s)
+  ✓  15 [webkit] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (2.5s)
+  ✓  16 [webkit] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (2.6s)
+(node:93334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [firefox] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (8.7s)
+  ✓  18 [firefox] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (1.8s)
+  ✓  19 [firefox] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (2.5s)
+  ✓  20 [firefox] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (2.6s)
+  ✓  21 [firefox] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (1.8s)
+  ✓  22 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (3.2s)
+  ✓  23 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (3.2s)
+  ✓  24 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (2.8s)
+
+  24 passed (1.3m)

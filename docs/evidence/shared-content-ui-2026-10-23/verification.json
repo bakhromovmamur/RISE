@@ -1,0 +1,302 @@
+{
+  "date": "2026-10-23",
+  "task": "GROUP-02",
+  "status": "REVIEW",
+  "requirements": [
+    "PRD-06",
+    "PRD-13",
+    "PRD-04",
+    "PRD-17"
+  ],
+  "environment": {
+    "os": "Darwin arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    },
+    "BFFBrowserPort": 4191,
+    "cloudProvisioned": false,
+    "mainPreview4173Accessed": false,
+    "externalMessagesOrInvitations": false
+  },
+  "earlierGroupRunSourceHashes": {
+    "src/sync/session.ts": "41fead4111ce288f01081008e5e0551d9ab284549a1de00fe2712056f6a4dc71",
+    "tests/groups/cache-race.groups.spec.ts": "9777f06eea067ad63c7922b60d9c324edae447629131afec2aeb5f70ab46042d",
+    "tests/groups/content-layout.groups.spec.ts": "cb9c6637a033b045fc1dfdcfb0398cc6e80c6a2cdf283065a2496b34f05249e6",
+    "src/groups/SharedScreens.tsx": "e330202f0db61782699cff34296f0187521946f90690280d0d2937e958195bf0"
+  },
+  "fullRunSourceHashes": {
+    "src/sync/session.ts": "41fead4111ce288f01081008e5e0551d9ab284549a1de00fe2712056f6a4dc71",
+    "tests/groups/cache-race.groups.spec.ts": "a21373e3f65c1c492ac1e7a5d884c910b74d2b6804f93b62b6674ae53acfb136",
+    "tests/groups/content-layout.groups.spec.ts": "022d6a5464eaf7717be7ac2a193722ceb6eef4cc8eddfe149380c24f81d84b2d",
+    "tests/groups/content-pagination.groups.spec.ts": "14d992c5d6fa285f8c04297daf51112ad46a90c7643d25cfbe3be0a8bc24186a",
+    "src/groups/SharedScreens.tsx": "f8f76d96ac147055771606e3da7bb94009939237ba2d82828b7d070b0f1e3610"
+  },
+  "browserStats": {
+    "groups": {
+      "startTime": "2026-10-23T18:31:10.141Z",
+      "duration": 571317.058,
+      "expected": 54,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "sync": {
+      "startTime": "2026-10-23T18:24:21.175Z",
+      "duration": 403111.023,
+      "expected": 69,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "results": {
+    "unitAndTooling": 247,
+    "groups": 54,
+    "realGroupCases": 33,
+    "layoutGroupCases": 21,
+    "sync": 69,
+    "newLayoutStates": 1620,
+    "allGroupLayoutStates": 3060,
+    "safeNewScreenshots": 55,
+    "cleanCaptureCases": 3,
+    "priorScopedRegression": {
+      "visualCases": 48,
+      "frozenComparisons": 720,
+      "productionEntry": 24,
+      "journeyNavigation": 27
+    }
+  },
+  "taskCounts": {
+    "DONE": 10,
+    "IN PROGRESS": 2,
+    "REVIEW": 12,
+    "TODO": 14,
+    "BLOCKED": 0
+  },
+  "sources": {
+    "ARCHITECTURE.md": {
+      "sha256": "c878daa2112241adf99682d9c6252f5535e47739749bad455a43a893d7cd078a",
+      "previousSha256": "8aa9189a7af80f67eaec9d13c6bbbb2d7090db560acc00ce88792df592107114"
+    },
+    "PRODUCT.md": {
+      "sha256": "5700e7a2c03b21ccadc6d1fe3651075efc740d98da660f98d6686c3b765f4e21",
+      "previousSha256": "de8c70c6bc95ce26d3fd04dc91351a092b3411fc05af476a97738c1d05c1ece9"
+    },
+    "README.md": {
+      "sha256": "efef6322148a4eb71c99718ec113fb71e3061aa2919f60dfa172f93ca2556745",
+      "previousSha256": "5697e39965052a099e1b9990aae82decc77b56247e29215005c50a3f4ff3b1dd"
+    },
+    "SECURITY.md": {
+      "sha256": "c93a5b896e9a56acb7125de1f615fc58f0de9e8c00d990722e3f36fa1b116bae",
+      "previousSha256": "b8a99d2ff86d22b95ace8ea6c652564112a27a85eb0c9b2eedea8ebc36a429d2"
+    },
+    "TASKS.md": {
+      "sha256": "76e2e73505603eed8edaca4e981ebbaa1e5f45f58f17511451047a0366fee010",
+      "previousSha256": "f85c45282a2e6d076e4630a1e31c9d8d73877df2dc243d7d18a0be0acdf784f9"
+    },
+    "VERIFICATION.md": {
+      "sha256": "d2a0d14881bea063f2aabccbbd29b5f3f28adfbdb0c2ea4512913f409c0c6d58",
+      "previousSha256": "9cebbc1071a23059b921dc905e3c6e03c3d2ed09c3e8a085e41d781c40e958a0"
+    },
+    "docs/ACCOUNT-SYNC.md": {
+      "sha256": "87db5d43630b1b57cb8da0679e5f69d20d848247c63a8875d8b66a434ad8cf9c",
+      "previousSha256": "f6880acd099045b693f698376a62524c8bbf6012170e92c59a245c16644bdb7d"
+    },
+    "docs/PERSONAL-ACCOUNTS.md": {
+      "sha256": "525941d2b7b95a837828727e0234d512b3eda8f84dea17101d0bdfb9c4bab973",
+      "previousSha256": "eb1fa5b33d1bb46963a1aeabdf4bd34ef5fb2f21abca11ae61dd390df135d8b6"
+    },
+    "docs/SHARED-CONTENT.md": {
+      "sha256": "675752e66be45bb43e5c76183473b9f5f1a74603ca170abf701a53ff472ebe2d",
+      "previousSha256": "ecfdcbdb2438d7d032c3055c6ba7625a9a8fc00b8e3eabb33babb5dd47fb4465"
+    },
+    "docs/SYNC-RECOVERY.md": {
+      "sha256": "4f324163b438d442a80affcf5d17c5821503395811101d645b19caa54be7189e",
+      "previousSha256": "4e9509531f5c431539403c06e19ea2e30c983d48df51601d3b5f69abc7fe2bba"
+    },
+    "src/App.tsx": {
+      "sha256": "ffe06712c07315e72f5f599be14ae9f67e2aae0ad4c76ffdd59ed05b6395ff1e",
+      "previousSha256": "2330d1a56a15cfe37ca0a537b9ed86109d53485584fba00691f27b797c0c6bc7"
+    },
+    "src/Balanced.tsx": {
+      "sha256": "91e2acfccacc75a84145c582a49e66fcc9f7743970513198d8a6a1b0ec58dc2e",
+      "previousSha256": "1f3436a73abb2edaf55afbad91067a816918fdfe4d8ad87a633f087e8aad88b9"
+    },
+    "src/Development.tsx": {
+      "sha256": "3434dc09b5b755c371d55db2c53f68873111b6546b7f9b20ef25356492b76798",
+      "previousSha256": "fb6d01abcea8b9fd09b2194a2c70375431f232cf5b080d420daf699aee8e0a0f"
+    },
+    "src/Groups.tsx": {
+      "sha256": "559c829f9da82af39858345b656938c68ca339c8546977ead3e130afad237841",
+      "previousSha256": "71dab67e157b262b378ee1c413f2bfa4b7f8c3dbfdf9289e7ed4ed71164133d2"
+    },
+    "src/context.tsx": {
+      "sha256": "3bf387a89f9ad97d03ace82f39ad1a7fbb0f0c33c75f66cc52e1c240e8531899",
+      "previousSha256": "f8e6b56577c30dd0994ab072cc51f461a498009561bc15bea07ecbde5636753a"
+    },
+    "src/groups/GroupScreens.tsx": {
+      "sha256": "47de72ab7aab8e31c6c1c044cb799d351f3c65312d47c7c69d5b4472d9e3a492",
+      "previousSha256": "265c12615f8f09601f5f975b6733c38f3830d040eaa349a7d5d8053e9f5e284f"
+    },
+    "src/groups/SharedScreens.tsx": {
+      "sha256": "f8f76d96ac147055771606e3da7bb94009939237ba2d82828b7d070b0f1e3610",
+      "previousSha256": null
+    },
+    "src/groups/content.ts": {
+      "sha256": "cc3cc25ac2226c446863f244c6b98266337623271f7e6fa4a503c46a9227b7ed",
+      "previousSha256": "bcc17417c2849923250b363dab29f5210de169b3d4559e5572a263fb9af191f3"
+    },
+    "src/groups/groups.css": {
+      "sha256": "4190465796f6121389c77497b388fcf50bd21d16aeb260df8c2a1eb574484ec4",
+      "previousSha256": "eed5a1a1c00844b559a743c66e00f52e5204b607e806cbd34f035b07268002ba"
+    },
+    "src/groups/intent.ts": {
+      "sha256": "1b5e457ac65dfacf71e9c37d38242c6d781fbaa3ee6345c9fafa0f204144faea",
+      "previousSha256": "cfdc9a897cfef5321bd4d717228e2e14c48a52d18a245ffbfed23a6575df9b61"
+    },
+    "src/groups/sharedDrafts.ts": {
+      "sha256": "33451664d76eebf92f865b95e45be5a7c6bfed39778862e738c6101633fabde1",
+      "previousSha256": null
+    },
+    "src/groups/sharedHooks.ts": {
+      "sha256": "809fbafab0223c34ceda51c4da63728c3bdd8a21face850d487361df88bd1594",
+      "previousSha256": null
+    },
+    "src/groups/sharedText.ts": {
+      "sha256": "2a33a2ef5ba45bb8b7a918be238393c1f6f355e23b2dd4c4c71e5d01fcf6880f",
+      "previousSha256": null
+    },
+    "src/sync/session.ts": {
+      "sha256": "41fead4111ce288f01081008e5e0551d9ab284549a1de00fe2712056f6a4dc71",
+      "previousSha256": "d5a19e48f699d0a21f9079192fc0dd8321186010052d892e4e4bf21449c8aebc"
+    },
+    "tests/group-session.test.ts": {
+      "sha256": "9b9ce0883a73771de27dd52319af0e0f624809d9f98c62e0eceb5c72f9651ad8",
+      "previousSha256": "766efe94553ebf4c5ac04122f6c4ed08021aacf0f33c698bab245dd69fd01981"
+    },
+    "tests/groups/cache-race.groups.spec.ts": {
+      "sha256": "a21373e3f65c1c492ac1e7a5d884c910b74d2b6804f93b62b6674ae53acfb136",
+      "previousSha256": null
+    },
+    "tests/groups/content-layout.groups.spec.ts": {
+      "sha256": "022d6a5464eaf7717be7ac2a193722ceb6eef4cc8eddfe149380c24f81d84b2d",
+      "previousSha256": null
+    },
+    "tests/groups/content-pagination.groups.spec.ts": {
+      "sha256": "14d992c5d6fa285f8c04297daf51112ad46a90c7643d25cfbe3be0a8bc24186a",
+      "previousSha256": null
+    },
+    "tests/groups/content-recovery.groups.spec.ts": {
+      "sha256": "17122aa7978579c0f4e237cb15ba53278e85dc35bbbedd1ad5eabc0bd0a9b145",
+      "previousSha256": null
+    },
+    "tests/groups/content.groups.spec.ts": {
+      "sha256": "302ce133fdbe568f61f887d08177777f16d7da8271c99cd4f64091cfafe69eb9",
+      "previousSha256": null
+    },
+    "tests/groups/priorities.groups.spec.ts": {
+      "sha256": "dc5978ecc60ec6d4f2d9994b616edd850ae3fb676b2e3f67a9caa8128b858d48",
+      "previousSha256": null
+    },
+    "tests/support/groupBrowser.ts": {
+      "sha256": "f8f0064144c656fd9a7b8b173addd7015070133e713b01cc43090daddb2bb32a",
+      "previousSha256": null
+    },
+    "tests/sync-session-race.test.ts": {
+      "sha256": "af6f8274adb39780d342ec0a8ad2c3001d1d4281b11a6cc144ffd69ced6eb2d2",
+      "previousSha256": null
+    }
+  },
+  "finalBuild": {
+    "dist": {
+      "dist/index.html": "889c6ac2da2131b9462d7332e53a578280e5aed24f277d7b1f8129ea3bd42084",
+      "dist/notifications-sw.js": "662f92ef53687bdd07d06ac55906cf60d97c4b021113e5e644ab0e530585afa7",
+      "dist/manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "dist/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "dist/icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "dist/icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "dist/icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "dist/icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "dist/icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "dist/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "dist/assets/web-a-jMiDpo.js": "a542799bb61edc3db0fa032cced75cddefffd010acd5c1791e9d7a24a601c086",
+      "dist/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "dist/assets/index-DrN0kyw_.css": "62de2a96928c952e8a85c2c4a7addc2d6db22ce969d0c54c850d7c5840815f81",
+      "dist/assets/index-BTBdAr6z.js": "555a775deac3dac6d4fec4bd9fa006261b3cf45e2933d5b892dd798edb819cc0",
+      "dist/assets/migration.worker-BcUrSvIy.js": "e203d4a65266cbbe7fbbae949b5cea06f4acd181f5cd11c9eaaf5f5ef63b825a",
+      "dist/assets/web-CRLQBSGe.js": "df470a7cb8e21a105076dff08bf28b2cf3a1613ae40b15265ed4f1fb427b4c84",
+      "dist/assets/web-B6fifrNZ.js": "1a4c61204045b3c68983726fbb59e5010ad7caea5098365cafe937958fa2d788",
+      "dist/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "dist/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+      "dist/assets/backup.worker-BCa9oD1m.js": "cd1b0f62f937e59ef8ed2705e9f2d1b47ca426ca33432eb4c607b07c4cc203c4",
+      "dist/assets/hydrate.worker-BkEWmf0t.js": "3cdd85a59b153d310b91efabf05e5afaaeb9666f615aca6d8db9bcb42d250e5f",
+      "dist/assets/import.worker-B-pfkKNm.js": "e38e124f9a46535b7c4e24a41175ea30ec767f0c2d079cc0f069710d26bf8eac"
+    },
+    "dist-review": {
+      "dist-review/index.html": "a8799caf9e5df25c84cb406a044af50e02accc1bae93fd99e24788a569cc5737",
+      "dist-review/notifications-sw.js": "ef84fe371993477d9e951d18e52d4db8f2acb3776b49fa4de161e2638561783e",
+      "dist-review/manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "dist-review/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "dist-review/icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "dist-review/icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "dist-review/icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "dist-review/icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "dist-review/icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "dist-review/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "dist-review/assets/backup-u0SbhCox.js": "2d5b566f1e1dca664af1dd333251fc998fd1023fa7ee3075ce8333c938c0d212",
+      "dist-review/assets/storageHarness-DLbqHiAv.js": "89ce5d4b7554d73689a527f52fd72bb3b51a11688ebdb2a544f93921e0b628c0",
+      "dist-review/assets/web-K9Ljgwj3.js": "d447e95e6d0e2eeda9714ca9e22312403fe2095ed12dded1d54c4cac31e34563",
+      "dist-review/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "dist-review/assets/index-DrN0kyw_.css": "62de2a96928c952e8a85c2c4a7addc2d6db22ce969d0c54c850d7c5840815f81",
+      "dist-review/assets/web-CROS-E--.js": "52dc240a929a6a69faf3ec345e963faf389467f45b040f697946350688a15575",
+      "dist-review/assets/migration.worker-BcUrSvIy.js": "e203d4a65266cbbe7fbbae949b5cea06f4acd181f5cd11c9eaaf5f5ef63b825a",
+      "dist-review/assets/web-BR_NaaxD.js": "9fabd63279ba00e24f345f2ed23b4833533f38901ad5e46730936e2b37ca202b",
+      "dist-review/assets/index-BKa4JmHS.js": "3174bee7c9ac912c67371ddfa614fc1c8485cfc6f86b999ebf7491dbe6d91fa5",
+      "dist-review/assets/origin-Co-8Dkay.js": "d9ae02659989c04179b229bef15f1e5134e85665d88a7e4c8882ff09d6b65471",
+      "dist-review/assets/tools-DtQolKMi.js": "be019b912093fe181bc7bd21eb023fac494a61c8f921ad0d880ee40a96ee1134",
+      "dist-review/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "dist-review/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+      "dist-review/assets/backup.worker-BCa9oD1m.js": "cd1b0f62f937e59ef8ed2705e9f2d1b47ca426ca33432eb4c607b07c4cc203c4",
+      "dist-review/assets/hydrate.worker-BkEWmf0t.js": "3cdd85a59b153d310b91efabf05e5afaaeb9666f615aca6d8db9bcb42d250e5f",
+      "dist-review/assets/import.worker-B-pfkKNm.js": "e38e124f9a46535b7c4e24a41175ea30ec767f0c2d079cc0f069710d26bf8eac"
+    }
+  },
+  "logSha256": {
+    "logs/groups.log": "889fe4b775fd472fd0e921938bc25b1e10863ec2e90c9a3cde38ba5329bc8542",
+    "logs/production-earlier.log": "ea6833c1192e416a13c6ffed41abc96fa3f05130586677a49de9fc6d968a06d4",
+    "logs/layout-captures.log": "81121d3552d2aea21fedec780a623265404ba09fcf46bdfceccb88b2f3e2f346",
+    "logs/cache-race-unit-before.log": "93cf2c965964348358444c61eb2e8392a5b8c123255836e97e0ffef9de1b3e80",
+    "logs/cache-race-after.log": "0a49a937a69ab5932635599ad7f848e5944e09e5f6d096aa61da5205fcfff8b8",
+    "logs/pagination-before.log": "8852b75bbe2b1232521c699dd899fd2cbdaa43e14fa5f24b88182b79525400be",
+    "logs/cache-race-before.log": "78941e97bfd656fe4bd8809795961745a0e3dff9662787a50b134d68f1ed12fd",
+    "logs/pagination-after.log": "5a655bddb48a3587e95cf00bc96af4f0a71c1de894649a8fdde8877683c019ae",
+    "logs/visual-earlier.log": "e7251e1dfbe0956a043d54cfed6354d4c8ba634d242d0c18ea3f5aeca7c5b9bb",
+    "logs/intermediate-read-timeout.log": "7ba469b5aa4080b3b9c1de28ce462abbef3bce341491ad6d75278871168d9b7e",
+    "logs/docs.log": "82017f3bb13267677e895cd521124e04d820f27904741ffa5e20d6f626a4be22",
+    "logs/sync.log": "80a6d32a7f5b8a9c8742c9ce06f48977d9b7a36f2d7047067634ed94d7f3cf5f",
+    "logs/navigation-earlier.log": "38c25b45b1a53bb99eae0353a8ca58d35d0623d3cf3a9d9b0b161f4089fb5442",
+    "logs/check.log": "41f392598b8a355fd232bc3f5d90c93b2a0bd5e4ca1b94d7f8eb8651441ff360",
+    "logs/groups-before-pagination.log": "b1899e3e6a2368d3265a4c6b4881e879c3a0a8cbadcb445c85cfa21875f4c62c",
+    "logs/focus-confirmation.log": "d4c580f8668437df271a34013f3e81e2d5fb10cbe6f93f50dcbbba12b970cccd",
+    "logs/test-cleanup-types.log": "ba14752ebea7dbb31d286fd3b1a6f7ee02984eb11e9dfe86a18e89d32f648b14"
+  },
+  "limitations": [
+    "Cloud remains pending",
+    "Hosted/physical-device and release acceptance remain open",
+    "Squad/notification/integrated lifecycle work follows",
+    "Earlier visual/production/navigation checks predate final account-cache, opener-focus and pagination readiness changes"
+  ],
+  "earlierGroupStats": {
+    "startTime": "2026-10-23T18:11:14.431Z",
+    "duration": 574037.092,
+    "expected": 51,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

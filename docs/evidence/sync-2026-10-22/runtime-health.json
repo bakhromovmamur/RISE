@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-22T09:19:58.147Z",
+  "origin": "http://127.0.0.1:4190",
+  "ready": {
+    "status": 200,
+    "noStore": true
+  },
+  "anonymousSyncHead": {
+    "status": 401,
+    "noStore": true
+  },
+  "loader": "node --import tsx",
+  "browserSmoke": {
+    "chromium": {
+      "entry": true,
+      "anonymousSyncHeadStatus": 401
+    },
+    "webkit": {
+      "entry": false,
+      "anonymousSyncHeadStatus": 0
+    },
+    "firefox": {
+      "entry": false,
+      "anonymousSyncHeadStatus": 0
+    }
+  },
+  "limits": "Fresh isolated contexts; WebKit/Firefox did not complete local 4190 startup within the bounded smoke. Cause not established. All three engines pass full account/BFF suites on isolated 4191. Existing local-origin compatibility remains INFRA-01 follow-up; no claim of physical-device certification.",
+  "preview4173Accessed": false
+}

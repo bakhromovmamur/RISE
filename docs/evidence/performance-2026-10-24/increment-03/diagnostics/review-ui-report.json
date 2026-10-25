@@ -1,0 +1,438 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.performance.config.ts",
+      "feedback.performance"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.performance.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/performance/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4180 dist-review",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "feedback.performance.spec.ts",
+      "file": "feedback.performance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dense Today check-in measures visible feedback and durable status without reviewer controls",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6627,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                      "column": 43,
+                      "line": 19
+                    },
+                    "snippet": "  17 |   await page.goto(\"/\");\n  18 |   await expect(page.getByRole(\"tab\", { name: \"Today\", exact: true })).toBeVisible();\n> 19 |   await expect(page.locator(\".reviewer\")).toHaveCount(0);\n     |                                           ^\n  20 |   await expect(page.locator('[data-storage-status=\"saved\"]')).toBeVisible();\n  21 |   const card = page.locator(\".priority-list article\").filter({ has: page.getByRole(\"button\", { name: \"View Synthetic habit 0\", exact: true }) });\n  22 |   const check = card.getByRole(\"button\", { name: /Log 20 pages/ });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                        "column": 43,
+                        "line": 19
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    14 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  17 |   await page.goto(\"/\");\n  18 |   await expect(page.getByRole(\"tab\", { name: \"Today\", exact: true })).toBeVisible();\n> 19 |   await expect(page.locator(\".reviewer\")).toHaveCount(0);\n     |                                           ^\n  20 |   await expect(page.locator('[data-storage-status=\"saved\"]')).toBeVisible();\n  21 |   const card = page.locator(\".priority-list article\").filter({ has: page.getByRole(\"button\", { name: \"View Synthetic habit 0\", exact: true }) });\n  22 |   const check = card.getByRole(\"button\", { name: /Log 20 pages/ });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:45:58.866Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                    "column": 43,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cba6747f92b706610c11-aa59326a16bd161582b0",
+          "file": "feedback.performance.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "dense Today check-in measures visible feedback and durable status without reviewer controls",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7212,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    13 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    13 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                      "column": 43,
+                      "line": 19
+                    },
+                    "snippet": "  17 |   await page.goto(\"/\");\n  18 |   await expect(page.getByRole(\"tab\", { name: \"Today\", exact: true })).toBeVisible();\n> 19 |   await expect(page.locator(\".reviewer\")).toHaveCount(0);\n     |                                           ^\n  20 |   await expect(page.locator('[data-storage-status=\"saved\"]')).toBeVisible();\n  21 |   const card = page.locator(\".priority-list article\").filter({ has: page.getByRole(\"button\", { name: \"View Synthetic habit 0\", exact: true }) });\n  22 |   const check = card.getByRole(\"button\", { name: /Log 20 pages/ });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                        "column": 43,
+                        "line": 19
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    13 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  17 |   await page.goto(\"/\");\n  18 |   await expect(page.getByRole(\"tab\", { name: \"Today\", exact: true })).toBeVisible();\n> 19 |   await expect(page.locator(\".reviewer\")).toHaveCount(0);\n     |                                           ^\n  20 |   await expect(page.locator('[data-storage-status=\"saved\"]')).toBeVisible();\n  21 |   const card = page.locator(\".priority-list article\").filter({ has: page.getByRole(\"button\", { name: \"View Synthetic habit 0\", exact: true }) });\n  22 |   const check = card.getByRole(\"button\", { name: /Log 20 pages/ });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:46:05.895Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-webkit/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                    "column": 43,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cba6747f92b706610c11-8f21b4cc4648ccfde4fc",
+          "file": "feedback.performance.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "dense Today check-in measures visible feedback and durable status without reviewer controls",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7714,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    13 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    13 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                      "column": 43,
+                      "line": 19
+                    },
+                    "snippet": "  17 |   await page.goto(\"/\");\n  18 |   await expect(page.getByRole(\"tab\", { name: \"Today\", exact: true })).toBeVisible();\n> 19 |   await expect(page.locator(\".reviewer\")).toHaveCount(0);\n     |                                           ^\n  20 |   await expect(page.locator('[data-storage-status=\"saved\"]')).toBeVisible();\n  21 |   const card = page.locator(\".priority-list article\").filter({ has: page.getByRole(\"button\", { name: \"View Synthetic habit 0\", exact: true }) });\n  22 |   const check = card.getByRole(\"button\", { name: /Log 20 pages/ });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                        "column": 43,
+                        "line": 19
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.reviewer')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" locator('.reviewer') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.reviewer')\u001b[22m\n\u001b[2m    13 × locator resolved to 1 element\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  17 |   await page.goto(\"/\");\n  18 |   await expect(page.getByRole(\"tab\", { name: \"Today\", exact: true })).toBeVisible();\n> 19 |   await expect(page.locator(\".reviewer\")).toHaveCount(0);\n     |                                           ^\n  20 |   await expect(page.locator('[data-storage-status=\"saved\"]')).toBeVisible();\n  21 |   const card = page.locator(\".priority-list article\").filter({ has: page.getByRole(\"button\", { name: \"View Synthetic habit 0\", exact: true }) });\n  22 |   const check = card.getByRole(\"button\", { name: /Log 20 pages/ });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts:19:43"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:46:13.583Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/feedback.performance-dense-1bd43-s-without-reviewer-controls-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/feedback.performance.spec.ts",
+                    "column": 43,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "cba6747f92b706610c11-0b3c4251a6668635d8d2",
+          "file": "feedback.performance.spec.ts",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T10:45:58.254Z",
+    "duration": 23867.563,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

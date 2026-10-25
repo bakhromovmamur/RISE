@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "lib": ["ES2022"], "types": ["node"] },
+  "include": ["server/**/*.ts", "scripts/infra/**/*.ts", "infra/**/*.ts", "tests/infra/*.test.ts"],
+  "exclude": ["scripts/infra/check-account-load.ts", "scripts/infra/account-load-mixed.ts"]
+}

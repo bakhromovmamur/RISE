@@ -1,0 +1,20 @@
+✔ groups require verified identity/CSRF, have no automatic private import and project only shared names (651.83675ms)
+✔ receipt recovery is owner-bound, omits invitation secrets and rechecks current membership (409.545833ms)
+✔ invitation preview is minimal; concurrent acceptance is single use with exact retry and immediate revocation (753.6145ms)
+✔ ownership transfer is recent-auth, atomic and current; archive, leave and deletion cannot orphan an owner (721.041ms)
+✔ all group tables force RLS and narrow grants; forged roles, cross-group member IDs and direct writes fail (636.250125ms)
+✔ concurrent edits preserve a conflict; a receipt insertion failure rolls back every group change (432.781792ms)
+✔ invalid invitation attempts consume a bounded quota; stale operations and rotated invite keys do not recreate intent (380.907833ms)
+✔ account deletion blocks current owners and deidentifies a member before suppression; old JWTs and provider purge stay safe (403.836584ms)
+✔ bounded invitation pruning retains live links and never grants the sender membership authority (263.656708ms)
+✔ invite consumption and account identity scrubbing roll back when the following receipt or suppression write fails (383.863125ms)
+✔ ownership transfer racing recipient deletion never creates an orphan or grants a suppressed identity access (336.723708ms)
+✔ terminal backup replay removes restored pre-transfer ownership only for a suppressed identity (436.864917ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6145.980334

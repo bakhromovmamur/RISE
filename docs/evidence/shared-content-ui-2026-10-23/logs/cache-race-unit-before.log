@@ -1,0 +1,47 @@
+✖ a draft arriving during receipt commit preserves both the receipt and the private draft (13.705708ms)
+✖ a private draft arriving during a remote pull retains the new personal state (1.321458ms)
+✔ a real intervening cache writer still rejects a stale local save and retains recovery intent (0.820334ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 193.501584
+
+✖ failing tests:
+
+test at tests/sync-session-race.test.ts:1:3321
+✖ a draft arriving during receipt commit preserves both the receipt and the private draft (13.705708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/sync-session-race.test.ts:48:10)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/sync-session-race.test.ts:1:4115
+✖ a private draft arriving during a remote pull retains the new personal state (1.321458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/sync-session-race.test.ts:58:10)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

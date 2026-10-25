@@ -1,0 +1,96 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test
+
+[WebServer] (node:61472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 378 tests using 2 workers
+
+(node:61485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [chromium] › tests/backup.browser.spec.ts:24:1 › real restore atomically retains the previous profile, survives reopening and retries once; rollback returns the exact device snapshot (895ms)
+  ✓    2 [chromium] › tests/backup.browser.spec.ts:51:1 › quota, abort and failed readback at every restore write preserve both the profile and prior recovery point (986ms)
+  ✓    3 [chromium] › tests/backup.browser.spec.ts:80:1 › two tabs cannot commit a stale preview, and clearing removes archives and recovery without stale resurrection (371ms)
+  ✓    5 [chromium] › tests/backup.browser.spec.ts:130:1 › settings export, preview, cancel, confirmed restore, read-only archives and exact rollback work without touching source data (7.2s)
+  ✓    4 [chromium] › tests/backup.browser.spec.ts:101:1 › worker validation is cancelable, size-bounded and preserves the two-year profile through actual durable restore (8.6s)
+  ✓    6 [chromium] › tests/backup.browser.spec.ts:164:1 › invalid import and quota failure keep the UI usable and leave saved data unchanged; retry succeeds (1.7s)
+  ✓    7 [chromium] › tests/backup.browser.spec.ts:180:1 › an unsupported saved draft can be exported as an exact recovery archive when a portable backup cannot be created (1.3s)
+  ✓    8 [chromium] › tests/backup.browser.spec.ts:191:1 › a recovery-read error after commit reports a successful restore and allows raw recovery (1.3s)
+  ✓    9 [chromium] › tests/backup.browser.spec.ts:205:1 › a preview becomes stale when another tab saves, and the UI preserves the newer profile (4.0s)
+  ✓   10 [chromium] › tests/backup.browser.spec.ts:218:53 › restore preview and error reflow in en, both appearances at 200% text (8.5s)
+  ✓   11 [chromium] › tests/backup.browser.spec.ts:218:53 › restore preview and error reflow in ru, both appearances at 200% text (8.9s)
+  ✓   13 [chromium] › tests/balanced.browser.spec.ts:19:1 › Today first viewport leads with prayer and one actionable priority; rewards and routine remain reachable (1.5s)
+  ✓   12 [chromium] › tests/backup.browser.spec.ts:218:53 › restore preview and error reflow in uz, both appearances at 200% text (6.8s)
+  ✓   15 [chromium] › tests/balanced.browser.spec.ts:59:1 › tiny, upgrade and Undo stay consistent on Today, Progress and Journey (3.0s)
+  ✓   16 [chromium] › tests/balanced.browser.spec.ts:81:1 › all Progress views preserve one selected week and separate lifetime from weekly results (2.4s)
+  ✓   14 [chromium] › tests/balanced.browser.spec.ts:38:1 › priority replacement and reordering survive reload without duplicating completion or adding work (8.6s)
+  ✓   17 [chromium] › tests/balanced.browser.spec.ts:101:1 › goal creation, reordering, reward unlocking, correction, pause and archive form one working flow (4.5s)
+  ✓   18 [chromium] › tests/balanced.browser.spec.ts:142:1 › a prayer becoming due does not replace an open form or erase its draft; keyboard stays inside (4.3s)
+  ✓   19 [chromium] › tests/balanced.browser.spec.ts:168:1 › history correction changes old-week reward eligibility while retaining enjoyed history (1.8s)
+  ✓   20 [chromium] › tests/balanced.browser.spec.ts:183:1 › weekly reward creation normalizes the week and Try next week preserves the prior attempt (2.2s)
+  ✓   21 [chromium] › tests/balanced.browser.spec.ts:208:1 › thirteenth habit is created without an upgrade route and long names stay accessible (1.4s)
+  ✓   22 [chromium] › tests/balanced.browser.spec.ts:219:1 › version 2 browser data migrates in place without invented goals or rewards (676ms)
+  ✓   23 [chromium] › tests/balanced.browser.spec.ts:236:1 › empty screens offer working setup actions; data export and confirmed clearing include new records (2.8s)
+  ✓   25 [chromium] › tests/full-day.browser.spec.ts:127:1 › Fajr acknowledgment follows explicit corrections and never records a prayer by itself (1.8s)
+  ✘   26 [chromium] › tests/full-day.browser.spec.ts:149:1 › Fajr plans keep their displayed date, preserve drafts and distinguish saving from alarm delivery (7.4s)
+(node:61695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   24 [chromium] › tests/full-day.browser.spec.ts:24:1 › one full day joins five prayers, habits, family lists, goal achievement, rewards and the next Fajr plan (16.0s)
+  ✓   27 [chromium] › tests/journey.browser.spec.ts:21:1 › Journey shows one unlock and one personal reward, while keyboard disclosures preserve records (2.3s)
+  ✓   28 [chromium] › tests/journey.browser.spec.ts:49:1 › earned Pip unlock precedes the next threshold; claiming and dressing persist without XP (2.8s)
+  ✓   29 [chromium] › tests/journey.browser.spec.ts:70:1 › earned personal reward stays first, enjoyment moves it to history, and selection names its goal (3.1s)
+  ✓   31 [chromium] › tests/journey.browser.spec.ts:123:1 › a completed collection has no invented next threshold and all keepsakes remain accessible (1.2s)
+  ✓   30 [chromium] › tests/journey.browser.spec.ts:93:1 › empty setup has real creation, and enlarged-text trail uses readable rows (3.7s)
+  ✘   33 [chromium] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (109ms)
+  ✘   32 [chromium] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (2.2s)
+
+
+  1) [chromium] › tests/full-day.browser.spec.ts:149:1 › Fajr plans keep their displayed date, preserve drafts and distinguish saving from alarm delivery 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('dialog')
+    Expected substring: "20.10.2026 uchun bomdod rejasi."
+    Received string:    "Bomdodga tayyorlanishBomdod rejasi · haqiqiy signal chalinmaydiUyg‘onishni biroz osonlashtiring.19.10.2026 uchun bomdod rejasi.Bomdod boshlanishi05:20Uyg‘onish vaqtingiz05:05Uyquga tayyorlanish vaqtiBomdoddan oldin uyg‘onish0 daqiqa5 daqiqa10 daqiqa15 daqiqa20 daqiqa30 daqiqaZaxira uyg‘onish signaliKerak bo‘lsa, yana bir eslatmaZaxira signal oralig‘i3 daqiqadan keyin5 daqiqadan keyin10 daqiqadan keyinTelefoningiz qayerda bo‘ladiXonaning narigi tomonidaYotoq yonidaKechki o‘zingizdan xabarA date-specific morning message.Bomdod rejamni saqlashSaqlash va uyg‘onish namunasini ko‘rishSignal tayyorligini tekshirish"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('dialog') with timeout 5000ms
+      - waiting for getByRole('dialog')
+        14 × locator resolved to <section tabindex="-1" role="dialog" aria-modal="true" class="sheet full" aria-label="Bomdodga tayyorlanish">…</section>
+           - unexpected value "Bomdodga tayyorlanishBomdod rejasi · haqiqiy signal chalinmaydiUyg‘onishni biroz osonlashtiring.19.10.2026 uchun bomdod rejasi.Bomdod boshlanishi05:20Uyg‘onish vaqtingiz05:05Uyquga tayyorlanish vaqtiBomdoddan oldin uyg‘onish0 daqiqa5 daqiqa10 daqiqa15 daqiqa20 daqiqa30 daqiqaZaxira uyg‘onish signaliKerak bo‘lsa, yana bir eslatmaZaxira signal oralig‘i3 daqiqadan keyin5 daqiqadan keyin10 daqiqadan keyinTelefoningiz qayerda bo‘ladiXonaning narigi tomonidaYotoq yonidaKechki o‘zingizdan xabarA date-specific morning message.Bomdod rejamni saqlashSaqlash va uyg‘onish namunasini ko‘rishSignal tayyorligini tekshirish"
+
+
+      173 |   await page.getByRole("button", { name: /^Namoz sozlamalari / }).click();
+      174 |   await dialog(page).getByRole("button", { name: /^Bomdodga tayyorlanish / }).click();
+    > 175 |   await expect(dialog(page)).toContainText("20.10.2026 uchun bomdod rejasi.");
+          |                              ^
+      176 |   await expect(dialog(page).getByRole("combobox", { name: "Bomdoddan oldin uyg‘onish", exact: true })).toHaveValue("15");
+      177 |   for (const width of [375, 393, 430]) {
+      178 |     await page.setViewportSize({ width, height: 852 });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/full-day.browser.spec.ts:175:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/full-day.browser-Fajr-plan-1973f--saving-from-alarm-delivery-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/full-day.browser-Fajr-plan-1973f--saving-from-alarm-delivery-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/full-day.browser-Fajr-plan-1973f--saving-from-alarm-delivery-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/full-day.browser-Fajr-plan-1973f--saving-from-alarm-delivery-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/full-day.browser.spec.ts:149:1 › Fajr plans keep their displayed date, preserve drafts and distinguish saving from alarm delivery 
+  2 interrupted
+    [chromium] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload 
+    [chromium] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer 
+  345 did not run
+  30 passed (1.1m)

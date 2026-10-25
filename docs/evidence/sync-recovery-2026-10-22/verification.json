@@ -1,0 +1,157 @@
+{
+  "verifiedAt": "2026-10-22T10:45:44.396Z",
+  "timezone": "Asia/Tashkent",
+  "environment": {
+    "os": "Darwin 25.6.0 arm64",
+    "node": "24.16.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "check": {
+    "command": "npm run check",
+    "tests": 174,
+    "passed": 174,
+    "failed": 0,
+    "productionBuild": true,
+    "reviewBuild": true
+  },
+  "database": {
+    "command": "npm run test:infra",
+    "tests": 46,
+    "passed": 46,
+    "failed": 0
+  },
+  "sync": {
+    "command": "npm run test:sync",
+    "startTime": "2026-10-22T10:38:23.844Z",
+    "duration": 243627.603,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ],
+    "realSessionCases": 30,
+    "visualOnlyCases": 18,
+    "layoutStates": 486,
+    "syntheticCaptures": 72
+  },
+  "auth": {
+    "command": "npm run test:auth",
+    "startTime": "2026-10-22T10:37:46.309Z",
+    "duration": 29872.452,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "backend": {
+    "command": "npm run test:backend",
+    "startTime": "2026-10-22T10:38:16.550Z",
+    "duration": 6935.286,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "journeys": {
+    "command": "npm run test:browser",
+    "startTime": "2026-10-22T10:26:21.531Z",
+    "duration": 317343.95,
+    "expected": 378,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "pwa": {
+    "command": "npm run test:pwa",
+    "startTime": "2026-10-22T10:26:56.123Z",
+    "duration": 99019.101,
+    "expected": 42,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "production": {
+    "command": "npm run test:production",
+    "startTime": "2026-10-22T10:26:20.086Z",
+    "duration": 35298.04,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "visual": {
+    "command": "npm run test:visual",
+    "startTime": "2026-10-22T10:24:03.052Z",
+    "duration": 56479.576,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      ""
+    ],
+    "comparisons": 720,
+    "updatedReferences": false
+  },
+  "boundaries": {
+    "cloudProvisioned": false,
+    "deployed": false,
+    "externalEmailSent": false,
+    "user4173Accessed": false,
+    "guestStorageAltered": false,
+    "gitInitialized": false,
+    "physicalDevicesCertified": false
+  },
+  "advisors": {
+    "local": "No issues found",
+    "test": "No issues found",
+    "threshold": "warn; fail-on warn"
+  },
+  "manualVisualInspection": [
+    "screens/recovery-top-en-light-393-100.png",
+    "screens/recovery-top-ru-dark-320-200.png",
+    "screens/recovery-uz-light-1440-100.png"
+  ],
+  "limits": [
+    "Retention is opportunistic per active owner, not a scheduled all-account purge guarantee.",
+    "Account deletion/shared membership suppression, Web Push and hosted/physical-device acceptance remain separate tasks.",
+    "Delta wire pages are bounded; local assembly still reads the bounded canonical record set and is not hosted throughput evidence.",
+    "Prior local 4190 WebKit/Firefox entry observation remains INFRA-01; full BFF/browser acceptance uses 4191.",
+    "Source preservation and synthetic tests establish guest safety; the real user profile was never inspected."
+  ],
+  "iterations": "test-iterations.json"
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "environment": "local",
+    "backupFresh": true,
+    "maintenanceFresh": false,
+    "alerts": [
+      "maintenance_stale",
+      "health_unavailable",
+      "diagnostics_stale"
+    ]
+  },
+  {
+    "environment": "test",
+    "backupFresh": true,
+    "maintenanceFresh": true,
+    "alerts": [
+      "health_unavailable",
+      "sender_unavailable",
+      "diagnostics_stale"
+    ]
+  }
+]

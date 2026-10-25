@@ -1,0 +1,45 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts export.groups.spec.ts lifecycle.groups.spec.ts layout.groups.spec.ts
+
+[WebServer] (node:40679) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 42 tests using 1 worker
+
+(node:40682) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (15.8s)
+  ✓   2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (15.4s)
+  ✓   3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.3s)
+  ✓   4 [chromium] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (3.8s)
+  ✓   5 [chromium] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (4.8s)
+  ✓   6 [chromium] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (3.5s)
+  ✓   7 [chromium] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (3.4s)
+  ✓   8 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (31.1s)
+  ✓   9 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (31.1s)
+  ✘  10 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (26.1s)
+
+
+  1) [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz 
+
+    Test was interrupted.
+
+    Error: page.evaluate: Target page, context or browser has been closed
+
+      38 |  const matrix=async(scene:string)=>{
+      39 |   for(const theme of ['light','dark'])for(const width of [320,375,393,430,1440])for(const scale of [100,200]){
+    > 40 |    await page.setViewportSize({width,height:852});await page.evaluate(({theme,scale})=>{document.querySelector('.app-shell')?.setAttribute('data-theme',theme);document.documentElement.style.fontSize=`${scale}%`;},{theme,scale});
+         |                                                              ^
+      41 |    const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1)).toBe(false);
+      42 |    const header=await dialog.locator('.sheet-header').evaluate(el=>{const h=el.getBoundingClientRect(),t=el.querySelector('h2')!.getBoundingClientRect();return {within:t.top>=h.top&&t.bottom<=h.bottom&&t.left>=h.left&&t.right<=h.right,header:h.toJSON(),title:t.toJSON()};});
+      43 |    if(!header.within)await dialog.screenshot({path:info.outputPath(`groups-failed-header-${scene}-${language}-${theme}-${width}-${scale}.png`)}); // Unverified visual fixture only; no credentials.
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:40:62)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:73:202
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-fc42e-and-recoverable-errors-·-uz-chromium/error-context.md
+
+  1 interrupted
+    [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz 
+  32 did not run
+  9 passed (2.5m)

@@ -1,0 +1,139 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts habit-reminders
+
+[WebServer] (node:26664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 15 tests using 2 workers
+
+(node:26667) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:26666) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/production/habit-reminders.production.spec.ts:24:1 › foreground habit delivery requires explicit consent, survives reload, deduplicates and preserves saved data (1.3s)
+  ✓   3 [chromium] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in en (852ms)
+  ✓   4 [chromium] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in ru (744ms)
+  ✓   5 [chromium] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in uz (700ms)
+(node:26693) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   6 [webkit] › tests/production/habit-reminders.production.spec.ts:24:1 › foreground habit delivery requires explicit consent, survives reload, deduplicates and preserves saved data (1.4s)
+  ✘   2 [chromium] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission (30.2s)
+(node:26875) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [webkit] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in en (1.2s)
+  ✓   9 [webkit] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in ru (956ms)
+  ✓  10 [webkit] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in uz (843ms)
+(node:26908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   7 [webkit] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission (30.1s)
+(node:26928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [firefox] › tests/production/habit-reminders.production.spec.ts:24:1 › foreground habit delivery requires explicit consent, survives reload, deduplicates and preserves saved data (1.9s)
+  ✓  13 [firefox] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in en (1.1s)
+  ✓  14 [firefox] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in ru (939ms)
+  ✓  15 [firefox] › tests/production/habit-reminders.production.spec.ts:42:49 › habit delivery controls preserve mobile reflow in uz (931ms)
+  ✘  12 [firefox] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission (30.6s)
+
+
+  1) [chromium] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log full Synthetic private habit/ })
+
+
+      37 |  await page.getByRole('button',{name:'Preview a reminder See how a gentle nudge would look',exact:true}).click();await expect(page.getByText(ht('preview'),{exact:true})).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('__asked'))).toBeNull();await page.keyboard.press('Escape');
+      38 |  await page.getByRole('button',{name:ht('enable'),exact:true}).click();await expect(page.getByText(ht('active'),{exact:true})).toBeVisible();await page.keyboard.press('Escape');await page.getByRole('tab',{name:'Today',exact:true}).click();
+    > 39 |  await page.getByRole('button',{name:/Log full Synthetic private habit/}).click();await stored(page);expect(xpTotal(await stored(page))).toBe(20);
+         |                                                                           ^
+      40 |  await page.clock.fastForward(60001);await page.waitForTimeout(150);expect(await shown(page)).toEqual([]);expect(xpTotal(await stored(page))).toBe(20);
+      41 | });
+      42 | for(const language of ['en','ru','uz'] as const)test(`habit delivery controls preserve mobile reflow in ${language}`,async({page})=>{
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/habit-reminders.production.spec.ts:39:75
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log full Synthetic private habit/ })
+
+
+      37 |  await page.getByRole('button',{name:'Preview a reminder See how a gentle nudge would look',exact:true}).click();await expect(page.getByText(ht('preview'),{exact:true})).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('__asked'))).toBeNull();await page.keyboard.press('Escape');
+      38 |  await page.getByRole('button',{name:ht('enable'),exact:true}).click();await expect(page.getByText(ht('active'),{exact:true})).toBeVisible();await page.keyboard.press('Escape');await page.getByRole('tab',{name:'Today',exact:true}).click();
+    > 39 |  await page.getByRole('button',{name:/Log full Synthetic private habit/}).click();await stored(page);expect(xpTotal(await stored(page))).toBe(20);
+         |                                                                           ^
+      40 |  await page.clock.fastForward(60001);await page.waitForTimeout(150);expect(await shown(page)).toEqual([]);expect(xpTotal(await stored(page))).toBe(20);
+      41 | });
+      42 | for(const language of ['en','ru','uz'] as const)test(`habit delivery controls preserve mobile reflow in ${language}`,async({page})=>{
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/habit-reminders.production.spec.ts:39:75
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log full Synthetic private habit/ })
+
+
+      37 |  await page.getByRole('button',{name:'Preview a reminder See how a gentle nudge would look',exact:true}).click();await expect(page.getByText(ht('preview'),{exact:true})).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('__asked'))).toBeNull();await page.keyboard.press('Escape');
+      38 |  await page.getByRole('button',{name:ht('enable'),exact:true}).click();await expect(page.getByText(ht('active'),{exact:true})).toBeVisible();await page.keyboard.press('Escape');await page.getByRole('tab',{name:'Today',exact:true}).click();
+    > 39 |  await page.getByRole('button',{name:/Log full Synthetic private habit/}).click();await stored(page);expect(xpTotal(await stored(page))).toBe(20);
+         |                                                                           ^
+      40 |  await page.clock.fastForward(60001);await page.waitForTimeout(150);expect(await shown(page)).toEqual([]);expect(xpTotal(await stored(page))).toBe(20);
+      41 | });
+      42 | for(const language of ['en','ru','uz'] as const)test(`habit delivery controls preserve mobile reflow in ${language}`,async({page})=>{
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/habit-reminders.production.spec.ts:39:75
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/habit-reminders.production-4c91e-eview-never-asks-permission-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission 
+    [webkit] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission 
+    [firefox] › tests/production/habit-reminders.production.spec.ts:35:1 › completion before the reminder cancels foreground display and preview never asks permission 
+  12 passed (1.1m)

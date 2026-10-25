@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts notifications.groups.spec.ts
+
+[WebServer] (node:31291) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:31292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/groups/notifications.groups.spec.ts:22:1 › group opt-in survives a lost reply without requesting device consent; explicit device enable is separate (4.8s)
+  ✓  2 [chromium] › tests/groups/notifications.groups.spec.ts:34:1 › a competing preference change requires review and preserves the chosen opt-in draft (3.8s)
+  ✓  3 [chromium] › tests/groups/notifications.groups.spec.ts:41:1 › encrypted group delivery uses current authorization and the real occurrence ledger without a prayer plan (4.1s)
+(node:31323) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [webkit] › tests/groups/notifications.groups.spec.ts:22:1 › group opt-in survives a lost reply without requesting device consent; explicit device enable is separate (4.6s)
+  ✓  5 [webkit] › tests/groups/notifications.groups.spec.ts:34:1 › a competing preference change requires review and preserves the chosen opt-in draft (3.6s)
+  ✓  6 [webkit] › tests/groups/notifications.groups.spec.ts:41:1 › encrypted group delivery uses current authorization and the real occurrence ledger without a prayer plan (3.9s)
+(node:31363) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [firefox] › tests/groups/notifications.groups.spec.ts:22:1 › group opt-in survives a lost reply without requesting device consent; explicit device enable is separate (5.4s)
+  ✓  8 [firefox] › tests/groups/notifications.groups.spec.ts:34:1 › a competing preference change requires review and preserves the chosen opt-in draft (4.6s)
+  ✓  9 [firefox] › tests/groups/notifications.groups.spec.ts:41:1 › encrypted group delivery uses current authorization and the real occurrence ledger without a prayer plan (5.6s)
+
+  9 passed (46.7s)

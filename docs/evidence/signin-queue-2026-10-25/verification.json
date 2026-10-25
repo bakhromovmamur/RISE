@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-25",
+  "environment": "macOS local/test; Chromium, WebKit, Firefox; synthetic accounts only",
+  "checks": [
+    {
+      "command": "npm run check",
+      "result": "PASS",
+      "tests": 316
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/auth.test.ts tests/infra/lifecycle.test.ts tests/infra/group-notifications.test.ts tests/infra/live-push.test.ts",
+      "result": "PASS",
+      "tests": 48
+    },
+    {
+      "command": "npm run infra:verify -- local",
+      "result": "PASS"
+    },
+    {
+      "command": "npm run infra:verify -- test",
+      "result": "PASS"
+    }
+  ],
+  "retainedEarlierBrowserReports": [
+    {
+      "command": "npm run test:production",
+      "stats": {
+        "startTime": "2026-10-25T07:31:25.866Z",
+        "duration": 160591.146,
+        "expected": 78,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "errors": 0
+    },
+    {
+      "command": "npm run test:pwa",
+      "stats": {
+        "startTime": "2026-10-25T07:21:57.874Z",
+        "duration": 238109.43,
+        "expected": 63,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "errors": 0
+    },
+    {
+      "command": "npm run test:visual",
+      "stats": {
+        "startTime": "2026-10-25T07:21:59.061Z",
+        "duration": 75507.97799999999,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "errors": 0
+    }
+  ],
+  "remainingBrowserSuites": "complete",
+  "finalBrowserRuns": [
+    {
+      "command": "npm run test:auth",
+      "startedAt": "2026-10-25T08:48:32.447Z",
+      "finishedAt": "2026-10-25T08:49:17.586Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T08:48:32.799Z",
+        "duration": 44767.092000000004,
+        "expected": 30,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "runnerErrors": 0
+    },
+    {
+      "command": "npm run test:sync",
+      "startedAt": "2026-10-25T08:49:17.587Z",
+      "finishedAt": "2026-10-25T08:56:16.931Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T08:49:17.996Z",
+        "duration": 418903.489,
+        "expected": 69,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "runnerErrors": 0
+    },
+    {
+      "command": "npm run test:push",
+      "startedAt": "2026-10-25T08:56:16.932Z",
+      "finishedAt": "2026-10-25T08:59:24.640Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T08:56:17.317Z",
+        "duration": 187286.185,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "runnerErrors": 0
+    },
+    {
+      "command": "npm run test:groups",
+      "startedAt": "2026-10-25T08:59:24.641Z",
+      "finishedAt": "2026-10-25T09:18:24.530Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T08:59:25.026Z",
+        "duration": 1139495.602,
+        "expected": 111,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "runnerErrors": 0
+    },
+    {
+      "command": "npm run test:rollout",
+      "startedAt": "2026-10-25T09:18:24.532Z",
+      "finishedAt": "2026-10-25T09:22:56.755Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T09:18:24.981Z",
+        "duration": 271754.308,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "runnerErrors": 0
+    }
+  ],
+  "finalBrowserTotal": 270,
+  "completedAt": "2026-10-25T09:23:38.526372+00:00",
+  "documentation": {
+    "documents": 43,
+    "links": 720,
+    "anchors": 62,
+    "tasks": 38,
+    "requirements": 20,
+    "failures": [],
+    "evidenceLinks": 7
+  }
+}

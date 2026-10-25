@@ -1,0 +1,40 @@
+
+> rise-prototype@1.0.0 test:infra
+> tsx --test --test-concurrency=1 tests/infra/*.test.ts
+
+✔ managed email codes create opaque HttpOnly sessions without returning provider tokens (272.079583ms)
+✔ all mutations reject missing/cross-site Origin and absent or stale CSRF before sending email (9.074291ms)
+✔ challenge binding, five-attempt lockout and cooldown resist replay/brute force (97.65875ms)
+✔ remembered sessions use persistent cookies and seven-day idle/thirty-day absolute limits (83.22975ms)
+✔ expired challenges cannot authenticate and new codes invalidate the old handle (1272.148708ms)
+✔ logout revokes its linked provider JWT predicate and clears only account cookies (127.151291ms)
+✔ idle/absolute expiry, provider session removal and account bans deny a previously valid session (370.983125ms)
+✔ provider email failure is neutral and cannot activate an older code (82.316792ms)
+✔ a copied session without its context and corrupted stored tokens fail closed (114.4895ms)
+✔ concurrent refresh rotates once, and temporary provider failures preserve the session (156.553125ms)
+✔ private session tables and helper ownership remain closed to anonymous/worker identities (24.563834ms)
+✔ both fresh stacks apply the committed migration and expose the expected restricted environment (747.516625ms)
+✔ each runtime identity can read its environment but cannot administer data, Auth or other roles (88.077709ms)
+✔ crossed databases, installation markers and privileged connections fail readiness (35.228958ms)
+✔ private local files are protected and never present in the web build (53.136542ms)
+✔ BFF delivers the existing production files byte-for-byte under its own origin (49.584458ms)
+✔ synthetic Auth users are isolated; foreign JWTs and administrator tokens are refused (214.918208ms)
+✔ startup refuses a mismatched installation before opening its listener (159.473167ms)
+✔ rotating a worker login invalidates its old password without changing the BFF identity (27.572166ms)
+✔ unexpected direct grants on the BFF role fail readiness instead of expanding access (12.98325ms)
+✔ personal API requires a real session and CSRF; reading never creates an account profile (299.363583ms)
+✔ all personal entity families round-trip with domain parity, private pauses and immutable historical targets (1249.283ms)
+✔ direct RLS and invoker views isolate every personal table; ownership changes and cross-owner foreign keys fail (1728.198875ms)
+✔ two sessions serialize conflicting commands across every personal entity family (3648.199167ms)
+✔ concurrent devices commit one revision and replay one receipt; changed payloads cannot reuse an operation (1539.505958ms)
+✔ receipt insertion failure rolls back the entity write and canonical revision (188.4085ms)
+✔ revoked/banned sessions cannot read records or replay an already committed receipt (264.51225ms)
+✔ documented Unicode fields survive without truncation and XP totals are not writable (222.142958ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13669.195791

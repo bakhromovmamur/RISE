@@ -1,0 +1,59 @@
+--- before/README.md
++++ after/README.md
+@@ -100,6 +100,7 @@
+ | `npm run check:toolchain` | Verifies Node/npm, exact dependency pins and lockfile agreement |
+ | `npm run check:docs` | Checks current-document local links/anchors, task metadata/dependencies and PRD mappings |
+ | `npm run check:push-load` | Fixed test DB, 100 synthetic accounts/200 due reminders; injected provider boundary, no external push. Run separately from other DB suites. |
++| `node --import tsx scripts/infra/check-account-load.ts smoke` / `full` | Opt-in fixed test DB capacity diagnostic: 1/100 synthetic accounts, each with 100 habits and 730 dates. Run alone; full mode requires 12 GiB free host disk. [Workload and cleanup](docs/PERFORMANCE.md). |
+ | `npx playwright test --config playwright.performance.config.ts` | Opt-in 100-habit/two-year real IndexedDB measurements on 4180, one engine at a time; run alone after building. [Scope and remaining targets](docs/PERFORMANCE.md). |
+ | `npx playwright test --config playwright.performance-production.config.ts` | Opt-in dense-profile Today feedback measurements on the production build at 4181; run separately from production-entry/PWA suites. |
+ | `npm run lint` | Oxlint correctness checks without automatic formatting |
+--- before/TASKS.md
++++ after/TASKS.md
+@@ -357,6 +357,7 @@
+ - Increment 3 removes duplicate repository snapshot copying after the adapter transfers an isolated result. Mutation/replay tests preserve returned-view and durable-state independence. Final checks pass 280 source cases, 6 large-profile measurements, 57 storage/recovery cases, 3 production feedback probes and 54 production-entry cases. Durable check medians are 300.6/346/608 ms; production DOM feedback samples are 146.6/136/239 ms. Both targets remain unmet. [Exact source/build scope, phase timings and the corrected UI probe](docs/evidence/performance-2026-10-24/increment-03/README.md). No persisted format or design change.
+ - Increment 4 defers group management/editing code while keeping Today rows eager. The initial production entry drops by 96,228 bytes (7.5%); the public worker still precaches all screens. Localized download retry, close-during-load focus and cold offline opening are verified. Final checks pass 280 source cases, 66 production cases, 45 PWA cases, 48 local journeys, 108 account-backed group cases and 48 visual cases / 720 unchanged references. [Exact evidence and tradeoffs](docs/evidence/performance-2026-10-24/increment-04/README.md). CSS is byte-identical; persisted formats, assets and existing forms remain. Entry size is not Web Vitals acceptance, and dense-profile latency/capacity/resilience work remains open.
+ - Increment 5 removes redundant descriptor inspection only for freshly parsed JSON and reuses the validated command result's serialized text. Arbitrary object inputs retain descriptor checks; byte/depth/record/schema limits, unknown safe fields, no-op receipts and original recovery data remain verified. Final checks pass 282 source cases, 6 dense-profile and 3 production-feedback probes, 105 storage/backup/recovery journeys, 21 database cases, 15 export/deletion browser cases, 66 production and 45 PWA cases. Completed DOM samples improve to 128.3/119/192 ms in Chromium/WebKit/Firefox; the 100 ms target remains unmet. Durable medians remain above 250 ms, with some Undo/draft samples worse. [All before/after samples, exact scopes and limits](docs/evidence/performance-2026-10-24/increment-05/README.md). QUALITY-03 stays IN PROGRESS; capacity and integrated resilience work remain open.
++- Increment 6 adds a repeatable fixed-test workload with 100 real synthetic accounts, each retaining 100 habits and 730 dates. The two-wave burst **fails capacity**: 11/200 first attempts succeed, 189 return 503, and accepted p95 is 4,335.7 ms. Every exact retry, receipt replay, full-history/XP readback and cleanup passes. Overlap and interruption guards pass; profiling identifies repeated record serialization as substantial CPU work. [All samples, test corrections and scope](docs/evidence/performance-2026-10-24/increment-06/README.md). Application/schema/security settings are unchanged. QUALITY-03 remains IN PROGRESS for optimization, mixed/shared load and integrated resilience; hosted/physical gates remain pending.
+ 
+ #### SAFE-01 — Integrated security verification
+ 
+--- before/VERIFICATION.md
++++ after/VERIFICATION.md
+@@ -500,3 +500,7 @@
+ Freshly parsed JSON avoids redundant descriptor inspection while arbitrary object inputs keep full accessor checks. Command preparation reuses its validated serialized result for no-op comparison. Exact UTF-8/depth/record limits, unsafe-key rejection, unknown safe extensions, zero additional no-op receipts/revisions and original recovery data are verified. No UI, CSS, asset, dependency, migration or saved-format changes.
+ 
+ Checks pass **282 unit/tooling**, **6 dense-profile**, **3 production feedback**, **105 storage/backup/recovery**, **21 real database**, **15 export/deletion browser**, **66 production** and **45 real-worker PWA cases**. Completed DOM samples improve to **128.3/119/192 ms** in Chromium/WebKit/Firefox, but all remain above 100 ms. Durable medians remain above 250 ms; some Undo/draft measurements worsen and are retained. [Full evidence](docs/evidence/performance-2026-10-24/increment-05/README.md) records before/after samples, exact commands/builds, the report-copy path correction and preservation. Prior visual results retain increment 4's build scope. QUALITY-03 remains IN PROGRESS; cloud provisioning remains pending and the 4173 profile was not accessed.
++
++## 24 October 2026 — QUALITY-03 account capacity baseline
++
++The fixed-test 100-account workload retains 100 habits × 730 dates per account (7.3 million occurrences). Its full/Undo bursts fail the local capacity gate: 11 of 200 first attempts succeed; 189 return 503; accepted p95 is 4,335.7 ms. All 189 exact retries, immutable receipt replays, complete relational-history/XP readbacks and owner-scoped cleanup pass. Overlap and SIGTERM cleanup guards pass. The new diagnostic passes server type checking and focused lint. No application/server/schema/security configuration changed, and increment 5's source/build hashes remain unchanged. A separate single-account CPU profile identifies repeated canonical serialization as substantial work. [Exact commands, samples, corrections and preservation evidence](docs/evidence/performance-2026-10-24/increment-06/README.md). QUALITY-03 remains IN PROGRESS; mixed/shared load, integrated resilience, physical devices and hosted acceptance remain open. Cloud provisioning stays pending.
+--- before/docs/PERFORMANCE.md
++++ after/docs/PERFORMANCE.md
+@@ -24,6 +24,16 @@
+ 
+ Group screen code is deferred until its sheet opens; Today rows remain immediately available. Bundle comparisons must use the same build and compression method. The real worker still precaches every public chunk, so initial entry savings do not establish reduced total offline download or faster mobile Web Vitals. Validate failed-download retry, close-during-load focus, cold offline access and unchanged loaded-screen visuals whenever this boundary changes.
+ 
++## Account burst diagnostic
++
++Run `node --import tsx scripts/infra/check-account-load.ts smoke` first, then `node --import tsx scripts/infra/check-account-load.ts full`, separately from database/browser suites. The fixed test installation must already be running. Full mode creates 100 authorized synthetic accounts with 7,300,000 total habit occurrences; it requires 12 GiB free host disk before starting. A database advisory lock rejects overlapping capacity runs. It does not stop other installations or prevent unrelated test commands, so the operator must reserve the test database.
++
++Administrative access only seeds and removes this run's fixtures. Setup is excluded from request latency and does not measure the import API. Every measured request uses real local Auth, the restricted BFF connection, verified actor, RLS and unchanged production pool/timeouts. Fastify's injected transport excludes network/browser/hosted latency. Each account has a distinct synthetic loopback client address. The workload sends a simultaneous full-check wave, recovers rejected requests with the identical operation ID/body, verifies replay receipts, then repeats for Undo. First-attempt successes, failures and accepted p95 are reported separately from sequential recovery. Every account is read back and compared with every original relational value, ignoring row order only; XP and revisions must match.
++
++The JSON report goes to stdout and `.rise-infra/test/capacity/<run-id>/report.json`. The protected sibling `fixtures.json` records only this run's installation ID and exact synthetic emails for crash recovery; neither file contains auth credentials. Normal completion, assertion failure and handled SIGINT/SIGTERM clean up only those exact accounts and verify their occurrence rows are gone. A hard process kill cannot run cleanup: inspect the protected manifest against the fixed test installation before performing exact-email cleanup; never sweep other synthetic users or remove the lifecycle ledger. No guest or other-owner browser data is touched. A nonzero exit may mean a measured capacity shortfall even when recovery and cleanup pass; preserve the report.
++
++This two-wave burst is a local personal-command stress diagnostic. It does not establish the full NFR-03 mixed workload, shared convergence, sustained throughput, physical-device performance or hosted staging acceptance.
++
+ ## Preserve correctness while optimizing
+ 
+ Unknown JSON still receives the same size, depth, record-count, prototype, accessor, field, date and reference checks. Parsing must not silently truncate history or drop unknown safe extensions. A descriptor walk may reduce allocations but must never invoke a getter. Account reconstruction must retain per-parent ordering, explicit prayer records, snapshots and retired-milestone behavior.
+--- before/docs/evidence/performance-2026-10-24/README.md
++++ after/docs/evidence/performance-2026-10-24/README.md
+@@ -72,3 +72,7 @@
+ ## Increment 5 — validated command preparation
+ 
+ [The verified increment](increment-05/README.md) avoids descriptor inspection only on fresh JSON parser output and reuses the command result's validated serialized text. Arbitrary objects retain accessor checks; all bounds, schema/reference validation and durable/recovery semantics remain. The source gate passes 282 cases. Before/after measurements each pass 6 dense-profile and 3 production UI cases; final regressions pass 105 storage/backup/recovery, 21 database, 15 export/deletion browser, 66 production and 45 PWA cases. DOM completion samples improve from 145.6/153/222 to 128.3/119/192 ms. Every visible sample and durable median still exceeds its target, and some durable timings worsen; all data is retained. No UI, CSS, asset, dependency or persisted-format change. QUALITY-03 remains IN PROGRESS for latency, capacity/resilience and hosted/physical acceptance.
++
++## Increment 6 — account capacity baseline
++
++[The local capacity increment](increment-06/README.md) adds an opt-in test with 100 authorized synthetic accounts and 7.3 million occurrences. Its simultaneous full/Undo bursts fail the capacity target: 11/200 first attempts succeed, 189 return 503, and accepted p95 is 4,335.7 ms. All exact retries, receipt replays, complete history/XP readbacks and cleanup pass. Single-account profiling identifies repeated canonical record serialization as substantial CPU work. Overlap/interruption guards, tool types/lint and documentation checks pass. Application/server/schema/security settings remain unchanged. This is a reproducible local stress baseline, not complete NFR-03 mixed/shared or hosted acceptance; QUALITY-03 remains IN PROGRESS.

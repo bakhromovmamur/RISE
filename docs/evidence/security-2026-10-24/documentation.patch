@@ -1,0 +1,149 @@
+--- a/README.md
++++ b/README.md
+@@ -1,4 +1,6 @@
+ # RISE — Daily life around salah
++
++**Local security, 24 October 2026:** the BFF now enforces a tested browser resource/script/framing policy and limits unused browser capabilities. Policy changes enter the PWA release fingerprint and use the existing safe update flow; personal storage and the interface remain unchanged. [Contract and rollout limits](docs/LOCAL-SECURITY.md); [integrated verification evidence](docs/evidence/security-2026-10-24/README.md). Hosted HTTPS/HSTS, physical-device and operational acceptance remain pending. Cloud provisioning stays pending.
+ 
+ **Local background sender, 23 October 2026:** consented prayer/Fajr/habit jobs now use the isolated encrypted sender. Readiness follows its live heartbeat; the receiving worker checks current server authorization before presentation, including cancellation after provider acceptance. Design and saved-profile formats are preserved. Bounded queue/receipt cleanup and a local 200-job load check are implemented; hosted operation/load acceptance and physical HTTPS-device evidence remain pending. Cloud provisioning stays pending. See [local live-sender integration](docs/LIVE-PUSH-SENDER.md).
+ 
+--- a/PRODUCT.md
++++ b/PRODUCT.md
+@@ -1,4 +1,6 @@
+ # RISE
++
++> SAFE-01 local hardening, 24 October 2026: the BFF enforces browser script/resource/framing restrictions and a feature policy that retains self-origin geolocation. Existing styles, functionality and storage formats remain. Policy-only changes produce a new public PWA release through the normal safe update flow; older open/offline documents retain their prior policy until that update is applied. [Local contract](docs/LOCAL-SECURITY.md) and [verification evidence](docs/evidence/security-2026-10-24/README.md). Cloud, hosted HTTPS and physical-device acceptance remain pending.
+ 
+ > Local loading update, 24 October 2026: family/squad sheets now handle delayed or interrupted screen downloads with English, Russian and Uzbek loading/retry states. Today tasks remain immediately available, and the installed offline shell retains every group screen. Existing forms, keyboard focus and saved records are preserved. [Implementation, measurements and verification scope](docs/evidence/performance-2026-10-24/increment-04/README.md).
+ 
+--- a/TASKS.md
++++ b/TASKS.md
+@@ -377,14 +377,17 @@
+ 
+ - Increment 13 removes per-object temporary filter/map/pair arrays from the fixed-field account projection. Own/defined allowlisted values, privacy exclusions, record order and stored formats are preserved. Two alternating-order dense-profile experiments reduce median projection wall time from 30.2–30.7 ms to 13.0–13.7 ms; this is a pure-function result, not API/device capacity. Checks pass 295 source/tooling cases, 39 targeted real-database cases and 69 three-engine sync cases with no flakes. CSS and screen code remain unchanged. No new 100-account capacity result is claimed; QUALITY-03 remains IN PROGRESS and cloud stays pending. [Evidence and limits](docs/evidence/performance-2026-10-24/increment-13/README.md).
+ 
+-- Next dependency-ready local verification is SAFE-01 (GROUP-05/PUSH-05/DATA-04 local boundaries exist). It does not depend on QUALITY-03. Keep the capacity gate open while completing this independent local review; hosted acceptance stays deferred.
++- SAFE-01's local review is now complete independently of QUALITY-03. Existing GROUP-05/DATA-04 and PUSH-01–04 implementations support that local review; PUSH-05 physical-device acceptance remains TODO. Keep the capacity gate open. OPS-01 is the next dependency-ready local task; hosted acceptance stays deferred.
+ 
+ #### SAFE-01 — Integrated security verification
+ 
+-- [ ] **Status: TODO · P0 · L · Owner: Security/QA · Depends: GROUP-05, PUSH-05, DATA-04**
++- [ ] **Status: REVIEW · P0 · L · Owner: Codex (local Security/QA review); hosted/device acceptance pending · Depends: GROUP-05, PUSH-05, DATA-04**
+ - Execute SEC-01–06 controls against real staging infrastructure, including direct-request ownership tests, SSRF, headers, CSRF, imports, credentials and cache leakage.
+ - Resolve exploitable critical/high issues; record residual risks and limits.
+ - Accept a reproducible report tied to a release, not a general claim based on unit tests.
++- Local acceptance, 24 October 2026: the BFF now enforces CSP, framing denial and limited feature permissions. The public PWA fingerprint includes that policy so compatible updates refresh offline response headers. Existing inline styles remain explicitly allowed; scripts/evaluation do not. No UI source, public asset, schema, dependency or saved-data format changes. [Contract](docs/LOCAL-SECURITY.md) and [release-bound evidence](docs/evidence/security-2026-10-24/README.md).
++- Verification: 296 source/tooling and 173 real database/BFF cases pass; browser runs pass 21 backend, 21 auth, 69 sync, 54 push, 66 production and 45 PWA cases. The complete group run passed 110 cases and found one squad visual-test refresh race; all nine affected cases pass after its test-only repair. The earlier family test race was also repaired and passed across all three languages/engines. All 720 frozen visual comparisons pass without baseline updates. Dependency audit reports zero vulnerabilities; both retained environments and security advisors pass. Original failures and corrected checks remain in the evidence.
++- REVIEW retains hosted HTTPS/HSTS, proxy/cookie/key/backup operations and physical-device privacy/delivery acceptance. SEC-07 operating ownership/alerts remain OPS-01 work. QUALITY-03 capacity is still IN PROGRESS. Cloud provisioning remains pending.
+ 
+ #### OPS-01 — Observability, support and privacy-safe diagnostics
+ 
+@@ -527,3 +530,7 @@
+ QUALITY-02 local acceptance is complete and recorded as REVIEW for physical-device/assistive-technology gates. Current register: **11 DONE, 2 IN PROGRESS (FND-03/INFRA-01), 16 REVIEW and 9 TODO**. QUALITY-03 is the next dependency-ready local task; hosted and physical acceptance remain pending.
+ 
+ QUALITY-03 is now IN PROGRESS. Current register: **11 DONE, 3 IN PROGRESS (FND-03/INFRA-01/QUALITY-03), 16 REVIEW and 8 TODO**. Cloud provisioning remains pending.
++
++### Local security acceptance checkpoint — 24 October 2026
++
++SAFE-01 local acceptance is complete and recorded as REVIEW for hosted/device gates. Current register: **11 DONE, 3 IN PROGRESS (FND-03/INFRA-01/QUALITY-03), 17 REVIEW and 7 TODO**. OPS-01 is the next dependency-ready local task. PUSH-05 physical-device acceptance, operating owners, hosted operation and release acceptance remain open. Cloud provisioning remains pending. Earlier checkpoint counts retain their original dated scopes.
+--- a/SECURITY.md
++++ b/SECURITY.md
+@@ -181,6 +181,8 @@
+ Serve production only over HTTPS. Require exact-origin CSRF checks and a session-bound token on all mutations, including subscription registration, invite acceptance and logout. Do not enable wildcard credentialed CORS.
+ 
+ Start CSP in report-only mode, fix real violations, then enforce a tested policy with same-origin scripts, no plugins, restricted framing, approved connections and no unsafe evaluation. Existing inline style usage must be inventoried; do not break the preserved UI by blindly applying an incompatible policy. Style exceptions require a documented reason. Avoid inline script exceptions.
++
++SAFE-01 now implements the [local browser policy](docs/LOCAL-SECURITY.md): after a three-engine report-only compatibility probe, the BFF enforces same-origin scripts/workers/connections, no inline scripts/evaluation, no framing or base replacement, and explicit form destinations. A documented style-only inline exception preserves React's existing layout/progress/motion attributes. Permissions Policy retains self-origin geolocation while disabling unused camera/microphone/display capture/payment/USB capabilities. Policy changes enter the PWA release fingerprint so the normal safe update flow refreshes cached response headers without clearing personal data. Old open/offline documents retain their old policy until the update is applied. HTTPS/HSTS and hosted proxy verification remain pending.
+ 
+ Set HSTS after HTTPS validation, `X-Content-Type-Options: nosniff`, a restrictive Referrer-Policy and Permissions-Policy allowing only needed capabilities, including self-origin geolocation. Prohibit untrusted framing through CSP. Production source maps must not expose embedded secrets or private build paths.
+ 
+@@ -305,6 +307,8 @@
+ 
+ Security gates are incomplete until implemented and evidenced.
+ 
++SAFE-01's 24 October 2026 [integrated local review](docs/evidence/security-2026-10-24/README.md) verifies the retained local/test SEC-01–06 boundaries and closes the missing browser-policy and policy-only PWA update gaps. Its scope, exact release, initial test failures, corrections and remaining limits are recorded there. SAFE-01 is REVIEW: these release checkboxes remain open for hosted/device/operational evidence, including PUSH-05 and OPS-01–04. Cloud provisioning remains pending.
++
+ - [ ] SEC-01: Account/group policies and direct-request negative tests cover every entity and sensitive action.
+ - [ ] SEC-02: Session, CSRF, revocation, recent-auth and account-switch tests pass.
+ - [ ] SEC-03: Input/import/XSS, production headers and worker/cache isolation checks pass.
+--- a/ARCHITECTURE.md
++++ b/ARCHITECTURE.md
+@@ -417,6 +417,8 @@
+ 
+ ### Service worker lifecycle
+ 
++SAFE-01's [browser security policy](docs/LOCAL-SECURITY.md) is a single server-owned header definition consumed by both the BFF and the PWA build fingerprint. Policy-only changes produce a distinct public release and use the existing explicit all-tab update protocol. Cached public responses retain their policy offline; no personal database/cache-format migration or forced clearing is introduced. The BFF enforces same-origin resources, script/evaluation and framing restrictions, with an explicit existing-style exception and limited feature permissions. Hosted HTTPS/HSTS acceptance remains pending.
++
+ WEB-02 retains `/notifications-sw.js` at root scope for app files and notification clicks. `scripts/pwa-build.ts` injects the public asset list, SHA-256 hashes, release ID and `db1-repository2-domain4` compatibility contract into production output. Review builds do not auto-register the worker or link the manifest. Public caches are separate from IndexedDB; private/API/auth/logout and mutation responses bypass Cache Storage. There is no generic runtime response cache. PUSH-01–04 add validated test/reminder listeners and uncached receive authorization; private notification API responses remain outside this cache.
+ 
+ Install verifies all public assets before succeeding, without automatic `skipWaiting`. Explicit activation asks every app window to close forms, finish startup/migration/readback and hold its `DeviceSession` command queue. Temporary leases freeze new writes; failed saves, restore/clear, open dialogs, unknown clients or incompatible contracts keep the update waiting. Recheck the live window set before activation. Held clients reload on controller change; first adoption does not reload. A failed download retains the previous complete shell. Cleanup retains releases needed by live tabs and one previous public version, leaving unrelated caches and all personal storage untouched.
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -242,3 +242,7 @@
+ See [shared archive and lifecycle](docs/GROUP-LIFECYCLE.md). `rise.group-archive` v1 is an explicit current-member download, separate from unchanged private backup/cache formats. Keep the recent-auth/reviewed-revision checks, current-member RLS on every bounded page and final authorization. Reuse the shared screen projections; never expand departed-member name access or include private journeys, invitations, previews, credentials or device consent. Bind the group parameter within paged queries so large retained history uses its ordered index; do not relax database timeouts or authorization to make exports pass.
+ 
+ Validate the complete bounded file, references and checksum. Never truncate or retain a partial export. Worker cancellation and final owner/revision fences prevent late files after scope changes; reauthentication returns to explicit confirmation. Private restore must reject this format before mutation. Preserve deidentified family history, squad/notification erasure, deleted-owner cache markers and authoritative ledger replay. Tests use synthetic accounts only; hosted backup operations and physical-device proof remain pending.
++
++## SAFE-01 local browser security boundary
++
++See [the local security contract](docs/LOCAL-SECURITY.md). Keep the BFF policy in `server/browserPolicy.ts` and include its headers in the PWA release fingerprint. Policy-only changes must reach cached shells through the existing safe update flow; never clear a profile/cache or force activation to install headers. Preserve the documented style-only inline exception until equivalent-state evidence supports removing it; never add inline-script/evaluation or arbitrary remote-source exceptions to silence a failure. Test normal workers, downloads, offline navigation and negative script/framing cases through the BFF. Playwright direct evaluation bypasses CSP and is not an evaluation-blocking test. Hosted HTTPS/HSTS, physical-device and operating acceptance remain pending.
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -550,3 +550,11 @@
+ ## Account projection increment — 24 October 2026
+ 
+ Increment 13 removes per-object temporary filter/map/pair arrays from the fixed-field account projection. Own/defined allowlisted values, privacy exclusions, record order and stored formats are preserved. Two alternating-order dense-profile experiments reduce median projection wall time from 30.2–30.7 ms to 13.0–13.7 ms; this is a pure-function result, not API/device capacity. Checks pass 295 source/tooling cases, 39 targeted real-database cases and 69 three-engine sync cases with no flakes. CSS and screen code remain unchanged. No new 100-account capacity result is claimed; QUALITY-03 remains IN PROGRESS and cloud stays pending. [Evidence and limits](docs/evidence/performance-2026-10-24/increment-13/README.md).
++
++## SAFE-01 integrated local security review — 24 October 2026
++
++Local acceptance is complete against release `f10c7d5e178eb33c3fd4`; SAFE-01 is REVIEW for hosted/device gates. The BFF now enforces CSP/framing restrictions and limited feature permissions, preserving the existing style attributes. Browser policy enters the PWA fingerprint so policy-only changes use the compatible update flow and refresh offline headers. No screen/CSS/public-asset, schema, dependency or storage-format change was made. Application JS/CSS and every review-build file remain byte-identical to increment 13; only production HTML/generated worker release metadata changes. Saved user profiles were not opened or reset.
++
++Checks pass 296 source/tooling cases, 173 real database/BFF cases, 21 backend, 21 auth, 69 sync, 54 push, 66 production-entry and 45 PWA browser cases. The complete group run passed 110 cases and exposed one squad-layout detached-control race; all nine affected cases pass after a bounded test-only repair. The earlier family layout race was likewise repaired and passes across the three languages/engines. All 48 visual matrix cases pass their 720 frozen comparisons with no baseline regeneration. Lint/types pass after the final test correction. The npm audit reports zero vulnerabilities, and both local/test environment verifications and security advisors pass after the database suites.
++
++[Evidence, original failures, exact commands, hashes, runtime versions and rollback limits](docs/evidence/security-2026-10-24/README.md); [local security contract](docs/LOCAL-SECURITY.md). Hosted HTTPS/HSTS, proxy/cookie/key/backup operations, physical-device notification privacy and SEC-07 operational ownership remain open. QUALITY-03 capacity remains IN PROGRESS. Cloud provisioning remains pending.
+--- a/docs/LOCAL-SECURITY.md
++++ b/docs/LOCAL-SECURITY.md
+@@ -0,0 +1,43 @@
++# Integrated local security boundary — SAFE-01
++
++24 October 2026. This contract covers the retained local/test installations, production web bundle and synthetic users. Cloud provisioning remains pending. Local verification does not close hosted, physical-device or operational security acceptance.
++
++## Browser policy and compatible updates
++
++The BFF applies `server/browserPolicy.ts` to public assets, API responses and errors. Its Content Security Policy defaults to no resources, then permits same-origin scripts, connections, fonts, workers and the web manifest. Images allow same-origin files and data URLs. Plugins, embedded frames, base-URL replacement and unapproved form destinations are blocked. Inline scripts and string evaluation have no exception. `frame-ancestors 'none'` and `X-Frame-Options: DENY` also reject embedding by a same-origin document.
++
++The style-only `'unsafe-inline'` exception preserves existing React style attributes for progress widths, chart heights, Pip sizing, layout and motion. The interface does not render user HTML or accept user CSS. This exception is not permission for inline scripts. Original CSS, screen components, artwork and system fonts are retained. Permissions Policy permits same-origin geolocation and disables camera, microphone, display capture, payment and USB. It does not request any permission or enable notifications.
++
++The policy first passed a report-only compatibility probe before enforcement. Ordinary BFF journeys and the real public worker then run under the enforced policy. Reports collected by tests contain directive names only. There is no production CSP reporting endpoint, third-party collector or private report payload.
++
++`scripts/pwa-build.ts` includes the security headers in the public release fingerprint. A policy-only change therefore produces a new worker and shell release, even when JavaScript/CSS and the visual interface are unchanged. The existing explicit all-tab update protocol retains pending edits, drafts and recovery state. Cache Storage retains the downloaded response headers, including CSP, during offline navigation. Existing open documents and older offline shells retain their previous policy until the normal compatible update is applied; server headers alone cannot retroactively protect them. Never clear a user's profile or public cache to force adoption.
++
++Serve a newly completed production build alongside the BFF. The direct Vite preview and isolated review/test static servers do not provide the BFF's security headers and are not a hosted security claim. HSTS remains an HTTPS deployment gate: this local HTTP task does not install it or pretend to validate a host, proxy or certificate.
++
++## Integrated verification scope
++
++| Control | Local evidence surface |
++| --- | --- |
++| SEC-01 authorization | Forced RLS on every installed application table; narrow non-login definer owners; no PUBLIC execution on privileged functions; personal/group entity denial, removed membership, exact receipts and concurrent authorization checks |
++| SEC-02 sessions | Verified provider identity, ambiguous-cookie rejection, exact-Origin/CSRF mutation checks, rate limits, expiry/revocation, recent authentication, account switching and bounded session admission |
++| SEC-03 browser and imports | Real-browser CSP injection/evaluation/framing probes, inert authored markup, bounded/prototype-safe JSON, migration/backup workers, public-only offline cache and production/reviewer isolation |
++| SEC-04 notifications | Allowlisted canonical endpoints, connection-time public DNS/address pinning, no redirects, real payload encryption with injected outbound delivery, consent/cancellation/source authorization and generic copy |
++| SEC-05 lifecycle | Export exclusions, correction/replay, account/cache cleanup, retained suppression, populated private/shared deletion and stale-backup replay |
++| SEC-06 infrastructure | Local/test identity/role separation, restricted credentials, protected configuration permissions, known-secret scanning of source and both web builds, dependency audit and local runtime-role rotation regression |
++
++The route matrix uses all ten private read routes and all 27 POST routes present in this version. It supplements entity-specific authorization tests; rejecting an empty hostile request alone does not prove correct permissions for a valid operation. Real database suites supply those owner/member/unrelated/removed-user and transactional checks.
++
++Tests use fixed isolated origins and synthetic users/subscriptions. Outbound push is injected, email stays in the local sink, and no real invitation is sent. Browser credential suites disable screenshots/video/traces. Policy injection probes use ordinary same-origin script loading because Playwright's direct evaluation bypasses CSP; their service workers are blocked only to ensure the synthetic test script reaches the test route. A separate real-worker probe verifies online/offline compatibility and retained response policy.
++
++## Remaining release gates and rollback
++
++SAFE-01 remains REVIEW after local acceptance. Staging HTTPS/headers, Secure cookies, proxy/client-IP behavior, hosted key custody/rotation, secrets/network controls, production provider configuration, physical-device privacy and notification checks remain pending. PUSH-05 is still TODO; its device gate is not satisfied by the local sender or browser adapters. SEC-07 monitoring/contacts/alert routing belong to OPS-01. Operational encrypted-backup restoration and RPO/RTO belong to OPS-02. QUALITY-03 capacity remains independently open.
++
++No new schema, storage version, key, dependency or cloud resource is required. Rollback uses compatible BFF and rebuilt public assets together, through the normal worker update flow, while retaining guest/account databases, outboxes, cancellation intent and deletion ledgers. Removing enforcement weakens browser protection and must be recorded as a security rollback; it cannot be described as equivalent acceptance. Do not change RLS, reset storage or downgrade cached data to resolve a policy violation.
++
++See [dated execution evidence](evidence/security-2026-10-24/README.md), [security requirements](../SECURITY.md), [PWA lifecycle](PWA.md), [session custody](AUTH-SESSIONS.md#key-custody-recovery-and-rollback), and [backend isolation](BACKEND-ENVIRONMENTS.md).
++
++## Primary references reviewed
++
++- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy), [worker sources](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/worker-src), [style exceptions](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/style-src), and [Permissions Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Permissions-Policy).
++- [Supabase RLS](https://supabase.com/docs/guides/database/postgres/row-level-security) and [changelog](https://supabase.com/changelog): the reviewed TLS CBC deprecation concerns future hosted HTTP APIs; the PostgreSQL minor-release notice requires deployment-specific extension/version review, not a speculative change to this task's retained local installation. No provider runtime or dependency was upgraded here.

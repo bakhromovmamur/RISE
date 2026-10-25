@@ -1,0 +1,21 @@
+
+> rise-prototype@1.0.0 test:infra
+> tsx --test tests/infra/*.test.ts
+
+✔ both fresh stacks apply the committed migration and expose the expected restricted environment (1026.125416ms)
+✔ each runtime identity can read its environment but cannot administer data, Auth or other roles (64.418042ms)
+✔ crossed databases, installation markers and privileged connections fail readiness (23.017541ms)
+✔ private local files are protected and never present in the web build (46.089542ms)
+✔ BFF delivers the existing production files byte-for-byte under its own origin (51.493333ms)
+✔ synthetic Auth users are isolated; foreign JWTs and administrator tokens are refused (325.542917ms)
+✔ startup refuses a mismatched installation before opening its listener (171.252792ms)
+✔ rotating a worker login invalidates its old password without changing the BFF identity (97.416083ms)
+✔ unexpected direct grants on the BFF role fail readiness instead of expanding access (70.521583ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2035.589709

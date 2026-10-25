@@ -1,0 +1,112 @@
+--- before/src/data/repository.ts
++++ after/src/data/repository.ts
+@@ -11,8 +11,11 @@
+   receipts: { operation: LocalOperation; revision: number }[];
+ }
+ export interface LocalStore {
++  /** Transfer an owned result: detached from durable/internal state and other calls. */
+   read(): Promise<RepositoryRecord>;
+-  /** The adapter must serialize this callback and atomically commit its returned record. */
++  /** Serialize the callback, atomically commit, then return an owned detached result.
++   * The callback's input/result must not alias the returned or retained record.
++   */
+   transaction(update: (current: RepositoryRecord) => RepositoryRecord): Promise<RepositoryRecord>;
+ }
+ export interface LocalRepository {
+@@ -22,7 +25,9 @@
+ class RepositoryConflict extends Error {
+   constructor(readonly code: "conflict" | "operation-reused") { super(code); }
+ }
+-const snapshot = (record: RepositoryRecord): RepositorySnapshot => ({ revision: record.revision, state: structuredClone(record.state) });
++// Adapters already detach at the storage boundary. Transfer that owned state
++// rather than copying the entire history again for each read/acknowledgment.
++const snapshot = (record: RepositoryRecord): RepositorySnapshot => ({ revision: record.revision, state: record.state });
+ 
+ /** The only command-to-storage boundary. Invalid input never calls an adapter. */
+ export function createLocalRepository(store: LocalStore): LocalRepository {
+--- before/tests/commands.test.ts
++++ after/tests/commands.test.ts
+@@ -91,6 +91,31 @@
+   assert.equal((await repo.read()).state.habits.length, initial.habits.length);
+ });
+ 
++test("repository snapshots cannot mutate stored history, replay results or another caller's snapshot", async () => {
++  const initial = makeFixture(), expected = structuredClone(initial), repo = createMemoryRepository(initial);
++  initial.habits[0].name = "Changed source";
++  const view = await repo.read();
++  assert.deepEqual(view.state, expected);
++  const first = await repo.apply(operation("isolated-result"));
++  assert.ok(first.ok);
++  const committed = structuredClone(first.snapshot);
++  first.snapshot.state.days[check.date][0].name = "Changed returned history";
++  first.snapshot.state.habits.length = 0;
++  first.snapshot.revision = 999;
++  view.state.prayers.days = {};
++  assert.deepEqual(await repo.read(), committed);
++  const replay = await repo.apply(operation("isolated-result"));
++  assert.ok(replay.ok && replay.replayed);
++  assert.deepEqual(replay.snapshot, committed);
++  replay.snapshot.state.days = {};
++  const current = await repo.read();
++  assert.deepEqual(current, committed);
++  assert.notEqual(current.state, committed.state);
++  const next = await repo.apply(operation("isolated-next", 1, { ...check, check: "full" }));
++  assert.ok(next.ok);
++  assert.deepEqual(current, committed);
++});
++
+ test("concurrent check and Undo preserve a revision conflict and let the caller retry explicitly", async () => {
+   const repo = createMemoryRepository(makeFixture());
+   const [checked, undone] = await Promise.all([
+--- before/tests/storage.browser.spec.ts
++++ after/tests/storage.browser.spec.ts
+@@ -7,6 +7,49 @@
+ 
+ const synthetic = JSON.stringify(addLifeDemo(balancedFixture(), "prayer-pause"), null, 2);
+ async function harness(page: Page) { await page.goto("/?storage-test=1"); await expect(page.getByText("Storage test harness ready.")).toBeVisible(); }
++
++test("adapter and repository results cannot mutate saved records or each other's snapshots", async ({ page }) => {
++  await harness(page);
++  const result = await page.evaluate(async raw => {
++    const api = window.riseStorageTest, db = await api.openDeviceStore();
++    await db.initialize(raw, await api.prepareProfile(raw, api.createEmptyState()));
++    const read = await db.read(), before = JSON.stringify(read);
++    let retained: typeof read.state | undefined;
++    const returned = await db.transaction(current => {
++      retained = current.state;
++      return current;
++    });
++    retained!.habits[0].name = "Changed retained callback";
++    const callbackIsolated = JSON.stringify(returned) === before;
++    returned.state.days = {};
++    read.state.habits.length = 0;
++    const adapterIsolated = JSON.stringify(await db.read()) === before;
++    const repo = api.createLocalRepository(db);
++    const operation = { protocolVersion: 1, operationId: "isolated-copy", baseRevision: 0,
++      command: { kind: "habit.check", habitId: "read", date: "2026-10-19", check: "tiny" } };
++    const first = await repo.apply(operation);
++    if (!first.ok) throw new Error("isolation_command_failed");
++    const committed = JSON.stringify(first.snapshot), other = await repo.read();
++    first.snapshot.state.days = {};
++    first.snapshot.state.habits.length = 0;
++    first.snapshot.revision = 999;
++    const replay = await repo.apply(operation);
++    if (!replay.ok || !replay.replayed) throw new Error("isolation_replay_failed");
++    const replayIsolated = JSON.stringify(replay.snapshot) === committed;
++    replay.snapshot.state.prayers.days = {};
++    const readIsolated = JSON.stringify(await repo.read()) === committed;
++    const otherIsolated = JSON.stringify(other) === committed;
++    const original = await db.original(); db.close();
++    const reopened = await api.openDeviceStore();
++    try {
++      const final = await reopened.verify(raw);
++      return { callbackIsolated, adapterIsolated, replayIsolated, readIsolated, otherIsolated, original,
++        reopenedIsolated: JSON.stringify({ revision: final.revision, state: final.state }) === committed };
++    } finally { reopened.close(); }
++  }, synthetic);
++  expect(result).toEqual({ callbackIsolated: true, adapterIsolated: true, replayIsolated: true,
++    readIsolated: true, otherIsolated: true, reopenedIsolated: true, original: synthetic });
++});
+ 
+ test("IndexedDB migration, exact source recovery, reload and idempotent commands preserve invariants", async ({ page }) => {
+   await harness(page);

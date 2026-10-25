@@ -1,0 +1,39 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/layout.groups.spec.ts --project=chromium --grep · en
+
+[WebServer] (node:33892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:33893) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en (15.8s)
+
+
+  1) [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en 
+
+    Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+    Call log:
+      - attempting scroll into view action
+        - waiting for element to be stable
+        - element is not stable
+      - retrying scroll into view action
+        - waiting for element to be stable
+
+
+      39 |    if(!header.within)await dialog.screenshot({path:info.outputPath(`groups-failed-header-${scene}-${language}-${theme}-${width}-${scale}.png`)}); // Unverified visual fixture only; no credentials.
+      40 |    expect(header.within,JSON.stringify({scene,theme,width,scale,...header})).toBe(true);
+    > 41 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+         |                                                                  ^
+      42 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200||scene==='notification-device'&&theme==='light'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(scene==='settings-enabled'){await page.getByRole('switch',{name:t('notifications'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      43 |   }
+      44 |   await page.evaluate(()=>document.documentElement.style.fontSize='100%');await page.setViewportSize({width:393,height:852});
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:41:66)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:53:423
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-491b0-and-recoverable-errors-·-en-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en 

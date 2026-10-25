@@ -1,0 +1,3324 @@
+{
+  "stats": {
+    "startTime": "2026-10-21T07:00:25.210Z",
+    "duration": 230133.07,
+    "expected": 273,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "real restore atomically retains the previous profile, survives reopening and retries once; rollback returns the exact device snapshot",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 725,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "quota, abort and failed readback at every restore write preserve both the profile and prior recovery point",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 750,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "two tabs cannot commit a stale preview, and clearing removes archives and recovery without stale resurrection",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 324,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "worker validation is cancelable, size-bounded and preserves the two-year profile through actual durable restore",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 4709,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "settings export, preview, cancel, confirmed restore, read-only archives and exact rollback work without touching source data",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 6192,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invalid import and quota failure keep the UI usable and leave saved data unchanged; retry succeeds",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1039,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "an unsupported saved draft can be exported as an exact recovery archive when a portable backup cannot be created",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 815,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a recovery-read error after commit reports a successful restore and allows raw recovery",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 832,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a preview becomes stale when another tab saves, and the UI preserves the newer profile",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1347,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in en, both appearances at 200% text",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2241,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in ru, both appearances at 200% text",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2550,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in uz, both appearances at 200% text",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2407,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "real restore atomically retains the previous profile, survives reopening and retries once; rollback returns the exact device snapshot",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 684,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "quota, abort and failed readback at every restore write preserve both the profile and prior recovery point",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 328,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "two tabs cannot commit a stale preview, and clearing removes archives and recovery without stale resurrection",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 240,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "worker validation is cancelable, size-bounded and preserves the two-year profile through actual durable restore",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3112,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "settings export, preview, cancel, confirmed restore, read-only archives and exact rollback work without touching source data",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5995,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invalid import and quota failure keep the UI usable and leave saved data unchanged; retry succeeds",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 722,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "an unsupported saved draft can be exported as an exact recovery archive when a portable backup cannot be created",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 526,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a recovery-read error after commit reports a successful restore and allows raw recovery",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 583,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a preview becomes stale when another tab saves, and the UI preserves the newer profile",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1032,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in en, both appearances at 200% text",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1383,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in ru, both appearances at 200% text",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1433,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in uz, both appearances at 200% text",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1409,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "real restore atomically retains the previous profile, survives reopening and retries once; rollback returns the exact device snapshot",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 987,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "quota, abort and failed readback at every restore write preserve both the profile and prior recovery point",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1041,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "two tabs cannot commit a stale preview, and clearing removes archives and recovery without stale resurrection",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 332,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "worker validation is cancelable, size-bounded and preserves the two-year profile through actual durable restore",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5083,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "settings export, preview, cancel, confirmed restore, read-only archives and exact rollback work without touching source data",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5937,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invalid import and quota failure keep the UI usable and leave saved data unchanged; retry succeeds",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 979,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "an unsupported saved draft can be exported as an exact recovery archive when a portable backup cannot be created",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 704,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a recovery-read error after commit reports a successful restore and allows raw recovery",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 808,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a preview becomes stale when another tab saves, and the UI preserves the newer profile",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1409,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in en, both appearances at 200% text",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1690,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in ru, both appearances at 200% text",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1626,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "restore preview and error reflow in uz, both appearances at 200% text",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1691,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Today first viewport leads with prayer and one actionable priority; rewards and routine remain reachable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 662,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "priority replacement and reordering survive reload without duplicating completion or adding work",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1269,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "tiny, upgrade and Undo stay consistent on Today, Progress and Journey",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1003,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "all Progress views preserve one selected week and separate lifetime from weekly results",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 821,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "goal creation, reordering, reward unlocking, correction, pause and archive form one working flow",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1810,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a prayer becoming due does not replace an open form or erase its draft; keyboard stays inside",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1355,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "history correction changes old-week reward eligibility while retaining enjoyed history",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 823,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "weekly reward creation normalizes the week and Try next week preserves the prior attempt",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 983,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "thirteenth habit is created without an upgrade route and long names stay accessible",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 656,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "version 2 browser data migrates in place without invented goals or rewards",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 308,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty screens offer working setup actions; data export and confirmed clearing include new records",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1089,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Today first viewport leads with prayer and one actionable priority; rewards and routine remain reachable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 427,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "priority replacement and reordering survive reload without duplicating completion or adding work",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 941,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "tiny, upgrade and Undo stay consistent on Today, Progress and Journey",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 898,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "all Progress views preserve one selected week and separate lifetime from weekly results",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 740,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "goal creation, reordering, reward unlocking, correction, pause and archive form one working flow",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1447,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a prayer becoming due does not replace an open form or erase its draft; keyboard stays inside",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 751,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "history correction changes old-week reward eligibility while retaining enjoyed history",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 686,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "weekly reward creation normalizes the week and Try next week preserves the prior attempt",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 831,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "thirteenth habit is created without an upgrade route and long names stay accessible",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 489,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "version 2 browser data migrates in place without invented goals or rewards",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 247,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty screens offer working setup actions; data export and confirmed clearing include new records",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 773,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Today first viewport leads with prayer and one actionable priority; rewards and routine remain reachable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 573,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "priority replacement and reordering survive reload without duplicating completion or adding work",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1186,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "tiny, upgrade and Undo stay consistent on Today, Progress and Journey",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1173,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "all Progress views preserve one selected week and separate lifetime from weekly results",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1362,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "goal creation, reordering, reward unlocking, correction, pause and archive form one working flow",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1856,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a prayer becoming due does not replace an open form or erase its draft; keyboard stays inside",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 867,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "history correction changes old-week reward eligibility while retaining enjoyed history",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 886,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "weekly reward creation normalizes the week and Try next week preserves the prior attempt",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1036,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "thirteenth habit is created without an upgrade route and long names stay accessible",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 671,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "version 2 browser data migrates in place without invented goals or rewards",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 294,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty screens offer working setup actions; data export and confirmed clearing include new records",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1055,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "one full day joins five prayers, habits, family lists, goal achievement, rewards and the next Fajr plan",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 12459,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr acknowledgment follows explicit corrections and never records a prayer by itself",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 854,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr plans keep their displayed date, preserve drafts and distinguish saving from alarm delivery",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1184,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "one full day joins five prayers, habits, family lists, goal achievement, rewards and the next Fajr plan",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 11861,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr acknowledgment follows explicit corrections and never records a prayer by itself",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 810,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr plans keep their displayed date, preserve drafts and distinguish saving from alarm delivery",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 993,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "one full day joins five prayers, habits, family lists, goal achievement, rewards and the next Fajr plan",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 13711,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr acknowledgment follows explicit corrections and never records a prayer by itself",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 875,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr plans keep their displayed date, preserve drafts and distinguish saving from alarm delivery",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1243,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Journey shows one unlock and one personal reward, while keyboard disclosures preserve records",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 622,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "earned Pip unlock precedes the next threshold; claiming and dressing persist without XP",
+      "project": "chromium",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 5555,
+          "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.pip-unlock')\nExpected substring: \u001b[32m\"Ready to claim\"\u001b[39m\nReceived string:    \u001b[31m\"Pip\u2019s next unlockLinen scarf for Pip10 XP to go240 / 250  lifetime habit XPPreview this unlock\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.pip-unlock') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.pip-unlock')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <section class=\"pip-unlock\" aria-label=\"Your next Pip unlock\">\u2026</section>\u001b[22m\n\u001b[2m       - unexpected value \"Pip\u2019s next unlockLinen scarf for Pip10 XP to go240 / 250  lifetime habit XPPreview this unlock\"\u001b[22m\n"
+        }
+      ]
+    },
+    {
+      "title": "earned personal reward stays first, enjoyment moves it to history, and selection names its goal",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1119,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty setup has real creation, and enlarged-text trail uses readable rows",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1405,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a completed collection has no invented next threshold and all keepsakes remain accessible",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 470,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Journey shows one unlock and one personal reward, while keyboard disclosures preserve records",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 648,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "earned Pip unlock precedes the next threshold; claiming and dressing persist without XP",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 848,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "earned personal reward stays first, enjoyment moves it to history, and selection names its goal",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1015,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty setup has real creation, and enlarged-text trail uses readable rows",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1231,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a completed collection has no invented next threshold and all keepsakes remain accessible",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 423,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Journey shows one unlock and one personal reward, while keyboard disclosures preserve records",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 731,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "earned Pip unlock precedes the next threshold; claiming and dressing persist without XP",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1113,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "earned personal reward stays first, enjoyment moves it to history, and selection names its goal",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1249,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty setup has real creation, and enlarged-text trail uses readable rows",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1991,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a completed collection has no invented next threshold and all keepsakes remain accessible",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 419,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "city setup, reminder preferences and nested drafts survive reload",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 769,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr stop, backup and acknowledgment persist without recording a prayer",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 627,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "period pause and resume are reflected in Today and Progress without changing habits",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 840,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "family task draft, assignment, repetition, pinning, completion and undo stay independent of XP",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1231,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "shared lists create, edit, reorder, check and retain local changes",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 866,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1206,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invitation simulation, member controls, archive and language are local and persistent",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1319,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "readiness states, empty entry points and modal keyboard focus work without device permissions",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 849,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "mobile widths and 200% text preserve readable prayer controls and persistent simulation labels",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 970,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "editing assignments and repeat schedules, task archive/restore and list uncheck retain history",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 14843,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "owner transfer enables leaving, hides shared content and preserves private progress",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 604,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "new control names match English and Uzbek, including optional prayer sharing",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2300,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "city setup, reminder preferences and nested drafts survive reload",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 787,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr stop, backup and acknowledgment persist without recording a prayer",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 639,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "period pause and resume are reflected in Today and Progress without changing habits",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 823,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "family task draft, assignment, repetition, pinning, completion and undo stay independent of XP",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1155,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "shared lists create, edit, reorder, check and retain local changes",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 985,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1186,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invitation simulation, member controls, archive and language are local and persistent",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1294,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "readiness states, empty entry points and modal keyboard focus work without device permissions",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 836,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "mobile widths and 200% text preserve readable prayer controls and persistent simulation labels",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 897,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "editing assignments and repeat schedules, task archive/restore and list uncheck retain history",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 14586,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "owner transfer enables leaving, hides shared content and preserves private progress",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 572,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "new control names match English and Uzbek, including optional prayer sharing",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2585,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "city setup, reminder preferences and nested drafts survive reload",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 978,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Fajr stop, backup and acknowledgment persist without recording a prayer",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 699,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "period pause and resume are reflected in Today and Progress without changing habits",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 993,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "family task draft, assignment, repetition, pinning, completion and undo stay independent of XP",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1354,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "shared lists create, edit, reorder, check and retain local changes",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1216,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1481,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invitation simulation, member controls, archive and language are local and persistent",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1556,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "readiness states, empty entry points and modal keyboard focus work without device permissions",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1011,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "mobile widths and 200% text preserve readable prayer controls and persistent simulation labels",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1214,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "editing assignments and repeat schedules, task archive/restore and list uncheck retain history",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 15295,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "owner transfer enables leaving, hides shared content and preserves private progress",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 751,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "new control names match English and Uzbek, including optional prayer sharing",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3547,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "four tabs use one heading hierarchy, keyboard navigation and independent reading positions",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 823,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "cross-tab shortcuts reset scroll, announce the destination and retain the inspected week",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 814,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Today has one timetable entry and reward details hand off cleanly to Journey",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1653,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "enlarged English and Uzbek navigation has separate readable targets above the content boundary",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 932,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "four tabs use one heading hierarchy, keyboard navigation and independent reading positions",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 810,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "cross-tab shortcuts reset scroll, announce the destination and retain the inspected week",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 827,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Today has one timetable entry and reward details hand off cleanly to Journey",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1528,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "enlarged English and Uzbek navigation has separate readable targets above the content boundary",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 925,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "four tabs use one heading hierarchy, keyboard navigation and independent reading positions",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 943,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "cross-tab shortcuts reset scroll, announce the destination and retain the inspected week",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1020,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Today has one timetable entry and reward details hand off cleanly to Journey",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1970,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "enlarged English and Uzbek navigation has separate readable targets above the content boundary",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1140,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "real setup validates location, uses live dates, preserves records and does not opt in silently",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 817,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "browser permissions and test notification reflect actual delivery capability",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 950,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "denied notifications never appear as scheduled or enabled",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 618,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "live Fajr plan stays separate from preview acknowledgment and prayer records",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 909,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "an executing browser delivers a Fajr alert once, and acknowledgment cancels its backup",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2599,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 375px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 619,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 393px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 792,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 430px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 819,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 1440px",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 951,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian large text and Uzbek controls remain usable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1364,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "real setup validates location, uses live dates, preserves records and does not opt in silently",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 825,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "browser permissions and test notification reflect actual delivery capability",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 757,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "denied notifications never appear as scheduled or enabled",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 634,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "live Fajr plan stays separate from preview acknowledgment and prayer records",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 924,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "an executing browser delivers a Fajr alert once, and acknowledgment cancels its backup",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3510,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 375px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 712,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 393px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 787,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 430px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 708,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 1440px",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 828,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian large text and Uzbek controls remain usable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1264,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "real setup validates location, uses live dates, preserves records and does not opt in silently",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1045,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "browser permissions and test notification reflect actual delivery capability",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 956,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "denied notifications never appear as scheduled or enabled",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 760,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "live Fajr plan stays separate from preview acknowledgment and prayer records",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1145,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "an executing browser delivers a Fajr alert once, and acknowledgment cancels its backup",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3051,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 375px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 845,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 393px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 930,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 430px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1390,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer setup and delivery render at 1440px",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 951,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian large text and Uzbek controls remain usable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1602,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "three summaries and a Journey link fit the overview; disclosures do not change records",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 695,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "weekly breakdowns, goal movement and current rewards keep their own time periods",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1025,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "pause, earned reward and empty setup remain understandable and actionable",
+      "project": "chromium",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 5761,
+          "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.progress-rewards-link')\nExpected substring: \u001b[32m\"1 personal reward earned\"\u001b[39m\nReceived string:    \u001b[31m\"Rewards in JourneySee what you\u2019re working towardAvailable now \u00b7 separate from this week\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.progress-rewards-link') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.progress-rewards-link')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <button class=\"progress-rewards-link\">\u2026</button>\u001b[22m\n\u001b[2m       - unexpected value \"Rewards in JourneySee what you\u2019re working towardAvailable now \u00b7 separate from this week\"\u001b[22m\n"
+        }
+      ]
+    },
+    {
+      "title": "enlarged text reflows overview and opened details without horizontal overflow",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 885,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "three summaries and a Journey link fit the overview; disclosures do not change records",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 632,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "weekly breakdowns, goal movement and current rewards keep their own time periods",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1065,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "pause, earned reward and empty setup remain understandable and actionable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1580,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "enlarged text reflows overview and opened details without horizontal overflow",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 929,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "three summaries and a Journey link fit the overview; disclosures do not change records",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 798,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "weekly breakdowns, goal movement and current rewards keep their own time periods",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1276,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "pause, earned reward and empty setup remain understandable and actionable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2071,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "enlarged text reflows overview and opened details without horizontal overflow",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1302,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a difficult day preserves achievements, supports a smaller plan and starts tomorrow without a backlog",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 10989,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "expired breaks keep drafts, allow an unlogged return and reflect later record corrections",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 915,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a zero-check-in day keeps earned rewards and offers a readable tiny restart",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 626,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a difficult day preserves achievements, supports a smaller plan and starts tomorrow without a backlog",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 11268,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "expired breaks keep drafts, allow an unlogged return and reflect later record corrections",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 893,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a zero-check-in day keeps earned rewards and offers a readable tiny restart",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 575,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a difficult day preserves achievements, supports a smaller plan and starts tomorrow without a backlog",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 12234,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "expired breaks keep drafts, allow an unlogged return and reflect later record corrections",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1144,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a zero-check-in day keeps earned rewards and offers a readable tiny restart",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1079,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "animated long prayer sheets keep their header and exit controls inside the phone",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2985,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "language switching and reload preserve all existing content and progress",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 780,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "all four tabs and their details contain Russian UI and preserve week selection",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 772,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian prayer setup, reminders, save-and-stop and Fajr stay functional",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1341,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 720,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian family tasks, shopping lists and squad previews remain local",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1176,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian period pause, readiness and empty setup have translated working controls",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 714,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian goals, rewards, reflection and settings expose translated forms and validation",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1218,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian onboarding, responsive navigation, large text and dark appearance remain usable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1556,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "animated long prayer sheets keep their header and exit controls inside the phone",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2886,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "language switching and reload preserve all existing content and progress",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 842,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "all four tabs and their details contain Russian UI and preserve week selection",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 892,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian prayer setup, reminders, save-and-stop and Fajr stay functional",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1383,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 894,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian family tasks, shopping lists and squad previews remain local",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1394,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian period pause, readiness and empty setup have translated working controls",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1024,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian goals, rewards, reflection and settings expose translated forms and validation",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1557,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian onboarding, responsive navigation, large text and dark appearance remain usable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1974,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "animated long prayer sheets keep their header and exit controls inside the phone",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 3263,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "language switching and reload preserve all existing content and progress",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 950,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "all four tabs and their details contain Russian UI and preserve week selection",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 997,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian prayer setup, reminders, save-and-stop and Fajr stay functional",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1639,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 943,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian family tasks, shopping lists and squad previews remain local",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1761,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian period pause, readiness and empty setup have translated working controls",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1042,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian goals, rewards, reflection and settings expose translated forms and validation",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1853,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "Russian onboarding, responsive navigation, large text and dark appearance remain usable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2354,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "IndexedDB migration, exact source recovery, reload and idempotent commands preserve invariants",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 189,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a quota exception while installing migration rolls back the profile and retains the legacy source",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 158,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "interruption after candidate commit resumes readback once, and altered candidates cannot complete",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 179,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "outbox failure rolls back an optimistic save; retry is atomic and does not duplicate the operation",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 196,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "two tabs cannot overwrite the same revision, and explicit clear prevents stale resurrection",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 283,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "sessions receive other tabs' saves and focus fallback works without BroadcastChannel",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 301,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "failed UI saves expose unsaved export and retry, with the previous durable profile unchanged",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 537,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "legacy changes and unsupported database versions fail closed with recoverable originals",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 301,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a two-year profile survives actual IndexedDB migration and readback without truncation",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1852,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invalid edits remain exportable while the saved profile stays unchanged",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 195,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a legacy change during worker migration preserves both sources and blocks editing",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 178,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "IndexedDB migration, exact source recovery, reload and idempotent commands preserve invariants",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 245,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a quota exception while installing migration rolls back the profile and retains the legacy source",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 214,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "interruption after candidate commit resumes readback once, and altered candidates cannot complete",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 220,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "outbox failure rolls back an optimistic save; retry is atomic and does not duplicate the operation",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 231,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "two tabs cannot overwrite the same revision, and explicit clear prevents stale resurrection",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 408,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "sessions receive other tabs' saves and focus fallback works without BroadcastChannel",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 531,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "failed UI saves expose unsaved export and retry, with the previous durable profile unchanged",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 539,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "legacy changes and unsupported database versions fail closed with recoverable originals",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 329,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a two-year profile survives actual IndexedDB migration and readback without truncation",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1585,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invalid edits remain exportable while the saved profile stays unchanged",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 238,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a legacy change during worker migration preserves both sources and blocks editing",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 248,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "IndexedDB migration, exact source recovery, reload and idempotent commands preserve invariants",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 255,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a quota exception while installing migration rolls back the profile and retains the legacy source",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 229,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "interruption after candidate commit resumes readback once, and altered candidates cannot complete",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 240,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "outbox failure rolls back an optimistic save; retry is atomic and does not duplicate the operation",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 277,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "two tabs cannot overwrite the same revision, and explicit clear prevents stale resurrection",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 889,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "sessions receive other tabs' saves and focus fallback works without BroadcastChannel",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 532,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "failed UI saves expose unsaved export and retry, with the previous durable profile unchanged",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1217,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "legacy changes and unsupported database versions fail closed with recoverable originals",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 416,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a two-year profile survives actual IndexedDB migration and readback without truncation",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2688,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "invalid edits remain exportable while the saved profile stays unchanged",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 278,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a legacy change during worker migration preserves both sources and blocks editing",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 260,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "disclosures use keyboard, expose routine and family actions, and preserve completion across reload",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 740,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "completed priorities stay compact; full, tiny, upgrade and Undo remain reachable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 563,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "busy routines stay disclosed and large text has no horizontal overflow",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 428,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a milestone ahead of a habit keeps its title readable and the habit actionable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 569,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "disclosures use keyboard, expose routine and family actions, and preserve completion across reload",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 877,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "completed priorities stay compact; full, tiny, upgrade and Undo remain reachable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 659,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "busy routines stay disclosed and large text has no horizontal overflow",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 536,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a milestone ahead of a habit keeps its title readable and the habit actionable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 658,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "disclosures use keyboard, expose routine and family actions, and preserve completion across reload",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1011,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "completed priorities stay compact; full, tiny, upgrade and Undo remain reachable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 778,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "busy routines stay disclosed and large text has no horizontal overflow",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 639,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "a milestone ahead of a habit keeps its title readable and the habit actionable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 840,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "You keeps four destinations visible, opens the right group view and restores keyboard focus without changing records",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 641,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer hub keeps setup drafts, Fajr, readiness and pause/resume reachable",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1099,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "settings disclose appearance, habit reminders and data while saving preferences and supporting export",
+      "project": "chromium",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 938,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty setup, Uzbek navigation and enlarged text keep destinations available without invented activity",
+      "project": "chromium",
+      "status": "unexpected",
+      "results": [
+        {
+          "status": "timedOut",
+          "durationMs": 30109,
+          "error": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+        }
+      ]
+    },
+    {
+      "title": "You keeps four destinations visible, opens the right group view and restores keyboard focus without changing records",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 847,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer hub keeps setup drafts, Fajr, readiness and pause/resume reachable",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1275,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "settings disclose appearance, habit reminders and data while saving preferences and supporting export",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1143,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty setup, Uzbek navigation and enlarged text keep destinations available without invented activity",
+      "project": "webkit",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1138,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "You keeps four destinations visible, opens the right group view and restores keyboard focus without changing records",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 981,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "prayer hub keeps setup drafts, Fajr, readiness and pause/resume reachable",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1606,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "settings disclose appearance, habit reminders and data while saving preferences and supporting export",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1440,
+          "error": null
+        }
+      ]
+    },
+    {
+      "title": "empty setup, Uzbek navigation and enlarged text keep destinations available without invented activity",
+      "project": "firefox",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1480,
+          "error": null
+        }
+      ]
+    }
+  ]
+}

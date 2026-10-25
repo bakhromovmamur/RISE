@@ -1,0 +1,42 @@
+--- before/server/diagnostics.ts
++++ counterfactual/server/diagnostics.ts
+@@ -1,3 +1,4 @@
++import { createHash } from 'node:crypto';
+ // Fixed-test discovery only. Never retain parameters, identities, headers or SQL.
+ import { AsyncLocalStorage } from 'node:async_hooks';
+ import { performance, PerformanceObserver } from 'node:perf_hooks';
+@@ -6,6 +7,7 @@
+ type Measure = { count:number; ms:number; cpuMs:number };
+ type RequestProfile = { id:number; family:string; started:number; phases:Record<string,Measure> };
+ const storage=new AsyncLocalStorage<RequestProfile>(),requests=new WeakMap<FastifyRequest,RequestProfile>();
++const admissions=new Map<string,{busy:boolean;waiting:Array<()=>void>}>(),leave=new WeakMap<FastifyRequest,()=>void>();
+ const completed:object[]=[],resources:object[]=[];let dropped=0,gcCount=0,gcMs=0,gcMaxMs=0;
+ let lastCpu=process.threadCpuUsage(),lastElu=performance.eventLoopUtilization(),lastSample=performance.now();
+ const observer=new PerformanceObserver(list=>{for(const entry of list.getEntries()){gcCount++;gcMs+=entry.duration;gcMaxMs=Math.max(gcMaxMs,entry.duration);}});
+@@ -59,11 +61,24 @@
+  if(typeof supplied!=='string'||!/^\d{1,7}$/.test(supplied))throw new Error('diagnostic_request_id_required');
+  const url=request.raw.url??'',family=url==='/api/v1/personal/commands'?'personalCommand':url==='/api/v1/groups/commands'?'sharedCommand':url==='/api/v1/personal'?'personalRead':url==='/api/v1/groups'?'groupsRead':url.includes('/content?')?'contentRead':'other';
+  const profile:RequestProfile={id:Number(supplied),family,started:performance.timeOrigin+performance.now(),phases:{}};
+- requests.set(request,profile);storage.run(profile,done);
++ requests.set(request,profile);
++ // Diagnostic counterfactual only: raw cookie equality is a scheduling key,
++ // never identity/authority. Only bounded synthetic requests reach this copy.
++ const cookie=request.headers.cookie;
++ if(!cookie){storage.run(profile,done);return;}
++ const key=createHash('sha256').update(cookie).digest('hex');
++ const lane=admissions.get(key)??{busy:false,waiting:[]};admissions.set(key,lane);
++ const queued=performance.now();
++ const enter=()=>{
++  lane.busy=true;record(profile,'request.sessionAdmission',performance.now()-queued);
++  leave.set(request,()=>{const next=lane.waiting.shift();if(next)next();else{lane.busy=false;admissions.delete(key);}});
++  storage.run(profile,done);
++ };
++ if(lane.busy)lane.waiting.push(enter);else enter();
+ }
+ export function endRequest(request:FastifyRequest,status:number){
+  const profile=requests.get(request);if(!profile)return;
+  if(completed.length<20000)completed.push({...profile,status,ms:performance.timeOrigin+performance.now()-profile.started});else dropped++;
+- requests.delete(request);
++ requests.delete(request);const release=leave.get(request);leave.delete(request);release?.();
+ }
+ export function diagnosticSnapshot(){sample();clearInterval(timer);observer.disconnect();return{scope:'Fixed-test aggregate phases only; async spans overlap parent spans; query wall time includes client/event-loop work, not pure database CPU',completed,resources,dropped};}

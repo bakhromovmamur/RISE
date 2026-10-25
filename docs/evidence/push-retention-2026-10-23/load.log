@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 check:push-load
+> node --import tsx scripts/infra/check-push-load.ts
+
+{
+  "environment": "test",
+  "owners": 100,
+  "installations": 200,
+  "simultaneouslyDue": 200,
+  "syntheticProviderMs": 100,
+  "connections": 5,
+  "lanes": 4,
+  "peakConcurrent": 4,
+  "ticks": 51,
+  "submitted": 200,
+  "p50Ms": 3269,
+  "p95Ms": 7322,
+  "maxMs": 7716,
+  "statuses": [
+    {
+      "status": "accepted",
+      "count": 200
+    }
+  ],
+  "externalRequests": 0
+}

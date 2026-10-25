@@ -1,0 +1,28 @@
+{
+  "stats": {
+    "startTime": "2026-10-21T05:36:50.358Z",
+    "duration": 144378.23500000002,
+    "expected": 136,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "failures": [
+    {
+      "test": "a prayer becoming due does not replace an open form or erase its draft; keyboard stays inside",
+      "project": "webkit",
+      "status": "failed",
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  149 |   for (let i = 0; i < 20; i++) {\n  150 |     await page.keyboard.press(\"Tab\");\n> 151 |     expect(await page.evaluate(() => !!document.activeElement?.closest('[role=\"dialog\"]'))).toBe(true);\n      |                                                                                             ^\n  152 |   }\n  153 |   await dialog(page).getByRole(\"button\", { name: \"Save goal\", exact: true }).click();\n  154 |   await mainTab(page, \"Today\");\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/balanced.browser.spec.ts:151:93"
+      ]
+    },
+    {
+      "test": "empty setup has real creation, and enlarged-text trail uses readable rows",
+      "project": "firefox",
+      "status": "failed",
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeGreaterThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: >= \u001b[32m1177.1000213623047\u001b[39m\nReceived:    \u001b[31m1177.0999755859375\u001b[39m\n\n  111 |     expect(await page.locator(\".app-shell\").evaluate((el) => el.scrollWidth <= el.clientWidth + 1)).toBe(true);\n  112 |     const stops = await page.locator(\"#panel-journey .trail-stop\").evaluateAll((els) => els.map((el) => ({ top: el.getBoundingClientRect().top, bottom: el.getBoundingClientRect().bottom })));\n> 113 |     for (let i = 1; i < stops.length; i++) expect(stops[i].top).toBeGreaterThanOrEqual(stops[i - 1].bottom);\n      |                                                                 ^\n  114 |   }\n  115 | });\n  116 |\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/journey.browser.spec.ts:113:65"
+      ]
+    }
+  ]
+}

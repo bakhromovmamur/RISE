@@ -1,0 +1,147 @@
+
+> rise-prototype@1.0.0 test:infra
+> tsx --test --test-concurrency=1 tests/infra/*.test.ts
+
+✔ managed email codes create opaque HttpOnly sessions without returning provider tokens (339.9065ms)
+✔ all mutations reject missing/cross-site Origin and absent or stale CSRF before sending email (11.467709ms)
+✔ challenge binding, five-attempt lockout and cooldown resist replay/brute force (128.4685ms)
+✔ remembered sessions use persistent cookies and seven-day idle/thirty-day absolute limits (94.4885ms)
+✔ expired challenges cannot authenticate and new codes invalidate the old handle (1299.586875ms)
+✔ logout revokes its linked provider JWT predicate and clears only account cookies (284.835208ms)
+✔ idle/absolute expiry, provider session removal and account bans deny a previously valid session (483.622208ms)
+✔ provider email failure is neutral and cannot activate an older code (91.517084ms)
+✔ a copied session without its context and corrupted stored tokens fail closed (113.897416ms)
+✔ concurrent refresh rotates once, and temporary provider failures preserve the session (158.343167ms)
+✔ private session tables and helper ownership remain closed to anonymous/worker identities (20.238084ms)
+✔ groups require verified identity/CSRF, have no automatic private import and project only shared names (541.840625ms)
+✔ receipt recovery is owner-bound, omits invitation secrets and rechecks current membership (407.886125ms)
+✔ invitation preview is minimal; concurrent acceptance is single use with exact retry and immediate revocation (720.646334ms)
+✔ ownership transfer is recent-auth, atomic and current; archive, leave and deletion cannot orphan an owner (662.649416ms)
+✔ all group tables force RLS and narrow grants; forged roles, cross-group member IDs and direct writes fail (601.910792ms)
+✔ concurrent edits preserve a conflict; a receipt insertion failure rolls back every group change (389.142209ms)
+✔ invalid invitation attempts consume a bounded quota; stale operations and rotated invite keys do not recreate intent (366.736458ms)
+✔ account deletion blocks current owners and deidentifies a member before suppression; old JWTs and provider purge stay safe (365.416708ms)
+✔ bounded invitation pruning retains live links and never grants the sender membership authority (206.258458ms)
+✔ invite consumption and account identity scrubbing roll back when the following receipt or suppression write fails (355.638542ms)
+✔ ownership transfer racing recipient deletion never creates an orphan or grants a suppressed identity access (320.563583ms)
+✔ terminal backup replay removes restored pre-transfer ownership only for a suppressed identity (386.4925ms)
+✖ both local stacks apply the committed migrations and expose the expected restricted environment (769.59075ms)
+✔ each runtime identity can read its environment but cannot administer data, Auth or other roles (80.407625ms)
+✔ crossed databases, installation markers and privileged connections fail readiness (23.409542ms)
+✔ private local files are protected and never present in the web build (59.539542ms)
+✔ browser-safe local entry verifies the retained marker and rejects crossed installation identity (25.364708ms)
+✔ BFF delivers the existing production files byte-for-byte under its own origin (57.610375ms)
+✔ synthetic Auth users are isolated; foreign JWTs and administrator tokens are refused (265.759459ms)
+✔ startup refuses a mismatched installation before opening its listener (256.003875ms)
+✔ rotating a worker login invalidates its old password without changing the BFF identity (31.464583ms)
+✔ unexpected direct grants on the BFF role fail readiness instead of expanding access (16.272958ms)
+✔ recent-auth export retains current and retired records, dates and derived XP (394.40475ms)
+✔ expired authentication blocks export/deletion; purpose-bound email reauthentication rotates cookies (1401.809ms)
+✔ forged owners, missing confirmation, stale heads and CSRF leave records and sessions intact (211.410875ms)
+✔ deletion revokes every session and JWT immediately; lost-reply retry is idempotent and another owner survives (1576.622834ms)
+✔ failed enqueue rolls back suppression; failed purge retains suppression and retries after restart (180.88ms)
+✔ unimplemented ownership/delivery modules fail closed without deleting an account (174.891834ms)
+✔ ordinary BFF cannot run purge, remove the ledger or read managed Auth; lifecycle cannot read journeys (14.987375ms)
+✔ retention starts after primary purge; unpurged and recently purged suppression survive cleanup (182.32375ms)
+✔ backup deletion replay suppresses a restored synthetic identity before purge and never restores access (296.190458ms)
+✔ lifecycle session-hash access is limited to suppressed subjects and never includes credential columns (145.251959ms)
+✔ a browser can deliberately sign in after primary purge without reviving its deleted identity (279.506291ms)
+✔ concurrent command and deletion either preserve the new revision for review or reject the revoked writer (1340.510667ms)
+✔ populated account purge removes historical children, staging, receipts and tokens while preserving another owner (469.014292ms)
+✔ live queue fan-out encrypts generic reminders, authenticates closed receivers and deduplicates retries (341.448041ms)
+✔ post-acceptance cancellation denies receive while preserving provider outcome and personal data (202.560708ms)
+✔ replacement, expiry, wrong installation and revoked sessions deny receive (209.373959ms)
+✔ sender readiness follows heartbeat, expires after crash and respects concurrent processes (324.157ms)
+✔ real signer retries transient errors and retires expired endpoints without replaying accepted receivers (203.161417ms)
+✔ local watch command advertises readiness and clears it on graceful shutdown without provider traffic (1170.052917ms)
+✔ personal API requires a real session and CSRF; reading never creates an account profile (320.735125ms)
+✔ all personal entity families round-trip with domain parity, private pauses and immutable historical targets (1523.950125ms)
+✔ direct RLS and invoker views isolate every personal table; ownership changes and cross-owner foreign keys fail (1813.701583ms)
+✔ two sessions serialize conflicting commands across every personal entity family (3871.059042ms)
+✔ concurrent devices commit one revision and replay one receipt; changed payloads cannot reuse an operation (1627.627208ms)
+✔ receipt insertion failure rolls back the entity write and canonical revision (187.072958ms)
+✔ revoked/banned sessions cannot read records or replay an already committed receipt (295.094042ms)
+✔ documented Unicode fields survive without truncation and XP totals are not writable (259.727583ms)
+✔ a verified receiving device can cancel without subscribing, while guest/forged/CSRF requests fail (280.518667ms)
+✔ plan replay, generation CAS, privacy validation and transactional replacement (279.871958ms)
+✔ duplicate workers, durable restart leases, stale lease and accepted terminal receipt (137.973916ms)
+✔ transient failures retry within expiry; offline/late windows expire without sending (139.639458ms)
+✔ invalid endpoint retires subscription; logout cancels leased jobs (271.624416ms)
+✔ unrelated users and direct public roles cannot access plans; worker cannot alter intent (251.002375ms)
+✔ primary takeover is explicit; competing generations commit once and failed writes roll back (187.793209ms)
+✔ quiet suppression defaults on; explicit plan override and coverage counts remain honest (145.159041ms)
+✔ acknowledgment cancels only dated wake jobs, preserves prayer records/XP and rejects stale worker (402.512958ms)
+✔ cancel receipts cannot cancel a later generation on lost-reply retry (172.316583ms)
+✔ bounded receipt cleanup fences old cancellations without deleting another owner or current receipts (379.690625ms)
+✔ expired job cleanup is bounded and leaves current delivery history intact (165.226917ms)
+✔ busy-owner dispatch defers without sending and retention preserves atomicity, authorization and owner cascades (182.309584ms)
+✔ dispatch and cancellation serialize: before-send stops, submitted sends cannot be recalled (205.360583ms)
+✔ plan readiness is current, installation-scoped and excludes obsolete subscription versions (351.731375ms)
+✔ habit plans validate saved eligibility, cancel completion/archive transactionally and dispatch through local transport (488.511708ms)
+✔ habit quiet hours cannot inherit the prayer override and disabling preferences cancels all coverage (380.703125ms)
+✔ push setup requires verified account, matching installation, Origin and CSRF (425.415291ms)
+✔ subscriptions are encrypted, replayable, versioned and isolated by owner/session RLS (268.419917ms)
+✔ test dispatch uses real payload encryption and only explicit bounded requests (186.885167ms)
+✔ disable cancels queued tests and erases endpoint material; explicit enable can renew (161.429709ms)
+✔ expired requests never dispatch and permanent provider failure retires subscription (288.747166ms)
+✔ revoked provider sessions suppress and retire queued push without outgoing request (132.250792ms)
+✔ two senders and concurrent disable serialize the final dispatch boundary (147.261334ms)
+✔ account deletion suppresses push, rejects restored backup capabilities and cascades history (263.5335ms)
+✔ same account on a second installation needs fresh consent and first-device logout leaves it intact (1493.707459ms)
+✔ account export excludes push capabilities and sender cannot restore retired consent (222.077084ms)
+✔ authorization loss wins over a failed command after deletion and partial work rolls back (1374.388542ms)
+✔ different records merge; conflicting reflections retain stable intent and exact receipt replay (409.039375ms)
+✔ identical check states converge, full versus Undo conflicts, and archived habits reject stale work (566.154375ms)
+✔ prayer correction conflicts and deleted record produces a retained tombstone (440.372917ms)
+✔ reward enjoyment races against correction, and removed milestones cannot reappear (395.504083ms)
+✔ 90-day pruning advances a floor, denies old IDs, and review distinguishes committed from eligible intent (364.32925ms)
+✔ new sync metadata remains owner/session isolated and current receipts cannot be pruned by the BFF (282.823208ms)
+✔ check and prayer removal barriers reject ABA resurrection while a direct queued successor remains valid (360.197333ms)
+✔ receipt failure rolls back canonical rows and compact changes together (224.101125ms)
+✔ a reward correction and re-earning cannot hide an intervening destructive change (322.310583ms)
+✔ a fresh next-week retry preserves the archived original attempt (287.1905ms)
+✔ shared content is opt-in family data with verified identity, exact fields, same-group assignment and no private import (586.098541ms)
+✔ recurring dates keep actor, database time and snapshots; edits, duplicate completion and Undo affect only the selected date (587.773375ms)
+✔ two members converge on list edits, checks and ordering; archive retains items and removal never recycles an ID (705.554708ms)
+✔ competing edits and reorders return a recoverable conflict and exact replay never overwrites later work (558.750209ms)
+✔ pending changes and accepted receipts recheck membership; removal racing a write commits in one authorized order (408.522917ms)
+✔ forced RLS, narrow column ownership and composite references deny direct writes and cross-group IDs (481.592333ms)
+✔ pagination is bounded and revision-fenced; quotas include archived content and removal barriers (1577.9075ms)
+✔ receipt failure rolls back content, ranking and revision; the same operation can then recover (254.08225ms)
+✔ account suppression and primary purge retain deidentified shared history; group deletion cascades all content (482.885584ms)
+✔ sync requires a current session, CSRF, expected account and explicit consent before staging (227.755583ms)
+✔ consented guest import preserves dates and XP, stays private until commit, and replays once (284.618417ms)
+✔ existing account records win an explicit append import and repeated activity never duplicates (434.28375ms)
+✔ captured offline dates and whole command batches commit atomically with stable replay (295.59175ms)
+✔ authorized pagination has bounded pages and refuses stale or cross-account cursors (1301.617125ms)
+✔ import receipt failure rolls back all live rows, retaining staged data for a safe retry (324.660209ms)
+✔ staged imports enforce owner/session RLS and expire without granting ordinary table writes (282.876542ms)
+✔ cancel removes only the owner's uncommitted staging and does not undo a committed import (426.288084ms)
+ℹ tests 115
+ℹ suites 0
+ℹ pass 114
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53286.547542
+
+✖ failing tests:
+
+test at tests/infra/isolation.test.ts:25:1
+✖ both local stacks apply the committed migrations and expose the expected restricted environment (769.59075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  13 !== 12
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/isolation.test.ts:37:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 13,
+    expected: 12,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

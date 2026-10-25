@@ -1,0 +1,37 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/layout.groups.spec.ts$ --project=chromium --grep= · en$
+
+[WebServer] (node:41072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:41075) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (13.8s)
+
+
+  1) [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en 
+
+    Error: Shared archive sensitivity consent must remain inside its readable label
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      44 |    expect(header.within,JSON.stringify({scene,theme,width,scale,...header})).toBe(true);
+      45 |    if(scene==='notification-privacy')expect(await page.getByRole('region',{name:p('title'),exact:true}).getByText(p('details'),{exact:true}).evaluate(el=>{const r=el.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth+1;})).toBe(true);
+    > 46 |    if(scene==='export-family'||scene==='export-squad')expect(await page.locator('.group-export .checkbox-label').evaluate(label=>{const box=label.getBoundingClientRect(),text=label.querySelector('span')!.getBoundingClientRect();return text.left>=box.left&&text.right<=box.right+1&&label.scrollWidth<=label.clientWidth+1;}),'Shared archive sensitivity consent must remain inside its readable label').toBe(true);
+         |                                                                                                                                                                                                                                                                                                                                                                                                                ^
+      47 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+      48 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200||scene==='notification-device'&&theme==='light'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(['settings-enabled','notification-privacy'].includes(scene)){await page.getByRole('switch',{name:scene==='settings-enabled'?t('notifications'):p('details'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}if(scene.startsWith('export-')){await page.getByRole('heading',{name:archive('review'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-review-${language}-${theme}-${width}-${scale}.png`)});await page.getByRole('button',{name:archive('cancel'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      49 |   }
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:46:400)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:60:76
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-491b0-and-recoverable-errors-·-en-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en 

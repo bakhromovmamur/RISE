@@ -1,0 +1,120 @@
+
+> rise-prototype@1.0.0 test:backend
+> playwright test --config playwright.infrastructure.config.ts --grep security policy preserves
+
+[WebServer] (node:4195) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:4197) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (30.3s)
+(node:4244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [webkit] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (30.2s)
+(node:4373) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [firefox] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (30.4s)
+
+
+  1) [chromium] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log tiny Read a little/ })
+
+
+      15 |   await page.getByRole("button", { name: "Create my plan", exact: true }).click();
+      16 |   await stored(page);
+    > 17 |   await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+         |                                                                      ^
+      18 |   const before = await stored(page);
+      19 |   for (const tab of ["Journey", "Progress", "You"]) await page.getByRole("tab", { name: tab, exact: true }).click();
+      20 |   await page.locator(".you-destinations").getByRole("button").filter({ hasText: "Family" }).click();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:17:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log tiny Read a little/ })
+
+
+      15 |   await page.getByRole("button", { name: "Create my plan", exact: true }).click();
+      16 |   await stored(page);
+    > 17 |   await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+         |                                                                      ^
+      18 |   const before = await stored(page);
+      19 |   for (const tab of ["Journey", "Progress", "You"]) await page.getByRole("tab", { name: tab, exact: true }).click();
+      20 |   await page.locator(".you-destinations").getByRole("button").filter({ hasText: "Family" }).click();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:17:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log tiny Read a little/ })
+
+
+      15 |   await page.getByRole("button", { name: "Create my plan", exact: true }).click();
+      16 |   await stored(page);
+    > 17 |   await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+         |                                                                      ^
+      18 |   const before = await stored(page);
+      19 |   for (const tab of ["Journey", "Progress", "You"]) await page.getByRole("tab", { name: tab, exact: true }).click();
+      20 |   await page.locator(".you-destinations").getByRole("button").filter({ hasText: "Family" }).click();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/security.infrastructure.spec.ts:17:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/infra/browser/security.infrastructure-se-bf7b3--workers-and-offline-reload-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload 
+    [webkit] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload 
+    [firefox] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload 

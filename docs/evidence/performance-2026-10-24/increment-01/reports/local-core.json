@@ -1,0 +1,356 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.performance.config.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.performance.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/performance/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4180 dist-review",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "local.performance.spec.ts",
+      "file": "local.performance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dense two-year profile retains check, Undo and draft durability while measuring the real adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11905,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:31:41.787Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "local-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIGVuZ2luZSAvIHJlYWwgSW5kZXhlZERCIGRpc2NvdmVyeTsgbmV4dEZyYW1lIGlzIGFuIG9wcG9ydHVuaXR5IHRvIHBhaW50LCBub3QgbWVhc3VyZWQgVUkgZmVlZGJhY2suIE5vIHBoeXNpY2FsIE5GUiBhY2NlcHRhbmNlLiIsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAiZGF0ZSI6ICIyMDI2LTEwLTI0IiwKICAiaGFiaXRzIjogMTAwLAogICJkYXlzIjogNzMwLAogICJvY2N1cnJlbmNlcyI6IDczMDAwLAogICJwcm9maWxlQnl0ZXMiOiAxMDc1NDI5NiwKICAic3RhcnR1cE1zIjogMTg0LjEwMDAwMDAyMzg0MTg2LAogICJzYW1wbGVzIjogWwogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxMzYuMjk5OTk5OTUyMzE2MjgsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEzNi43OTk5OTk5NTIzMTYyOCwKICAgICAgImR1cmFibGVNcyI6IDQwMC43MDAwMDAwNDc2ODM3CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAiZGlzcGF0Y2hNcyI6IDE1OS4xMDAwMDAwMjM4NDE4NiwKICAgICAgIm5leHRGcmFtZU1zIjogMTU5LjMwMDAwMDA3MTUyNTU3LAogICAgICAiZHVyYWJsZU1zIjogNDQ5LjMwMDAwMDA3MTUyNTYKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEzNC4yOTk5OTk5NTIzMTYyOCwKICAgICAgIm5leHRGcmFtZU1zIjogMTM0LjM5OTk5OTk3NjE1ODE0LAogICAgICAiZHVyYWJsZU1zIjogMzkwLjg5OTk5OTk3NjE1ODE0CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxMzUuNzk5OTk5OTUyMzE2MjgsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEzNi4xMDAwMDAwMjM4NDE4NiwKICAgICAgImR1cmFibGVNcyI6IDQwMAogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxNjEuNSwKICAgICAgIm5leHRGcmFtZU1zIjogMTYyLjIwMDAwMDA0NzY4MzcyLAogICAgICAiZHVyYWJsZU1zIjogNDQyLjcwMDAwMDA0NzY4MzcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEzMy41OTk5OTk5MDQ2MzI1NywKICAgICAgIm5leHRGcmFtZU1zIjogMTMzLjc5OTk5OTk1MjMxNjI4LAogICAgICAiZHVyYWJsZU1zIjogMzk1Ljg5OTk5OTk3NjE1ODE0CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxMzcuMTk5OTk5OTI4NDc0NDMsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEzNy4yOTk5OTk5NTIzMTYyOCwKICAgICAgImR1cmFibGVNcyI6IDQwNC4xMDAwMDAwMjM4NDE4NgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxNzguNTk5OTk5OTA0NjMyNTcsCiAgICAgICJuZXh0RnJhbWVNcyI6IDE3OC43OTk5OTk5NTIzMTYyOCwKICAgICAgImR1cmFibGVNcyI6IDQ1My42OTk5OTk5Mjg0NzQ0CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxMzguODk5OTk5OTc2MTU4MTQsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEzOSwKICAgICAgImR1cmFibGVNcyI6IDQxMS4zMDAwMDAwNzE1MjU2CiAgICB9CiAgXSwKICAiaW52YXJpYW50cyI6ICJDaGVjayB0aGVuIFVuZG8gcHJlc2VydmVzIGFsbCBoaXN0b3J5L1hQOyBkcmFmdCBhbmQgcmV2aXNpb24gc3Vydml2ZSByZW9wZW5pbmc7IG9yaWdpbmFsIHJlY292ZXJ5IHNvdXJjZSBzdGF5cyBudWxsLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "104f1662bbe6eca12bb7-b0a8abce551cbbf92480",
+          "file": "local.performance.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "dense two-year profile retains check, Undo and draft durability while measuring the real adapter",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11904,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:31:54.088Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "local-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIGVuZ2luZSAvIHJlYWwgSW5kZXhlZERCIGRpc2NvdmVyeTsgbmV4dEZyYW1lIGlzIGFuIG9wcG9ydHVuaXR5IHRvIHBhaW50LCBub3QgbWVhc3VyZWQgVUkgZmVlZGJhY2suIE5vIHBoeXNpY2FsIE5GUiBhY2NlcHRhbmNlLiIsCiAgImJyb3dzZXIiOiAiMjcuMiIsCiAgImRhdGUiOiAiMjAyNi0xMC0yNCIsCiAgImhhYml0cyI6IDEwMCwKICAiZGF5cyI6IDczMCwKICAib2NjdXJyZW5jZXMiOiA3MzAwMCwKICAicHJvZmlsZUJ5dGVzIjogMTA3NTQyOTYsCiAgInN0YXJ0dXBNcyI6IDE2OSwKICAic2FtcGxlcyI6IFsKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJkaXNwYXRjaE1zIjogMTI1LAogICAgICAibmV4dEZyYW1lTXMiOiAxMjYsCiAgICAgICJkdXJhYmxlTXMiOiA0NjQKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTI4LAogICAgICAibmV4dEZyYW1lTXMiOiAxMjgsCiAgICAgICJkdXJhYmxlTXMiOiA0NzcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEyNCwKICAgICAgIm5leHRGcmFtZU1zIjogMTI0LAogICAgICAiZHVyYWJsZU1zIjogNDUwCiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgImRpc3BhdGNoTXMiOiAxMjYsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEyNiwKICAgICAgImR1cmFibGVNcyI6IDQ0MgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxMjIsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEyMiwKICAgICAgImR1cmFibGVNcyI6IDQ2OQogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJkaXNwYXRjaE1zIjogMTI0LAogICAgICAibmV4dEZyYW1lTXMiOiAxMjQsCiAgICAgICJkdXJhYmxlTXMiOiA0NTAKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAiZGlzcGF0Y2hNcyI6IDEyMywKICAgICAgIm5leHRGcmFtZU1zIjogMTIzLAogICAgICAiZHVyYWJsZU1zIjogNDM5CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAiZGlzcGF0Y2hNcyI6IDEyNCwKICAgICAgIm5leHRGcmFtZU1zIjogMTI0LAogICAgICAiZHVyYWJsZU1zIjogNDcxCiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgImRpc3BhdGNoTXMiOiAxMjEsCiAgICAgICJuZXh0RnJhbWVNcyI6IDEyMSwKICAgICAgImR1cmFibGVNcyI6IDQzOAogICAgfQogIF0sCiAgImludmFyaWFudHMiOiAiQ2hlY2sgdGhlbiBVbmRvIHByZXNlcnZlcyBhbGwgaGlzdG9yeS9YUDsgZHJhZnQgYW5kIHJldmlzaW9uIHN1cnZpdmUgcmVvcGVuaW5nOyBvcmlnaW5hbCByZWNvdmVyeSBzb3VyY2Ugc3RheXMgbnVsbC4iCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "104f1662bbe6eca12bb7-93ff4b9441923d2e704f",
+          "file": "local.performance.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "dense two-year profile retains check, Undo and draft durability while measuring the real adapter",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 189338,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 180000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/local.performance.spec.ts",
+                        "column": 29,
+                        "line": 11
+                      },
+                      "message": "Error: page.evaluate: Test timeout of 180000ms exceeded.\n\n   9 |   await page.goto(\"/?storage-test=1\");\n  10 |   await expect(page.getByText(\"Storage test harness ready.\")).toBeVisible();\n> 11 |   const result = await page.evaluate(async ({ state, date, draft }) => {\n     |                             ^\n  12 |     const api = window.riseStorageTest, store = await api.openDeviceStore();\n  13 |     // A new isolated IndexedDB profile avoids the unrelated localStorage quota.\n  14 |     await store.initialize(null, await api.prepareProfile(null, state)); store.close();\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance/local.performance.spec.ts:11:29"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:32:07.047Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/local.performance-dense-tw-66c08--measuring-the-real-adapter-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser/local.performance-dense-tw-66c08--measuring-the-real-adapter-firefox/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "104f1662bbe6eca12bb7-951ba605ab22e7b07d81",
+          "file": "local.performance.spec.ts",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T10:31:41.495Z",
+    "duration": 216111.628,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

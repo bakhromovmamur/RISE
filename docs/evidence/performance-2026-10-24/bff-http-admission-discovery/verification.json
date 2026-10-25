@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "commands": [
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-balanced-probe/run.mts smoke",
+      "exit": 0,
+      "gate": "PASS",
+      "report": "balanced/smoke.json",
+      "log": "balanced/smoke.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-balanced-probe/run.mts mixed",
+      "exit": 1,
+      "gate": "FAIL",
+      "report": "balanced/mixed.json",
+      "log": "balanced/mixed.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-serial-lanes-probe/run.mts smoke",
+      "exit": 0,
+      "gate": "PASS",
+      "report": "serial/smoke.json",
+      "log": "serial/smoke.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-http-serial-lanes-probe/run.mts mixed",
+      "exit": 1,
+      "gate": "FAIL",
+      "report": "serial/mixed.json",
+      "log": "serial/mixed.log",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "docs.log",
+      "documents": 37,
+      "links": 597,
+      "anchors": 59,
+      "failures": 0
+    }
+  ],
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "logicalCpus": 10,
+    "memoryGiB": 16,
+    "installation": "fixed test",
+    "hosted": false
+  },
+  "applicationChanged": false,
+  "cloudProvisioned": false,
+  "linkCheck": {
+    "relativeTargetsChecked": 243,
+    "failures": 0
+  },
+  "remaining": [
+    "Request-phase profiling",
+    "Concurrent runtime security and failure acceptance",
+    "Dense local feedback and durable commit targets",
+    "Hosted and physical-device release evidence"
+  ]
+}

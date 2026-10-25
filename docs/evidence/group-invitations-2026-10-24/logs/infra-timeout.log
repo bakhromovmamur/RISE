@@ -1,0 +1,32 @@
+✖ maximum retained invitation history remains owner-only and paged while cleanup is stopped (7288.47825ms)
+✔ maximum invitation frequency rejects the next new action while an exact accepted retry remains replayable (3727.877042ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11722.859584
+
+✖ failing tests:
+
+test at tests/infra/group-invitations.test.ts:1:2312
+✖ maximum retained invitation history remains owner-only and paged while cleanup is stopped (7288.47825ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 200
+  
+      at groups (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-invitations.test.ts:16:90)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async group (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-invitations.test.ts:17:86)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-invitations.test.ts:33:15)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

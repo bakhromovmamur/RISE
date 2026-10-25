@@ -1,0 +1,31 @@
+✖ a real oversized shared history fails as a whole without truncation, data mutation or retained export files (5110.770375ms)
+ℹ [DEBUG-g05-export] {"node":"Index Scan","index":"groups_pkey","rows":1,"children":[{"node":"Aggregate","rows":1,"children":[{"node":"Subquery Scan","rows":1,"children":[{"node":"Limit","rows":1,"children":[{"node":"Sort","rows":1,"sort":["r.date","r.task_id"],"children":[{"node":"Index Scan","index":"task_occurrences_assignee","rows":1,"children":[]}]}]}]}]}]}
+ℹ [DEBUG-g05-export] [{"table":"head","ms":0,"count":null},{"table":"head","ms":1,"count":null},{"table":"head","ms":1,"count":null},{"table":"family_tasks","ms":1,"count":1},{"table":"shared_lists","ms":1,"count":0},{"table":"shared_items","ms":1,"count":0},{"table":"task_occurrences","ms":2001,"code":"57014"}]
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5440.058542
+
+✖ failing tests:
+
+test at tests/infra/group-export.test.ts:1:13594
+✖ a real oversized shared history fails as a whole without truncation, data mutation or retained export files (5110.770375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 422
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/group-export.test.ts:129:9)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 422,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

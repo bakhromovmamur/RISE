@@ -1,0 +1,41 @@
+✖ same-session waiters leave the restricted pool available to another authorized account (2514.733708ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2818.720583
+
+✖ failing tests:
+
+test at ../../../../../private/tmp/rise-bff-session-wait-probe/source/auth-admission-regression.test.ts:1:1749
+✖ same-session waiters leave the restricted pool available to another authorized account (2514.733708ms)
+  error: canceling statement due to statement timeout
+      at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg/lib/client.js:694:17
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async phase (/private/tmp/rise-bff-phase-probe/source/server/diagnostics.ts:29:13)
+      at async <anonymous> (/private/tmp/rise-bff-phase-probe/source/server/auth/sessions.ts:100:22)
+      at async Sessions.transaction (/private/tmp/rise-bff-phase-probe/source/server/auth/sessions.ts:38:55)
+      at async Sessions.read (/private/tmp/rise-bff-phase-probe/source/server/auth/sessions.ts:83:20)
+      at async phase (/private/tmp/rise-bff-phase-probe/source/server/diagnostics.ts:29:13)
+      at async Sessions.asActor (/private/tmp/rise-bff-phase-probe/source/server/auth/sessions.ts:229:21) {
+    length: 109,
+    severity: 'ERROR',
+    code: '57014',
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'postgres.c',
+    line: '3406',
+    routine: 'ProcessInterrupts'
+  }

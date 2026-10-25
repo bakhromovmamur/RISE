@@ -1,0 +1,2041 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.visual.config.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.visual.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.visual.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "testIgnore": [],
+        "testMatch": "**/*.visual.spec.ts",
+        "timeout": 60000,
+        "use": {
+          "browserName": "chromium",
+          "baseURL": "http://127.0.0.1:4182",
+          "deviceScaleFactor": 1,
+          "locale": "en-US",
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/visual-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "none",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4182 dist-review",
+      "url": "http://127.0.0.1:4182",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "parity.visual.spec.ts",
+      "file": "parity.visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "en-light-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4511,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:29.926Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-c19bb9bef504896296c5",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4627,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:29.933Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-598121bfd0d17de01015",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4033,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:34.964Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-86c5fab7b368e1e6d912",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:35.067Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-04097324860ef81b740f",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3869,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:39.013Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-baaae850e69fe354e9b5",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3787,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:39.698Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-cefc292e60ad2b97d151",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4161,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:42.905Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-07c4641000ef85070e67",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4357,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:43.504Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-cff2370165ca27f5cbd3",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3283,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:47.091Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-2c850e54cd6c5c26c3fb",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3105,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:47.884Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ae7cc65249b9634dc670",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2704,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:50.389Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-27d2874a77a8c819a159",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3132,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:51.010Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDEwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-b4451b10554f4b726019",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2763,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:53.107Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-48ab5d1c87d3ec5966f8",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2718,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:54.154Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-bb1287f9cee0a4c9b9de",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2746,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:55.881Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-a4b01947020aa8383fd9",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:56.885Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDIwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-2e4b9a82d0f5e2116291",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2925,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:57:58.639Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-4054235094e754d006f2",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2774,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:00.122Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-42fcfcbdbb3bf883674e",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2789,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:01.573Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-424c1a143c441c77c504",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3132,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:02.905Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJydSIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-591b1599613237e1b25d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2648,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:04.370Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-df8cc13626cca5852562",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2750,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:06.045Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-fa2a9366960a5dacff1f",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2695,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:07.026Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-deb4b39a742aed96aad4",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3265,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:08.804Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJydSIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-c64a2d9dcc5a57bf93c2",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3028,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:09.732Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-7515e928c9488543a237",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3025,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:12.079Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-e3e9b3db73edbfef6d0d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2868,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:12.775Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-b786fb6814de9e014f60",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3381,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:15.119Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJydSIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDEwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-d9b9b5fa134339d056dd",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2857,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:15.652Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ab91d15da018fdcde52d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:18.509Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0b2704442fab1375d8c9",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2781,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:18.518Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0d3901caa6b0ab9ac7cf",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3501,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:21.312Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjFmZDNiMzQ2YzkyYjAxYjEwOGZiODY5MGU4NThjNzFhM2UyNDRiYmJhYzQ5ZDBmNjYxZDM3YzAzMWU2NjJiYzAiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJydSIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDIwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-4846612376e539f1a766",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2980,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:21.320Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ed284f3161130a2caf9b",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3024,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:24.313Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-f5b5b2b9b5a1a52b2946",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3037,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:24.825Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-efd3b262d8e3befe6c03",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3046,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:27.348Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJ1eiIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-247dc7607b821ac91c21",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2712,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:27.872Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0507652ff745bf880a07",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:30.405Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-1121cb9517461246a729",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2739,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:30.593Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-87355f5cde9e841cd2ac",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3238,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:33.149Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjE5NmRlYTJjNTdhN2MxMmZiN2FhNzRiY2EyYjllMTllNzEzNDEwOTM2MmNkYWM5ZTYzYmVkMmQ3MWY2N2Q0OTIiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJ1eiIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-918f4a20aa1b7a860d1e",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2866,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:33.343Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0fefc9c7fdfc71fc3236",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:36.220Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0e41b8b5fd8a7ae1ef9b",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2788,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:36.412Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-58cd10295e1c79c5cd2a",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3149,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:39.092Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJ1eiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDEwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ec180cadd34a2ffa75f2",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2691,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:39.219Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-6b333ec9f223289300fd",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2658,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:41.921Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-e0e2cddbb8af4523e082",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2685,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:42.248Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAidXoiLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-4bec5ca35e4dcf465ccb",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2793,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T12:58:44.593Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImM5YzJmNTg3MGQ5YjUxMTFkYzU4NzY2MzI5NTVlM2MxMDIzYjYwYjRkNDllNTg0MDQwYzY4MjkzZTY5YTIzZmQiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJ1eiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDIwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-d6ae1a377ded5f6f1f8d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T12:57:28.796Z",
+    "duration": 78689.71,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

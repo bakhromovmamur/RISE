@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 test:backend
+> playwright test --config playwright.infrastructure.config.ts
+
+[WebServer] (node:63393) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:63395) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.2s)
+  ✓  2 [chromium] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (841ms)
+  ✓  3 [chromium] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (49ms)
+(node:63407) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [webkit] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.9s)
+  ✓  5 [webkit] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (2.7s)
+  ✓  6 [webkit] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (136ms)
+(node:63428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [firefox] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (7.0s)
+  ✓  8 [firefox] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (2.0s)
+  ✓  9 [firefox] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (79ms)
+
+  9 passed (21.9s)

@@ -1,0 +1,76 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts --project chromium --grep explicit primary|renewal readiness
+
+[WebServer] (node:20021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:20020) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:20022) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en (30.4s)
+(node:20136) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru (24.1s)
+
+
+  1) [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en ────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Synced', { exact: true }).first()
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Synced', { exact: true }).first() with timeout 30000ms
+      - waiting for getByText('Synced', { exact: true }).first()
+
+
+      27 |   const push=await new Promise<IDBDatabase>((resolve,reject)=>{const r=indexedDB.open('rise-push-device',1);r.onupgradeneeded=()=>r.result.createObjectStore('control');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});await new Promise<void>((resolve,reject)=>{const tx=push.transaction('control','readwrite');tx.objectStore('control').put({revision:1,owner,installation,generation:1,enabled:true,details:false,language,pending:false,lastTest:null},'current');tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error);});push.close();
+      28 |  },{owner,installation,state,records,language});
+    > 29 |  await page.reload({waitUntil:'domcontentloaded'});await expect(page.getByText(syncStatusText(language,{phase:'synced',pending:0,persistent:true,error:null}),{exact:true}).first()).toBeVisible({timeout:30000});await pushSheet(page,language);const panel=page.getByLabel(t('planTitle'),{exact:true});await expect(panel.getByText(t('planStaged'),{exact:true})).toBeVisible({timeout:30000});
+         |                                                                                                                                                                                      ^
+      30 |  for(const current of ['staged','expired','failed']){
+      31 |   scene=current;await panel.getByRole('button',{name:t('planRefresh'),exact:true}).click();await expect(panel.getByText(t(current==='staged'?'planStaged':current==='expired'?'planExpired':'planError'),{exact:true})).toBeVisible();
+      32 |   for(const theme of ['light','dark'])for(const width of [320,375,393,430])for(const scale of [100,200]){
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/renewal-layout.push.spec.ts:29:182
+
+    Error Context: test-results/push/browser/renewal-layout.push-renewal-readiness-layouts-·-en-chromium/error-context.md
+
+  2) [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru ────
+
+    Test was interrupted.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Синхронизировано', { exact: true }).first()
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Синхронизировано', { exact: true }).first() with timeout 30000ms
+      - waiting for getByText('Синхронизировано', { exact: true }).first()
+      - Test ended.
+
+
+      27 |   const push=await new Promise<IDBDatabase>((resolve,reject)=>{const r=indexedDB.open('rise-push-device',1);r.onupgradeneeded=()=>r.result.createObjectStore('control');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});await new Promise<void>((resolve,reject)=>{const tx=push.transaction('control','readwrite');tx.objectStore('control').put({revision:1,owner,installation,generation:1,enabled:true,details:false,language,pending:false,lastTest:null},'current');tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error);});push.close();
+      28 |  },{owner,installation,state,records,language});
+    > 29 |  await page.reload({waitUntil:'domcontentloaded'});await expect(page.getByText(syncStatusText(language,{phase:'synced',pending:0,persistent:true,error:null}),{exact:true}).first()).toBeVisible({timeout:30000});await pushSheet(page,language);const panel=page.getByLabel(t('planTitle'),{exact:true});await expect(panel.getByText(t('planStaged'),{exact:true})).toBeVisible({timeout:30000});
+         |                                                                                                                                                                                      ^
+      30 |  for(const current of ['staged','expired','failed']){
+      31 |   scene=current;await panel.getByRole('button',{name:t('planRefresh'),exact:true}).click();await expect(panel.getByText(t(current==='staged'?'planStaged':current==='expired'?'planExpired':'planError'),{exact:true})).toBeVisible();
+      32 |   for(const theme of ['light','dark'])for(const width of [320,375,393,430])for(const scale of [100,200]){
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/renewal-layout.push.spec.ts:29:182
+
+    Error Context: test-results/push/browser/renewal-layout.push-renewal-readiness-layouts-·-ru-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en ─────
+  1 interrupted
+    [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru ─────
+  2 did not run

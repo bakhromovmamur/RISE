@@ -1,0 +1,56 @@
+{
+  "scope": "Node desktop discovery probe, three samples; not NFR/device acceptance",
+  "habits": 100,
+  "dates": 730,
+  "occurrences": 73000,
+  "profileBytes": 10754306,
+  "recordRows": 73938,
+  "measurementsMs": {
+    "validateState": {
+      "samples": [
+        35.20029099999999,
+        53.311958000000004,
+        38.10191700000007
+      ],
+      "median": 38.10191700000007,
+      "max": 53.311958000000004
+    },
+    "parseStoredState": {
+      "samples": [
+        64.63541599999996,
+        62.50604199999998,
+        63.33854199999996
+      ],
+      "median": 63.33854199999996,
+      "max": 64.63541599999996
+    },
+    "project": {
+      "samples": [
+        28.720458000000008,
+        27.431542000000036,
+        26.706500000000005
+      ],
+      "median": 27.431542000000036,
+      "max": 28.720458000000008
+    },
+    "hydrate": {
+      "samples": [
+        44.214500000000044,
+        41.69795899999997,
+        41.561041000000046
+      ],
+      "median": 41.69795899999997,
+      "max": 44.214500000000044
+    },
+    "habit.check": {
+      "samples": [
+        44.65537499999999,
+        46.08354200000008,
+        49.61729200000002
+      ],
+      "median": 46.08354200000008,
+      "max": 49.61729200000002
+    }
+  },
+  "invariants": "original state unchanged; 73,000 occurrences project/hydrate without XP change; explicit check adds exactly 20"
+}

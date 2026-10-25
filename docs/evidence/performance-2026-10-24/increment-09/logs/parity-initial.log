@@ -1,0 +1,38 @@
+✖ occurrence reads preserve JSON dates, scalar types, ordered snapshots and owner isolation under alternate SQL settings (583.685542ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 907.366458
+
+✖ failing tests:
+
+test at tests/infra/personal.test.ts:1:7250
+✖ occurrence reads preserve JSON dates, scalar types, ordered snapshots and owner isolation under alternate SQL settings (583.685542ms)
+  error: immutable_occurrence_snapshot
+      at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg-pool/index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/personal.test.ts:127:7)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    length: 166,
+    severity: 'ERROR',
+    code: '23514',
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: 'PL/pgSQL function rise_private.keep_occurrence_snapshot() line 3 at RAISE',
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'pl_exec.c',
+    line: '3897',
+    routine: 'exec_stmt_raise'
+  }

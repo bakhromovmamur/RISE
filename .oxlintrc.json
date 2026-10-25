@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc"],
+  "categories": { "correctness": "error" },
+  "rules": { "no-unused-vars": "off" },
+  "ignorePatterns": ["node_modules/**", "dist/**", "dist-review/**", "ios/**", "android/**", "test-results/**", "playwright-report/**", ".vite/**"]
+}

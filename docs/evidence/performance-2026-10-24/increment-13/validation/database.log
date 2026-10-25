@@ -1,0 +1,47 @@
+✔ personal API requires a real session and CSRF; reading never creates an account profile (446.51ms)
+✔ all personal entity families round-trip with domain parity, private pauses and immutable historical targets (1839.039958ms)
+✔ no-op account commands retain record revisions and removal barriers; a nested preference edit writes only its record (1894.476125ms)
+✔ habit corrections preserve row versions, reindex removed rows and retain replay barriers (626.5055ms)
+✔ occurrence reads preserve JSON dates, scalar types, ordered snapshots and owner isolation under alternate SQL settings (561.535958ms)
+✔ direct RLS and invoker views isolate every personal table; ownership changes and cross-owner foreign keys fail (2399.071667ms)
+✔ two sessions serialize conflicting commands across every personal entity family (5161.759208ms)
+✔ concurrent devices commit one revision and replay one receipt; changed payloads cannot reuse an operation (1702.157375ms)
+✔ receipt insertion failure rolls back the entity write and canonical revision (181.823208ms)
+✔ revoked/banned sessions cannot read records or replay an already committed receipt (301.055333ms)
+✔ documented Unicode fields survive without truncation and XP totals are not writable (269.807958ms)
+✔ a verified receiving device can cancel without subscribing, while guest/forged/CSRF requests fail (313.4295ms)
+✔ different records merge; conflicting reflections retain stable intent and exact receipt replay (379.653125ms)
+✔ identical check states converge, full versus Undo conflicts, and archived habits reject stale work (501.709708ms)
+✔ prayer correction conflicts and deleted record produces a retained tombstone (410.363042ms)
+✔ reward enjoyment races against correction, and removed milestones cannot reappear (448.968125ms)
+✔ 90-day pruning advances a floor, denies old IDs, and review distinguishes committed from eligible intent (361.9395ms)
+✔ new sync metadata remains owner/session isolated and current receipts cannot be pruned by the BFF (309.5735ms)
+✔ check and prayer removal barriers reject ABA resurrection while a direct queued successor remains valid (412.0825ms)
+✔ receipt failure rolls back canonical rows and compact changes together (288.385542ms)
+✔ a reward correction and re-earning cannot hide an intervening destructive change (400.80775ms)
+✔ a fresh next-week retry preserves the archived original attempt (284.611042ms)
+✔ shared selection stores only an owner-scoped opaque occurrence and real pull/export preserve its separate civil date (746.484ms)
+✔ new selections require current family membership, active group/task and the exact scheduled date (904.05425ms)
+✔ loss of membership retains selections for reorder/removal but blocks pending new references and recovery override (861.057583ms)
+✔ pending selection checks membership after removal without renumbering or accepting a partial batch (566.8195ms)
+✔ selection racing membership removal has one authorized order and preserves private selections after the removal (452.926666ms)
+✔ private priority constraints, forced RLS and guard grants keep shared members out of each other’s selected priorities (407.172334ms)
+✔ receipt failure rolls back priority, revision and change rows; conflicts require an explicit current-head review (533.690583ms)
+✔ legacy staged import rows retain their original hash and append without replacing selected shared references (375.0275ms)
+✔ account deletion purges the owner’s opaque selections while preserving other members’ shared tasks and private selections (538.816458ms)
+✔ sync requires a current session, CSRF, expected account and explicit consent before staging (210.418125ms)
+✔ consented guest import preserves dates and XP, stays private until commit, and replays once (262.654375ms)
+✔ existing account records win an explicit append import and repeated activity never duplicates (550.536958ms)
+✔ captured offline dates and whole command batches commit atomically with stable replay (393.002292ms)
+✔ authorized pagination has bounded pages and refuses stale or cross-account cursors (1556.988417ms)
+✔ import receipt failure rolls back all live rows, retaining staged data for a safe retry (683.468083ms)
+✔ staged imports enforce owner/session RLS and expire without granting ordinary table writes (777.743292ms)
+✔ cancel removes only the owner's uncommitted staging and does not undo a committed import (1267.784417ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31561.657167

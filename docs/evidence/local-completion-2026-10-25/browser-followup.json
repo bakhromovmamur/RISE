@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-25",
+  "originalGroupRun": {
+    "planned": 111,
+    "startTime": "2026-10-25T14:26:31.739Z",
+    "duration": 1239838.645,
+    "expected": 108,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0,
+    "reportSha256": "574eddc35cc2f265e5af0d04d4f38321706c6ef7d661bc5a7671c701d2e9b2a6",
+    "failures": [
+      {
+        "title": "shared task, list and priority screens reflow \u00b7 en",
+        "file": "content-layout.groups.spec.ts",
+        "line": 15,
+        "engine": "firefox",
+        "durationMs": 16356,
+        "failure": "5000ms visibility assertion; startup saved marker or post-verification Signed in marker",
+        "rootCause": "unresolved",
+        "context": "secondary context for the two member cases; existing default-page attachment may show primary page"
+      },
+      {
+        "title": "two members converge, review competing edits and reject a removed member\u2019s offline list write",
+        "file": "content-recovery.groups.spec.ts",
+        "line": 20,
+        "engine": "firefox",
+        "durationMs": 9110,
+        "failure": "5000ms visibility assertion; startup saved marker or post-verification Signed in marker",
+        "rootCause": "unresolved",
+        "context": "secondary context for the two member cases; existing default-page attachment may show primary page"
+      },
+      {
+        "title": "members share chosen posts, owners remove abuse and revoked membership rejects a pending publication",
+        "file": "squads.groups.spec.ts",
+        "line": 42,
+        "engine": "firefox",
+        "durationMs": 20529,
+        "failure": "5000ms visibility assertion; startup saved marker or post-verification Signed in marker",
+        "rootCause": "unresolved",
+        "context": "secondary context for the two member cases; existing default-page attachment may show primary page"
+      }
+    ]
+  },
+  "metadataOnlyLayoutRepeat": {
+    "command": "PLAYWRIGHT_JSON_OUTPUT_NAME=.rise-infra/local-completion-20261025/browser-agent/group-startup-repeat.json npx playwright test -c playwright.groups.config.ts content-layout.groups.spec.ts --project=firefox --grep 'reflow \u00b7 en$' --repeat-each=5 --workers=1 --trace=retain-on-failure --reporter=list,json --output=.rise-infra/local-completion-20261025/browser-agent/group-startup-repeat-output",
+    "stats": {
+      "startTime": "2026-10-25T14:47:24.049Z",
+      "duration": 121305.182,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "sourceAssertionsTimeoutsChanged": false,
+    "failureTraceRetained": false,
+    "meaning": "5 unchanged repeats passed; original startup timeout is not root-caused or fixed"
+  },
+  "secondaryContextDiagnostic": {
+    "date": "2026-10-25T14:53:55.685Z",
+    "command": "node_modules/.bin/playwright test --config .rise-infra/local-completion-20261025/auth-diagnostic/playwright.config.ts",
+    "exitCode": 0,
+    "stats": {
+      "startTime": "2026-10-25T14:49:52.988Z",
+      "duration": 235774.059,
+      "expected": 10,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "results": [
+      {
+        "case": "content-recovery",
+        "status": "passed",
+        "durationMs": 35770,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "content-recovery",
+        "status": "passed",
+        "durationMs": 36267,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "content-recovery",
+        "status": "passed",
+        "durationMs": 36353,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "content-recovery",
+        "status": "passed",
+        "durationMs": 36444,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "content-recovery",
+        "status": "passed",
+        "durationMs": 35786,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "squads",
+        "status": "passed",
+        "durationMs": 8902,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "squads",
+        "status": "passed",
+        "durationMs": 10005,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "squads",
+        "status": "passed",
+        "durationMs": 9872,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "squads",
+        "status": "passed",
+        "durationMs": 9114,
+        "retry": 0,
+        "attachments": []
+      },
+      {
+        "case": "squads",
+        "status": "passed",
+        "durationMs": 9473,
+        "retry": 0,
+        "attachments": []
+      }
+    ],
+    "scope": "Five Firefox repeats of each original test body; diagnostic fixture only; no assertion/timeouts/production change; no reproduced failure or causal fix",
+    "copyVerification": [
+      {
+        "source": "tests/groups/squads.groups.spec.ts",
+        "target": "squads.groups.spec.ts",
+        "title": "members share chosen posts, owners remove abuse and revoked membership rejects a pending publication",
+        "originalFileHash": "d2da9ecc239dae1b77c0f29fdbc4d0ecc0811435baba838fa34c31c3f6651904",
+        "unchangedSelectedTestHash": "d44a4d8290c1da5ff4b4afe78dd506451a464cdb3018b9f3cfd4b82b9a77cb2a"
+      },
+      {
+        "source": "tests/groups/content-recovery.groups.spec.ts",
+        "target": "content-recovery.groups.spec.ts",
+        "title": "two members converge, review competing edits and reject a removed member\u2019s offline list write",
+        "originalFileHash": "17122aa7978579c0f4e237cb15ba53278e85dc35bbbedd1ad5eabc0bd0a9b145",
+        "unchangedSelectedTestHash": "11ccfc98508ced36219a2c66177ef955d09fbee935d2e6dd2f4554295910ac07"
+      }
+    ],
+    "diagnosticSourceHashes": {
+      "diagnostics.ts": "07aff101076efc26f9bd4d9ff0f29e6b7117d0e872ef0430ffaa729f7951f595",
+      "playwright.config.ts": "b33c648dc51a91efbb018cf88df4c176bd43c1e886949d91860a7e8b095210e7"
+    }
+  },
+  "credentialRecording": {
+    "traces": false,
+    "video": false,
+    "screenshots": false,
+    "scope": "Real-auth cases; the separate trace-enabled layout case uses only fake metadata"
+  },
+  "disposition": "Three original Firefox stalls remain unexplained. All 15 isolated repetitions pass with unchanged original test bodies/assertions/timeouts; no production repair or test relaxation is claimed."
+}

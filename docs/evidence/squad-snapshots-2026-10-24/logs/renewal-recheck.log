@@ -1,0 +1,21 @@
+✔ renewal requires explicit primary choice, preserves data and uses current staging metadata (914.961625ms)
+✔ lost reply survives coordinator reload and retries the exact immutable request (492.416459ms)
+✔ unsaved, sync-pending, guest, offline and permission-blocked sources never submit (62.734666ms)
+✔ late response cannot restore metadata after disable or account switch (278.294334ms)
+✔ another primary stops automatic renewal and requires a new explicit choice (703.494292ms)
+✔ superseded receipts and failed control writes never claim current coverage (157.685708ms)
+✔ readiness distinguishes expiry, empty coverage, queue error and clock skew (713.444125ms)
+✔ untrusted plan metadata validates nested fields and rejects private extensions (15.479583ms)
+✔ an older rejection cannot disable a newer explicit renewal choice (131.632209ms)
+✔ receiving another installation plan does not inherit its quiet-hours override (370.20575ms)
+✔ background-plan consent does not enable or require the foreground switch (274.041625ms)
+✔ consented renewal includes habits and removes completed/disabled occurrences without affecting XP (974.809416ms)
+✔ sync changes arriving during renewal are rechecked without waiting for another timer (508.306458ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5894.434083

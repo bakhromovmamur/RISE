@@ -1,0 +1,118 @@
+[WebServer] (node:34969) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 2 workers
+
+(node:34971) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34970) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/prayer-timetable.browser.spec.ts:62:1 › manual date and quarter-hour timezone own their overnight instants without repeating to adjacent dates (1.1s)
+  ✓   1 [chromium] › tests/prayer-timetable.browser.spec.ts:39:1 › manual UI edits replace calculated timestamps and remain unchanged after a method/location save (1.3s)
+  ✓   4 [chromium] › tests/prayer-timetable.browser.spec.ts:100:1 › startup and resume after the rolling horizon preserve prior checked/manual dates (489ms)
+  ✓   3 [chromium] › tests/prayer-timetable.browser.spec.ts:81:1 › a manual DST-gap date reports an error and retains saved state until the time is corrected (703ms)
+  ✓   6 [chromium] › tests/prayer-timetable.browser.spec.ts:151:1 › polar resume exposes manual recovery and never offers fabricated calculated times (614ms)
+  ✓   5 [chromium] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings (915ms)
+(node:34985) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [chromium] › tests/prayer-timetable.browser.spec.ts:167:1 › denied geolocation retains saved coordinates and allows city/manual recovery (562ms)
+(node:34994) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [webkit] › tests/prayer-timetable.browser.spec.ts:62:1 › manual date and quarter-hour timezone own their overnight instants without repeating to adjacent dates (1.9s)
+  ✓   8 [webkit] › tests/prayer-timetable.browser.spec.ts:39:1 › manual UI edits replace calculated timestamps and remain unchanged after a method/location save (2.0s)
+  ✓  11 [webkit] › tests/prayer-timetable.browser.spec.ts:100:1 › startup and resume after the rolling horizon preserve prior checked/manual dates (622ms)
+  ✓  10 [webkit] › tests/prayer-timetable.browser.spec.ts:81:1 › a manual DST-gap date reports an error and retains saved state until the time is corrected (1.1s)
+  ✓  13 [webkit] › tests/prayer-timetable.browser.spec.ts:151:1 › polar resume exposes manual recovery and never offers fabricated calculated times (778ms)
+  ✓  14 [webkit] › tests/prayer-timetable.browser.spec.ts:167:1 › denied geolocation retains saved coordinates and allows city/manual recovery (668ms)
+(node:35020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/prayer-timetable.browser.spec.ts:39:1 › manual UI edits replace calculated timestamps and remain unchanged after a method/location save (1.9s)
+  ✘  12 [webkit] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings (5.4s)
+(node:35032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  16 [firefox] › tests/prayer-timetable.browser.spec.ts:62:1 › manual date and quarter-hour timezone own their overnight instants without repeating to adjacent dates (1.1s)
+  ✓  18 [firefox] › tests/prayer-timetable.browser.spec.ts:100:1 › startup and resume after the rolling horizon preserve prior checked/manual dates (1.1s)
+  ✓  17 [firefox] › tests/prayer-timetable.browser.spec.ts:81:1 › a manual DST-gap date reports an error and retains saved state until the time is corrected (2.2s)
+  ✓  20 [firefox] › tests/prayer-timetable.browser.spec.ts:151:1 › polar resume exposes manual recovery and never offers fabricated calculated times (772ms)
+  ✓  21 [firefox] › tests/prayer-timetable.browser.spec.ts:167:1 › denied geolocation retains saved coordinates and allows city/manual recovery (704ms)
+  ✘  19 [firefox] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings (5.9s)
+
+
+  1) [webkit] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: /^Review your prayer location/ })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: /^Review your prayer location/ }) with timeout 5000ms
+      - waiting for getByRole('button', { name: /^Review your prayer location/ })
+
+
+      130 |   await page.evaluate(() => { localStorage.setItem("test.device-zone", "Europe/London"); window.dispatchEvent(new Event("focus")); });
+      131 |   const review = page.getByRole("button", { name: /^Review your prayer location/ });
+    > 132 |   await expect(review).toBeVisible();
+          |                        ^
+      133 |   expect((await stored(page)).prayers.days).toEqual(before.prayers.days);
+      134 |   expect((await stored(page)).timezone).toBe("Asia/Tashkent");
+      135 |   await reloadSaved(page); await expect(review).toBeVisible();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-timetable.browser.spec.ts:132:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: /^Review your prayer location/ })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: /^Review your prayer location/ }) with timeout 5000ms
+      - waiting for getByRole('button', { name: /^Review your prayer location/ })
+
+
+      130 |   await page.evaluate(() => { localStorage.setItem("test.device-zone", "Europe/London"); window.dispatchEvent(new Event("focus")); });
+      131 |   const review = page.getByRole("button", { name: /^Review your prayer location/ });
+    > 132 |   await expect(review).toBeVisible();
+          |                        ^
+      133 |   expect((await stored(page)).prayers.days).toEqual(before.prayers.days);
+      134 |   expect((await stored(page)).timezone).toBe("Asia/Tashkent");
+      135 |   await reloadSaved(page); await expect(review).toBeVisible();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-timetable.browser.spec.ts:132:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/prayer-timetable.browser-d-7d3e2-ion-saving-changes-settings-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [webkit] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings 
+    [firefox] › tests/prayer-timetable.browser.spec.ts:116:1 › detected device travel prompts review across reload and only explicit location saving changes settings 
+  19 passed (20.3s)

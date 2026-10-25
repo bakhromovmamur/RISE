@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-25",
+  "runs": [
+    {
+      "scenario": "Original sealed rollback with content-free network/worker diagnostics",
+      "outcome": "FAIL: approved replacement remained waiting; no pending request at observation",
+      "stats": {
+        "startTime": "2026-10-25T06:14:08.042Z",
+        "duration": 58480.597,
+        "expected": 0,
+        "skipped": 9,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "Minimized direct-fetch real-worker probe",
+      "outcome": "FAIL: activation stayed on old document",
+      "stats": {
+        "startTime": "2026-10-25T06:15:56.988Z",
+        "duration": 23003.17,
+        "expected": 0,
+        "skipped": 9,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "Discarded explicit network-forwarding experiment",
+      "outcome": "FAIL on sixth repetition; worker source restored",
+      "stats": {
+        "startTime": "2026-10-25T06:20:05.296Z",
+        "duration": 33437.786,
+        "expected": 5,
+        "skipped": 4,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "Original real account-client focus-event probe",
+      "outcome": "PASS, but insufficiently sensitive to prove the fix",
+      "stats": {
+        "startTime": "2026-10-25T06:21:20.296Z",
+        "duration": 24923.449,
+        "expected": 10,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "Request-hold real account-client focus-event probe",
+      "outcome": "PASS, supplementary only",
+      "stats": {
+        "startTime": "2026-10-25T06:21:56.435Z",
+        "duration": 71868.997,
+        "expected": 30,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "Original-code handoff invariant regression",
+      "outcome": "FAIL: private read count increased from 39 to 89 during approval",
+      "stats": {
+        "startTime": "2026-10-25T06:24:22.693Z",
+        "duration": 2090.9120000000003,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "npm run test:rollout -- --project=chromium --grep \"compatible backend\" --repeat-each=15 --max-failures=1",
+      "outcome": "5 completed update/rollback cases passed; sixth failed during login with invalid-code feedback before activation; nine not run",
+      "stats": {
+        "startTime": "2026-10-25T06:22:14.528Z",
+        "duration": 444663.94,
+        "expected": 5,
+        "skipped": 9,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "npm run test:sync",
+      "outcome": "68 passed; one WebKit case showed account sign-in unavailable before its first login or any update hold. Retained separately for triage.",
+      "stats": {
+        "startTime": "2026-10-25T06:37:02.481Z",
+        "duration": 398729.284,
+        "expected": 68,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "scenario": "npm run test:groups",
+      "outcome": "110 passed; one WebKit test failed its database-isolation precondition: 35 due push jobs instead of zero before delivery; no worker replacement or update hold entered.",
+      "stats": {
+        "startTime": "2026-10-25T06:47:52.721Z",
+        "duration": 1173295.226,
+        "expected": 110,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    }
+  ],
+  "otherAttempts": [
+    "First private diagnostic server startup failed because its temporary package lacked type=module; fixed only in temporary directory.",
+    "Two initial handoff-test attempts failed on capitalization of expected UI copy; corrected before the valid original-code failure.",
+    "Initial npm run check stopped on unnecessary Set spread lint; fixed before the passing full check.",
+    "Production checks were interrupted after twenty completed cases by the app/session interruption; an orphaned test server was stopped by its verified PID before rerunning."
+  ],
+  "privacy": "Only counts, phases and public build identities are published. Credential traces/video/screenshots remain disabled; the failed synthetic login error-context code was redacted.",
+  "temporaryProbesRemoved": true
+}

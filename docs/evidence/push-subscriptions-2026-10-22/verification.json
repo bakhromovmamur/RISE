@@ -1,0 +1,196 @@
+{
+  "verifiedAt": "2026-10-22T19:51:07.366Z",
+  "localCompletionDate": "2026-10-23",
+  "timezone": "Asia/Tashkent",
+  "environment": {
+    "os": "Darwin 25.6.0 arm64",
+    "node": "24.16.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "check": {
+    "command": "npm run check",
+    "tests": 193,
+    "passed": 193,
+    "failed": 0,
+    "productionBuild": true,
+    "reviewBuild": true
+  },
+  "database": {
+    "command": "npm run test:infra",
+    "tests": 70,
+    "passed": 70,
+    "failed": 0
+  },
+  "push": {
+    "command": "npm run test:push",
+    "startTime": "2026-10-22T19:47:47.368Z",
+    "duration": 108305.305,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ],
+    "realSessionCases": 15,
+    "visualOnlyCases": 9,
+    "browserPermissionAndProvider": "synthetic adapter; actual worker registration, IDB, BFF, Auth and database",
+    "layoutStates": 324
+  },
+  "sync": {
+    "commands": [
+      "npm run test:sync",
+      "npm run test:sync -- --grep 'legacy format-one queues'"
+    ],
+    "expected": 69,
+    "unexpected": 0,
+    "acceptance": "combined unique-case manifest; not a single green full run",
+    "fullRun": {
+      "startTime": "2026-10-22T19:34:18.410Z",
+      "duration": 535309.775,
+      "expected": 68,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "focusedConfirmation": {
+      "startTime": "2026-10-22T19:45:18.210Z",
+      "duration": 70818.846,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "manifest": "sync-accepted-cases.json",
+    "realSessionCases": 42,
+    "visualOnlyCases": 27
+  },
+  "auth": {
+    "command": "npm run test:auth",
+    "startTime": "2026-10-22T18:58:59.548Z",
+    "duration": 49794.227,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "backend": {
+    "command": "npm run test:backend",
+    "startTime": "2026-10-22T18:57:57.247Z",
+    "duration": 21946.453,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "journeys": {
+    "command": "npm run test:browser",
+    "startTime": "2026-10-22T18:52:53.429Z",
+    "duration": 437142.879,
+    "expected": 378,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "production": {
+    "command": "npm run test:production",
+    "startTime": "2026-10-22T19:01:22.497Z",
+    "duration": 25465.268,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "pwa": {
+    "command": "npm run test:pwa",
+    "startTime": "2026-10-22T19:03:19.386Z",
+    "duration": 89227.878,
+    "expected": 42,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "visual": {
+    "command": "npm run test:visual",
+    "startTime": "2026-10-22T19:06:54.423Z",
+    "duration": 69112.66799999999,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      ""
+    ],
+    "comparisons": 720,
+    "updatedReferences": false
+  },
+  "boundaries": {
+    "cloudProvisioned": false,
+    "deployed": false,
+    "externalEmailSent": false,
+    "externalPushSent": false,
+    "user4173Accessed": false,
+    "customerAccountDeleted": false,
+    "userGuestStorageAltered": false,
+    "syntheticManagedAccountsPurged": true,
+    "gitInitialized": false,
+    "physicalDevicesCertified": false
+  },
+  "advisors": {
+    "local": "No issues found",
+    "test": "No issues found",
+    "threshold": "warn; fail-on warn"
+  },
+  "manualVisualInspection": [
+    "screens/push-privacy-en-light-393-100.png",
+    "screens/push-privacy-ru-dark-320-200.png",
+    "screens/push-pending-uz-light-1440-100.png"
+  ],
+  "limits": [
+    "No HTTPS/physical-device or real-provider acceptance/display certification.",
+    "No prayer/Fajr/habit schedule or full background cancellation/deduplication; PUSH-02–05 remain pending.",
+    "The sender processes explicit tests only; its supervisor, monitoring and hosted key operations are not deployed.",
+    "Provider submission cannot be recalled; stale/unauthorized test messages use generic visible settings copy.",
+    "Existing 4190 WebKit/Firefox manual-entry observation remains INFRA-01.",
+    "The public production bundle still emits the existing large-chunk warning."
+  ],
+  "sourceEvidence": [
+    "source-hashes.json",
+    "build-hashes.json",
+    "preservation.json",
+    "changes.json"
+  ],
+  "iterations": "test-iterations.json"
+}

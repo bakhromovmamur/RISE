@@ -1,0 +1,53 @@
+{
+  "run": "b565989e-74f9-4122-a43f-7a6a03e28f1a",
+  "environment": "fixed test",
+  "transport": "Real loopback HTTP after injected synthetic login/seed; not hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 492.0093750000001,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 502.2666250000002,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 1842.268833,
+  "databaseGrowthBytes": 8192,
+  "execution": {
+    "workers": 5,
+    "poolPerWorker": 1,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "transport": "HTTP 127.0.0.1:4191; per-browser keep-alive agent; least-pending HTTP requests over private Unix sockets",
+    "scope": "Test-only gateway/threads; injected login/seed; client IP not forwarded to Unix-socket backends; not authentication-rate-limit or production-runtime acceptance"
+  },
+  "reads": {
+    "samplesMs": [
+      397.590459
+    ],
+    "totalBytes": 15732318
+  },
+  "historyAndXpRestored": true,
+  "firstAttempts": {
+    "count": 2,
+    "accepted": 2,
+    "failed": 0,
+    "p95Ms": 502.2666250000002,
+    "maxMs": 502.2666250000002
+  },
+  "localPersonalGate": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

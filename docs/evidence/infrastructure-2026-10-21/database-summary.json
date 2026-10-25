@@ -1,0 +1,132 @@
+{
+  "local": {
+    "markers": 1,
+    "synthetic_fixtures": 3,
+    "auth_users": 3,
+    "personal_tables": 0,
+    "tables": [
+      {
+        "relname": "environment",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relname": "synthetic_fixtures",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      }
+    ],
+    "bindings": [
+      {
+        "name": "/supabase_rest_rise-local-0b488bde",
+        "ports": {
+          "3000/tcp": null
+        }
+      },
+      {
+        "name": "/supabase_inbucket_rise-local-0b488bde",
+        "ports": {
+          "8025/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "55324"
+            }
+          ]
+        }
+      },
+      {
+        "name": "/supabase_auth_rise-local-0b488bde",
+        "ports": {
+          "9999/tcp": null
+        }
+      },
+      {
+        "name": "/supabase_kong_rise-local-0b488bde",
+        "ports": {
+          "8000/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "55321"
+            }
+          ]
+        }
+      },
+      {
+        "name": "/supabase_db_rise-local-0b488bde",
+        "ports": {
+          "5432/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "55322"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "test": {
+    "markers": 1,
+    "synthetic_fixtures": 3,
+    "auth_users": 3,
+    "personal_tables": 0,
+    "tables": [
+      {
+        "relname": "environment",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relname": "synthetic_fixtures",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      }
+    ],
+    "bindings": [
+      {
+        "name": "/supabase_rest_rise-test-0b488bde",
+        "ports": {
+          "3000/tcp": null
+        }
+      },
+      {
+        "name": "/supabase_inbucket_rise-test-0b488bde",
+        "ports": {
+          "8025/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "55424"
+            }
+          ]
+        }
+      },
+      {
+        "name": "/supabase_auth_rise-test-0b488bde",
+        "ports": {
+          "9999/tcp": null
+        }
+      },
+      {
+        "name": "/supabase_kong_rise-test-0b488bde",
+        "ports": {
+          "8000/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "55421"
+            }
+          ]
+        }
+      },
+      {
+        "name": "/supabase_db_rise-test-0b488bde",
+        "ports": {
+          "5432/tcp": [
+            {
+              "HostIp": "127.0.0.1",
+              "HostPort": "55422"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

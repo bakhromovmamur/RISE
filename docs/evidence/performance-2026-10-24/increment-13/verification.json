@@ -1,0 +1,75 @@
+{
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-02",
+    "NFR-03",
+    "NFR-07"
+  ],
+  "date": "2026-10-24",
+  "status": "IN PROGRESS",
+  "commands": [
+    {
+      "command": "node --import tsx --test tests/personal-records.test.ts",
+      "exit": 0,
+      "cases": 3
+    },
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "cases": 295
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/personal.test.ts tests/infra/sync.test.ts tests/infra/recovery.test.ts tests/infra/shared-priorities.test.ts tests/infra/push-cancellation.test.ts",
+      "exit": 0,
+      "cases": 39
+    },
+    {
+      "command": "node --expose-gc --import tsx /tmp/rise-record-projection-probe/run.mts",
+      "exit": 0,
+      "runs": 2,
+      "equivalent": true
+    },
+    {
+      "command": "npm run test:sync",
+      "exit": 0,
+      "cases": 69,
+      "flaky": 0,
+      "unexpected": 0,
+      "skipped": 0
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "documents": 37,
+      "links": 611,
+      "anchors": 61,
+      "tasks": 38,
+      "requirements": 20
+    }
+  ],
+  "capacityAcceptance": false,
+  "capacityRerun": false,
+  "preservation": {
+    "protectedFilesChecked": 2924,
+    "priorSealedFilesChecked": 755,
+    "protectedDifferencesFromIncrement03": [
+      "server/auth/sessions.ts",
+      "server/personal/records.ts"
+    ],
+    "runtimeDifferenceFromIncrement12": [
+      "src/contracts/personalRecords.ts"
+    ],
+    "testChanges": [
+      "tests/personal-records.test.ts"
+    ],
+    "sourceFilesChecked": 56,
+    "buildFilesChecked": 52,
+    "cssFilesIdentical": 2,
+    "screenSourceGoldenSchemaDependencyStorageChanged": false,
+    "savedPreviewAccessed": false,
+    "cloudProvisioned": false,
+    "testPortReleased": true,
+    "relativeLinksChecked": 18
+  },
+  "next": "Independent dependency-ready SAFE-01 local security review; retain open QUALITY-03 capacity gate."
+}

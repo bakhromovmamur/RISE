@@ -1,0 +1,45 @@
+{
+  "run": "3ef766b5-d567-4192-988d-736fc9dbbd34",
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 657.0566249999999,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 624.2194999999997,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 1675.004042,
+  "databaseGrowthBytes": 90112,
+  "reads": {
+    "samplesMs": [
+      398.38625
+    ],
+    "totalBytes": 15732318
+  },
+  "historyAndXpRestored": true,
+  "firstAttempts": {
+    "count": 2,
+    "accepted": 2,
+    "failed": 0,
+    "p95Ms": 657.0566249999999,
+    "maxMs": 657.0566249999999
+  },
+  "localPersonalGate": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

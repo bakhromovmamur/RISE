@@ -1,0 +1,163 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.visual.config.ts",
+      "--grep",
+      "en-dark-1440x1000-100$"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.visual.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.visual.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "testIgnore": [],
+        "testMatch": "**/*.visual.spec.ts",
+        "timeout": 60000,
+        "use": {
+          "browserName": "chromium",
+          "baseURL": "http://127.0.0.1:4182",
+          "deviceScaleFactor": 1,
+          "locale": "en-US",
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/visual-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "none",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4182 dist-review",
+      "url": "http://127.0.0.1:4182",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "parity.visual.spec.ts",
+      "file": "parity.visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "en-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5599,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:05:51.367Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDEwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-b4451b10554f4b726019",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T15:05:49.658Z",
+    "duration": 7972.688999999999,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

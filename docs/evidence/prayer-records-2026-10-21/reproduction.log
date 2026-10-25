@@ -1,0 +1,236 @@
+✖ clock changes leave unconfirmed prayers unrecorded and saved history explicitly correctable (178.942625ms)
+✖ a saved record remains visible in its week after the device clock goes to yesterday (25.302208ms)
+✖ independent streaks use saved UTC windows across travel and repeated DST clocks (26.528666ms)
+✔ private pause across midnight holds independent streaks, retains records and earlier gaps (25.052417ms)
+✖ resume cannot erase a pause by selecting a point before it started (17.822958ms)
+✔ Undo during a pause excludes only the selected prayer and never restores its reminders (17.488625ms)
+✖ dated Fajr enable and backup choices survive later plan edits and backup round trip (52.494916ms)
+✖ Fajr preview commands cannot overwrite a live acknowledgment (57.875375ms)
+✖ dated Fajr draft survives reload and portable backup with its original date (101.8845ms)
+✖ Fajr planning and wake clocks use absolute subtraction across a repeated hour (25.242667ms)
+✖ a rejected prayer record cannot finish a work break or lose the return note (68.02075ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 2
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 782.888167
+
+✖ failing tests:
+
+test at tests/prayer-records.test.ts:23:1
+✖ clock changes leave unconfirmed prayers unrecorded and saved history explicitly correctable (178.942625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'missed'
+  - 'on_time'
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:32:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'missed',
+    expected: 'on_time',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:41:1
+✖ a saved record remains visible in its week after the device clock goes to yesterday (25.302208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:44:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:47:1
+✖ independent streaks use saved UTC windows across travel and repeated DST clocks (26.528666ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:52:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:79:1
+✖ resume cannot erase a pause by selecting a point before it started (17.822958ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      claimed: [],
+      dailyPriorities: {},
+      days: {},
+      demoDate: '2026-10-21',
+  ...
+        lists: [],
+  +     pauses: [],
+  -     pauses: [
+  -       {
+  -         from: '2026-10-22:2',
+  -         id: 'synthetic-pause'
+  -       }
+  -     ],
+        readiness: 'permission',
+        reminderRules: {
+          asr: {
+            due: true,
+            preparation: true
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:81:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { schema: 4, mode: 'fresh', demoDate: '2026-10-21', timezone: 'Asia/Tashkent', name: 'Friend', onboarded: true, habits: [], days: {}, claimed: [], equipped: null, plus: false, prefs: { appearance: 'system', reminders: false, quietStart: '22:00', quietEnd: '08:00', sound: false, haptics: false, reduceMotion: false, golden: false }, reflections: {}, timer: null, draft: null, prayers: { version: 1, started: '2026-10-21', demoMinute: 945, days: [Object], preferences: [Object], fajr: [Object], prepared: {}, work: null }, goals: [], personalRewards: [], dailyPriorities: {}, selectedRewardId: null, life: { language: 'en', setup: [Object], reminderRules: [Object], readiness: 'permission', backupEnabled: false, alarm: null, pauses: [], groups: [], tasks: [], lists: [], updates: [], drafts: {}, delivery: [Object] } },
+    expected: { schema: 4, mode: 'fresh', demoDate: '2026-10-21', timezone: 'Asia/Tashkent', name: 'Friend', onboarded: true, habits: [], days: {}, claimed: [], equipped: null, plus: false, prefs: { appearance: 'system', reminders: false, quietStart: '22:00', quietEnd: '08:00', sound: false, haptics: false, reduceMotion: false, golden: false }, reflections: {}, timer: null, draft: null, prayers: { version: 1, started: '2026-10-21', demoMinute: 945, days: [Object], preferences: [Object], fajr: [Object], prepared: {}, work: null }, goals: [], personalRewards: [], dailyPriorities: {}, selectedRewardId: null, life: { language: 'en', setup: [Object], reminderRules: [Object], readiness: 'permission', backupEnabled: false, alarm: null, pauses: [Array], groups: [], tasks: [], lists: [], updates: [], drafts: {}, delivery: [Object] } },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:100:1
+✖ dated Fajr enable and backup choices survive later plan edits and backup round trip (52.494916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:105:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:115:1
+✖ Fajr preview commands cannot overwrite a live acknowledgment (57.875375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'ringing' !== 'awake'
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:119:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ringing',
+    expected: 'awake',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:126:1
+✖ dated Fajr draft survives reload and portable backup with its original date (101.8845ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      backupEnabled: true,
+      backupMinutes: 3,
+      bedtime: '22:30',
+  -   date: '2026-10-21',
+      enabled: true,
+      message: 'My synthetic evening note',
+      placement: 'away',
+      wakeLead: 10
+    }
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:131:10)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { bedtime: '22:30', wakeLead: 10, backupMinutes: 3, message: 'My synthetic evening note', placement: 'away', enabled: true, backupEnabled: true },
+    expected: { bedtime: '22:30', wakeLead: 10, backupMinutes: 3, message: 'My synthetic evening note', placement: 'away', enabled: true, date: '2026-10-21', backupEnabled: true },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:134:1
+✖ Fajr planning and wake clocks use absolute subtraction across a repeated hour (25.242667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  '00:40' !== '01:40'
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:139:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '00:40',
+    expected: '01:40',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/prayer-records.test.ts:146:1
+✖ a rejected prayer record cannot finish a work break or lose the return note (68.02075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'returned' !== 'save'
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/prayer-records.test.ts:150:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'returned',
+    expected: 'save',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

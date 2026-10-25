@@ -1,0 +1,12 @@
+{
+  "stats": {
+    "startTime": "2026-10-21T05:43:14.466Z",
+    "duration": 195551.403,
+    "expected": 206,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "cause": "An overlapping build removed dist/index.html while the original preview server was serving it. The trace records HTTP 404 for /?review=1.",
+  "resolution": "Each test server snapshots the completed build into its own temporary directory. tests/test-build.test.ts deletes and replaces a separate synthetic source build while verifying the running snapshot still returns the original page."
+}

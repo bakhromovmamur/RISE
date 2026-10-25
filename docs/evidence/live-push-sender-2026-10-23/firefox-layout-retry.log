@@ -1,0 +1,20 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts layout renewal.push --project=firefox
+
+[WebServer] (node:39474) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:39475) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (4.7s)
+  ✓  2 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (4.2s)
+  ✓  3 [firefox] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (4.0s)
+  ✓  4 [firefox] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en (4.0s)
+  ✓  5 [firefox] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru (4.0s)
+  ✓  6 [firefox] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · uz (4.0s)
+  ✓  7 [firefox] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (7.2s)
+
+  7 passed (33.5s)

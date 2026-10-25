@@ -1,0 +1,32 @@
+✔ same-session waiters leave the restricted pool available to another authorized account (478.003958ms)
+✔ queued actor work rechecks provider revocation and never runs its callback (127.934625ms)
+✔ managed email codes create opaque HttpOnly sessions without returning provider tokens (101.98925ms)
+✔ all mutations reject missing/cross-site Origin and absent or stale CSRF before sending email (13.307458ms)
+✔ challenge binding, five-attempt lockout and cooldown resist replay/brute force (135.134542ms)
+✔ remembered sessions use persistent cookies and seven-day idle/thirty-day absolute limits (90.005709ms)
+✔ expired challenges cannot authenticate and new codes invalidate the old handle (1244.432875ms)
+✔ logout revokes its linked provider JWT predicate and clears only account cookies (155.899083ms)
+✔ idle/absolute expiry, provider session removal and account bans deny a previously valid session (456.02975ms)
+✔ provider email failure is neutral and cannot activate an older code (84.805792ms)
+✔ a copied session without its context and corrupted stored tokens fail closed (108.970417ms)
+✔ concurrent refresh rotates once, and temporary provider failures preserve the session (166.148959ms)
+✔ private session tables and helper ownership remain closed to anonymous/worker identities (23.385666ms)
+✔ personal API requires a real session and CSRF; reading never creates an account profile (306.391166ms)
+✔ all personal entity families round-trip with domain parity, private pauses and immutable historical targets (1504.453541ms)
+✔ no-op account commands retain record revisions and removal barriers; a nested preference edit writes only its record (1624.833375ms)
+✔ habit corrections preserve row versions, reindex removed rows and retain replay barriers (432.117792ms)
+✔ occurrence reads preserve JSON dates, scalar types, ordered snapshots and owner isolation under alternate SQL settings (431.731708ms)
+✔ direct RLS and invoker views isolate every personal table; ownership changes and cross-owner foreign keys fail (1743.862208ms)
+✔ two sessions serialize conflicting commands across every personal entity family (4041.71175ms)
+✔ concurrent devices commit one revision and replay one receipt; changed payloads cannot reuse an operation (1572.735584ms)
+✔ receipt insertion failure rolls back the entity write and canonical revision (217.816833ms)
+✔ revoked/banned sessions cannot read records or replay an already committed receipt (300.7875ms)
+✔ documented Unicode fields survive without truncation and XP totals are not writable (264.434458ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16063.65375

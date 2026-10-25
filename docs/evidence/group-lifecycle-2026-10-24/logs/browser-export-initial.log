@@ -1,0 +1,29 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts export.groups.spec.ts
+
+[WebServer] (node:39829) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:39834) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (3.8s)
+  ✓   2 [chromium] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (4.7s)
+  ✓   3 [chromium] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (3.4s)
+  ✓   4 [chromium] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (3.6s)
+(node:39860) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [webkit] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (4.4s)
+  ✓   6 [webkit] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (4.9s)
+  ✓   7 [webkit] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (3.6s)
+  ✓   8 [webkit] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (3.4s)
+(node:39898) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [firefox] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (5.0s)
+  ✓  10 [firefox] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (5.5s)
+  ✓  11 [firefox] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (4.4s)
+  ✓  12 [firefox] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (4.2s)
+
+  12 passed (55.6s)

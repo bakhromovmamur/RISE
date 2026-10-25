@@ -1,0 +1,56 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test tests/accessibility.browser.spec.ts$ --workers=1
+
+[WebServer] (node:57548) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 39 tests using 1 worker
+
+(node:57549) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/accessibility.browser.spec.ts:25:3 › en: collapsed settings sections stay out of the keyboard order (702ms)
+  ✓   2 [chromium] › tests/accessibility.browser.spec.ts:46:3 › en: priority edit has a usable tap area and restores keyboard focus (453ms)
+  ✓   3 [chromium] › tests/accessibility.browser.spec.ts:67:3 › en: enlarged habit form preserves usable days, drafts and nested focus (886ms)
+  ✓   4 [chromium] › tests/accessibility.browser.spec.ts:118:3 › en: disclosed recovery download is usable and preserves the exact original (579ms)
+  ✓   5 [chromium] › tests/accessibility.browser.spec.ts:25:3 › ru: collapsed settings sections stay out of the keyboard order (412ms)
+  ✓   6 [chromium] › tests/accessibility.browser.spec.ts:46:3 › ru: priority edit has a usable tap area and restores keyboard focus (654ms)
+  ✓   7 [chromium] › tests/accessibility.browser.spec.ts:67:3 › ru: enlarged habit form preserves usable days, drafts and nested focus (995ms)
+  ✓   8 [chromium] › tests/accessibility.browser.spec.ts:118:3 › ru: disclosed recovery download is usable and preserves the exact original (532ms)
+  ✓   9 [chromium] › tests/accessibility.browser.spec.ts:25:3 › uz: collapsed settings sections stay out of the keyboard order (416ms)
+  ✓  10 [chromium] › tests/accessibility.browser.spec.ts:46:3 › uz: priority edit has a usable tap area and restores keyboard focus (399ms)
+  ✓  11 [chromium] › tests/accessibility.browser.spec.ts:67:3 › uz: enlarged habit form preserves usable days, drafts and nested focus (791ms)
+  ✓  12 [chromium] › tests/accessibility.browser.spec.ts:118:3 › uz: disclosed recovery download is usable and preserves the exact original (511ms)
+  ✓  13 [chromium] › tests/accessibility.browser.spec.ts:140:1 › system and saved reduced-motion choices preserve working sheet navigation (925ms)
+(node:57575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [webkit] › tests/accessibility.browser.spec.ts:25:3 › en: collapsed settings sections stay out of the keyboard order (1.1s)
+  ✓  15 [webkit] › tests/accessibility.browser.spec.ts:46:3 › en: priority edit has a usable tap area and restores keyboard focus (706ms)
+  ✓  16 [webkit] › tests/accessibility.browser.spec.ts:67:3 › en: enlarged habit form preserves usable days, drafts and nested focus (1.2s)
+  ✓  17 [webkit] › tests/accessibility.browser.spec.ts:118:3 › en: disclosed recovery download is usable and preserves the exact original (590ms)
+  ✓  18 [webkit] › tests/accessibility.browser.spec.ts:25:3 › ru: collapsed settings sections stay out of the keyboard order (670ms)
+  ✓  19 [webkit] › tests/accessibility.browser.spec.ts:46:3 › ru: priority edit has a usable tap area and restores keyboard focus (747ms)
+  ✓  20 [webkit] › tests/accessibility.browser.spec.ts:67:3 › ru: enlarged habit form preserves usable days, drafts and nested focus (1.2s)
+  ✓  21 [webkit] › tests/accessibility.browser.spec.ts:118:3 › ru: disclosed recovery download is usable and preserves the exact original (620ms)
+  ✓  22 [webkit] › tests/accessibility.browser.spec.ts:25:3 › uz: collapsed settings sections stay out of the keyboard order (613ms)
+  ✓  23 [webkit] › tests/accessibility.browser.spec.ts:46:3 › uz: priority edit has a usable tap area and restores keyboard focus (613ms)
+  ✓  24 [webkit] › tests/accessibility.browser.spec.ts:67:3 › uz: enlarged habit form preserves usable days, drafts and nested focus (1.1s)
+  ✓  25 [webkit] › tests/accessibility.browser.spec.ts:118:3 › uz: disclosed recovery download is usable and preserves the exact original (676ms)
+  ✓  26 [webkit] › tests/accessibility.browser.spec.ts:140:1 › system and saved reduced-motion choices preserve working sheet navigation (1.2s)
+(node:57676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  27 [firefox] › tests/accessibility.browser.spec.ts:25:3 › en: collapsed settings sections stay out of the keyboard order (1.3s)
+  ✓  28 [firefox] › tests/accessibility.browser.spec.ts:46:3 › en: priority edit has a usable tap area and restores keyboard focus (644ms)
+  ✓  29 [firefox] › tests/accessibility.browser.spec.ts:67:3 › en: enlarged habit form preserves usable days, drafts and nested focus (1.2s)
+  ✓  30 [firefox] › tests/accessibility.browser.spec.ts:118:3 › en: disclosed recovery download is usable and preserves the exact original (775ms)
+  ✓  31 [firefox] › tests/accessibility.browser.spec.ts:25:3 › ru: collapsed settings sections stay out of the keyboard order (593ms)
+  ✓  32 [firefox] › tests/accessibility.browser.spec.ts:46:3 › ru: priority edit has a usable tap area and restores keyboard focus (561ms)
+  ✓  33 [firefox] › tests/accessibility.browser.spec.ts:67:3 › ru: enlarged habit form preserves usable days, drafts and nested focus (1.2s)
+  ✓  34 [firefox] › tests/accessibility.browser.spec.ts:118:3 › ru: disclosed recovery download is usable and preserves the exact original (671ms)
+  ✓  35 [firefox] › tests/accessibility.browser.spec.ts:25:3 › uz: collapsed settings sections stay out of the keyboard order (595ms)
+  ✓  36 [firefox] › tests/accessibility.browser.spec.ts:46:3 › uz: priority edit has a usable tap area and restores keyboard focus (1.1s)
+  ✓  37 [firefox] › tests/accessibility.browser.spec.ts:67:3 › uz: enlarged habit form preserves usable days, drafts and nested focus (1.5s)
+  ✓  38 [firefox] › tests/accessibility.browser.spec.ts:118:3 › uz: disclosed recovery download is usable and preserves the exact original (783ms)
+  ✓  39 [firefox] › tests/accessibility.browser.spec.ts:140:1 › system and saved reduced-motion choices preserve working sheet navigation (1.1s)
+
+  39 passed (34.1s)

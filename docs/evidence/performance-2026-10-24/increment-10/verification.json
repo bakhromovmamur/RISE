@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "implementation": "Pair matching ordered occurrence histories; compare every value before building maps for changed pairs",
+  "isolatedWriterCpu": "Improved; exact SQL/parameter parity with detached synthetic inputs",
+  "capacity": "FAIL; 542/600 first intentions accepted, personal/shared scheduled p95 4715.8/4599.1 ms",
+  "convergence": "FAIL; 25 late and 11 missing among 177 accepted shared updates",
+  "recoveryAndCleanup": "PASS",
+  "commands": [
+    {
+      "command": "node --import tsx /tmp/rise-writer-alignment-probe/run.mts",
+      "exit": 0,
+      "report": "discovery/results.json",
+      "scope": "CPU-only SQL collector; not database acceptance"
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='habit corrections preserve row' tests/infra/personal.test.ts",
+      "exit": 0,
+      "cases": 1,
+      "logs": [
+        "logs/targeted-before.log",
+        "logs/targeted-after.log"
+      ]
+    },
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "sourceCases": 282,
+      "log": "logs/check.log"
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/personal.test.ts tests/infra/sync.test.ts tests/infra/recovery.test.ts tests/infra/lifecycle.test.ts tests/infra/group-export.test.ts",
+      "exit": 0,
+      "cases": 50,
+      "log": "logs/database.log"
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='habit plans validate' tests/infra/push-plans.test.ts",
+      "exit": 0,
+      "cases": 1,
+      "log": "logs/cancellation.log",
+      "scope": "Real DB cancellation; synthetic injected outbound callback"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts smoke",
+      "exit": 0,
+      "report": "smoke.json"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed",
+      "exit": 1,
+      "report": "mixed.json"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "logs/docs.log"
+    }
+  ],
+  "initialCorrection": {
+    "log": "logs/targeted-initial.log",
+    "reason": "Removing an earlier occurrence intentionally reindexes the surviving neighbor; corrected test expectation before source change"
+  },
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11",
+    "transport": "Fastify inject; fixed test"
+  },
+  "newBrowserClaims": false,
+  "cloudProvisioned": false
+}

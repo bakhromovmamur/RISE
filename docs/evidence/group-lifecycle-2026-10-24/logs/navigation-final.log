@@ -1,0 +1,35 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test navigation.browser.spec.ts
+
+[WebServer] (node:42309) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 2 workers
+
+(node:42311) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:42312) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.1s)
+  ✓   1 [chromium] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (1.1s)
+  ✓   4 [chromium] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (1.3s)
+(node:42334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (2.0s)
+(node:42348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [webkit] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.9s)
+  ✓   6 [webkit] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (1.4s)
+  ✓   8 [webkit] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (1.8s)
+(node:42372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [webkit] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (2.4s)
+(node:42375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [firefox] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (3.4s)
+  ✓  10 [firefox] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (3.2s)
+  ✓  12 [firefox] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (2.9s)
+  ✓  11 [firefox] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (3.8s)
+
+  12 passed (16.0s)

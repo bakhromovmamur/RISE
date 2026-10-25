@@ -1,0 +1,62 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts
+
+[WebServer] (node:70594) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 39 tests using 2 workers
+
+(node:70596) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:70595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (758ms)
+  ✓   1 [chromium] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.6s)
+  ✓   4 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (607ms)
+  ✓   3 [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.7s)
+  ✓   5 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (680ms)
+  ✓   6 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (784ms)
+  ✓   7 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (1.1s)
+  ✓   8 [chromium] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (1.2s)
+  ✓  10 [chromium] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (1.1s)
+  ✓   9 [chromium] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (2.4s)
+  ✓  11 [chromium] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (1.8s)
+  ✓  12 [chromium] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.6s)
+(node:70637) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (1.9s)
+(node:70649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [webkit] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (703ms)
+  ✓  14 [webkit] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.8s)
+  ✓  17 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (640ms)
+  ✓  16 [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.2s)
+  ✓  18 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (648ms)
+  ✓  19 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (668ms)
+  ✓  20 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (732ms)
+  ✓  21 [webkit] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (1.4s)
+  ✓  23 [webkit] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (1.6s)
+  ✓  24 [webkit] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (2.1s)
+  ✓  25 [webkit] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.9s)
+  ✓  22 [webkit] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (7.5s)
+(node:70673) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  26 [webkit] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (2.2s)
+(node:70676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  27 [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (3.1s)
+  ✓  28 [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (2.1s)
+  ✓  30 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (1.0s)
+  ✓  29 [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.8s)
+  ✓  31 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (859ms)
+  ✓  32 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (940ms)
+  ✓  33 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (970ms)
+  ✓  34 [firefox] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (776ms)
+  ✓  36 [firefox] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (2.6s)
+  ✓  37 [firefox] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (2.1s)
+  ✓  35 [firefox] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (6.8s)
+  ✓  38 [firefox] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (2.2s)
+  ✓  39 [firefox] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (2.3s)
+
+  39 passed (38.1s)

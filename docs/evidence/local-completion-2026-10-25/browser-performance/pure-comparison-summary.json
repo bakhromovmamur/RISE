@@ -1,0 +1,93 @@
+{
+  "domain-comparison": {
+    "comparisons": 54,
+    "allValuesAndErrorsMatch": true,
+    "summary": {
+      "habit.save": {
+        "before": {
+          "medianMs": 84.23706250000032,
+          "maxMs": 86.05420799999774
+        },
+        "candidate": {
+          "medianMs": 40.7959579999997,
+          "maxMs": 43.87787500000013
+        }
+      },
+      "habit.save:edit": {
+        "before": {
+          "medianMs": 84.49206249999997,
+          "maxMs": 90.55595799999719
+        },
+        "candidate": {
+          "medianMs": 41.31879200000003,
+          "maxMs": 44.064666000000216
+        }
+      },
+      "goal.save": {
+        "before": {
+          "medianMs": 83.53135399999883,
+          "maxMs": 87.54891700000007
+        },
+        "candidate": {
+          "medianMs": 40.520021500000894,
+          "maxMs": 43.67012500000055
+        }
+      },
+      "reward.save": {
+        "before": {
+          "medianMs": 83.54154199999857,
+          "maxMs": 88.92124999999942
+        },
+        "candidate": {
+          "medianMs": 40.76558349999959,
+          "maxMs": 42.732583999999406
+        }
+      },
+      "reward.retry": {
+        "before": {
+          "medianMs": 83.74783350000052,
+          "maxMs": 87.21554099999958
+        },
+        "candidate": {
+          "medianMs": 40.881374999999935,
+          "maxMs": 44.32962499999849
+        }
+      },
+      "timer.complete": {
+        "before": {
+          "medianMs": 134.16006249999919,
+          "maxMs": 136.16279199999917
+        },
+        "candidate": {
+          "medianMs": 44.62981250000121,
+          "maxMs": 46.52762499999881
+        }
+      }
+    }
+  },
+  "envelope-comparison": {
+    "scope": "Only duplicated JSON-safety/state-shape portion; excludes IDB I/O, metadata checks and domain reduction",
+    "summary": {
+      "before": {
+        "medianMs": 48.672999499999946,
+        "maxMs": 50.67104100000006
+      },
+      "candidate": {
+        "medianMs": 33.20829149999997,
+        "maxMs": 35.081541000000016
+      }
+    }
+  },
+  "clone-comparison": {
+    "summary": {
+      "before": {
+        "medianMs": 39.44691650000004,
+        "maxMs": 42.35012500000005
+      },
+      "candidate": {
+        "medianMs": 62.812186999999994,
+        "maxMs": 75.87341600000002
+      }
+    }
+  }
+}

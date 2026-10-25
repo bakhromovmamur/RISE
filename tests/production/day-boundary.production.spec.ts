@@ -1,0 +1,51 @@
+import { test, expect, stored, reloadSaved } from "../support/browser";
+import { xpTotal } from "../../src/model";
+
+test("an empty production journey keeps a corrected tiny day intact across midnight and a new full check-in", async ({ page }) => {
+  // Accelerated synthetic civil dates, real production UI and IndexedDB; no fixture injection.
+  await page.clock.install({ time: new Date("2026-10-25T08:00:00+05:00") });
+  await page.goto("/");
+  await expect(page.locator('meta[name="rise-build"]')).toHaveAttribute("content", "production");
+  await expect(page.locator(".reviewer")).toHaveCount(0);
+  expect(xpTotal(await stored(page))).toBe(0);
+  await page.getByRole("button", { name: "Choose other habits first", exact: true }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: "Continue", exact: true }).click();
+  await page.getByRole("button", { name: "Create my plan", exact: true }).click();
+  await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+  await expect.poll(async () => xpTotal(await stored(page))).toBe(10);
+  await page.getByRole("button", { name: "View Read a little", exact: true }).click();
+  const sheet = page.getByRole("dialog");
+  await sheet.getByRole("button", { name: /Upgrade to full target/ }).click();
+  await expect.poll(async () => xpTotal(await stored(page))).toBe(20);
+  await sheet.getByRole("button", { name: /Undo check-in/ }).click();
+  await expect.poll(async () => xpTotal(await stored(page))).toBe(0);
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+  await expect.poll(async () => xpTotal(await stored(page))).toBe(10);
+  await reloadSaved(page);
+  const evening = await stored(page);
+  expect(evening.days["2026-10-25"].filter(row => row.check)).toHaveLength(1);
+
+  await page.clock.setFixedTime(new Date("2026-10-26T08:00:00+05:00"));
+  await reloadSaved(page);
+  const morning = await stored(page);
+  expect(morning.days["2026-10-25"]).toEqual(evening.days["2026-10-25"]);
+  expect(morning.days["2026-10-26"].every(row => !row.check)).toBe(true);
+  expect(morning.prayers.days).toEqual(evening.prayers.days);
+  expect(morning.goals).toEqual(evening.goals);
+  expect(morning.personalRewards).toEqual(evening.personalRewards);
+  expect(xpTotal(morning)).toBe(10);
+  await page.locator(".today-disclosure > summary").filter({ hasText: "My routine" }).click();
+  await page.getByRole("button", { name: "View Read a little", exact: true }).click();
+  await sheet.getByRole("button", { name: /full target/i }).click();
+  await expect.poll(async () => xpTotal(await stored(page))).toBe(30);
+  await page.keyboard.press("Escape");
+  await reloadSaved(page);
+  const final = await stored(page);
+  expect(final.days["2026-10-25"]).toEqual(evening.days["2026-10-25"]);
+  expect(final.days["2026-10-26"].filter(row => row.check)).toHaveLength(1);
+  expect(final.prayers.days).toEqual(evening.prayers.days);
+  expect(final.life.groups).toEqual([]);
+  expect(xpTotal(final)).toBe(30);
+});

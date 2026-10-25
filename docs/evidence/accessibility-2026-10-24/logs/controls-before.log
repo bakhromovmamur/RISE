@@ -1,0 +1,519 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test tests/accessibility.browser.spec.ts$ --project=chromium
+
+[WebServer] (node:50742) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 2 workers
+
+(node:50743) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:50744) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/accessibility.browser.spec.ts:25:3 › en: priority edit has a usable tap area and restores keyboard focus (919ms)
+(node:50754) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/accessibility.browser.spec.ts:45:3 › en: enlarged habit form preserves usable days, drafts and nested focus (1.4s)
+(node:50759) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/accessibility.browser.spec.ts:76:3 › en: disclosed recovery download is usable and preserves the exact original (732ms)
+(node:50764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [chromium] › tests/accessibility.browser.spec.ts:25:3 › ru: priority edit has a usable tap area and restores keyboard focus (545ms)
+  ✘  5 [chromium] › tests/accessibility.browser.spec.ts:76:3 › ru: disclosed recovery download is usable and preserves the exact original (675ms)
+  ✘  6 [chromium] › tests/accessibility.browser.spec.ts:45:3 › ru: enlarged habit form preserves usable days, drafts and nested focus (752ms)
+(node:50770) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:50771) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [chromium] › tests/accessibility.browser.spec.ts:25:3 › uz: priority edit has a usable tap area and restores keyboard focus (544ms)
+  ✘  9 [chromium] › tests/accessibility.browser.spec.ts:76:3 › uz: disclosed recovery download is usable and preserves the exact original (666ms)
+  ✘  8 [chromium] › tests/accessibility.browser.spec.ts:45:3 › uz: enlarged habit form preserves usable days, drafts and nested focus (1.0s)
+
+
+  1) [chromium] › tests/accessibility.browser.spec.ts:25:3 › en: priority edit has a usable tap area and restores keyboard focus 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    24.6875
+
+      27 |     const edit = page.getByRole("button", { name: t("Edit priorities"), exact: true });
+      28 |     const box = (await edit.boundingBox())!;
+    > 29 |     expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                            ^
+      30 |     expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      31 |     await edit.focus();
+      32 |     await page.keyboard.press("Enter");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:29:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-en-p-d6222-and-restores-keyboard-focus-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-en-p-d6222-and-restores-keyboard-focus-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-en-p-d6222-and-restores-keyboard-focus-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-en-p-d6222-and-restores-keyboard-focus-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/accessibility.browser.spec.ts:45:3 › en: enlarged habit form preserves usable days, drafts and nested focus 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/accessibility.browser.spec.ts:76:3 › en: disclosed recovery download is usable and preserves the exact original 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    20
+
+      85 |     const box = (await download.boundingBox())!;
+      86 |     expect.soft(box.width).toBeGreaterThanOrEqual(44);
+    > 87 |     expect.soft(box.height).toBeGreaterThanOrEqual(44);
+         |                             ^
+      88 |     const before = await stored(page), pending = page.waitForEvent("download");
+      89 |     await download.focus();
+      90 |     await page.keyboard.press("Enter");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:87:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-en-d-31c60-reserves-the-exact-original-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-en-d-31c60-reserves-the-exact-original-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-en-d-31c60-reserves-the-exact-original-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-en-d-31c60-reserves-the-exact-original-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/accessibility.browser.spec.ts:45:3 › ru: enlarged habit form preserves usable days, drafts and nested focus 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+    > 61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+         |                                                                               ^
+      62 |     await days.first().focus();
+      63 |     await page.keyboard.press("Space");
+      64 |     await expect(days.first()).toHaveAttribute("aria-pressed", "false");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:61:79
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/accessibility.browser.spec.ts:76:3 › ru: disclosed recovery download is usable and preserves the exact original 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    20
+
+      85 |     const box = (await download.boundingBox())!;
+      86 |     expect.soft(box.width).toBeGreaterThanOrEqual(44);
+    > 87 |     expect.soft(box.height).toBeGreaterThanOrEqual(44);
+         |                             ^
+      88 |     const before = await stored(page), pending = page.waitForEvent("download");
+      89 |     await download.focus();
+      90 |     await page.keyboard.press("Enter");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:87:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-ru-d-01114-reserves-the-exact-original-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-ru-d-01114-reserves-the-exact-original-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-ru-d-01114-reserves-the-exact-original-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-ru-d-01114-reserves-the-exact-original-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests/accessibility.browser.spec.ts:45:3 › uz: enlarged habit form preserves usable days, drafts and nested focus 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    38
+
+      56 |     for (const day of await days.all()) {
+      57 |       const box = (await day.boundingBox())!;
+    > 58 |       expect.soft(box.width).toBeGreaterThanOrEqual(44);
+         |                              ^
+      59 |       expect.soft(box.height).toBeGreaterThanOrEqual(44);
+      60 |     }
+      61 |     expect(await dialog.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:58:30
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests/accessibility.browser.spec.ts:76:3 › uz: disclosed recovery download is usable and preserves the exact original 
+
+    Error: expect(received).toBeGreaterThanOrEqual(expected)
+
+    Expected: >= 44
+    Received:    20
+
+      85 |     const box = (await download.boundingBox())!;
+      86 |     expect.soft(box.width).toBeGreaterThanOrEqual(44);
+    > 87 |     expect.soft(box.height).toBeGreaterThanOrEqual(44);
+         |                             ^
+      88 |     const before = await stored(page), pending = page.waitForEvent("download");
+      89 |     await download.focus();
+      90 |     await page.keyboard.press("Enter");
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:87:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-uz-d-a93a0-reserves-the-exact-original-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/accessibility.browser-uz-d-a93a0-reserves-the-exact-original-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/accessibility.browser-uz-d-a93a0-reserves-the-exact-original-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/accessibility.browser-uz-d-a93a0-reserves-the-exact-original-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7 failed
+    [chromium] › tests/accessibility.browser.spec.ts:25:3 › en: priority edit has a usable tap area and restores keyboard focus 
+    [chromium] › tests/accessibility.browser.spec.ts:45:3 › en: enlarged habit form preserves usable days, drafts and nested focus 
+    [chromium] › tests/accessibility.browser.spec.ts:76:3 › en: disclosed recovery download is usable and preserves the exact original 
+    [chromium] › tests/accessibility.browser.spec.ts:45:3 › ru: enlarged habit form preserves usable days, drafts and nested focus 
+    [chromium] › tests/accessibility.browser.spec.ts:76:3 › ru: disclosed recovery download is usable and preserves the exact original 
+    [chromium] › tests/accessibility.browser.spec.ts:45:3 › uz: enlarged habit form preserves usable days, drafts and nested focus 
+    [chromium] › tests/accessibility.browser.spec.ts:76:3 › uz: disclosed recovery download is usable and preserves the exact original 
+  2 passed (5.7s)

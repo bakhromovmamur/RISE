@@ -1,0 +1,50 @@
+
+> rise-prototype@1.0.0 test:sync
+> playwright test --config playwright.sync.config.ts account.sync.spec.ts lifecycle.sync.spec.ts
+
+[WebServer] (node:79798) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 33 tests using 1 worker
+
+(node:79801) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/sync/account.sync.spec.ts:10:1 › sign-in never uploads a guest; reviewed import preserves the device profile and excludes private device fields (4.2s)
+  ✓   2 [chromium] › tests/sync/account.sync.spec.ts:23:1 › two independent browser devices converge through real sessions without duplicating habit XP (9.8s)
+  ✓   3 [chromium] › tests/sync/account.sync.spec.ts:33:1 › remembered offline changes survive reload and reconnect; sign-out clears only the account cache (20.1s)
+  ✓   4 [chromium] › tests/sync/account.sync.spec.ts:51:1 › a lost command response retries the same operation once and session-only mode stores no private cache (4.8s)
+  ✓   5 [chromium] › tests/sync/account.sync.spec.ts:57:1 › expired remembered work stays locked to its owner through another account and resumes after reauthentication (12.4s)
+  ✓   6 [chromium] › tests/sync/account.sync.spec.ts:70:1 › pending account sign-out offers recovery and requires explicit discard consent (4.6s)
+  ✓   7 [chromium] › tests/sync/account.sync.spec.ts:79:1 › a failed account cache transaction commits neither state nor outbox and retries without false success (4.5s)
+  ✓   8 [chromium] › tests/sync/lifecycle.sync.spec.ts:11:1 › account export and explicit device cleanup preserve the server, guest and other cached owner (3.5s)
+  ✓   9 [chromium] › tests/sync/lifecycle.sync.spec.ts:22:1 › lost deletion reply clears pending private data across tabs and cannot resurrect a deleted account (16.3s)
+  ✓  10 [chromium] › tests/sync/lifecycle.sync.spec.ts:36:1 › failed device cleanup hides the deleted account and exposes a truthful retry without wiping guest data (3.2s)
+  ✓  11 [chromium] › tests/sync/lifecycle.sync.spec.ts:43:1 › email reauthentication keeps the account and pending store while enabling a recent-auth export (4.7s)
+(node:79969) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [webkit] › tests/sync/account.sync.spec.ts:10:1 › sign-in never uploads a guest; reviewed import preserves the device profile and excludes private device fields (3.2s)
+  ✓  13 [webkit] › tests/sync/account.sync.spec.ts:23:1 › two independent browser devices converge through real sessions without duplicating habit XP (6.9s)
+  ✓  14 [webkit] › tests/sync/account.sync.spec.ts:33:1 › remembered offline changes survive reload and reconnect; sign-out clears only the account cache (20.0s)
+  ✓  15 [webkit] › tests/sync/account.sync.spec.ts:51:1 › a lost command response retries the same operation once and session-only mode stores no private cache (3.6s)
+  ✓  16 [webkit] › tests/sync/account.sync.spec.ts:57:1 › expired remembered work stays locked to its owner through another account and resumes after reauthentication (8.0s)
+  ✓  17 [webkit] › tests/sync/account.sync.spec.ts:70:1 › pending account sign-out offers recovery and requires explicit discard consent (3.5s)
+  ✓  18 [webkit] › tests/sync/account.sync.spec.ts:79:1 › a failed account cache transaction commits neither state nor outbox and retries without false success (3.7s)
+  ✓  19 [webkit] › tests/sync/lifecycle.sync.spec.ts:11:1 › account export and explicit device cleanup preserve the server, guest and other cached owner (3.4s)
+  ✓  20 [webkit] › tests/sync/lifecycle.sync.spec.ts:22:1 › lost deletion reply clears pending private data across tabs and cannot resurrect a deleted account (3.8s)
+  ✓  21 [webkit] › tests/sync/lifecycle.sync.spec.ts:36:1 › failed device cleanup hides the deleted account and exposes a truthful retry without wiping guest data (3.1s)
+  ✓  22 [webkit] › tests/sync/lifecycle.sync.spec.ts:43:1 › email reauthentication keeps the account and pending store while enabling a recent-auth export (4.3s)
+(node:80131) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  23 [firefox] › tests/sync/account.sync.spec.ts:10:1 › sign-in never uploads a guest; reviewed import preserves the device profile and excludes private device fields (3.6s)
+  ✓  24 [firefox] › tests/sync/account.sync.spec.ts:23:1 › two independent browser devices converge through real sessions without duplicating habit XP (7.7s)
+  ✓  25 [firefox] › tests/sync/account.sync.spec.ts:33:1 › remembered offline changes survive reload and reconnect; sign-out clears only the account cache (19.9s)
+  ✓  26 [firefox] › tests/sync/account.sync.spec.ts:51:1 › a lost command response retries the same operation once and session-only mode stores no private cache (3.5s)
+  ✓  27 [firefox] › tests/sync/account.sync.spec.ts:57:1 › expired remembered work stays locked to its owner through another account and resumes after reauthentication (9.2s)
+  ✓  28 [firefox] › tests/sync/account.sync.spec.ts:70:1 › pending account sign-out offers recovery and requires explicit discard consent (4.5s)
+  ✓  29 [firefox] › tests/sync/account.sync.spec.ts:79:1 › a failed account cache transaction commits neither state nor outbox and retries without false success (4.4s)
+  ✓  30 [firefox] › tests/sync/lifecycle.sync.spec.ts:11:1 › account export and explicit device cleanup preserve the server, guest and other cached owner (4.3s)
+  ✓  31 [firefox] › tests/sync/lifecycle.sync.spec.ts:22:1 › lost deletion reply clears pending private data across tabs and cannot resurrect a deleted account (5.2s)
+  ✓  32 [firefox] › tests/sync/lifecycle.sync.spec.ts:36:1 › failed device cleanup hides the deleted account and exposes a truthful retry without wiping guest data (4.0s)
+  ✓  33 [firefox] › tests/sync/lifecycle.sync.spec.ts:43:1 › email reauthentication keeps the account and pending store while enabling a recent-auth export (5.1s)
+
+  33 passed (3.8m)

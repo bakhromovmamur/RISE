@@ -1,0 +1,74 @@
+--- a/ARCHITECTURE.md
++++ b/ARCHITECTURE.md
+@@ -254,6 +254,8 @@
+ 
+ `LocalStore.read` and `LocalStore.transaction` transfer owned records detached from retained storage, other calls and transaction callback objects. IndexedDB detaches its read results and clones the committed callback result; the memory adapter keeps equivalent isolation. `LocalRepository` can transfer the owned state into its snapshot without making a second whole-profile copy. Mutating a returned read, command result or replay must not change durable state, another caller's view or later results. The strict transaction and atomic receipt boundary remain unchanged.
+ 
++`parseStoredState` validates parsed JSON without normalizing it. `DeviceSession.dispatch` therefore reuses the command result's serialized text for no-op comparison instead of serializing the parsed result again. Validation still precedes optimistic publication, and only the transactional acknowledgment may report a save. No-op commands create no receipt or revision; unknown safe extensions and the original recovery source remain intact.
++
+ Keep database version 1/profile schema 4 and repository formats 1/2 readable during application rollback. DATA-02 restore and clear write repository format 2, intentionally rejected by older DATA-01 clients so they cannot leave unknown recovery/archive data behind during a clear. Older localStorage-only assets are also incompatible. Unsupported database, repository or profile versions fail closed and expose raw exports. Expanded DATA-03 command kinds/context also require compatible assets: older command parsers reject unknown receipts without writing. Keep a DATA-03-capable build for application rollback after personal commands have been saved. The exact backup and rollback contracts are in the [portability guide](docs/BACKUP-RESTORE.md).
+ 
+ For guests and remembered-device accounts, an IndexedDB transaction commits the materialized local change and its outbound command together. The UI may update optimistically, but a failed durable commit must show recovery and retain the previous durable state. Multi-tab coordination uses transactional version checks and BroadcastChannel; Web Locks are an optimization with a fallback, not a correctness dependency.
+--- a/SECURITY.md
++++ b/SECURITY.md
+@@ -26,7 +26,7 @@
+ 
+ ## 1. Current posture and security objectives
+ 
+-The guest app stores a validated private profile in IndexedDB and preserves its exact legacy source. Separate local managed sessions, owner/current-session RLS and consented account synchronization now exist; public hosting, production security acceptance, real shared authorization, server backup and scheduled/physical-device Web Push acceptance remain pending. PUSH-01 adds the local subscription/test security boundary described below. Local tests do not certify those release properties.
++The guest app stores a validated private profile in IndexedDB and preserves its exact legacy source. Separate local managed sessions, owner/current-session RLS and consented account synchronization now exist; public hosting, production security acceptance, hosted verification of shared authorization, server backup and hosted/physical-device Web Push acceptance remain pending. PUSH-01 adds the local subscription/test security boundary described below. Local tests do not certify those release properties.
+ 
+ DATA-01 adds runtime validation (50 MiB JSON, 250,000 object records, depth 20 and field limits), worker-based legacy migration, readback verification, duplicate-operation protection and explicit recovery on quota/corruption/conflict. Metadata flags sample/mixed or unverified legacy provenance; no record is cloud-eligible. Compatibility receipts contain revision/hash metadata; validated domain operations remain local. Coordinates and raw calculation keys are never put in a generic outbound whole-profile payload. The original source and raw device archive are sensitive downloads and deliberately preserve unknown safe fields; keep them private.
+ 
+@@ -61,7 +61,7 @@
+ No end-to-end encryption claim is made. Proposed TLS and encryption at rest protect transport/storage but do not prevent authorized backend processing or all operator access.
+ 
+ 
+-QUALITY-03’s allocation changes retain the existing JSON safety, schema and reference checks. Direct object validation rejects enumerable/non-enumerable accessors without invoking them, hidden unsafe keys, invalid prototypes, depth beyond 20 and more than 250,000 object records. Parsing performs the same safety walk once; there is no caller-controlled validation bypass. [Measurement scope and constraints](docs/PERFORMANCE.md).
++QUALITY-03’s allocation changes retain the existing JSON safety, schema and reference checks. Direct object validation rejects enumerable/non-enumerable accessors without invoking them, hidden unsafe keys, invalid prototypes, depth beyond 20 and more than 250,000 object records. The private path immediately after `JSON.parse` reads its own data properties without redundant descriptor inspection: parsing cannot create accessors. It retains the same unsafe-key, finite-number, depth, record and UTF-8 byte limits. Arbitrary object callers always use descriptor checks; there is no caller-controlled validation bypass. [Measurement scope and constraints](docs/PERFORMANCE.md).
+ 
+ ## 2. Data classification and handling
+ 
+--- a/TASKS.md
++++ b/TASKS.md
+@@ -356,6 +356,7 @@
+ - Increment 2 compiles trusted schema field lists and removes short-string/ID allocations while preserving Unicode and rejection semantics. The source gate passes 279 cases; dense-profile and storage/recovery checks pass 3/54. Durable check medians improve to 335.6/393/667 ms in Chromium/WebKit/Firefox. All remain above the target; no p95, physical or complete-product acceptance is claimed. Exact samples and build scopes are appended to the same evidence report.
+ - Increment 3 removes duplicate repository snapshot copying after the adapter transfers an isolated result. Mutation/replay tests preserve returned-view and durable-state independence. Final checks pass 280 source cases, 6 large-profile measurements, 57 storage/recovery cases, 3 production feedback probes and 54 production-entry cases. Durable check medians are 300.6/346/608 ms; production DOM feedback samples are 146.6/136/239 ms. Both targets remain unmet. [Exact source/build scope, phase timings and the corrected UI probe](docs/evidence/performance-2026-10-24/increment-03/README.md). No persisted format or design change.
+ - Increment 4 defers group management/editing code while keeping Today rows eager. The initial production entry drops by 96,228 bytes (7.5%); the public worker still precaches all screens. Localized download retry, close-during-load focus and cold offline opening are verified. Final checks pass 280 source cases, 66 production cases, 45 PWA cases, 48 local journeys, 108 account-backed group cases and 48 visual cases / 720 unchanged references. [Exact evidence and tradeoffs](docs/evidence/performance-2026-10-24/increment-04/README.md). CSS is byte-identical; persisted formats, assets and existing forms remain. Entry size is not Web Vitals acceptance, and dense-profile latency/capacity/resilience work remains open.
++- Increment 5 removes redundant descriptor inspection only for freshly parsed JSON and reuses the validated command result's serialized text. Arbitrary object inputs retain descriptor checks; byte/depth/record/schema limits, unknown safe fields, no-op receipts and original recovery data remain verified. Final checks pass 282 source cases, 6 dense-profile and 3 production-feedback probes, 105 storage/backup/recovery journeys, 21 database cases, 15 export/deletion browser cases, 66 production and 45 PWA cases. Completed DOM samples improve to 128.3/119/192 ms in Chromium/WebKit/Firefox; the 100 ms target remains unmet. Durable medians remain above 250 ms, with some Undo/draft samples worse. [All before/after samples, exact scopes and limits](docs/evidence/performance-2026-10-24/increment-05/README.md). QUALITY-03 stays IN PROGRESS; capacity and integrated resilience work remain open.
+ 
+ #### SAFE-01 — Integrated security verification
+ 
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -494,3 +494,9 @@
+ Group management/editing screens load on demand while Today rows remain eager. The initial production entry is **96,228 bytes smaller (7.5%)**. The complete worker shell still precaches all public screens; the split adds a small overall code overhead and does not establish mobile Web Vitals. Existing screen bodies, CSS bytes, saved formats, artwork and all frozen references remain unchanged. Localized loading/error/retry and close-during-load focus use the existing sheet.
+ 
+ Final checks pass **280 unit/tooling**, **66 production**, **45 real-worker PWA**, **48 local family/squad/You journeys**, **108 account-backed group cases** and **48 visual cases / 720 comparisons**. [The evidence](docs/evidence/performance-2026-10-24/increment-04/README.md) records exact builds, commands, extraction checks, download/offline recovery, initial stylesheet/probe corrections and the protected-file audit. Types/lint also pass with the final tests. No visual reference was regenerated and the saved 4173 profile was not accessed. QUALITY-03 remains IN PROGRESS for outstanding latency, capacity/resilience and hosted/physical acceptance; cloud provisioning stays pending.
++
++## 24 October 2026 — QUALITY-03 performance increment 5
++
++Freshly parsed JSON avoids redundant descriptor inspection while arbitrary object inputs keep full accessor checks. Command preparation reuses its validated serialized result for no-op comparison. Exact UTF-8/depth/record limits, unsafe-key rejection, unknown safe extensions, zero additional no-op receipts/revisions and original recovery data are verified. No UI, CSS, asset, dependency, migration or saved-format changes.
++
++Checks pass **282 unit/tooling**, **6 dense-profile**, **3 production feedback**, **105 storage/backup/recovery**, **21 real database**, **15 export/deletion browser**, **66 production** and **45 real-worker PWA cases**. Completed DOM samples improve to **128.3/119/192 ms** in Chromium/WebKit/Firefox, but all remain above 100 ms. Durable medians remain above 250 ms; some Undo/draft measurements worsen and are retained. [Full evidence](docs/evidence/performance-2026-10-24/increment-05/README.md) records before/after samples, exact commands/builds, the report-copy path correction and preservation. Prior visual results retain increment 4's build scope. QUALITY-03 remains IN PROGRESS; cloud provisioning remains pending and the 4173 profile was not accessed.
+--- a/docs/PERFORMANCE.md
++++ b/docs/PERFORMANCE.md
+@@ -28,6 +28,8 @@
+ 
+ Unknown JSON still receives the same size, depth, record-count, prototype, accessor, field, date and reference checks. Parsing must not silently truncate history or drop unknown safe extensions. A descriptor walk may reduce allocations but must never invoke a getter. Account reconstruction must retain per-parent ordering, explicit prayer records, snapshots and retired-milestone behavior.
+ 
++Only fresh values produced inside `parseJson` may use its private data-property traversal; arbitrary object inputs retain descriptor checks. This distinction does not make imported content trusted or skip its bounds/schema/reference validation. Stored-profile parsing does not normalize values, so a validated command result can reuse its original JSON text for no-op comparison. Preserve exact output, original recovery data and zero additional receipts/revisions for no-op actions when changing this path.
++
+ Local commands keep stable identity, revision conflict handling, atomic state/receipt commits and durable save/error semantics. A faster optimistic UI must not claim that an unsuccessful write was saved. Do not bypass current session/owner checks, cancellation locks, replay receipts, quota recovery or deleted-owner barriers to improve a benchmark.
+ 
+ ## Remaining release evidence
+--- a/docs/evidence/performance-2026-10-24/README.md
++++ b/docs/evidence/performance-2026-10-24/README.md
+@@ -68,3 +68,7 @@
+ ## Increment 4 — deferred group screens
+ 
+ [The verified increment](increment-04/README.md) moves group management/editing code out of the initial entry while retaining immediate Today rows and the existing component bodies. The entry falls by 96,228 bytes (7.5%); the complete offline shell still caches every screen, and the two split code files add 2,559 bytes overall. Localized loading/retry, keyboard focus, close-during-load recovery and cold offline opening are verified. Checks pass 280 source cases, 66 production, 45 PWA, 48 local journeys, 108 account-backed group cases and 48 visual cases / 720 unchanged references. CSS remains byte-identical. This is a bundle/loading change, not physical Web Vitals or dense-profile latency acceptance; QUALITY-03 remains IN PROGRESS.
++
++## Increment 5 — validated command preparation
++
++[The verified increment](increment-05/README.md) avoids descriptor inspection only on fresh JSON parser output and reuses the command result's validated serialized text. Arbitrary objects retain accessor checks; all bounds, schema/reference validation and durable/recovery semantics remain. The source gate passes 282 cases. Before/after measurements each pass 6 dense-profile and 3 production UI cases; final regressions pass 105 storage/backup/recovery, 21 database, 15 export/deletion browser, 66 production and 45 PWA cases. DOM completion samples improve from 145.6/153/222 to 128.3/119/192 ms. Every visible sample and durable median still exceeds its target, and some durable timings worsen; all data is retained. No UI, CSS, asset, dependency or persisted-format change. QUALITY-03 remains IN PROGRESS for latency, capacity/resilience and hosted/physical acceptance.

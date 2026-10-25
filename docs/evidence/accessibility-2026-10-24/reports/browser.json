@@ -1,0 +1,3731 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "tests/(accessibility|navigation|russian|uzbek).browser.spec.ts$"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.browser.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.browser.spec.ts"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.browser.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.browser.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.browser.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests",
+        "testIgnore": [],
+        "testMatch": "**/*.browser.spec.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4180 dist-review",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "accessibility.browser.spec.ts",
+      "file": "accessibility.browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "en: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1043,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:22.203Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-60281e2ea3675b711251",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "en: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1093,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:22.209Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-40f7152ef88301554247",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "en: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7427,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.759607195854187\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.759607195854187\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.759607195854187\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.759607195854187\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.759607195854187\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.759607195854187\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:23.543Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-3afd1ba7b6212e73211a",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "en: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 852,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:23.594Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-e39b2a1555881c7381df",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "ru: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 705,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:24.457Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-23870395a4ef76b29e37",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "ru: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 559,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:25.171Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-fb8e46fa87ebbc262123",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "ru: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 6831,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7587531805038452\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7587531805038452\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7587531805038452\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7587531805038452\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7587531805038452\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7587531805038452\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:25.735Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-e76233eb158f0f8efbe5",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "ru: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1140,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:32.584Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-f909973b4056f2af3cc4",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "uz: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1210,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:33.782Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-0100b1f930d2c676b563",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "uz: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1184,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:33.915Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-46d1c2d25e4fc4dfdd9c",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "uz: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 8268,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7517079710960388\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7517079710960388\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7517079710960388\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7517079710960388\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7517079710960388\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7517079710960388\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:35.129Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-dd0a9ef0b45f184db8ea",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "uz: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1463,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:35.218Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-4ca7945790ddf5404de0",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "system and saved reduced-motion choices preserve working sheet navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1916,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:36.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-6e9ade91e19de37b26d9",
+          "file": "accessibility.browser.spec.ts",
+          "line": 139,
+          "column": 1
+        },
+        {
+          "title": "en: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3032,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:57.083Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-7c11b069468009cd3857",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "en: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1458,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:01.281Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-c8c4afe5a575ad8687a3",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "en: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7548,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    14 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:02.768Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-webkit/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-webkit/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-2d43c1d61942f99369d1",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "en: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1787,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:04.888Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-c6558274ff120a83c223",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "ru: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1155,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:06.910Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-f099ee124121b453ebcb",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "ru: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1285,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:08.080Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-e3366ed0ae7b02fb6ba1",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "ru: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 8214,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:09.381Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-webkit/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-webkit/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-a56a3c44739eedd73f9a",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "ru: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2434,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:11.486Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-afaa2e8763679b5b195b",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "uz: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:14.301Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-2a600194bf612cf05ab5",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "uz: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1848,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:16.136Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-1d53192c0a651002e8b6",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "uz: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10479,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    },
+                    {
+                      "message": "Error: browserContext._wrapApiCall: file data stream has unexpected number of bytes"
+                    },
+                    {
+                      "message": "Error: End of central directory record signature not found. Either not a zip file, or file is truncated."
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:18.005Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-webkit/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-5112f7c78c8d0f3d6309",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "uz: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1878,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:19.606Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-ee179b61609655e071cf",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "system and saved reduced-motion choices preserve working sheet navigation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 7172,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.you-destinations button').nth(3)\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('.you-destinations button').nth(3) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.you-destinations button').nth(3)\u001b[22m\n\u001b[2m    13 × locator resolved to <button class=\"group-row\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.you-destinations button').nth(3)\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('.you-destinations button').nth(3) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.you-destinations button').nth(3)\u001b[22m\n\u001b[2m    13 × locator resolved to <button class=\"group-row\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:158:65",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 65,
+                      "line": 158
+                    },
+                    "snippet": "  156 |   await page.keyboard.press(\"Escape\");\n  157 |   await settings(page);\n> 158 |   expect(await dialog.evaluate(el => getComputedStyle(el).animationName)).toBe(\"none\");\n      |                                                                 ^\n  159 |   await page.keyboard.press(\"Tab\");\n  160 |   await expect(dialog.getByRole(\"button\", { name: \"Close\", exact: true })).toBeFocused();\n  161 |   await page.keyboard.press(\"Escape\");"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 65,
+                        "line": 158
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.you-destinations button').nth(3)\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('.you-destinations button').nth(3) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.you-destinations button').nth(3)\u001b[22m\n\u001b[2m    13 × locator resolved to <button class=\"group-row\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n\n\n  156 |   await page.keyboard.press(\"Escape\");\n  157 |   await settings(page);\n> 158 |   expect(await dialog.evaluate(el => getComputedStyle(el).animationName)).toBe(\"none\");\n      |                                                                 ^\n  159 |   await page.keyboard.press(\"Tab\");\n  160 |   await expect(dialog.getByRole(\"button\", { name: \"Close\", exact: true })).toBeFocused();\n  161 |   await page.keyboard.press(\"Escape\");\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:158:65"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:21.968Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-syst-befd1-ve-working-sheet-navigation-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-syst-befd1-ve-working-sheet-navigation-webkit/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-syst-befd1-ve-working-sheet-navigation-webkit/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 65,
+                    "line": 158
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-8491b7305b48f829070e",
+          "file": "accessibility.browser.spec.ts",
+          "line": 139,
+          "column": 1
+        },
+        {
+          "title": "en: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7509,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:09.626Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-8525e033742b8e1753fa",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "en: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6472,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:20.450Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-ebbf8d5cd4f58ad34b86",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "en: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 21528,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7595628415300546\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7595628415300546\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7595628415300546\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7595628415300546\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Habit name', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7595628415300546\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Habit name', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Habit name', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" placeholder=\"e.g. Read a little\" value=\"Synthetic keyboard draft\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7595628415300546\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:24.299Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-en-e-f1345-ays-drafts-and-nested-focus-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-df3e2bf46b98adc852fc",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "en: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4091,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:26.951Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-de48a9228469103ba4f3",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "ru: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4184,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:31.072Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-119f8c5cfe9e3f76cf6e",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "ru: priority edit has a usable tap area and restores keyboard focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 1,
+                  "status": "timedOut",
+                  "duration": 35666,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 16,
+                        "line": 62
+                      },
+                      "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Изменить приоритеты', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"text-button\" aria-label=\"Изменить приоритеты\">Изменить</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing click action\u001b[22m\n\u001b[2m      - <div class=\"section-title\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - performing click action\u001b[22m\n\u001b[2m      - <div class=\"section-title\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    42 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - performing click action\u001b[22m\n\u001b[2m       - <div class=\"section-title\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m    - element is visible, enabled and stable\u001b[22m\n\u001b[2m    - scrolling into view if needed\u001b[22m\n\n\n  60 |     await expect(edit).toBeFocused();\n  61 |     expect(await edit.evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe(\"none\");\n> 62 |     await edit.click({ position: { x: 1, y: box.height / 2 } });\n     |                ^\n  63 |     await expect(page.getByRole(\"dialog\")).toBeVisible();\n  64 |   });\n  65 |\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:62:16"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:35.282Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-p-6eaae-and-restores-keyboard-focus-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-p-6eaae-and-restores-keyboard-focus-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-p-6eaae-and-restores-keyboard-focus-firefox/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-d435eebef0ad6896e4e3",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "ru: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 27419,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7581967213114754\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7581967213114754\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7581967213114754\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7581967213114754\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Название привычки', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7581967213114754\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Название привычки', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Название привычки', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Например, немного почитать\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7581967213114754\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:51.518Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-ru-e-8b074-ays-drafts-and-nested-focus-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-eda364fbff510a0a3fda",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "ru: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6216,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:19.152Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-5653361601a3c910ef44",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "uz: collapsed settings sections stay out of the keyboard order",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6654,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:28.268Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-505e2ef06b40c2f264e2",
+          "file": "accessibility.browser.spec.ts",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "uz: priority edit has a usable tap area and restores keyboard focus",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6086,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:28.065Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-d1ea37fbbca9278e9329",
+          "file": "accessibility.browser.spec.ts",
+          "line": 46,
+          "column": 3
+        },
+        {
+          "title": "uz: enlarged habit form preserves usable days, drafts and nested focus",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 13757,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7595628415300546\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7595628415300546\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7595628415300546\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7595628415300546\"\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                      "column": 24,
+                      "line": 110
+                    },
+                    "snippet": "  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                        "column": 24,
+                        "line": 110
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeInViewport\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog').getByLabel('Odat nomi', { exact: true })\nExpected: in viewport\nReceived: viewport ratio 0.7595628415300546\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeInViewport\" getByRole('dialog').getByLabel('Odat nomi', { exact: true }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog').getByLabel('Odat nomi', { exact: true })\u001b[22m\n\u001b[2m    13 × locator resolved to <input maxlength=\"70\" autocomplete=\"off\" value=\"Synthetic keyboard draft\" placeholder=\"Masalan, ozgina o‘qish\"/>\u001b[22m\n\u001b[2m       - unexpected value \"viewport ratio 0.7595628415300546\"\u001b[22m\n\n\n  108 |     const name = dialog.getByLabel(t(\"Habit name\"), { exact: true });\n  109 |     await name.fill(\"Synthetic keyboard draft\");\n> 110 |     await expect(name).toBeInViewport({ ratio: 1 });\n      |                        ^\n  111 |     await expect(dialog.getByRole(\"button\", { name: t(\"Close\"), exact: true })).toBeInViewport({ ratio: 1 });\n  112 |     expect((await stored(page)).draft?.name).toBe(\"Synthetic keyboard draft\");\n  113 |     await page.setViewportSize({ width: 320, height: 852 });\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts:110:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:34.182Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-firefox/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/browser/accessibility.browser-uz-e-aa1d1-ays-drafts-and-nested-focus-firefox/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/accessibility.browser.spec.ts",
+                    "column": 24,
+                    "line": 110
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-c349287cdce3cff917a6",
+          "file": "accessibility.browser.spec.ts",
+          "line": 66,
+          "column": 3
+        },
+        {
+          "title": "uz: disclosed recovery download is usable and preserves the exact original",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3950,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:38.008Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-5860646730e914dd7862",
+          "file": "accessibility.browser.spec.ts",
+          "line": 117,
+          "column": 3
+        },
+        {
+          "title": "system and saved reduced-motion choices preserve working sheet navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3281,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:42.000Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "6bb9e6345c1474443819-4629662f7f0d3f56c0d2",
+          "file": "accessibility.browser.spec.ts",
+          "line": 139,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "navigation.browser.spec.ts",
+      "file": "navigation.browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "four tabs use one heading hierarchy, keyboard navigation and independent reading positions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1157,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:38.696Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-fc81ff57be1edfe36a31",
+          "file": "navigation.browser.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "cross-tab shortcuts reset scroll, announce the destination and retain the inspected week",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1045,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:39.865Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-7d9d8100662cc6482132",
+          "file": "navigation.browser.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Today has one timetable entry and reward details hand off cleanly to Journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2349,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:40.917Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-9191cb18a75d075b8bdb",
+          "file": "navigation.browser.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "enlarged English and Uzbek navigation has separate readable targets above the content boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1601,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:43.278Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-7a5c3a76f21d88c54db9",
+          "file": "navigation.browser.spec.ts",
+          "line": 113,
+          "column": 1
+        },
+        {
+          "title": "four tabs use one heading hierarchy, keyboard navigation and independent reading positions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3044,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:29.429Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-e62acfccc0f81b5a0717",
+          "file": "navigation.browser.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "cross-tab shortcuts reset scroll, announce the destination and retain the inspected week",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2639,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:30.670Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-d449604771e7845f0822",
+          "file": "navigation.browser.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Today has one timetable entry and reward details hand off cleanly to Journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7423,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:32.873Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-7f9ed222670c9cda5f6d",
+          "file": "navigation.browser.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "enlarged English and Uzbek navigation has separate readable targets above the content boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7263,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:33.881Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-c710f7b422bda37b0808",
+          "file": "navigation.browser.spec.ts",
+          "line": 113,
+          "column": 1
+        },
+        {
+          "title": "four tabs use one heading hierarchy, keyboard navigation and independent reading positions",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4231,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:45.316Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-83f4b2ce6b32741474e8",
+          "file": "navigation.browser.spec.ts",
+          "line": 16,
+          "column": 1
+        },
+        {
+          "title": "cross-tab shortcuts reset scroll, announce the destination and retain the inspected week",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7725,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:49.863Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-6b20f199274781a267c9",
+          "file": "navigation.browser.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "Today has one timetable entry and reward details hand off cleanly to Journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10438,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:49.568Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-2df5ca841a07fe433dcd",
+          "file": "navigation.browser.spec.ts",
+          "line": 74,
+          "column": 1
+        },
+        {
+          "title": "enlarged English and Uzbek navigation has separate readable targets above the content boundary",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 9371,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:02:59.374Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2fab9267c850c096c32c-f80632e931a3c7ff4339",
+          "file": "navigation.browser.spec.ts",
+          "line": 113,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "russian.browser.spec.ts",
+      "file": "russian.browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "animated long prayer sheets keep their header and exit controls inside the phone",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3633,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:44.030Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-a193986d3d25f838a9d7",
+          "file": "russian.browser.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "language switching and reload preserve all existing content and progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1049,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:44.902Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-fa26bbd022e5ac56c015",
+          "file": "russian.browser.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "all four tabs and their details contain Russian UI and preserve week selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 935,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:45.960Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-7c7382b6fc42d55bde76",
+          "file": "russian.browser.spec.ts",
+          "line": 58,
+          "column": 1
+        },
+        {
+          "title": "Russian prayer setup, reminders, save-and-stop and Fajr stay functional",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1805,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:46.907Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-9ce820dcf9c23f33e726",
+          "file": "russian.browser.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1176,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:47.839Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-a875d9929b620465ce42",
+          "file": "russian.browser.spec.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "Russian family tasks, shopping lists and squad previews remain local",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1719,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:48.722Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-ed071cdbfff0a5c75f52",
+          "file": "russian.browser.spec.ts",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "Russian period pause, readiness and empty setup have translated working controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 994,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:49.025Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-a80e97bc00978487b578",
+          "file": "russian.browser.spec.ts",
+          "line": 99,
+          "column": 1
+        },
+        {
+          "title": "Russian goals, rewards, reflection and settings expose translated forms and validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2843,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:50.029Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-313db825c9478cc4c513",
+          "file": "russian.browser.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "Russian onboarding, responsive navigation, large text and dark appearance remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:50.457Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-6e4ca3fc4ca7e719c521",
+          "file": "russian.browser.spec.ts",
+          "line": 117,
+          "column": 1
+        },
+        {
+          "title": "animated long prayer sheets keep their header and exit controls inside the phone",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7574,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:40.902Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-a3cd630d41ac96c2ab5d",
+          "file": "russian.browser.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "language switching and reload preserve all existing content and progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3476,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:41.277Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-d9ecb5c3a66181978737",
+          "file": "russian.browser.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "all four tabs and their details contain Russian UI and preserve week selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3942,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:44.815Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-2cb501d4962f4021e317",
+          "file": "russian.browser.spec.ts",
+          "line": 58,
+          "column": 1
+        },
+        {
+          "title": "Russian prayer setup, reminders, save-and-stop and Fajr stay functional",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5652,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:48.651Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-f9c6c7ac16ae81390b59",
+          "file": "russian.browser.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3329,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:48.915Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-2d0d9a337b463d98d9c1",
+          "file": "russian.browser.spec.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "Russian family tasks, shopping lists and squad previews remain local",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5568,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:52.276Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-2b42f4fd479b04b0f93c",
+          "file": "russian.browser.spec.ts",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "Russian period pause, readiness and empty setup have translated working controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4740,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:54.373Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-ac7dc78d6bac1fa943db",
+          "file": "russian.browser.spec.ts",
+          "line": 99,
+          "column": 1
+        },
+        {
+          "title": "Russian goals, rewards, reflection and settings expose translated forms and validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5301,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:57.877Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-2db81ebe6403c923486d",
+          "file": "russian.browser.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "Russian onboarding, responsive navigation, large text and dark appearance remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6374,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:00:59.136Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-3e0fc51322453bcc43c9",
+          "file": "russian.browser.spec.ts",
+          "line": 117,
+          "column": 1
+        },
+        {
+          "title": "animated long prayer sheets keep their header and exit controls inside the phone",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10022,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:00.075Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-60a2d444402875731edb",
+          "file": "russian.browser.spec.ts",
+          "line": 10,
+          "column": 1
+        },
+        {
+          "title": "language switching and reload preserve all existing content and progress",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4520,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:08.838Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-d78a47e2f64fb5db0e7d",
+          "file": "russian.browser.spec.ts",
+          "line": 47,
+          "column": 1
+        },
+        {
+          "title": "all four tabs and their details contain Russian UI and preserve week selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4052,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:10.121Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-e1b704a5cd04bef1d711",
+          "file": "russian.browser.spec.ts",
+          "line": 58,
+          "column": 1
+        },
+        {
+          "title": "Russian prayer setup, reminders, save-and-stop and Fajr stay functional",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5278,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:13.385Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-359f2572b392042e27d6",
+          "file": "russian.browser.spec.ts",
+          "line": 65,
+          "column": 1
+        },
+        {
+          "title": "Russian habit forms, tiny upgrade and corrections keep XP and rewards consistent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3100,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:14.196Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-4c768b342fd2319bae37",
+          "file": "russian.browser.spec.ts",
+          "line": 79,
+          "column": 1
+        },
+        {
+          "title": "Russian family tasks, shopping lists and squad previews remain local",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4775,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:17.317Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-063371a45723ccfcbfe4",
+          "file": "russian.browser.spec.ts",
+          "line": 87,
+          "column": 1
+        },
+        {
+          "title": "Russian period pause, readiness and empty setup have translated working controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2408,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:18.688Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-23756d6cb07618aa85fc",
+          "file": "russian.browser.spec.ts",
+          "line": 99,
+          "column": 1
+        },
+        {
+          "title": "Russian goals, rewards, reflection and settings expose translated forms and validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:21.119Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-ac5b088499113e3fb03c",
+          "file": "russian.browser.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "Russian onboarding, responsive navigation, large text and dark appearance remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6559,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:22.114Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "30e14cebb57767f8a446-cd858127e90f5c8c7b88",
+          "file": "russian.browser.spec.ts",
+          "line": 117,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "uzbek.browser.spec.ts",
+      "file": "uzbek.browser.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Uzbek language changes and reload retain authored content and the complete saved journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:52.915Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-b195c25a54824bb464fc",
+          "file": "uzbek.browser.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "Uzbek habit actions preserve tiny/full/undo XP and expose translated validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1506,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:53.925Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-4d4169da7274f5e155fa",
+          "file": "uzbek.browser.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "Uzbek goal and reward forms retain authored names and never award habit XP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1615,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:54.700Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-009d8f5ad72ff45f3b9d",
+          "file": "uzbek.browser.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8622,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T09:59:55.446Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-efdb3036742cd6bbe6f3",
+          "file": "uzbek.browser.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "Uzbek language changes and reload retain authored content and the complete saved journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2601,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:03.247Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-955f3974d1fbfa364f1f",
+          "file": "uzbek.browser.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "Uzbek habit actions preserve tiny/full/undo XP and expose translated validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2365,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:05.574Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-e5b5a02ec4757114eedd",
+          "file": "uzbek.browser.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "Uzbek goal and reward forms retain authored names and never award habit XP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2729,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:05.872Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-51627de3fdbabc8d4dcf",
+          "file": "uzbek.browser.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15170,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:01:07.973Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-e7f9b6370e19872a8e2f",
+          "file": "uzbek.browser.spec.ts",
+          "line": 57,
+          "column": 1
+        },
+        {
+          "title": "Uzbek language changes and reload retain authored content and the complete saved journey",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2392,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:26.974Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-561872f9e60f5c3cef2f",
+          "file": "uzbek.browser.spec.ts",
+          "line": 17,
+          "column": 1
+        },
+        {
+          "title": "Uzbek habit actions preserve tiny/full/undo XP and expose translated validation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1871,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:28.694Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-c3f2d6f9eabeeff80c0c",
+          "file": "uzbek.browser.spec.ts",
+          "line": 30,
+          "column": 1
+        },
+        {
+          "title": "Uzbek goal and reward forms retain authored names and never award habit XP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2322,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:29.382Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-0e22139409d92fb8ebdb",
+          "file": "uzbek.browser.spec.ts",
+          "line": 43,
+          "column": 1
+        },
+        {
+          "title": "Uzbek four-tab navigation, progress panels and sheet headers reflow at phone widths and large text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8961,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:03:30.575Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "31f1e1d85970b44ef4ce-52acedb828349a19205f",
+          "file": "uzbek.browser.spec.ts",
+          "line": 57,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T09:59:21.531Z",
+    "duration": 258381.16199999998,
+    "expected": 79,
+    "skipped": 0,
+    "unexpected": 11,
+    "flaky": 0
+  }
+}

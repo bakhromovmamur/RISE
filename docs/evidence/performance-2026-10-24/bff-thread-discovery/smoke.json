@@ -1,0 +1,52 @@
+{
+  "run": "a86eea92-f73e-4a75-b3e1-c1fbb6d833f4",
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 658.8857080000002,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 731.5678330000001,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 1850.861208,
+  "databaseGrowthBytes": 18718720,
+  "execution": {
+    "threads": 5,
+    "poolPerThread": 1,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "scope": "Test-only in-process routing to real BFF execution threads; no production topology change"
+  },
+  "reads": {
+    "samplesMs": [
+      421.00195799999983
+    ],
+    "totalBytes": 15732318
+  },
+  "historyAndXpRestored": true,
+  "firstAttempts": {
+    "count": 2,
+    "accepted": 2,
+    "failed": 0,
+    "p95Ms": 731.5678330000001,
+    "maxMs": 731.5678330000001
+  },
+  "localPersonalGate": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

@@ -1,0 +1,17 @@
+✔ shared selection stores only an owner-scoped opaque occurrence and real pull/export preserve its separate civil date (701.38275ms)
+✔ new selections require current family membership, active group/task and the exact scheduled date (1095.590791ms)
+✔ loss of membership retains selections for reorder/removal but blocks pending new references and recovery override (3093.419958ms)
+✔ pending selection checks membership after removal without renumbering or accepting a partial batch (2082.285583ms)
+✔ selection racing membership removal has one authorized order and preserves private selections after the removal (2155.862ms)
+✔ private priority constraints, forced RLS and guard grants keep shared members out of each other’s selected priorities (943.96ms)
+✔ receipt failure rolls back priority, revision and change rows; conflicts require an explicit current-head review (1062.301084ms)
+✔ legacy staged import rows retain their original hash and append without replacing selected shared references (619.794417ms)
+✔ account deletion purges the owner’s opaque selections while preserving other members’ shared tasks and private selections (499.022584ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12618.236167

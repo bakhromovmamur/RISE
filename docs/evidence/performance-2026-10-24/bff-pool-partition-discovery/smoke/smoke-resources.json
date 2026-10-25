@@ -1,0 +1,63 @@
+[
+  {
+    "at": 1792851813949,
+    "phase": "setup",
+    "loadAverage": [
+      3.56689453125,
+      5.9912109375,
+      6.74560546875
+    ],
+    "freeBytes": 178388992,
+    "activity": [
+      {
+        "backend_type": "client backend",
+        "state": "active",
+        "wait_event_type": "Client",
+        "count": 1
+      },
+      {
+        "backend_type": "client backend",
+        "state": "idle",
+        "wait_event_type": "Client",
+        "count": 4
+      },
+      {
+        "backend_type": "pg_cron launcher",
+        "state": null,
+        "wait_event_type": "Extension",
+        "count": 1
+      },
+      {
+        "backend_type": "pg_net 0.20.4 worker",
+        "state": "idle",
+        "wait_event_type": "Extension",
+        "count": 1
+      }
+    ],
+    "vacuum": [
+      {
+        "count": 0
+      }
+    ],
+    "tables": [
+      {
+        "schemaname": "auth",
+        "estimated_live": "46267",
+        "estimated_dead": "2871",
+        "autovacuums": "33"
+      },
+      {
+        "schemaname": "rise",
+        "estimated_live": "336179",
+        "estimated_dead": "33674",
+        "autovacuums": "273"
+      },
+      {
+        "schemaname": "rise_private",
+        "estimated_live": "66262",
+        "estimated_dead": "1758",
+        "autovacuums": "85"
+      }
+    ]
+  }
+]

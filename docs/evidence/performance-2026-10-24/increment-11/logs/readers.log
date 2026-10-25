@@ -1,0 +1,29 @@
+✔ invitation pages reject secret fields, oversized or duplicate rows and unversioned cursors (2.408917ms)
+✔ owner navigation keeps one bounded page and returns through stored cursors (0.3555ms)
+✔ a changed revision, owner role or selected account discards a held invitation page (0.161334ms)
+✔ failed or unauthorized continuation hides stale actions and explicit reload starts from the first page (0.148459ms)
+✔ initial group reads enforce the same bounded owner-only invitation projection (8.86575ms)
+✔ fresh owner metadata recovers an unavailable invitation page without retrying on busy state (0.162583ms)
+✔ fresh invitation metadata does not clear an authorization error or retain actions after ownership loss (0.0965ms)
+✔ shared reader combines bounded pages only at one authorized revision and offers pins only for eligible loaded tasks (1.348833ms)
+✔ late content and errors cannot repopulate a removed group, replaced read or switched account (0.255584ms)
+✔ failed or inconsistent continuation clears content, never shows a partial mixed collection and refreshes membership on conflict (0.256083ms)
+✔ the shared HTTP client binds owner, group, parent, date and revision before accepting server data (20.492625ms)
+✔ a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop (0.280166ms)
+✔ fresh metadata cannot clear authority failures or revive a transient read after account switching (0.151958ms)
+✔ metadata received before a read failure cannot authorize retries from later busy updates (0.13975ms)
+✔ squad pages and author lookups remain separate and reaction revisions invalidate every old view (1.907125ms)
+✔ late squad replies and failures cannot revive removed membership, replaced reads or another account (0.259416ms)
+✔ inconsistent or failed squad continuation clears the entire view and requests current authority after conflict (0.237709ms)
+✔ the squad HTTP boundary rejects mismatched owner/week/author and mismatched preview choices or source metadata (9.513209ms)
+✔ a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop (0.234ms)
+✔ fresh metadata cannot clear authority failures or revive a transient read after account switching (0.131875ms)
+✔ metadata received before a read failure cannot authorize retries from later busy updates (0.091583ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 171.129084

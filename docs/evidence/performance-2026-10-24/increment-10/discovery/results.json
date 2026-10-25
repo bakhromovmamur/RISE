@@ -1,0 +1,486 @@
+{
+  "scope": "CPU-only writer probe; synthetic 73000-row profile; injected SQL collector compares every statement and parameter; no database/RLS/transaction acceptance",
+  "samples": [
+    {
+      "round": 0,
+      "name": "no-op",
+      "variant": "original",
+      "ms": 113.32670899999994,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 0,
+      "name": "no-op",
+      "variant": "candidate",
+      "ms": 22.980082999999922,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 0,
+      "name": "full",
+      "variant": "original",
+      "ms": 118.30137500000023,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 0,
+      "name": "full",
+      "variant": "candidate",
+      "ms": 22.421124999999847,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 0,
+      "name": "undo",
+      "variant": "original",
+      "ms": 111.43195799999967,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 0,
+      "name": "undo",
+      "variant": "candidate",
+      "ms": 22.67712500000016,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 0,
+      "name": "correction",
+      "variant": "original",
+      "ms": 107.45116600000028,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 0,
+      "name": "correction",
+      "variant": "candidate",
+      "ms": 23.795166999999765,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 0,
+      "name": "reordered",
+      "variant": "original",
+      "ms": 119.49754200000007,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 0,
+      "name": "reordered",
+      "variant": "candidate",
+      "ms": 120.38641700000016,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 0,
+      "name": "removed",
+      "variant": "original",
+      "ms": 93.93449999999984,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 0,
+      "name": "removed",
+      "variant": "candidate",
+      "ms": 96.318667,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 1,
+      "name": "no-op",
+      "variant": "candidate",
+      "ms": 24.22808299999997,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 1,
+      "name": "no-op",
+      "variant": "original",
+      "ms": 109.97220900000002,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 1,
+      "name": "full",
+      "variant": "candidate",
+      "ms": 22.906833000000006,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 1,
+      "name": "full",
+      "variant": "original",
+      "ms": 111.29783299999963,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 1,
+      "name": "undo",
+      "variant": "candidate",
+      "ms": 23.74433399999998,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 1,
+      "name": "undo",
+      "variant": "original",
+      "ms": 114.91312500000004,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 1,
+      "name": "correction",
+      "variant": "candidate",
+      "ms": 22.896124999999756,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 1,
+      "name": "correction",
+      "variant": "original",
+      "ms": 112.03808300000037,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 1,
+      "name": "reordered",
+      "variant": "candidate",
+      "ms": 119.08920799999987,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 1,
+      "name": "reordered",
+      "variant": "original",
+      "ms": 109.53758299999981,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 1,
+      "name": "removed",
+      "variant": "candidate",
+      "ms": 88.66666600000008,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 1,
+      "name": "removed",
+      "variant": "original",
+      "ms": 95.98920899999985,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 2,
+      "name": "no-op",
+      "variant": "original",
+      "ms": 139.30004199999985,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 2,
+      "name": "no-op",
+      "variant": "candidate",
+      "ms": 25.619290999999976,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 2,
+      "name": "full",
+      "variant": "original",
+      "ms": 109.19925000000012,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 2,
+      "name": "full",
+      "variant": "candidate",
+      "ms": 23.047958999999537,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 2,
+      "name": "undo",
+      "variant": "original",
+      "ms": 109.1957080000002,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 2,
+      "name": "undo",
+      "variant": "candidate",
+      "ms": 23.06604200000038,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 2,
+      "name": "correction",
+      "variant": "original",
+      "ms": 110.1522500000001,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 2,
+      "name": "correction",
+      "variant": "candidate",
+      "ms": 24.053915999999845,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 2,
+      "name": "reordered",
+      "variant": "original",
+      "ms": 117.83337499999925,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 2,
+      "name": "reordered",
+      "variant": "candidate",
+      "ms": 116.32574999999997,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 2,
+      "name": "removed",
+      "variant": "original",
+      "ms": 91.66854199999943,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 2,
+      "name": "removed",
+      "variant": "candidate",
+      "ms": 89.13429200000064,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 3,
+      "name": "no-op",
+      "variant": "candidate",
+      "ms": 25.032999999999447,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 3,
+      "name": "no-op",
+      "variant": "original",
+      "ms": 110.24233300000014,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 3,
+      "name": "full",
+      "variant": "candidate",
+      "ms": 23.217124999999214,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 3,
+      "name": "full",
+      "variant": "original",
+      "ms": 109.73462500000005,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 3,
+      "name": "undo",
+      "variant": "candidate",
+      "ms": 22.949000000000524,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 3,
+      "name": "undo",
+      "variant": "original",
+      "ms": 107.00012500000048,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 3,
+      "name": "correction",
+      "variant": "candidate",
+      "ms": 22.30475000000024,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 3,
+      "name": "correction",
+      "variant": "original",
+      "ms": 109.42612499999996,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 3,
+      "name": "reordered",
+      "variant": "candidate",
+      "ms": 115.75766599999952,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 3,
+      "name": "reordered",
+      "variant": "original",
+      "ms": 125.88549999999941,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 3,
+      "name": "removed",
+      "variant": "candidate",
+      "ms": 94.30762499999946,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 3,
+      "name": "removed",
+      "variant": "original",
+      "ms": 93.5868330000003,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 4,
+      "name": "no-op",
+      "variant": "original",
+      "ms": 107.4081670000005,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 4,
+      "name": "no-op",
+      "variant": "candidate",
+      "ms": 23.615375000000313,
+      "queryCount": 1,
+      "traceHash": "e5d9a4cfe47181945447c2c17b45a6c9d6caa9efeab54a8642f65d632ec700af"
+    },
+    {
+      "round": 4,
+      "name": "full",
+      "variant": "original",
+      "ms": 111.18083300000035,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 4,
+      "name": "full",
+      "variant": "candidate",
+      "ms": 22.842750000000706,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 4,
+      "name": "undo",
+      "variant": "original",
+      "ms": 104.58345800000006,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 4,
+      "name": "undo",
+      "variant": "candidate",
+      "ms": 23.14116699999977,
+      "queryCount": 3,
+      "traceHash": "f5cd022931ead852d7b7d1b6562d852f40fe6bd15fb9a18b9aeb4ccb7d61e935"
+    },
+    {
+      "round": 4,
+      "name": "correction",
+      "variant": "original",
+      "ms": 109.54362500000025,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 4,
+      "name": "correction",
+      "variant": "candidate",
+      "ms": 22.788375000000087,
+      "queryCount": 3,
+      "traceHash": "9cba9b33348cc1ccaa25e4d6c41b8f3077acf3d36cbbaf27fd64b918f6bc38d6"
+    },
+    {
+      "round": 4,
+      "name": "reordered",
+      "variant": "original",
+      "ms": 114.40733300000011,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 4,
+      "name": "reordered",
+      "variant": "candidate",
+      "ms": 114.17675000000054,
+      "queryCount": 3,
+      "traceHash": "60b97131c3d07ab68886cb48659c2fef2e653914947e9a31384c03132fdedf85"
+    },
+    {
+      "round": 4,
+      "name": "removed",
+      "variant": "original",
+      "ms": 128.72299999999996,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    },
+    {
+      "round": 4,
+      "name": "removed",
+      "variant": "candidate",
+      "ms": 92.99483299999974,
+      "queryCount": 3,
+      "traceHash": "b435410a298ef3ed079d24ee43ee6ed06d6479d56679607f3c3a37abbb3b7376"
+    }
+  ],
+  "parity": "All SQL statements/parameters identical; inputs unchanged"
+}

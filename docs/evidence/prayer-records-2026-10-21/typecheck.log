@@ -1,0 +1,8 @@
+
+> rise-prototype@1.0.0 typecheck
+> tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tools.json
+
+src/Life.tsx(99,23): error TS2304: Cannot find name 'PrayerId'.
+src/Life.tsx(99,134): error TS7053: Element implicitly has an 'any' type because expression of type 'PrayerId' can't be used to index type 'Record<"asr" | "dhuhr" | "fajr" | "isha" | "maghrib", { preparation: boolean; due: boolean; }>'.
+src/Life.tsx(116,69): error TS2304: Cannot find name 'PrayerId'.
+src/Life.tsx(125,178): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'Record<"asr" | "dhuhr" | "fajr" | "isha" | "maghrib", PrayerEntry>'.

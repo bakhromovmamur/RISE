@@ -1,0 +1,30 @@
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 1728 modules transformed.
+
+(!) outDir /tmp/rise-reader-recovery-candidate/baseline-dist is not inside project root and will not be emptied.
+Use --emptyOutDir to override.
+
+rendering chunks...
+computing gzip size...
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/index.html                               1.05 kB │ gzip:   0.52 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/migration.worker-CL7zK_b9.js     10.93 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/hydrate.worker-B2wnTAMb.js       14.06 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/archive.worker-BlnjCBwL.js       16.51 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/import.worker-BjY7ThEY.js        28.90 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/backup.worker-I4NHyFy3.js        36.24 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/index-DM2hzASY.css              107.93 kB │ gzip:  20.45 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/web-DC6FCoOk.js                   0.84 kB │ gzip:   0.40 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/web-CXwqYogp.js                   2.08 kB │ gzip:   0.85 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/web-BanwI6pc.js                   4.43 kB │ gzip:   1.28 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/GroupScreenBody-_0EvCurP.js      98.78 kB │ gzip:  26.29 kB
+../../../../../tmp/rise-reader-recovery-candidate/baseline-dist/assets/index-B9DtxPsS.js             1,180.85 kB │ gzip: 370.81 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/account/export.ts is dynamically imported by src/data/backup.ts but also statically imported by src/account/AccountLifecycle.tsx, dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 363ms

@@ -1,0 +1,70 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts --grep explicit primary
+
+[WebServer] (node:13536) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:13535) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:13537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (2.0m)
+(node:14222) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [webkit] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (21.9s)
+
+
+  1) [chromium] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation 
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /^Prayer preferences / })
+
+
+       at ../support/pushBrowser.ts:9
+
+       7 |  const t=createTranslator(language);
+       8 |  await page.getByRole("tab",{name:t("You","Siz"),exact:true}).click();
+    >  9 |  await page.getByRole("button",{name:new RegExp(`^${t("Prayer preferences","Namoz sozlamalari")} `)}).click();
+         |                                                                                                       ^
+      10 |  await page.getByRole("button",{name:new RegExp(`^${t("Alarm readiness","Signal tayyorligi")} `)}).click();
+      11 |  await expect(page.getByRole("region",{name:pushText(language)("title"),exact:true})).toBeVisible();
+      12 | }
+        at pushSheet (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/support/pushBrowser.ts:9:103)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/renewal.push.spec.ts:16:126
+
+    Error Context: test-results/push/browser/renewal.push-explicit-prim-51cd4--after-offline-cancellation-chromium/error-context.md
+
+  2) [webkit] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation 
+
+    Test was interrupted.
+
+    Error: locator.click: Test ended.
+    Call log:
+      - waiting for getByRole('button', { name: /^Prayer preferences / })
+
+
+       at ../support/pushBrowser.ts:9
+
+       7 |  const t=createTranslator(language);
+       8 |  await page.getByRole("tab",{name:t("You","Siz"),exact:true}).click();
+    >  9 |  await page.getByRole("button",{name:new RegExp(`^${t("Prayer preferences","Namoz sozlamalari")} `)}).click();
+         |                                                                                                       ^
+      10 |  await page.getByRole("button",{name:new RegExp(`^${t("Alarm readiness","Signal tayyorligi")} `)}).click();
+      11 |  await expect(page.getByRole("region",{name:pushText(language)("title"),exact:true})).toBeVisible();
+      12 | }
+        at pushSheet (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/support/pushBrowser.ts:9:103)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/renewal.push.spec.ts:16:126
+
+    Error Context: test-results/push/browser/renewal.push-explicit-prim-51cd4--after-offline-cancellation-webkit/error-context.md
+
+  1 failed
+    [chromium] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation 
+  1 interrupted
+    [webkit] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation 
+  1 did not run

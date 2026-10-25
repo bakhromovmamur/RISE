@@ -1,0 +1,49 @@
+import {test,expect,stored} from '../support/senderBrowser.ts';
+import {seedSyncGuest,accountSheet,browserLogin,chooseImport,finishImport} from '../support/syncBrowser.ts';
+import {pushSheet,syntheticPushBrowser} from '../support/pushBrowser.ts';
+import {pushText} from '../../src/push/text.ts';
+import {authHarness} from '../support/auth.ts';
+import {readFile} from 'node:fs/promises';
+import {parseEnv} from 'node:util';
+import {randomUUID} from 'node:crypto';
+import {createRequire} from 'node:module';
+import pg from 'pg';
+import {stopPushSender} from '../../server/push/runtime.ts';
+import {claimPushJob} from '../../server/push/jobs.ts';
+import {sendPushReminder} from '../../server/push/worker.ts';
+const ece=createRequire(import.meta.url)('http_ece') as {decrypt:(body:Buffer,options:object)=>Buffer};
+const source=await readFile('public/notifications-sw.js','utf8'),t=pushText('en');
+test('encrypted queue delivery reaches the guarded receiver; cancellation suppresses display',async({page,unrelatedPushWork})=>{
+ expect(unrelatedPushWork).toBeTruthy();
+ test.setTimeout(120000);const synthetic=await syntheticPushBrowser(page);await seedSyncGuest(page);const guest=await stored(page);await accountSheet(page);await browserLogin(page);await chooseImport(page);await finishImport(page);await pushSheet(page);
+ const region=page.getByRole('region',{name:t('title'),exact:true});await region.getByRole('button',{name:t('enable'),exact:true}).click();await expect(region.getByText(t('subscribed'),{exact:true})).toBeVisible();const plan=page.getByLabel(t('planTitle'),{exact:true});await plan.getByRole('switch',{name:t('quietOverride'),exact:true}).click();await plan.getByRole('button',{name:t('planChoose'),exact:true}).click();await expect(plan.getByText(t('planStaged'),{exact:true})).toBeVisible({timeout:30000});
+ const owner=await page.evaluate(async()=>{const s=await(await fetch('/api/v1/session')).json();return s.account.id as string;});
+ const h=await authHarness(),e=parseEnv(await readFile('.rise-infra/test/push.env','utf8')),url=new URL(e.DATABASE_WORKER_URL!);expect(url.port).toBe('55422');expect(url.hostname).toBe('127.0.0.1');const pool=new pg.Pool({connectionString:url.href,max:2}),id=randomUUID();
+ try{
+  // Scoped leases exercise the real encrypted dispatch without consuming another
+  // case's due work. The infrastructure suite verifies the full scheduler tick.
+  await h.admin.query("update rise.push_jobs set fire_at=date_trunc('milliseconds',clock_timestamp())-interval '1 second',expires_at=date_trunc('milliseconds',clock_timestamp())+interval '90 seconds',next_attempt_at=clock_timestamp()-interval '1 second' where id=(select id from rise.push_jobs where user_id=$1 and status='queued' order by fire_at limit 1)",[owner]);
+  const payloads:Record<string,unknown>[]=[];
+  // A simultaneous authorized page read can hold the owner lock. The sender
+  // deliberately defers that account; its next tick must still submit once.
+  let accepted=0;
+  await expect.poll(async()=>{
+   await pool.query('insert into rise_private.push_senders(id) values($1) on conflict(id) do update set heartbeat_at=clock_timestamp()',[id]);
+   const lease=await claimPushJob(pool,owner);
+   if(lease){const result=await sendPushReminder(pool,lease,{installationId:e.INSTALLATION_ID!,dataKey:Buffer.from(e.PUSH_DATA_ENCRYPTION_KEY!,'hex'),vapid:{publicKey:e.VAPID_PUBLIC_KEY!,privateKey:e.VAPID_PRIVATE_KEY!,subject:e.VAPID_SUBJECT!}},async details=>{expect(details.endpoint).toBe(synthetic.subscription.endpoint);payloads.push(JSON.parse(ece.decrypt(details.body!,{version:'aes128gcm',privateKey:synthetic.ec,authSecret:synthetic.subscription.keys.auth}).toString()));return 201;});if(result==='accepted')accepted++;}return accepted;
+  },{timeout:10000,intervals:[1000]}).toBe(1);
+  expect(payloads).toHaveLength(1);const payload=payloads[0];expect(payload).toBeDefined();
+  await plan.getByRole('button',{name:t('planRefresh'),exact:true}).click();await expect(plan.getByText(t('planScheduled'),{exact:true})).toBeVisible();
+  const shown=await page.evaluate(async({source,payload})=>{
+   const listeners=new Map<string,(e:object)=>void>(),shown:Record<string,unknown>[]=[];
+   new Function('self',source)({location:{origin:location.origin},addEventListener:(name:string,fn:(e:object)=>void)=>listeners.set(name,fn),clients:{matchAll:async()=>[]},registration:{showNotification:async(_title:string,options:Record<string,unknown>)=>shown.push(options)}});
+   const db=await new Promise<IDBDatabase>((resolve,reject)=>{const r=indexedDB.open('rise-push-device',1);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});await new Promise<void>((resolve,reject)=>{const tx=db.transaction('control','readwrite'),s=tx.objectStore('control'),r=s.get('current');r.onsuccess=()=>s.put({...r.result,planGeneration:undefined},'current');tx.oncomplete=()=>resolve();tx.onabort=()=>reject(tx.error);});db.close();
+   async function fire(){let waiting=Promise.resolve();listeners.get('push')!({data:{json:()=>payload},waitUntil:(p:Promise<void>)=>{waiting=p;}});await waiting;}
+   await fire();await fire();
+   const session=await(await fetch('/api/v1/session')).json();const canceled=await fetch('/api/v1/push/cancel-plan',{method:'POST',headers:{'Content-Type':'application/json','X-Rise-CSRF':session.csrfToken},body:JSON.stringify({accountId:session.account.id,requestId:crypto.randomUUID(),keys:[payload!.id]})});if(!canceled.ok)throw new Error('synthetic_cancel_failed');
+   await fire();return shown;
+  },{source,payload});
+  expect(shown[0].body).toBe('Open RISE to view your reminder.');expect(shown[0].silent).toBe(false);for(const notification of shown.slice(1)){expect(notification.silent).toBe(true);expect(notification.body).toBe('Open RISE to review notification settings.');}
+  await stopPushSender(pool,id);await plan.getByRole('button',{name:t('planRefresh'),exact:true}).click();await expect(plan.getByText(t('planStaged'),{exact:true})).toBeVisible();expect((await stored(page)).habits).toEqual(guest.habits);
+ }finally{await stopPushSender(pool,id);await pool.end();await h.close();await page.evaluate(async()=>{const s=await(await fetch('/api/v1/session')).json();await fetch('/api/v1/logout',{method:'POST',headers:{'Content-Type':'application/json','X-Rise-CSRF':s.csrfToken},body:'{}'});});}
+});

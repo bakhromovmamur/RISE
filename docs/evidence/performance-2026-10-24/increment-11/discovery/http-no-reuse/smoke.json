@@ -1,0 +1,53 @@
+{
+  "run": "8b7ad86c-0f6f-4b68-9f1e-eaf91d3c3288",
+  "environment": "fixed test",
+  "transport": "Real loopback HTTP after injected synthetic login/seed; not hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 514.6610000000001,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 489.58795800000007,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 2020.671417,
+  "databaseGrowthBytes": 0,
+  "execution": {
+    "processes": 5,
+    "poolPerProcess": 1,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "transport": "HTTP 127.0.0.1:4191; per-synthetic-browser agent with keepAlive false; cluster round-robin connections",
+    "scope": "Test-only cluster; login/fixture setup still injected; no supervised production runtime change"
+  },
+  "reads": {
+    "samplesMs": [
+      376.46312499999976
+    ],
+    "totalBytes": 15732318
+  },
+  "historyAndXpRestored": true,
+  "firstAttempts": {
+    "count": 2,
+    "accepted": 2,
+    "failed": 0,
+    "p95Ms": 514.6610000000001,
+    "maxMs": 514.6610000000001
+  },
+  "localPersonalGate": true,
+  "cleanupErrors": [],
+  "cleaned": true
+}

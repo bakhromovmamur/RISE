@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-25T13:38:05.920864+00:00",
+  "publication": {
+    "command": "npm run check:publication",
+    "exitCode": 0,
+    "initializedRepository": false,
+    "candidateFiles": 5086,
+    "candidateBytes": 221235860,
+    "indexEntries": 0,
+    "knownSecretValues": 22,
+    "failures": [],
+    "scope": "Read-only candidate/index path and known-secret byte checks; not a complete secret, archive or personal-data audit."
+  },
+  "publicationTests": {
+    "command": "node --import tsx --test tests/publication.test.ts",
+    "passed": 6,
+    "failed": 0,
+    "exitCode": 0,
+    "source": "completed tool invocation; no database/browser suites run by this agent"
+  },
+  "lint": {
+    "command": "npx oxlint scripts/check-publication.mjs tests/publication.test.ts --deny-warnings",
+    "exitCode": 0
+  },
+  "archiveAudit": {
+    "archives": [
+      {
+        "archive": "docs/evidence/prayer-records-2026-10-21/visual-timeout/trace.zip",
+        "members": 24,
+        "uncompressedBytes": 4511019
+      },
+      {
+        "archive": "docs/evidence/prayer-records-2026-10-21/old-draft-date-expectation/trace.zip",
+        "members": 40,
+        "uncompressedBytes": 3423570
+      }
+    ],
+    "knownSecretValues": 22,
+    "matches": [],
+    "scope": "Read-only decompressed-member byte scan of the two historical synthetic prayer traces; no extraction, mutation, OCR or general personal-data certification."
+  },
+  "privacyRedaction": {
+    "modifiedFiles": [
+      "docs/INFRASTRUCTURE-DECISIONS.md",
+      "docs/BACKEND-ENVIRONMENTS.md",
+      "docs/evidence/infrastructure-2026-10-21/README.md"
+    ],
+    "exactOriginalsRetainedPrivately": true,
+    "privateDirectoryMode": "0o700",
+    "privateFileModes": [
+      "0o600",
+      "0o600",
+      "0o600"
+    ],
+    "remainingTextMatches": 0,
+    "historicalTestClaimsChanged": false
+  },
+  "projectGitInitialized": false,
+  "commitOrPushPerformed": false,
+  "cloudProvisioned": false,
+  "documentation": {
+    "command": "npm run check:docs",
+    "exitCode": 0,
+    "documents": 44,
+    "links": 758,
+    "failures": []
+  },
+  "newDocumentLinks": {
+    "count": 36,
+    "failures": []
+  }
+}

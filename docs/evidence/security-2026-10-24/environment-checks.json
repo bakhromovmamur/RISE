@@ -1,0 +1,26 @@
+[
+  {
+    "command": "npm run infra:verify -- local",
+    "at": "2026-10-24T17:32:35.238997+00:00",
+    "exitCode": 0,
+    "log": "logs/final-verify-local.log"
+  },
+  {
+    "command": "npx supabase db advisors --local --workdir .rise-infra/local --type security --level info --fail-on info",
+    "at": "2026-10-24T17:32:36.790751+00:00",
+    "exitCode": 0,
+    "log": "logs/final-advisors-local.log"
+  },
+  {
+    "command": "npm run infra:verify -- test",
+    "at": "2026-10-24T17:32:37.131307+00:00",
+    "exitCode": 0,
+    "log": "logs/final-verify-test.log"
+  },
+  {
+    "command": "npx supabase db advisors --local --workdir .rise-infra/test --type security --level info --fail-on info",
+    "at": "2026-10-24T17:32:38.343920+00:00",
+    "exitCode": 0,
+    "log": "logs/final-advisors-test.log"
+  }
+]

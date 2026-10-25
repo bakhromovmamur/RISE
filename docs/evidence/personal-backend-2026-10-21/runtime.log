@@ -1,0 +1,6 @@
+Command: node --import tsx --env-file=.rise-infra/local/server.env server/main.ts
+Observed: {"event":"started","environment":"local","release":"infra-local"}
+GET http://127.0.0.1:4190/api/v1/health/ready: 200 {"status":"ready","release":"infra-local"}
+Own started process stopped with SIGTERM after verification; exited 0.
+Command: npm ls tsx --omit=dev
+Observed: tsx@4.23.15 present as a production dependency; Vite deduplicates the same version.

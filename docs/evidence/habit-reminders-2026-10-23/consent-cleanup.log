@@ -1,0 +1,20 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts habit-consent
+
+[WebServer] (node:32395) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:32396) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/push/habit-consent.push.spec.ts:9:1 › foreground habit consent stays scoped and logout clears it without a background subscription (3.3s)
+(node:32414) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [webkit] › tests/push/habit-consent.push.spec.ts:9:1 › foreground habit consent stays scoped and logout clears it without a background subscription (3.4s)
+(node:32427) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [firefox] › tests/push/habit-consent.push.spec.ts:9:1 › foreground habit consent stays scoped and logout clears it without a background subscription (4.2s)
+
+  3 passed (13.7s)

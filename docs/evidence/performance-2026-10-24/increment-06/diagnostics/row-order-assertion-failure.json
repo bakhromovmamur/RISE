@@ -1,0 +1,31 @@
+{
+  "run": "6ee9b348-72d9-4cab-9a06-776485c087b6",
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 810.4111669999998,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 783.986042,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 1597.713917,
+  "databaseGrowthBytes": 34078720,
+  "error": "full_history_round_trip\n+ actual - expected\n... Skipped lines\n\n  {\n    account_preferences: [\n      {\n        data: {\n          appearance: 'system',\n...\n          due: true,\n+         preparation: true\n-         preparation: false\n        },\n+       prayer: 'asr'\n-       prayer: 'fajr'\n      },\n      {\n        data: {\n          due: true,\n          preparation: true\n...\n          due: true,\n+         preparation: false\n-         preparation: true\n        },\n+       prayer: 'fajr'\n-       prayer: 'asr'\n      },\n      {\n        data: {\n          due: true,\n          preparation: true\n        },\n+       prayer: 'isha'\n-       prayer: 'maghrib'\n      },\n      {\n        data: {\n          due: true,\n          preparation: true\n        },\n+       prayer: 'maghrib'\n-       prayer: 'isha'\n      }\n    ],\n    prayer_settings: [\n      {\n        data: {\n",
+  "cleanupErrors": [],
+  "cleaned": true
+}

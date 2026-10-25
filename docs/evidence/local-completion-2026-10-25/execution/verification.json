@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-25",
+  "tasks": [
+    "QUALITY-03"
+  ],
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "scope": "Archived execution proposal, not adopted: focused checks pass; both two-account real-HTTP variants fail the complete target; full100 is blocked before fixtures by the unchanged disk guard.",
+  "commands": [
+    {
+      "command": "node --import tsx --test tests/execution.test.ts",
+      "exitCode": 0,
+      "passed": 7,
+      "failed": 0,
+      "durationMs": 2130.94025
+    },
+    {
+      "command": "node --import tsx --test tests/infra/execution.test.ts",
+      "exitCode": 0,
+      "passed": 2,
+      "failed": 0,
+      "durationMs": 4991.039667
+    },
+    {
+      "command": "node_modules/.bin/tsc --noEmit -p tsconfig.server.json",
+      "exitCode": 0
+    },
+    {
+      "command": "node_modules/.bin/oxlint server/execution server/main.ts server/app.ts server/operations/release.ts scripts/infra/release/entry.ts tests/execution.test.ts tests/infra/execution.test.ts tests/support/execution-worker.mjs tests/support/execution-commit-loss.mjs --deny-warnings",
+      "exitCode": 0
+    }
+  ],
+  "diagnosticAttempts": [
+    "The first real-worker fault fixture used MessagePort.prependListener, which is unavailable. Production bootstrap verified successfully; the test peer now registers its on(message) listener before importing the real worker.",
+    "An integration test TypeScript inference error was corrected by using its narrowed runtime reference.",
+    "An earlier all-green pure run reported an anomalous roughly five-minute failure-test duration. A complete repeat passed in 2.13 seconds without changing deadlines or assertions; the cause of that isolated timing observation was not established."
+  ],
+  "preservation": {
+    "cloudProvisioning": "pending",
+    "savedProfilesChanged": false,
+    "databaseFixtureScope": "Only newly generated synthetic Auth accounts on fixed test installation",
+    "restrictedConnectionsPerRuntime": 5,
+    "connectionsAfterIntegrationClose": 0,
+    "schemaOrStorageChanges": false,
+    "automaticMutationReplay": false,
+    "inputEnvelopeBytes": 33554432,
+    "totalMemoryBoundClaimed": false
+  },
+  "candidateActive": false,
+  "archive": "candidate.patch; isolated reconstruction and restoration verified in archive-verification.json",
+  "httpComparison": {
+    "serial": "serial-http-smoke.json",
+    "worker": "worker-http-smoke.json",
+    "bothExactReplayHistoryXpAndCleanupPass": true,
+    "bothCompleteTargetPass": false
+  }
+}

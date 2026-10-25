@@ -1,0 +1,75 @@
+--- before/server/personal/records.ts
++++ after/server/personal/records.ts
+@@ -17,6 +17,23 @@
+ }
+ 
+ const rowKey = (table: Table, row: Row) => canonical(table.keys.map(key => row[key]));
++
++/** Equality for already-validated relational JSON, not an input validator.
++ * Object key order is irrelevant; array order, missing fields and scalar types
++ * remain significant. Like canonical JSON, numeric -0 and 0 are equivalent.
++ * Keep canonical serialization for identities, fingerprints and import hashes. */
++function sameJson(left: unknown, right: unknown): boolean {
++  if (left === right) return true;
++  if (left === null || right === null || typeof left !== "object" || typeof right !== "object") return false;
++  if (Array.isArray(left)) {
++    if (!Array.isArray(right) || left.length !== right.length) return false;
++    return left.every((value, index) => sameJson(value, right[index]));
++  }
++  if (Array.isArray(right)) return false;
++  const keys = Object.keys(left);
++  if (keys.length !== Object.keys(right).length) return false;
++  return keys.every(key => Object.hasOwn(right, key) && sameJson(Reflect.get(left, key), Reflect.get(right, key)));
++}
+ 
+ /** Only deltas are written; historic note/ack rows and retired referenced milestones survive. */
+ export async function writeRecords(client: pg.PoolClient, actor: string, revision: number, before: Records, desired: Records, operationId?:string) {
+@@ -42,7 +59,7 @@
+     const rows = [...next.values()];
+     if (definition.name === "saved_work_breaks") rows.sort((a, b) => Number(a.active) - Number(b.active));
+     for (const row of rows) {
+-      if (canonical(row) === canonical(previous.get(rowKey(definition, row)) ?? null)) continue;
++      if (sameJson(row, previous.get(rowKey(definition, row)) ?? null)) continue;
+       await changed(row,false);
+       const columns = ["owner_id", ...definition.columns, "revision"];
+       const values = [actor, ...definition.columns.map(key => row[key]), revision];
+--- before/tests/infra/personal.test.ts
++++ after/tests/infra/personal.test.ts
+@@ -59,6 +59,37 @@
+   const corrected = await client.read(); assert.equal(corrected.xp, previous - 20);
+   assert.equal(hydrate(corrected.records!).prayers.days[fixture.date].entries.fajr.check, "on_time");
+   assert.equal(/private synthetic|example\.invalid|csrfToken|provider_cipher/.test(JSON.stringify(harness.logs)), false);
++});
++
++test("no-op account commands retain record revisions and removal barriers; a nested preference edit writes only its record", async () => {
++  const client = new PersonalClient(harness);
++  try {
++    await client.initialize(); await personalTotals(client);
++    const before = await client.read(), name = String(before.records!.profiles[0].name);
++    async function snapshot() {
++      return Object.fromEntries(await Promise.all(personalTables.filter(t => t.name !== "profiles").map(async table => [table.name,
++        (await harness.admin.query(`select to_jsonb(t) as row from rise.${table.name} t where owner_id=$1 order by ${(table.order ?? table.keys).join(",") || "owner_id"}`, [client.owner])).rows,
++      ])));
++    }
++    const rows = await snapshot(), changes = (await harness.admin.query("select * from rise.sync_changes where owner_id=$1 order by table_name,record_key", [client.owner])).rows;
++    const base = client.revision, operationId = randomUUID(), command = { kind: "profile.name", name };
++    const receipt = await client.command(command, base, operationId);
++    assert.equal(receipt.operationRevision, base + 1); assert.equal(receipt.xp, before.xp);
++    assert.deepEqual(await client.command(command, base, operationId), { ...receipt, replayed: true });
++    assert.deepEqual(await snapshot(), rows);
++    assert.deepEqual((await harness.admin.query("select * from rise.sync_changes where owner_id=$1 order by table_name,record_key", [client.owner])).rows, changes);
++    const preferences = hydrate(before.records!).prefs;
++    await client.command({ kind: "preferences.set", changes: { haptics: !preferences.haptics, quietStart: "21:13" } });
++    const after = await client.read(), updated = await snapshot();
++    assert.equal(after.xp, before.xp); assert.equal(after.revision, base + 2);
++    assert.deepEqual(hydrate(after.records!).prefs, { ...preferences, haptics: !preferences.haptics, quietStart: "21:13" });
++    for (const [table, original] of Object.entries(rows)) {
++      if (table === "account_preferences") assert.notDeepEqual(updated[table], original);
++      else assert.deepEqual(updated[table], original, `unrelated_record_changed:${table}`);
++    }
++  } finally {
++    if (client.owner) { await client.browser.request("logout", {}); await harness.admin.query("delete from auth.users where id=$1 and email=$2", [client.owner, client.email]); }
++  }
+ });
+ 
+ test("direct RLS and invoker views isolate every personal table; ownership changes and cross-owner foreign keys fail", async () => {

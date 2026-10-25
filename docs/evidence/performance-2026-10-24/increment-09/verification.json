@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "implementation": "Direct occurrence-column read with JSON date and unchanged validation/transaction rules",
+  "isolatedQuery": "Improved in all three alternating warm-cache rounds",
+  "capacity": "FAIL; personal p95 worsens despite more accepted intentions",
+  "convergence": "FAIL",
+  "recoveryAndCleanup": "PASS",
+  "commands": [
+    {
+      "command": "node --import tsx /tmp/rise-account-direct-columns-probe.mts smoke",
+      "exit": 0,
+      "report": "discovery/cleanup-and-smoke.json",
+      "comparison": "discovery/samples.json"
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='occurrence reads preserve JSON' tests/infra/personal.test.ts",
+      "exit": 0,
+      "cases": 1,
+      "logs": [
+        "logs/parity-before.log",
+        "logs/parity-after.log"
+      ]
+    },
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "sourceCases": 282,
+      "log": "logs/check.log"
+    },
+    {
+      "command": "node --import tsx --test --test-concurrency=1 tests/infra/personal.test.ts tests/infra/sync.test.ts tests/infra/recovery.test.ts tests/infra/lifecycle.test.ts tests/infra/group-export.test.ts",
+      "exit": 0,
+      "cases": 49,
+      "log": "logs/database.log"
+    },
+    {
+      "command": "TZ=America/Los_Angeles node --import tsx --test --test-name-pattern='occurrence reads preserve JSON' tests/infra/personal.test.ts",
+      "exit": 0,
+      "cases": 1,
+      "log": "logs/timezone-west.log"
+    },
+    {
+      "command": "TZ=Pacific/Auckland node --import tsx --test --test-name-pattern='occurrence reads preserve JSON' tests/infra/personal.test.ts",
+      "exit": 0,
+      "cases": 1,
+      "log": "logs/timezone-east.log"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts smoke",
+      "exit": 0,
+      "report": "smoke.json"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed",
+      "exit": 1,
+      "report": "mixed.json"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "logs/docs.log"
+    }
+  ],
+  "initialCorrections": [
+    {
+      "log": "logs/parity-initial.log",
+      "reason": "Corruption fixture UPDATE correctly rejected by immutable snapshot trigger; use an isolated synthetic INSERT instead, without disabling guards"
+    },
+    {
+      "log": "logs/check-initial.log",
+      "reason": "Unnecessary escaped quotes in test template string; corrected and full check rerun"
+    }
+  ],
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11",
+    "transport": "Fastify inject; fixed test"
+  },
+  "newBrowserClaims": false,
+  "cloudProvisioned": false
+}

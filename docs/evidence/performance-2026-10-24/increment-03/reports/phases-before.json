@@ -1,0 +1,336 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.performance.config.ts",
+      "repository.performance"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.performance.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.performance.spec.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4180",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/performance/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4180 dist-review",
+      "url": "http://127.0.0.1:4180",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "repository.performance.spec.ts",
+      "file": "repository.performance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dense repository phase measurements preserve durable records and replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3881,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:43:54.820Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "repository-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIHJlcG9zaXRvcnkgcGhhc2VzOyBpbmNsdWRlcyByZWFsIHN0cmljdCBJbmRleGVkREIgdHJhbnNhY3Rpb25zLCBubyByZW5kZXJlZCBVSSBvciBkZXZpY2UvcDk1IGFjY2VwdGFuY2UuIiwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJkYXRlIjogIjIwMjYtMTAtMjQiLAogICJoYWJpdHMiOiAxMDAsCiAgImRheXMiOiA3MzAsCiAgIm9jY3VycmVuY2VzIjogNzMwMDAsCiAgInNhbXBsZXMiOiBbCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiA3MC41LAogICAgICAicmVkdWNlck1zIjogNDAuMTk5OTk5OTI4NDc0NDI2LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiA4Ni44MDAwMDAwNzE1MjU1NywKICAgICAgInJlcG9zaXRvcnlNcyI6IDQyLjc5OTk5OTk1MjMxNjI4NCwKICAgICAgInRvdGFsTXMiOiAyNDAuMjk5OTk5OTUyMzE2MjgKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDcxLjc5OTk5OTk1MjMxNjI4LAogICAgICAicmVkdWNlck1zIjogMzguNjAwMDAwMDIzODQxODYsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDg2LjEwMDAwMDAyMzg0MTg2LAogICAgICAicmVwb3NpdG9yeU1zIjogMzYuMjAwMDAwMDQ3NjgzNzE2LAogICAgICAidG90YWxNcyI6IDIzMi43MDAwMDAwNDc2ODM3MgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDc5LAogICAgICAicmVkdWNlck1zIjogNDguMjAwMDAwMDQ3NjgzNzE2LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiA4OS44OTk5OTk5NzYxNTgxNCwKICAgICAgInJlcG9zaXRvcnlNcyI6IDM3LjM5OTk5OTk3NjE1ODE0LAogICAgICAidG90YWxNcyI6IDI1NC41CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogNjkuNSwKICAgICAgInJlZHVjZXJNcyI6IDM3LjI5OTk5OTk1MjMxNjI4NCwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogODMuOTAwMDAwMDk1MzY3NDMsCiAgICAgICJyZXBvc2l0b3J5TXMiOiAzNy4xMDAwMDAwMjM4NDE4NiwKICAgICAgInRvdGFsTXMiOiAyMjcuODAwMDAwMDcxNTI1NTcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDY4LjUsCiAgICAgICJyZWR1Y2VyTXMiOiAzOC4wOTk5OTk5MDQ2MzI1NywKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogODUsCiAgICAgICJyZXBvc2l0b3J5TXMiOiAzNi45MDAwMDAwOTUzNjc0MywKICAgICAgInRvdGFsTXMiOiAyMjguNQogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDcxLjkwMDAwMDA5NTM2NzQzLAogICAgICAicmVkdWNlck1zIjogMzQuMjk5OTk5OTUyMzE2Mjg0LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiA4Ni4zOTk5OTk5NzYxNTgxNCwKICAgICAgInJlcG9zaXRvcnlNcyI6IDM2LjA5OTk5OTkwNDYzMjU3LAogICAgICAidG90YWxNcyI6IDIyOC42OTk5OTk5Mjg0NzQ0MwogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDcyLjUsCiAgICAgICJyZWR1Y2VyTXMiOiA0MC44OTk5OTk5NzYxNTgxNCwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogODUuNSwKICAgICAgInJlcG9zaXRvcnlNcyI6IDM2LjgwMDAwMDA3MTUyNTU3NCwKICAgICAgInRvdGFsTXMiOiAyMzUuNzAwMDAwMDQ3NjgzNzIKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDcwLjY5OTk5OTkyODQ3NDQzLAogICAgICAicmVkdWNlck1zIjogMzguNSwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogODMsCiAgICAgICJyZXBvc2l0b3J5TXMiOiAzNi41MDAwMDAxMTkyMDkyOSwKICAgICAgInRvdGFsTXMiOiAyMjguNzAwMDAwMDQ3NjgzNzIKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiA2OS41LAogICAgICAicmVkdWNlck1zIjogMzkuNzAwMDAwMDQ3NjgzNzE2LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiA4Ni4yOTk5OTk5NTIzMTYyOCwKICAgICAgInJlcG9zaXRvcnlNcyI6IDQ4LjE5OTk5OTkyODQ3NDQyNiwKICAgICAgInRvdGFsTXMiOiAyNDMuNjk5OTk5OTI4NDc0NDMKICAgIH0KICBdLAogICJpbnZhcmlhbnRzIjogIkNoZWNrL1VuZG8gcHJlc2VydmVzIGhpc3RvcnkgYW5kIFhQOyBuaW5lIGR1cmFibGUgcmV2aXNpb25zOyBleGFjdCByZXBsYXkgZG9lcyBub3QgaW5jcmVtZW50OyBvcmlnaW5hbCBzb3VyY2UgdW5jaGFuZ2VkLiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c27f1817bcc0a42d9e9c-6873cc06b22ef1cb3118",
+          "file": "repository.performance.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "dense repository phase measurements preserve durable records and replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4607,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:43:59.127Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "repository-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIHJlcG9zaXRvcnkgcGhhc2VzOyBpbmNsdWRlcyByZWFsIHN0cmljdCBJbmRleGVkREIgdHJhbnNhY3Rpb25zLCBubyByZW5kZXJlZCBVSSBvciBkZXZpY2UvcDk1IGFjY2VwdGFuY2UuIiwKICAiYnJvd3NlciI6ICIyNy4yIiwKICAiZGF0ZSI6ICIyMDI2LTEwLTI0IiwKICAiaGFiaXRzIjogMTAwLAogICJkYXlzIjogNzMwLAogICJvY2N1cnJlbmNlcyI6IDczMDAwLAogICJzYW1wbGVzIjogWwogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogNzAsCiAgICAgICJyZWR1Y2VyTXMiOiA1MCwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogMTI0LAogICAgICAicmVwb3NpdG9yeU1zIjogNTIsCiAgICAgICJ0b3RhbE1zIjogMjk2CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiA2OSwKICAgICAgInJlZHVjZXJNcyI6IDQ5LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiAxMjMsCiAgICAgICJyZXBvc2l0b3J5TXMiOiA0OSwKICAgICAgInRvdGFsTXMiOiAyOTAKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiA2MywKICAgICAgInJlZHVjZXJNcyI6IDQ5LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiAxMjcsCiAgICAgICJyZXBvc2l0b3J5TXMiOiA1MCwKICAgICAgInRvdGFsTXMiOiAyODkKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiA2NywKICAgICAgInJlZHVjZXJNcyI6IDUwLAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiAxMjEsCiAgICAgICJyZXBvc2l0b3J5TXMiOiA0OSwKICAgICAgInRvdGFsTXMiOiAyODcKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDY4LAogICAgICAicmVkdWNlck1zIjogNDgsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDEyMiwKICAgICAgInJlcG9zaXRvcnlNcyI6IDQ5LAogICAgICAidG90YWxNcyI6IDI4NwogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDc0LAogICAgICAicmVkdWNlck1zIjogNTgsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDEyMSwKICAgICAgInJlcG9zaXRvcnlNcyI6IDQ5LAogICAgICAidG90YWxNcyI6IDMwMgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDY2LAogICAgICAicmVkdWNlck1zIjogNDgsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDEyMCwKICAgICAgInJlcG9zaXRvcnlNcyI6IDQ4LAogICAgICAidG90YWxNcyI6IDI4MgogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogNjYsCiAgICAgICJyZWR1Y2VyTXMiOiA0OCwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogMTE4LAogICAgICAicmVwb3NpdG9yeU1zIjogNTAsCiAgICAgICJ0b3RhbE1zIjogMjgyCiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogNjcsCiAgICAgICJyZWR1Y2VyTXMiOiA0OCwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogMTIwLAogICAgICAicmVwb3NpdG9yeU1zIjogNDgsCiAgICAgICJ0b3RhbE1zIjogMjgzCiAgICB9CiAgXSwKICAiaW52YXJpYW50cyI6ICJDaGVjay9VbmRvIHByZXNlcnZlcyBoaXN0b3J5IGFuZCBYUDsgbmluZSBkdXJhYmxlIHJldmlzaW9uczsgZXhhY3QgcmVwbGF5IGRvZXMgbm90IGluY3JlbWVudDsgb3JpZ2luYWwgc291cmNlIHVuY2hhbmdlZC4iCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c27f1817bcc0a42d9e9c-eb3c7d4ff33df6f0e457",
+          "file": "repository.performance.spec.ts",
+          "line": 8,
+          "column": 1
+        },
+        {
+          "title": "dense repository phase measurements preserve durable records and replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7271,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T10:44:04.160Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "repository-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJEZXNrdG9wIHJlcG9zaXRvcnkgcGhhc2VzOyBpbmNsdWRlcyByZWFsIHN0cmljdCBJbmRleGVkREIgdHJhbnNhY3Rpb25zLCBubyByZW5kZXJlZCBVSSBvciBkZXZpY2UvcDk1IGFjY2VwdGFuY2UuIiwKICAiYnJvd3NlciI6ICIxNTcuMCIsCiAgImRhdGUiOiAiMjAyNi0xMC0yNCIsCiAgImhhYml0cyI6IDEwMCwKICAiZGF5cyI6IDczMCwKICAib2NjdXJyZW5jZXMiOiA3MzAwMCwKICAic2FtcGxlcyI6IFsKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jaGVjayIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDE3NCwKICAgICAgInJlZHVjZXJNcyI6IDYzLAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiAxOTcsCiAgICAgICJyZXBvc2l0b3J5TXMiOiA2NiwKICAgICAgInRvdGFsTXMiOiA1MDAKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY29ycmVjdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDE4MywKICAgICAgInJlZHVjZXJNcyI6IDY2LAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiAxOTEsCiAgICAgICJyZXBvc2l0b3J5TXMiOiA2OSwKICAgICAgInRvdGFsTXMiOiA1MDkKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuZHJhZnQiLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiAxNzEsCiAgICAgICJyZWR1Y2VyTXMiOiA2MiwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogMTk3LAogICAgICAicmVwb3NpdG9yeU1zIjogNjIsCiAgICAgICJ0b3RhbE1zIjogNDkyCiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNoZWNrIiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogMTYzLAogICAgICAicmVkdWNlck1zIjogNjIsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDE5MSwKICAgICAgInJlcG9zaXRvcnlNcyI6IDY0LAogICAgICAidG90YWxNcyI6IDQ4MAogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5jb3JyZWN0IiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogMTY1LAogICAgICAicmVkdWNlck1zIjogNjQsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDIwNiwKICAgICAgInJlcG9zaXRvcnlNcyI6IDY0LAogICAgICAidG90YWxNcyI6IDQ5OQogICAgfSwKICAgIHsKICAgICAgImFjdGlvbiI6ICJoYWJpdC5kcmFmdCIsCiAgICAgICJyZWFkVmFsaWRhdGVNcyI6IDE2NiwKICAgICAgInJlZHVjZXJNcyI6IDYyLAogICAgICAidmFsaWRhdGVXcml0ZUNsb25lTXMiOiAyMDEsCiAgICAgICJyZXBvc2l0b3J5TXMiOiA2MywKICAgICAgInRvdGFsTXMiOiA0OTIKICAgIH0sCiAgICB7CiAgICAgICJhY3Rpb24iOiAiaGFiaXQuY2hlY2siLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiAxNjQsCiAgICAgICJyZWR1Y2VyTXMiOiA2MywKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogMjE3LAogICAgICAicmVwb3NpdG9yeU1zIjogOTQsCiAgICAgICJ0b3RhbE1zIjogNTM4CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmNvcnJlY3QiLAogICAgICAicmVhZFZhbGlkYXRlTXMiOiAxNzAsCiAgICAgICJyZWR1Y2VyTXMiOiA2OSwKICAgICAgInZhbGlkYXRlV3JpdGVDbG9uZU1zIjogMjAxLAogICAgICAicmVwb3NpdG9yeU1zIjogODUsCiAgICAgICJ0b3RhbE1zIjogNTI1CiAgICB9LAogICAgewogICAgICAiYWN0aW9uIjogImhhYml0LmRyYWZ0IiwKICAgICAgInJlYWRWYWxpZGF0ZU1zIjogMTkxLAogICAgICAicmVkdWNlck1zIjogNjYsCiAgICAgICJ2YWxpZGF0ZVdyaXRlQ2xvbmVNcyI6IDE5OCwKICAgICAgInJlcG9zaXRvcnlNcyI6IDY1LAogICAgICAidG90YWxNcyI6IDUyMAogICAgfQogIF0sCiAgImludmFyaWFudHMiOiAiQ2hlY2svVW5kbyBwcmVzZXJ2ZXMgaGlzdG9yeSBhbmQgWFA7IG5pbmUgZHVyYWJsZSByZXZpc2lvbnM7IGV4YWN0IHJlcGxheSBkb2VzIG5vdCBpbmNyZW1lbnQ7IG9yaWdpbmFsIHNvdXJjZSB1bmNoYW5nZWQuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c27f1817bcc0a42d9e9c-ae7c5c42e05e0903b4aa",
+          "file": "repository.performance.spec.ts",
+          "line": 8,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T10:43:54.208Z",
+    "duration": 17959.772,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

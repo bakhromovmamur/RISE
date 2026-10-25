@@ -1,0 +1,2868 @@
+{
+  "local": {
+    "postgres": "17.11",
+    "migrations": [
+      "20261021161440",
+      "20261021175616",
+      "20261021180445",
+      "20261021184458",
+      "20261021185411",
+      "20261021185824",
+      "20261021201759",
+      "20261022100855",
+      "20261022101526",
+      "20261022151116",
+      "20261022153308",
+      "20261022153943",
+      "20261022154617",
+      "20261022155753",
+      "20261022161003"
+    ],
+    "tables": [
+      {
+        "schema": "rise",
+        "name": "account_preferences",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "cosmetic_claims",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "daily_priorities",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "fajr_acknowledgments",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "fajr_plans",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "goal_habits",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "goal_milestones",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "goals",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habit_days",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habit_occurrences",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habit_versions",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habits",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "personal_receipts",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "personal_rewards",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_days",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_pauses",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_records",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_reminders",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_settings",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_windows",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "priority_days",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "profiles",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "reflections",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "saved_work_breaks",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_changes",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_import_pages",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_imports",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_state",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "auth_challenges",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "auth_contexts",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "auth_limits",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "deleted_sessions",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "deletion_jobs",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "deletion_ledger",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "environment",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "server_sessions",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "synthetic_fixtures",
+        "rls": true,
+        "forced": true
+      }
+    ],
+    "privatePolicies": [
+      {
+        "tablename": "auth_challenges",
+        "policyname": "challenges_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_challenges",
+        "policyname": "challenges_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_lifecycle_delete",
+        "cmd": "DELETE",
+        "roles": "{rise_lifecycle}",
+        "qual": "(EXISTS ( SELECT 1\n   FROM rise_private.deleted_sessions s\n  WHERE (s.context_hash = auth_contexts.id_hash)))",
+        "with_check": null
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_lifecycle_read",
+        "cmd": "SELECT",
+        "roles": "{rise_lifecycle}",
+        "qual": "(EXISTS ( SELECT 1\n   FROM rise_private.deleted_sessions s\n  WHERE (s.context_hash = auth_contexts.id_hash)))",
+        "with_check": null
+      },
+      {
+        "tablename": "auth_limits",
+        "policyname": "limits_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_limits",
+        "policyname": "limits_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_bff_insert",
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "(user_id = ( SELECT auth.uid() AS uid))"
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_bff_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_lifecycle",
+        "cmd": "ALL",
+        "roles": "{rise_lifecycle}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_bff_insert",
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "(user_id = ( SELECT auth.uid() AS uid))"
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_bff_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_lifecycle",
+        "cmd": "ALL",
+        "roles": "{rise_lifecycle}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_bff_insert",
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "((user_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session) AND (EXISTS ( SELECT 1\n   FROM rise_private.server_sessions s\n  WHERE ((s.user_id = ( SELECT auth.uid() AS uid)) AND ((s.provider_session_id)::text = (( SELECT auth.jwt() AS jwt) ->> 'session_id'::text)) AND (s.authenticated_at > (now() - '00:10:00'::interval)) AND (s.authenticated_at <= now())))))"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_bff_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_lifecycle",
+        "cmd": "ALL",
+        "roles": "{rise_lifecycle}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_session_guard",
+        "cmd": "SELECT",
+        "roles": "{rise_session_guard}",
+        "qual": "(user_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "tablename": "environment",
+        "policyname": "environment_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "environment",
+        "policyname": "environment_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff,rise_lifecycle,rise_worker}",
+        "qual": "singleton",
+        "with_check": null
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "session_guard_private",
+        "cmd": "SELECT",
+        "roles": "{rise_session_guard}",
+        "qual": "(user_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "sessions_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "sessions_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "sessions_lifecycle_deleted",
+        "cmd": "SELECT",
+        "roles": "{rise_lifecycle}",
+        "qual": "(EXISTS ( SELECT 1\n   FROM rise_private.deletion_ledger d\n  WHERE (d.user_id = server_sessions.user_id)))",
+        "with_check": null
+      },
+      {
+        "tablename": "synthetic_fixtures",
+        "policyname": "fixture_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      }
+    ],
+    "privateGrants": [
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "environment"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "INSERT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "UPDATE",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "UPDATE",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "UPDATE",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "environment"
+      },
+      {
+        "grantee": "rise_session_guard",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_worker",
+        "privilege_type": "SELECT",
+        "table_name": "environment"
+      }
+    ],
+    "privateColumnGrants": [
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "auth_contexts",
+        "column_name": "id_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "deleted_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "deleted_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "deleted_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "user_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "user_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "attempts",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "attempts",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "attempts",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "last_error",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "last_error",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "last_error",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "next_attempt_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "next_attempt_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "next_attempt_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purge_by",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purge_by",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purge_by",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purged_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purged_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purged_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "request_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "request_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "request_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "requested_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "requested_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "requested_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "user_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "user_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "deleted_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "deleted_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "deleted_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "user_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "user_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "app_origin",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "created_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "environment",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "installation_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "provider_project_ref",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "schema_version",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "singleton",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "server_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "server_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "server_sessions",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      }
+    ],
+    "policies": [
+      {
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "tables": "{sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "cmd": "DELETE",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session) AND (created_at < (now() - '90 days'::interval)))",
+        "with_check": null,
+        "tables": "{personal_receipts}"
+      },
+      {
+        "cmd": "DELETE",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": null,
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "cmd": "SELECT",
+        "roles": "{authenticated,rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": null,
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "cmd": "UPDATE",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      }
+    ],
+    "foreignKeys": [
+      {
+        "table": "account_preferences",
+        "name": "account_preferences_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "account_preferences",
+        "name": "account_preferences_owner_id_selected_reward_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, selected_reward_id) REFERENCES rise.personal_rewards(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "cosmetic_claims",
+        "name": "cosmetic_claims_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_owner_id_date_fkey",
+        "definition": "FOREIGN KEY (owner_id, date) REFERENCES rise.priority_days(owner_id, date) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_owner_id_goal_id_milestone_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id, milestone_id) REFERENCES rise.goal_milestones(owner_id, goal_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "fajr_acknowledgments",
+        "name": "fajr_acknowledgments_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "fajr_plans",
+        "name": "fajr_plans_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "goal_habits",
+        "name": "goal_habits_owner_id_goal_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id) REFERENCES rise.goals(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "goal_habits",
+        "name": "goal_habits_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "goal_habits",
+        "name": "goal_habits_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "goal_milestones",
+        "name": "goal_milestones_owner_id_goal_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id) REFERENCES rise.goals(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "goal_milestones",
+        "name": "goal_milestones_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "goals",
+        "name": "goals_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habit_days",
+        "name": "habit_days_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habit_occurrences",
+        "name": "habit_occurrences_owner_id_date_fkey",
+        "definition": "FOREIGN KEY (owner_id, date) REFERENCES rise.habit_days(owner_id, date) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "habit_occurrences",
+        "name": "habit_occurrences_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "habit_occurrences",
+        "name": "habit_occurrences_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habit_versions",
+        "name": "habit_versions_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "habit_versions",
+        "name": "habit_versions_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habits",
+        "name": "habits_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "personal_receipts",
+        "name": "personal_receipts_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "personal_rewards",
+        "name": "personal_rewards_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "personal_rewards",
+        "name": "personal_rewards_owner_id_goal_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id) REFERENCES rise.goals(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "personal_rewards",
+        "name": "personal_rewards_owner_id_previous_attempt_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, previous_attempt_id) REFERENCES rise.personal_rewards(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "prayer_days",
+        "name": "prayer_days_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_pauses",
+        "name": "prayer_pauses_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_records",
+        "name": "prayer_records_owner_id_date_prayer_fkey",
+        "definition": "FOREIGN KEY (owner_id, date, prayer) REFERENCES rise.prayer_windows(owner_id, date, prayer) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "prayer_records",
+        "name": "prayer_records_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_reminders",
+        "name": "prayer_reminders_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_settings",
+        "name": "prayer_settings_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_windows",
+        "name": "prayer_windows_owner_id_date_fkey",
+        "definition": "FOREIGN KEY (owner_id, date) REFERENCES rise.prayer_days(owner_id, date) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "prayer_windows",
+        "name": "prayer_windows_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "priority_days",
+        "name": "priority_days_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "profiles",
+        "name": "profiles_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table": "reflections",
+        "name": "reflections_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "saved_work_breaks",
+        "name": "saved_work_breaks_owner_id_date_prayer_fkey",
+        "definition": "FOREIGN KEY (owner_id, date, prayer) REFERENCES rise.prayer_windows(owner_id, date, prayer) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "saved_work_breaks",
+        "name": "saved_work_breaks_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_changes",
+        "name": "sync_changes_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_import_pages",
+        "name": "sync_import_pages_owner_id_import_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, import_id) REFERENCES rise.sync_imports(owner_id, id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_imports",
+        "name": "sync_imports_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_state",
+        "name": "sync_state_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      }
+    ],
+    "grants": [
+      {
+        "grantee": "authenticated",
+        "privilege_type": "SELECT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "DELETE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "INSERT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "REFERENCES",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "SELECT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "TRIGGER",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "TRUNCATE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "UPDATE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      }
+    ],
+    "view": [
+      {
+        "relname": "personal_totals",
+        "reloptions": [
+          "security_invoker=true",
+          "security_barrier=true"
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "active_session",
+        "definer": true,
+        "owner": "rise_session_guard",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "deletion_integrations_ready",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "keep_occurrence_snapshot",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "personal_json",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "reject_deleted_session",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "rolname": "rise_bff",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_bff_login",
+        "rolcanlogin": true,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_lifecycle",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_lifecycle_login",
+        "rolcanlogin": true,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_session_guard",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_worker",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_worker_login",
+        "rolcanlogin": true,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      }
+    ],
+    "generatedXp": [
+      {
+        "column_name": "xp",
+        "is_generated": "ALWAYS",
+        "generation_expression": "\nCASE check_kind\n    WHEN 'full'::text THEN 20\n    WHEN 'tiny'::text THEN 10\n    ELSE 0\nEND"
+      }
+    ]
+  },
+  "test": {
+    "postgres": "17.11",
+    "migrations": [
+      "20261021161440",
+      "20261021175616",
+      "20261021180445",
+      "20261021184458",
+      "20261021185411",
+      "20261021185824",
+      "20261021201759",
+      "20261022100855",
+      "20261022101526",
+      "20261022151116",
+      "20261022153308",
+      "20261022153943",
+      "20261022154617",
+      "20261022155753",
+      "20261022161003"
+    ],
+    "tables": [
+      {
+        "schema": "rise",
+        "name": "account_preferences",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "cosmetic_claims",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "daily_priorities",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "fajr_acknowledgments",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "fajr_plans",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "goal_habits",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "goal_milestones",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "goals",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habit_days",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habit_occurrences",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habit_versions",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "habits",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "personal_receipts",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "personal_rewards",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_days",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_pauses",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_records",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_reminders",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_settings",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "prayer_windows",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "priority_days",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "profiles",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "reflections",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "saved_work_breaks",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_changes",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_import_pages",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_imports",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise",
+        "name": "sync_state",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "auth_challenges",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "auth_contexts",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "auth_limits",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "deleted_sessions",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "deletion_jobs",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "deletion_ledger",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "environment",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "server_sessions",
+        "rls": true,
+        "forced": true
+      },
+      {
+        "schema": "rise_private",
+        "name": "synthetic_fixtures",
+        "rls": true,
+        "forced": true
+      }
+    ],
+    "privatePolicies": [
+      {
+        "tablename": "auth_challenges",
+        "policyname": "challenges_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_challenges",
+        "policyname": "challenges_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_lifecycle_delete",
+        "cmd": "DELETE",
+        "roles": "{rise_lifecycle}",
+        "qual": "(EXISTS ( SELECT 1\n   FROM rise_private.deleted_sessions s\n  WHERE (s.context_hash = auth_contexts.id_hash)))",
+        "with_check": null
+      },
+      {
+        "tablename": "auth_contexts",
+        "policyname": "contexts_lifecycle_read",
+        "cmd": "SELECT",
+        "roles": "{rise_lifecycle}",
+        "qual": "(EXISTS ( SELECT 1\n   FROM rise_private.deleted_sessions s\n  WHERE (s.context_hash = auth_contexts.id_hash)))",
+        "with_check": null
+      },
+      {
+        "tablename": "auth_limits",
+        "policyname": "limits_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "auth_limits",
+        "policyname": "limits_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_bff_insert",
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "(user_id = ( SELECT auth.uid() AS uid))"
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_bff_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "tablename": "deleted_sessions",
+        "policyname": "deleted_sessions_lifecycle",
+        "cmd": "ALL",
+        "roles": "{rise_lifecycle}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_bff_insert",
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "(user_id = ( SELECT auth.uid() AS uid))"
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_bff_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "tablename": "deletion_jobs",
+        "policyname": "jobs_lifecycle",
+        "cmd": "ALL",
+        "roles": "{rise_lifecycle}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_bff_insert",
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "((user_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session) AND (EXISTS ( SELECT 1\n   FROM rise_private.server_sessions s\n  WHERE ((s.user_id = ( SELECT auth.uid() AS uid)) AND ((s.provider_session_id)::text = (( SELECT auth.jwt() AS jwt) ->> 'session_id'::text)) AND (s.authenticated_at > (now() - '00:10:00'::interval)) AND (s.authenticated_at <= now())))))"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_bff_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_lifecycle",
+        "cmd": "ALL",
+        "roles": "{rise_lifecycle}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "deletion_ledger",
+        "policyname": "ledger_session_guard",
+        "cmd": "SELECT",
+        "roles": "{rise_session_guard}",
+        "qual": "(user_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "tablename": "environment",
+        "policyname": "environment_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "environment",
+        "policyname": "environment_read",
+        "cmd": "SELECT",
+        "roles": "{rise_bff,rise_lifecycle,rise_worker}",
+        "qual": "singleton",
+        "with_check": null
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "session_guard_private",
+        "cmd": "SELECT",
+        "roles": "{rise_session_guard}",
+        "qual": "(user_id = ( SELECT auth.uid() AS uid))",
+        "with_check": null
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "sessions_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "sessions_bff",
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "true",
+        "with_check": "true"
+      },
+      {
+        "tablename": "server_sessions",
+        "policyname": "sessions_lifecycle_deleted",
+        "cmd": "SELECT",
+        "roles": "{rise_lifecycle}",
+        "qual": "(EXISTS ( SELECT 1\n   FROM rise_private.deletion_ledger d\n  WHERE (d.user_id = server_sessions.user_id)))",
+        "with_check": null
+      },
+      {
+        "tablename": "synthetic_fixtures",
+        "policyname": "fixture_admin",
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true"
+      }
+    ],
+    "privateGrants": [
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "auth_challenges"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "auth_limits"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "environment"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "table_name": "server_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "auth_contexts"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "INSERT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "UPDATE",
+        "table_name": "deleted_sessions"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "UPDATE",
+        "table_name": "deletion_jobs"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "DELETE",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "INSERT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "UPDATE",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "privilege_type": "SELECT",
+        "table_name": "environment"
+      },
+      {
+        "grantee": "rise_session_guard",
+        "privilege_type": "SELECT",
+        "table_name": "deletion_ledger"
+      },
+      {
+        "grantee": "rise_worker",
+        "privilege_type": "SELECT",
+        "table_name": "environment"
+      }
+    ],
+    "privateColumnGrants": [
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "auth_contexts",
+        "column_name": "id_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "deleted_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "deleted_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "deleted_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "user_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deleted_sessions",
+        "column_name": "user_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "attempts",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "attempts",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "attempts",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "last_error",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "last_error",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "last_error",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "next_attempt_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "next_attempt_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "next_attempt_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purge_by",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purge_by",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purge_by",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purged_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purged_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "purged_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "request_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "request_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "request_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "requested_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "requested_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "requested_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "user_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_jobs",
+        "column_name": "user_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "deleted_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "deleted_at",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "deleted_at",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "user_id",
+        "privilege_type": "INSERT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "user_id",
+        "privilege_type": "UPDATE"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "deletion_ledger",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "app_origin",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "created_at",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "environment",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "installation_id",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "provider_project_ref",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "schema_version",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "environment",
+        "column_name": "singleton",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "server_sessions",
+        "column_name": "context_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "server_sessions",
+        "column_name": "id_hash",
+        "privilege_type": "SELECT"
+      },
+      {
+        "grantee": "rise_lifecycle",
+        "table_name": "server_sessions",
+        "column_name": "user_id",
+        "privilege_type": "SELECT"
+      }
+    ],
+    "policies": [
+      {
+        "cmd": "ALL",
+        "roles": "{postgres}",
+        "qual": "true",
+        "with_check": "true",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "cmd": "ALL",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "tables": "{sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "cmd": "DELETE",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session) AND (created_at < (now() - '90 days'::interval)))",
+        "with_check": null,
+        "tables": "{personal_receipts}"
+      },
+      {
+        "cmd": "DELETE",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": null,
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "cmd": "INSERT",
+        "roles": "{rise_bff}",
+        "qual": null,
+        "with_check": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "cmd": "SELECT",
+        "roles": "{authenticated,rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": null,
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "cmd": "UPDATE",
+        "roles": "{rise_bff}",
+        "qual": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "with_check": "((owner_id = ( SELECT auth.uid() AS uid)) AND ( SELECT rise_private.active_session() AS active_session))",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      }
+    ],
+    "foreignKeys": [
+      {
+        "table": "account_preferences",
+        "name": "account_preferences_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "account_preferences",
+        "name": "account_preferences_owner_id_selected_reward_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, selected_reward_id) REFERENCES rise.personal_rewards(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "cosmetic_claims",
+        "name": "cosmetic_claims_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_owner_id_date_fkey",
+        "definition": "FOREIGN KEY (owner_id, date) REFERENCES rise.priority_days(owner_id, date) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_owner_id_goal_id_milestone_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id, milestone_id) REFERENCES rise.goal_milestones(owner_id, goal_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "daily_priorities",
+        "name": "daily_priorities_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "fajr_acknowledgments",
+        "name": "fajr_acknowledgments_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "fajr_plans",
+        "name": "fajr_plans_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "goal_habits",
+        "name": "goal_habits_owner_id_goal_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id) REFERENCES rise.goals(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "goal_habits",
+        "name": "goal_habits_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "goal_habits",
+        "name": "goal_habits_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "goal_milestones",
+        "name": "goal_milestones_owner_id_goal_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id) REFERENCES rise.goals(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "goal_milestones",
+        "name": "goal_milestones_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "goals",
+        "name": "goals_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habit_days",
+        "name": "habit_days_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habit_occurrences",
+        "name": "habit_occurrences_owner_id_date_fkey",
+        "definition": "FOREIGN KEY (owner_id, date) REFERENCES rise.habit_days(owner_id, date) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "habit_occurrences",
+        "name": "habit_occurrences_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "habit_occurrences",
+        "name": "habit_occurrences_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habit_versions",
+        "name": "habit_versions_owner_id_habit_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, habit_id) REFERENCES rise.habits(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "habit_versions",
+        "name": "habit_versions_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "habits",
+        "name": "habits_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "personal_receipts",
+        "name": "personal_receipts_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "personal_rewards",
+        "name": "personal_rewards_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "personal_rewards",
+        "name": "personal_rewards_owner_id_goal_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, goal_id) REFERENCES rise.goals(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "personal_rewards",
+        "name": "personal_rewards_owner_id_previous_attempt_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, previous_attempt_id) REFERENCES rise.personal_rewards(owner_id, id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "prayer_days",
+        "name": "prayer_days_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_pauses",
+        "name": "prayer_pauses_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_records",
+        "name": "prayer_records_owner_id_date_prayer_fkey",
+        "definition": "FOREIGN KEY (owner_id, date, prayer) REFERENCES rise.prayer_windows(owner_id, date, prayer) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "prayer_records",
+        "name": "prayer_records_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_reminders",
+        "name": "prayer_reminders_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_settings",
+        "name": "prayer_settings_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "prayer_windows",
+        "name": "prayer_windows_owner_id_date_fkey",
+        "definition": "FOREIGN KEY (owner_id, date) REFERENCES rise.prayer_days(owner_id, date) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "prayer_windows",
+        "name": "prayer_windows_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "priority_days",
+        "name": "priority_days_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "profiles",
+        "name": "profiles_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table": "reflections",
+        "name": "reflections_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "saved_work_breaks",
+        "name": "saved_work_breaks_owner_id_date_prayer_fkey",
+        "definition": "FOREIGN KEY (owner_id, date, prayer) REFERENCES rise.prayer_windows(owner_id, date, prayer) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "table": "saved_work_breaks",
+        "name": "saved_work_breaks_profile_owner",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES rise.profiles(owner_id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_changes",
+        "name": "sync_changes_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_import_pages",
+        "name": "sync_import_pages_owner_id_import_id_fkey",
+        "definition": "FOREIGN KEY (owner_id, import_id) REFERENCES rise.sync_imports(owner_id, id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_imports",
+        "name": "sync_imports_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      },
+      {
+        "table": "sync_state",
+        "name": "sync_state_owner_id_fkey",
+        "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+      }
+    ],
+    "grants": [
+      {
+        "grantee": "authenticated",
+        "privilege_type": "SELECT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "DELETE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "INSERT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "REFERENCES",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "SELECT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "TRIGGER",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "TRUNCATE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "postgres",
+        "privilege_type": "UPDATE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "DELETE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "INSERT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "SELECT",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_receipts,personal_rewards,personal_totals,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      },
+      {
+        "grantee": "rise_bff",
+        "privilege_type": "UPDATE",
+        "tables": "{account_preferences,cosmetic_claims,daily_priorities,fajr_acknowledgments,fajr_plans,goal_habits,goal_milestones,goals,habit_days,habit_occurrences,habit_versions,habits,personal_rewards,prayer_days,prayer_pauses,prayer_records,prayer_reminders,prayer_settings,prayer_windows,priority_days,profiles,reflections,saved_work_breaks,sync_changes,sync_import_pages,sync_imports,sync_state}"
+      }
+    ],
+    "view": [
+      {
+        "relname": "personal_totals",
+        "reloptions": [
+          "security_invoker=true",
+          "security_barrier=true"
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "active_session",
+        "definer": true,
+        "owner": "rise_session_guard",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "deletion_integrations_ready",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "keep_occurrence_snapshot",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "personal_json",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      },
+      {
+        "name": "reject_deleted_session",
+        "definer": false,
+        "owner": "postgres",
+        "settings": [
+          "search_path=\"\""
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "rolname": "rise_bff",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_bff_login",
+        "rolcanlogin": true,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_lifecycle",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_lifecycle_login",
+        "rolcanlogin": true,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_session_guard",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_worker",
+        "rolcanlogin": false,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      },
+      {
+        "rolname": "rise_worker_login",
+        "rolcanlogin": true,
+        "rolsuper": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false,
+        "rolcreatedb": false
+      }
+    ],
+    "generatedXp": [
+      {
+        "column_name": "xp",
+        "is_generated": "ALWAYS",
+        "generation_expression": "\nCASE check_kind\n    WHEN 'full'::text THEN 20\n    WHEN 'tiny'::text THEN 10\n    ELSE 0\nEND"
+      }
+    ]
+  }
+}

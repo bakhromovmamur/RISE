@@ -1,0 +1,802 @@
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -55,6 +55,8 @@
+ | Fajr | Plan is dated; “I'm up” cancels wake alerts without recording prayer; preview never changes a real acknowledgment |
+ | Sharing | Exact opt-in snapshot; no automatic private-data disclosure or recomputation after publication |
+ | Time | Civil dates plus IANA timezone; absolute instants for dispatch/audit; never server-local time assumptions |
++
++For prayer-calendar changes, use `zonedTime` and `prayerWindowState` for dated real-time comparisons. A manual save must not retain calculated keys/stale UTC timestamps or manufacture prayer records. Keep each manual date's timezone and checked snapshots; handle unavailable dates without sample substitution. Device-timezone observation is local metadata and prompts explicit review rather than changing the selected location.
+ 
+ Verify behavior through the domain interface. Do not duplicate XP, streak, reward or prayer calculations in screen components.
+ 
+--- before/ARCHITECTURE.md
++++ after/ARCHITECTURE.md
+@@ -157,6 +157,20 @@
+ Account planning timezone governs personal dates. Travel changes it explicitly for future planning; historical occurrence identities do not move. A group stores its own timezone for repeating family tasks, defaulted from its creator. Show the group timezone when it differs; do not silently shift an existing task's civil date.
+ 
+ Client clocks support offline actions but are untrusted for invitation expiry, sessions, audit ordering and job execution. Server time controls those decisions. A clock discrepancy produces a warning; it never rewrites recorded user intent.
++
++### Implemented prayer calendar (PRAY-01)
++
++`src/domain/zonedTime.ts` owns Gregorian date validation, IANA date/clock formatting and manual wall-clock resolution. It rejects nonexistent clocks and skipped dates; an ambiguous repeated clock resolves to the first occurrence. `prayerCalculation.ts` still uses Adhan 4.4.6 and tz-lookup 6.1.25. Around the international date line it recalculates the adjacent solar UTC date whose solar noon belongs to the requested local date; it never shifts an existing instant or invents a missing event. Parameter conventions and astronomical starts remain unchanged by planned offsets. If an explicitly selected timezone is still on the previous civil date during first setup, the prayer tracking start extends to that date so its current window remains recordable; existing dated records are not reassigned.
++
++`calendar.refresh` runs on startup, focus/resume and the existing timers. It extends 30 dates from the calculation timezone without pruning earlier history. Checked entries retain their exact snapshots; date-specific manual timetables retain their source, zone and entries. Failed/polar calculations leave dates unavailable. `getCurrentPrayerDay` keeps obsolete calculated locations out of the active view and schedule while `getPrayerDay` still exposes saved history.
++
++`prayer.timetable` validates the complete dated timetable before preferences or state change. `saveTimetable` removes calculation metadata, rebuilds unchecked UTC instants from the submitted clocks/zone and preserves previously checked entries. Caller-supplied check fields cannot create prayer records. An unresolved manual date cannot create a partial alert plan. Recognizable older manual edits that retained a calculation key are preserved without rewriting their snapshot; their authored clocks govern live windows. An authored source differing from the original key identifies a legacy manual date. A clock-only difference with the calculated source is ambiguous with timezone-rule drift: retain it, withhold active windows/alerts and offer explicit manual review. A completely unchanged save with identical calculated source/times has no distinguishable legacy authorship marker; raw migration/recovery sources remain available.
++
++`PrayerMoment.instant` and `prayerWindowState` provide one real-time comparison for status, prompts, recording guards and work-break expiry. Dated UTC windows remain authoritative across DST and travel; manual clocks resolve in the saved day's timezone. Demo scenes keep their civil-minute clock. These changes do not automatically record a prayer, add XP or alter a checked entry.
++
++Optional `life.deviceTimezone` stores the last observed device-zone identifier and the accepted review baseline (an initial matching zone, or a later explicit keep/save). `calendar.refresh` captures the observation in its validated command. `prayer.location-reviewed` acknowledges that exact observation, and a successful calculated-setup save also acknowledges it. Observation never changes the planning timezone or requests location permission. The marker is device-local and omitted from portable backups; raw same-device recovery retains it. Database version 1, repository formats 1/2, domain schema 4 and backup format 1 remain compatible.
++
++The [PRAY-01 report](docs/evidence/prayer-timetable-2026-10-21/README.md) records the pinned reference vectors, runtime/ICU/tz-data versions, browser probes, preservation checks and limits. Browser Intl does not expose a tz-data version; report actual engine versions and behavior evidence instead of inventing one.
+ 
+ ## 5. Proposed relational model
+ 
+--- before/PRODUCT.md
++++ after/PRODUCT.md
+@@ -16,6 +16,8 @@
+ ## Operating Context
+ Local mobile app with Today, Journey, Progress and You tabs; 375/393/430 px browser review widths and a desktop phone preview. Fresh production browser storage opens an empty personal profile with real device date/time; native first launch remains empty. The isolated review build on port 4174 opens the labelled Daily life fixture on 2026-10-19 in Asia/Tashkent. Production URLs cannot enable fixtures, the simulated clock or the design-system viewer. Existing profiles migrate without replacement. A habit-only legacy profile does not gain invented prayer accomplishments during production migration. IndexedDB migration now validates legacy versions 1–4, preserves the exact source and verifies readback before edits. Profile changes and local operation receipts commit atomically; competing tabs cannot silently overwrite a revision. Settings → Your data contains save status, dated migration counts, provenance and recovery download. Storage failure offers retry and unsaved/device export; corrupt data cannot silently reset the profile. Sample/mixed history is retained locally with cloud import blocked pending future review/consent. Versioned private backup and validated restore are implemented: a cancelable worker checks files, a preview reports counts/dates/XP/overlaps/conflicts/removals, and explicit replacement atomically saves a pre-import recovery point. The previous device profile can be previewed and restored exactly. Imported collaboration records remain in a read-only local archive, with no live membership. Device delivery is disabled on portable restore. Personal flows now dispatch validated durable commands, including habit creation/editing, timer lifecycle and atomic completion, ordered priorities, goal/reward management, collections, reflections, settings, prayer planning and work notes. Form drafts survive navigation/reload; success toasts wait for durable saves. Stable operation IDs and captured action dates prevent retries from recreating entities or shifting dates. Local collaboration simulations retain the compatibility setter; nothing is uploaded. Fresh Start uses device date/timezone. Saving real prayer setup explicitly switches to the real date in the selected location’s time zone while retaining existing records and XP. Reviewer fixture loading replaces local data; a release URL does not. The explicitly selected Full day and Difficult day fixtures support cumulative rehearsals; the latter begins with labelled fictional prior accomplishments and unrecorded current-day Fajr. Day checkpoint changes only demo time while retaining actions and drafts, with checkpoints sorted chronologically and the after-Asr time derived from that day’s window. Russian covers the complete interface, including older screens, forms, errors, accessibility names and prototype controls. English and existing Uzbek Latin paths remain available; Uzbek coverage retains shared navigation and newer Daily life screens. Real prayer setup and delivery status support all three languages. Saved authored content remains unchanged in every language. Explicit fixture loading retains the selected language and localizes built-in examples for Russian.
+ ## Capabilities and Constraints
++Prayer-calendar update, 21 October 2026 (PRAY-01): startup/resume extend 30 dated calculations; selected methods/Asr/high-latitude rules and offsets remain. Device-timezone changes offer explicit location review. Manual dates have their own timezone and rebuilt UTC windows, retain their checked snapshots and survive later calculation changes. Invalid/DST-gap dates and unavailable solar events lead to manual recovery. Live status and recording controls use the same instants as alert planning, including saved travel dates. Existing styles, artwork, four tabs, XP and explicit prayer/Fajr semantics remain. [Verification evidence](docs/evidence/prayer-timetable-2026-10-21/README.md).
++
+ Today leads with prayer context and three saved priorities. Only the first unfinished habit expands its full/tiny actions, including when a milestone or family task precedes it; the other priorities use compact completion rows. Completed selections stay complete without replacement. Habit details retain tiny, upgrade, Undo and linked goals. Two quiet reward rows follow priorities. My routine, Family and Your goals open inline from summaries/counts; Family is present when a family space is available. Today has one city/source timetable entry, with Record retained when available. The timetable button’s accessible name preserves the complete visible label in English, Uzbek and Russian. The single Fajr entry moves below prayers from Maghrib. An active prayer break remains prominent, while a completed return note sits lower. A due prayer takes primary-action emphasis. These Today rules preserve schema, domain calculations, APIs and existing saved data.
+ 
+ Progress opens with three closed native summaries for Salah, Habits and Goals, one Rewards in Journey link, then one reflection entry. The link reports current reward availability, separate from the selected week, and replaces repeated reward detail cards. Overview, Salah, Habits and Goals retain one Monday–Sunday selector. Prayer calendars and daily habit charts remain visible in their views; cumulative prayer milestones, individual habits and lifetime statistics open on demand. Embedded habit progress omits duplicate observation/reflection blocks. Goals separate selected-week completions from current overall progress. Journey owns reward conditions, management and Pip’s lifetime XP. Opening summaries changes no saved records; schema 4 is unchanged.
+--- before/README.md
++++ after/README.md
+@@ -121,6 +121,14 @@
+ One pre-import recovery point remains until the next restore/rollback or explicit clear. The original localStorage source is also retained until clearing. An old client changing it causes recovery mode, not an automatic overwrite. Restore and clear advance the repository envelope to format 2 so older DATA-01 clients fail closed. Application rollback must retain support for database version 1, repository formats 1/2 and the expanded personal command receipts with captured context; older clients fail closed on unknown receipts. Old localStorage-only assets are incompatible. Raw recovery archives preserve unrecognized or unsupported data but are not accepted by the normal restore screen.
+ 
+ IndexedDB completion confirms a device save; browser eviction, user clearing, private browsing and device loss still require an exported backup. Permission to request persistent storage and offline app-shell installation are separate PWA work. No private profile or operation is uploaded. Personal actions now use validated commands with stable operation IDs and captured action dates/instants. Habits, timers, priorities, goals, rewards, notes, settings and prayer plans commit with their replay receipts; timer completion and its check-in are one transaction. Drafts survive sheet navigation and reload. Save confirmations wait for transaction completion. The whole-profile compatibility setter remains only for local family/squad simulations and isolated review controls. See the [DATA-03 evidence](docs/evidence/personal-commands-2026-10-21/README.md).
++
++## Prayer dates and travel
++
++Prayer setup keeps the existing methods, Asr conventions, high-latitude rules and planned offsets. Startup and resume extend 30 civil dates in the selected timezone. Calculations also support date-line locations and fractional offsets. A detected device-timezone change offers a review; your selected prayer location changes only through an explicit save.
++
++A manual timetable belongs to one date and its own editable timezone. Saving it rebuilds UTC timestamps from the authored clocks and removes the recalculation key. Refresh and later location/method changes retain manual dates and checked entries. DST gaps and unavailable solar events require corrected times or a trusted manual source; they never produce sample replacements. Repeated manual clocks use the first occurrence of that clock. Ambiguous older clock-only changes remain saved and require explicit timetable review before alerts. Prayer status and recording controls compare the same absolute windows used for alerts, including a manual date kept after travel.
++
++See the [PRAY-01 evidence](docs/evidence/prayer-timetable-2026-10-21/README.md) and [published calculation references](tests/fixtures/prayer-references.README.md). Coordinate lookup stays local; no background location collection or new external service is introduced. Browser notification delivery retains its existing best-effort limits.
+ 
+ ## Protect the existing profile
+ 
+--- before/SECURITY.md
++++ after/SECURITY.md
+@@ -33,6 +33,8 @@
+ DATA-03 routes personal UI actions through runtime-checked intents and stable local operation envelopes. The profile and receipt commit atomically; failed writes retain the prior durable profile and the unsaved snapshot for export/retry. Command context captures the action date, timezone and instant for deterministic retries. It is local provenance, not trusted server time or identity. Draft writes cannot modify records outside the draft collection; form submission uses explicit commands and domain validation.
+ 
+ Local domain receipts now contain private command payloads, which can include earlier drafts, work notes, prayer/pause information and location settings. Treat the database and raw recovery archives as sensitive. Portable backups exclude operation history and project only the current supported state; they now include habit-edit, goal, reward, priority, reflection and onboarding drafts. Receipts remain local and cloud-ineligible, with no sender or automatic retention pruning. Explicit clearing removes them; future retention/compaction and cloud projections must preserve replay protection and deletion requirements.
++
++PRAY-01 keeps calculation, coordinate-to-zone lookup and travel detection on the device. Travel detection reads the device timezone identifier, not location coordinates. The optional observed/reviewed timezone marker and its command receipts are private device metadata; portable backups omit the marker. No routine outbound serializer, account sync or background geolocation is added. Explicit manual saves validate the selected date/zone before commit, and unavailable dates cannot produce an alert plan. Legacy recovery sources and existing checked/manual records remain preserved. Ambiguous legacy clock-only changes are withheld from alerts until explicit manual review. Browser/OS timezone databases still require current device software; automated engine checks are not physical-device certification.
+ 
+ Browser eviction, user storage clearing and loss before a transaction acknowledges remain possible. No account, server backup, remembered-device consent implementation or physical-device durability claim is implied by local tests. Forced termination before acknowledgment is not treated as a successful save.
+ 
+--- before/TASKS.md
++++ after/TASKS.md
+@@ -135,10 +135,11 @@
+ 
+ #### PRAY-01 — Verify timetable, travel and manual-date behavior
+ 
+-- [ ] **Status: TODO · P0 · M · Owner: Engineering/QA · Depends: DATA-01**
++- [x] **Status: DONE · P0 · M · Owner: Engineering/QA · Depends: DATA-01**
+ - Preserve Adhan/method/Asr/high-latitude settings and 30-day refresh; add reference-city, DST, non-hour zone, travel and unavailable-solar-event cases.
+ - Keep coordinates local and prior checked/manual snapshots unchanged. Record calculation-library/tz-data versions.
+ - Accept when all PRD-09 cases pass without using fabricated fallback times.
++- Completed 21 October 2026: dated manual saves rebuild UTC windows, travel review is explicit, checked/manual history survives refresh, ambiguous legacy dates await review and unavailable solar events never use samples. [PRAY-01 evidence](docs/evidence/prayer-timetable-2026-10-21/README.md): 403 reference dates, 126 unit/tooling tests, 342 full journey regressions, 75 final prayer/delivery checks, 39 production checks and 720 unchanged visual comparisons. The report records the final guard and verification scope; device/push certification remains separate.
+ 
+ #### PRAY-02 — Harden records, pause and dated Fajr semantics
+ 
+--- before/VERIFICATION.md
++++ after/VERIFICATION.md
+@@ -380,3 +380,12 @@
+ The final `npm run check` passed 104 unit/domain/tooling cases, lint/types and both builds. All 297 browser journeys and 27 production checks passed in Chromium 156.0.8078.4, WebKit 27.2 and Firefox 157.0, with no skipped/flaky cases. The final project-folder visual run matched all 720 screenshots across 48 variants exactly; no golden changed. CSS, artwork, design authority and dependencies are unchanged. Database version 1, repository formats 1/2 and domain schema 4 remain compatible; newer command receipts require compatible application assets on rollback.
+ 
+ Failure tests use real IndexedDB transactions and cover queued retry, lost commit response, conflicting sessions, exact legacy retention, draft reload and timer recovery. An initial goal-save failure caused by undefined optional dates was corrected and the unchanged browser scenarios rerun. No physical-device, cloud-sync, PWA/background-delivery or deployment claim is made. The personal 4173 profile was not accessed. Local collaboration simulations/review retain their compatibility setter. See the [DATA-03 report](docs/evidence/personal-commands-2026-10-21/README.md) and [machine-readable verification](docs/evidence/personal-commands-2026-10-21/verification.json), including the earlier temporary verification workspace used during iCloud offloading and final project-folder runs with source/build hashes.
++
++
++## 21 October 2026 — PRAY-01 timetable, travel and manual dates
++
++PRD-09 verification now covers 403 pinned Adhan reference dates (2,418 solar-time comparisons), all offered settings, DST/fractional/date-line cases, launch-region offsets, five host zones, rolling 30-date coverage and unavailable solar events. Manual saves own one date/zone, clear calculation keys and rebuild unchecked UTC windows. Checked/manual snapshots and original recovery sources remain. Travel prompts explicit review; live status/recording uses actual instants. Ambiguous legacy clock-only differences remain saved and await manual review, retaining unresolved streak gaps.
++
++`npm run check` passed **126 unit/tooling tests** and both builds. The broad three-engine suite passed **342 journeys**. After the final legacy-review phase/detail guard, **75 focused prayer/delivery browser checks**, **39 production-entry checks** and **720 exact visual comparisons** passed on the completed build, with zero failed/skipped/flaky browser cases or regenerated references. A scoped manual-form reflow correction fixes large Russian text at 320 px. Existing design authorities/artwork remain unchanged. [Evidence, versions, source/build hashes and precise run scope](docs/evidence/prayer-timetable-2026-10-21/README.md).
++
++The main 4173 profile was not used for fixtures or verification. No database/repository/domain/backup format or dependency version changed. This is local browser/calendar evidence, not physical-device, remote-push, offline-cold-start or complete product-release certification. PRAY-02 remains the next task.
+--- before/src/App.tsx
++++ after/src/App.tsx
+@@ -251,7 +251,8 @@
+   }, []);
+   useEffect(() => {
+     const refresh = () =>
+-      dispatch({ kind: "calendar.refresh" });
++      dispatch({ kind: "calendar.refresh", deviceTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone });
++    refresh();
+     const timer = setInterval(refresh, 15000);
+     window.addEventListener("focus", refresh);
+     return () => {
+--- before/src/Balanced.tsx
++++ after/src/Balanced.tsx
+@@ -5,6 +5,7 @@
+ import { FamilyToday, TaskRow } from "./Groups";
+ import { activePause } from "./lifeModel";
+ import { useText } from "./LifeUI";
++import { PrayerLocationReview } from "./PrayerLive";
+ import { Button, GroupRow, SectionTitle, TabHeading } from "./components";
+ import { HabitCard } from "./Today";
+ import { HabitProgress } from "./Explore";
+@@ -16,7 +17,7 @@
+   spotlightReward, weekGoalMovement, weeklyHabits, type ProgressView,
+ } from "./developmentModel";
+ import {
+-  PRAYERS, clockText, getPrayerDay, minuteOf, phaseLabel,
++  PRAYERS, clockText, getCurrentPrayerDay, getPrayerDay, minuteOf, phaseLabel, prayerDayOrigin,
+   prayerName, prayerPhase, prayerProminence, preparationDate, weeklyPrayers,
+ } from "./prayerModel";
+ 
+@@ -47,7 +48,9 @@
+ function PrayerOverview() {
+   const t = useText();
+   const prayerOptions = PRAYERS.map((item) => ({ ...item, name: t(item.name) }));
+-  const { state, dispatch, open } = useApp(), now = usePrayerClock(), day = getPrayerDay(state, now.date);
++  const { state, dispatch, open } = useApp(), now = usePrayerClock(), day = getCurrentPrayerDay(state, now.date);
++  const savedDay = getPrayerDay(state, now.date), needsReview = !!savedDay && prayerDayOrigin(savedDay) === "review";
++  const recover = !!state.life.calculation || needsReview;
+   const { next, level, canRecord } = prayerProminence(state, now);
+   const pending = day ? prayerOptions.filter(({ id }) => prayerPhase(state, now.date, id, now) === "unconfirmed") : [];
+   const start = () => {
+@@ -75,7 +78,8 @@
+       </div>}
+       {pending.length > 0 && <button className="pending-inline" onClick={() => open({ type: "prayer", date: now.date, prayer: pending[0].id })}>{t("{0} pending {1} · No assumption made", undefined, [pending.length, pending.length === 1 ? "record" : "records"])}<ChevronRight size={15} /></button>}
+       <TodayPrayerMeta />
+-    </> : <div className="empty-prayer"><Sunrise size={23} /><div><h2>{t("Salah comes first.")}</h2><p>{t("Choose your city to preview a daily prayer plan.")}</p></div><Button variant="secondary" onClick={() => open({ type: "prayerSetup" })}>{t("Set up prayer times")}</Button></div>}
++    </> : <div className="empty-prayer"><Sunrise size={23} /><div><h2>{needsReview ? t("Review saved prayer times", "Saqlangan namoz vaqtlarini tekshiring") : recover ? t("Prayer times unavailable", "Namoz vaqtlari mavjud emas") : t("Salah comes first.")}</h2><p>{needsReview ? t("Compare this saved date with a trusted timetable and time zone, then save again.", "Bu saqlangan sanani ishonchli jadval va vaqt mintaqasi bilan solishtiring, so‘ng qayta saqlang.") : recover ? t("Check your location and method, or use a trusted timetable for this date.", "Joylashuv va usulni tekshiring yoki bu sana uchun ishonchli jadvaldan foydalaning.") : t("Choose your city to preview a daily prayer plan.")}</p></div><Button variant="secondary" onClick={() => open({ type: recover ? "timetable" : "prayerSetup", date: now.date })}>{recover ? t("Enter a timetable manually", "Jadvalni qo‘lda kiritish") : t("Set up prayer times")}</Button></div>}
++    {!day && <PrayerLocationReview />}
+   </section>;
+ }
+ export function BalancedToday() {
+--- before/src/Life.tsx
++++ after/src/Life.tsx
+@@ -4,10 +4,10 @@
+ import { Button, GroupRow, SectionTitle, Toggle } from "./components";
+ import { LifeIntro, PreviewLabel, PrivacyNote, useLifeDraft, useText } from "./LifeUI";
+ import { CITIES, activePause, alarmTimes, illustrativeDay, isPrayerExcluded, type LifeState, type Readiness } from "./lifeModel";
+-import { PRAYERS, clockText, endMinute, getPrayerDay, minuteOf, prayerMoment, prayerPhase, preparationDate, type PrayerId } from "./prayerModel";
++import { PRAYERS, clockText, endMinute, getCurrentPrayerDay, getPrayerDay, isManualPrayerDay, minuteOf, prayerMoment, prayerPhase, preparationDate, type PrayerId } from "./prayerModel";
+ import { usePrayerClock } from "./Prayers";
+ import { addDays, today } from "./model";
+-import { DeliverySummary, LiveAlarmReadiness, LivePrayerSetup, useLiveText } from "./PrayerLive";
++import { DeliverySummary, LiveAlarmReadiness, LivePrayerSetup, PrayerLocationReview, useLiveText } from "./PrayerLive";
+ import { usePrayerDelivery } from "./PrayerDeliveryProvider";
+ import { deliveryPlatform, stopAlarmAudio } from "./prayerDelivery";
+ 
+@@ -29,13 +29,14 @@
+   const t = useText();
+   const l = useLiveText();
+   const { state, open } = useApp(), pause = activePause(state);
+-  const setupLabel = state.mode !== "demo" && state.life.calculation ? state.life.calculation.label : state.life.setup.configured
++  const day = state.mode !== "demo" ? getCurrentPrayerDay(state, today(state)) : undefined;
++  const setupLabel = day && !day.sample && isManualPrayerDay(day) ? `${day.source} · ${day.timezone}` : state.mode !== "demo" && state.life.calculation ? state.life.calculation.label : state.life.setup.configured
+     ? `${t(state.life.setup.city)} · ${state.life.setup.source === "local" ? t("local demo", "jadval namunasi") : t("calculated demo", "hisob namunasi")}`
+     : t("Prayer setup", "Namoz sozlamalari");
+-  return <div className="today-prayer-meta">
++  return <><div className="today-prayer-meta">
+     <button aria-label={state.life.setup.configured ? `${t("Prayer times", "Namoz vaqtlari")}: ${setupLabel}` : undefined} onClick={() => open({ type: "prayerSetup" })}><MapPin size={14} />{setupLabel}<ChevronRight size={14} /></button>
+     <button onClick={() => open({ type: pause ? "period" : "readiness" })}>{pause ? <Pause size={14} /> : <AlarmClock size={14} />}{pause ? t("Private pause", "Shaxsiy tanaffus") : state.mode !== "demo" ? l("Check alerts", "Signallarni tekshirish", "Проверить сигналы") : state.life.readiness === "ready" ? t("Ready · preview", "Tayyor · namuna") : t("Alarm preview", "Signal namunasi")}<ChevronRight size={14} /></button>
+-  </div>;
++  </div><PrayerLocationReview /></>;
+ }
+ 
+ export function PauseSummary() {
+--- before/src/PrayerDeliveryProvider.tsx
++++ after/src/PrayerDeliveryProvider.tsx
+@@ -19,7 +19,7 @@
+   const latest = useRef(state); latest.current = state;
+   const [status, setStatus] = useState(emptyDeliveryStatus), [revision, bump] = useState(0);
+   const key = JSON.stringify([state.mode, state.prayers.days, state.prayers.fajr, state.prayers.prepared, state.prayers.preferences, state.life.delivery, state.life.reminderRules, state.life.pauses, state.life.backupEnabled, state.life.language]);
+-  const refresh = useCallback(() => { dispatch({ kind: "calendar.refresh" }); bump(n => n + 1); }, [dispatch]);
++  const refresh = useCallback(() => { dispatch({ kind: "calendar.refresh", deviceTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone }); bump(n => n + 1); }, [dispatch]);
+   const acknowledge = useCallback((date: string) => { stopAlarmAudio(); dispatch({ kind: "fajr.acknowledge", date }); }, [dispatch]);
+   const receive = useCallback((unknown: unknown, awake = false) => {
+     const event = unknown as PrayerAlert | undefined;
+--- before/src/PrayerLive.tsx
++++ after/src/PrayerLive.tsx
+@@ -14,6 +14,17 @@
+ export function useLiveText() {
+   const { state } = useApp();
+   return (en: string, uz: string, ru: string) => state.life.language === "ru" ? ru : state.life.language === "uz" ? uz : en;
++}
++export function PrayerLocationReview() {
++  const { state, dispatch, open } = useApp(), l = useLiveText();
++  const device = state.life.deviceTimezone;
++  if (state.mode === "demo" || (!state.life.setup.configured && !Object.keys(state.prayers.days).length) || !device || device.observed === device.reviewed) return null;
++  return <div className="group" role="status">
++    <GroupRow icon={<MapPin size={20} />} title={l("Review your prayer location", "Namoz joylashuvini tekshiring", "Проверьте место молитв")}
++      detail={`${l("Device time zone changed", "Qurilma vaqt mintaqasi o‘zgardi", "Часовой пояс устройства изменился")}: ${device.observed}. ${l("Prayer time zone", "Namoz vaqt mintaqasi", "Часовой пояс молитв")}: ${state.timezone}.`}
++      onClick={() => open({ type: "prayerSetup", live: true })} />
++    <Button variant="ghost" className="wide" onClick={() => dispatch({ kind: "prayer.location-reviewed", timezone: device.observed })}>{l("Keep my current prayer location", "Joriy namoz joylashuvini saqlash", "Оставить текущее место молитв")}</Button>
++  </div>;
+ }
+ export function LivePrayerSetup() {
+   const { state, dispatch, open, toast } = useApp(), l = useLiveText(), t = useText();
+--- before/src/Prayers.tsx
++++ after/src/Prayers.tsx
+@@ -9,9 +9,9 @@
+ import { HabitCard } from "./Today";
+ import { formatDate, today } from "./model";
+ import {
+-  PRAYERS, clockText, elapsedMinute, endMinute, getPrayerDay,
++  PRAYERS, clockText, endMinute, getPrayerDay,
+   minuteOf, nextPrayer, phaseLabel, prayerDateAdd, prayerMoment, prayerName,
+-  prayerPhase, prayerStreak, prayerTotals, preparationDate, 
++  prayerDayOrigin, prayerPhase, prayerStreak, prayerTotals, prayerWindowState, preparationDate,
+   validateTimetable, wrapRemaining,
+   type PrayerCheck, type PrayerDay, type PrayerId, type PrayerMoment,
+ } from "./prayerModel";
+@@ -125,8 +125,11 @@
+   const now = usePrayerClock(), day = getPrayerDay(state, date), entry = day?.entries[id];
+   if (!entry) return <div className="prayer-detail"><h1>{t(prayerName(id))}</h1><p>{t("No timetable was entered for ")}{t.shortDate(date)}.</p>
+     <Button onClick={() => open({ type: "timetable", date })}>{t("Add this day’s times")}</Button></div>;
++  if (day && !entry.check && prayerDayOrigin(day) === "review") return <div className="prayer-detail"><h1>{t(prayerName(id))}</h1>
++    <p className="muted">{t("Compare this saved date with a trusted timetable and time zone, then save again.", "Bu saqlangan sanani ishonchli jadval va vaqt mintaqasi bilan solishtiring, so‘ng qayta saqlang.")}</p>
++    <Button className="wide" onClick={() => open({ type: "timetable", date })}>{t("Enter a timetable manually", "Jadvalni qo‘lda kiritish")}</Button></div>;
+   const phase = prayerPhase(state, date, id, now), streak = prayerStreak(state, id, now);
+-  const elapsed = elapsedMinute(date, now), started = elapsed >= minuteOf(entry.begins), ended = elapsed >= endMinute(entry);
++  const window = prayerWindowState(state, date, id, now), started = !!window?.started, ended = !!window?.ended;
+   const needsRecovery = entry.check === "missed" || entry.check === "later";
+   const log = (check: PrayerCheck | null) => {
+     dispatch({ kind: "prayer.record", date, prayer: id, check, returnToWork: "if-recorded" });
+@@ -180,7 +183,7 @@
+   }
+   return <form className="prayer-form" onSubmit={(e) => {
+     e.preventDefault();
+-    const message = validateTimetable(draft);
++    const message = validateTimetable(draft, date);
+     if (!date || message) { setError(message || "Choose a date for these times."); return; }
+     if (!dispatch({ kind: "prayer.timetable", date, day: draft, preferences })) return;
+     setError(""); setSaved(true); toast(t("Timetable saved for {0}.", undefined, [t.shortDate(date)]));
+@@ -188,7 +191,8 @@
+     <h1>{t("Your day’s anchors.")}</h1><p className="muted">{t("Use the timetable you follow for prayer windows and your preferred time for each prayer.")}</p>
+     <label className="field">{t("Date")}<input type="date" value={date} min={state.prayers.started} required onChange={(e) => changeDate(e.target.value)} /></label>
+     <label className="field">{t("Timetable source")}<input value={draft.source} placeholder={t("Your mosque or trusted timetable")} maxLength={100} onChange={(e) => { setDraft({ ...draft, source: e.target.value }); setSaved(false); }} /></label>
+-    <p className="prayer-form-note">{state.mode === "demo" ? t("These sample times are for exploring the prototype. ") : ""}{t("Times use ")}{state.timezone}{t(". Save each date separately; prayer times can change every day.")}</p>
++    <label className="field">{t("Time zone", "Vaqt mintaqasi")}<input value={draft.timezone} required onChange={e => { setDraft({ ...draft, timezone: e.target.value }); setSaved(false); }} placeholder="Asia/Tashkent" /></label>
++    <p className="prayer-form-note">{state.mode === "demo" ? t("These sample times are for exploring the prototype. ") : ""}{t("Times use ")}{draft.timezone}{t(". Save each date separately; prayer times can change every day.")}</p>
+     {prayerOptions.map(({ id, name }) => <fieldset className="prayer-time-fields" key={id}>
+       <legend><PrayerIcon id={id} size={19} />{name}</legend>
+       <div>{(["begins", "target", "ends"] as const).map((key) => <label className="field" key={key}>
+@@ -282,7 +286,7 @@
+   };
+   const seconds = wrapRemaining(work, clock), name = t(prayerName(work.prayer));
+   const phase = prayerPhase(state, work.date, work.prayer, now), entry = getPrayerDay(state, work.date)?.entries[work.prayer];
+-  const expired = !!entry && elapsedMinute(work.date, now) >= endMinute(entry);
++  const expired = !!entry && !!prayerWindowState(state, work.date, work.prayer, now)?.ended;
+   const record = () => open({ type: "prayer", prayer: work.prayer, date: work.date });
+   const leaveUnrecorded = () => { change({ stage: "returned" }); returnToToday(); };
+   const reminders = state.prayers.preferences.reminders, gentle = state.prayers.preferences.style === "gentle";
+--- before/src/contracts/personalCommands.ts
++++ after/src/contracts/personalCommands.ts
+@@ -26,7 +26,7 @@
+   | { kind: "draft.clear"; key: string }
+   | { kind: "onboarding.finish"; name: string; reminders: boolean; habits: { draft: HabitDraft; newId: string }[] }
+   | { kind: "onboarding.skip" }
+-  | { kind: "calendar.refresh" }
++  | { kind: "calendar.refresh"; deviceTimezone?: string }
+   | { kind: "work.begin"; date: string; prayer: PrayerId }
+   | { kind: "work.note"; date: string; prayer: PrayerId; note: string }
+   | { kind: "work.stage"; date: string; prayer: PrayerId; stage: "save" | "away" | "returned" }
+@@ -65,7 +65,7 @@
+   "reflection.save": { date: v.date, reflection: exact({ manageable: text, smaller: text }) },
+   "draft.save": { key: id, value: v.validateJson }, "draft.clear": { key: id },
+   "onboarding.finish": { name: v.string(80), reminders: v.bool, habits: v.array(exact({ draft: habitDraft, newId: id }), 3) },
+-  "onboarding.skip": {}, "calendar.refresh": {},
++  "onboarding.skip": {}, "calendar.refresh": { deviceTimezone: v.optional(v.zone) },
+   "work.begin": { date: v.date, prayer }, "work.note": { date: v.date, prayer, note: text },
+   "work.stage": { date: v.date, prayer, stage: v.oneOf("save", "away", "returned") }, "work.wrap": { date: v.date, prayer },
+ };
+--- before/src/contracts/prayerCommands.ts
++++ after/src/contracts/prayerCommands.ts
+@@ -10,6 +10,7 @@
+   | { kind: "prayer.sample-setup"; setup: State["life"]["setup"] }
+   | { kind: "prayer.calculated-setup"; settings: CalculationSettings; offsets: Record<PrayerId, number> }
+   | { kind: "prayer.timetable"; date: string; day: PrayerDay; preferences: State["prayers"]["preferences"] }
++  | { kind: "prayer.location-reviewed"; timezone: string }
+   | { kind: "fajr.plan"; date: string; plan: FajrPlan; backupEnabled?: boolean }
+   | { kind: "fajr.alarm"; alarm: NonNullable<State["life"]["alarm"]> }
+   | { kind: "delivery.preferences"; changes: { enabled?: boolean; sound?: boolean } }
+@@ -23,6 +24,7 @@
+   "prayer.preferences": { changes: exact(Object.fromEntries(Object.entries(prefs).map(([key, check]) => [key, v.optional(check)]))) },
+   "prayer.reminder": { prayer, phase: v.oneOf("preparation", "due"), enabled: v.bool },
+   "prayer.sample-setup": { setup: exact({ configured: v.bool, city: v.string(160), source: v.oneOf("local", "calculated"), offsets }) },
++  "prayer.location-reviewed": { timezone: v.zone },
+   "prayer.calculated-setup": { settings: exact({ latitude: v.number(-90, 90), longitude: v.number(-180, 180), timezone: v.zone, label: v.string(160), method: v.oneOf("Karachi", "MuslimWorldLeague", "NorthAmerica", "Egyptian", "UmmAlQura", "MoonsightingCommittee", "Singapore", "Tehran"), madhab: v.oneOf("Hanafi", "Shafi"), highLatitude: v.oneOf("MiddleOfTheNight", "SeventhOfTheNight", "TwilightAngle") }), offsets },
+   "prayer.timetable": { date: v.date, preferences: exact(prefs), day: exact({ source: text, sample: v.bool, timezone: v.zone, calculationKey: v.optional(text), sunrise: v.optional(v.clock), entries: prayers(exact({ begins: v.clock, target: v.clock, ends: v.clock, beginsAt: v.optional(v.instant), targetAt: v.optional(v.instant), endsAt: v.optional(v.instant), check: v.optional(v.oneOf("on_time", "later", "missed")), performedAt: v.optional(v.clock), recordedAt: v.optional(v.instant) })) }) },
+   "fajr.plan": { date: v.date, plan: exact({ bedtime: v.clock, wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool }), backupEnabled: v.optional(v.bool) },
+--- before/src/data/storedState.ts
++++ after/src/data/storedState.ts
+@@ -40,7 +40,7 @@
+ const task = v.shape({ id: v.id, groupId: v.id, title, notes: text, assignee: v.emptyOr(v.id), date: v.date, time: v.emptyOr(v.clock), weekdays: days, archived: v.optional(v.bool), completions: v.dictionary(v.shape({ by: v.id, at: v.instant }), v.date) } satisfies Fields<FamilyTask>);
+ const list = v.shape({ id: v.id, groupId: v.id, name: title, archived: v.optional(v.bool), items: v.array(v.shape({ id: v.id, text: title, quantity: title, checked: v.bool })) } satisfies Fields<SharedList>);
+ const update = v.shape({ id: v.id, groupId: v.id, memberId: v.id, week: v.date, note: v.string(3000), habits: v.optional(v.number(0)), milestones: v.optional(v.array(title)), prayers: v.optional(v.number(0)), reactions: v.dictionary(title) } satisfies Fields<SquadUpdate>);
+-const life = v.shape({ language: v.oneOf("en", "ru", "uz"), calculation: v.optional(calculation), delivery: v.optional(v.shape({ enabled: v.bool, sound: v.bool, acknowledgedFajr: v.array(v.date) })), setup: v.shape({ configured: v.bool, city: title, source: v.oneOf("local", "calculated"), offsets: prayers(v.number(0, 120)) }), reminderRules: prayers(v.shape({ preparation: v.bool, due: v.bool })), readiness: v.oneOf("ready", "permission", "coverage", "waiting"), backupEnabled: v.bool, alarm: v.nullable(v.shape({ date: v.date, stage: v.oneOf("ringing", "stopped", "awake"), backup: v.bool })), pauses: v.array(pause), groups: v.array(group), tasks: v.array(task), lists: v.array(list), updates: v.array(update), drafts: v.dictionary(() => { /* Incomplete forms are safe JSON, not completed domain entities. */ }) } satisfies Fields<LifeState>);
++const life = v.shape({ language: v.oneOf("en", "ru", "uz"), calculation: v.optional(calculation), deviceTimezone: v.optional(v.shape({ observed: v.zone, reviewed: v.optional(v.zone) })), delivery: v.optional(v.shape({ enabled: v.bool, sound: v.bool, acknowledgedFajr: v.array(v.date) })), setup: v.shape({ configured: v.bool, city: title, source: v.oneOf("local", "calculated"), offsets: prayers(v.number(0, 120)) }), reminderRules: prayers(v.shape({ preparation: v.bool, due: v.bool })), readiness: v.oneOf("ready", "permission", "coverage", "waiting"), backupEnabled: v.bool, alarm: v.nullable(v.shape({ date: v.date, stage: v.oneOf("ringing", "stopped", "awake"), backup: v.bool })), pauses: v.array(pause), groups: v.array(group), tasks: v.array(task), lists: v.array(list), updates: v.array(update), drafts: v.dictionary(() => { /* Incomplete forms are safe JSON, not completed domain entities. */ }) } satisfies Fields<LifeState>);
+ export const stateShape = v.shape({
+   schema: v.oneOf(4), mode: v.oneOf("demo", "fresh"), demoDate: v.date, timezone: v.zone, name: v.string(80), onboarded: v.bool,
+   habits: v.array(habit), days: v.dictionary(v.array(occurrence), v.date), claimed: v.array(v.number(0)), equipped: v.nullable(v.number(0)), plus: v.bool,
+--- before/src/domain/personalCommands.ts
++++ after/src/domain/personalCommands.ts
+@@ -2,6 +2,7 @@
+ import { ensurePriorities, priorityKey, retryReward, saveGoal, savePersonalReward, setPriorities } from "../developmentModel";
+ import { beginWorkBreak, ensurePrayerDays, startWrapUp } from "../prayerModel";
+ import { refreshCalculatedPrayers } from "../prayerCalculation";
++import { canonicalZone } from "./zonedTime";
+ import type { CommandContext, PersonalCommand } from "../contracts/personalCommands";
+ 
+ // Kept here to avoid a commands <-> reducer import cycle.
+@@ -83,6 +84,10 @@
+       for (const h of c.habits) { requireRecord(!h.draft.id && !s.habits.some(old => old.id === h.newId)); s = saveHabit(s, h.draft, h.newId, date); }
+       s.onboarded = true; return clearDraft(s, "onboarding");
+     case "calendar.refresh":
++      if (s.mode !== "demo" && c.deviceTimezone) {
++        const observed = canonicalZone(c.deviceTimezone), previous = s.life.deviceTimezone;
++        s.life.deviceTimezone = previous ? { ...previous, observed } : { observed, ...(canonicalZone(s.timezone) === observed ? { reviewed: observed } : {}) };
++      }
+       // ensurePrayerDays uses the captured civil day; the original calendar mode is retained.
+       if (!s.days[date] && s.habits.length) s = ensureDays(s, date);
+       return refreshCalculatedPrayers(ensurePrayerDays(s, date), now);
+--- before/src/domain/prayerCommands.ts
++++ after/src/domain/prayerCommands.ts
+@@ -2,7 +2,7 @@
+ import type { PrayerCommand } from "../contracts/prayerCommands";
+ import type { CommandContext } from "../contracts/personalCommands";
+ import { applyPrayerSetup } from "../lifeModel";
+-import { saveTimetable } from "../prayerModel";
++import { saveTimetable, validateTimetable } from "../prayerModel";
+ import { useCalculatedPrayers } from "../prayerCalculation";
+ import { deliveryPreferences } from "../prayerSchedule";
+ import { PersonalReferenceError } from "./personalCommands";
+@@ -13,8 +13,18 @@
+     case "prayer.preferences": s.prayers.preferences = { ...s.prayers.preferences, ...c.changes }; return s;
+     case "prayer.reminder": s.life.reminderRules[c.prayer][c.phase] = c.enabled; return s;
+     case "prayer.sample-setup": return applyPrayerSetup(s, c.setup, context.date);
+-    case "prayer.calculated-setup": return useCalculatedPrayers(s, c.settings, c.offsets, context.now);
++    case "prayer.calculated-setup": {
++      const next = useCalculatedPrayers(s, c.settings, c.offsets, context.now);
++      if (next.life.deviceTimezone) next.life.deviceTimezone = { observed: next.life.deviceTimezone.observed, reviewed: next.life.deviceTimezone.observed };
++      return next;
++    }
++    case "prayer.location-reviewed":
++      if (s.life.deviceTimezone?.observed !== c.timezone) throw new PersonalReferenceError();
++      s.life.deviceTimezone.reviewed = c.timezone;
++      return s;
+     case "prayer.timetable": {
++      const error = validateTimetable(c.day, c.date);
++      if (error) throw new Error(error);
+       const next = saveTimetable(s, c.date, { ...c.day, source: c.day.source.trim(), sample: s.mode === "demo" });
+       next.prayers.preferences = c.preferences; return next;
+     }
+--- before/src/i18n.ts
++++ after/src/i18n.ts
+@@ -64,7 +64,11 @@
+       const match = message.match(pattern);
+       if (match) return t(key, undefined, match.slice(1).map((name) => t(name)));
+     }
+-    return t(message);
++    const uzbek: Record<string, string> = {
++      "Choose a valid date.": "To‘g‘ri sanani tanlang.",
++      "These times do not exist on this date in the selected time zone. Check the date, time zone and timetable.": "Tanlangan vaqt mintaqasida bu sanada bunday vaqt mavjud emas. Sana, vaqt mintaqasi va jadvalni tekshiring.",
++    };
++    return t(message, uzbek[message]);
+   };
+   return Object.assign(t, { language, number, plural, date, shortDate, week, target, weekday, error, unit, unitKey });
+ }
+--- before/src/lifeModel.ts
++++ after/src/lifeModel.ts
+@@ -32,6 +32,7 @@
+ export interface LifeState {
+   language: Language;
+   calculation?: CalculationSettings;
++  deviceTimezone?: { observed: string; reviewed?: string };
+   delivery?: { enabled: boolean; sound: boolean; acknowledgedFajr: string[] };
+   setup: { configured: boolean; city: string; source: "local" | "calculated"; offsets: Record<PrayerId, number> };
+   reminderRules: Record<PrayerId, { preparation: boolean; due: boolean }>;
+--- before/src/messages.ru.ts
++++ after/src/messages.ru.ts
+@@ -1,5 +1,13 @@
+ /** Russian UI catalog. User-authored content is never a translation key. */
+ export const ru: Record<string, string> = {
++  "Time zone": "Часовой пояс",
++  "Choose a valid date.": "Выберите существующую дату.",
++  "These times do not exist on this date in the selected time zone. Check the date, time zone and timetable.": "В выбранном часовом поясе это время на эту дату не существует. Проверьте дату, часовой пояс и расписание.",
++  "Review saved prayer times": "Проверьте сохранённое время молитв",
++  "Compare this saved date with a trusted timetable and time zone, then save again.": "Сверьте сохранённую дату и часовой пояс с проверенным расписанием, затем сохраните снова.",
++  "Prayer times unavailable": "Время молитв недоступно",
++  "Check your location and method, or use a trusted timetable for this date.": "Проверьте место и метод расчёта или укажите проверенное расписание на эту дату.",
++
+   "Restore a backup": "Восстановить копию",
+   "Your habit": "Ваша привычка",
+   "Your small commitment": "Небольшое обязательство",
+--- before/src/prayerCalculation.ts
++++ after/src/prayerCalculation.ts
+@@ -1,7 +1,9 @@
+ import { CalculationMethod, Coordinates, HighLatitudeRule, Madhab, PrayerTimes } from "adhan";
+ import tzLookup from "tz-lookup";
+ import type { State } from "./model";
+-import { PRAYERS, prayerDateAdd, type PrayerDay, type PrayerId } from "./prayerModel";
++import { PRAYERS, prayerDayOrigin, prayerDateAdd, type PrayerDay, type PrayerId } from "./prayerModel";
++import { dateInZone, timeInZone, validCivilDate } from "./domain/zonedTime";
++export { dateInZone, timeInZone } from "./domain/zonedTime";
+ 
+ export const METHODS = ["Karachi", "MuslimWorldLeague", "NorthAmerica", "Egyptian", "UmmAlQura", "MoonsightingCommittee", "Singapore", "Tehran"] as const;
+ export type CalculationSettings = {
+@@ -22,14 +24,6 @@
+   { label: "Sydney", latitude: -33.8688, longitude: 151.2093, timezone: "Australia/Sydney" },
+ ];
+ export const defaultCalculation = (): CalculationSettings => ({ ...LOCATIONS[0], method: "Karachi", madhab: "Hanafi", highLatitude: "MiddleOfTheNight" });
+-export function dateInZone(instant: Date | number, timezone: string) {
+-  const parts = new Intl.DateTimeFormat("en-CA", { timeZone: timezone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(instant);
+-  const get = (type: string) => parts.find(p => p.type === type)!.value;
+-  return `${get("year")}-${get("month")}-${get("day")}`;
+-}
+-export function timeInZone(instant: Date | number, timezone: string) {
+-  return new Intl.DateTimeFormat("en-GB", { timeZone: timezone, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(instant);
+-}
+ export function zoneAt(latitude: number, longitude: number) {
+   if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || Math.abs(latitude) > 90 || Math.abs(longitude) > 180)
+     throw new Error("Enter valid latitude and longitude.");
+@@ -51,14 +45,24 @@
+ export function calculatePrayerDay(date: string, settings: CalculationSettings, offsets: Record<PrayerId, number>): PrayerDay {
+   const error = validateCalculation(settings);
+   if (error) throw new Error(error);
+-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || new Date(`${date}T12:00:00Z`).toISOString().slice(0, 10) !== date) throw new Error("Choose a valid date.");
++  if (!validCivilDate(date)) throw new Error("Choose a valid date.");
+   const params = CalculationMethod[settings.method]();
+   params.madhab = Madhab[settings.madhab];
+   params.highLatitudeRule = HighLatitudeRule[settings.highLatitude];
+   const coordinates = new Coordinates(settings.latitude, settings.longitude);
+   const timesFor = (day: string) => {
+-    const [year, month, dayOfMonth] = day.split("-").map(Number);
+-    return new PrayerTimes(coordinates, new Date(year, month - 1, dayOfMonth, 12), params);
++    const calculate = (solarDate: string) => {
++      const [year, month, dayOfMonth] = solarDate.split("-").map(Number);
++      return new PrayerTimes(coordinates, new Date(year, month - 1, dayOfMonth, 12), params);
++    };
++    let result = calculate(day);
++    // Across the date line, the solar UTC date can differ from the civil date.
++    // Recalculate the adjacent solar date; never shift or invent solar instants.
++    if (Number.isFinite(+result.dhuhr)) {
++      const actual = dateInZone(result.dhuhr, settings.timezone);
++      if (actual !== day) result = calculate(prayerDateAdd(day, actual > day ? -1 : 1));
++    }
++    return result;
+   };
+   const times = timesFor(date), tomorrow = timesFor(prayerDateAdd(date, 1));
+   const sequence = [times.fajr, times.sunrise, times.dhuhr, times.asr, times.maghrib, times.isha, tomorrow.fajr];
+@@ -86,6 +90,7 @@
+   for (let i = 0; i < 30; i++) {
+     const date = prayerDateAdd(start, i), prior = days[date];
+     if (prior && ((!prior.calculationKey && !(replaceSamples && prior.sample)) || prior.calculationKey === signature)) continue;
++    if (prior?.calculationKey && prayerDayOrigin(prior) !== "calculated") continue;
+     let day: PrayerDay;
+     try { day = calculatePrayerDay(date, settings, input.life.setup.offsets); } catch { continue; }
+     for (const { id } of PRAYERS) if (prior?.entries[id].check) day.entries[id] = { ...prior.entries[id] };
+@@ -96,8 +101,10 @@
+ }
+ export function useCalculatedPrayers(input: State, settings: CalculationSettings, offsets: Record<PrayerId, number>, now = Date.now()): State {
+   // Validate before changing the saved profile; failure leaves it untouched.
+-  calculatePrayerDay(dateInZone(now, settings.timezone), settings, offsets);
++  const date = dateInZone(now, settings.timezone);
++  calculatePrayerDay(date, settings, offsets);
+   const next = { ...input, mode: "fresh" as const, timezone: settings.timezone,
++    prayers: { ...input.prayers, started: input.prayers.started > date ? date : input.prayers.started },
+     life: { ...input.life, calculation: { ...settings }, setup: { ...input.life.setup, configured: true, city: settings.label, source: "calculated" as const, offsets: { ...offsets } } } };
+   return refreshCalculatedPrayers(next, now, true);
+ }
+--- before/src/prayerModel.ts
++++ after/src/prayerModel.ts
+@@ -2,6 +2,7 @@
+ export { PRAYERS, type PrayerId } from "./domain/prayerIds";
+ import type { State } from "./model";
+ import { isPrayerExcluded } from "./domain/prayerPause";
++import { manualPrayerWindow, timeInZone, validCivilDate } from "./domain/zonedTime";
+ 
+ export type PrayerCheck = "on_time" | "later" | "missed";
+ export type PrayerPhase = PrayerCheck | "upcoming" | "open" | "unconfirmed" | "paused";
+@@ -55,7 +56,7 @@
+   prepared: Record<string, FajrPlan>;
+   work: WorkBreak | null;
+ }
+-export interface PrayerMoment { date: string; minute: number }
++export interface PrayerMoment { date: string; minute: number; instant?: number }
+ export const prayerName = (id: PrayerId) => PRAYERS.find((p) => p.id === id)!.name;
+ export const minuteOf = (time: string) => {
+   const [h, m] = time.split(":").map(Number);
+@@ -83,6 +84,7 @@
+   return {
+     date: get("year") + "-" + get("month") + "-" + get("day"),
+     minute: Number(get("hour")) * 60 + Number(get("minute")),
++    instant: +now,
+   };
+ }
+ export function samplePrayerDay(timezone: string): PrayerDay {
+@@ -147,6 +149,32 @@
+ export function getPrayerDay(s: State, date: string): PrayerDay | undefined {
+   return s.prayers.days[date] ?? (s.mode === "demo" ? samplePrayerDay(s.timezone) : undefined);
+ }
++/** Clock-only legacy edits and changed timezone rules are indistinguishable. */
++export function prayerDayOrigin(day: PrayerDay): "manual" | "calculated" | "review" {
++  if (!day.calculationKey) return "manual";
++  try {
++    const key: unknown = JSON.parse(day.calculationKey);
++    if (!Array.isArray(key)) return "calculated";
++    const settings: unknown = key[0];
++    if (!settings || typeof settings !== "object" || !("label" in settings) || !("method" in settings) || !("madhab" in settings)) return "calculated";
++    if (day.source !== `${settings.label} · ${settings.method} · ${settings.madhab}`) return "manual";
++    const changed = PRAYERS.some(({ id }) => {
++      const entry = day.entries[id];
++      return !entry.check && (["begins", "target", "ends"] as const).some(field => {
++        const at = entry[`${field}At`];
++        return !at || timeInZone(Date.parse(at), day.timezone) !== entry[field];
++      });
++    });
++    return changed ? "review" : "calculated";
++  } catch { return "calculated"; }
++}
++export const isManualPrayerDay = (day: PrayerDay) => prayerDayOrigin(day) === "manual";
++/** Retain saved history, but never present an obsolete location as today's plan. */
++export function getCurrentPrayerDay(s: State, date: string): PrayerDay | undefined {
++  const day = getPrayerDay(s, date);
++  if (day && prayerDayOrigin(day) === "review") return undefined;
++  return day?.calculationKey && s.life.calculation && day.calculationKey !== JSON.stringify([s.life.calculation, s.life.setup.offsets]) && !isManualPrayerDay(day) ? undefined : day;
++}
+ export const endMinute = (p: PrayerEntry) => {
+   const end = minuteOf(p.ends);
+   return end <= minuteOf(p.begins) ? end + 1440 : end;
+@@ -154,14 +182,33 @@
+ export function elapsedMinute(date: string, moment: PrayerMoment) {
+   return dateDifference(moment.date, date) * 1440 + moment.minute;
+ }
++/** One window comparison for views and commands, including saved travel dates. */
++export function prayerWindowState(s: State, date: string, id: PrayerId, moment = prayerMoment(s)) {
++  const day = getPrayerDay(s, date), entry = day?.entries[id];
++  if (!day || !entry) return null;
++  if (!entry.check && prayerDayOrigin(day) === "review") return null;
++  if (s.mode !== "demo" && moment.instant !== undefined) {
++    const authored = !entry.check && !!day.calculationKey && isManualPrayerDay(day);
++    const manual = !authored && entry.beginsAt && entry.targetAt && entry.endsAt ? null : manualPrayerWindow(date, entry, day.timezone);
++    const start = !authored && entry.beginsAt ? Date.parse(entry.beginsAt) : manual?.start;
++    const target = !authored && entry.targetAt ? Date.parse(entry.targetAt) : manual?.target;
++    const end = !authored && entry.endsAt ? Date.parse(entry.endsAt) : manual?.end;
++    if (start === undefined || target === undefined || end === undefined || ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end) return null;
++    return { started: moment.instant >= start, ended: moment.instant >= end, targetInMinutes: (target - moment.instant) / 60000, performedAt: timeInZone(moment.instant, day.timezone) };
++  }
++  const elapsed = elapsedMinute(date, moment), start = minuteOf(entry.begins);
++  const target = minuteOf(entry.target) < start ? minuteOf(entry.target) + 1440 : minuteOf(entry.target);
++  return { started: elapsed >= start, ended: elapsed >= endMinute(entry), targetInMinutes: target - elapsed, performedAt: clockText(moment.minute) };
++}
+ export function prayerPhase(s: State, date: string, id: PrayerId, moment = prayerMoment(s)): PrayerPhase {
+   const entry = getPrayerDay(s, date)?.entries[id];
+   if (!entry) return isPrayerExcluded(s, date, id) ? "paused" : date < moment.date ? "unconfirmed" : "upcoming";
+   if (entry.check) return entry.check;
+   if (isPrayerExcluded(s, date, id)) return "paused";
+-  const minute = elapsedMinute(date, moment);
+-  if (minute < minuteOf(entry.begins)) return "upcoming";
+-  return minute < endMinute(entry) ? "open" : "unconfirmed";
++  const window = prayerWindowState(s, date, id, moment);
++  if (!window) return date <= moment.date ? "unconfirmed" : "upcoming";
++  if (!window.started) return "upcoming";
++  return window.ended ? "unconfirmed" : "open";
+ }
+ export const phaseLabel: Record<PrayerPhase, string> = {
+   on_time: "On time", later: "Prayed later", missed: "Missed",
+@@ -170,10 +217,10 @@
+ export function nextPrayer(s: State, moment = prayerMoment(s)) {
+   // An overnight Isha window belongs to its original date.
+   const yesterday = prayerDateAdd(moment.date, -1);
+-  const last = s.prayers.days[yesterday]?.entries.isha;
+-  if (last && !last.check && !isPrayerExcluded(s, yesterday, "isha") && endMinute(last) > 1440 && elapsedMinute(yesterday, moment) < endMinute(last))
++  const last = getCurrentPrayerDay(s, yesterday)?.entries.isha;
++  if (last && !last.check && prayerPhase(s, yesterday, "isha", moment) === "open")
+     return { id: "isha" as PrayerId, date: yesterday, entry: last, phase: "open" as PrayerPhase };
+-  const day = getPrayerDay(s, moment.date);
++  const day = getCurrentPrayerDay(s, moment.date);
+   if (!day) return null;
+   const found = PRAYERS.find(({ id }) => prayerPhase(s, moment.date, id, moment) === "open") ??
+     PRAYERS.find(({ id }) => prayerPhase(s, moment.date, id, moment) === "upcoming");
+@@ -183,9 +230,9 @@
+ export function prayerProminence(s: State, moment = prayerMoment(s)) {
+   const next = nextPrayer(s, moment);
+   if (!next) return { next, level: "compact" as const, canRecord: false };
+-  const elapsed = elapsedMinute(next.date, moment), target = minuteOf(next.entry.target);
+-  const level = elapsed >= target && elapsed < endMinute(next.entry)
+-    ? "due" : elapsed >= target - s.prayers.preferences.leadMinutes && elapsed < target ? "prepare" : "compact";
++  const window = prayerWindowState(s, next.date, next.id, moment);
++  const level = window && window.targetInMinutes <= 0 && !window.ended
++    ? "due" : window && window.targetInMinutes > 0 && window.targetInMinutes <= s.prayers.preferences.leadMinutes ? "prepare" : "compact";
+   return { next, level, canRecord: next.phase === "open" };
+ }
+ export function weeklyPrayers(s: State, start: string, moment = prayerMoment(s)) {
+@@ -204,9 +251,9 @@
+ export function recordPrayer(s: State, date: string, id: PrayerId, check: PrayerCheck | null, moment = prayerMoment(s), now = Date.now()): State {
+   const day = getPrayerDay(s, date);
+   if (!day || date < s.prayers.started || isPrayerExcluded(s, date, id)) return s;
+-  const entry = day.entries[id], minute = elapsedMinute(date, moment);
+-  if (minute < minuteOf(entry.begins)) return s;
+-  if ((check === "missed" || check === "later") && minute < endMinute(entry)) return s;
++  const entry = day.entries[id], window = prayerWindowState(s, date, id, moment);
++  if (!window?.started) return s;
++  if ((check === "missed" || check === "later") && !window.ended) return s;
+   if (entry.check === (check ?? undefined)) return s;
+   const updated = { ...entry };
+   delete updated.check;
+@@ -215,8 +262,8 @@
+   if (check) {
+     updated.check = check;
+     updated.recordedAt = new Date(now).toISOString();
+-    if (check === "on_time" && date === moment.date && minute < endMinute(entry))
+-      updated.performedAt = clockText(moment.minute);
++    if (check === "on_time" && !window.ended)
++      updated.performedAt = window.performedAt;
+   }
+   return { ...s, prayers: { ...s.prayers, days: { ...s.prayers.days,
+     [date]: { ...day, entries: { ...day.entries, [id]: updated } },
+@@ -293,8 +340,9 @@
+ export const wrapRemaining = (work: WorkBreak, now = Date.now()) =>
+   work.wrapUntil === null ? null : Math.min(60, Math.max(0, Math.ceil((work.wrapUntil - now) / 1000)));
+ 
+-export function validateTimetable(day: PrayerDay) {
++export function validateTimetable(day: PrayerDay, date?: string) {
+   if (!day.source.trim()) return "Add the name of the timetable you follow.";
++  if (date !== undefined && !validCivilDate(date)) return "Choose a valid date.";
+   let previous = -1;
+   for (const { id, name } of PRAYERS) {
+     const p = day.entries[id];
+@@ -312,15 +360,24 @@
+     if (endMinute(day.entries[PRAYERS[i].id]) > minuteOf(day.entries[PRAYERS[i + 1].id].begins))
+       return "Check the overlapping windows for " + PRAYERS[i].name + " and " + PRAYERS[i + 1].name + ".";
+   }
++  if (date !== undefined && PRAYERS.some(({ id }) => !manualPrayerWindow(date, day.entries[id], day.timezone)))
++    return "These times do not exist on this date in the selected time zone. Check the date, time zone and timetable.";
+   return "";
+ }
+ export function saveTimetable(s: State, date: string, day: PrayerDay): State {
+-  if (validateTimetable(day)) return s;
++  if (!validCivilDate(date) || validateTimetable(day, day.sample ? undefined : date)) return s;
+   const prior = s.prayers.days[date];
+-  const entries = structuredClone(day.entries);
++  const entries = Object.fromEntries(PRAYERS.map(({ id }) => {
++    const { begins, target, ends } = day.entries[id];
++    const window = day.sample ? null : manualPrayerWindow(date, day.entries[id], day.timezone);
++    return [id, { begins, target, ends, ...(window ? { beginsAt: new Date(window.start).toISOString(), targetAt: new Date(window.target).toISOString(), endsAt: new Date(window.end).toISOString() } : {}) }];
++  })) as PrayerDay["entries"];
+   // Corrections to a timetable never rewrite an already reported prayer.
+   for (const { id } of PRAYERS) if (prior?.entries[id].check) entries[id] = { ...prior.entries[id] };
+-  return { ...s, prayers: { ...s.prayers, days: { ...s.prayers.days, [date]: { ...day, entries } } } };
++  // A manual save owns only this date. Stale calculation keys/instants and
++  // caller-supplied prayer records must not survive as authored timetable data.
++  const manual: PrayerDay = { source: day.source.trim(), sample: day.sample, timezone: day.timezone, sunrise: day.entries.fajr.ends, entries };
++  return { ...s, prayers: { ...s.prayers, days: { ...s.prayers.days, [date]: manual } } };
+ }
+ export function prayerScene(s: State, scene: string): State {
+   if (s.mode !== "demo") return s;
+--- before/src/prayerSchedule.ts
++++ after/src/prayerSchedule.ts
+@@ -1,7 +1,8 @@
+ import type { State } from "./model";
+ import { isPrayerExcluded } from "./lifeModel";
+-import { PRAYERS, minuteOf, prayerDateAdd, type PrayerId } from "./prayerModel";
+-import { dateInZone, timeInZone } from "./prayerCalculation";
++import { PRAYERS, getCurrentPrayerDay, isManualPrayerDay, minuteOf, prayerDateAdd, type PrayerId } from "./prayerModel";
++import { manualPrayerWindow, wallTimeInstant } from "./domain/zonedTime";
++export { wallTimeInstant } from "./domain/zonedTime";
+ 
+ export type PrayerAlert = {
+   id: number; key: string; date: string; prayer: PrayerId;
+@@ -13,23 +14,6 @@
+   for (const c of key) value = Math.imul(value ^ c.charCodeAt(0), 16777619);
+   return 100000000 + ((value >>> 0) % 1900000000);
+ };
+-
+-/** Resolve a manual local clock time. A DST gap has no corresponding instant. */
+-export function wallTimeInstant(date: string, time: string, zone: string): number | null {
+-  if (!/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(time)) return null;
+-  const desired = Date.parse(`${date}T${time}:00Z`);
+-  if (!Number.isFinite(desired)) return null;
+-  let candidate = desired;
+-  try {
+-    for (let i = 0; i < 4; i++) {
+-      const local = `${dateInZone(candidate, zone)}T${timeInZone(candidate, zone)}:00Z`;
+-      const delta = desired - Date.parse(local);
+-      if (delta === 0) return candidate;
+-      candidate += delta;
+-    }
+-  } catch { return null; }
+-  return null;
+-}
+ 
+ /** Pure plan. No permission requests, delivery, prayer records, or XP side effects. */
+ export function buildPrayerSchedule(s: State, now = Date.now(), minimumBackupMinutes = 0): PrayerAlert[] {
+@@ -43,17 +27,29 @@
+   };
+   for (const [date, day] of Object.entries(s.prayers.days)) {
+     if (day.sample) continue;
++    // A partially resolvable manual date is unavailable, rather than a partial
++    // alert plan. This also protects legacy manual data created before validation.
++    const manual = isManualPrayerDay(day);
++    const legacyManual = manual && !!day.calculationKey;
++    if (manual && PRAYERS.some(({ id }) => {
++      const entry = day.entries[id];
++      if (!entry) return true;
++      if (entry.check) return false;
++      if (legacyManual || !entry.beginsAt || !entry.targetAt || !entry.endsAt) return !manualPrayerWindow(date, entry, day.timezone);
++      const start = Date.parse(entry.beginsAt), target = Date.parse(entry.targetAt), end = Date.parse(entry.endsAt);
++      return ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end;
++    })) continue;
+     // A time-zone change can leave yesterday's old-location Isha in the future.
+     // Retain that history, but never deliver a stale calculated schedule.
+-    if (day.calculationKey && s.life.calculation && day.calculationKey !== JSON.stringify([s.life.calculation, s.life.setup.offsets])) continue;
++    if (!getCurrentPrayerDay(s, date)) continue;
+     for (const { id } of PRAYERS) {
+       const entry = day.entries[id];
+       if (!entry || entry.check || isPrayerExcluded(s, date, id)) continue;
+-      const start = entry.beginsAt ? Date.parse(entry.beginsAt) : wallTimeInstant(date, entry.begins, day.timezone);
++      const start = !legacyManual && entry.beginsAt ? Date.parse(entry.beginsAt) : wallTimeInstant(date, entry.begins, day.timezone);
+       const targetDate = minuteOf(entry.target) < minuteOf(entry.begins) ? prayerDateAdd(date, 1) : date;
+       const endDate = minuteOf(entry.ends) <= minuteOf(entry.begins) ? prayerDateAdd(date, 1) : date;
+-      const target = entry.targetAt ? Date.parse(entry.targetAt) : wallTimeInstant(targetDate, entry.target, day.timezone);
+-      const end = entry.endsAt ? Date.parse(entry.endsAt) : wallTimeInstant(endDate, entry.ends, day.timezone);
++      const target = !legacyManual && entry.targetAt ? Date.parse(entry.targetAt) : wallTimeInstant(targetDate, entry.target, day.timezone);
++      const end = !legacyManual && entry.endsAt ? Date.parse(entry.endsAt) : wallTimeInstant(endDate, entry.ends, day.timezone);
+       if (start === null || target === null || end === null || ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end) continue;
+       if (s.prayers.preferences.reminders) {
+         if (s.life.reminderRules[id].preparation) add(date, id, "prepare", target - s.prayers.preferences.leadMinutes * 60000, target);
+--- before/src/prayers.css
++++ after/src/prayers.css
+@@ -61,6 +61,9 @@
+ .prayer-streak-detail strong { font-size: .875rem; }
+ .prayer-streak-detail small { display: block; margin-top: 5px; color: var(--muted); }
+ .prayer-form h1, .fajr-preparation h1, .wake-preview h1, .work-break h1, .prayer-rules h1 { font-size: 1.875rem; line-height: 1.15; letter-spacing: -.03em; }
++.prayer-form h1 { overflow-wrap: anywhere; }
++.sheet.full:has(.prayer-form) .sheet-header { height: auto; min-height: 67px; }
++.sheet:has(.prayer-form) .sheet-header .icon-button { flex-shrink: 0; }
+ .prayer-form > .muted { margin-top: 12px; font-size: .875rem; }
+ .prayer-form-note { font-size: .75rem; color: var(--muted); line-height: 1.55; margin: 12px 0 22px; }
+ .prayer-time-fields { padding: 19px 0 0; margin: 24px 0 0; border-top: 1px solid var(--line); }
+--- before/tests/prayer-live.browser.spec.ts
++++ after/tests/prayer-live.browser.spec.ts
+@@ -4,6 +4,7 @@
+ import { mkdirSync } from "node:fs";
+ import type { State } from "../src/model";
+ import { createTranslator } from "../src/i18n";
++import { timeInZone } from "../src/prayerCalculation";
+ const ru = createTranslator("ru");
+ 
+ const dialog = (p: Page) => p.getByRole("dialog").last();
+@@ -96,6 +97,8 @@
+   delete entry.check;
+   entry.beginsAt = entry.targetAt = new Date(now + 12000).toISOString();
+   entry.endsAt = new Date(now + 3600000).toISOString();
++  entry.begins = entry.target = timeInZone(now + 12000, alertState.timezone);
++  entry.ends = timeInZone(now + 3600000, alertState.timezone);
+   alertState.prayers.preferences.reminders = false;
+   alertState.prayers.fajr.wakeLead = 0; alertState.prayers.fajr.enabled = true; alertState.prayers.prepared = {};
+   alertState.life.backupEnabled = true; alertState.life.delivery!.sound = false;
+--- before/tests/prayers.test.ts
++++ after/tests/prayers.test.ts
+@@ -152,6 +152,6 @@
+   const s = makeFixture("fresh");
+   s.timezone = "Asia/Tashkent";
+   s.prayers = makePrayerState("fresh", date, s.timezone);
+-  assert.deepEqual(prayerMoment(s, new Date("2026-10-19T20:30:00Z")), { date: "2026-10-20", minute: 90 });
++  assert.deepEqual(prayerMoment(s, new Date("2026-10-19T20:30:00Z")), { date: "2026-10-20", minute: 90, instant: Date.parse("2026-10-19T20:30:00Z") });
+   assert.deepEqual(prayerMoment(makeFixture(), new Date("2030-01-01T00:00:00Z")), { date, minute: 945 });
+ });
+--- before/tests/production/entry.production.spec.ts
++++ after/tests/production/entry.production.spec.ts
+@@ -31,6 +31,8 @@
+ });
+ 
+ test("real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity", async ({ page }) => {
++  // Keep this scenario in daytime; the late-day recovery flow has another valid action label.
++  await page.clock.install({ time: new Date("2026-10-21T03:00:00Z") });
+   await page.goto("/");
+   await page.getByRole("button", { name: "Choose other habits first", exact: true }).click();
+   await page.getByRole("button", { name: "Continue", exact: true }).click();

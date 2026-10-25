@@ -1,0 +1,338 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.performance-production.config.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.performance-production.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.production-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.production-performance.spec.ts"
+        ],
+        "timeout": 180000
+      },
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.production-performance.spec.ts"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.production-performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4181",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "webkit",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.production-performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4181",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "webkit"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "webkit"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/performance/production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "firefox",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/performance",
+        "testIgnore": [],
+        "testMatch": "**/*.production-performance.spec.ts",
+        "timeout": 180000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4181",
+          "viewport": {
+            "width": 393,
+            "height": 852
+          },
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure",
+          "browserName": "firefox"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "firefox"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/performance/production-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4181 dist",
+      "url": "http://127.0.0.1:4181",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "feedback.production-performance.spec.ts",
+      "file": "feedback.production-performance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "dense Today check-in measures visible feedback and durable status without reviewer controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2680,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T11:18:01.160Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "feedback-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJTaW5nbGUgZGVza3RvcCBwcm9kdWN0aW9uIFRvZGF5IFVJIHNhbXBsZS4gRE9NIG9ic2VydmVyIGFuZCBmcmFtZSBvcHBvcnR1bml0eSBhcmUgbm90IHBoeXNpY2FsIHBhaW50LCBJTlAgb3IgcDk1IGFjY2VwdGFuY2UuIiwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJkYXRlIjogIjIwMjYtMTAtMjQiLAogICJ2aWV3cG9ydCI6IHsKICAgICJ3aWR0aCI6IDM5MywKICAgICJoZWlnaHQiOiA4NTIKICB9LAogICJoYWJpdHMiOiAxMDAsCiAgImRheXMiOiA3MzAsCiAgIm1lYXN1cmVtZW50cyI6IHsKICAgICJkb21GZWVkYmFja01zIjogMTQ1LjYwMDAwMDAyMzg0MTg2LAogICAgImZyYW1lT3Bwb3J0dW5pdHlNcyI6IDE2NS4zOTk5OTk5NzYxNTgxNCwKICAgICJzYXZlZFN0YXR1c01zIjogMzg3Ljc5OTk5OTk1MjMxNjMKICB9LAogICJpbnZhcmlhbnRzIjogIlJlYWwgZnVsbCBjaGVjayBhZGRzIDIwIFhQOyBhbGwgZWFybGllciBoaXN0b3J5IHN1cnZpdmVzIHJlb3BlbmluZzsgcmV2aWV3ZXIgY29udHJvbHMgYWJzZW50LiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1b27ad643743d3010ee4-c55e75d013210065b80f",
+          "file": "feedback.production-performance.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "dense Today check-in measures visible feedback and durable status without reviewer controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4460,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T11:18:04.301Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "feedback-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJTaW5nbGUgZGVza3RvcCBwcm9kdWN0aW9uIFRvZGF5IFVJIHNhbXBsZS4gRE9NIG9ic2VydmVyIGFuZCBmcmFtZSBvcHBvcnR1bml0eSBhcmUgbm90IHBoeXNpY2FsIHBhaW50LCBJTlAgb3IgcDk1IGFjY2VwdGFuY2UuIiwKICAiYnJvd3NlciI6ICIyNy4yIiwKICAiZGF0ZSI6ICIyMDI2LTEwLTI0IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAiaGFiaXRzIjogMTAwLAogICJkYXlzIjogNzMwLAogICJtZWFzdXJlbWVudHMiOiB7CiAgICAiZG9tRmVlZGJhY2tNcyI6IDE1MywKICAgICJmcmFtZU9wcG9ydHVuaXR5TXMiOiAyMDMsCiAgICAic2F2ZWRTdGF0dXNNcyI6IDY0OAogIH0sCiAgImludmFyaWFudHMiOiAiUmVhbCBmdWxsIGNoZWNrIGFkZHMgMjAgWFA7IGFsbCBlYXJsaWVyIGhpc3Rvcnkgc3Vydml2ZXMgcmVvcGVuaW5nOyByZXZpZXdlciBjb250cm9scyBhYnNlbnQuIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1b27ad643743d3010ee4-0d40fb108b17fb5cf244",
+          "file": "feedback.production-performance.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "dense Today check-in measures visible feedback and durable status without reviewer controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4111,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-24T11:18:09.222Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "feedback-capacity-measurements",
+                      "contentType": "application/json",
+                      "body": "ewogICJzY29wZSI6ICJTaW5nbGUgZGVza3RvcCBwcm9kdWN0aW9uIFRvZGF5IFVJIHNhbXBsZS4gRE9NIG9ic2VydmVyIGFuZCBmcmFtZSBvcHBvcnR1bml0eSBhcmUgbm90IHBoeXNpY2FsIHBhaW50LCBJTlAgb3IgcDk1IGFjY2VwdGFuY2UuIiwKICAiYnJvd3NlciI6ICIxNTcuMCIsCiAgImRhdGUiOiAiMjAyNi0xMC0yNCIsCiAgInZpZXdwb3J0IjogewogICAgIndpZHRoIjogMzkzLAogICAgImhlaWdodCI6IDg1MgogIH0sCiAgImhhYml0cyI6IDEwMCwKICAiZGF5cyI6IDczMCwKICAibWVhc3VyZW1lbnRzIjogewogICAgImRvbUZlZWRiYWNrTXMiOiAyMjIsCiAgICAiZnJhbWVPcHBvcnR1bml0eU1zIjogMjI0LAogICAgInNhdmVkU3RhdHVzTXMiOiA3MDIKICB9LAogICJpbnZhcmlhbnRzIjogIlJlYWwgZnVsbCBjaGVjayBhZGRzIDIwIFhQOyBhbGwgZWFybGllciBoaXN0b3J5IHN1cnZpdmVzIHJlb3BlbmluZzsgcmV2aWV3ZXIgY29udHJvbHMgYWJzZW50LiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "1b27ad643743d3010ee4-9c7b9d735d682e11e542",
+          "file": "feedback.production-performance.spec.ts",
+          "line": 6,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-24T11:18:00.577Z",
+    "duration": 13372.193,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

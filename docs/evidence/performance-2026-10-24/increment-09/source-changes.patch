@@ -1,0 +1,85 @@
+--- before/server/personal/records.ts
++++ after/server/personal/records.ts
+@@ -8,10 +8,16 @@
+ export async function readRecords(client: pg.PoolClient, actor: string): Promise<Records> {
+   const records: Records = {}; let count = 0;
+   for (const definition of personalTables) {
+-    const selection = definition.columns.map(key => `'${key}', t.${key}`).join(",");
+-    const result = await client.query<{ record: unknown }>(`select jsonb_build_object(${selection}) as record from rise.${definition.name} t where owner_id = $1 order by ${(definition.order ?? definition.keys).join(",") || "owner_id"} limit 250001`, [actor]);
++    // Dense occurrence history already has JSON data plus UUID/int/text fields.
++    // Keep dates as JSON strings: pg's native DATE parser uses process timezone.
++    const direct = definition.name === "habit_occurrences";
++    const selection = direct
++      ? definition.columns.map(key => key === "date" ? "to_json(t.date) as date" : `t.${key}`).join(",")
++      : `jsonb_build_object(${definition.columns.map(key => `'${key}', t.${key}`).join(",")}) as record`;
++    const order = (definition.order ?? definition.keys).map(key => `t.${key}`).join(",") || "t.owner_id";
++    const result = await client.query<Row>(`select ${selection} from rise.${definition.name} t where owner_id = $1 order by ${order} limit 250001`, [actor]);
+     count += result.rowCount ?? 0; if (count > 250000) throw new Error("personal_record_limit");
+-    records[definition.name] = result.rows.map(row => object(row.record, "personal-record"));
++    records[definition.name] = result.rows.map(row => object(direct ? row : row.record, "personal-record"));
+   }
+   return records;
+ }
+--- before/tests/infra/personal.test.ts
++++ after/tests/infra/personal.test.ts
+@@ -7,7 +7,7 @@
+ import { PersonalClient } from "../support/personal.ts";
+ import { emptyDraft } from "../../src/model.ts";
+ import { hash, secrets } from "../../server/auth/crypto.ts";
+-import { hydrate, personalTables } from "../../server/personal/records.ts";
++import { hydrate, personalTables, readRecords } from "../../server/personal/records.ts";
+ import { personalTotals } from "../support/personalTestData.ts";
+ 
+ let harness: Awaited<ReturnType<typeof authHarness>>;
+@@ -89,6 +89,51 @@
+     }
+   } finally {
+     if (client.owner) { await client.browser.request("logout", {}); await harness.admin.query("delete from auth.users where id=$1 and email=$2", [client.owner, client.email]); }
++  }
++});
++
++test("occurrence reads preserve JSON dates, scalar types, ordered snapshots and owner isolation under alternate SQL settings", async () => {
++  const owner = new PersonalClient(harness), other = new PersonalClient(harness);
++  try {
++    await owner.initialize(); await other.initialize();
++    const ids = [randomUUID(), randomUUID()];
++    for (const [i, id] of ids.entries()) await owner.command({ kind: "habit.save", newId: id, draft: { ...emptyDraft(), name: `Ўзбек Русский 🙂 "quoted" ${i}`, full: 2.5, tiny: i ? null : 0.5, days: [0,1,2,3,4,5,6] } });
++    const dates = ["2024-02-28", "2024-02-29", "2024-03-01"];
++    await harness.admin.query("update rise.habits set data=jsonb_set(data,'{created}','\"2024-02-28\"'::jsonb) where owner_id=$1", [owner.owner]);
++    await harness.admin.query("update rise.habit_versions set effective='2024-02-28' where owner_id=$1", [owner.owner]);
++    for (const [i, date] of dates.entries()) {
++      await harness.admin.query("insert into rise.habit_days(owner_id,date,revision) values($1,$2,$3)", [owner.owner,date,owner.revision]);
++      await harness.admin.query("insert into rise.habit_occurrences(owner_id,date,habit_id,position,check_kind,data,revision) select owner_id,$2,habit_id,position,case when habit_id=$3::uuid then $4 else null end,data,revision from rise.habit_occurrences where owner_id=$1 and date=(select max(date) from rise.habit_occurrences where owner_id=$1)", [owner.owner,date,ids[0],[null,"tiny","full"][i]]);
++    }
++    const expected = await owner.read(), actor = await claims(owner), sql = await harness.store.pool.connect();
++    try {
++      for (const setting of ["ISO, MDY", "SQL, DMY", "German, DMY"]) {
++        await sql.query("begin");
++        try {
++          await sql.query("select set_config('request.jwt.claims',$1,true),set_config('DateStyle',$2,true),set_config('TimeZone','Pacific/Apia',true)", [JSON.stringify(actor),setting]);
++          const actual = await readRecords(sql,owner.owner);
++          assert.deepEqual(actual,expected.records);
++          const legacy = await sql.query("select jsonb_build_object('date',t.date,'habit_id',t.habit_id,'position',t.position,'check_kind',t.check_kind,'data',t.data) as record from rise.habit_occurrences t where owner_id=$1 order by t.date,t.position,t.habit_id limit 250001", [owner.owner]);
++          assert.deepEqual(actual.habit_occurrences,legacy.rows.map(r=>r.record));
++          assert.deepEqual(actual.habit_occurrences.filter(r=>r.habit_id===ids[0]).slice(0,3).map(r=>[r.date,r.check_kind]),dates.map((d,i)=>[d,[null,"tiny","full"][i]]));
++          assert.ok(Object.values(await readRecords(sql,other.owner)).every(rows=>rows.length===0));
++        } finally { await sql.query("rollback"); }
++      }
++    } finally { sql.release(); }
++    // SQL accepts the JSON shape; the public read must still reject an invalid
++    // domain field instead of returning it through the faster projection.
++    const invalidDate = "2024-03-02";
++    try {
++      await harness.admin.query("insert into rise.habit_days(owner_id,date,revision) values($1,$2,$3)",[owner.owner,invalidDate,owner.revision]);
++      await harness.admin.query("insert into rise.habit_occurrences(owner_id,date,habit_id,position,check_kind,data,revision) select owner_id,$2,habit_id,position,check_kind,jsonb_set(data,'{icon}','\"invalid-icon\"'::jsonb),revision from rise.habit_occurrences where owner_id=$1 and date=$3 and habit_id=$4",[owner.owner,invalidDate,dates[0],ids[0]]);
++      assert.equal((await owner.browser.request("personal")).statusCode,503);
++    } finally {
++      await harness.admin.query("delete from rise.habit_occurrences where owner_id=$1 and date=$2",[owner.owner,invalidDate]);
++      await harness.admin.query("delete from rise.habit_days where owner_id=$1 and date=$2",[owner.owner,invalidDate]);
++    }
++    assert.deepEqual(await owner.read(),expected);
++  } finally {
++    for (const c of [owner,other]) if (c.owner) { await c.browser.request("logout",{}); await harness.admin.query("delete from auth.users where id=$1 and email=$2",[c.owner,c.email]); }
+   }
+ });
+ 

@@ -1,0 +1,160 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts
+
+[WebServer] (node:37838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 36 tests using 2 workers
+
+(node:37841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:37840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (667ms)
+  ✓   1 [chromium] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.3s)
+  ✓   4 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 1 existing profiles retain their authored content and activity (334ms)
+  ✓   5 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 2 existing profiles retain their authored content and activity (337ms)
+  ✓   6 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 3 existing profiles retain their authored content and activity (359ms)
+  ✓   7 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 4 existing profiles retain their authored content and activity (344ms)
+  ✓   8 [chromium] › tests/production/entry.production.spec.ts:86:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (346ms)
+  ✓   9 [chromium] › tests/production/entry.production.spec.ts:104:1 › migration summary is dated, explains mixed provenance and exports the exact original (653ms)
+  ✓  10 [chromium] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (615ms)
+  ✓  11 [chromium] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (708ms)
+  ✓  12 [chromium] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (430ms)
+(node:37876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [webkit] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.8s)
+  ✓  14 [webkit] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (478ms)
+  ✘   3 [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (30.1s)
+(node:37962) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  16 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 1 existing profiles retain their authored content and activity (671ms)
+  ✓  17 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 2 existing profiles retain their authored content and activity (483ms)
+  ✓  18 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 3 existing profiles retain their authored content and activity (567ms)
+  ✓  19 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 4 existing profiles retain their authored content and activity (552ms)
+  ✓  20 [webkit] › tests/production/entry.production.spec.ts:86:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (487ms)
+  ✓  21 [webkit] › tests/production/entry.production.spec.ts:104:1 › migration summary is dated, explains mixed provenance and exports the exact original (1.3s)
+  ✓  22 [webkit] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (1.3s)
+  ✓  23 [webkit] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (1.2s)
+  ✓  24 [webkit] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (594ms)
+(node:38005) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  15 [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (30.2s)
+(node:38008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  26 [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (1.6s)
+  ✓  25 [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (2.6s)
+  ✓  28 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 1 existing profiles retain their authored content and activity (664ms)
+  ✓  29 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 2 existing profiles retain their authored content and activity (749ms)
+  ✓  30 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 3 existing profiles retain their authored content and activity (696ms)
+  ✓  31 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 4 existing profiles retain their authored content and activity (660ms)
+  ✓  32 [firefox] › tests/production/entry.production.spec.ts:86:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (945ms)
+  ✓  33 [firefox] › tests/production/entry.production.spec.ts:104:1 › migration summary is dated, explains mixed provenance and exports the exact original (2.7s)
+  ✓  34 [firefox] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (2.9s)
+  ✓  35 [firefox] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (2.2s)
+  ✓  36 [firefox] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.5s)
+  ✘  27 [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (30.5s)
+
+
+  1) [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log tiny Read a little/ })
+
+
+      45 |   expect(initial.life.drafts.onboarding).toBeUndefined();
+      46 |   expect(initial.days[addDays(date, -1)]).toBeUndefined();
+    > 47 |   await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+         |                                                                      ^
+      48 |   await expect.poll(async () => xpTotal(await stored(page))).toBe(10);
+      49 |   await page.reload(); expect(xpTotal(await stored(page))).toBe(10);
+      50 |   await page.getByRole("button", { name: "View Read a little", exact: true }).click();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/entry.production.spec.ts:47:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log tiny Read a little/ })
+
+
+      45 |   expect(initial.life.drafts.onboarding).toBeUndefined();
+      46 |   expect(initial.days[addDays(date, -1)]).toBeUndefined();
+    > 47 |   await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+         |                                                                      ^
+      48 |   await expect.poll(async () => xpTotal(await stored(page))).toBe(10);
+      49 |   await page.reload(); expect(xpTotal(await stored(page))).toBe(10);
+      50 |   await page.getByRole("button", { name: "View Read a little", exact: true }).click();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/entry.production.spec.ts:47:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-webkit/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-webkit/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-webkit/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: /Log tiny Read a little/ })
+
+
+      45 |   expect(initial.life.drafts.onboarding).toBeUndefined();
+      46 |   expect(initial.days[addDays(date, -1)]).toBeUndefined();
+    > 47 |   await page.getByRole("button", { name: /Log tiny Read a little/ }).click();
+         |                                                                      ^
+      48 |   await expect.poll(async () => xpTotal(await stored(page))).toBe(10);
+      49 |   await page.reload(); expect(xpTotal(await stored(page))).toBe(10);
+      50 |   await page.getByRole("button", { name: "View Read a little", exact: true }).click();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/entry.production.spec.ts:47:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/entry.production-real-onbo-a2c2c--the-user-s-chosen-activity-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity 
+    [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity 
+    [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity 
+  33 passed (1.2m)

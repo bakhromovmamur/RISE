@@ -1,0 +1,155 @@
+/* Salah uses the incumbent RISE palette, typography, controls and surface scale. */
+.salah-heading, .prayer-progress-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.salah-heading h1 { font-size: 2rem; letter-spacing: -.03em; line-height: 1.1; }
+.prayer-date { text-align: right; display: grid; gap: 7px; padding: 8px 0 8px 8px; min-height: 44px; flex-shrink: 0; }
+.prayer-date span { color: var(--muted); font-size: .75rem; }
+.prayer-date strong { display: flex; align-items: center; justify-content: flex-end; font-size: .875rem; font-variant-numeric: tabular-nums; gap: 4px; }
+.prayer-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 24px; gap: 3px; }
+.prayer-anchor { display: flex; flex-direction: column; align-items: center; gap: 7px; border-radius: 16px; padding: 9px 0; min-width: 0; }
+.prayer-dot { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--muted); }
+.prayer-anchor strong { font-size: .75rem; font-weight: 600; }
+.prayer-anchor small { font-size: .6875rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.prayer-anchor.on_time .prayer-dot { color: var(--green); background: var(--mint); border-color: transparent; }
+.prayer-anchor.current { background: var(--soft); }
+.prayer-anchor.current .prayer-dot { color: var(--on-green); background: var(--green); border-color: transparent; }
+.prayer-anchor.unconfirmed .prayer-dot { border-style: dashed; }
+.prayer-anchor.later .prayer-dot { color: var(--ink); background: var(--soft); }
+.prayer-anchor.missed .prayer-dot { border-style: dashed; color: var(--muted); }
+.prayer-day-caption { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .75rem; color: var(--muted); margin-bottom: 12px; }
+.prayer-day-caption button { min-height: 44px; display: flex; align-items: center; gap: 3px; text-decoration: underline; text-underline-offset: 3px; max-width: 58%; overflow-wrap: anywhere; }
+.prayer-hero { background: var(--mint); border-radius: var(--radius-card); padding: 23px; color: var(--ink); }
+.prayer-hero-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.prayer-hero-title > svg { color: var(--green); margin-top: 3px; }
+.prayer-hero h2 { font-size: 2rem; line-height: 1.13; letter-spacing: -.03em; white-space: pre-line; text-wrap: initial; }
+.prayer-hero > p { font-size: .9375rem; line-height: 1.5; white-space: pre-line; margin: 12px 0 15px; }
+.prayer-hero > svg { color: var(--green); margin-bottom: 20px; }
+.prayer-hero .button { width: 100%; margin-top: 20px; }
+.prayer-window { display: flex; align-items: center; justify-content: flex-start; gap: 7px; font-size: .75rem; color: var(--green); font-variant-numeric: tabular-nums; }
+.prayer-quiet-action { display: flex; align-items: center; justify-content: center; width: 100%; gap: 7px; min-height: 44px; font-size: .8125rem; margin-top: 5px; }
+.prayer-pending, .resume-note, .salah-rest { display: flex; align-items: center; gap: 12px; text-align: left; width: 100%; padding: 16px 0; }
+.prayer-pending > span, .resume-note > span { flex: 1; min-width: 0; font-size: .8125rem; }
+.prayer-pending small, .resume-note small { display: block; color: var(--muted); margin-top: 4px; }
+.resume-note small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.resume-note { border-bottom: 1px solid var(--line); }
+.resume-note > svg:first-child, .fajr-preview-row .row-icon { color: var(--green); }
+.fajr-preview-row { margin: 14px 0 24px; }
+.fajr-preview-row .group-row { padding: 15px 0; }
+.salah-screen > .section-title { margin-top: 25px; }
+.salah-screen .section-title h2 { font-size: 1.125rem; }
+.salah-rest { font-size: .875rem; border-bottom: 1px solid var(--line); }
+.salah-rest span { flex: 1; }
+.prayer-footnote { color: var(--muted); text-align: center; font-size: .6875rem; line-height: 1.6; margin: 24px 8px 5px; }
+.prayer-detail { text-align: center; }
+.prayer-detail-icon, .work-symbol { width: 76px; height: 76px; display: grid; place-items: center; border-radius: 50%; background: var(--mint); color: var(--green); margin: 5px auto 20px; }
+.prayer-detail > .muted { margin-top: 9px; font-size: .875rem; }
+.prayer-status { font-size: .8125rem; padding: 7px 13px; background: var(--soft); border-radius: 24px; display: inline-flex; margin-top: 16px; }
+.prayer-status.on_time { background: var(--mint); color: var(--green); }
+.prayer-times { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; padding: 23px 0 15px; margin: 18px 0 0; border-top: 1px solid var(--line); }
+.prayer-times dt { color: var(--muted); font-size: .6875rem; }
+.prayer-times dd { margin: 8px 0 0; font-weight: 600; font-size: 1.125rem; font-variant-numeric: tabular-nums; }
+.prayer-times dd small { display: block; font-weight: 400; }
+.prayer-source { font-size: .6875rem; color: var(--muted); text-align: center; margin: 0 0 20px; overflow-wrap: anywhere; }
+.prayer-detail-guidance { margin: 24px 7px 17px; font-size: .875rem; }
+.prayer-recovery { margin: 24px 0; text-align: left; }
+.prayer-recovery h2 { font-size: 1.125rem; line-height: 1.3; }
+.prayer-recovery p { color: var(--muted); font-size: .875rem; line-height: 1.6; margin: 10px 0 18px; }
+.prayer-record-actions { display: grid; gap: 10px; }
+.prayer-record-actions > div { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.prayer-record-actions > .text-button { justify-self: center; }
+.prayer-streak-detail { display: flex; align-items: center; gap: 13px; margin: 24px 0 16px; padding: 18px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); width: 100%; text-align: left; }
+.prayer-streak-detail > span { flex: 1; }
+.prayer-streak-detail strong { font-size: .875rem; }
+.prayer-streak-detail small { display: block; margin-top: 5px; color: var(--muted); }
+.prayer-form h1, .fajr-preparation h1, .wake-preview h1, .work-break h1, .prayer-rules h1 { font-size: 1.875rem; line-height: 1.15; letter-spacing: -.03em; }
+.prayer-form h1 { overflow-wrap: anywhere; }
+.sheet.full:has(.prayer-form) .sheet-header { height: auto; min-height: 67px; }
+.sheet:has(.prayer-form) .sheet-header .icon-button { flex-shrink: 0; }
+.prayer-form > .muted { margin-top: 12px; font-size: .875rem; }
+.prayer-form-note { font-size: .75rem; color: var(--muted); line-height: 1.55; margin: 12px 0 22px; }
+.prayer-time-fields { padding: 19px 0 0; margin: 24px 0 0; border-top: 1px solid var(--line); }
+.prayer-time-fields legend { display: flex; align-items: center; gap: 8px; font-size: .9375rem; padding-right: 10px; margin-bottom: 0; }
+.prayer-time-fields > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.prayer-time-fields .field { margin: 0; font-size: .6875rem; gap: 7px; }
+.prayer-time-fields input { padding: 11px 6px; font-size: .8125rem; }
+.prayer-two-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prayer-two-fields .field { margin-top: 0; }
+.prayer-form .section-title { margin-top: 34px; }
+.fajr-intro > svg { color: var(--green); margin: 3px 0 18px; }
+.fajr-intro p { color: var(--muted); font-size: .875rem; margin-top: 12px; }
+.fajr-plan-summary { background: var(--mint); border-radius: 16px; display: flex; align-items: center; justify-content: space-around; padding: 22px 13px; margin: 24px 0 10px; }
+.fajr-plan-summary small, .fajr-plan-summary strong { display: block; }
+.fajr-plan-summary small { font-size: .75rem; }
+.fajr-plan-summary strong { font-size: 1.625rem; font-variant-numeric: tabular-nums; margin-top: 7px; }
+.prayer-preview-note { display: flex; align-items: flex-start; gap: 12px; color: var(--muted); background: var(--soft); border-radius: 12px; padding: 16px; margin: 24px 0; font-size: .8125rem; line-height: 1.5; }
+.prayer-preview-note svg { margin-top: 2px; }
+.prayer-preview-label { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: .75rem; color: var(--muted); min-height: 30px; }
+.wake-preview { text-align: center; padding: 4px 3px 15px; }
+.wake-sun { color: var(--green); margin: 45px 0 28px; }
+.wake-time { font-size: 2.75rem; line-height: 1.1; font-weight: 500; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 15px; }
+.wake-message { font-size: 1.125rem; line-height: 1.5; margin: 29px 8px 15px; overflow-wrap: anywhere; }
+.wake-preview > .muted { font-size: .8125rem; margin: 0 8px 34px; }
+.work-break { text-align: center; }
+.work-break .work-symbol { margin-top: 24px; }
+.work-break h1 { white-space: pre-line; text-wrap: initial; }
+.work-break > p:not(.prayer-form-note):not(.prayer-footnote) { font-size: .875rem; margin: 15px 10px 24px; }
+.work-break .field { text-align: left; margin-top: 27px; }
+.work-break .field textarea { font-size: .9375rem; line-height: 1.6; }
+.work-break .prayer-form-note { text-align: left; }
+.work-break .prayer-window { justify-content: center; margin: 18px 0; }
+.work-break .button { margin-top: 10px; }
+.wrap-count { display: flex; justify-content: center; align-items: center; gap: 9px; background: var(--soft); padding: 15px 9px; border-radius: 12px; font-size: .875rem; margin-bottom: 16px; font-variant-numeric: tabular-nums; }
+.saved-note { text-align: left; font-size: 1rem; line-height: 1.6; padding: 23px; background: var(--soft); border-radius: 16px; margin: 30px 0 24px; white-space: pre-wrap; overflow-wrap: anywhere; user-select: text; }
+.work-break.away .work-symbol { margin-top: 44px; width: 100px; height: 100px; margin-bottom: 28px; }
+.prayer-garden { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 24px 0; margin: 28px 0; }
+.prayer-garden-title { display: flex; align-items: center; gap: 10px; color: var(--green); }
+.prayer-garden-title h2 { font-size: 1.125rem; flex: 1; color: var(--ink); }
+.prayer-garden-title button { display: grid; place-items: center; min-width: 44px; height: 44px; }
+.prayer-garden > p { font-size: .8125rem; color: var(--muted); margin: 7px 0 20px; }
+.prayer-leaves { display: flex; justify-content: space-between; gap: 12px; margin: 0 8px 18px; }
+.prayer-leaves > span { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--muted); }
+.prayer-leaves .earned { color: var(--green); }
+.prayer-leaves .earned svg { fill: var(--mint); }
+.prayer-leaves small { font-size: .6875rem; font-variant-numeric: tabular-nums; }
+.prayer-garden .text-button { display: flex; gap: 7px; margin-top: 13px; }
+.prayer-progress-heading h1 { font-size: 2rem; }
+.prayer-progress > .muted { margin-top: 8px; font-size: .875rem; }
+.prayer-progress .segmented { margin: 25px 0 21px; }
+.prayer-week-title { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .875rem; margin-bottom: 21px; }
+.prayer-week-title > div { text-align: center; }
+.prayer-week-title span { display: block; color: var(--green); font-size: .75rem; margin-top: 5px; }
+.prayer-calendar-days, .prayer-calendar-cells { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+.prayer-calendar-days { text-align: center; color: var(--muted); font-size: .6875rem; margin-bottom: 17px; }
+.prayer-calendar-days small { display: block; color: var(--ink); margin-top: 6px; font-size: .8125rem; }
+.prayer-calendar-label { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 3px 8px; font-size: .8125rem; }
+.prayer-calendar-label > span { display: flex; align-items: center; gap: 7px; font-weight: 600; }
+.prayer-calendar-label small { font-size: .6875rem; color: var(--muted); }
+.prayer-calendar-row { margin-bottom: 18px; }
+.prayer-calendar-cells button { min-height: 44px; min-width: 0; border-radius: 12px; background: var(--soft); display: grid; place-items: center; color: var(--muted); }
+.prayer-calendar-cells .on_time { color: var(--on-green); background: var(--green); }
+.prayer-calendar-cells .later { color: var(--ink); background: var(--mint); }
+.prayer-calendar-cells .unconfirmed { background: transparent; border: 1px dashed var(--line); }
+.prayer-calendar-cells .upcoming, .prayer-calendar-cells .untracked { background: transparent; }
+.prayer-calendar-cells .open { border: 1px solid var(--green); }
+.prayer-empty-dot { width: 4px; height: 4px; background: var(--muted); border-radius: 50%; }
+.prayer-missed-mark { width: 13px; height: 2px; background: currentColor; display: inline-block; flex-shrink: 0; }
+.prayer-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; font-size: .625rem; color: var(--muted); }
+.prayer-legend > span { display: flex; align-items: center; gap: 5px; }
+.prayer-week-summary { font-size: .6875rem; color: var(--muted); margin-top: 15px; }
+.prayer-all-five { display: flex; gap: 14px; align-items: center; margin-top: 28px; padding-top: 25px; border-top: 1px solid var(--line); }
+.prayer-all-five > svg { color: var(--green); }
+.prayer-all-five h2 { font-size: 1.0625rem; line-height: 1.35; }
+.prayer-all-five p { color: var(--muted); font-size: .75rem; margin-top: 7px; }
+.prayer-rules > svg { color: var(--green); margin-bottom: 18px; }
+.prayer-rules > p { font-size: .875rem; margin: 18px 0; }
+.prayer-rules dl { margin-top: 28px; }
+.prayer-rules dl > div { margin: 20px 0; }
+.prayer-rules dt { font-size: .9375rem; font-weight: 600; }
+.prayer-rules dd { margin: 7px 0 0; font-size: .8125rem; line-height: 1.6; color: var(--muted); }
+.sheet-content > .screen { padding: 0 0 10px; }
+@media (max-width: 374px) {
+  .salah-heading h1 { font-size: 1.75rem; }
+  .prayer-date span { font-size: .6875rem; }
+  .prayer-hero { padding: 19px; }
+  .prayer-anchor strong { font-size: .6875rem; }
+  .prayer-time-fields > div { gap: 5px; }
+}

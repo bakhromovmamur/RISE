@@ -1,0 +1,59 @@
+
+> rise-prototype@1.0.0 test:pwa
+> playwright test --config playwright.pwa.config.ts
+
+[WebServer] (node:42308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 42 tests using 1 worker
+
+(node:42310) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/pwa/interface.pwa.spec.ts:5:53 › en install and offline controls reflow in both themes and large text (2.3s)
+  ✓   2 [chromium] › tests/pwa/interface.pwa.spec.ts:5:53 › ru install and offline controls reflow in both themes and large text (1.9s)
+  ✓   3 [chromium] › tests/pwa/interface.pwa.spec.ts:5:53 › uz install and offline controls reflow in both themes and large text (2.1s)
+  ✓   4 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:55:1 › manifest, icons, manual guidance and exactly one root worker (782ms)
+  ✓   5 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:67:1 › warm and cold offline starts preserve records and can export a backup (1.1s)
+  ✓   6 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:89:1 › private/auth/logout responses and mutations never enter public caches (609ms)
+  ✓   7 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:104:1 › an open form in another tab blocks activation, then both saved tabs update together (3.1s)
+  ✓   8 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:129:1 › a failed asset installation retains the previous offline shell and data (1.0s)
+  ✓   9 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:140:1 › incompatible storage contracts remain waiting and cannot force a reload (1.1s)
+  ✓  10 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:147:1 › a tab blocked during storage startup prevents activation until verified readback finishes (2.3s)
+  ✓  11 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:168:1 › a failed durable command keeps unsaved export available and blocks updates until retry succeeds (2.3s)
+  ✓  12 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:189:1 › clearing local data while an update waits cannot resurrect records from the public shell (5.5s)
+  ✓  13 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:203:59 › install prompt accepted is one-use and does not itself claim installation (745ms)
+  ✓  14 [chromium] › tests/pwa/lifecycle.pwa.spec.ts:203:59 › install prompt dismissed is one-use and does not itself claim installation (661ms)
+(node:42439) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [webkit] › tests/pwa/interface.pwa.spec.ts:5:53 › en install and offline controls reflow in both themes and large text (2.1s)
+  ✓  16 [webkit] › tests/pwa/interface.pwa.spec.ts:5:53 › ru install and offline controls reflow in both themes and large text (1.9s)
+  ✓  17 [webkit] › tests/pwa/interface.pwa.spec.ts:5:53 › uz install and offline controls reflow in both themes and large text (1.8s)
+  ✓  18 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:55:1 › manifest, icons, manual guidance and exactly one root worker (817ms)
+  ✓  19 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:67:1 › warm and cold offline starts preserve records and can export a backup (1.2s)
+  ✓  20 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:89:1 › private/auth/logout responses and mutations never enter public caches (566ms)
+  ✓  21 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:104:1 › an open form in another tab blocks activation, then both saved tabs update together (1.7s)
+  ✓  22 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:129:1 › a failed asset installation retains the previous offline shell and data (827ms)
+  ✓  23 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:140:1 › incompatible storage contracts remain waiting and cannot force a reload (915ms)
+  ✓  24 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:147:1 › a tab blocked during storage startup prevents activation until verified readback finishes (1.5s)
+  ✓  25 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:168:1 › a failed durable command keeps unsaved export available and blocks updates until retry succeeds (1.6s)
+  ✓  26 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:189:1 › clearing local data while an update waits cannot resurrect records from the public shell (5.8s)
+  ✓  27 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:203:59 › install prompt accepted is one-use and does not itself claim installation (759ms)
+  ✓  28 [webkit] › tests/pwa/lifecycle.pwa.spec.ts:203:59 › install prompt dismissed is one-use and does not itself claim installation (771ms)
+(node:42508) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  29 [firefox] › tests/pwa/interface.pwa.spec.ts:5:53 › en install and offline controls reflow in both themes and large text (3.9s)
+  ✓  30 [firefox] › tests/pwa/interface.pwa.spec.ts:5:53 › ru install and offline controls reflow in both themes and large text (3.3s)
+  ✓  31 [firefox] › tests/pwa/interface.pwa.spec.ts:5:53 › uz install and offline controls reflow in both themes and large text (3.3s)
+  ✓  32 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:55:1 › manifest, icons, manual guidance and exactly one root worker (883ms)
+  ✓  33 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:67:1 › warm and cold offline starts preserve records and can export a backup (1.4s)
+  ✓  34 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:89:1 › private/auth/logout responses and mutations never enter public caches (745ms)
+  ✓  35 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:104:1 › an open form in another tab blocks activation, then both saved tabs update together (1.9s)
+  ✓  36 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:129:1 › a failed asset installation retains the previous offline shell and data (1.0s)
+  ✓  37 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:140:1 › incompatible storage contracts remain waiting and cannot force a reload (2.5s)
+  ✓  38 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:147:1 › a tab blocked during storage startup prevents activation until verified readback finishes (2.8s)
+  ✓  39 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:168:1 › a failed durable command keeps unsaved export available and blocks updates until retry succeeds (2.5s)
+  ✓  40 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:189:1 › clearing local data while an update waits cannot resurrect records from the public shell (5.8s)
+  ✓  41 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:203:59 › install prompt accepted is one-use and does not itself claim installation (964ms)
+  ✓  42 [firefox] › tests/pwa/lifecycle.pwa.spec.ts:203:59 › install prompt dismissed is one-use and does not itself claim installation (947ms)
+
+  42 passed (1.4m)

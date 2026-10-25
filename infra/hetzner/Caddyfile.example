@@ -1,0 +1,11 @@
+# Proposed Cloud/VPS reverse proxy. Do not install until the hosting plan, DNS and TLS are verified.
+habit.saraftech.com {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:8080
+}
+
+# Choose a distinct staging hostname before enabling this block.
+REPLACE-STAGING-HOST {
+    encode zstd gzip
+    reverse_proxy 127.0.0.1:8081
+}

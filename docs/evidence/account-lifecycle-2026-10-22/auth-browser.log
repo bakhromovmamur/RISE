@@ -1,0 +1,38 @@
+
+> rise-prototype@1.0.0 test:auth
+> playwright test --config playwright.auth.config.ts
+
+[WebServer] (node:38817) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 1 worker
+
+(node:38818) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/auth/account.auth.spec.ts:43:1 › real email-code sign-in, rejected code, inbox return and account switching preserve guest records and drafts (1.7s)
+  ✓   2 [chromium] › tests/auth/account.auth.spec.ts:77:1 › another tab observes sign-out and clears account identity without clearing guest work (1.1s)
+  ✓   3 [chromium] › tests/auth/account.auth.spec.ts:87:1 › a disconnected account operation never claims sign-out and guest work stays available (876ms)
+  ✓   4 [chromium] › tests/auth/account.auth.spec.ts:104:1 › pending guest changes survive sign-in and sign-out in another tab and save on retry (1.0s)
+  ✓   5 [chromium] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in en, both appearances, mobile widths and 200% text (1.3s)
+  ✓   6 [chromium] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in uz, both appearances, mobile widths and 200% text (1.3s)
+  ✓   7 [chromium] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in ru, both appearances, mobile widths and 200% text (1.3s)
+(node:38843) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [webkit] › tests/auth/account.auth.spec.ts:43:1 › real email-code sign-in, rejected code, inbox return and account switching preserve guest records and drafts (2.3s)
+  ✓   9 [webkit] › tests/auth/account.auth.spec.ts:77:1 › another tab observes sign-out and clears account identity without clearing guest work (1.1s)
+  ✓  10 [webkit] › tests/auth/account.auth.spec.ts:87:1 › a disconnected account operation never claims sign-out and guest work stays available (920ms)
+  ✓  11 [webkit] › tests/auth/account.auth.spec.ts:104:1 › pending guest changes survive sign-in and sign-out in another tab and save on retry (1.1s)
+  ✓  12 [webkit] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in en, both appearances, mobile widths and 200% text (1.0s)
+  ✓  13 [webkit] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in uz, both appearances, mobile widths and 200% text (1.2s)
+  ✓  14 [webkit] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in ru, both appearances, mobile widths and 200% text (1.1s)
+(node:38875) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/auth/account.auth.spec.ts:43:1 › real email-code sign-in, rejected code, inbox return and account switching preserve guest records and drafts (2.8s)
+  ✓  16 [firefox] › tests/auth/account.auth.spec.ts:77:1 › another tab observes sign-out and clears account identity without clearing guest work (1.6s)
+  ✓  17 [firefox] › tests/auth/account.auth.spec.ts:87:1 › a disconnected account operation never claims sign-out and guest work stays available (1.2s)
+  ✓  18 [firefox] › tests/auth/account.auth.spec.ts:104:1 › pending guest changes survive sign-in and sign-out in another tab and save on retry (1.4s)
+  ✓  19 [firefox] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in en, both appearances, mobile widths and 200% text (1.7s)
+  ✓  20 [firefox] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in uz, both appearances, mobile widths and 200% text (1.3s)
+  ✓  21 [firefox] › tests/auth/account.auth.spec.ts:126:53 › account forms reflow in ru, both appearances, mobile widths and 200% text (1.3s)
+
+  21 passed (32.2s)

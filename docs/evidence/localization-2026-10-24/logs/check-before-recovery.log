@@ -1,0 +1,360 @@
+
+> rise-prototype@1.0.0 check
+> npm run check:toolchain && npm run lint && npm run typecheck && npm test && npm run build && npm run build:review
+
+
+> rise-prototype@1.0.0 check:toolchain
+> node scripts/check-toolchain.mjs
+
+Node 24.16.0, npm 11.13.0 and direct dependency pins match the lockfile.
+
+> rise-prototype@1.0.0 lint
+> oxlint src server infra tests scripts public/notifications-sw.js *.config.ts --deny-warnings
+
+
+> rise-prototype@1.0.0 typecheck
+> tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tools.json && tsc --noEmit -p tsconfig.server.json
+
+
+> rise-prototype@1.0.0 test
+> tsx --test tests/*.test.ts
+
+✔ account intents validate their complete envelope and preserve stable UUIDs without touching the input (11.652833ms)
+✔ account boundary rejects device-only, coordinate, draft and shared uploads (44.370666ms)
+✔ a manual timetable cannot import sample provenance, calculation keys or manufactured prayer reports (3.138375ms)
+✔ malformed or oversized account payloads cannot invoke accessors or smuggle credentials (0.866709ms)
+✔ account export round-trips full records and portable dates/XP without credentials or device secrets (292.149792ms)
+✔ future, tampered, duplicate and credential-bearing account exports fail before restore (212.796166ms)
+✔ deleted-session metadata must be complete, signed out and cannot carry another account (3.818541ms)
+✔ account restore rejects oversized files and orphan relational history (156.469875ms)
+✔ deletion ledger replay is bounded and tied to the exact environment/installation (3.119416ms)
+✔ a stale device generation cannot activate an old in-memory account snapshot (232.21475ms)
+✔ provider token encryption authenticates environment, session and ciphertext (5.56775ms)
+✔ CSRF tokens bind the browser context to the current session and use a separate purpose key (0.928166ms)
+✔ hosted cookie policy always uses Secure Host names; local HTTP uses separate explicit development names (0.339042ms)
+✔ browser session metadata validates identity shape and refuses credential-bearing provider responses (0.712042ms)
+✔ versioned private backup round-trips personal XP, dates, corrections, pauses, rewards and understood drafts (263.947958ms)
+✔ legacy schema 1 gets the same validated preview without invented activity (41.28575ms)
+✔ legacy schema 2 gets the same validated preview without invented activity (94.435917ms)
+✔ legacy schema 3 gets the same validated preview without invented activity (44.402709ms)
+✔ legacy schema 4 gets the same validated preview without invented activity (98.544958ms)
+✔ allowlist removes nested credentials, endpoints and invitation secrets, keeps local location and permitted snapshots (114.193583ms)
+✔ preview reports overlapping records, actual conflicts, additions and removals without modifying either profile (61.519042ms)
+✔ malformed, future, forged, oversized, duplicate and hostile files cannot become staged restores (1037.319292ms)
+✔ two years of 100 habits round-trip through the versioned format, with every date and XP preserved (18844.116542ms)
+✔ validated check, upgrade and history correction retain existing XP and reward semantics (64.0265ms)
+✔ check-in materializes the new day before looking up its occurrence (13.045875ms)
+✔ malformed commands never reach a storage adapter or invoke an accessor (16.29525ms)
+✔ a retried operation has one effect and a reused ID with changed content is rejected (12.531042ms)
+✔ concurrent check and Undo preserve a revision conflict and let the caller retry explicitly (13.1285ms)
+✔ unavailable records and failed commits leave durable state and receipts unchanged (2.527416ms)
+✔ goal, priority, prayer, pause and Fajr commands retain their separate effects (3.323125ms)
+✔ schema 2 migrates losslessly with empty new collections; migration is idempotent (32.551792ms)
+✔ schema 1 personal migration preserves records without inventing goals or prayer achievements (0.699542ms)
+✔ unlimited habits include twelve active habits without changing legacy entitlement (3.05125ms)
+✔ daily priorities are references, ordered, deduplicated, capped at three and stable after completion (2.715083ms)
+✔ suggestion fills spare slots with the next milestone of active goals only (1.828791ms)
+✔ habit check-ins support goals without completing milestones or counting twice (1.715375ms)
+✔ goal milestone completion, undo, pause and archive retain progress and never award XP (4.651708ms)
+✔ goal edits reorder milestones, retain completion dates, and preserve linked archived habits (2.091542ms)
+✔ weekly rates only use actions scheduled through today, while history stays fixed (1.627417ms)
+✔ weekly goal movement uses the selected week separately from current progress (1.092833ms)
+✔ weekly reward counts full and tiny once, excludes prayers, and survives archived habits (3.357708ms)
+✔ weekly earned reward survives later missed days and calendar boundaries (2.274792ms)
+✔ explicit past corrections revoke an un-enjoyed reward and recompute XP without rewriting snapshots (3.020625ms)
+✔ enjoyed reward remains in history with a correction note; enjoying never adds XP (5.868542ms)
+✔ try next week creates one separate attempt, retaining original period and records (6.49525ms)
+✔ earned rewards are spotlighted before the selected reward; archived/enjoyed rewards recede (5.781833ms)
+✔ prayer prominence follows planned target, with recording open before preparation starts (5.9295ms)
+✔ weekly prayers separate unresolved, recordable and upcoming from reported misses (1.521834ms)
+✔ required scenes are labelled demo data; empty mode has no invented records (4.804959ms)
+✔ review fixtures refuse personal, production, LAN and unspecified origins (1.078959ms)
+✔ empty personal profiles use the real date and never inherit records or shared objects (34.6445ms)
+✔ shared archive preserves exact current fields and historical snapshots with opaque former-member references (58.911625ms)
+✔ squad archive preserves exact published snapshots and only aggregate/current-viewer encouragement (9.05225ms)
+✔ archive rejects future versions, unknown private fields, broken references, duplicate records and invalid chronology before restore (13.30075ms)
+✔ archive request and whole-file bounds reject malformed, oversized and excessively nested input (495.161042ms)
+✔ group command boundary rejects authority/private extensions, invalid dates, IDs and unbounded names (51.375708ms)
+✔ group response and recovery boundaries reject cross-owner intent, private extensions and unsafe links (2.021541ms)
+✔ invitation pages reject secret fields, oversized or duplicate rows and unversioned cursors (5.680666ms)
+✔ owner navigation keeps one bounded page and returns through stored cursors (1.038625ms)
+✔ a changed revision, owner role or selected account discards a held invitation page (0.422041ms)
+✔ failed or unauthorized continuation hides stale actions and explicit reload starts from the first page (0.426375ms)
+✔ initial group reads enforce the same bounded owner-only invitation projection (29.167166ms)
+✔ legacy notification preference retries preserve their exact body and cannot erase a newer explicit choice (62.582583ms)
+✔ accepted explicit notification preferences clear only the matching durable choice (8.732917ms)
+✔ an exact squad publish retry clears its reviewed draft but cannot erase a newer private edit (9.672917ms)
+✔ group changes persist intent before sending and retry identical operations after a lost reply (3.82325ms)
+✔ unsaved intent never reaches the network and successful server actions retain cleanup recovery (2.180834ms)
+✔ accepted retries clear only their matching form and preserve an independent or newer draft (3.8365ms)
+✔ accepted shared task retries clear the matching durable draft and keep one captured operation (4.001292ms)
+✔ shared acceptance cannot clear a newer item draft, another list or an advanced reviewed revision (13.342459ms)
+✔ join secrets never enter durable drafts or exports; a reload checks the original receipt without a token (1.462041ms)
+✔ a join interrupted before acceptance is retained for explicit review, never automatically recreated (3.030708ms)
+✔ account changes fence late server responses and cannot clear another account draft (42.624792ms)
+✔ invitation capture removes secrets from navigation history and rejects ambiguous fragments (1.1265ms)
+✔ habit dates use the selected zone, preserve history, skip elapsed dates and never change XP (83.445958ms)
+✔ schedule and reminder edits start tomorrow, existing snapshots stay authoritative (17.014292ms)
+✔ tiny/full completion, undo, archive and reminder off reconcile dated reminders without extra XP (134.158459ms)
+✔ quiet hours always suppress habits even with prayer override; no names enter plan or notification (69.16575ms)
+✔ DST gaps are omitted and repeated clocks fire only once; invalid legacy times are unavailable (45.988708ms)
+✔ Uzbek fallback covers the shared catalog and preserves explicit copy and authored interpolation (9.404792ms)
+✔ Uzbek targets localize known measurements without translating custom units or changing quantities (34.711167ms)
+✔ Russian numbers, dates, weekdays and counts use Russian grammar (10.279541ms)
+✔ Uzbek display dates retain civil dates, selected timezones and DST while supplying readable calendar labels (3.602083ms)
+✔ display formatting preserves existing English and Russian output (1.919125ms)
+✔ explicit Russian demo creation localizes example content without altering achievement calculations (9.256583ms)
+✔ saved profiles migrate without translating user content or resetting Russian preference (3.252084ms)
+✔ timetable errors localize dynamic prayer names while leaving domain validation unchanged (2.002333ms)
+✔ schema 3 migrates without changing any saved record or inventing people, pauses or activity (47.038375ms)
+✔ private pause holds streaks without manufacturing prayer records, habit XP or misses (3.54675ms)
+✔ pause retains recorded prayers and resume has explicit current-window semantics (4.554458ms)
+✔ a pause cannot hide an earlier unresolved streak gap or show an overnight Isha reminder (1.832917ms)
+✔ family tasks repeat by date, count once, undo, and never enter habit counts or XP (4.13125ms)
+✔ sample setup preserves recorded snapshots and has explicit future coverage and wake times (7.996542ms)
+✔ personal empty setup contains no fictional group records; a created group starts with only its owner (0.671917ms)
+✔ exact supplied fixture: 240 XP, 16 scheduled, 14 check-ins, 10 full, 4 tiny, 87.5%, streak seven (33.556917ms)
+✔ tiny, repeat, upgrade, repeat, undo all use one source of truth (2.305875ms)
+✔ a missed planned date preserves XP and longest streak (1.073625ms)
+✔ unscheduled rest day preserves but never increments streak (0.879709ms)
+✔ target and schedule edits begin next date while historical denominators and targets remain (2.80775ms)
+✔ archive removes today’s unlogged action, frees slot, and preserves historical denominators (1.222375ms)
+✔ archiving a logged habit retains today’s check-in, denominator, and XP (1.166ms)
+✔ new habits are unlimited and appear only on their selected schedule (1.05725ms)
+✔ a fourth habit saves the draft without requiring an entitlement (0.861041ms)
+✔ reject empty names, invalid targets, oversized tiny targets, and empty schedules (0.285208ms)
+✔ frozen demo date and timer clock are independent; timer survives serialization (0.941ms)
+✔ refresh and materialization never overwrite check-ins (1.308875ms)
+✔ today unfinished does not break streak and late planned misses do (1.034ms)
+✔ Undo after archiving removes today's newly unlogged action without rewriting old plans (1.369334ms)
+✔ creation, edits and captured action dates keep IDs and historical targets stable (86.408542ms)
+✔ timer pause/resume uses captured instants, explicit finish is atomic and replayable (20.893291ms)
+✔ goals, fixed-week rewards, reflection and collection commands never add habit XP (14.109042ms)
+✔ draft and settings commands retain unrelated private records and backup-compatible drafts (96.25175ms)
+✔ malformed personal commands fail before adapter access or state mutation (7.721709ms)
+✔ unavailable historical priorities remain selected until explicitly removed (10.276ms)
+✔ a reminder preview can keep a return note before a timetable is configured (7.185666ms)
+✔ offline calculations produce ordered real instants, sunrise end and daily variation (240.810125ms)
+✔ Hanafi changes Asr without changing Fajr and manual offsets never move prayer boundaries (3.674625ms)
+✔ DST changes are reflected in civil times without a one-hour shift in the actual sun (4.283583ms)
+✔ results do not depend on the phone's time zone (642.928833ms)
+✔ invalid input and polar-day failures do not fabricate prayer times (1.637333ms)
+✔ location changes preserve checked snapshots and explicitly entered real timetables (192.556958ms)
+✔ demo dates, sample days and disabled delivery cannot schedule real notifications (1205.725458ms)
+✔ private pauses cancel wake-ups and reminders; resuming restores future alerts (1173.116083ms)
+✔ acknowledgment cancels only that day's wake alerts, never records a prayer or XP (1499.50175ms)
+✔ notification and wake switches are independent, and Android backup is spaced by ten minutes (3573.357417ms)
+✔ recorded prayers have no alerts, obsolete events are skipped, and IDs are stable and unique (2643.848958ms)
+✔ manual local time handles midnight, DST gaps and invalid clocks (6.579916ms)
+✔ a location change never queues leftover dates calculated for the former location (2101.288458ms)
+✔ OS reconciliation verifies the queue, cancels changed alerts and preserves other features (777.636708ms)
+✔ clock changes leave unconfirmed prayers unrecorded and saved history explicitly correctable (1345.274875ms)
+✔ a saved record remains visible in its week after the device clock goes to yesterday (160.975333ms)
+✔ independent streaks use saved UTC windows across travel and repeated DST clocks (238.208292ms)
+✔ private pause across midnight holds independent streaks, retains records and earlier gaps (421.580542ms)
+✔ resume cannot erase a pause by selecting a point before it started (786.9885ms)
+✔ Undo during a pause excludes only the selected prayer and never restores its reminders (198.723ms)
+✔ dated Fajr enable and backup choices survive later plan edits and backup round trip (2202.196708ms)
+✔ Fajr preview commands cannot overwrite a live acknowledgment (423.0235ms)
+✔ dated Fajr draft survives reload and portable backup with its original date (358.044875ms)
+✔ Fajr planning and wake clocks use absolute subtraction across a repeated hour (162.352208ms)
+✔ a rejected prayer record cannot finish a work break or lose the return note (521.601416ms)
+✔ published Adhan reference: London-MoonsightingCommittee (12 dates) (302.946583ms)
+✔ published Adhan reference: Makkah-UmmAlQura (12 dates) (335.345542ms)
+✔ published Adhan reference: Singapore-Singapore (366 dates) (11019.502667ms)
+✔ published Adhan reference: Tehran-Tehran (12 dates) (275.562166ms)
+✔ published Adhan reference: Raleigh-NorthAmerica (1 dates) (88.03775ms)
+✔ all offered methods, Asr conventions and high-latitude rules preserve starts and bound planned offsets (1199.957459ms)
+✔ DST spring/fall transitions and Lord Howe's half-hour change keep solar instants continuous (37.259875ms)
+✔ fractional zones, date-line locations and launch countries use the selected civil date (21.299375ms)
+✔ calculations and dated manual resolution are independent of five host time zones (2270.76275ms)
+✔ startup, resume and rollover extend 30 dates without pruning history or changing manual/checked snapshots (1350.50625ms)
+✔ manual edits replace stale calculated timestamps and stay manual through settings changes (575.256792ms)
+✔ manual dates do not repeat, change profile timezone or manufacture caller-supplied prayer records (65.989583ms)
+✔ manual gaps, skipped dates, invalid dates/zones and overnight DST gaps fail without a partial alert plan (970.313959ms)
+✔ repeated manual clocks choose the first instant and overnight windows retain their original date (9.636208ms)
+✔ unavailable solar events never produce sample substitutes or schedule an unavailable date (848.757083ms)
+✔ device timezone observation and explicit review survive replay without changing prayer settings/history (184.151833ms)
+✔ an obsolete calculated day remains saved as history while today's view and alerts require the current settings (1406.459041ms)
+✔ a preserved manual travel date uses its instants for status, recording and preparation (34.564208ms)
+✔ DST's second repeated hour does not make an already-open manual prayer upcoming again (33.038125ms)
+✔ recognizable legacy manual edits retain their exact snapshots and use authored clocks after travel (1937.457167ms)
+✔ first setup west of the device date keeps the selected current prayer date recordable (78.966958ms)
+✔ Undo keeps an original checked UTC window when a manual date's timezone was edited (569.635083ms)
+✔ sample prayer history has independent prayer streaks and does not change habit XP (52.034708ms)
+✔ on-time records are idempotent, undoable and never award habit XP (1.541417ms)
+✔ future records are blocked; later and missed are blocked until the window ends (0.808375ms)
+✔ a late check-in can truthfully report an earlier on-time prayer (1.049125ms)
+✔ unknown records leave a pending streak without silently bridging or marking missed (1.338959ms)
+✔ an overnight Isha window belongs to the previous day and remains recordable (2.496958ms)
+✔ personal mode has no fabricated history or automatic repetition of yesterday's times (90.794084ms)
+✔ v1 migration preserves habits and only seeds prayer history in demo mode (27.778833ms)
+✔ timetables validate source, sequence, overlap and targets within windows (1.522583ms)
+✔ timetable corrections preserve recorded prayer snapshots (2.440375ms)
+✔ wrap-up minute works once, measures real time, and survives navigation and reload (1.998292ms)
+✔ Fajr preparation attaches to the next morning without adding prayer records (1.328333ms)
+✔ personal prayer clock uses its timezone and demo time remains frozen (4.562667ms)
+✔ cancellation boundary accepts legacy and bounded intent but rejects forged generation/data fields (3.188333ms)
+✔ quiet hours wrap midnight, use IANA clock and have exclusive end (41.89ms)
+✔ dated acknowledgment cancels only wake/backup; previews and ordinary settings do not cancel (7.025375ms)
+✔ plans validate bounded timestamps and reject private or unknown fields (31.067667ms)
+✔ server clock bounds seven-day horizon, expired events and burst frequency (0.3685ms)
+✔ web plan reuses prayer eligibility, stable opaque IDs and preserves the profile (3039.679167ms)
+✔ renewal requires explicit primary choice, preserves data and uses current staging metadata (6633.844375ms)
+✔ lost reply survives coordinator reload and retries the exact immutable request (4695.410958ms)
+✔ unsaved, sync-pending, guest, offline and permission-blocked sources never submit (718.463875ms)
+✔ late response cannot restore metadata after disable or account switch (1851.907625ms)
+✔ another primary stops automatic renewal and requires a new explicit choice (6215.9555ms)
+✔ superseded receipts and failed control writes never claim current coverage (699.358625ms)
+✔ readiness distinguishes expiry, empty coverage, queue error and clock skew (3855.786458ms)
+✔ untrusted plan metadata validates nested fields and rejects private extensions (139.24825ms)
+✔ an older rejection cannot disable a newer explicit renewal choice (594.742208ms)
+✔ receiving another installation plan does not inherit its quiet-hours override (1522.650584ms)
+✔ background-plan consent does not enable or require the foreground switch (950.856166ms)
+✔ consented renewal includes habits and removes completed/disabled occurrences without affecting XP (3662.167875ms)
+✔ sync changes arriving during renewal are rechecked without waiting for another timer (1544.96375ms)
+✔ worker displays allowlisted generic test copy and records browser observation without journey effects (94.601708ms)
+✔ wrong owner, stale generation, expired and unknown private payload fields get only safe visible fallback (10.750417ms)
+✔ revoked consent and missing control cannot display detailed content or revive subscription (6.233042ms)
+✔ subscription changes mark cancellation pending and never automatically resubscribe (9.535708ms)
+✔ push click opens only the app root and never dispatches prayer or wake acknowledgments (2.593333ms)
+✔ push endpoints accept only reviewed canonical HTTPS provider paths (1.4915ms)
+✔ push connection addresses reject private, reserved, mapped and metadata ranges (101.309209ms)
+✔ connection-time DNS validation fails closed on mixed/private answers and pins a checked public address (7.9625ms)
+✔ browser subscription keys, expiry and unknown fields are runtime validated (2.453458ms)
+✔ encrypted subscription records bind environment, owner and installation (1.391833ms)
+✔ real Web Push encryption decrypts for only the synthetic subscriber and VAPID is signed (9.300917ms)
+✔ iPhone/iPad install guidance precedes missing API and Android supports browser mode (0.342458ms)
+✔ push metadata parsers reject endpoint/credential disclosure and unknown status (0.92125ms)
+✔ worker installation is complete and never forces an existing tab to reload (67.084917ms)
+✔ corrupt public asset rolls back only the new shell (3.672291ms)
+✔ missing public asset rolls back only the new shell (3.121125ms)
+✔ private requests, mutations, cross-origin and query responses bypass the worker (6.697458ms)
+✔ activation cannot delete unrelated private caches (5.259292ms)
+✔ worker status is explicit and restricted to same-origin application windows (27.6705ms)
+✔ notification routing drops malformed, expired and future alerts without changing records (5.867375ms)
+✔ an unresponsive same-origin window beyond the start URL blocks forced activation (6033.262459ms)
+✔ a RISE test notification still opens the fixed application without a prayer action (18.519709ms)
+✔ backend config accepts only matching environment/provider/database origins and restricted identities (3.993959ms)
+✔ production TLS and project binding cannot be disabled by connection string options (1.948542ms)
+✔ local browser entry keeps installation identity and rejects arbitrary origin aliases (431.338583ms)
+✔ public build variables use an allowlist and errors contain no values (0.601709ms)
+✔ local Docker adapter binds only its labeled infrastructure containers to loopback (1575.558125ms)
+✔ real browser builds reject backend imports and exposed credentials (1481.44675ms)
+✔ BFF serves a production shell with a narrow public-file boundary and safe health/log responses (34.932958ms)
+✔ shared commands validate identities, dates, recurrence and fields before durable pending storage (6.150541ms)
+✔ shared civil recurrence follows group date across viewer zones and DST without shifting stored history (78.929583ms)
+✔ shared pages require a matching revision cursor, bounded rows and one group projection (11.292292ms)
+✔ shared priority selection uses separate authority, ordered unique slots and explicit occurrence dates without XP or completion (257.451667ms)
+✔ sync sends opaque shared references, retains local simulations locally and never resurrects removed shared selections (249.32925ms)
+✔ older priority rows, export checksums and cached immutable intents remain compatible without rewriting their source (272.357792ms)
+✔ exports retain opaque shared selections but guest import cannot create them or overwrite existing account selections (206.411375ms)
+✔ a vanished shared selection is refused without poisoning account storage and accepted selection queues its exact identity (261.821541ms)
+✔ shared reader combines bounded pages only at one authorized revision and offers pins only for eligible loaded tasks (5.561125ms)
+✔ late content and errors cannot repopulate a removed group, replaced read or switched account (1.152084ms)
+✔ failed or inconsistent continuation clears content, never shows a partial mixed collection and refreshes membership on conflict (1.378583ms)
+✔ the shared HTTP client binds owner, group, parent, date and revision before accepting server data (108.067458ms)
+✔ squad pages and author lookups remain separate and reaction revisions invalidate every old view (64.14625ms)
+✔ late squad replies and failures cannot revive removed membership, replaced reads or another account (2.184417ms)
+✔ inconsistent or failed squad continuation clears the entire view and requests current authority after conflict (8.738959ms)
+✔ the squad HTTP boundary rejects mismatched owner/week/author and mismatched preview choices or source metadata (125.545542ms)
+✔ squad input is an exact opt-in contract and publish cannot carry a replacement payload or actor (7.159ms)
+✔ server snapshot contains only chosen totals and titles, preserves source records and stays fixed after corrections (240.20025ms)
+✔ the injected instant and selected personal timezone bound elapsed totals, without consulting a demo clock (203.576666ms)
+✔ squad pages are bounded and match their week, revision and continuation, without hidden owner metadata (22.027042ms)
+✔ durable migration schema 1 preserves authored data, XP, snapshots and unknown safe fields (216.062542ms)
+✔ durable migration schema 2 preserves authored data, XP, snapshots and unknown safe fields (26.26875ms)
+✔ durable migration schema 3 preserves authored data, XP, snapshots and unknown safe fields (24.481333ms)
+✔ durable migration schema 4 preserves authored data, XP, snapshots and unknown safe fields (20.524541ms)
+✔ fresh mode cannot hide known fixture or sample provenance (10.925334ms)
+✔ malformed, unsupported, hostile, duplicate and partial data are rejected without mutating their source (56.235542ms)
+✔ a two-year, 100-habit profile round-trips without truncating historical snapshots or private notes (1715.921ms)
+✔ a draft arriving during receipt commit preserves both the receipt and the private draft (109.507875ms)
+✔ a private draft arriving during a remote pull retains the new personal state (16.834916ms)
+✔ a real intervening cache writer still rejects a stale local save and retains recovery intent (10.953792ms)
+✔ a personal action arriving during a pull resumes sending with its original identity and context (22.817792ms)
+✔ ordinary local sample setup remains local and survives its durable save (12.162708ms)
+✔ offline queued work stays pending without repeatedly restarting the sender (14.4535ms)
+✔ consented projection preserves authored dates, XP, snapshots and prayer start while excluding device secrets (325.079917ms)
+✔ known fixture activity is withheld and unchecked categories never enter an import (209.790834ms)
+✔ import is append-only and repeat import cannot duplicate activity or overwrite a changed account (140.401333ms)
+✔ malformed import rows, duplicate keys and hidden payload fields cannot pass the account boundary (179.183375ms)
+✔ outbound intents keep captured dates and omit device setup, drafts and running timer fields (102.280666ms)
+✔ remote refresh preserves only this account device's drafts, timer and coordinate settings (275.149708ms)
+✔ local calendar observations and simulation edits do not advance a personal revision (96.752625ms)
+✔ append imports preserve existing occurrence order and separate prayer tracking start (256.306208ms)
+✔ two years of 100 habits preserve every check and private reflection through bounded sync import pages (12346.007208ms)
+✔ format-one cached intent is retained and recovery decisions use strict compare-and-swap (282.027834ms)
+✔ semantic read sets ignore unrelated records and exclude raw device calculation keys (255.717917ms)
+✔ hostile causal and stored recovery metadata cannot bypass revision or decision bounds (177.887375ms)
+✔ reviewed timezone recovery preserves original setup without reactivating calculations for the old zone (136.708875ms)
+✔ a refreshed or reloaded recovery stays pending and never announces Synced (184.008458ms)
+✔ the isolated test server retains its build when the source output is replaced (721.069875ms)
+ℹ tests 271
+ℹ suites 0
+ℹ pass 271
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35129.866709
+
+> rise-prototype@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 1723 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               1.05 kB │ gzip:   0.52 kB
+dist/assets/migration.worker-BcUrSvIy.js     10.76 kB
+dist/assets/hydrate.worker-BkEWmf0t.js       13.71 kB
+dist/assets/archive.worker-DMyQgTfZ.js       16.38 kB
+dist/assets/import.worker-B-pfkKNm.js        28.56 kB
+dist/assets/backup.worker-BCa9oD1m.js        35.88 kB
+dist/assets/index-VATQKOLD.css              107.62 kB │ gzip:  20.39 kB
+dist/assets/web-D6qoHmtm.js                   0.84 kB │ gzip:   0.39 kB
+dist/assets/web-CqM7w8UM.js                   2.08 kB │ gzip:   0.85 kB
+dist/assets/web-BDePIzTK.js                   4.43 kB │ gzip:   1.28 kB
+dist/assets/index-CvuoP0lR.js             1,275.76 kB │ gzip: 392.34 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0msrc/account/export.ts is dynamically imported by src/data/backup.ts but also statically imported by src/account/AccountLifecycle.tsx, dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 827ms
+
+> rise-prototype@1.0.0 build:review
+> tsc -b && vite build --mode review
+
+vite v8.3.4 building client environment for review...
+transforming...
+✓ 1729 modules transformed.
+rendering chunks...
+computing gzip size...
+dist-review/index.html                               0.88 kB │ gzip:   0.47 kB
+dist-review/assets/migration.worker-BcUrSvIy.js     10.76 kB
+dist-review/assets/hydrate.worker-BkEWmf0t.js       13.71 kB
+dist-review/assets/archive.worker-DMyQgTfZ.js       16.38 kB
+dist-review/assets/import.worker-B-pfkKNm.js        28.56 kB
+dist-review/assets/backup.worker-BCa9oD1m.js        35.88 kB
+dist-review/assets/index-VATQKOLD.css              107.62 kB │ gzip:  20.39 kB
+dist-review/assets/origin-Co-8Dkay.js                0.29 kB │ gzip:   0.23 kB
+dist-review/assets/storageHarness-CXk23bf9.js        0.39 kB │ gzip:   0.27 kB
+dist-review/assets/web-CAAX7uXD.js                   0.84 kB │ gzip:   0.40 kB
+dist-review/assets/web-WUlqIGOt.js                   2.08 kB │ gzip:   0.85 kB
+dist-review/assets/web-CwvRLYkf.js                   4.43 kB │ gzip:   1.29 kB
+dist-review/assets/tools-DLuSFNFa.js                17.05 kB │ gzip:   6.07 kB
+dist-review/assets/backup-Bpwgvv0F.js               59.10 kB │ gzip:  20.02 kB
+dist-review/assets/index-D4zCw1VR.js             1,225.34 kB │ gzip: 375.64 kB
+
+✓ built in 516ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

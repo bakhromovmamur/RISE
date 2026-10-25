@@ -1,0 +1,24 @@
+✔ personal API requires a real session and CSRF; reading never creates an account profile (375.987916ms)
+✔ all personal entity families round-trip with domain parity, private pauses and immutable historical targets (1476.435875ms)
+✔ direct RLS and invoker views isolate every personal table; ownership changes and cross-owner foreign keys fail (1711.665959ms)
+✔ two sessions serialize conflicting commands across every personal entity family (3858.512291ms)
+✔ concurrent devices commit one revision and replay one receipt; changed payloads cannot reuse an operation (1569.862ms)
+✔ receipt insertion failure rolls back the entity write and canonical revision (185.353959ms)
+✔ revoked/banned sessions cannot read records or replay an already committed receipt (293.767709ms)
+✔ documented Unicode fields survive without truncation and XP totals are not writable (310.059541ms)
+✔ sync requires a current session, CSRF, expected account and explicit consent before staging (212.59425ms)
+✔ consented guest import preserves dates and XP, stays private until commit, and replays once (262.060875ms)
+✔ existing account records win an explicit append import and repeated activity never duplicates (393.093208ms)
+✔ captured offline dates and whole command batches commit atomically with stable replay (272.365667ms)
+✔ authorized pagination has bounded pages and refuses stale or cross-account cursors (1246.121208ms)
+✔ import receipt failure rolls back all live rows, retaining staged data for a safe retry (308.526666ms)
+✔ staged imports enforce owner/session RLS and expire without granting ordinary table writes (273.866167ms)
+✔ cancel removes only the owner's uncommitted staging and does not undo a committed import (448.651167ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13577.139417

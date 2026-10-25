@@ -1,0 +1,50 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test tests/journey.browser.spec.ts tests/navigation.browser.spec.ts
+
+[WebServer] (node:15051) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 27 tests using 2 workers
+
+(node:15055) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15054) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/journey.browser.spec.ts:21:1 › Journey shows one unlock and one personal reward, while keyboard disclosures preserve records (2.0s)
+  ✓   2 [chromium] › tests/journey.browser.spec.ts:49:1 › earned Pip unlock precedes the next threshold; claiming and dressing persist without XP (2.0s)
+  ✓   3 [chromium] › tests/journey.browser.spec.ts:70:1 › earned personal reward stays first, enjoyment moves it to history, and selection names its goal (2.4s)
+  ✓   5 [chromium] › tests/journey.browser.spec.ts:123:1 › a completed collection has no invented next threshold and all keepsakes remain accessible (806ms)
+  ✓   4 [chromium] › tests/journey.browser.spec.ts:93:1 › empty setup has real creation, and enlarged-text trail uses readable rows (3.2s)
+  ✓   7 [chromium] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (1.4s)
+  ✓   6 [chromium] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (1.4s)
+  ✓   9 [chromium] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (1.8s)
+(node:15163) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [chromium] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (3.1s)
+(node:15190) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [webkit] › tests/journey.browser.spec.ts:21:1 › Journey shows one unlock and one personal reward, while keyboard disclosures preserve records (3.3s)
+  ✓  11 [webkit] › tests/journey.browser.spec.ts:49:1 › earned Pip unlock precedes the next threshold; claiming and dressing persist without XP (4.6s)
+  ✓  12 [webkit] › tests/journey.browser.spec.ts:70:1 › earned personal reward stays first, enjoyment moves it to history, and selection names its goal (4.1s)
+  ✓  14 [webkit] › tests/journey.browser.spec.ts:123:1 › a completed collection has no invented next threshold and all keepsakes remain accessible (1.8s)
+  ✓  13 [webkit] › tests/journey.browser.spec.ts:93:1 › empty setup has real creation, and enlarged-text trail uses readable rows (5.2s)
+  ✓  15 [webkit] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (3.5s)
+  ✓  16 [webkit] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (3.7s)
+  ✓  17 [webkit] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (7.9s)
+  ✓  18 [webkit] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (6.2s)
+(node:15300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15302) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [firefox] › tests/journey.browser.spec.ts:21:1 › Journey shows one unlock and one personal reward, while keyboard disclosures preserve records (7.7s)
+  ✓  20 [firefox] › tests/journey.browser.spec.ts:49:1 › earned Pip unlock precedes the next threshold; claiming and dressing persist without XP (9.7s)
+  ✓  21 [firefox] › tests/journey.browser.spec.ts:70:1 › earned personal reward stays first, enjoyment moves it to history, and selection names its goal (9.7s)
+  ✓  23 [firefox] › tests/journey.browser.spec.ts:123:1 › a completed collection has no invented next threshold and all keepsakes remain accessible (1.6s)
+  ✓  22 [firefox] › tests/journey.browser.spec.ts:93:1 › empty setup has real creation, and enlarged-text trail uses readable rows (9.1s)
+  ✓  24 [firefox] › tests/navigation.browser.spec.ts:16:1 › four tabs use one heading hierarchy, keyboard navigation and independent reading positions (3.0s)
+  ✓  25 [firefox] › tests/navigation.browser.spec.ts:47:1 › cross-tab shortcuts reset scroll, announce the destination and retain the inspected week (3.0s)
+  ✓  27 [firefox] › tests/navigation.browser.spec.ts:113:1 › enlarged English and Uzbek navigation has separate readable targets above the content boundary (5.0s)
+  ✓  26 [firefox] › tests/navigation.browser.spec.ts:74:1 › Today has one timetable entry and reward details hand off cleanly to Journey (6.7s)
+
+  27 passed (1.1m)

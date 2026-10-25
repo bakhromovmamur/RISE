@@ -1,0 +1,18 @@
+✔ both local stacks apply the committed migrations and expose the expected restricted environment (1274.536834ms)
+✔ each runtime identity can read its environment but cannot administer data, Auth or other roles (68.367958ms)
+✔ crossed databases, installation markers and privileged connections fail readiness (21.156084ms)
+✔ private local files are protected and never present in the web build (55.917333ms)
+✔ browser-safe local entry verifies the retained marker and rejects crossed installation identity (22.984208ms)
+✔ BFF delivers the existing production files byte-for-byte under its own origin (89.265792ms)
+✔ synthetic Auth users are isolated; foreign JWTs and administrator tokens are refused (346.816542ms)
+✔ startup refuses a mismatched installation before opening its listener (170.552709ms)
+✔ rotating a worker login invalidates its old password without changing the BFF identity (28.377ms)
+✔ unexpected direct grants on the BFF role fail readiness instead of expanding access (13.797625ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2513.090875

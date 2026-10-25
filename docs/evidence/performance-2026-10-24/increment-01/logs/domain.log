@@ -1,0 +1,42 @@
+✔ validated check, upgrade and history correction retain existing XP and reward semantics (11.157ms)
+✔ check-in materializes the new day before looking up its occurrence (0.3455ms)
+✔ check validation preserves captured empty days and explicit Undo of an archived occurrence (1.215166ms)
+✔ malformed commands never reach a storage adapter or invoke an accessor (0.78175ms)
+✔ a retried operation has one effect and a reused ID with changed content is rejected (1.648334ms)
+✔ concurrent check and Undo preserve a revision conflict and let the caller retry explicitly (1.525083ms)
+✔ unavailable records and failed commits leave durable state and receipts unchanged (0.737958ms)
+✔ goal, priority, prayer, pause and Fajr commands retain their separate effects (1.428583ms)
+✔ schema 2 migrates losslessly with empty new collections; migration is idempotent (10.857333ms)
+✔ schema 1 personal migration preserves records without inventing goals or prayer achievements (0.27975ms)
+✔ unlimited habits include twelve active habits without changing legacy entitlement (1.184125ms)
+✔ daily priorities are references, ordered, deduplicated, capped at three and stable after completion (0.668375ms)
+✔ suggestion fills spare slots with the next milestone of active goals only (0.46575ms)
+✔ habit check-ins support goals without completing milestones or counting twice (0.581291ms)
+✔ goal milestone completion, undo, pause and archive retain progress and never award XP (0.876542ms)
+✔ goal edits reorder milestones, retain completion dates, and preserve linked archived habits (0.665ms)
+✔ weekly rates only use actions scheduled through today, while history stays fixed (0.702417ms)
+✔ weekly goal movement uses the selected week separately from current progress (0.43175ms)
+✔ weekly reward counts full and tiny once, excludes prayers, and survives archived habits (1.386042ms)
+✔ weekly earned reward survives later missed days and calendar boundaries (0.682167ms)
+✔ explicit past corrections revoke an un-enjoyed reward and recompute XP without rewriting snapshots (0.834417ms)
+✔ enjoyed reward remains in history with a correction note; enjoying never adds XP (0.7145ms)
+✔ try next week creates one separate attempt, retaining original period and records (0.960666ms)
+✔ earned rewards are spotlighted before the selected reward; archived/enjoyed rewards recede (0.967791ms)
+✔ prayer prominence follows planned target, with recording open before preparation starts (0.437708ms)
+✔ weekly prayers separate unresolved, recordable and upcoming from reported misses (0.363083ms)
+✔ required scenes are labelled demo data; empty mode has no invented records (1.227958ms)
+✔ creation, edits and captured action dates keep IDs and historical targets stable (12.304458ms)
+✔ timer pause/resume uses captured instants, explicit finish is atomic and replayable (2.197583ms)
+✔ goals, fixed-week rewards, reflection and collection commands never add habit XP (3.526958ms)
+✔ draft and settings commands retain unrelated private records and backup-compatible drafts (11.661584ms)
+✔ malformed personal commands fail before adapter access or state mutation (1.31425ms)
+✔ unavailable historical priorities remain selected until explicitly removed (1.287ms)
+✔ a reminder preview can keep a return note before a timetable is configured (1.176541ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 146.436

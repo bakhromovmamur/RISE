@@ -1,0 +1,130 @@
+[
+  {
+    "at": 1792854559328,
+    "phase": "setup",
+    "loadAverage": [
+      5.396484375,
+      5.7978515625,
+      6.103515625
+    ],
+    "freeBytes": 278380544,
+    "activity": [
+      {
+        "backend_type": "autovacuum worker",
+        "state": "active",
+        "wait_event_type": "Timeout",
+        "count": 1
+      },
+      {
+        "backend_type": "client backend",
+        "state": "idle",
+        "wait_event_type": "Client",
+        "count": 4
+      },
+      {
+        "backend_type": "pg_cron launcher",
+        "state": null,
+        "wait_event_type": "Extension",
+        "count": 1
+      },
+      {
+        "backend_type": "pg_net 0.20.4 worker",
+        "state": "idle",
+        "wait_event_type": "Extension",
+        "count": 1
+      }
+    ],
+    "vacuum": [
+      {
+        "count": 1
+      }
+    ],
+    "tables": [
+      {
+        "schemaname": "auth",
+        "estimated_live": "49556",
+        "estimated_dead": "2154",
+        "autovacuums": "45"
+      },
+      {
+        "schemaname": "rise",
+        "estimated_live": "655030",
+        "estimated_dead": "7390142",
+        "autovacuums": "350"
+      },
+      {
+        "schemaname": "rise_private",
+        "estimated_live": "74432",
+        "estimated_dead": "2283",
+        "autovacuums": "111"
+      }
+    ]
+  },
+  {
+    "at": 1792854569329,
+    "phase": "setup",
+    "loadAverage": [
+      6.2509765625,
+      5.96826171875,
+      6.16015625
+    ],
+    "freeBytes": 213139456,
+    "activity": [
+      {
+        "backend_type": "autovacuum worker",
+        "state": "active",
+        "wait_event_type": "Timeout",
+        "count": 1
+      },
+      {
+        "backend_type": "client backend",
+        "state": "idle",
+        "wait_event_type": "Client",
+        "count": 3
+      },
+      {
+        "backend_type": "client backend",
+        "state": "idle in transaction",
+        "wait_event_type": "Client",
+        "count": 5
+      },
+      {
+        "backend_type": "pg_cron launcher",
+        "state": null,
+        "wait_event_type": "Extension",
+        "count": 1
+      },
+      {
+        "backend_type": "pg_net 0.20.4 worker",
+        "state": "idle",
+        "wait_event_type": "Extension",
+        "count": 1
+      }
+    ],
+    "vacuum": [
+      {
+        "count": 1
+      }
+    ],
+    "tables": [
+      {
+        "schemaname": "auth",
+        "estimated_live": "49563",
+        "estimated_dead": "2158",
+        "autovacuums": "45"
+      },
+      {
+        "schemaname": "rise",
+        "estimated_live": "655055",
+        "estimated_dead": "7390147",
+        "autovacuums": "350"
+      },
+      {
+        "schemaname": "rise_private",
+        "estimated_live": "74432",
+        "estimated_dead": "2334",
+        "autovacuums": "111"
+      }
+    ]
+  }
+]

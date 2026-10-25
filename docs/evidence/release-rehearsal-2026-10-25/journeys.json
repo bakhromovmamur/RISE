@@ -1,0 +1,126 @@
+{
+  "task": "RELEASE-01",
+  "prd": "PRD section 7, journeys A\u2013J",
+  "automatedResults": "verification.json",
+  "humanPilot": "not_started",
+  "journeys": [
+    {
+      "id": "A",
+      "name": "Personal first day",
+      "testFiles": [
+        "tests/production/entry.production.spec.ts",
+        "tests/production/day-boundary.production.spec.ts",
+        "tests/storage.browser.spec.ts",
+        "tests/personal-commands.browser.spec.ts"
+      ],
+      "scope": "Production empty entry and real storage; isolated fault controls are review-only.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "B",
+      "name": "Existing profile",
+      "testFiles": [
+        "tests/production/entry.production.spec.ts",
+        "tests/backup.browser.spec.ts",
+        "tests/sync/account.sync.spec.ts"
+      ],
+      "scope": "Synthetic legacy sources, durable recovery and explicit real-account import.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "C",
+      "name": "Prayer day",
+      "testFiles": [
+        "tests/production/prayer.production.spec.ts",
+        "tests/prayer-timetable.test.ts",
+        "tests/prayer-records.test.ts",
+        "tests/prayer-records.browser.spec.ts"
+      ],
+      "scope": "Offline real calculation and dated synthetic records; no religious accuracy certification.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "D",
+      "name": "Fajr",
+      "testFiles": [
+        "tests/prayer-live.browser.spec.ts",
+        "tests/prayer-records.browser.spec.ts",
+        "tests/push/renewal.push.spec.ts",
+        "tests/push/cancellation.push.spec.ts",
+        "tests/infra/push.test.ts"
+      ],
+      "scope": "Synthetic permission/provider boundaries; no physical display, sound or wake evidence.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "E",
+      "name": "Difficult day",
+      "testFiles": [
+        "tests/recovery.browser.spec.ts",
+        "tests/full-day.browser.spec.ts",
+        "tests/production/day-boundary.production.spec.ts",
+        "tests/prayer-records.test.ts"
+      ],
+      "scope": "Review full/difficult-day fixtures plus an empty production day boundary; accelerated clocks.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "F",
+      "name": "Two devices",
+      "testFiles": [
+        "tests/sync/account.sync.spec.ts",
+        "tests/sync/recovery.sync.spec.ts"
+      ],
+      "scope": "Real verified local sessions in independent browser contexts, not physical devices.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "G",
+      "name": "Family",
+      "testFiles": [
+        "tests/groups/membership.groups.spec.ts",
+        "tests/groups/content.groups.spec.ts",
+        "tests/groups/content-recovery.groups.spec.ts"
+      ],
+      "scope": "Distinct synthetic members on the real local API; not two human participants.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "H",
+      "name": "Squad",
+      "testFiles": [
+        "tests/groups/squads.groups.spec.ts",
+        "tests/squad-snapshot.test.ts"
+      ],
+      "scope": "Exact-preview publication and withdrawal through verified local accounts.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "I",
+      "name": "Data lifecycle",
+      "testFiles": [
+        "tests/production/backup.production.spec.ts",
+        "tests/sync/lifecycle.sync.spec.ts",
+        "tests/groups/lifecycle.groups.spec.ts",
+        "tests/infra/server-backup.test.ts",
+        "tests/rollout/recovery.rollout.spec.ts"
+      ],
+      "scope": "Synthetic lifecycle, real disposable server restore and compatible rollout; no real-account deletion.",
+      "humanOutcome": "not_run"
+    },
+    {
+      "id": "J",
+      "name": "Accessibility",
+      "testFiles": [
+        "tests/accessibility.browser.spec.ts",
+        "tests/navigation.browser.spec.ts",
+        "tests/russian.browser.spec.ts",
+        "tests/uzbek.browser.spec.ts",
+        "tests/production/help.production.spec.ts",
+        "tests/visual/parity.visual.spec.ts"
+      ],
+      "scope": "Keyboard/layout/language/visual automation; physical assistive technology remains pending.",
+      "humanOutcome": "not_run"
+    }
+  ]
+}

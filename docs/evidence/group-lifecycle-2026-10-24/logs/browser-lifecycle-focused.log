@@ -1,0 +1,20 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/lifecycle.groups.spec.ts$
+
+[WebServer] (node:42008) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:42010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/groups/lifecycle.groups.spec.ts:17:1 › deletion dismisses shared forms across tabs and a restored stale account cache cannot recover membership (5.5s)
+(node:42031) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [webkit] › tests/groups/lifecycle.groups.spec.ts:17:1 › deletion dismisses shared forms across tabs and a restored stale account cache cannot recover membership (5.8s)
+(node:42061) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [firefox] › tests/groups/lifecycle.groups.spec.ts:17:1 › deletion dismisses shared forms across tabs and a restored stale account cache cannot recover membership (6.5s)
+
+  3 passed (21.9s)

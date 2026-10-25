@@ -1,0 +1,43 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/content-pagination.groups.spec.ts --project=chromium
+
+[WebServer] (node:3243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:3244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (6.0s)
+
+
+  1) [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByRole('dialog').getByText('This group is unavailable. Refresh Your people to check current access.', { exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByRole('dialog').getByText('This group is unavailable. Refresh Your people to check current access.', { exact: true }) with timeout 5000ms
+      - waiting for getByRole('dialog').getByText('This group is unavailable. Refresh Your people to check current access.', { exact: true })
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      29 |  await page.getByRole('tab',{name:'You',exact:true}).click();await page.getByRole('button',{name:'Family Tasks & shared lists',exact:true}).click();await page.locator('.people-group').click();await page.getByRole('button',{name:task.title+' You',exact:true}).click();await expect(page.getByRole('button',{name:t('markDone'),exact:true})).toBeEnabled();
+      30 |  held=new Promise<void>(resolve=>{release=resolve;});group.revision++;const nextPage=page.waitForRequest(r=>new URL(r.url()).pathname.endsWith('/content')&&new URL(r.url()).searchParams.has('cursor'));await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await nextPage;
+    > 31 |  try{await expect(page.getByRole('dialog').getByText(t('loading'),{exact:true})).toBeVisible();await expect(page.getByRole('dialog').getByText(g('unavailable'),{exact:true})).toHaveCount(0);}finally{held=null;release();}
+         |                                                                                                                                                                                ^
+      32 |  await expect(page.getByRole('button',{name:t('markDone'),exact:true})).toBeEnabled();missing=true;group.revision++;await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await expect(page.getByRole('dialog').getByText(g('unavailable'),{exact:true})).toBeVisible();
+      33 | });
+      34 |
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/content-pagination.groups.spec.ts:31:176
+
+    Error Context: test-results/groups/browser/content-pagination.groups--e5037-sing-read-shows-unavailable-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable 

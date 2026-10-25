@@ -1,0 +1,15 @@
+
+> rise-prototype@1.0.0 check
+> npm run check:toolchain && npm run lint && npm run typecheck && npm test && npm run build && npm run build:review
+
+
+> rise-prototype@1.0.0 check:toolchain
+> node scripts/check-toolchain.mjs
+
+Node 24.16.0, npm 11.13.0 and direct dependency pins match the lockfile.
+
+> rise-prototype@1.0.0 lint
+> oxlint src server infra tests scripts public/notifications-sw.js *.config.ts --deny-warnings
+
+tests/infra/personal.test.ts:100:159: error eslint(no-useless-escape): Unnecessary escape character '"' help: Replace `\"` with `"`.
+tests/infra/personal.test.ts:100:167: error eslint(no-useless-escape): Unnecessary escape character '"' help: Replace `\"` with `"`.

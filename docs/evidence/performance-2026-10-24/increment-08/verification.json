@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "implementation": "Mixed capacity diagnostic only",
+  "capacity": "FAIL",
+  "convergence": "FAIL",
+  "recoveryAndCleanup": "PASS",
+  "commands": [
+    {
+      "command": "npm run check",
+      "exit": 0,
+      "sourceCases": 282,
+      "log": "logs/check.log",
+      "scope": "Before final scheduled-p95 reporting addition; final types/lint and measured run follow"
+    },
+    {
+      "command": "npm run typecheck",
+      "exit": 0,
+      "log": "logs/types.log"
+    },
+    {
+      "command": "npx oxlint scripts/infra/check-account-load.ts scripts/infra/account-load-mixed.ts",
+      "exit": 0,
+      "log": "logs/lint.log"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed-smoke",
+      "exit": 1,
+      "report": "smoke.json"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed",
+      "exit": 1,
+      "report": "full.json"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts mixed-smoke; SIGTERM after setup marker",
+      "exit": 1,
+      "report": "interrupted.json",
+      "scope": "Handled interruption; no mutation started"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts smoke",
+      "exit": 0,
+      "report": "legacy-smoke.json"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "log": "logs/docs.log"
+    }
+  ],
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11",
+    "transport": "Fastify inject; fixed test"
+  },
+  "newBrowserClaims": false,
+  "cloudProvisioned": false
+}

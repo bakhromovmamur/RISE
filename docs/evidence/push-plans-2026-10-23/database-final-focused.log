@@ -1,0 +1,25 @@
+✔ plan replay, generation CAS, privacy validation and transactional replacement (322.355208ms)
+✔ duplicate workers, durable restart leases, stale lease and accepted terminal receipt (146.511ms)
+✔ transient failures retry within expiry; offline/late windows expire without sending (163.069541ms)
+✔ invalid endpoint retires subscription; logout cancels leased jobs (317.821292ms)
+✔ unrelated users and direct public roles cannot access plans; worker cannot alter intent (276.611084ms)
+✔ primary takeover is explicit; competing generations commit once and failed writes roll back (214.727542ms)
+✔ push setup requires verified account, matching installation, Origin and CSRF (376.905ms)
+✔ subscriptions are encrypted, replayable, versioned and isolated by owner/session RLS (332.643333ms)
+✔ test dispatch uses real payload encryption and only explicit bounded requests (349.462666ms)
+✔ disable cancels queued tests and erases endpoint material; explicit enable can renew (216.870208ms)
+✔ expired requests never dispatch and permanent provider failure retires subscription (355.154833ms)
+✔ revoked provider sessions suppress and retire queued push without outgoing request (198.052458ms)
+✔ two senders and concurrent disable serialize the final dispatch boundary (220.814625ms)
+✔ account deletion suppresses push, rejects restored backup capabilities and cascades history (336.0405ms)
+✔ same account on a second installation needs fresh consent and first-device logout leaves it intact (1545.316917ms)
+✔ account export excludes push capabilities and sender cannot restore retired consent (226.654709ms)
+✔ authorization loss wins over a failed command after deletion and partial work rolls back (1336.782625ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7299.761542

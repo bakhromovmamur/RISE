@@ -1,0 +1,65 @@
+
+> rise-prototype@1.0.0 test:browser
+> playwright test tests/(life|you).browser.spec.ts$ --workers=1
+
+[WebServer] (node:66521) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 48 tests using 1 worker
+
+(node:66522) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (888ms)
+  ✓   2 [chromium] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (536ms)
+  ✓   3 [chromium] › tests/life.browser.spec.ts:59:1 › period pause and resume are reflected in Today and Progress without changing habits (773ms)
+  ✓   4 [chromium] › tests/life.browser.spec.ts:79:1 › family task draft, assignment, repetition, pinning, completion and undo stay independent of XP (1.1s)
+  ✓   5 [chromium] › tests/life.browser.spec.ts:104:1 › shared lists create, edit, reorder, check and retain local changes (858ms)
+  ✓   6 [chromium] › tests/life.browser.spec.ts:126:1 › squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal (1.0s)
+  ✓   7 [chromium] › tests/life.browser.spec.ts:150:1 › invitation simulation, member controls, archive and language are local and persistent (1.2s)
+  ✓   8 [chromium] › tests/life.browser.spec.ts:175:1 › readiness states, empty entry points and modal keyboard focus work without device permissions (752ms)
+  ✓   9 [chromium] › tests/life.browser.spec.ts:196:1 › mobile widths and 200% text preserve readable prayer controls and persistent simulation labels (830ms)
+  ✓  10 [chromium] › tests/life.browser.spec.ts:214:1 › editing assignments and repeat schedules, task archive/restore and list uncheck retain history (15.3s)
+  ✓  11 [chromium] › tests/life.browser.spec.ts:238:1 › owner transfer enables leaving, hides shared content and preserves private progress (597ms)
+  ✓  12 [chromium] › tests/life.browser.spec.ts:256:1 › new control names match English and Uzbek, including optional prayer sharing (2.3s)
+  ✓  13 [chromium] › tests/you.browser.spec.ts:17:1 › You keeps four destinations visible, opens the right group view and restores keyboard focus without changing records (665ms)
+  ✓  14 [chromium] › tests/you.browser.spec.ts:46:1 › prayer hub keeps setup drafts, Fajr, readiness and pause/resume reachable (1.1s)
+  ✓  15 [chromium] › tests/you.browser.spec.ts:86:1 › settings disclose appearance, habit reminders and data while saving preferences and supporting export (966ms)
+  ✓  16 [chromium] › tests/you.browser.spec.ts:124:1 › empty setup, Uzbek navigation and enlarged text keep destinations available without invented activity (1.0s)
+(node:66585) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  17 [webkit] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (1.4s)
+  ✓  18 [webkit] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (638ms)
+  ✓  19 [webkit] › tests/life.browser.spec.ts:59:1 › period pause and resume are reflected in Today and Progress without changing habits (947ms)
+  ✓  20 [webkit] › tests/life.browser.spec.ts:79:1 › family task draft, assignment, repetition, pinning, completion and undo stay independent of XP (1.8s)
+  ✓  21 [webkit] › tests/life.browser.spec.ts:104:1 › shared lists create, edit, reorder, check and retain local changes (1.2s)
+  ✓  22 [webkit] › tests/life.browser.spec.ts:126:1 › squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal (1.3s)
+  ✓  23 [webkit] › tests/life.browser.spec.ts:150:1 › invitation simulation, member controls, archive and language are local and persistent (1.5s)
+  ✓  24 [webkit] › tests/life.browser.spec.ts:175:1 › readiness states, empty entry points and modal keyboard focus work without device permissions (858ms)
+  ✓  25 [webkit] › tests/life.browser.spec.ts:196:1 › mobile widths and 200% text preserve readable prayer controls and persistent simulation labels (920ms)
+  ✓  26 [webkit] › tests/life.browser.spec.ts:214:1 › editing assignments and repeat schedules, task archive/restore and list uncheck retain history (14.6s)
+  ✓  27 [webkit] › tests/life.browser.spec.ts:238:1 › owner transfer enables leaving, hides shared content and preserves private progress (652ms)
+  ✓  28 [webkit] › tests/life.browser.spec.ts:256:1 › new control names match English and Uzbek, including optional prayer sharing (2.7s)
+  ✓  29 [webkit] › tests/you.browser.spec.ts:17:1 › You keeps four destinations visible, opens the right group view and restores keyboard focus without changing records (801ms)
+  ✓  30 [webkit] › tests/you.browser.spec.ts:46:1 › prayer hub keeps setup drafts, Fajr, readiness and pause/resume reachable (1.3s)
+  ✓  31 [webkit] › tests/you.browser.spec.ts:86:1 › settings disclose appearance, habit reminders and data while saving preferences and supporting export (1.1s)
+  ✓  32 [webkit] › tests/you.browser.spec.ts:124:1 › empty setup, Uzbek navigation and enlarged text keep destinations available without invented activity (1.1s)
+(node:66654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  33 [firefox] › tests/life.browser.spec.ts:25:1 › city setup, reminder preferences and nested drafts survive reload (1.7s)
+  ✓  34 [firefox] › tests/life.browser.spec.ts:45:1 › Fajr stop, backup and acknowledgment persist without recording a prayer (852ms)
+  ✓  35 [firefox] › tests/life.browser.spec.ts:59:1 › period pause and resume are reflected in Today and Progress without changing habits (1.2s)
+  ✓  36 [firefox] › tests/life.browser.spec.ts:79:1 › family task draft, assignment, repetition, pinning, completion and undo stay independent of XP (1.6s)
+  ✓  37 [firefox] › tests/life.browser.spec.ts:104:1 › shared lists create, edit, reorder, check and retain local changes (1.3s)
+  ✓  38 [firefox] › tests/life.browser.spec.ts:126:1 › squad sharing uses an explicit snapshot, supports reactions, editing and withdrawal (1.6s)
+  ✓  39 [firefox] › tests/life.browser.spec.ts:150:1 › invitation simulation, member controls, archive and language are local and persistent (1.8s)
+  ✓  40 [firefox] › tests/life.browser.spec.ts:175:1 › readiness states, empty entry points and modal keyboard focus work without device permissions (1.1s)
+  ✓  41 [firefox] › tests/life.browser.spec.ts:196:1 › mobile widths and 200% text preserve readable prayer controls and persistent simulation labels (1.4s)
+  ✓  42 [firefox] › tests/life.browser.spec.ts:214:1 › editing assignments and repeat schedules, task archive/restore and list uncheck retain history (15.5s)
+  ✓  43 [firefox] › tests/life.browser.spec.ts:238:1 › owner transfer enables leaving, hides shared content and preserves private progress (765ms)
+  ✓  44 [firefox] › tests/life.browser.spec.ts:256:1 › new control names match English and Uzbek, including optional prayer sharing (3.7s)
+  ✓  45 [firefox] › tests/you.browser.spec.ts:17:1 › You keeps four destinations visible, opens the right group view and restores keyboard focus without changing records (1.1s)
+  ✓  46 [firefox] › tests/you.browser.spec.ts:46:1 › prayer hub keeps setup drafts, Fajr, readiness and pause/resume reachable (1.7s)
+  ✓  47 [firefox] › tests/you.browser.spec.ts:86:1 › settings disclose appearance, habit reminders and data while saving preferences and supporting export (1.7s)
+  ✓  48 [firefox] › tests/you.browser.spec.ts:124:1 › empty setup, Uzbek navigation and enlarged text keep destinations available without invented activity (1.6s)
+
+  48 passed (1.8m)

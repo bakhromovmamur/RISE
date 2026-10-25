@@ -1,0 +1,38 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/(content|membership).groups.spec.ts$
+
+[WebServer] (node:58485) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 1 worker
+
+(node:58486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.4s)
+  ✓   2 [chromium] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.0s)
+  ✓   3 [chromium] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.6s)
+  ✓   4 [chromium] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.1s)
+  ✓   5 [chromium] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.4s)
+  ✓   6 [chromium] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.2s)
+  ✓   7 [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.2s)
+(node:58537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [webkit] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.9s)
+  ✓   9 [webkit] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.4s)
+  ✓  10 [webkit] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.2s)
+  ✓  11 [webkit] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.1s)
+  ✓  12 [webkit] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.5s)
+  ✓  13 [webkit] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.3s)
+  ✓  14 [webkit] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.2s)
+(node:58595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (9.3s)
+  ✓  16 [firefox] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (8.6s)
+  ✓  17 [firefox] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.9s)
+  ✓  18 [firefox] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.2s)
+  ✓  19 [firefox] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (7.8s)
+  ✓  20 [firefox] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.6s)
+  ✓  21 [firefox] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (4.0s)
+
+  21 passed (2.0m)

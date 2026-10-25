@@ -1,0 +1,4 @@
+import base from "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/vite.config.ts";
+import {readFileSync} from "node:fs";
+const sources={"/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/groups/content.ts": "/tmp/rise-quality03-increment11-original/src/groups/content.ts", "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/groups/squads.ts": "/tmp/rise-quality03-increment11-original/src/groups/squads.ts", "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/groups/invitations.ts": "/tmp/rise-quality03-increment11-original/src/groups/invitations.ts"};
+export default async env=>{const config=await base(env);return {...config,plugins:[{name:"fixed-prior-readers",enforce:"pre",load(id){const source=sources[id.split("?")[0]];if(source)return readFileSync(source,"utf8");}},...config.plugins],build:{...config.build,outDir:"/tmp/rise-reader-recovery-candidate/baseline-dist"}};};

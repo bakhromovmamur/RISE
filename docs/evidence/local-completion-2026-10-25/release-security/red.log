@@ -1,0 +1,15 @@
+✖ failed build cleanup removes its sealed stage without changing a linked retained directory (5.357583ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.603291
+
+✖ failing tests:
+
+test at tests/release.test.ts:1:2847
+✖ failed build cleanup removes its sealed stage without changing a linked retained directory (5.357583ms)
+  [Error: EACCES: permission denied, unlink '/var/folders/4f/7x5bzhzj5pj6sd331bz4110h0000gn/T/rise-release-build-V3tvD8/linked-retained'] { errno: -13, code: 'EACCES', syscall: 'unlink', path: '/var/folders/4f/7x5bzhzj5pj6sd331bz4110h0000gn/T/rise-release-build-V3tvD8/linked-retained' }

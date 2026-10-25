@@ -1,0 +1,206 @@
+[
+  {
+    "engine": "chromium",
+    "scope": "Desktop engine / real IndexedDB discovery; nextFrame is an opportunity to paint, not measured UI feedback. No physical NFR acceptance.",
+    "browser": "156.0.8078.4",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "profileBytes": 10754296,
+    "startupMs": 171.29999995231628,
+    "samples": [
+      {
+        "action": "habit.check",
+        "dispatchMs": 132.29999995231628,
+        "nextFrameMs": 132.39999997615814,
+        "durableMs": 390.2000000476837
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 156.5,
+        "nextFrameMs": 156.5,
+        "durableMs": 414.40000009536743
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 131.70000004768372,
+        "nextFrameMs": 131.80000007152557,
+        "durableMs": 389.40000009536743
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 137.5,
+        "nextFrameMs": 137.80000007152557,
+        "durableMs": 399.60000002384186
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 155,
+        "nextFrameMs": 155.10000002384186,
+        "durableMs": 414.39999997615814
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 138.80000007152557,
+        "nextFrameMs": 139.20000004768372,
+        "durableMs": 405.8000000715256
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 152.80000007152557,
+        "nextFrameMs": 152.90000009536743,
+        "durableMs": 411.60000002384186
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 155.89999997615814,
+        "nextFrameMs": 156.10000002384186,
+        "durableMs": 413
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 129.60000002384186,
+        "nextFrameMs": 129.70000004768372,
+        "durableMs": 386
+      }
+    ],
+    "invariants": "Check then Undo preserves all history/XP; draft and revision survive reopening; original recovery source stays null."
+  },
+  {
+    "engine": "webkit",
+    "scope": "Desktop engine / real IndexedDB discovery; nextFrame is an opportunity to paint, not measured UI feedback. No physical NFR acceptance.",
+    "browser": "27.2",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "profileBytes": 10754296,
+    "startupMs": 179,
+    "samples": [
+      {
+        "action": "habit.check",
+        "dispatchMs": 126,
+        "nextFrameMs": 127,
+        "durableMs": 451
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 123,
+        "nextFrameMs": 123,
+        "durableMs": 477
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 126,
+        "nextFrameMs": 126,
+        "durableMs": 438
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 123,
+        "nextFrameMs": 123,
+        "durableMs": 449
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 124,
+        "nextFrameMs": 124,
+        "durableMs": 478
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 124,
+        "nextFrameMs": 124,
+        "durableMs": 441
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 122,
+        "nextFrameMs": 122,
+        "durableMs": 441
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 123,
+        "nextFrameMs": 123,
+        "durableMs": 476
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 125,
+        "nextFrameMs": 125,
+        "durableMs": 441
+      }
+    ],
+    "invariants": "Check then Undo preserves all history/XP; draft and revision survive reopening; original recovery source stays null."
+  },
+  {
+    "engine": "firefox",
+    "scope": "Desktop engine / real IndexedDB discovery; nextFrame is an opportunity to paint, not measured UI feedback. No physical NFR acceptance.",
+    "browser": "157.0",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "profileBytes": 10754296,
+    "startupMs": 414,
+    "samples": [
+      {
+        "action": "habit.check",
+        "dispatchMs": 219,
+        "nextFrameMs": 219,
+        "durableMs": 798
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 223,
+        "nextFrameMs": 223,
+        "durableMs": 805
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 222,
+        "nextFrameMs": 222,
+        "durableMs": 809
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 214,
+        "nextFrameMs": 214,
+        "durableMs": 776
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 214,
+        "nextFrameMs": 214,
+        "durableMs": 787
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 212,
+        "nextFrameMs": 212,
+        "durableMs": 767
+      },
+      {
+        "action": "habit.check",
+        "dispatchMs": 224,
+        "nextFrameMs": 224,
+        "durableMs": 783
+      },
+      {
+        "action": "habit.correct",
+        "dispatchMs": 221,
+        "nextFrameMs": 221,
+        "durableMs": 789
+      },
+      {
+        "action": "habit.draft",
+        "dispatchMs": 232,
+        "nextFrameMs": 232,
+        "durableMs": 802
+      }
+    ],
+    "invariants": "Check then Undo preserves all history/XP; draft and revision survive reopening; original recovery source stays null."
+  }
+]

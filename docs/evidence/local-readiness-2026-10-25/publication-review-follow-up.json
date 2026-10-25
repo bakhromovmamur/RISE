@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-25T13:56:56.471Z",
+  "scope": "Focused local publication checker fixes; no new repository-wide scan",
+  "commands": [
+    {
+      "command": "node --import tsx --test tests/publication.test.ts",
+      "exitCode": 0,
+      "passed": 8,
+      "failed": 0,
+      "durationMs": 1221.548791
+    },
+    {
+      "command": "node_modules/.bin/oxlint scripts/check-publication.mjs tests/publication.test.ts --deny-warnings",
+      "exitCode": 0
+    }
+  ],
+  "sourceHashes": {
+    "scripts/check-publication.mjs": "b965fc7eac18c7a15c2af2559d151f7bb0a6bad5c0775c8c23e7bacd7234ff40",
+    "tests/publication.test.ts": "d8d8fcc68edbef3cd2a8e620ea751f7736bb2c4bafb0b44d5b91776bf9d451a0"
+  },
+  "projectGitInitialized": false,
+  "commitOrPushPerformed": false,
+  "cloudProvisioned": false
+}

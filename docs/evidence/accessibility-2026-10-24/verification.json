@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-02",
+  "status": "REVIEW",
+  "localAcceptance": "passed",
+  "pending": [
+    "Physical VoiceOver/TalkBack",
+    "Supported phone/browser/Home Screen release matrix",
+    "Actual software keyboard and safe-area observations",
+    "Physical desktop/tablet smoke observations"
+  ],
+  "environment": {
+    "os": "macOS 26.6.2",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "chromium": "156.0.8078.4",
+    "webkit": "27.2",
+    "firefox": "157.0"
+  },
+  "sourceGate": {
+    "unitToolingPass": 272,
+    "lint": "passed",
+    "types": "passed",
+    "productionAndReviewBuilds": "passed",
+    "log": "logs/check-sequential.log"
+  },
+  "reports": {
+    "accessibility-verified": {
+      "path": "reports/accessibility-verified.json",
+      "sha256": "6b61b1f106c40fb2398ffac4f73c70c2bce0db94aecef75d327315017ad3e40e",
+      "stats": {
+        "startTime": "2026-10-24T10:14:06.905Z",
+        "duration": 34143.601,
+        "expected": 39,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "journeys-final": {
+      "path": "reports/journeys-final.json",
+      "sha256": "6c086eae9b383430091eb43d52a5c8a50c21195e7d725df39d71b8e8e3a20b39",
+      "stats": {
+        "startTime": "2026-10-24T10:16:04.230Z",
+        "duration": 83791.768,
+        "expected": 51,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "auth-final": {
+      "path": "reports/auth-final.json",
+      "sha256": "2c6d944f6bca8bfe24762a2137390e87433f393264d479eda873ab8792bd4ac1",
+      "stats": {
+        "startTime": "2026-10-24T10:19:01.128Z",
+        "duration": 31285.454999999998,
+        "expected": 21,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "groups-final": {
+      "path": "reports/groups-final.json",
+      "sha256": "4b735e60292e6463511194f984b6fafed7cd6f342debd3b9bd5d9b479d940cf6",
+      "stats": {
+        "startTime": "2026-10-24T10:19:32.763Z",
+        "duration": 117944.1,
+        "expected": 21,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "production-final": {
+      "path": "reports/production-final.json",
+      "sha256": "36901e2366da00ccf8273cc8b8f45b01883780321fc3f0d8b763d5e3487f7422",
+      "stats": {
+        "startTime": "2026-10-24T10:21:31.060Z",
+        "duration": 32728.739999999998,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "final-capture": {
+      "path": "reports/final-capture.json",
+      "sha256": "f574ad53484f477926b2015955a5b87fc8580911a4c76aca4b89ae9b68769065",
+      "stats": {
+        "startTime": "2026-10-24T10:17:47.733Z",
+        "duration": 52614.901,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "visual-final": {
+      "path": "reports/visual-final.json",
+      "sha256": "aa161fbcc2a1b2ee0ab2d48fca8ae6ba401fc4697d682238c4237cc84f11a5b2",
+      "stats": {
+        "startTime": "2026-10-24T10:22:14.232Z",
+        "duration": 56155.880999999994,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  },
+  "documents": {
+    "files": 36,
+    "links": 554,
+    "failures": [],
+    "newEvidenceLinkFailures": []
+  },
+  "sourceSha256": {
+    "src/App.tsx": "b4759151eb7bb02c9408fce53f15cfbe0776fa03d1c34fc1dd84d2446686d66f",
+    "src/components.tsx": "905d7fe1ddb62cd51c068ed47fffef8881c17abf4a85ff23e5ab43f715d21826",
+    "src/data/StorageNotice.tsx": "10543c53ccb92c1bc5ddd18bc8a203f03096e124e3fe776f7893790a9f12aeb0",
+    "src/styles.css": "793f0de0afe61556da1f574f1e8c380175c373cb66640a46a7c8d09110a6d48d",
+    "tests/accessibility.browser.spec.ts": "e4d52cf6abc9dd74e0ae4eb8ff98e11c71e50cf539ba16546e029d388999d9b8",
+    "tests/visual/parity.visual.spec.ts": "6ecaa70e3094684d456c2297f1ef3d325b1a8b6ebbfbabfdc542f3eb6930bd45",
+    "tests/support/browser.ts": "6e7b94ae2a27b7f693037382defd8a8951d9a917e3935d0908f366fde833df20",
+    "playwright.config.ts": "04e6643650025132cbf36d9334e4531d56ecbadfa1885c630c3ec109f1f6c170",
+    "playwright.visual.config.ts": "03469cf356972f16e9e173fa57059632911ebb7cf366c136fa7bf46a2b68b62b",
+    "playwright.auth.config.ts": "60012b7fcae0e0b3cbd67c6438f2d313971e51c7ad31b1e5d5399876436ae3dd",
+    "playwright.groups.config.ts": "4527c691d2892471b0a9b988498cd3f7c6bf042fc43508755fe5a2d266945472",
+    "playwright.production.config.ts": "9d17ae7d62ed020bc835365121dfb3e64e60236ad5eed5c4c83174aeff6fd8d8",
+    "README.md": "88610cbf25376b8741393b514a5ca611f7445b95584d220d921fd256aeba25e2",
+    "PRODUCT.md": "2597db75d4c41eb6fa8f666d63de0c8969274254d92e98330ae54a44385303ee",
+    "DESIGN.md": "6037307bf15fd2a89039fb886509087d796604505b788ab654631634f2e84989",
+    "TASKS.md": "29c99024aeece7e3d5b5cec847eb9fe6a76694aa08ca73fafed076bb7bc8b005",
+    "VERIFICATION.md": "30db3465dec62d5d81a4a579cebfcdf69783bcfb27644025ee7c1c117ab4aff6",
+    ".impeccable/design.json": "0a9fc1aec20ed35a43c67c92a5413afbf5d36d779bce7565f03aedb17cbdb21d",
+    "docs/MOBILE-ACCESSIBILITY.md": "923e4a35105d98d97717e7723979e9bd71f3a37df44974d60d5afb0fb63e211d"
+  },
+  "buildHashes": "build-hashes.json",
+  "preservation": "preservation.json",
+  "visualReview": "visual-review.json",
+  "secretScan": "secret-scan.json"
+}

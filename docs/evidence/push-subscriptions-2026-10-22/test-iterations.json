@@ -1,0 +1,57 @@
+{
+  "scope": "PUSH-01, local/test, begun 22 October and completed 23 October 2026 Asia/Tashkent",
+  "corrections": [
+    {
+      "finding": "The synthetic Web Push receiver needed an ECDH object instead of a raw private-key buffer.",
+      "resolution": "Corrected the test receiver and verified payload decryption plus VAPID signatures."
+    },
+    {
+      "finding": "The narrow session-predicate owner did not delegate sender EXECUTE through an ordinary non-owner GRANT.",
+      "resolution": "Added an owner-authorized follow-up migration; kept the existing restricted predicate and role."
+    },
+    {
+      "finding": "Retirement-only UPDATE initially conflicted with SELECT visibility of the resulting disabled row.",
+      "resolution": "Added readback policy plus a narrow sender column projection; enabling/privacy/transfer remain denied."
+    },
+    {
+      "finding": "The browser permission fixture reset its OS grant on reload.",
+      "resolution": "Made the isolated OS adapter preserve permission independently of RISE storage."
+    },
+    {
+      "finding": "A guest journey did not necessarily rerender push settings when the signed-in identity changed.",
+      "resolution": "Observe WorkspaceSession directly and key private controls by owner/authentication instance."
+    },
+    {
+      "finding": "A general input rule stretched the new checkbox and clipped its label despite the initial overflow assertion.",
+      "resolution": "Use the existing settings switch, verify label bounds and inspect the corrected 393px/320px-200% captures. Styles and goldens are unchanged."
+    },
+    {
+      "finding": "A failed action racing account deletion could return a misleading domain conflict after RLS hid its profile.",
+      "resolution": "Rollback failed actor work to a savepoint, recheck authorization, preserve terminal deletion semantics; controlled and concurrent regressions pass."
+    },
+    {
+      "finding": "An older test receipt must not clear the ID of an unacknowledged newer test request.",
+      "resolution": "Release the captured request ID only after observing its own terminal result; identical server retries remain idempotent."
+    },
+    {
+      "finding": "The initially selected address library version lacked newer special-purpose IPv6 ranges.",
+      "resolution": "Pinned current ipaddr.js 2.5.0, constrained IPv6 to global unicast and added NAT64-local, documentation, dummy, unallocated and scoped-address rejection cases against the IANA registry."
+    },
+    {
+      "finding": "Two recovery checks navigated during remembered-account activation; the intentional scope change reset the selected tab.",
+      "resolution": "Wait for the restored account\u2019s explicit offline durable-save state before opening Settings. All original queue/recovery/server-record assertions remain, and no application navigation behavior or timeout was relaxed."
+    },
+    {
+      "finding": "Additional WebKit/Firefox reload checks waited on page load or navigated before the remembered account was active; WebKit also emitted a page-level diagnostic for the deliberately disconnected sync fetch.",
+      "resolution": "Wait on DOM readiness plus the account-specific save/sync status in reload fixtures. Classify only the exact intentionally broken same-origin sync-fetch diagnostic until reconnect acknowledgment, retaining all other page-error assertions. The focused 15-case three-engine rerun passes; no production code, authorization, or save/recovery assertion was relaxed."
+    },
+    {
+      "finding": "In the final broad run, Firefox was still downloading the current recovery snapshot when a default five-second display assertion expired. The original queue and account records remained present.",
+      "resolution": "Give this asynchronous recovery display assertion the existing 15-second request budget, without changing the 60-second case limit or any queue/server-record assertion. The corrected test passes in Chromium, WebKit and Firefox. Acceptance is recorded as 68 passing broad-run cases plus three focused confirmations (two overlaps); the original failed report is retained unchanged."
+    }
+  ],
+  "dataResets": false,
+  "goldensRegenerated": false,
+  "productionPermissionsWeakened": false,
+  "finalResults": "See verification.json and passing logs; intermediate failures are not claimed as acceptance."
+}

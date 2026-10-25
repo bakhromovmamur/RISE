@@ -1,0 +1,16 @@
+
+> rise-prototype@1.0.0 test:auth
+> playwright test --config playwright.auth.config.ts
+
+[WebServer] (node:58009) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/scripts/infra/serve-test-backend.ts:86
+[WebServer] } catch { await cleanup(); throw new Error("backend_test_start_failed"); }
+[WebServer]                                  ^
+[WebServer] 
+[WebServer] Error: backend_test_start_failed
+[WebServer]     at <anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/scripts/infra/serve-test-backend.ts:86:34)
+[WebServer] 
+[WebServer] Node.js v24.16.0
+Error: Process from config.webServer was not able to start. Exit code: 1
+

@@ -1,0 +1,68 @@
+[
+  {
+    "round": 0,
+    "fn": "jsonb_build_object",
+    "ms": 205.25025000000005,
+    "rows": 73000,
+    "executionMs": 119.034,
+    "planningMs": 0.077,
+    "sharedHits": 3215,
+    "sharedReads": 0,
+    "node": "Limit"
+  },
+  {
+    "round": 0,
+    "fn": "direct_columns",
+    "ms": 96.77987500000017,
+    "rows": 73000,
+    "executionMs": 40.426,
+    "planningMs": 0.088,
+    "sharedHits": 3215,
+    "sharedReads": 0,
+    "node": "Limit"
+  },
+  {
+    "round": 1,
+    "fn": "direct_columns",
+    "ms": 86.64825000000019,
+    "rows": 73000,
+    "executionMs": 39.398,
+    "planningMs": 0.079,
+    "sharedHits": 3215,
+    "sharedReads": 0,
+    "node": "Limit"
+  },
+  {
+    "round": 1,
+    "fn": "jsonb_build_object",
+    "ms": 174.9137499999997,
+    "rows": 73000,
+    "executionMs": 126.293,
+    "planningMs": 0.089,
+    "sharedHits": 3215,
+    "sharedReads": 0,
+    "node": "Limit"
+  },
+  {
+    "round": 2,
+    "fn": "jsonb_build_object",
+    "ms": 241.35912499999995,
+    "rows": 73000,
+    "executionMs": 119.278,
+    "planningMs": 0.096,
+    "sharedHits": 3215,
+    "sharedReads": 0,
+    "node": "Limit"
+  },
+  {
+    "round": 2,
+    "fn": "direct_columns",
+    "ms": 107.978791,
+    "rows": 73000,
+    "executionMs": 48.044,
+    "planningMs": 0.093,
+    "sharedHits": 3215,
+    "sharedReads": 0,
+    "node": "Limit"
+  }
+]

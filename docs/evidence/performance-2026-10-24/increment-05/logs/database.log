@@ -1,0 +1,29 @@
+✔ authorized shared archive retains full family history and archived content, omits removed items and every private projection (779.488625ms)
+✔ squad archive includes exact published choices and viewer reaction only; staging, withdrawal and removal stay erased (550.080667ms)
+✔ shared export requires current verified actor, Origin/CSRF, recent auth and exact reviewed revision (377.990542ms)
+✔ left and removed members cannot export; remaining members retain opaque family references without departed names (501.063375ms)
+✔ bounded keyset export includes more than one page of every family collection without truncation (378.901292ms)
+✔ real concurrent mutation/removal between export pages rejects the entire file (887.550416ms)
+✔ a real oversized shared history fails as a whole without truncation, data mutation or retained export files (5596.466792ms)
+✔ integrated ownership, deletion and backup replay preserve family history while erasing squad identity, previews and notification jobs (3089.246792ms)
+✔ recent-auth export retains current and retired records, dates and derived XP (491.851291ms)
+✔ expired authentication blocks export/deletion; purpose-bound email reauthentication rotates cookies (1315.349916ms)
+✔ forged owners, missing confirmation, stale heads and CSRF leave records and sessions intact (203.375ms)
+✔ deletion revokes every session and JWT immediately; lost-reply retry is idempotent and another owner survives (2029.723541ms)
+✔ failed enqueue rolls back suppression; failed purge retains suppression and retries after restart (207.587625ms)
+✔ a missing notification cleanup hook fails closed without deleting an account or its real job table (164.436833ms)
+✔ ordinary BFF cannot run purge, remove the ledger or read managed Auth; lifecycle cannot read journeys (9.792792ms)
+✔ retention starts after primary purge; unpurged and recently purged suppression survive cleanup (187.970458ms)
+✔ backup deletion replay suppresses a restored synthetic identity before purge and never restores access (279.976084ms)
+✔ lifecycle session-hash access is limited to suppressed subjects and never includes credential columns (148.330625ms)
+✔ a browser can deliberately sign in after primary purge without reviving its deleted identity (229.079875ms)
+✔ concurrent command and deletion either preserve the new revision for review or reject the revoked writer (1324.822541ms)
+✔ populated account purge removes historical children, staging, receipts and tokens while preserving another owner (499.483084ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19769.616083

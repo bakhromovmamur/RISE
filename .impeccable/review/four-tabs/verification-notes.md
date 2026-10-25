@@ -1,0 +1,20 @@
+# Four-tab review verification
+
+20 October 2026. This is a focused refinement of the existing RISE prototype.
+
+- Production build passed: `index-vFGKc8ze.js / index-uh5ewCWE.css`. The 29-image matrix was captured from the preceding `index-8X90d8QZ.js` build with the same CSS; the subsequent change only corrects the timetable button's accessible name and does not change rendered text or layout.
+- All 53 domain tests passed. Domain/model/schema files were not changed.
+- Final browser suite: 44 scenarios passed in 17.8 seconds after the accessibility correction, on isolated port 4180. Total 97 checks: 11 balanced, 12 Daily life, 4 Today, 4 Progress, 5 Journey, 4 You and 4 shared-navigation scenarios, plus the 53 domain tests. The earlier 44-scenario run also passed.
+- New navigation checks cover a shared heading hierarchy; arrow/Home/End navigation; active-tab semantics; retained scroll/disclosure state; selected week across tab changes; shortcut scroll reset and heading focus; sheet-to-Journey handoff; one Today timetable entry; no record changes from navigation; and readable 200% English/Uzbek navigation at 375/393/430 px.
+- The independent finish review identified one label-in-name issue. `TodayPrayerMeta` now derives its visible localized label once and preserves that complete label in the accessible name. The navigation scenario also exercises local, calculated and unconfigured setup in both English and Uzbek. The delivered tab was reloaded after the correction; its accessibility tree confirms “Prayer times: Tashkent · local demo” alongside the complete visible “Tashkent · local demo” text.
+- Existing reward, goal, habit, prayer, Fajr, pause, draft, family, squad, export and migration checks remain passing.
+- Main profile at port 4173 was not replaced with fixtures. Review scenes and UI preference changes used the isolated port-4174 origin.
+- The saved profile was reloaded and all four tabs visited, then left on Today. Its 260 XP, unclaimed scarf, coffee at 3/5, completed priorities, planned Asr at 15:50, saved Fajr plan and return note remain visible. Supplementary `screens/four-tabs/saved-{today,journey,progress,you}.jpg` captures are 385 × 753 and outside the fixture matrix. The review viewport override was reset and review tab/server closed; port 4173 remains live. No warnings/errors were observed on the delivered tab.
+- Initial visual inspection covered the four tabs together. The only UI correction was a two-row bottom navigation for 200% text, replacing crowded labels. The final confirmation matrix contains 29 captures, all opened and visually inspected, with byte-identical public copies. No additional polish pass is planned.
+- The first light-labelled capture attempt followed a dark system appearance. Those images were replaced with explicitly selected light appearance before review. The final files and manifest describe actual theme/state.
+- `you-large-uz.jpg` was requested at 375 × 852 and exported by the browser at 375 × 813. It shows a scrolled You view after closing Settings, with the full two-row navigation. The unmodified export and both dimensions are recorded explicitly. Other images match their requested dimensions.
+- In-app-browser walkthrough confirmed that the earned-reward row opens Journey and focuses its heading. No warning/error console entries were observed on the isolated review tab.
+- Design hook stayed active. It suppressed further hints on the repeatedly edited `balanced.css` and `life.browser.spec.ts`; no new deterministic issue was reported. No separate detector ran. Rendered review and tests cover the final changes.
+- `DESIGN.md` and `.impeccable/design.json` retain their pinned hashes. Original artwork and provenance are untouched. No external permissions, communications, live timetables, purchases or alarm delivery were added.
+
+Review limits: local Chromium/in-app-browser evidence, not physical-device, Safari/WebKit, VoiceOver or exhaustive accessibility certification. Earlier language limitations on older screens remain. The 200% text option is the prototype's explicit `?text=large` review mode.

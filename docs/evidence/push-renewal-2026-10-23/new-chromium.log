@@ -1,0 +1,19 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts --project chromium --grep explicit primary|renewal readiness
+
+[WebServer] (node:20661) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:20660) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:20662) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · en (2.7s)
+  ✓  2 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · ru (2.7s)
+  ✓  3 [chromium] › tests/push/renewal-layout.push.spec.ts:12:49 › renewal readiness layouts · uz (2.7s)
+  ✓  4 [chromium] › tests/push/renewal.push.spec.ts:7:1 › explicit primary consent stages a plan, renews after reload and recovers after offline cancellation (6.6s)
+
+  4 passed (15.5s)

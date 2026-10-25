@@ -1,0 +1,34 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts cancellation.push.spec.ts live-sender.push.spec.ts
+
+[WebServer] (node:57233) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:57232) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:57280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57280) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓   1 [chromium] › tests/push/cancellation.push.spec.ts:12:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (258ms)
+  ✓   2 [chromium] › tests/push/cancellation.push.spec.ts:39:1 › an expired legacy cancellation preserves its original intent until explicit current-plan review (1.8s)
+  ✓   3 [chromium] › tests/push/cancellation.push.spec.ts:65:1 › a lost cancellation reply replays the durable generation after cleanup and plan replacement (1.6s)
+  ✓   4 [chromium] › tests/push/live-sender.push.spec.ts:14:1 › encrypted queue delivery reaches the guarded receiver; cancellation suppresses display (4.7s)
+(node:57317) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57317) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓   5 [webkit] › tests/push/cancellation.push.spec.ts:12:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (596ms)
+  ✓   6 [webkit] › tests/push/cancellation.push.spec.ts:39:1 › an expired legacy cancellation preserves its original intent until explicit current-plan review (2.4s)
+  ✓   7 [webkit] › tests/push/cancellation.push.spec.ts:65:1 › a lost cancellation reply replays the durable generation after cleanup and plan replacement (2.1s)
+  ✓   8 [webkit] › tests/push/live-sender.push.spec.ts:14:1 › encrypted queue delivery reaches the guarded receiver; cancellation suppresses display (5.0s)
+(node:57397) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57397) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓   9 [firefox] › tests/push/cancellation.push.spec.ts:12:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (727ms)
+  ✓  10 [firefox] › tests/push/cancellation.push.spec.ts:39:1 › an expired legacy cancellation preserves its original intent until explicit current-plan review (3.6s)
+  ✓  11 [firefox] › tests/push/cancellation.push.spec.ts:65:1 › a lost cancellation reply replays the durable generation after cleanup and plan replacement (2.4s)
+  ✓  12 [firefox] › tests/push/live-sender.push.spec.ts:14:1 › encrypted queue delivery reaches the guarded receiver; cancellation suppresses display (6.7s)
+
+  12 passed (36.8s)

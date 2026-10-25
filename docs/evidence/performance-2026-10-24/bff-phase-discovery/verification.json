@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "commands": [
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit -p /tmp/rise-bff-phase-probe/source/tsconfig.json",
+      "exit": 0,
+      "scope": "Isolated instrumented server; no diagnostics"
+    },
+    {
+      "command": "node --check /tmp/rise-bff-phase-probe/gateway.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --check /tmp/rise-bff-phase-probe/router.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --check /tmp/rise-bff-phase-probe/worker.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-phase-probe/run.mts smoke",
+      "exit": 0,
+      "report": "smoke/smoke.json",
+      "phaseCapture": "Complete six-request smoke"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-phase-probe/run.mts mixed",
+      "exit": 1,
+      "report": "failed-capture/mixed.json",
+      "phaseCapture": "FAILED; large report not received; stale smoke retained explicitly",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-phase-probe/query-comparison.mts smoke",
+      "exit": 0,
+      "report": "query/query-comparison.json",
+      "queryAlternative": "REJECTED: slower",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-phase-probe/run.mts smoke",
+      "exit": 0,
+      "report": "smoke/capture-smoke.json",
+      "phaseCapture": "PASS after repair: current UUID and all gateway/worker records verified"
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-phase-probe/run.mts mixed",
+      "exit": 1,
+      "report": "captured/mixed.json",
+      "phaseCapture": "PASS: current UUID, 3459 matching records, no drops",
+      "historyXpReplayReadbackCleanup": "PASS"
+    },
+    {
+      "command": "python3 /tmp/rise-bff-phase-probe/analyze.py",
+      "exit": 0,
+      "report": "captured/analysis.json"
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "documents": 37,
+      "links": 600,
+      "anchors": 59,
+      "tasks": 38,
+      "requirements": 20
+    }
+  ],
+  "applicationChanged": false,
+  "cloudProvisioned": false,
+  "finalRun": "TERMINAL",
+  "preservation": {
+    "protectedFilesChecked": 2924,
+    "priorSealedFilesChecked": 576,
+    "protectedDifferencesFromIncrement03": [
+      "server/personal/records.ts"
+    ],
+    "serverWriterMatchesIncrement10": true,
+    "sourceFilesChecked": 52,
+    "buildFilesChecked": 52,
+    "relativeLinksChecked": 266,
+    "testPortReleased": true,
+    "applicationChanged": false,
+    "savedPreviewAccessed": false,
+    "cloudProvisioned": false
+  }
+}

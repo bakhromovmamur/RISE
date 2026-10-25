@@ -1,0 +1,25 @@
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 1723 modules transformed.
+rendering chunks...
+computing gzip size...
+../../../../../private/tmp/rise-quality03-split-baseline/dist/index.html                               1.05 kB │ gzip:   0.52 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/migration.worker-DpX-y6kD.js     10.85 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/hydrate.worker-GYXY2kId.js       13.98 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/archive.worker-MJNye_JT.js       16.45 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/import.worker-DQqVlfkb.js        28.82 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/backup.worker-PLLTcUhG.js        36.15 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/index-DM2hzASY.css              107.93 kB │ gzip:  20.45 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/web-CBEJz6RG.js                   0.84 kB │ gzip:   0.40 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/web-9mmiVr4c.js                   2.08 kB │ gzip:   0.85 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/web-DXrog_fP.js                   4.43 kB │ gzip:   1.28 kB
+../../../../../private/tmp/rise-quality03-split-baseline/dist/assets/index-B1DJr5Dw.js             1,277.01 kB │ gzip: 393.04 kB
+
+[33m[INEFFECTIVE_DYNAMIC_IMPORT] [0m../../../../../private/tmp/rise-quality03-split-baseline/src/account/export.ts is dynamically imported by ../../../../../private/tmp/rise-quality03-split-baseline/src/data/backup.ts but also statically imported by ../../../../../private/tmp/rise-quality03-split-baseline/src/account/AccountLifecycle.tsx, dynamic import will not move module into another chunk.
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 179ms

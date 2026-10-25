@@ -1,0 +1,97 @@
+{
+  "finding": "Intermittent Chromium activation stall remains unresolved; passing repeats are not closure.",
+  "runs": [
+    {
+      "stage": "original rollout",
+      "command": "npm run test:rollout",
+      "stats": {
+        "startTime": "2026-10-24T21:31:16.942Z",
+        "duration": 346324.37700000004,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "privateReportSha256": "c84ec206bf541444fff1c435211e7ccfecd01e937949b1da61964dd1d091731e"
+    },
+    {
+      "stage": "unchanged reproduction",
+      "command": "npm run test:rollout -- --project=chromium --grep 'compatible backend' --repeat-each=3",
+      "stats": {
+        "startTime": "2026-10-24T21:38:27.967Z",
+        "duration": 289013.561,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "privateReportSha256": "40c55bd075ea0742e9a2104813df7895436eb185612b92b5213257340333961b"
+    },
+    {
+      "stage": "handshake probe (interrupted)",
+      "command": "npm run test:rollout -- --project=chromium --grep 'compatible backend' --repeat-each=3",
+      "stats": {
+        "startTime": "2026-10-24T21:43:46.777Z",
+        "duration": 208383.643,
+        "expected": 0,
+        "skipped": 2,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "privateReportSha256": "d6960ff4a05eee681d133bfedd8ab1cf6fe7a662e662db7fbeb53c28ba6b4a49"
+    },
+    {
+      "stage": "worker boundary probe",
+      "command": "npm run test:rollout -- --project=chromium --grep 'compatible backend' --repeat-each=3",
+      "stats": {
+        "startTime": "2026-10-24T21:48:26.497Z",
+        "duration": 254659.086,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "privateReportSha256": "527e427ec75d2da819f0093af3472d80b449cd8907a78277f96770893a05281f"
+    },
+    {
+      "stage": "after fix, no probes (interrupted)",
+      "command": "npm run test:rollout -- --project=chromium --grep 'compatible backend' --repeat-each=3",
+      "stats": {
+        "startTime": "2026-10-24T21:55:20.956Z",
+        "duration": 189559.87600000002,
+        "expected": 1,
+        "skipped": 1,
+        "unexpected": 1,
+        "flaky": 0
+      },
+      "privateReportSha256": "fdc26cf20ce72f51090e9b1d89b6c4cab10e43a1b365edc7bf689cd1d0086faa"
+    },
+    {
+      "stage": "pending-event probe",
+      "command": "npm run test:rollout -- --project=chromium --grep 'compatible backend' --repeat-each=3",
+      "stats": {
+        "startTime": "2026-10-24T21:59:32.470Z",
+        "duration": 224043.017,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "privateReportSha256": "47a95f479b67774ac33bd0190a366da4e8c14f817aa22966fd046dd47caaef9c"
+    },
+    {
+      "stage": "successive static updates",
+      "command": "npm run test:pwa -- --project=chromium --grep 'successive explicit' --repeat-each=3",
+      "stats": {
+        "startTime": "2026-10-24T21:58:52.943Z",
+        "duration": 21342.086,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "privateReportSha256": "4129ca371791d223bd7ad370af430d13938c99e683980309db2232e1bab28553"
+    }
+  ],
+  "temporaryProbesRemoved": true
+}

@@ -1,0 +1,30 @@
+node_modules/
+dist/
+dist-review/
+*.local
+test-results/
+playwright-report/
+*.tsbuildinfo
+.DS_Store
+.vite/
+
+# Local signing material is never a source artifact.
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+*.pem
+
+# Backend and local infrastructure credentials never enter source control.
+.env
+.env.*
+!.env.example
+!**/*.env.example
+.rise-infra/
+supabase/.temp/
+supabase/.branches/
+supabase/signing_keys.json
+
+# Ephemeral design-tool session cache stays on this device.
+.impeccable/hook.cache.json

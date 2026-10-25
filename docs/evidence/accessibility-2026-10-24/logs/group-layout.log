@@ -1,0 +1,44 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/(content-layout|layout|squad-layout).groups.spec.ts$
+
+[WebServer] (node:53938) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 27 tests using 1 worker
+
+(node:53956) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (20.0s)
+  ✓   2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (15.3s)
+  ✓   3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.4s)
+  ✓   4 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (31.0s)
+  ✓   5 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (31.0s)
+  ✓   6 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (31.0s)
+  ✓   7 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (15.4s)
+  ✓   8 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (15.6s)
+  ✓   9 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (24.8s)
+(node:55307) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  10 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (19.0s)
+  ✓  11 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (16.7s)
+  ✓  12 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.9s)
+  ✓  13 [webkit] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (30.1s)
+  ✓  14 [webkit] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (29.5s)
+  ✓  15 [webkit] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (28.9s)
+  ✓  16 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (14.6s)
+  ✓  17 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (14.8s)
+  ✓  18 [webkit] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (15.2s)
+(node:55889) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  19 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (20.9s)
+  ✓  20 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (20.2s)
+  ✓  21 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (21.9s)
+  ✓  22 [firefox] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (36.4s)
+  ✓  23 [firefox] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (36.0s)
+  ✓  24 [firefox] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · uz (36.1s)
+  ✓  25 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (19.4s)
+  ✓  26 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (19.4s)
+  ✓  27 [firefox] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (18.3s)
+
+  27 passed (10.4m)

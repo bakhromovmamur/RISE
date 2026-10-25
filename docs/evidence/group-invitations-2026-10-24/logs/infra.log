@@ -1,0 +1,23 @@
+✔ maximum retained invitation history remains owner-only and paged while cleanup is stopped (4178.233292ms)
+✔ maximum invitation frequency rejects the next new action while an exact accepted retry remains replayable (2707.189834ms)
+✔ invitation owner-set policy rechecks current membership and active sessions even with forged metadata (564.218042ms)
+✔ groups require verified identity/CSRF, have no automatic private import and project only shared names (570.343833ms)
+✔ receipt recovery is owner-bound, omits invitation secrets and rechecks current membership (419.086291ms)
+✔ invitation preview is minimal; concurrent acceptance is single use with exact retry and immediate revocation (807.080166ms)
+✔ ownership transfer is recent-auth, atomic and current; archive, leave and deletion cannot orphan an owner (708.178792ms)
+✔ all group tables force RLS and narrow grants; forged roles, cross-group member IDs and direct writes fail (621.344792ms)
+✔ concurrent edits preserve a conflict; a receipt insertion failure rolls back every group change (533.411959ms)
+✔ invalid invitation attempts consume a bounded quota; stale operations and rotated invite keys do not recreate intent (367.425708ms)
+✔ account deletion blocks current owners and deidentifies a member before suppression; old JWTs and provider purge stay safe (405.281667ms)
+✔ bounded invitation pruning retains live links and never grants the sender membership authority (264.666209ms)
+✔ invite consumption and account identity scrubbing roll back when the following receipt or suppression write fails (355.022292ms)
+✔ ownership transfer racing recipient deletion never creates an orphan or grants a suppressed identity access (418.501042ms)
+✔ terminal backup replay removes restored pre-transfer ownership only for a suppressed identity (497.35925ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14212.487666

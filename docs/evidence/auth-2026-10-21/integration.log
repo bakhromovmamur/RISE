@@ -1,0 +1,32 @@
+
+> rise-prototype@1.0.0 test:infra
+> tsx --test --test-concurrency=1 tests/infra/*.test.ts
+
+✔ managed email codes create opaque HttpOnly sessions without returning provider tokens (240.523292ms)
+✔ all mutations reject missing/cross-site Origin and absent or stale CSRF before sending email (8.823875ms)
+✔ challenge binding, five-attempt lockout and cooldown resist replay/brute force (98.577042ms)
+✔ remembered sessions use persistent cookies and seven-day idle/thirty-day absolute limits (89.075083ms)
+✔ expired challenges cannot authenticate and new codes invalidate the old handle (1259.9655ms)
+✔ logout revokes its linked provider JWT predicate and clears only account cookies (123.368375ms)
+✔ idle/absolute expiry, provider session removal and account bans deny a previously valid session (354.024625ms)
+✔ provider email failure is neutral and cannot activate an older code (78.630666ms)
+✔ a copied session without its context and corrupted stored tokens fail closed (92.397375ms)
+✔ concurrent refresh rotates once, and temporary provider failures preserve the session (134.767125ms)
+✔ private session tables and helper ownership remain closed to anonymous/worker identities (18.327792ms)
+✔ both fresh stacks apply the committed migration and expose the expected restricted environment (943.402792ms)
+✔ each runtime identity can read its environment but cannot administer data, Auth or other roles (48.134375ms)
+✔ crossed databases, installation markers and privileged connections fail readiness (18.332709ms)
+✔ private local files are protected and never present in the web build (48.392334ms)
+✔ BFF delivers the existing production files byte-for-byte under its own origin (43.4465ms)
+✔ synthetic Auth users are isolated; foreign JWTs and administrator tokens are refused (169.259625ms)
+✔ startup refuses a mismatched installation before opening its listener (99.203833ms)
+✔ rotating a worker login invalidates its old password without changing the BFF identity (21.374375ms)
+✔ unexpected direct grants on the BFF role fail readiness instead of expanding access (10.128416ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4180.597041

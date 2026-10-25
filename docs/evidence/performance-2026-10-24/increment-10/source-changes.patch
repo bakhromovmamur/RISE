@@ -1,0 +1,79 @@
+--- before/server/personal/records.ts
++++ after/server/personal/records.ts
+@@ -44,13 +44,25 @@
+ /** Only deltas are written; historic note/ack rows and retired referenced milestones survive. */
+ export async function writeRecords(client: pg.PoolClient, actor: string, revision: number, before: Records, desired: Records, operationId?:string) {
+   for (const definition of personalTables) {
++    let priorRows = before[definition.name] ?? [], desiredRows = desired[definition.name];
++    // Ordered identities already pair a stable occurrence history. Compare all
++    // values, then build key maps only for changed rows. Any identity/length
++    // mismatch retains the general insertion/removal path below.
++    if (definition.name === "habit_occurrences" && priorRows.length === desiredRows.length
++      && priorRows.every((row, i) => definition.keys.every(key => row[key] === desiredRows[i][key]))) {
++      const changedPrior: Row[] = [], changedDesired: Row[] = [];
++      for (let i = 0; i < priorRows.length; i++) if (!sameJson(priorRows[i], desiredRows[i])) {
++        changedPrior.push(priorRows[i]); changedDesired.push(desiredRows[i]);
++      }
++      priorRows = changedPrior; desiredRows = changedDesired;
++    }
+     const changed=async(row:Row,deleted:boolean)=>{
+       const data=row.data as Record<string,unknown>|undefined,old=previous.get(rowKey(definition,row)),oldData=old?.data as Record<string,unknown>|undefined;
+       const correction=Boolean(oldData?.earnedOn&&!data?.earnedOn||oldData?.enjoyedOn&&!data?.enjoyedOn||oldData?.completedOn&&!data?.completedOn)||definition.name==="habit_occurrences"&&old?.check_kind==="full"&&row.check_kind==="tiny";
+       const barrier=deleted||correction||definition.name==="habit_occurrences"&&row.check_kind===null||row.retired===true||Boolean(data?.archivedAt||data?.archivedOn);
+       return client.query(`insert into rise.sync_changes(owner_id,table_name,record_key,revision,deleted,barrier_revision,barrier_operation) values($1,$2,$3,$4,$5,$6,$7) on conflict(owner_id,table_name,record_key) do update set revision=excluded.revision,deleted=excluded.deleted,changed_at=now(),barrier_revision=case when excluded.barrier_revision>0 then excluded.barrier_revision else rise.sync_changes.barrier_revision end,barrier_operation=case when excluded.barrier_revision>0 then excluded.barrier_operation else rise.sync_changes.barrier_operation end`,[actor,definition.name,keyOf(definition.name,row),revision,deleted,barrier?revision:0,barrier?operationId??null:null]);};
+-    const previous = new Map((before[definition.name] ?? []).map(row => [rowKey(definition, row), row]));
+-    const next = new Map(desired[definition.name].map(row => [rowKey(definition, row), row]));
++    const previous = new Map(priorRows.map(row => [rowKey(definition, row), row]));
++    const next = new Map(desiredRows.map(row => [rowKey(definition, row), row]));
+     for (const [key, row] of previous) if (!next.has(key)) {
+       if (definition.name === "goal_milestones") next.set(key, { ...row, retired: true });
+       if (definition.name === "saved_work_breaks") next.set(key, { ...row, active: false });
+--- before/tests/infra/personal.test.ts
++++ after/tests/infra/personal.test.ts
+@@ -8,6 +8,7 @@
+ import { emptyDraft } from "../../src/model.ts";
+ import { hash, secrets } from "../../server/auth/crypto.ts";
+ import { hydrate, personalTables, readRecords } from "../../server/personal/records.ts";
++import { keyOf } from "../../src/contracts/sync.ts";
+ import { personalTotals } from "../support/personalTestData.ts";
+ 
+ let harness: Awaited<ReturnType<typeof authHarness>>;
+@@ -89,6 +90,38 @@
+     }
+   } finally {
+     if (client.owner) { await client.browser.request("logout", {}); await harness.admin.query("delete from auth.users where id=$1 and email=$2", [client.owner, client.email]); }
++  }
++});
++
++test("habit corrections preserve row versions, reindex removed rows and retain replay barriers", async () => {
++  const owner = new PersonalClient(harness);
++  try {
++    await owner.initialize();
++    const ids = [randomUUID(),randomUUID()];
++    for (const [i,id] of ids.entries()) await owner.command({kind:"habit.save",newId:id,draft:{...emptyDraft(),name:`Synthetic version ${i}`,full:5,tiny:1,days:[0,1,2,3,4,5,6]}});
++    const initial = await owner.read(), date = String(initial.records!.habit_days[0].date);
++    for (const id of ids) await owner.command({kind:"habit.check",habitId:id,date,check:"full"});
++    const rows = async()=> (await harness.admin.query<{row:Record<string,unknown>}>("select to_jsonb(t) as row from rise.habit_occurrences t where owner_id=$1 order by date,position,habit_id",[owner.owner])).rows.map(r=>r.row);
++    const before = await rows(), selected = before.find(r=>r.habit_id===ids[0])!, untouched = before.find(r=>r.habit_id===ids[1])!;
++    const key = keyOf("habit_occurrences",selected), barrier = async()=> (await harness.admin.query("select revision,deleted,barrier_revision,barrier_operation from rise.sync_changes where owner_id=$1 and table_name='habit_occurrences' and record_key=$2",[owner.owner,key])).rows[0];
++    const command = {kind:"habit.correct",habitId:ids[0],date,check:"tiny"}, base = owner.revision, operationId = randomUUID();
++    const corrected = await owner.command(command,base,operationId), after = await rows();
++    assert.equal(corrected.xp,30); assert.deepEqual(after.find(r=>r.habit_id===ids[1]),untouched);
++    const changed = after.find(r=>r.habit_id===ids[0])!;
++    assert.equal(changed.check_kind,"tiny"); assert.equal(changed.xp,10); assert.deepEqual(changed.data,selected.data); assert.equal(Number(changed.revision),corrected.operationRevision);
++    assert.deepEqual(await barrier(),{revision:String(corrected.operationRevision),deleted:false,barrier_revision:String(corrected.operationRevision),barrier_operation:operationId});
++    assert.deepEqual(await owner.command(command,base,operationId),{...corrected,replayed:true}); assert.deepEqual(await rows(),after);
++    await owner.command({kind:"habit.archive",habitId:ids[0]}); assert.deepEqual(await rows(),after);
++    const undoId = randomUUID(),undone = await owner.command({kind:"habit.correct",habitId:ids[0],date,check:null},owner.revision,undoId);
++    assert.equal(undone.xp,20); const afterRemoval = await rows(); assert.equal(afterRemoval.length,1);
++    assert.deepEqual(afterRemoval[0],{...untouched,position:0,revision:undone.operationRevision,updated_at:afterRemoval[0].updated_at});
++    const removed = await barrier(); assert.deepEqual(removed,{revision:String(undone.operationRevision),deleted:true,barrier_revision:String(undone.operationRevision),barrier_operation:undoId});
++    const replay = await owner.browser.request("personal/commands",envelope(owner,command,operationId,base));
++    assert.equal(replay.statusCode,200); assert.deepEqual(replay.json(),{...corrected,replayed:true});
++    assert.deepEqual(await rows(),afterRemoval); assert.deepEqual(await barrier(),removed);
++    const final = await owner.read(); assert.equal(final.revision,undone.operationRevision); assert.equal(final.xp,20);
++  } finally {
++    if (owner.owner) { await owner.browser.request("logout",{}); await harness.admin.query("delete from auth.users where id=$1 and email=$2",[owner.owner,owner.email]); }
+   }
+ });
+ 

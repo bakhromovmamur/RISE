@@ -1,0 +1,2 @@
+import base from "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.groups.config.ts";
+export default {...base,testDir:"/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups",outputDir:"/tmp/rise-reader-recovery-candidate/layout-fixed-before",reporter:[["list"],["json",{outputFile:"/tmp/rise-reader-recovery-candidate/layout-fixed-before.json"}]],webServer:{...base.webServer,cwd:"/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker",command:"node --import tsx /tmp/rise-reader-recovery-candidate/serve-baseline.mts"}};

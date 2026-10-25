@@ -1,0 +1,68 @@
+{
+  "command": "node --import tsx .rise-infra/local-completion-20261025/candidate-http/run.mts mixed",
+  "startedAt": "2026-10-25T15:02:06Z",
+  "freeBytesBefore": 18802483200,
+  "log": "candidate-full-final.log",
+  "scope": "isolated archived candidate, fixed test, real loopback HTTP; active app unchanged",
+  "exitCode": 1,
+  "completedAt": "2026-10-25T15:13:32Z",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "users": 100,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrences": 7300000,
+  "execution": {
+    "runtime": "isolated candidate-runtime/server/main.ts",
+    "runtimeFingerprint": "local-a974db2bb492f108687e",
+    "candidatePatchSha256": "e8d9eee24b3b0592d13796ae78133d33bdf800f2625f261f759c3cca84a283b1",
+    "workerThreads": 5,
+    "poolPerWorker": 1,
+    "totalBffConnections": 5,
+    "parentBffPoolClosed": true,
+    "transport": "HTTP 127.0.0.1:4191; per-synthetic-browser keep-alive agent; isolated archived worker candidate",
+    "scope": "Synthetic login/seed injected before starting isolated candidate runtime; measured operations and final readback use actual HTTP; not hosted acceptance"
+  },
+  "seedMs": 247657.11291700002,
+  "personal": {
+    "planned": 400,
+    "accepted": 265,
+    "failed": 34,
+    "deferred": 101,
+    "p95Ms": 5995.456707999983,
+    "p95ScheduledMs": 5996.901290999958,
+    "maxMs": 7777.334709000017,
+    "maxSchedulingLateMs": 70.67704199999571
+  },
+  "shared": {
+    "planned": 200,
+    "accepted": 26,
+    "failed": 44,
+    "deferred": 130,
+    "p95Ms": 5236.285499999998,
+    "p95ScheduledMs": 5237.7276249999995,
+    "maxMs": 5460.203125,
+    "maxSchedulingLateMs": 48.88766700000269
+  },
+  "convergence": {
+    "expected": 200,
+    "accepted": 26,
+    "observed": 25,
+    "over15SecondsOrMissing": 4,
+    "p95Ms": 40117.918041999976,
+    "maxMs": 44268.74687499998
+  },
+  "exactRecoveries": 309,
+  "exactRecoveryAndSharedReadback": true,
+  "historyAndXpRestored": true,
+  "cleaned": true,
+  "cleanupErrors": [],
+  "passed": false,
+  "reportSha256": "8ffce25a539b90f79e8deac0ede095622e504d9bea28dc471b136573d76189fe",
+  "comparisonLimit": "Earlier full100 original-runtime baseline uses injected transport; this candidate uses real loopback HTTP. They do not isolate the causal effect of threading. The two-account HTTP comparison remains the controlled same-transport comparison.",
+  "activeRuntimeChanged": false,
+  "guardOrTargetsChanged": false
+}

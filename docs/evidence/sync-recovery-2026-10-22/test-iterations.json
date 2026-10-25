@@ -1,0 +1,21 @@
+{
+  "resolvedDuringImplementation": [
+    {
+      "area": "guard fingerprint",
+      "finding": "The existing digest helper hashes JSON-encoded values. Initial browser testing found a server/client encoding mismatch. Server comparison now uses the same encoding; the real database test also uses that hash."
+    },
+    {
+      "area": "conflict fixture",
+      "finding": "The reflection UI authors a week-start record. The initial remote-writer fixture selected a different saved date; independent merging correctly succeeded. The fixture now targets the queued action date."
+    },
+    {
+      "area": "offline browser test",
+      "finding": "An initial combined run timed out during WebKit offline reload, leaving the synthetic global outage active and causing later navigation failures. The test now waits for service-worker readiness/controller, bounds reload and independently resets the synthetic outage before/after cases. The isolated WebKit case and a subsequent standalone full 48-case sync run passed."
+    }
+  ],
+  "productionEntry": {
+    "result": "39 passed",
+    "rerunNeeded": false
+  },
+  "scope": "Implementation/debugging iterations are distinct from final evidence. No real user profile, mail, cookies or tokens are included."
+}

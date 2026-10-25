@@ -1,0 +1,30 @@
+import { test, expect, stored } from "../support/browser";
+import { balancedFixture } from "../../src/demo";
+import { addLifeDemo } from "../../src/lifeModel";
+import { xpTotal } from "../../src/model";
+
+test("production exports and restores a validated backup while rejecting a future version, with no review harness", async ({ page }) => {
+  const fixture = addLifeDemo(balancedFixture());
+  fixture.life.groups[0].invitations.push({ id: "synthetic-invite", code: "EXCLUDED-INVITATION", expires: "2026-10-28" });
+  await page.addInitScript(raw => { if (location.origin === "http://127.0.0.1:4181" && !localStorage.getItem("rise.local.v1")) localStorage.setItem("rise.local.v1", raw); }, JSON.stringify(fixture));
+  await page.goto("/?storage-test=1");
+  expect(await page.evaluate(() => window.riseStorageTest)).toBeUndefined();
+  const before = await stored(page);
+  await page.locator("#tab-you").click(); await page.getByRole("button", { name: /^Settings Appearance/ }).click();
+  await page.getByRole("dialog").locator("summary").filter({ hasText: "Your data" }).click();
+  const download = page.waitForEvent("download"); await page.getByRole("button", { name: /^Export local data/ }).click();
+  const stream = await (await download).createReadStream(), chunks: Buffer[] = []; for await (const chunk of stream!) chunks.push(Buffer.from(chunk));
+  const raw = Buffer.concat(chunks).toString(), envelope = JSON.parse(raw);
+  expect(envelope.format).toBe("rise.private-backup"); expect(raw).not.toContain("EXCLUDED-INVITATION");
+  await page.getByRole("button", { name: "Restore a backup", exact: true }).click();
+  const file = page.getByLabel("Choose a JSON backup");
+  await file.setInputFiles({ name: "future.json", mimeType: "application/json", buffer: Buffer.from(JSON.stringify({ ...envelope, version: 99 })) });
+  await expect(page.getByRole("alert")).toContainText("could not be validated"); expect(await stored(page)).toEqual(before);
+  await file.setInputFiles({ name: "backup.json", mimeType: "application/json", buffer: Buffer.from(raw) });
+  await expect(page.getByRole("heading", { name: "Review before replacing" })).toBeVisible();
+  await page.getByRole("checkbox", { name: /I understand/ }).check(); await page.getByRole("button", { name: "Replace with this backup" }).click();
+  await expect(page.getByText("Backup restored on this device.")).toBeVisible();
+  const restored = await stored(page); expect(restored.days).toEqual(before.days); expect(restored.prayers).toEqual(before.prayers);
+  expect(restored.life.groups).toEqual([]); expect(xpTotal(restored)).toBe(xpTotal(before));
+  await page.reload(); expect(await stored(page)).toEqual(restored);
+});

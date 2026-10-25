@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts deferred.production.spec.ts --workers=1
+
+[WebServer] (node:65251) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:65252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/production/deferred.production.spec.ts:12:49 › en deferred groups load only on demand and recover from an interrupted download (708ms)
+  ✓  2 [chromium] › tests/production/deferred.production.spec.ts:12:49 › ru deferred groups load only on demand and recover from an interrupted download (544ms)
+  ✓  3 [chromium] › tests/production/deferred.production.spec.ts:12:49 › uz deferred groups load only on demand and recover from an interrupted download (540ms)
+(node:65260) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [webkit] › tests/production/deferred.production.spec.ts:12:49 › en deferred groups load only on demand and recover from an interrupted download (942ms)
+  ✓  5 [webkit] › tests/production/deferred.production.spec.ts:12:49 › ru deferred groups load only on demand and recover from an interrupted download (575ms)
+  ✓  6 [webkit] › tests/production/deferred.production.spec.ts:12:49 › uz deferred groups load only on demand and recover from an interrupted download (614ms)
+(node:65277) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [firefox] › tests/production/deferred.production.spec.ts:12:49 › en deferred groups load only on demand and recover from an interrupted download (1.2s)
+  ✓  8 [firefox] › tests/production/deferred.production.spec.ts:12:49 › ru deferred groups load only on demand and recover from an interrupted download (798ms)
+  ✓  9 [firefox] › tests/production/deferred.production.spec.ts:12:49 › uz deferred groups load only on demand and recover from an interrupted download (794ms)
+
+  9 passed (8.5s)

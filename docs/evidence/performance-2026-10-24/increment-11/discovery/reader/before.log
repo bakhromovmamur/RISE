@@ -1,0 +1,102 @@
+✔ invitation pages reject secret fields, oversized or duplicate rows and unversioned cursors (2.833667ms)
+✔ owner navigation keeps one bounded page and returns through stored cursors (0.383584ms)
+✔ a changed revision, owner role or selected account discards a held invitation page (0.423542ms)
+✔ failed or unauthorized continuation hides stale actions and explicit reload starts from the first page (0.229208ms)
+✔ initial group reads enforce the same bounded owner-only invitation projection (10.94275ms)
+✖ fresh owner metadata recovers an unavailable invitation page without retrying on busy state (1.3475ms)
+✔ fresh invitation metadata does not clear an authorization error or retain actions after ownership loss (0.1625ms)
+✔ shared reader combines bounded pages only at one authorized revision and offers pins only for eligible loaded tasks (1.481459ms)
+✔ late content and errors cannot repopulate a removed group, replaced read or switched account (0.288625ms)
+✔ failed or inconsistent continuation clears content, never shows a partial mixed collection and refreshes membership on conflict (0.270958ms)
+✔ the shared HTTP client binds owner, group, parent, date and revision before accepting server data (19.689375ms)
+✖ a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop (1.809583ms)
+✔ fresh metadata cannot clear authority failures or revive a transient read after account switching (0.264458ms)
+✔ squad pages and author lookups remain separate and reaction revisions invalidate every old view (2.577709ms)
+✔ late squad replies and failures cannot revive removed membership, replaced reads or another account (0.297417ms)
+✔ inconsistent or failed squad continuation clears the entire view and requests current authority after conflict (0.267792ms)
+✔ the squad HTTP boundary rejects mismatched owner/week/author and mismatched preview choices or source metadata (11.780542ms)
+✖ a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop (1.920208ms)
+✔ fresh metadata cannot clear authority failures or revive a transient read after account switching (0.213542ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 16
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 230.647042
+
+✖ failing tests:
+
+test at ../../../../../private/tmp/rise-reader-recovery-candidate/before-group-invitations.test.ts:2:7269
+✖ fresh owner metadata recovers an unavailable invitation page without retrying on busy state (1.3475ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'unavailable'
+  - null
+  
+      at TestContext.<anonymous> (/private/tmp/rise-reader-recovery-candidate/before-group-invitations.test.ts:64:101)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'unavailable',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../../../private/tmp/rise-reader-recovery-candidate/before-shared-reader.test.ts:2:8813
+✖ a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop (1.809583ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  
+    {
+  +   error: 'unavailable',
+  -   error: null,
+      loaded: false,
+      loading: false,
+      next: null,
+  +   revision: 1,
+  -   revision: null,
+      rows: []
+    }
+  
+      at TestContext.<anonymous> (/private/tmp/rise-reader-recovery-candidate/before-shared-reader.test.ts:71:74)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { rows: [], revision: 1, next: null, loaded: false, loading: false, error: 'unavailable' },
+    expected: { rows: [], revision: null, next: null, loaded: false, loading: false, error: null },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../../../private/tmp/rise-reader-recovery-candidate/before-squad-reader.test.ts:2:8391
+✖ a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop (1.920208ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  
+    {
+  +   error: 'unavailable',
+  -   error: null,
+      loaded: false,
+      loading: false,
+      next: null,
+  +   revision: 1,
+  -   revision: null,
+      rows: []
+    }
+  
+      at TestContext.<anonymous> (/private/tmp/rise-reader-recovery-candidate/before-squad-reader.test.ts:67:74)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { rows: [], revision: 1, next: null, loaded: false, loading: false, error: 'unavailable' },
+    expected: { rows: [], revision: null, next: null, loaded: false, loading: false, error: null },
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

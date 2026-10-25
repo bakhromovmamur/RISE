@@ -1,0 +1,107 @@
+full: 5/5 first attempts accepted
+undo: 5/5 first attempts accepted
+{
+  "run": "70249429-0706-4187-a5fd-3f2a2921e8ac",
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 5,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 1446.4443339999998,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "full",
+      "user": 2,
+      "ms": 1484.9349999999995,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "full",
+      "user": 4,
+      "ms": 1485.0177920000006,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "full",
+      "user": 1,
+      "ms": 1485.0941669999993,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "full",
+      "user": 3,
+      "ms": 1486.3757910000004,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 4,
+      "ms": 1381.703375000001,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 2,
+      "ms": 1384.4042500000014,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 3,
+      "ms": 1384.4715410000008,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 0,
+      "ms": 1385.5625,
+      "status": 200,
+      "recovery": false
+    },
+    {
+      "wave": "undo",
+      "user": 1,
+      "ms": 1386.5114999999987,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 8782.205083,
+  "databaseGrowthBytes": 8192,
+  "reads": {
+    "samplesMs": [
+      253.9409169999999,
+      264.6769999999997,
+      288.140625,
+      275.5647079999999,
+      260.7766249999986
+    ],
+    "totalBytes": 78661590
+  },
+  "historyAndXpRestored": true,
+  "firstAttempts": {
+    "count": 10,
+    "accepted": 10,
+    "failed": 0,
+    "p95Ms": 1486.3757910000004,
+    "maxMs": 1486.3757910000004
+  },
+  "localPersonalGate": false,
+  "cleanupErrors": [],
+  "cleaned": true
+}

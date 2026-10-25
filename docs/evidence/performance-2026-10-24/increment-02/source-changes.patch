@@ -1,0 +1,76 @@
+--- before/src/data/validation.ts
++++ after/src/data/validation.ts
+@@ -7,9 +7,12 @@
+   if (!value || typeof value !== "object" || Array.isArray(value) || Object.getPrototypeOf(value) !== Object.prototype) throw new StoredDataError(path);
+   return value as Record<string, unknown>;
+ }
+-export const shape = (fields: Record<string, Check>): Check => (value, path) => {
+-  const row = object(value, path);
+-  for (const [key, check] of Object.entries(fields)) check(row[key], `${path}.${key}`);
++export const shape = (fields: Record<string, Check>): Check => {
++  const entries = Object.entries(fields);
++  return (value, path) => {
++    const row = object(value, path);
++    for (const [key, check] of entries) check(row[key], `${path}.${key}`);
++  };
+ };
+ export const optional = (check: Check): Check => (v, p) => { if (v !== undefined) check(v, p); };
+ export const nullable = (check: Check): Check => (v, p) => { if (v !== null) check(v, p); };
+@@ -20,12 +23,17 @@
+   if (typeof v !== "number" || !Number.isFinite(v) || v < min || v > max || (integer && !Number.isSafeInteger(v))) throw new StoredDataError(p);
+ };
+ export const string = (max = 5000, pattern?: RegExp): Check => (v, p) => {
+-  if (typeof v !== "string" || [...v].length > max || (pattern && !pattern.test(v))) throw new StoredDataError(p);
++  // UTF-16 length bounds code-point length; only longer strings need the
++  // Unicode-aware count. Most stored fields fit without allocating an array.
++  if (typeof v !== "string" || (v.length > max && [...v].length > max) || (pattern && !pattern.test(v))) throw new StoredDataError(p);
+ };
+ export const bool = oneOf(true, false);
++const idString = string(160, /^\S+$/u);
+ export const id: Check = (value, path) => {
+-  string(160, /^\S+$/u)(value, path);
+-  if (typeof value === "string" && [...value].some(char => char.codePointAt(0)! < 32)) throw new StoredDataError(path);
++  idString(value, path);
++  if (typeof value === "string") {
++    for (let i = 0; i < value.length; i++) if (value.charCodeAt(i) < 32) throw new StoredDataError(path);
++  }
+ };
+ export const date: Check = (v, p) => {
+   string(10, /^\d{4}-\d{2}-\d{2}$/)(v, p);
+--- before/tests/validation.test.ts
++++ after/tests/validation.test.ts
+@@ -1,6 +1,6 @@
+ import { test } from "node:test";
+ import assert from "node:assert/strict";
+-import { validateJson, StoredDataError } from "../src/data/validation.ts";
++import { validateJson, StoredDataError, string, id, shape, number } from "../src/data/validation.ts";
+ 
+ test("JSON validation rejects hidden unsafe fields and accessors without invoking them", () => {
+   let calls = 0;
+@@ -33,3 +33,26 @@
+   const cycle: Record<string, unknown> = {}; cycle.self = cycle;
+   assert.throws(() => validateJson(cycle), StoredDataError);
+ });
++
++test("stored string limits retain Unicode code-point and pattern semantics", () => {
++  const short = string(2);
++  for (const value of ["", "ab", "аб", "🌱🌳", "a🌱", "e\u0301", "\ud800x"]) short(value, "title");
++  for (const value of ["abc", "🌱🌳🌻", "e\u0301x", "\ud800xy", null, 12]) assert.throws(() => short(value, "title"), StoredDataError);
++  string(0)("", "empty");
++  assert.throws(() => string(0)("🌱", "empty"), StoredDataError);
++  const patterned = string(2, /^a/u);
++  patterned("a🌱", "pattern");
++  assert.throws(() => patterned("🌱", "pattern"), StoredDataError);
++  assert.throws(() => patterned("abx", "pattern"), StoredDataError);
++});
++
++test("stored IDs and schema checks preserve bounds, required fields and errors", () => {
++  for (const value of ["a", "привычка", "🌱".repeat(160), "x".repeat(160)]) id(value, "id");
++  for (let code = 0; code < 32; code++) assert.throws(() => id(`a${String.fromCharCode(code)}b`, "id"), StoredDataError);
++  for (const value of ["", "a b", "a\u00a0b", "x".repeat(161), "🌱".repeat(161), null]) assert.throws(() => id(value, "id"), StoredDataError);
++  const check = shape({ name: string(2), count: number(0, 2, true) });
++  const row = { name: "🌱🌳", count: 2, extension: "preserve" };
++  check(row, "row"); assert.equal(row.extension, "preserve");
++  for (const value of [{ name: "a" }, { name: "abc", count: 1 }, { name: "a", count: 3 }, [], null]) assert.throws(() => check(value, "row"), StoredDataError);
++  assert.throws(() => check({ name: "a", count: -1 }, "row"), error => error instanceof StoredDataError && error.path === "row.count");
++});

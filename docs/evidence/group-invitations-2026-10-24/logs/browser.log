@@ -1,0 +1,29 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/invitations.groups.spec.ts tests/groups/layout.groups.spec.ts
+
+[WebServer] (node:26199) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:26258) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (4.2s)
+  ✓   2 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (18.1s)
+  ✓   3 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (17.8s)
+  ✓   4 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (17.9s)
+(node:26513) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [webkit] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (4.5s)
+  ✓   6 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (17.7s)
+  ✓   7 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (17.6s)
+  ✓   8 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (17.8s)
+(node:26676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [firefox] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (5.3s)
+  ✓  10 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (22.5s)
+  ✓  11 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (22.2s)
+  ✓  12 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (22.2s)
+
+  12 passed (3.2m)

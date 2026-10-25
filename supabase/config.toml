@@ -1,0 +1,65 @@
+# Supabase CLI 2.121.0, standard Postgres. scripts/infra/local.ts renders isolated work directories.
+project_id = "rise-local"
+[api]
+enabled = true
+port = 55321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+auto_expose_new_tables = false
+[db]
+port = 55322
+shadow_port = 55320
+major_version = 17
+health_timeout = "2m"
+[db.migrations]
+enabled = true
+schema_paths = []
+[db.seed]
+enabled = false
+[db.pooler]
+enabled = false
+[realtime]
+enabled = false
+[studio]
+enabled = false
+port = 55323
+[local_smtp]
+enabled = true
+port = 55324
+[storage]
+enabled = false
+[auth]
+enabled = true
+site_url = "http://127.0.0.1:4190"
+additional_redirect_urls = []
+jwt_expiry = 600
+jwt_issuer = "http://127.0.0.1:55321/auth/v1"
+signing_keys_path = "./signing_keys.json"
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
+enable_signup = true
+enable_anonymous_sign_ins = false
+[auth.email]
+# Local-only mail sink. BFF enforces the public request/cooldown policy.
+enable_signup = true
+enable_confirmations = true
+otp_length = 6
+otp_expiry = 600
+max_frequency = "1s"
+[auth.email.template.confirmation]
+subject = "Your RISE sign-in code"
+content_path = "./supabase/templates/code.html"
+[auth.email.template.magic_link]
+subject = "Your RISE sign-in code"
+content_path = "./supabase/templates/code.html"
+[auth.rate_limit]
+email_sent = 1000
+token_verifications = 300
+token_refresh = 300
+[auth.sms]
+enable_signup = false
+[edge_runtime]
+enabled = false
+[analytics]
+enabled = false

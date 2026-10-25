@@ -1,0 +1,19 @@
+
+> rise-prototype@1.0.0 check
+> npm run check:toolchain && npm run check:notices && npm run lint && npm run typecheck && npm test && npm run build && npm run build:review
+
+
+> rise-prototype@1.0.0 check:toolchain
+> node scripts/check-toolchain.mjs
+
+Node 24.16.0, npm 11.13.0 and direct dependency pins match the lockfile.
+
+> rise-prototype@1.0.0 check:notices
+> node scripts/check-notices.mjs
+
+{"browserPackages":12,"lockPackages":315,"noticesBytes":19718,"status":"verified"}
+
+> rise-prototype@1.0.0 lint
+> oxlint src server infra tests scripts public/notifications-sw.js *.config.ts --deny-warnings
+
+src/data/validation.ts:33:37: error eslint(no-control-regex): Unexpected control characters help: Avoid matching control characters in regular expressions. If intentional, disable this rule for the expression.

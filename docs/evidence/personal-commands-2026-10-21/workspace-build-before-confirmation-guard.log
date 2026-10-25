@@ -1,0 +1,51 @@
+
+> rise-prototype@1.0.0 build
+> tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 1653 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.80 kB │ gzip:   0.45 kB
+dist/assets/migration.worker-BUq7S_VA.js   10.62 kB
+dist/assets/backup.worker-DV9GwJFQ.js      22.40 kB
+dist/assets/index-DFyakBKU.css            103.87 kB │ gzip:  19.68 kB
+dist/assets/web-CbB8Omhn.js                 0.84 kB │ gzip:   0.40 kB
+dist/assets/web-DrJkbKLy.js                 2.08 kB │ gzip:   0.85 kB
+dist/assets/web-DF4lK5J5.js                 4.43 kB │ gzip:   1.28 kB
+dist/assets/index-B3JNhL_X.js             810.20 kB │ gzip: 253.20 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.85s
+
+> rise-prototype@1.0.0 build:review
+> tsc -b && vite build --mode review
+
+vite v8.3.4 building client environment for review...
+transforming...
+✓ 1659 modules transformed.
+rendering chunks...
+computing gzip size...
+dist-review/index.html                             0.80 kB │ gzip:   0.44 kB
+dist-review/assets/migration.worker-BUq7S_VA.js   10.62 kB
+dist-review/assets/backup.worker-DV9GwJFQ.js      22.40 kB
+dist-review/assets/index-DFyakBKU.css            103.87 kB │ gzip:  19.68 kB
+dist-review/assets/origin-Co-8Dkay.js              0.29 kB │ gzip:   0.23 kB
+dist-review/assets/storageHarness-B0coxjTy.js      0.36 kB │ gzip:   0.25 kB
+dist-review/assets/web-BYmJpEDL.js                 0.84 kB │ gzip:   0.40 kB
+dist-review/assets/web-Cxk3D56l.js                 2.08 kB │ gzip:   0.85 kB
+dist-review/assets/web-DeHkt9vJ.js                 4.43 kB │ gzip:   1.29 kB
+dist-review/assets/tools-ZkrYUAdF.js              17.00 kB │ gzip:   6.07 kB
+dist-review/assets/index-CMz_yoOD.js             819.63 kB │ gzip: 256.32 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.73s

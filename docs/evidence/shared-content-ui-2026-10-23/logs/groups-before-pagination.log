@@ -1,0 +1,68 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts
+
+[WebServer] (node:1622) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 51 tests using 1 worker
+
+(node:1623) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (7.7s)
+  ✓   2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (15.2s)
+  ✓   3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (15.4s)
+  ✓   4 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.3s)
+  ✓   5 [chromium] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.5s)
+  ✓   6 [chromium] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.6s)
+  ✓   7 [chromium] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.6s)
+  ✓   8 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (13.2s)
+  ✓   9 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (13.1s)
+  ✓  10 [chromium] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (13.1s)
+  ✓  11 [chromium] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.4s)
+  ✓  12 [chromium] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.7s)
+  ✓  13 [chromium] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (4.6s)
+  ✓  14 [chromium] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.1s)
+  ✓  15 [chromium] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.3s)
+  ✓  16 [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (2.8s)
+  ✓  17 [chromium] › tests/groups/priorities.groups.spec.ts:8:1 › a fourth dated shared priority offers ordered replacement and a deleted family preserves unrelated choices (5.7s)
+(node:1999) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [webkit] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (8.8s)
+  ✓  19 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (15.2s)
+  ✓  20 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (15.7s)
+  ✓  21 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.6s)
+  ✓  22 [webkit] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.8s)
+  ✓  23 [webkit] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.4s)
+  ✓  24 [webkit] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.4s)
+  ✓  25 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (13.6s)
+  ✓  26 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (13.9s)
+  ✓  27 [webkit] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (14.3s)
+  ✓  28 [webkit] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.9s)
+  ✓  29 [webkit] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (4.0s)
+  ✓  30 [webkit] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.2s)
+  ✓  31 [webkit] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (7.5s)
+  ✓  32 [webkit] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.5s)
+  ✓  33 [webkit] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (3.5s)
+  ✓  34 [webkit] › tests/groups/priorities.groups.spec.ts:8:1 › a fourth dated shared priority offers ordered replacement and a deleted family preserves unrelated choices (6.5s)
+(node:2502) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  35 [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (9.6s)
+  ✓  36 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (19.9s)
+  ✓  37 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (19.3s)
+  ✓  38 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (19.2s)
+  ✓  39 [firefox] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (5.5s)
+  ✓  40 [firefox] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (35.8s)
+  ✓  41 [firefox] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (9.5s)
+  ✓  42 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · en (16.7s)
+  ✓  43 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · ru (16.9s)
+  ✓  44 [firefox] › tests/groups/layout.groups.spec.ts:12:49 › group screens reflow with long names and recoverable errors · uz (16.9s)
+  ✓  45 [firefox] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (9.6s)
+  ✓  46 [firefox] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (4.7s)
+  ✓  47 [firefox] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (6.3s)
+  ✓  48 [firefox] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (8.0s)
+  ✓  49 [firefox] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.7s)
+  ✓  50 [firefox] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (4.7s)
+  ✓  51 [firefox] › tests/groups/priorities.groups.spec.ts:8:1 › a fourth dated shared priority offers ordered replacement and a deleted family preserves unrelated choices (7.6s)
+
+  51 passed (9.6m)

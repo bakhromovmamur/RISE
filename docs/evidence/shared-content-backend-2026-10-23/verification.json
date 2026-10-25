@@ -1,0 +1,254 @@
+{
+  "date": "2026-10-23",
+  "task": "GROUP-02",
+  "status": "IN PROGRESS",
+  "requirements": [
+    "PRD-13",
+    "PRD-06 pending priority integration"
+  ],
+  "environment": {
+    "os": "Darwin arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "supabaseCLI": "2.121.0",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    },
+    "browserPort": 4191,
+    "mainPreview4173Accessed": false,
+    "cloudProvisioned": false,
+    "externalMessagesOrInvitations": false
+  },
+  "results": {
+    "unitAndTooling": 230,
+    "databaseAndBFF": 116,
+    "membershipBrowser": 27,
+    "localAdvisorIssues": 0,
+    "testAdvisorIssues": 0,
+    "sourceChecksAndBuildsPassed": true,
+    "documentationChecksPassed": true,
+    "evidenceLinksChecked": 4
+  },
+  "taskCounts": {
+    "DONE": 10,
+    "IN PROGRESS": 3,
+    "REVIEW": 11,
+    "TODO": 14,
+    "BLOCKED": 0
+  },
+  "sources": {
+    "src/auth/client.ts": {
+      "sha256": "2ab0332c5cadc21ef4ac249e60a847ad1673013084b7a7fc5f0a99567615a03e",
+      "previousSha256": "6bf7ecba2d98ca6aa3ebec6d569e66436e16660d2ce43732f328ebbb65fdbe9e"
+    },
+    "src/contracts/groups.ts": {
+      "sha256": "bb44c1548b14f866c1886d34566e99bdc4e98e828b21eb39f6db286a0dc1c84b",
+      "previousSha256": "7ce851b53fce912e63a3abbee1dcb703e22f1e397744df61dfe794b2f2fd73ef"
+    },
+    "server/groups/routes.ts": {
+      "sha256": "8626937340e88204621802e948b409db431a3dc7874d4df2f5245d2b86c35409",
+      "previousSha256": "2e2554610f772cec5c0b4ab7dd40e737d3f7fc6476c928394a408fb7a94e3d07"
+    },
+    "server/groups/repository.ts": {
+      "sha256": "030b8b3acfe9e2818e4685400829d210d7e2c46af770a7c4310c20e80ae6adc4",
+      "previousSha256": "e2bf4175db8ace79fbd6ca6848223ef3d1fa0c52e301ca4bed5f1ef65900633d"
+    },
+    "tests/infra/isolation.test.ts": {
+      "sha256": "f6df51715ba334010bae6b4e808c5fb48531ec72c346dacb40217d3137dc5f41",
+      "previousSha256": "d73f936d02574fe2130762dd178c47b9ff95bbb87285c1a331fdb9dd81ba09a9"
+    },
+    "tests/infra/lifecycle.test.ts": {
+      "sha256": "578f8870393167f936e056d2f9cdfb824ee71ca133b0257e4199ae42169686a2",
+      "previousSha256": "db97f39a07a01feff96febbefad3a5c587903bb04c45d6965f16eafe8a8ad7ee"
+    },
+    "docs/GROUP-MEMBERSHIP.md": {
+      "sha256": "9e4b32cd010020534f3fcf177394fdbfe35b05a2f83d678b3bfa40d6e5dc48ae",
+      "previousSha256": "1f75594cc7bba8e4d5b6dfb961e747d4cab038276a2d6f6975942d4145e2d3e9"
+    },
+    "docs/BACKEND-ENVIRONMENTS.md": {
+      "sha256": "3192e5e01a237ddbdc4782039bd95cf9526a5e5eabb3c73db38c93de73726963",
+      "previousSha256": "a7c787f58b8b76ba394c6ee31784e1b0dd23080e8cb5e2bc58c9ffdab1905f97"
+    },
+    "docs/ACCOUNT-LIFECYCLE.md": {
+      "sha256": "f075de4bba53bdb61039e81c4f26453268c90cc39886dc6334496d2a0451515b",
+      "previousSha256": "0dfce3f2cb054428b2fbf42a7207c772a1d7e350097ce05e1c0e28c5b6b9382f"
+    },
+    "PRODUCT.md": {
+      "sha256": "d5eecbfa33b2ce3639569bda877958a683ae27ca50c266d13ef7923a34d14d92",
+      "previousSha256": "a624d995a1b539f25b4814b1a1b2c459f172b5b5f3b6ae1a48d1f061a3dce602"
+    },
+    "ARCHITECTURE.md": {
+      "sha256": "b88414d539543b39057e2ccc3566fb1c6fab264d806c4aded837260efd265776",
+      "previousSha256": "b10446dc78c23b91ca0790810050486dd13d1a03566a8f73ee8bba1d6eed2de9"
+    },
+    "README.md": {
+      "sha256": "54d1e8a780e7374b70f737fcc0148a64667e76d02106c25bb257e35d2b099658",
+      "previousSha256": "338cd4872ff8d590accad8aaaff1badff98c9a4e0f70a7a59d82cad2e4570189"
+    },
+    "TASKS.md": {
+      "sha256": "e7d5a2054bca246da7f05eac07f536931c66038fa522e7a3f7e9bdbb8a295b21",
+      "previousSha256": "83efa2f6860c2a359905db1db4bd6fb8436d1669b8b49c9e04121093ab23e423"
+    },
+    "AGENTS.md": {
+      "sha256": "3387b8a2fcc77e4c13683aefd82b72255ec162b25d62717ce804754fac520cda",
+      "previousSha256": "e3e2f7eb2d626fec434158d15f1224cdbfb834b718bb714d65265ebd3a5568fb"
+    },
+    "SECURITY.md": {
+      "sha256": "9b5cc0868e3c238535d6aae5e67b42ec9b835e9fa3746a1ddd2663e94f1c4b8b",
+      "previousSha256": "9533f1a27af6b293478b83daeb21436a9fa136115be7c0e40c19d3b700e3ca14"
+    },
+    "src/contracts/sharedContent.ts": {
+      "sha256": "432428c56725bd754b97542f1d04ffc4827e1e60922244abb66bb34947dc6682",
+      "previousSha256": null
+    },
+    "server/groups/content.ts": {
+      "sha256": "049544adcf8a1139f98a73da62482cca007e90ff994ca23b101287692e9bf579",
+      "previousSha256": null
+    },
+    "supabase/migrations/20261023145156_shared_family_content.sql": {
+      "sha256": "1802c6e1e9b688799729db68a34bc4e24e24defaededd6ebc5895587fd37ab9e",
+      "previousSha256": null
+    },
+    "tests/shared-content.test.ts": {
+      "sha256": "e31774bb3ac51dd9df8bbba9af760ef1ba84cc14d4ce8272e97dd6079403ed68",
+      "previousSha256": null
+    },
+    "tests/infra/shared-content.test.ts": {
+      "sha256": "5836b482ec39cd178774797585d12c686bc2a02a2d394a8fa79cff29dc1acec9",
+      "previousSha256": null
+    },
+    "docs/SHARED-CONTENT.md": {
+      "sha256": "135af7b122cd6817f420aace58ee40e0a51c0e67e6e719595e760e4c0153aa8c",
+      "previousSha256": null
+    }
+  },
+  "browserBuild": {
+    "production": {
+      "dist/index.html": "57d652bb65d26c8a1ad5c2d296c78669a187b2e7831f6b01da068c1bdb06856d",
+      "dist/notifications-sw.js": "905aad4ba7b66bbd838c21bd5a78a489d1bc8569b2829e5c962075687a916876",
+      "dist/manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "dist/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "dist/icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "dist/icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "dist/icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "dist/icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "dist/icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "dist/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "dist/assets/web-Dctt5ko_.js": "d46c8377234eef9d0fbfaae50b0f3c746f71fdcc46a92ed565f8f5d08ec76982",
+      "dist/assets/web-CR3OOunq.js": "9b9c57154a70a8e5ae481ac6d370d97a268319edf5c03adc0f9b087920ebecdb",
+      "dist/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "dist/assets/import.worker-C-r0OBUv.js": "21d8e1a054d7ef2468a54da0334de80b2e7d6b816ee23a5be98af3dda68ccc97",
+      "dist/assets/backup.worker-DMAuYwWD.js": "cb367646c8dfb1def940967207070a97908505dd85005a5451719115f0b3c80b",
+      "dist/assets/index-BMT3nDzH.js": "8b691ee33655087843e6f9e87783f0d0077726f9e09b2d91171949f3ce4d6625",
+      "dist/assets/web-BUYH62W_.js": "64019fad36775795122fa04abd6a331820590e6f7735c71c48bccc6c16499db0",
+      "dist/assets/migration.worker-BRLDJ-s_.js": "f69b0066d6718c2310682f786f8f118e4ce39bff038126b13b4f575011e93c73",
+      "dist/assets/index-Bq8EnT-M.css": "9473a20ce3b7832df53566672454a65f74be8bc8d77a50d2169166d1f40b3db4",
+      "dist/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "dist/assets/hydrate.worker-Czcgyp-8.js": "1edcf01b2cd88adecf0d91d96322af2ccd81e80c10600a4bafea7d3a4db015ac",
+      "dist/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd"
+    },
+    "review": {
+      "dist-review/index.html": "fbbe8bafa808a905d1454afb230751386aecd57a896d22eb9aff3f7ebbb06507",
+      "dist-review/notifications-sw.js": "ef84fe371993477d9e951d18e52d4db8f2acb3776b49fa4de161e2638561783e",
+      "dist-review/manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "dist-review/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "dist-review/icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "dist-review/icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "dist-review/icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "dist-review/icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "dist-review/icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "dist-review/assets/storageHarness-CApwGI9F.js": "7b5e603aa4e7a0fc948582e59d7f6654e482a42830bf9e96c63344a08b7a1903",
+      "dist-review/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "dist-review/assets/initialState-BRS6SeFd.js": "c6e4e3cd390e33b12d574f873769abed1adacaf547f7731d32fa7c714c833c32",
+      "dist-review/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "dist-review/assets/import.worker-C-r0OBUv.js": "21d8e1a054d7ef2468a54da0334de80b2e7d6b816ee23a5be98af3dda68ccc97",
+      "dist-review/assets/backup.worker-DMAuYwWD.js": "cb367646c8dfb1def940967207070a97908505dd85005a5451719115f0b3c80b",
+      "dist-review/assets/index-UWdE0pRz.js": "e63f1ce7eab5902c064a67ba08a3d8d146cb00ce6dbe4090376b4fdb09b4ffc9",
+      "dist-review/assets/web-rU4wqyta.js": "18f33e250e0673fe40da11f584147f9edec82b6284a4bd4d799f91cd56da650d",
+      "dist-review/assets/migration.worker-BRLDJ-s_.js": "f69b0066d6718c2310682f786f8f118e4ce39bff038126b13b4f575011e93c73",
+      "dist-review/assets/index-Bq8EnT-M.css": "9473a20ce3b7832df53566672454a65f74be8bc8d77a50d2169166d1f40b3db4",
+      "dist-review/assets/tools-BYwMqAuJ.js": "bd71d3f625239688ec57f0da2836e16539a0ffd2bc5f02df3b4c6b36c54931eb",
+      "dist-review/assets/web-B6bomUaS.js": "ffbb67bee6eab3fb537af43c0c5646250fa6ef120f2824132234acecdddcb8bf",
+      "dist-review/assets/web-DyPYADNm.js": "b12cebaa769677977ac0ac3410e235aa76f9e639286dc8a42884ba1240ee1e6d",
+      "dist-review/assets/origin-Co-8Dkay.js": "d9ae02659989c04179b229bef15f1e5134e85665d88a7e4c8882ff09d6b65471",
+      "dist-review/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "dist-review/assets/hydrate.worker-Czcgyp-8.js": "1edcf01b2cd88adecf0d91d96322af2ccd81e80c10600a4bafea7d3a4db015ac",
+      "dist-review/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd"
+    }
+  },
+  "finalBuild": {
+    "dist": {
+      "dist/index.html": "4977697770b5569260ab94ca88c7fb67ae2e5748132fd1e21969d2ca9345b629",
+      "dist/notifications-sw.js": "c9dfe951fa560c346cf6da31a20926f63aa663d92ef44f69ce62dd75d9b42373",
+      "dist/manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "dist/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "dist/icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "dist/icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "dist/icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "dist/icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "dist/icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "dist/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "dist/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "dist/assets/import.worker-C-r0OBUv.js": "21d8e1a054d7ef2468a54da0334de80b2e7d6b816ee23a5be98af3dda68ccc97",
+      "dist/assets/backup.worker-DMAuYwWD.js": "cb367646c8dfb1def940967207070a97908505dd85005a5451719115f0b3c80b",
+      "dist/assets/migration.worker-BRLDJ-s_.js": "f69b0066d6718c2310682f786f8f118e4ce39bff038126b13b4f575011e93c73",
+      "dist/assets/index-Bq8EnT-M.css": "9473a20ce3b7832df53566672454a65f74be8bc8d77a50d2169166d1f40b3db4",
+      "dist/assets/web-Bj7GHJgR.js": "58122af54a8206790a3a845ffa282a42490d1ecf623dad904cb8bceea1017a93",
+      "dist/assets/web-BeJ7uMo1.js": "3026a7cb0560894eed3b59bf8a920b349e26780ef4e2b677097f3815e3dbc51a",
+      "dist/assets/index-DymFtoq1.js": "757491a252828a5b2bc6d5d07ef87b028ea6c21bc6651f31cdfe409d17b05b24",
+      "dist/assets/web-C-VeKV42.js": "86579018fb49908e9343fae1267d6196db1e8cdb5e48c4e50fdb09ab6dd91dd2",
+      "dist/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "dist/assets/hydrate.worker-Czcgyp-8.js": "1edcf01b2cd88adecf0d91d96322af2ccd81e80c10600a4bafea7d3a4db015ac",
+      "dist/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd"
+    },
+    "dist-review": {
+      "dist-review/index.html": "9bc6ec6873801643f4ab17a73c20ef8352166625968c890181433c8bf7a5fcc1",
+      "dist-review/notifications-sw.js": "ef84fe371993477d9e951d18e52d4db8f2acb3776b49fa4de161e2638561783e",
+      "dist-review/manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "dist-review/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "dist-review/icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "dist-review/icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "dist-review/icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "dist-review/icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "dist-review/icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "dist-review/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "dist-review/assets/tools-Bsnv22gq.js": "0d5eeec9a304324f845baabdf3dd12d30e1bcfce4c74ef2d0b9620083a984acf",
+      "dist-review/assets/web-DcarRmOq.js": "25b92899b53665c9412bce1c65324d09ea956a53d159bec9814c26661081347d",
+      "dist-review/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "dist-review/assets/import.worker-C-r0OBUv.js": "21d8e1a054d7ef2468a54da0334de80b2e7d6b816ee23a5be98af3dda68ccc97",
+      "dist-review/assets/backup.worker-DMAuYwWD.js": "cb367646c8dfb1def940967207070a97908505dd85005a5451719115f0b3c80b",
+      "dist-review/assets/storageHarness-Dnf9GjWw.js": "bdb452f697a595d48cea1a28fb6640abf721fdbdef7713ab3cc19c0b5e979197",
+      "dist-review/assets/index-lAMdKCd0.js": "94b1fe6b069d86a187690f05d8b2be8819997c31e3fec5ecc432b8c4691b5ca8",
+      "dist-review/assets/migration.worker-BRLDJ-s_.js": "f69b0066d6718c2310682f786f8f118e4ce39bff038126b13b4f575011e93c73",
+      "dist-review/assets/index-Bq8EnT-M.css": "9473a20ce3b7832df53566672454a65f74be8bc8d77a50d2169166d1f40b3db4",
+      "dist-review/assets/initialState-BKuNCEJm.js": "b52d3569f1290d9a1b2c015c289ca64b52528997d0bad1f78ebe591d9f64bbfd",
+      "dist-review/assets/origin-Co-8Dkay.js": "d9ae02659989c04179b229bef15f1e5134e85665d88a7e4c8882ff09d6b65471",
+      "dist-review/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "dist-review/assets/hydrate.worker-Czcgyp-8.js": "1edcf01b2cd88adecf0d91d96322af2ccd81e80c10600a4bafea7d3a4db015ac",
+      "dist-review/assets/web-CzzL4HS4.js": "8a26ca16526c1ee5ab5357d444df277a57e42cf8e1c9cde25f4bb78125fb4931",
+      "dist-review/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+      "dist-review/assets/web-DCEFwOy3.js": "3d9335224a165a9d3687ffde9423b20bf5dc4f4a53c668fb442ad671efa0e67b"
+    }
+  },
+  "limitations": [
+    "Family browser UI and conflict/offline acceptance pending",
+    "Account task-priority references pending",
+    "Hosted and physical-device acceptance pending"
+  ],
+  "logSha256": {
+    "logs/advisors-test.log": "b508154aab0d2dfa2362f4a778d311e9fe1d1d05a0d39f73c360d29c046056cb",
+    "logs/initial-infra-schema-assertion.log": "74b15a29b922d14836997ac8ffb9be49fe4ddde02ae0d83210ae71f584634783",
+    "logs/infra-local.log": "6996b3bd426bcdeb15c5e8274029932cac0951930674866b62c62d399b14e44d",
+    "logs/advisors-local.log": "b508154aab0d2dfa2362f4a778d311e9fe1d1d05a0d39f73c360d29c046056cb",
+    "logs/infra-test.log": "2aa1f735496e62844283b06e729b1c074b28e44c3abf8bad2428d12fea22d816",
+    "logs/browser-report.json": "c2b7be1744700e9a94e9fedbd107339510a808bb44ae215b58fa6b6daf1e3bc3",
+    "logs/check.log": "7ffa923c7b00b4b1e6e37a3f3ad968356f23cd66acb7433a1c61ef203499e34b",
+    "logs/isolation-correction.log": "3cd39f6bc2f81aa99b98c0652f29d1581db3376acd352b6df7326ae3082586a3",
+    "logs/groups-browser.log": "ea1f20a2df5abcb1a62851eee600bd241aee8f878f003a02521324b73ac71da2",
+    "logs/infra.log": "45ef1a348775ed44d11dc2600a747aa5bd556e0a2e9104a2d057920193962658",
+    "logs/docs.log": "f347142daded08b30dcdc8fa663fda6457dd4552543ecf43b8d9a0f5d3702fc6"
+  }
+}

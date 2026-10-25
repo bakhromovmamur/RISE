@@ -1,0 +1,40 @@
+[WebServer] (node:12732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:12739) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+Visual pending command kinds [ 'priorities.ensure' ]
+Visual pending command kinds [ 'priorities.ensure' ]
+  ✘  1 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (10.8s)
+
+
+  1) [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en 
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator: getByRole('heading', { name: 'This is all they’ll see.', exact: true })
+    Expected: focused
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeFocused" getByRole('heading', { name: 'This is all they’ll see.', exact: true }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'This is all they’ll see.', exact: true })
+
+
+      60 |   await page.evaluate(()=>document.documentElement.style.fontSize='100%');await page.setViewportSize({width:393,height:852});
+      61 |  };
+    > 62 |  const preview=async()=>{await page.getByRole('button',{name:t('preview'),exact:true}).click();await expect(page.getByRole('heading',{name:t('previewTitle'),exact:true})).toBeFocused();};
+         |                                                                                                                                                                            ^
+      63 |  const stop=async()=>{await page.getByRole('dialog').getByRole('button',{name:g('stop'),exact:true}).click();await page.locator('.group-pending').getByRole('checkbox',{name:g('confirm'),exact:true}).check();await page.locator('.group-pending .group-confirm').getByRole('button',{name:g('stop'),exact:true}).click();};
+      64 |  await page.getByRole('tab',{name:tr('You','Siz'),exact:true}).click();await page.getByRole('button',{name:`${tr('Family','Oila')} ${tr('Tasks & shared lists','Vazifalar va umumiy ro‘yxatlar')}`,exact:true}).click();await page.getByRole('button',{name:g('squad'),exact:true}).click();await page.locator('.people-group').click();await expect(page.getByRole('button',{name:t('edit'),exact:true})).toBeEnabled();await matrix('feed');
+      65 |  await page.getByRole('button',{name:`${t('remove')} · ${group.members[0].name}`,exact:true}).click();await expect(page.locator('.group-confirm h2')).toBeFocused();await matrix('remove');await page.getByRole('button',{name:g('cancel'),exact:true}).click();
+        at preview (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:62:172)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:67:2
+
+    Error Context: test-results/groups/browser/squad-layout.groups-squad--bd92e-on-and-recovery-reflow-·-en-chromium/error-context.md
+
+  1 failed
+    [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en 

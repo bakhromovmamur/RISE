@@ -1,0 +1,79 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts
+
+[WebServer] (node:8264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 111 tests using 1 worker
+
+(node:8265) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [chromium] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (7.2s)
+  ✘    2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (15.4s)
+(node:8318) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (15.7s)
+  ✓    4 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.7s)
+  ✓    5 [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (652ms)
+  ✓    6 [chromium] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.5s)
+  ✓    7 [chromium] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.4s)
+  ✓    8 [chromium] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.3s)
+  ✓    9 [chromium] › tests/groups/export.groups.spec.ts:15:1 › explicit shared download uses the real worker/API and preserves private, guest and account data (3.5s)
+  ✓   10 [chromium] › tests/groups/export.groups.spec.ts:25:1 › expired authentication requires a new code and a second explicit download decision (4.6s)
+  ✓   11 [chromium] › tests/groups/export.groups.spec.ts:32:1 › stale review and lost export reply require review or explicit retry, with no partial file or membership change (3.7s)
+  ✓   12 [chromium] › tests/groups/export.groups.spec.ts:39:1 › closing a pending shared download terminates its worker and restores focus without a late file (3.4s)
+  ✓   13 [chromium] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (3.7s)
+  ✓   14 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · en (30.9s)
+  ✘   15 [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru (18.0s)
+
+
+  1) [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en 
+
+    Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+    Call log:
+      - attempting scroll into view action
+        - waiting for element to be stable
+        - element is not stable
+      - retrying scroll into view action
+        - waiting for element to be stable
+
+
+      36 |   await page.setViewportSize({width,height:852});await page.evaluate(({theme,scale})=>{document.querySelector('.app-shell')?.setAttribute('data-theme',theme);document.documentElement.style.fontSize=`${scale}%`;},{theme,scale});const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1),`${scene} ${theme} ${width}/${scale}`).toBe(false);
+      37 |   for(const control of await dialog.locator('.life-segments > button').all())expect(await control.evaluate(el=>{const range=document.createRange();range.selectNodeContents(el);const text=range.getBoundingClientRect(),box=el.getBoundingClientRect();return text.left>=box.left-1&&text.right<=box.right+1&&text.top>=box.top-1&&text.bottom<=box.bottom+1;}),`${scene} segmented text ${theme} ${width}/${scale}`).toBe(true);
+    > 38 |   const headerFits=await dialog.locator('.sheet-header').evaluate(el=>{const a=el.getBoundingClientRect(),b=el.querySelector('h2')!.getBoundingClientRect();return b.top>=a.top&&b.bottom<=a.bottom&&b.left>=a.left&&b.right<=a.right;});if(!headerFits)await dialog.screenshot({path:info.outputPath(`shared-failing-header-${scene}-${language}-${width}-${scale}.png`)});expect(headerFits,`${scene} header ${theme} ${width}/${scale}`).toBe(true);const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^
+      39 |   if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200||scene==='priorities'&&language==='en'&&theme==='light'&&width===320&&scale===200)){await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0));await dialog.screenshot({path:info.outputPath(`shared-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      40 |  }await page.evaluate(()=>document.documentElement.style.fontSize='100%');await page.setViewportSize({width:393,height:852});};
+      41 |  await page.getByRole('tab',{name:tr('Today','Bugun'),exact:true}).click();await page.getByRole('button',{name:tr('Edit priorities','Ustuvor ishlarni o‘zgartirish'),exact:true}).click();await expect(page.getByRole('checkbox',{name:new RegExp(`^${task.title} `)})).toBeEnabled();await page.getByRole('checkbox',{name:new RegExp(`^${task.title} `)}).check();await matrix('priorities');await page.getByRole('button',{name:tr('Save priorities'),exact:true}).click();await expect(page.getByRole('dialog')).toHaveCount(0);await expect(page.getByRole('checkbox',{name:t('complete',[task.title]),exact:true})).toBeChecked();
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/content-layout.groups.spec.ts:38:502)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/content-layout.groups.spec.ts:47:193
+
+    Error Context: test-results/groups/browser/content-layout.groups-shar-da3b1-riority-screens-reflow-·-en-chromium/error-context.md
+
+  2) [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru 
+
+    Test was interrupted.
+
+    Error: locator.scrollIntoViewIfNeeded: Test ended.
+    Call log:
+      - attempting scroll into view action
+        - waiting for element to be stable
+
+
+      48 |    if(scene==='export-family'||scene==='export-squad')expect(await page.locator('.group-export .checkbox-label').evaluate(label=>{const box=label.getBoundingClientRect(),text=label.querySelector('span')!.getBoundingClientRect();return text.left>=box.left&&text.right<=box.right+1&&label.scrollWidth<=label.clientWidth+1;}),'Shared archive sensitivity consent must remain inside its readable label').toBe(true);
+      49 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+    > 50 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200||scene==='notification-device'&&theme==='light'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(['settings-enabled','notification-privacy'].includes(scene)){await page.getByRole('switch',{name:scene==='settings-enabled'?t('notifications'):p('details'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}if(scene.startsWith('export-')){await page.getByRole('heading',{name:archive('review'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-review-${language}-${theme}-${width}-${scale}.png`)});await page.getByRole('button',{name:archive('cancel'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^
+      51 |   }
+      52 |   await page.evaluate(()=>document.documentElement.style.fontSize='100%');await page.setViewportSize({width:393,height:852});
+      53 |  };
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:50:1010)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:67:278
+
+  1 failed
+    [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en 
+  1 interrupted
+    [chromium] › tests/groups/layout.groups.spec.ts:15:49 › group screens reflow with long names and recoverable errors · ru 
+  96 did not run
+  13 passed (2.9m)

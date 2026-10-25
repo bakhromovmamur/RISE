@@ -1,0 +1,98 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/cache-race.groups.spec.ts --project=firefox --repeat-each=3
+
+[WebServer] (node:331) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (12.9s)
+(node:352) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (9.6s)
+(node:386) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (10.2s)
+
+
+  1) [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Synced', { exact: true }).first()
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Synced', { exact: true }).first() with timeout 5000ms
+      - waiting for getByText('Synced', { exact: true }).first()
+
+
+      10 |   await page.getByRole('button',{name:t(selected?'markDone':'undo'),exact:true}).click();await expect(page.getByRole('button',{name:t(selected?'undo':'markDone'),exact:true})).toBeEnabled();await expect(page.getByRole('heading',{name:'Your saved data needs attention',exact:true})).toHaveCount(0);
+      11 |  }
+    > 12 |  await expect(page.getByText('Synced',{exact:true}).first()).toBeVisible();expect((await(await page.request.get('/api/v1/personal')).json()).xp).toBe(0);
+         |                                                              ^
+      13 | });
+      14 |
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/cache-race.groups.spec.ts:12:62
+
+    Error Context: test-results/groups/browser/cache-race.groups-personal-46e62-hout-a-false-cache-conflict-firefox/error-context.md
+
+  2) [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator: getByRole('button', { name: 'Undo completion', exact: true })
+    Expected: enabled
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Undo completion', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Undo completion', exact: true })
+
+
+       8 |  for(let i=0;i<12;i++){
+       9 |   const selected=i%2===0;await page.getByRole('button',{name:t(selected?'pin':'unpin'),exact:true}).click();await expect(page.getByRole('button',{name:t(selected?'unpin':'pin'),exact:true})).toBeVisible();await expect.poll(async()=>Object.values((await accountCache(page))[0].state.dailyPriorities).flat().some(p=>p.kind==='task')).toBe(selected);
+    > 10 |   await page.getByRole('button',{name:t(selected?'markDone':'undo'),exact:true}).click();await expect(page.getByRole('button',{name:t(selected?'undo':'markDone'),exact:true})).toBeEnabled();await expect(page.getByRole('heading',{name:'Your saved data needs attention',exact:true})).toHaveCount(0);
+         |                                                                                                                                                                                 ^
+      11 |  }
+      12 |  await expect(page.getByText('Synced',{exact:true}).first()).toBeVisible();expect((await(await page.request.get('/api/v1/personal')).json()).xp).toBe(0);
+      13 | });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/cache-race.groups.spec.ts:10:177
+
+    Error Context: test-results/groups/browser/cache-race.groups-personal-46e62-hout-a-false-cache-conflict-firefox-repeat1/error-context.md
+
+  3) [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator: getByRole('button', { name: 'Mark as done', exact: true })
+    Expected: enabled
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Mark as done', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Mark as done', exact: true })
+
+
+       8 |  for(let i=0;i<12;i++){
+       9 |   const selected=i%2===0;await page.getByRole('button',{name:t(selected?'pin':'unpin'),exact:true}).click();await expect(page.getByRole('button',{name:t(selected?'unpin':'pin'),exact:true})).toBeVisible();await expect.poll(async()=>Object.values((await accountCache(page))[0].state.dailyPriorities).flat().some(p=>p.kind==='task')).toBe(selected);
+    > 10 |   await page.getByRole('button',{name:t(selected?'markDone':'undo'),exact:true}).click();await expect(page.getByRole('button',{name:t(selected?'undo':'markDone'),exact:true})).toBeEnabled();await expect(page.getByRole('heading',{name:'Your saved data needs attention',exact:true})).toHaveCount(0);
+         |                                                                                                                                                                                 ^
+      11 |  }
+      12 |  await expect(page.getByText('Synced',{exact:true}).first()).toBeVisible();expect((await(await page.request.get('/api/v1/personal')).json()).xp).toBe(0);
+      13 | });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/cache-race.groups.spec.ts:10:177
+
+    Error Context: test-results/groups/browser/cache-race.groups-personal-46e62-hout-a-false-cache-conflict-firefox-repeat2/error-context.md
+
+  3 failed
+    [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict 
+    [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict 
+    [firefox] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict 

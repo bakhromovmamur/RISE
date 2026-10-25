@@ -1,0 +1,47 @@
+import type { Language } from "../i18n";
+const en = {
+  title: "Install & offline", detail: "Keep RISE close, even without a connection",
+  install: "Install RISE", installed: "RISE is installed in this browser.",
+  guide: "To install, open your browser menu and choose Install app or Add to Home Screen. On iPhone or iPad, use Share → Add to Home Screen. If these options are unavailable, keep using RISE in your browser.",
+  limits: "Installation does not enable background prayer notifications or guaranteed Fajr alarms.",
+  ready: "Offline files are ready. Saved activity stays on this device.", preparing: "Offline files are not ready yet. Keep RISE open with an internet connection, then check again.",
+  offline: "You’re offline. Saved activity stays on this device.", reconnect: "Reconnect to download app files or check for updates.",
+  waiting: "A RISE update is ready.", updating: "Saving and updating RISE…", update: "Update RISE", check: "Check for updates", checking: "Checking…",
+  updateError: "Couldn’t prepare the update. Your saved data is unchanged. Reconnect and try again.",
+  blocked: "Close open forms in every RISE tab and finish saving, then try the update again. If a tab is still starting or needs storage recovery, resolve it first. Older tabs may need to be closed.",
+  installError: "Installation didn’t finish. Try your browser’s install or Home Screen menu.",
+  protect: "Protect device storage", persistent: "Your browser granted persistent storage.",
+  storage: "Your browser did not grant persistent storage. Keep an exported backup of important data.",
+  storageInfo: "Your browser may remove local data under storage pressure. Export a backup regularly. Clearing browser data still removes records, even with protection.",
+};
+const ru: typeof en = {
+  title: "Установка и офлайн", detail: "RISE под рукой, даже без интернета",
+  install: "Установить RISE", installed: "RISE установлен в этом браузере.",
+  guide: "Для установки откройте меню браузера и выберите «Установить приложение» или «На экран Домой». На iPhone и iPad: «Поделиться» → «На экран Домой». Если этих пунктов нет, пользуйтесь RISE в браузере.",
+  limits: "Установка не включает фоновые уведомления о намазе и не гарантирует пробуждение к Фаджру.",
+  ready: "Файлы для офлайн готовы. Сохранённые записи остаются на устройстве.", preparing: "Файлы для офлайн ещё не готовы. Оставьте RISE открытым с интернетом и проверьте снова.",
+  offline: "Вы не в сети. Сохранённые записи остаются на устройстве.", reconnect: "Подключитесь к интернету, чтобы загрузить файлы или проверить обновления.",
+  waiting: "Обновление RISE готово.", updating: "Сохраняем и обновляем RISE…", update: "Обновить RISE", check: "Проверить обновления", checking: "Проверяем…",
+  updateError: "Не удалось подготовить обновление. Сохранённые данные не изменены. Подключитесь и попробуйте снова.",
+  blocked: "Закройте формы во всех вкладках RISE и дождитесь сохранения. Затем повторите обновление. Если вкладка загружается или требует восстановления данных, сначала завершите это. Старые вкладки может потребоваться закрыть.",
+  installError: "Установка не завершена. Попробуйте пункт установки или «На экран Домой» в меню браузера.",
+  protect: "Защитить данные на устройстве", persistent: "Браузер разрешил постоянное хранение.",
+  storage: "Браузер не разрешил постоянное хранение. Экспортируйте резервную копию важных данных.",
+  storageInfo: "При нехватке памяти браузер может удалить локальные данные. Регулярно экспортируйте копию. Очистка данных браузера удаляет записи даже при включённой защите.",
+};
+const uz: typeof en = {
+  title: "O‘rnatish va oflayn", detail: "Internetsiz ham RISE yoningizda",
+  install: "RISE’ni o‘rnatish", installed: "RISE ushbu brauzerda o‘rnatilgan.",
+  guide: "O‘rnatish uchun brauzer menyusidan «Ilovani o‘rnatish» yoki «Bosh ekranga qo‘shish»ni tanlang. iPhone yoki iPad’da: «Ulashish» → «Bosh ekranga qo‘shish». Bu bandlar bo‘lmasa, RISE’dan brauzerda foydalaning.",
+  limits: "O‘rnatish fondagi namoz bildirishnomalarini yoqmaydi va Bomdodga uyg‘otishni kafolatlamaydi.",
+  ready: "Oflayn fayllar tayyor. Saqlangan qaydlar shu qurilmada qoladi.", preparing: "Oflayn fayllar hali tayyor emas. RISE’ni internetga ulangan holda ochiq qoldirib, qayta tekshiring.",
+  offline: "Siz oflaynsiz. Saqlangan qaydlar shu qurilmada qoladi.", reconnect: "Fayllarni yuklash yoki yangilanishlarni tekshirish uchun internetga ulaning.",
+  waiting: "RISE yangilanishi tayyor.", updating: "RISE saqlanmoqda va yangilanmoqda…", update: "RISE’ni yangilash", check: "Yangilanishlarni tekshirish", checking: "Tekshirilmoqda…",
+  updateError: "Yangilanish tayyorlanmadi. Saqlangan ma’lumotlar o‘zgarmadi. Internetga ulanib, qayta urinib ko‘ring.",
+  blocked: "Barcha RISE varaqlaridagi shakllarni yoping va saqlash tugashini kuting. So‘ng qayta yangilang. Yuklanayotgan yoki ma’lumotlarni tiklash kerak bo‘lgan varaq bo‘lsa, avval uni yakunlang. Eski varaqlarni yopish kerak bo‘lishi mumkin.",
+  installError: "O‘rnatish tugamadi. Brauzer menyusidagi o‘rnatish yoki bosh ekranga qo‘shish bandini sinab ko‘ring.",
+  protect: "Qurilma xotirasini himoyalash", persistent: "Brauzer doimiy saqlashga ruxsat berdi.",
+  storage: "Brauzer doimiy saqlashga ruxsat bermadi. Muhim ma’lumotlarning zaxira nusxasini eksport qiling.",
+  storageInfo: "Xotira kamayganda brauzer mahalliy ma’lumotlarni o‘chirishi mumkin. Muntazam nusxa eksport qiling. Brauzer ma’lumotlarini tozalash himoya yoqilganda ham qaydlarni o‘chiradi.",
+};
+export const pwaText = (language: Language) => ({ en, ru, uz })[language];

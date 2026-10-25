@@ -1,0 +1,1514 @@
+{
+  "config": {
+    "argv": [
+      "/Users/mamurbakhromov/.nvm/versions/node/v24.16.0/bin/node",
+      "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "playwright.visual.config.ts"
+    ],
+    "configFile": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/playwright.visual.config.ts",
+    "rootDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.visual.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "name": "",
+        "testDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "snapshotDir": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual",
+        "testIgnore": [],
+        "testMatch": "**/*.visual.spec.ts",
+        "timeout": 60000,
+        "use": {
+          "browserName": "chromium",
+          "baseURL": "http://127.0.0.1:4182",
+          "deviceScaleFactor": 1,
+          "locale": "en-US",
+          "timezoneId": "Asia/Tashkent",
+          "reducedMotion": "reduce",
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/visual-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "none",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 2,
+    "webServer": {
+      "command": "node scripts/serve-test-build.mjs 4182 dist-review",
+      "url": "http://127.0.0.1:4182",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "parity.visual.spec.ts",
+      "file": "parity.visual.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "en-light-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4619,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:12.612Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-c19bb9bef504896296c5",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4368,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:12.643Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-598121bfd0d17de01015",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5611,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:17.429Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-86c5fab7b368e1e6d912",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6143,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:17.678Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-04097324860ef81b740f",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 8707,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:23.066Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-baaae850e69fe354e9b5",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10466,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:23.843Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-cefc292e60ad2b97d151",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 16127,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:31.810Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMjAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-07c4641000ef85070e67",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-light-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19736,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:34.436Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjc2Y2MwZDIxMzgxM2ZmYjE1YTUwNDFlMDVkYjUxNjk3ZGI3YjQ4NjA1NTIyZGUxMmFlNzc1OTI4NDhlNjk5MGYiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAibGlnaHQiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-cff2370165ca27f5cbd3",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 7616,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:47.982Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-2c850e54cd6c5c26c3fb",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6073,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:54.256Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ae7cc65249b9634dc670",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5271,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:00:55.681Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAxMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-27d2874a77a8c819a159",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4651,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:00.360Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDEwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-b4451b10554f4b726019",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3911,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:00.981Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-48ab5d1c87d3ec5966f8",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4857,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:04.911Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzOTMsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-bb1287f9cee0a4c9b9de",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4870,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:05.027Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiA0MzAsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAiZW4iLAogICJhcHBlYXJhbmNlIjogImRhcmsiLAogICJ0ZXh0U2NhbGUiOiAyMDAsCiAgImJyb3dzZXIiOiAiMTU2LjAuODA3OC40IiwKICAicGxhdGZvcm0iOiAiZGFyd2luIiwKICAiZGV2aWNlU2NhbGVGYWN0b3IiOiAxLAogICJyZWR1Y2VkTW90aW9uIjogdHJ1ZSwKICAib3JpZ2luIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE4MiIKfQ=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-a4b01947020aa8383fd9",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "en-dark-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6934,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:09.796Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogImNkNWVkMTczOTVmMDQ2YWY2MWRiNDM0OTJlMmE1ZDdmMGZjNDc4MmZkM2NiZjI0Yzg5MWM5MDM2NTAzNjcwOTciLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAxNDQwLAogICAgImhlaWdodCI6IDEwMDAKICB9LAogICJsYW5ndWFnZSI6ICJlbiIsCiAgImFwcGVhcmFuY2UiOiAiZGFyayIsCiAgInRleHRTY2FsZSI6IDIwMCwKICAiYnJvd3NlciI6ICIxNTYuMC44MDc4LjQiLAogICJwbGF0Zm9ybSI6ICJkYXJ3aW4iLAogICJkZXZpY2VTY2FsZUZhY3RvciI6IDEsCiAgInJlZHVjZWRNb3Rpb24iOiB0cnVlLAogICJvcmlnaW4iOiAiaHR0cDovLzEyNy4wLjAuMTo0MTgyIgp9"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-2e4b9a82d0f5e2116291",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6102,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:09.921Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "capture-metadata",
+                      "contentType": "application/json",
+                      "body": "ewogICJmaXh0dXJlIjogImRhaWx5LWxpZmUiLAogICJmaXh0dXJlU2hhMjU2IjogIjZlM2Q5OWQ5OWNmN2EzN2M3ODJkMDkxYzYyNTIyY2I1NmRkZTY2NjQ0MTU2YmE1ZDY1ZDljNzcyYWY2MDBkZTUiLAogICJmaXh0dXJlRGF0ZSI6ICIyMDI2LTEwLTE5IiwKICAidmlld3BvcnQiOiB7CiAgICAid2lkdGgiOiAzNzUsCiAgICAiaGVpZ2h0IjogODUyCiAgfSwKICAibGFuZ3VhZ2UiOiAicnUiLAogICJhcHBlYXJhbmNlIjogImxpZ2h0IiwKICAidGV4dFNjYWxlIjogMTAwLAogICJicm93c2VyIjogIjE1Ni4wLjgwNzguNCIsCiAgInBsYXRmb3JtIjogImRhcndpbiIsCiAgImRldmljZVNjYWxlRmFjdG9yIjogMSwKICAicmVkdWNlZE1vdGlvbiI6IHRydWUsCiAgIm9yaWdpbiI6ICJodHRwOi8vMTI3LjAuMC4xOjQxODIiCn0="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-4054235094e754d006f2",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "interrupted",
+                  "duration": 1315,
+                  "error": {
+                    "message": "Error: screencast.showOverlays: Target page, context or browser has been closed",
+                    "stack": "Error: screencast.showOverlays: Target page, context or browser has been closed\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:46:13)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:52:13",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts",
+                      "column": 13,
+                      "line": 46
+                    },
+                    "snippet": "  44 |               await Promise.all(Array.from(document.images).map(img => img.decode().catch(() => undefined)));\n  45 |             });\n> 46 |             await expect(page.locator(\".app-shell\")).toHaveScreenshot(`${variant}/${name}.png`);\n     |             ^\n  47 |           };\n  48 |\n  49 |           for (const tab of [\"today\", \"journey\", \"progress\", \"you\"]) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts",
+                        "column": 13,
+                        "line": 46
+                      },
+                      "message": "Error: screencast.showOverlays: Target page, context or browser has been closed\n\n  44 |               await Promise.all(Array.from(document.images).map(img => img.decode().catch(() => undefined)));\n  45 |             });\n> 46 |             await expect(page.locator(\".app-shell\")).toHaveScreenshot(`${variant}/${name}.png`);\n     |             ^\n  47 |           };\n  48 |\n  49 |           for (const tab of [\"today\", \"journey\", \"progress\", \"you\"]) {\n    at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:46:13)\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:52:13"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:16.047Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual/parity.visual-ru-light-393x852-100/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts",
+                    "column": 13,
+                    "line": 46
+                  }
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-42fcfcbdbb3bf883674e",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "interrupted",
+                  "duration": 316,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: \u001b[32m\"light\"\u001b[39m\nError: Test ended.\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\u001b[2m  - Test ended.\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: \u001b[32m\"light\"\u001b[39m\nError: Test ended.\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\u001b[2m  - Test ended.\u001b[22m\n\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:37:52",
+                    "location": {
+                      "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts",
+                      "column": 52,
+                      "line": 37
+                    },
+                    "snippet": "  35 |           }, { key: STORAGE_KEY, value: fixtureJson });\n  36 |           await page.goto(textScale === 200 ? \"/?text=large\" : \"/\");\n> 37 |           await expect(page.locator(\".app-shell\")).toHaveAttribute(\"data-theme\", appearance);\n     |                                                    ^\n  38 |           await expect(page.locator(\"html\")).toHaveAttribute(\"lang\", language);\n  39 |           expect(await page.locator(\"html\").evaluate(el => getComputedStyle(el).fontSize)).toBe(textScale === 200 ? \"32px\" : \"16px\");\n  40 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts",
+                        "column": 52,
+                        "line": 37
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: \u001b[32m\"light\"\u001b[39m\nError: Test ended.\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\u001b[2m  - Test ended.\u001b[22m\n\n\n  35 |           }, { key: STORAGE_KEY, value: fixtureJson });\n  36 |           await page.goto(textScale === 200 ? \"/?text=large\" : \"/\");\n> 37 |           await expect(page.locator(\".app-shell\")).toHaveAttribute(\"data-theme\", appearance);\n     |                                                    ^\n  38 |           await expect(page.locator(\"html\")).toHaveAttribute(\"lang\", language);\n  39 |           expect(await page.locator(\"html\").evaluate(el => getComputedStyle(el).fontSize)).toBe(textScale === 200 ? \"32px\" : \"16px\");\n  40 |\n    at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:37:52"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T15:01:16.754Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual/parity.visual-ru-light-430x852-100/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/test-results/visual/parity.visual-ru-light-430x852-100/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts",
+                    "column": 52,
+                    "line": 37
+                  }
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-424c1a143c441c77c504",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-591b1599613237e1b25d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-df8cc13626cca5852562",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-fa2a9366960a5dacff1f",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-deb4b39a742aed96aad4",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-light-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-c64a2d9dcc5a57bf93c2",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-7515e928c9488543a237",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-e3e9b3db73edbfef6d0d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-b786fb6814de9e014f60",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-d9b9b5fa134339d056dd",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ab91d15da018fdcde52d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0b2704442fab1375d8c9",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0d3901caa6b0ab9ac7cf",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "ru-dark-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-4846612376e539f1a766",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ed284f3161130a2caf9b",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-f5b5b2b9b5a1a52b2946",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-efd3b262d8e3befe6c03",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-247dc7607b821ac91c21",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0507652ff745bf880a07",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-1121cb9517461246a729",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-87355f5cde9e841cd2ac",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-light-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-918f4a20aa1b7a860d1e",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-375x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0fefc9c7fdfc71fc3236",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-393x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-0e41b8b5fd8a7ae1ef9b",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-430x852-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-58cd10295e1c79c5cd2a",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-1440x1000-100",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-ec180cadd34a2ffa75f2",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-375x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-6b333ec9f223289300fd",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-393x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-e0e2cddbb8af4523e082",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-430x852-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-4bec5ca35e4dcf465ccb",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        },
+        {
+          "title": "uz-dark-1440x1000-200",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [],
+              "status": "skipped"
+            }
+          ],
+          "id": "51706a5ca82d1ce80c01-d6ae1a377ded5f6f1f8d",
+          "file": "parity.visual.spec.ts",
+          "line": 23,
+          "column": 9
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T15:00:11.623Z",
+    "duration": 65930.106,
+    "expected": 17,
+    "skipped": 31,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,31 @@
+# Cloud/VPS proposal only: requires systemd, Node 24.16.0 and separate rise-staging/rise-production users.
+[Unit]
+Description=RISE %i backend
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rise-%i
+Group=rise-%i
+WorkingDirectory=/opt/rise/%i/current
+EnvironmentFile=/etc/rise/%i.env
+Environment=NODE_ENV=production
+ExecStart=/usr/bin/node --import tsx server/main.ts
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target

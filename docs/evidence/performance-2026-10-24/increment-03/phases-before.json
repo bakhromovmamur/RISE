@@ -1,0 +1,254 @@
+[
+  {
+    "engine": "chromium",
+    "scope": "Desktop repository phases; includes real strict IndexedDB transactions, no rendered UI or device/p95 acceptance.",
+    "browser": "156.0.8078.4",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "samples": [
+      {
+        "action": "habit.check",
+        "readValidateMs": 70.5,
+        "reducerMs": 40.199999928474426,
+        "validateWriteCloneMs": 86.80000007152557,
+        "repositoryMs": 42.799999952316284,
+        "totalMs": 240.29999995231628
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 71.79999995231628,
+        "reducerMs": 38.60000002384186,
+        "validateWriteCloneMs": 86.10000002384186,
+        "repositoryMs": 36.200000047683716,
+        "totalMs": 232.70000004768372
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 79,
+        "reducerMs": 48.200000047683716,
+        "validateWriteCloneMs": 89.89999997615814,
+        "repositoryMs": 37.39999997615814,
+        "totalMs": 254.5
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 69.5,
+        "reducerMs": 37.299999952316284,
+        "validateWriteCloneMs": 83.90000009536743,
+        "repositoryMs": 37.10000002384186,
+        "totalMs": 227.80000007152557
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 68.5,
+        "reducerMs": 38.09999990463257,
+        "validateWriteCloneMs": 85,
+        "repositoryMs": 36.90000009536743,
+        "totalMs": 228.5
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 71.90000009536743,
+        "reducerMs": 34.299999952316284,
+        "validateWriteCloneMs": 86.39999997615814,
+        "repositoryMs": 36.09999990463257,
+        "totalMs": 228.69999992847443
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 72.5,
+        "reducerMs": 40.89999997615814,
+        "validateWriteCloneMs": 85.5,
+        "repositoryMs": 36.800000071525574,
+        "totalMs": 235.70000004768372
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 70.69999992847443,
+        "reducerMs": 38.5,
+        "validateWriteCloneMs": 83,
+        "repositoryMs": 36.50000011920929,
+        "totalMs": 228.70000004768372
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 69.5,
+        "reducerMs": 39.700000047683716,
+        "validateWriteCloneMs": 86.29999995231628,
+        "repositoryMs": 48.199999928474426,
+        "totalMs": 243.69999992847443
+      }
+    ],
+    "invariants": "Check/Undo preserves history and XP; nine durable revisions; exact replay does not increment; original source unchanged."
+  },
+  {
+    "engine": "webkit",
+    "scope": "Desktop repository phases; includes real strict IndexedDB transactions, no rendered UI or device/p95 acceptance.",
+    "browser": "27.2",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "samples": [
+      {
+        "action": "habit.check",
+        "readValidateMs": 70,
+        "reducerMs": 50,
+        "validateWriteCloneMs": 124,
+        "repositoryMs": 52,
+        "totalMs": 296
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 69,
+        "reducerMs": 49,
+        "validateWriteCloneMs": 123,
+        "repositoryMs": 49,
+        "totalMs": 290
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 63,
+        "reducerMs": 49,
+        "validateWriteCloneMs": 127,
+        "repositoryMs": 50,
+        "totalMs": 289
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 67,
+        "reducerMs": 50,
+        "validateWriteCloneMs": 121,
+        "repositoryMs": 49,
+        "totalMs": 287
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 68,
+        "reducerMs": 48,
+        "validateWriteCloneMs": 122,
+        "repositoryMs": 49,
+        "totalMs": 287
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 74,
+        "reducerMs": 58,
+        "validateWriteCloneMs": 121,
+        "repositoryMs": 49,
+        "totalMs": 302
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 66,
+        "reducerMs": 48,
+        "validateWriteCloneMs": 120,
+        "repositoryMs": 48,
+        "totalMs": 282
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 66,
+        "reducerMs": 48,
+        "validateWriteCloneMs": 118,
+        "repositoryMs": 50,
+        "totalMs": 282
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 67,
+        "reducerMs": 48,
+        "validateWriteCloneMs": 120,
+        "repositoryMs": 48,
+        "totalMs": 283
+      }
+    ],
+    "invariants": "Check/Undo preserves history and XP; nine durable revisions; exact replay does not increment; original source unchanged."
+  },
+  {
+    "engine": "firefox",
+    "scope": "Desktop repository phases; includes real strict IndexedDB transactions, no rendered UI or device/p95 acceptance.",
+    "browser": "157.0",
+    "date": "2026-10-24",
+    "habits": 100,
+    "days": 730,
+    "occurrences": 73000,
+    "samples": [
+      {
+        "action": "habit.check",
+        "readValidateMs": 174,
+        "reducerMs": 63,
+        "validateWriteCloneMs": 197,
+        "repositoryMs": 66,
+        "totalMs": 500
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 183,
+        "reducerMs": 66,
+        "validateWriteCloneMs": 191,
+        "repositoryMs": 69,
+        "totalMs": 509
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 171,
+        "reducerMs": 62,
+        "validateWriteCloneMs": 197,
+        "repositoryMs": 62,
+        "totalMs": 492
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 163,
+        "reducerMs": 62,
+        "validateWriteCloneMs": 191,
+        "repositoryMs": 64,
+        "totalMs": 480
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 165,
+        "reducerMs": 64,
+        "validateWriteCloneMs": 206,
+        "repositoryMs": 64,
+        "totalMs": 499
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 166,
+        "reducerMs": 62,
+        "validateWriteCloneMs": 201,
+        "repositoryMs": 63,
+        "totalMs": 492
+      },
+      {
+        "action": "habit.check",
+        "readValidateMs": 164,
+        "reducerMs": 63,
+        "validateWriteCloneMs": 217,
+        "repositoryMs": 94,
+        "totalMs": 538
+      },
+      {
+        "action": "habit.correct",
+        "readValidateMs": 170,
+        "reducerMs": 69,
+        "validateWriteCloneMs": 201,
+        "repositoryMs": 85,
+        "totalMs": 525
+      },
+      {
+        "action": "habit.draft",
+        "readValidateMs": 191,
+        "reducerMs": 66,
+        "validateWriteCloneMs": 198,
+        "repositoryMs": 65,
+        "totalMs": 520
+      }
+    ],
+    "invariants": "Check/Undo preserves history and XP; nine durable revisions; exact replay does not increment; original source unchanged."
+  }
+]

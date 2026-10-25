@@ -1,0 +1,98 @@
+
+> rise-prototype@1.0.0 test:visual
+> playwright test --config playwright.visual.config.ts
+
+[WebServer] (node:61473) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 48 tests using 2 workers
+
+(node:61481) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61479) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 tests/visual/parity.visual.spec.ts:23:9 › en-light-393x852-100 (4.4s)
+  ✓   1 tests/visual/parity.visual.spec.ts:23:9 › en-light-375x852-100 (4.6s)
+  ✓   3 tests/visual/parity.visual.spec.ts:23:9 › en-light-430x852-100 (5.6s)
+  ✓   4 tests/visual/parity.visual.spec.ts:23:9 › en-light-1440x1000-100 (6.1s)
+  ✓   5 tests/visual/parity.visual.spec.ts:23:9 › en-light-375x852-200 (8.7s)
+  ✓   6 tests/visual/parity.visual.spec.ts:23:9 › en-light-393x852-200 (10.5s)
+  ✓   7 tests/visual/parity.visual.spec.ts:23:9 › en-light-430x852-200 (16.1s)
+  ✓   8 tests/visual/parity.visual.spec.ts:23:9 › en-light-1440x1000-200 (19.7s)
+  ✓   9 tests/visual/parity.visual.spec.ts:23:9 › en-dark-375x852-100 (7.6s)
+  ✓  10 tests/visual/parity.visual.spec.ts:23:9 › en-dark-393x852-100 (6.1s)
+  ✓  11 tests/visual/parity.visual.spec.ts:23:9 › en-dark-430x852-100 (5.3s)
+  ✓  13 tests/visual/parity.visual.spec.ts:23:9 › en-dark-375x852-200 (3.9s)
+  ✓  12 tests/visual/parity.visual.spec.ts:23:9 › en-dark-1440x1000-100 (4.7s)
+  ✓  14 tests/visual/parity.visual.spec.ts:23:9 › en-dark-393x852-200 (4.9s)
+  ✓  15 tests/visual/parity.visual.spec.ts:23:9 › en-dark-430x852-200 (4.9s)
+  ✓  17 tests/visual/parity.visual.spec.ts:23:9 › ru-light-375x852-100 (6.1s)
+  ✓  16 tests/visual/parity.visual.spec.ts:23:9 › en-dark-1440x1000-200 (6.9s)
+  ✘  19 tests/visual/parity.visual.spec.ts:23:9 › ru-light-430x852-100 (316ms)
+  ✘  18 tests/visual/parity.visual.spec.ts:23:9 › ru-light-393x852-100 (1.3s)
+
+
+  1) tests/visual/parity.visual.spec.ts:23:9 › ru-light-393x852-100 ────────────────────────────────
+
+    Test was interrupted.
+
+    Error: screencast.showOverlays: Target page, context or browser has been closed
+
+      44 |               await Promise.all(Array.from(document.images).map(img => img.decode().catch(() => undefined)));
+      45 |             });
+    > 46 |             await expect(page.locator(".app-shell")).toHaveScreenshot(`${variant}/${name}.png`);
+         |             ^
+      47 |           };
+      48 |
+      49 |           for (const tab of ["today", "journey", "progress", "you"]) {
+        at capture (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:46:13)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:52:13
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual/parity.visual-ru-light-393x852-100/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual/parity.visual-ru-light-393x852-100/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/visual/parity.visual.spec.ts:23:9 › ru-light-430x852-100 ────────────────────────────────
+
+    Test was interrupted.
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: locator('.app-shell')
+    Expected: "light"
+    Error: Test ended.
+
+    Call log:
+      - Expect "toHaveAttribute" locator('.app-shell') with timeout 5000ms
+      - waiting for locator('.app-shell')
+      - Test ended.
+
+
+      35 |           }, { key: STORAGE_KEY, value: fixtureJson });
+      36 |           await page.goto(textScale === 200 ? "/?text=large" : "/");
+    > 37 |           await expect(page.locator(".app-shell")).toHaveAttribute("data-theme", appearance);
+         |                                                    ^
+      38 |           await expect(page.locator("html")).toHaveAttribute("lang", language);
+      39 |           expect(await page.locator("html").evaluate(el => getComputedStyle(el).fontSize)).toBe(textScale === 200 ? "32px" : "16px");
+      40 |
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/visual/parity.visual.spec.ts:37:52
+
+    Error Context: test-results/visual/parity.visual-ru-light-430x852-100/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/visual/parity.visual-ru-light-430x852-100/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/visual/parity.visual-ru-light-430x852-100/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 interrupted
+    tests/visual/parity.visual.spec.ts:23:9 › ru-light-393x852-100 ─────────────────────────────────
+    tests/visual/parity.visual.spec.ts:23:9 › ru-light-430x852-100 ─────────────────────────────────
+  29 did not run
+  17 passed (1.1m)

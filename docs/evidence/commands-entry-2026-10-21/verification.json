@@ -1,0 +1,229 @@
+{
+  "recordedAt": "2026-10-21",
+  "tasks": [
+    "FND-04",
+    "WEB-01"
+  ],
+  "requirements": [
+    "PRD-01",
+    "PRD-02"
+  ],
+  "environment": {
+    "os": "macOS 26.6.2 (25G83)",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "check": {
+    "command": "npm run check",
+    "passed": true,
+    "testsPassed": 81,
+    "testBreakdown": {
+      "existingDomain": 71,
+      "commandAndRepository": 7,
+      "entryIsolation": 2,
+      "testServer": 1
+    },
+    "lint": true,
+    "types": true,
+    "productionBuild": true,
+    "reviewBuild": true,
+    "warnings": [
+      "Existing large JavaScript bundle warning remains."
+    ]
+  },
+  "browser": {
+    "command": "npm run test:browser",
+    "stats": {
+      "startTime": "2026-10-21T05:59:22.830Z",
+      "duration": 190601.162,
+      "expected": 207,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "byProject": {
+      "chromium": 69,
+      "webkit": 69,
+      "firefox": 69
+    }
+  },
+  "production": {
+    "command": "npm run test:production",
+    "stats": {
+      "startTime": "2026-10-21T05:59:22.828Z",
+      "duration": 27188.412,
+      "expected": 21,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "byProject": {
+      "chromium": 7,
+      "webkit": 7,
+      "firefox": 7
+    }
+  },
+  "visual": {
+    "command": "npm run test:visual",
+    "stats": {
+      "startTime": "2026-10-21T05:59:22.829Z",
+      "duration": 78587.145,
+      "expected": 48,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "images": 720,
+    "threshold": 0,
+    "maxDiffPixels": 0,
+    "goldensUpdated": false,
+    "referenceManifest": "../foundations-2026-10-21/visual-manifest.json"
+  },
+  "finalBuildSha256": {
+    "dist/assets/index-BYr5KftE.css": "20127b689fd5bc64d21a57b69dbc4849992a05ca2c6bc3b37babf67acdf2474d",
+    "dist/assets/index-jV9MKmGV.js": "880dcb3f0e7751c1c01e54c9721074367491c879ccf1c819c779102db5c9eabb",
+    "dist/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+    "dist/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+    "dist/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+    "dist/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+    "dist/assets/web-BX2E-_9n.js": "b97cfb74a2c130c66faa3caa7c1a90b95b9f8ec3b88c6581ad4541fcc2221938",
+    "dist/assets/web-C23VSrhR.js": "d8266a016b4fa9dbcd151e905fdfa4f0542490e693940035185a53da69da7587",
+    "dist/assets/web-CkvRip1r.js": "e284de4323b2ad44d2d956e64b28a7ce091f00118eacb86af2cf8327f29de780",
+    "dist/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+    "dist/index.html": "aa57d0eada6c96d0acabf7ed472235da2a61a13195a2d73402c5995af961fd78",
+    "dist/notifications-sw.js": "5f538bc318325f997d94ad8a78dd3fbacb6f1d656f520d8e20d87a3462ca163b",
+    "dist-review/assets/index-BYr5KftE.css": "20127b689fd5bc64d21a57b69dbc4849992a05ca2c6bc3b37babf67acdf2474d",
+    "dist-review/assets/index-hyrAasuI.js": "8a79d9e08f6da57fee231c41b31f573e92d68e9e2ca71e1cf96cb6489e58cfc9",
+    "dist-review/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+    "dist-review/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+    "dist-review/assets/tools-afnoSp6j.js": "5d73a885b2a77e9a339c46fa5d8bdc7080d48f996b0e14afa2b8d6fae66abea6",
+    "dist-review/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+    "dist-review/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+    "dist-review/assets/web-BmT9tXXO.js": "3f50cc57ac2685631a14cc86b8a84fdadade788c08547a477ebb089a793d89f6",
+    "dist-review/assets/web-Cr_7ww4u.js": "39b7af767ce1f3b12eb3a4a91a36fd7591b610ef6fa62b1c7706502613f4203a",
+    "dist-review/assets/web-DkkIMzpI.js": "3394b1375256dbf1317e2ec9f836b4576fc837ddcb3cd86304082d561461643c",
+    "dist-review/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+    "dist-review/index.html": "7a2ec2cbf9c6eaa51a63237ff9293b7c95d5345f029c9f30868f6b8d410a33e0",
+    "dist-review/notifications-sw.js": "5f538bc318325f997d94ad8a78dd3fbacb6f1d656f520d8e20d87a3462ca163b"
+  },
+  "finalBuildFilesIdenticalToTestedFiles": true,
+  "unreferencedGeneratedFilesRemovedByRebuild": [
+    "dist/assets/index-BYr5KftE 2.css",
+    "dist/assets/pip 2.png",
+    "dist/assets/pip.prompt 2.txt",
+    "dist/assets/trail 2.png",
+    "dist/assets/trail.prompt 2.txt",
+    "dist/favicon 2.svg",
+    "dist/index 2.html",
+    "dist/notifications-sw 2.js"
+  ],
+  "sourceSha256": {
+    ".github/workflows/ci.yml": "14d7d6441b5659b1089f7e6b1083230655fb40c7bbb6693bcee7639d07bd8e3b",
+    "package-lock.json": "afb5b07fdfb1994a6dd1a96ec5f89424ab0ff13d34a69ca43b4fddd81b4e0fd8",
+    "package.json": "0ef8a2efa7e42174fa10e5828da2084496eeacdde2675dba95de6888e7acf6d6",
+    "playwright.config.ts": "04e6643650025132cbf36d9334e4531d56ecbadfa1885c630c3ec109f1f6c170",
+    "playwright.production.config.ts": "9d17ae7d62ed020bc835365121dfb3e64e60236ad5eed5c4c83174aeff6fd8d8",
+    "playwright.visual.config.ts": "03469cf356972f16e9e173fa57059632911ebb7cf366c136fa7bf46a2b68b62b",
+    "scripts/check-toolchain.mjs": "d596ac4edca27da84c882f0dbf54ab02c30de32555ae38924e99e935a1499a7c",
+    "scripts/serve-test-build.mjs": "04b8b963c6d77379f571579192b281463a6c68dae95db8b4d92a70cd1048095e",
+    "src/App.tsx": "d07c1925a5a980fc0af8c475ee677279c081b107a787b71555d5aadab4caa84b",
+    "src/Balanced.tsx": "cca27f9c5de4b640f970187d9a427bbccbd286142bbcefdfa91274c2b1216f30",
+    "src/DesignSystem.tsx": "724274548b773429c7f7cd4832a93b59e472506f89fc05636e7e75a94ee88cc8",
+    "src/Development.tsx": "5e6d8d9dcfa221cdc3e39ea530fa32186cad2cc57ef687a463ec7948fae9141c",
+    "src/Explore.tsx": "62d31055e6fc164163df3d92bc3fda122619c35cb9885a9e72124af85994ff36",
+    "src/Groups.tsx": "2a0fe36037aff6a6f24eb9f6c9fc41a149ee9f6563f7ce1a4de9d95aad5eaa92",
+    "src/Habits.tsx": "376bbbe3fe304b02479785e79c34e69e0c4e6ab92858c11634866ca509b88c0d",
+    "src/Life.tsx": "3e7bfc0603f282fbc28de63c39ce62fde9872b025a8e3f2bf17333dde7c3fa1f",
+    "src/LifeUI.tsx": "6e9f2d18eb4f3a18b5b21b830d1616151f3fd9e454d100c3e972541ea38bce5f",
+    "src/Onboarding.tsx": "e16e132dff088fc85972b55110097e65841efd78b34db36800c7afb0ccb5575c",
+    "src/Personal.tsx": "676151467b555244c2553fb77c812f685c87cb2c2f6d1c4f255f670389d04fbf",
+    "src/PrayerDeliveryProvider.tsx": "c92553270befa6392e47dcd1ef214956f7ac4701a26c20b01c75f3769cd54670",
+    "src/PrayerLive.tsx": "d0965af2b9c59884d2806097a08171ea06e55e8a65fd45b0c1515c9d6d7d07c7",
+    "src/Prayers.tsx": "fc5ed65b37d76c1558be2c4f97b14bdf587dac6d500cf75f35e0bf0d9e54b673",
+    "src/Review.tsx": "d39e4e2efd5a69c408a2cc74d693fa12085020670614712e6a4f7f407c4fa349",
+    "src/Today.tsx": "cd899e9b7142e243bf830ef76d2bd9ead7ca038d7b2cc9153a3463a36af1371c",
+    "src/You.tsx": "31140fae45a5b8e247cad0874675afdd149be6b63f61e6da4f4af5bf08a95196",
+    "src/components.tsx": "106990a1eec0b49125d05f1131d1fb94554260c77a04297951de885595635ad6",
+    "src/context.tsx": "97d75bbac36278c044330327367104405bcea637a54b36dd79db72e3c5acccbd",
+    "src/contracts/commands.ts": "b3110853dd2c94632ae1dd5638d3ce701fc284f256af0ec9825501760fa6631c",
+    "src/copy.ts": "275190a02a566a9a5402ae7f3fd08efb499dd8ef802e9c51d8b38bb39e6d29e1",
+    "src/data/initialState.ts": "f36e9f385b424f4c535c085e16b4070e231f6322d144186c7e2e6270ebf3dbd9",
+    "src/data/repository.ts": "4de077f5dad573065d75aaf334d8025e37b24e205b5d18e7300cc00d2c904722",
+    "src/demo.ts": "d402fdead5efd93de7f7f5970ba01721e0eae8f14224c94e59d7c88dfc201453",
+    "src/developmentModel.ts": "7dfe5ceefcec74a1b11984a9e4d7a3c00e66572ac2eca77be80929bbf70d2c6a",
+    "src/domain/calendar.ts": "7cd409c1d313d4f5491e2ccaf5e1993a281ec9f46f66fccb9c5d18504e0324fc",
+    "src/domain/commands.ts": "ad73cd5f509e875a2ffeeb07edd24aacdcc5ce417f7379de910d592a7aba8b35",
+    "src/domain/habitCalendar.ts": "f45efe97db1a09607f5db0c195f4ae40906ac57c11a7baa970f20b456e4741bf",
+    "src/domain/prayerIds.ts": "d836da0e175589c00a8dc69aef8285bb9b91824b7df734bbb6278bc99bb730fb",
+    "src/domain/prayerPause.ts": "e42c1b146a81be0003ad5ef9e83198d45279f72fc7d09e3766deefe87fb27fce",
+    "src/i18n.ts": "27765d27de935eaa4d165368ca8b4094289cb701e869968ff85e173b386f38bc",
+    "src/lifeModel.ts": "8c48500484d2dca9399d4a120a5d2e86dcc810a5abd66f8c80b8cb300e3306c6",
+    "src/main.tsx": "1d8013958078552f463feeee3e1a3978406ecdfe6b68c59e30b40c62cbd51709",
+    "src/messages.ru.ts": "7561e9337564d26fa2ec8175ee0ac5db3b4afc57781ebf244df58ab4565b4dbc",
+    "src/model.ts": "3ed354c8803646d6f466370a8ea124592d132168a162c0c8f1ac2a776a51fd6e",
+    "src/prayerCalculation.ts": "496bad4a4c2b2701356e0db90c4e5ee15aaec34f3582c1321162da264b6ebfc0",
+    "src/prayerDelivery.ts": "3752326ad6196122ee69fe0d675f2b4c0e1e24b3404ab4412a583a17eb253cec",
+    "src/prayerModel.ts": "3fd70feba295b6548ad2055729eb3e771d36a65797a3fbe85f8ca094b4b97e5a",
+    "src/prayerSchedule.ts": "09f1784e0bfa0fdacf52e69af3e8a9eb79c322ecc434a8b363ec338d638e4d2c",
+    "src/review/fixtures.ts": "3ffc5a0cb663b8065dac1c5a975275e9146254118656d165282e51395bfde2bd",
+    "src/review/origin.ts": "b14208283344ed92f7f6175d56f2a9f99c8af41df912f719127235a003f4ae49",
+    "src/review/tools.tsx": "7b463e1d79ed7f4c44a9938e896fd0935ea33374b8bb404ec8bad17bb46bd485",
+    "src/review/types.ts": "9c9f073d3943893a6e6daa2e2342c8764ca46b3d3c6c9259913ba3e89b2fc63c",
+    "tests/commands.test.ts": "f6112aea6f0c377ccba7612446522ed1fbc0ce512c1c3b53ac8cb8e23bdebaf0",
+    "tests/development.test.ts": "8f0ac15fb8cf518d04568a67c0d7a612da60ab671b4534b9cfd3e1c3fe5444a7",
+    "tests/entry.test.ts": "4f03eefcf42dedf114aa244dc98456a3562e2e6afe27b5f76b77f82fe7e4e9a4",
+    "tests/i18n.test.ts": "247e73bf3be4b54de108e34fa56f72211a70fc782cc978d3a902a3ee6be5f26a",
+    "tests/life.test.ts": "1ba2857a153b77546d5262b24b033de08824b11c9b9b9011d6c23af5e25f8e36",
+    "tests/model.test.ts": "af4e2f6d89dfe4672314cfba3a29af16e2fa2905af93392a27bfcbe0153e92c6",
+    "tests/prayer-delivery.test.ts": "b6d32e43af0b2375d08e1dd76c0a8024f021a289603b80235d3db513a9eb2cfa",
+    "tests/prayers.test.ts": "2ab73aaa916ad6bd157a19c1da4436e2cbf7508f6a8f826a5bbb6050b22462e5",
+    "tests/production/entry.production.spec.ts": "a6a5225fde75d12a9ff1560c7dc02a9c2f3289175e1021aa190836502f982299",
+    "tests/test-build.test.ts": "a89ae6f37fe97bedc81598d7e75857d19d3d5fe11f52074707f9ad2a9c16d78e",
+    "vite.config.ts": "9f400d79b483b642e0df7b2d4247f6cb0257d57399a54f584453d38fe3d80b4e"
+  },
+  "protectedSourceSha256": {
+    ".impeccable/design.json": "9cd451a5ed4e571eacef8c3ffbf6e8526f5d2dda3681490eb0b42234a1744aec",
+    "DESIGN.md": "76423b11a448863fa80125d13e5a3c9d56f3b04f5d51e8414e90cbfd58ec5767",
+    "public/assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+    "public/assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+    "public/assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+    "public/assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+    "public/favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+    "public/notifications-sw.js": "5f538bc318325f997d94ad8a78dd3fbacb6f1d656f520d8e20d87a3462ca163b",
+    "src/balanced.css": "00a266f2522d2ea08434dca0fdb8dcd37b4374814998fb85963f26830a8c3e5e",
+    "src/journey.css": "54e33b8661b8534cfd9847fb3c9287033234e93c93ef3b445d9a9405422655e2",
+    "src/life.css": "32f4e1e2d557ca9ba70a172f67f6db53434a39761471455d047612be2a7f4051",
+    "src/prayers.css": "15d2b4fcf1aefc0ca2d1c0fe0b81f3b1e05b56e630057bb3431bcc166e725b0d",
+    "src/styles.css": "cc8f9c8383afa33b7b3d2242bd83fb736e0d6be0e92d7762c5756bc4a2cec1fc",
+    "src/you.css": "8b1fc9720f8d207d3b5be0b3d3712b971f476764c6310ff94a6eafe899761b33"
+  },
+  "moduleBoundaries": "module-boundaries.json",
+  "hostedCIExecuted": false,
+  "deployed": false,
+  "personalPreviewUsed": false,
+  "limitations": [
+    "Current UI persistence remains localStorage; the new memory repository is not durable",
+    "Remaining forms/drafts await command migration; complete unknown-profile/import validation, IndexedDB, outbox and multi-tab handling are not implemented",
+    "No physical-device, PWA, account/auth/sync, background push or cross-account collaboration acceptance",
+    "FND-03 provider, region and operating-owner decisions remain open"
+  ],
+  "documentationValidation": {
+    "localLinksChecked": 194,
+    "anchorsChecked": 48,
+    "taskDefinitionsChecked": 38,
+    "taskStatusCounts": {
+      "DONE": 5,
+      "IN PROGRESS": 1,
+      "TODO": 32
+    },
+    "errors": 0,
+    "goldenImageHashesUnchanged": 720,
+    "workflowYamlAndPinsVerified": true
+  }
+}

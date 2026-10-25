@@ -1,0 +1,488 @@
+{
+  "scope": "V8 sampling of two single-user commands plus exact receipt replay; fixture setup and final readback excluded; not p95 acceptance",
+  "totalSampleMs": 1327.25,
+  "self": [
+    {
+      "function": "(idle)",
+      "source": "",
+      "line": 0,
+      "ms": 464.63
+    },
+    {
+      "function": "writeRecords",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/records.ts",
+      "line": 1,
+      "ms": 128.75
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/validation.ts",
+      "line": 1,
+      "ms": 123.21
+    },
+    {
+      "function": "(garbage collector)",
+      "source": "",
+      "line": 0,
+      "ms": 84.83
+    },
+    {
+      "function": "structuredClone",
+      "source": "node:internal/worker/js_transferable",
+      "line": 112,
+      "ms": 81.88
+    },
+    {
+      "function": "parseRow",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/result.js",
+      "line": 63,
+      "ms": 78.08
+    },
+    {
+      "function": "post",
+      "source": "node:inspector",
+      "line": 115,
+      "ms": 60.54
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 60.12
+    },
+    {
+      "function": "canonical",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 52.54
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/records.ts",
+      "line": 1,
+      "ms": 34.33
+    },
+    {
+      "function": "sameJson",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/records.ts",
+      "line": 1,
+      "ms": 23.75
+    },
+    {
+      "function": "unique",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/storedState.ts",
+      "line": 1,
+      "ms": 21.46
+    },
+    {
+      "function": "(program)",
+      "source": "",
+      "line": 0,
+      "ms": 16.62
+    },
+    {
+      "function": "byParent",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 12.21
+    },
+    {
+      "function": "RegExp: ^\\S+$",
+      "source": "",
+      "line": 0,
+      "ms": 8.75
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/model.ts",
+      "line": 1,
+      "ms": 8.17
+    },
+    {
+      "function": "project",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 6.0
+    },
+    {
+      "function": "utf8Slice",
+      "source": "",
+      "line": 0,
+      "ms": 5.88
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/storedState.ts",
+      "line": 1,
+      "ms": 4.42
+    },
+    {
+      "function": "emit",
+      "source": "node:events",
+      "line": 456,
+      "ms": 4.04
+    },
+    {
+      "function": "parseDataRowMessage",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg-protocol/dist/parser.js",
+      "line": 228,
+      "ms": 3.83
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/connection.js",
+      "line": 138,
+      "ms": 3.75
+    },
+    {
+      "function": "_copyActual",
+      "source": "node:buffer",
+      "line": 272,
+      "ms": 3.33
+    },
+    {
+      "function": "applyPersonal",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/repository.ts",
+      "line": 1,
+      "ms": 3.04
+    },
+    {
+      "function": "object",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/validation.ts",
+      "line": 1,
+      "ms": 2.83
+    },
+    {
+      "function": "nextTick",
+      "source": "node:internal/process/task_queues",
+      "line": 113,
+      "ms": 2.62
+    },
+    {
+      "function": "addRow",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/result.js",
+      "line": 78,
+      "ms": 2.5
+    },
+    {
+      "function": "onStreamRead",
+      "source": "node:internal/stream_base_commons",
+      "line": 166,
+      "ms": 1.58
+    },
+    {
+      "function": "_handleDataRow",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/client.js",
+      "line": 455,
+      "ms": 1.54
+    },
+    {
+      "function": "checkIn",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/model.ts",
+      "line": 1,
+      "ms": 1.54
+    },
+    {
+      "function": "validateState",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/storedState.ts",
+      "line": 1,
+      "ms": 1.54
+    },
+    {
+      "function": "createUnsafeBuffer",
+      "source": "node:internal/buffer",
+      "line": 1097,
+      "ms": 1.5
+    },
+    {
+      "function": "(anonymous)",
+      "source": "",
+      "line": 0,
+      "ms": 1.5
+    },
+    {
+      "function": "hydrate",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 1.5
+    },
+    {
+      "function": "readableAddChunkPushByteMode",
+      "source": "node:internal/streams/readable",
+      "line": 465,
+      "ms": 1.46
+    },
+    {
+      "function": "readInt16BE",
+      "source": "node:internal/buffer",
+      "line": 507,
+      "ms": 1.42
+    },
+    {
+      "function": "Socket.read",
+      "source": "node:net",
+      "line": 839,
+      "ms": 1.33
+    },
+    {
+      "function": "_pulseQueryQueue",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/client.js",
+      "line": 616,
+      "ms": 1.29
+    },
+    {
+      "function": "afterWriteDispatched",
+      "source": "node:internal/stream_base_commons",
+      "line": 154,
+      "ms": 1.29
+    },
+    {
+      "function": "revision",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/repository.ts",
+      "line": 1,
+      "ms": 1.17
+    }
+  ],
+  "inclusive": [
+    {
+      "function": "(root)",
+      "source": "",
+      "line": 0,
+      "ms": 1327.25
+    },
+    {
+      "function": "processTicksAndRejections",
+      "source": "node:internal/process/task_queues",
+      "line": 72,
+      "ms": 645.25
+    },
+    {
+      "function": "runMicrotasks",
+      "source": "",
+      "line": 0,
+      "ms": 582.29
+    },
+    {
+      "function": "applyPersonal",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/repository.ts",
+      "line": 1,
+      "ms": 568.46
+    },
+    {
+      "function": "(idle)",
+      "source": "",
+      "line": 0,
+      "ms": 464.63
+    },
+    {
+      "function": "writeRecords",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/records.ts",
+      "line": 1,
+      "ms": 232.92
+    },
+    {
+      "function": "validateState",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/storedState.ts",
+      "line": 1,
+      "ms": 160.88
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/validation.ts",
+      "line": 1,
+      "ms": 133.46
+    },
+    {
+      "function": "onStreamRead",
+      "source": "node:internal/stream_base_commons",
+      "line": 166,
+      "ms": 115.21
+    },
+    {
+      "function": "readableAddChunkPushByteMode",
+      "source": "node:internal/streams/readable",
+      "line": 465,
+      "ms": 113.63
+    },
+    {
+      "function": "addChunk",
+      "source": "node:internal/streams/readable",
+      "line": 552,
+      "ms": 112.17
+    },
+    {
+      "function": "hydrate",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 110.42
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg-protocol/dist/index.js",
+      "line": 12,
+      "ms": 109.54
+    },
+    {
+      "function": "emit",
+      "source": "node:events",
+      "line": 456,
+      "ms": 109.54
+    },
+    {
+      "function": "parse",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg-protocol/dist/parser.js",
+      "line": 26,
+      "ms": 108.04
+    },
+    {
+      "function": "validateProfile",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/storedState.ts",
+      "line": 1,
+      "ms": 96.83
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/records.ts",
+      "line": 1,
+      "ms": 96.71
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/connection.js",
+      "line": 138,
+      "ms": 88.42
+    },
+    {
+      "function": "applyDomainCommand",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/domain/commands.ts",
+      "line": 1,
+      "ms": 87.71
+    },
+    {
+      "function": "reduceCommand",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/domain/commands.ts",
+      "line": 1,
+      "ms": 87.42
+    },
+    {
+      "function": "Readable.push",
+      "source": "node:internal/streams/readable",
+      "line": 389,
+      "ms": 85.38
+    },
+    {
+      "function": "(garbage collector)",
+      "source": "",
+      "line": 0,
+      "ms": 84.83
+    },
+    {
+      "function": "_handleDataRow",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/client.js",
+      "line": 455,
+      "ms": 82.13
+    },
+    {
+      "function": "structuredClone",
+      "source": "node:internal/worker/js_transferable",
+      "line": 112,
+      "ms": 81.88
+    },
+    {
+      "function": "handleDataRow",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/query.js",
+      "line": 82,
+      "ms": 80.58
+    },
+    {
+      "function": "parseRow",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/node_modules/pg/lib/result.js",
+      "line": 63,
+      "ms": 78.08
+    },
+    {
+      "function": "validateJsonValue",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/validation.ts",
+      "line": 1,
+      "ms": 62.5
+    },
+    {
+      "function": "validateJson",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/validation.ts",
+      "line": 1,
+      "ms": 62.5
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///private/tmp/rise-account-command-profile.mts",
+      "line": 0,
+      "ms": 61.67
+    },
+    {
+      "function": "(anonymous)",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 60.71
+    },
+    {
+      "function": "post",
+      "source": "node:inspector",
+      "line": 115,
+      "ms": 60.54
+    },
+    {
+      "function": "(anonymous)",
+      "source": "node:internal/util",
+      "line": 499,
+      "ms": 60.54
+    },
+    {
+      "function": "fn",
+      "source": "node:internal/util",
+      "line": 498,
+      "ms": 60.54
+    },
+    {
+      "function": "project",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 54.04
+    },
+    {
+      "function": "canonical",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/contracts/personalRecords.ts",
+      "line": 1,
+      "ms": 52.54
+    },
+    {
+      "function": "checkIn",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/model.ts",
+      "line": 1,
+      "ms": 44.33
+    },
+    {
+      "function": "correctHabitRecord",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/model.ts",
+      "line": 1,
+      "ms": 43.08
+    },
+    {
+      "function": "sameJson",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/server/personal/records.ts",
+      "line": 1,
+      "ms": 41.88
+    },
+    {
+      "function": "ensureDays",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/domain/habitCalendar.ts",
+      "line": 1,
+      "ms": 41.29
+    },
+    {
+      "function": "unique",
+      "source": "file:///Users/mamurbakhromov/Desktop/PROJECTS/habit%20tracker/src/data/storedState.ts",
+      "line": 1,
+      "ms": 21.46
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "recordedAt": "2026-10-23T14:42:16.565042+00:00",
+  "tasks": [
+    "GROUP-01"
+  ],
+  "requirements": [
+    "PRD-14",
+    "SEC-01",
+    "PRD-04",
+    "PRD-17"
+  ],
+  "environment": {
+    "os": "macOS arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "playwright": "1.64.1",
+    "chromium": "156.0.8078.4",
+    "webkit": "27.2",
+    "firefox": "157.0",
+    "backend": "retained test installation; restricted BFF and real Postgres/Auth; local inbox",
+    "ports": {
+      "groupsPushSync": 4191,
+      "navigation": 4180,
+      "productionPwa": 4181,
+      "visual": 4182
+    },
+    "mainProfile4173Accessed": false,
+    "externalDelivery": false,
+    "cloudProvisioned": false
+  },
+  "check": {
+    "command": "npm run check",
+    "unitToolingPassed": 227,
+    "failed": 0,
+    "lint": true,
+    "types": true,
+    "productionBuild": true,
+    "reviewBuild": true,
+    "advisory": "Existing >500 kB Vite chunk warning"
+  },
+  "database": {
+    "command": "node --import tsx --test tests/infra/groups.test.ts",
+    "passed": 12,
+    "failed": 0,
+    "schemaChanged": false
+  },
+  "browserSuites": [
+    {
+      "suite": "groups",
+      "command": "npm run test:groups",
+      "scope": "final production build",
+      "stats": {
+        "startTime": "2026-10-23T14:29:02.978Z",
+        "duration": 239517.081,
+        "expected": 27,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "groups-report.json"
+    },
+    {
+      "suite": "push",
+      "command": "npm run test:push",
+      "scope": "final production build; browser permission/provider seam synthetic",
+      "stats": {
+        "startTime": "2026-10-23T14:33:03.238Z",
+        "duration": 233881.69799999997,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "push-report.json"
+    },
+    {
+      "suite": "sync",
+      "command": "npm run test:sync -- account.sync.spec.ts lifecycle.sync.spec.ts",
+      "scope": "final production build",
+      "stats": {
+        "startTime": "2026-10-23T14:37:02.441Z",
+        "duration": 227127.88,
+        "expected": 33,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "sync-report.json"
+    },
+    {
+      "suite": "navigation",
+      "command": "npm run test:browser -- tests/navigation.browser.spec.ts tests/full-day.browser.spec.ts",
+      "scope": "final sheet focus behavior; before final group retry/push permission fixes",
+      "stats": {
+        "startTime": "2026-10-23T13:51:19.131Z",
+        "duration": 42804.326,
+        "expected": 21,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "navigation-report.json"
+    },
+    {
+      "suite": "production",
+      "command": "npm run test:production",
+      "scope": "before final group retry/push permission fixes",
+      "stats": {
+        "startTime": "2026-10-23T13:51:20.359Z",
+        "duration": 41475.638,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "production-report.json"
+    },
+    {
+      "suite": "pwa",
+      "command": "npm run test:pwa",
+      "scope": "before final group retry/push permission fixes",
+      "stats": {
+        "startTime": "2026-10-23T13:52:02.379Z",
+        "duration": 76771.35699999999,
+        "expected": 42,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "pwa-report.json"
+    },
+    {
+      "suite": "visual",
+      "command": "npm run test:visual",
+      "scope": "720 comparisons, unchanged goldens; before final group retry/push permission fixes",
+      "stats": {
+        "startTime": "2026-10-23T13:58:02.228Z",
+        "duration": 61163.965000000004,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "report": "visual-report.json"
+    }
+  ],
+  "documents": {
+    "documents": 30,
+    "links": 418,
+    "anchors": 55,
+    "tasks": 38,
+    "requirements": 20,
+    "failures": []
+  },
+  "supplementalVisuals": {
+    "manifest": "visual-manifest.json",
+    "captures": 48,
+    "layoutStates": 1440,
+    "visualGoldensRegenerated": false
+  },
+  "finalSourceSha256": {
+    ".github/workflows/ci.yml": "ed7edfb8474d18770b2a436b666977d16132ae4f3b04c2dc0f5a3197ad177f50",
+    ".impeccable/hook.cache.json": "200b1c7dcb3568018e1e7e85f8a80fbf7be6dcceac55d73fe1d04a528999f096",
+    "AGENTS.md": "e3e2f7eb2d626fec434158d15f1224cdbfb834b718bb714d65265ebd3a5568fb",
+    "ARCHITECTURE.md": "b10446dc78c23b91ca0790810050486dd13d1a03566a8f73ee8bba1d6eed2de9",
+    "PRODUCT.md": "a624d995a1b539f25b4814b1a1b2c459f172b5b5f3b6ae1a48d1f061a3dce602",
+    "README.md": "338cd4872ff8d590accad8aaaff1badff98c9a4e0f70a7a59d82cad2e4570189",
+    "SECURITY.md": "9533f1a27af6b293478b83daeb21436a9fa136115be7c0e40c19d3b700e3ca14",
+    "TASKS.md": "83efa2f6860c2a359905db1db4bd6fb8436d1669b8b49c9e04121093ab23e423",
+    "VERIFICATION.md": "9cebbc1071a23059b921dc905e3c6e03c3d2ed09c3e8a085e41d781c40e958a0",
+    "docs/ACCOUNT-LIFECYCLE.md": "0dfce3f2cb054428b2fbf42a7207c772a1d7e350097ce05e1c0e28c5b6b9382f",
+    "docs/GROUP-MEMBERSHIP.md": "1f75594cc7bba8e4d5b6dfb961e747d4cab038276a2d6f6975942d4145e2d3e9",
+    "docs/PUSH-SUBSCRIPTIONS.md": "bb84e51eec549c2b90bcf26258753de5c56b28dd68640cd841a032c7b7807dec",
+    "docs/evidence/group-membership-2026-10-23/README.md": "383c373509a8bbbab924e400e38284c0f905cc4529f8b0185787fd28e35b6c3a",
+    "docs/evidence/group-ui-2026-10-23/README.md": "7bc30bbe048520418f06b3b9a2fd7d985d8f266b62b35b513750e574555f3af4",
+    "package.json": "5e3692b8f64752fd60b8800fe8d67842ad2ab53ec7d0bf8f551b3671e0968af4",
+    "playwright.groups.config.ts": "4527c691d2892471b0a9b988498cd3f7c6bf042fc43508755fe5a2d266945472",
+    "scripts/infra/serve-test-backend.ts": "cf9dd2fc64149d61dc3cdbf068677a536e9fbc70e6acf472766d6c7982abc92b",
+    "server/groups/repository.ts": "e2bf4175db8ace79fbd6ca6848223ef3d1fa0c52e301ca4bed5f1ef65900633d",
+    "server/groups/routes.ts": "2e2554610f772cec5c0b4ab7dd40e737d3f7fc6476c928394a408fb7a94e3d07",
+    "src/App.tsx": "2330d1a56a15cfe37ca0a537b9ed86109d53485584fba00691f27b797c0c6bc7",
+    "src/Groups.tsx": "71dab67e157b262b378ee1c413f2bfa4b7f8c3dbfdf9289e7ed4ed71164133d2",
+    "src/account/AccountLifecycle.tsx": "3d12f00ea1a2ad2a5b70770588d108173b78f051daf3c259b5eaeacb0aefb8a3",
+    "src/auth/client.ts": "6bf7ecba2d98ca6aa3ebec6d569e66436e16660d2ce43732f328ebbb65fdbe9e",
+    "src/components.tsx": "d743c34392c860b5d361b52f984d2ae40fef09e4025733322ad9df7610123e6f",
+    "src/context.tsx": "f8e6b56577c30dd0994ab072cc51f461a498009561bc15bea07ecbde5636753a",
+    "src/contracts/groups.ts": "7ce851b53fce912e63a3abbee1dcb703e22f1e397744df61dfe794b2f2fd73ef",
+    "src/groups/GroupProvider.tsx": "f7d3aa87299b48e287a0171e234fafdfe00e5e7a20228a71fc7417e9f935a4d3",
+    "src/groups/GroupScreens.tsx": "265c12615f8f09601f5f975b6733c38f3830d040eaa349a7d5d8053e9f5e284f",
+    "src/groups/client.ts": "680731dcec12a57738114aa8c0fcb93127357f2f3e0957e8a888519d6f1b148e",
+    "src/groups/groups.css": "eed5a1a1c00844b559a743c66e00f52e5204b607e806cbd34f035b07268002ba",
+    "src/groups/intent.ts": "cfdc9a897cfef5321bd4d717228e2e14c48a52d18a245ffbfed23a6575df9b61",
+    "src/groups/invitation.ts": "0f4281b966cec77d9082eccbe8d3b6dc2f5e510becfac0f4f0d44351af1d70f0",
+    "src/groups/session.ts": "52677a3720bbefd5aa902f19f69e86933794a7c4fa5dec24451d7e8ffd2c6e80",
+    "src/groups/text.ts": "32b08e122e2508d253231c851cebc47ff8ef5381dbd55f6e51966922bfb14215",
+    "src/main.tsx": "e16e06dd20e125cc9283a9699459530ad16fec2b127b293a90444ba5eb28f080",
+    "src/push/client.ts": "37ac222adb1611b53e2d2551840233030f17b86d44a59cd2ff9f59e532fbe4d1",
+    "src/sync/session.ts": "7cc644f1ec14c3fee4e59ce039028ef3f32ca0c29dcc376d17fba609fcaad549",
+    "src/sync/text.ts": "60fc8d4b68a77b024d14995e4d0ab8122a200464280c50db68aefcf1c1153dc9",
+    "src/sync/workspace.ts": "3cb5572d9a2f8f1bb170b4425fba986d25c8042f60fcb84b8dce3f5c510f143c",
+    "tests/group-contract.test.ts": "7791d9e70aee96f678b79f6ade73f545bb5c4a378cb160bcd0d8965b7ee0a40d",
+    "tests/group-session.test.ts": "766efe94553ebf4c5ac04122f6c4ed08021aacf0f33c698bab245dd69fd01981",
+    "tests/groups/layout.groups.spec.ts": "1026f6d36d7c33fdc09d87f7c9ce2e589874c03ec567b858142ab0e051e6c02c",
+    "tests/groups/membership.groups.spec.ts": "3ec888c9841ed5829c8eceded7cac694d31f9c680a52fffb440f2bffd6a18301",
+    "tests/infra/groups.test.ts": "fb822194444d3a2c2e1c4c172dee4320104ba2c7e5ba19a223f71ccb98920509",
+    "tests/support/pushBrowser.ts": "cb12da44056cbdfc6c446b9acae7aa676aac827ecc9b8ece774c4f071e29d16b",
+    "tsconfig.tsbuildinfo": "b75f16a8cf93e50d131431e6e98bb3b7c16584b52b149ced006d8b9d7c328bc3"
+  },
+  "buildsSha256": {
+    "dist": {
+      "assets/backup.worker-DMAuYwWD.js": "cb367646c8dfb1def940967207070a97908505dd85005a5451719115f0b3c80b",
+      "assets/hydrate.worker-Czcgyp-8.js": "1edcf01b2cd88adecf0d91d96322af2ccd81e80c10600a4bafea7d3a4db015ac",
+      "assets/import.worker-C-r0OBUv.js": "21d8e1a054d7ef2468a54da0334de80b2e7d6b816ee23a5be98af3dda68ccc97",
+      "assets/index-Bq8EnT-M.css": "9473a20ce3b7832df53566672454a65f74be8bc8d77a50d2169166d1f40b3db4",
+      "assets/index-DBBNed38.js": "78be53c66b9a32b4abd6fea7efce6d68ecce674e23677ab27cc27afbcd7772f7",
+      "assets/migration.worker-BRLDJ-s_.js": "f69b0066d6718c2310682f786f8f118e4ce39bff038126b13b4f575011e93c73",
+      "assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+      "assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "assets/web-Ciih06jY.js": "17b9cd1962da6944f66a3ee69396554a68546d641645cf47f7e19c8500e7cb1d",
+      "assets/web-DbL1h8kZ.js": "b7146de1aa3913be3bf4072d3e83e56af68201186bb1c8b9e9a08847529192df",
+      "assets/web-pzxDETP0.js": "0e8e18eff0e25894b03af949edee3fca7fc8bbbf7e224ca19bc56f69d213f16f",
+      "favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "index.html": "b2a7e7d6b56e68ae93ab1974b04ed2e3493abc8bd16d89e33f3a056e729357d5",
+      "manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "notifications-sw.js": "d5ee3df893ef4cd5940896c81da791049acc8e08b10bad3199153e3ec32cf42f"
+    },
+    "dist-review": {
+      "assets/backup.worker-DMAuYwWD.js": "cb367646c8dfb1def940967207070a97908505dd85005a5451719115f0b3c80b",
+      "assets/hydrate.worker-Czcgyp-8.js": "1edcf01b2cd88adecf0d91d96322af2ccd81e80c10600a4bafea7d3a4db015ac",
+      "assets/import.worker-C-r0OBUv.js": "21d8e1a054d7ef2468a54da0334de80b2e7d6b816ee23a5be98af3dda68ccc97",
+      "assets/index-B_1x6jpR.js": "58bf0e8e701f65611b0fa816afdf4bee62a3b42be3c6649d174a39e097c7aa3a",
+      "assets/index-Bq8EnT-M.css": "9473a20ce3b7832df53566672454a65f74be8bc8d77a50d2169166d1f40b3db4",
+      "assets/initialState-CF0We983.js": "82ae1cd294739480ee117d068e78740e50aa735bd3cda780824b032ff3cadc93",
+      "assets/migration.worker-BRLDJ-s_.js": "f69b0066d6718c2310682f786f8f118e4ce39bff038126b13b4f575011e93c73",
+      "assets/origin-Co-8Dkay.js": "d9ae02659989c04179b229bef15f1e5134e85665d88a7e4c8882ff09d6b65471",
+      "assets/pip.png": "3e97e2a3d9212fd293c313a5a8c91a8529eb118501b7e1e40cc306600fb731dd",
+      "assets/pip.prompt.txt": "e935705c0737469e6e5cf1e9f079b1214e094250c191d223482eab2a1271b973",
+      "assets/storageHarness-DzbBs2Or.js": "1b3bed8008b8d5e0d3ff50928595bfab79e0f7e1f73a4922b2a45ae25cda2bb8",
+      "assets/tools-DNz51aYs.js": "37f8e89021a7c5971af66eec4b32532b14e1034a85328e75b258b1f7274c819f",
+      "assets/trail.png": "a8acea9bf4117c9ab83bd6d2459004e44a552d17f9802185a949319db86300fd",
+      "assets/trail.prompt.txt": "8b08e63f16392b9322b2e544b6cdcbf8157ea3e3fd66bbcb6130ea46f8e112b5",
+      "assets/web-BblfbyRz.js": "2ce3a31317e2c479265cd0f05d7d668add3ba9efd33917b9eb96a50f38aefa84",
+      "assets/web-D4Qo3TPC.js": "0d8bed59cd22f7ebd209714f685462025f29d57e81c01267b9d88234a7f23c2b",
+      "assets/web-DpiOhzv5.js": "b4dccd4f745c0c08bceb3c74c9c5de3c49866de337beed8c926a8a3f77eacfd7",
+      "favicon.svg": "e942ee76fa7c9d852b0869decdcde76b86f1ae4411bc88b88e97eca403b7cacb",
+      "icons/apple-touch-icon.png": "ca2e82c0361101aa6f65a67009d03fe2d577bcca77f00836574b10e409cddf6e",
+      "icons/rise-192.png": "2b97a3622c270b3bb4b4092854f4dc3b421edf52c6f43250ed9af482bf68d84d",
+      "icons/rise-512.png": "6e803db14ee3a4a58b860f86a58af008390c112ae6c1d50f39f41da9f094af53",
+      "icons/rise-icon.svg": "5a10633eee9cf079364b4508ef4ec3c29003b1a9f0e661dbee8124bcf9a33b47",
+      "icons/rise-maskable-512.png": "36eabb307395888a169c6a719664ea59f17001e0a08894821a415572da9b7965",
+      "index.html": "beda458b2bff6bb04393b2b46d11fca46f2db4ecdeaa564f6b41e95b748f4fab",
+      "manifest.webmanifest": "33299243f255f2e7d6d3ecc1521e6b99043428f758d597f394f2d830e1126376",
+      "notifications-sw.js": "ef84fe371993477d9e951d18e52d4db8f2acb3776b49fa4de161e2638561783e"
+    }
+  },
+  "evidenceSha256": {
+    "check.log": "92051312e0eac47cf581c8f2f7e4c49bade55f043b7dde691a1172b3ffa6f49d",
+    "documents.log": "1c34280af450e1f104b5e7cc948366437cc7d3d60e432ebe5f801b7518cc33a8",
+    "groups-report.json": "cce0fd6e3ea14f0c7537772d5da62db665d13c59c7f456bf7e23c13014f2da1b",
+    "groups.log": "f8175813c1fa3da51fc77276d4e74334d92317f89d0ab9ab3c888dccb4bd13d2",
+    "infra.log": "59e4c3599a04871b75e76d1ea22ab23ebab09429655348b00acfa767b2648aea",
+    "lint.log": "ea5185eda92b39fe7c2a90df74e01ea12fc9e5bbfc7679f83bf8711dec261daa",
+    "navigation-report.json": "fcfb610b3dda4dd5b55c1787c2e227d68d6015094bfb683cd52fc722ab28952c",
+    "navigation.log": "48aedf816cd15954ca0b1060dd798340b2a2ec857bc09bc518c23836e8a8ed5e",
+    "preservation.json": "28567d7fcca8f2e3ff7665f0a4d15238b6adeeab1dfa4e6ff15ba85a78a5c2f3",
+    "production-report.json": "85cfa085b1eed3d995225ac74cfdeccda36b5a1c8e6215e7273c0f1d3a8f89e3",
+    "production.log": "01606277e2998a2aaa3adc707e834408bac178762a24087200db9550c3c33387",
+    "push-report.json": "50d3d161ebac95e63908949750191b204cc6f5096edef0d08bd76b956a91dd63",
+    "push.log": "36ce97cf309086276bf12abacdf69b4f12b48c5e5b8738d516196c45929ed412",
+    "pwa-report.json": "5706907776bddc7b39811e5778ce1b1fc31b7243e656235a6003f2965269f1fa",
+    "pwa.log": "b86ebc21dfbdc36071c06865536952883a4f81a7054e2f3a336157eeaa125c00",
+    "reload.log": "7b492d2b91dee06a32ef310a84b9a781a954195ef64272fa24558770562f3a40",
+    "sync-report.json": "ae85b6f30bdd8eefd2cbfc3c739bf320a9eb2cff3daac75b6ccc79417fd45e26",
+    "sync.log": "fbe3fba2ffa738359981e78b20c5989bdeb58e6831296b5714a93ec3c43138e4",
+    "types.log": "adfd29a18734bdeee77c476a4f11e31f07b07b8ca1e4c5c0297c895c8e4cf2b8",
+    "visual-manifest.json": "d3bb105aa5012fa9aab1b96269d11250aad322c93321eab688dfde06c1ff3f44",
+    "visual-report.json": "85e7fd31945a1438a52823f14b206f6349fcea111f0bf0335529dafd92f95480",
+    "visual.log": "9ca62d19c8ffd37f32b6293b5511d35d014091e002f40deadd76dcc638b87911"
+  },
+  "limits": [
+    "Local implementation only; cloud pending",
+    "Real provider/physical mobile delivery unverified",
+    "Shared tasks/lists, squad snapshots and group notification integration remain GROUP-02\u201304",
+    "Integrated shared-content deletion/export/restore remains GROUP-05",
+    "Full accessibility/operating/release gates remain open"
+  ]
+}

@@ -1,0 +1,29 @@
+
+> rise-prototype@1.0.0 test:sync
+> playwright test --config playwright.sync.config.ts lifecycle.sync.spec.ts
+
+[WebServer] (node:64838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:64840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/sync/lifecycle.sync.spec.ts:11:1 › account export and explicit device cleanup preserve the server, guest and other cached owner (3.5s)
+  ✓   2 [chromium] › tests/sync/lifecycle.sync.spec.ts:22:1 › lost deletion reply clears pending private data across tabs and cannot resurrect a deleted account (3.7s)
+  ✓   3 [chromium] › tests/sync/lifecycle.sync.spec.ts:36:1 › failed device cleanup hides the deleted account and exposes a truthful retry without wiping guest data (3.2s)
+  ✓   4 [chromium] › tests/sync/lifecycle.sync.spec.ts:43:1 › email reauthentication keeps the account and pending store while enabling a recent-auth export (4.2s)
+(node:64851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [webkit] › tests/sync/lifecycle.sync.spec.ts:11:1 › account export and explicit device cleanup preserve the server, guest and other cached owner (3.9s)
+  ✓   6 [webkit] › tests/sync/lifecycle.sync.spec.ts:22:1 › lost deletion reply clears pending private data across tabs and cannot resurrect a deleted account (15.9s)
+  ✓   7 [webkit] › tests/sync/lifecycle.sync.spec.ts:36:1 › failed device cleanup hides the deleted account and exposes a truthful retry without wiping guest data (3.1s)
+  ✓   8 [webkit] › tests/sync/lifecycle.sync.spec.ts:43:1 › email reauthentication keeps the account and pending store while enabling a recent-auth export (4.1s)
+(node:64887) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [firefox] › tests/sync/lifecycle.sync.spec.ts:11:1 › account export and explicit device cleanup preserve the server, guest and other cached owner (4.6s)
+  ✓  10 [firefox] › tests/sync/lifecycle.sync.spec.ts:22:1 › lost deletion reply clears pending private data across tabs and cannot resurrect a deleted account (4.8s)
+  ✓  11 [firefox] › tests/sync/lifecycle.sync.spec.ts:36:1 › failed device cleanup hides the deleted account and exposes a truthful retry without wiping guest data (4.0s)
+  ✓  12 [firefox] › tests/sync/lifecycle.sync.spec.ts:43:1 › email reauthentication keeps the account and pending store while enabling a recent-auth export (5.1s)
+
+  12 passed (1.1m)

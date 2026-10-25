@@ -1,0 +1,26 @@
+# Bounded invitation acceptance
+
+24 October 2026 · GROUP-04 invitation increment / PRD-14. Retained local/test Auth, Postgres and BFF on macOS; all accounts and invitation metadata are synthetic. Cloud provisioning stays pending. No invitation or push was sent to a real person, and the saved 4173 profile was not accessed. GROUP-04 remains IN PROGRESS for optional group notifications and message/lifecycle integration.
+
+Owner history now uses 20-row revision-bound pages, localized capacity/reload feedback and explicit older-link revocation. Limits remain operator abuse controls. The [contract](../../GROUP-INVITATIONS.md) records exact behavior, privacy and rollback. Two additive migrations implement a retained-history cap and equivalent current-owner-set RLS. Existing forced RLS, active-session membership, grants, invitation tokens, immutable operations and receipt semantics remain.
+
+| Command | Result |
+| --- | --- |
+| `npm run check` | 261 unit/tooling tests; lint/types and production/review builds pass |
+| `node --import tsx --test --test-concurrency=1 tests/infra/group-invitations.test.ts tests/infra/groups.test.ts` | 15 real database/BFF cases pass |
+| `npm run test:groups -- tests/groups/invitations.groups.spec.ts tests/groups/layout.groups.spec.ts` | 12 cases pass across Chromium, WebKit and Firefox |
+| `npm run test:groups -- tests/groups/layout.groups.spec.ts --project=chromium` | Three layout cases pass again to capture the new navigation controls at their scrolled positions |
+| `npm run typecheck`, final `npx tsc --noEmit -p tsconfig.tools.json`, `npm run lint` | Pass after test additions |
+| `npm run infra:up -- test` / `-- local` | Both retained installations apply both additive migrations |
+| `npx supabase db advisors --local --workdir .rise-infra/test --type all --level warn --fail-on warn` and equivalent local workdir | No issues |
+| `npm run check:docs` | Current document, link/anchor, task/dependency and requirement checks pass; exact counts in log |
+
+Node 24.16.0, npm 11.13.0, Playwright 1.64.1, Supabase CLI 2.121.0; Chromium 156.0.8078.4, WebKit 27.2 and Firefox 157.0. The real browser journey uses the isolated 4191 BFF with credential captures disabled. Layout fixtures have unusable metadata and blocked service workers. Eleven group scenes cover three languages, both appearances, 320/375/393/430/1440 px and 100/200% text in three engines: 1,980 states, including 540 added invitation states. Thirty-six new safe captures include both sheet tops and scrolled controls. [Uzbek enlarged controls](screens/groups-invite-older-controls-uz-dark-320-200.png), [Russian page controls](screens/groups-invite-page-controls-ru-light-393-100.png), [English read error](screens/groups-invite-error-en-light-393-100.png).
+
+The maximum-history test retains 100,000 invitation rows with the worker stopped; current-owner pages remain bounded, unrelated/member access fails, capacity rejection changes neither revision nor receipt, a 500-row authorized cleanup permits the same unaccepted operation to retry, and pruned/stale cursors require review. The maximum frequency test accepts 100 distinct invitations, rejects the next new operation and permits the exact accepted retry. Direct restricted-role reads reject forged role metadata, previous ownership, removed membership and old session claims after logout. Existing membership transfer, single-use races, receipt rollback and account suppression/backup-replay cases pass.
+
+Initial failures are retained in the logs. The first bulk fixture had an ambiguous UUID/text SQL parameter; explicit casts corrected the fixture. The next run exposed a real query timeout: a row-correlated ownership policy repeated authorization over retained metadata before the limit. A transaction-only equivalent owner-set policy trial with the same 100,000-row shape returned 20 rows in 5 ms, versus the existing 2,001 ms statement-timeout failure. The final additive policy passes all direct denial and current-session tests; the production query timeout and authorization requirements were not relaxed. [Supabase's policy performance guidance](https://supabase.com/docs/guides/database/postgres/row-level-security-performance) informed the set-based rewrite. The diagnostic timing is local evidence, not a hosted benchmark.
+
+No CSS, asset, dependency, cache format, historical evidence, prior migration or frozen visual reference changed. The earlier 720-image comparison belongs to the immediately preceding squad checkpoint; it was not rerun for this increment. Visual review found an existing Uzbek `Intl.DateTimeFormat` month label (`M10`); QUALITY-01 now explicitly records that localization work. Current cross-guides were also reconciled with the completed GROUP-03 local evidence. Full group regression and notification lifecycle acceptance follow the rest of GROUP-04.
+
+[Verification and source/build hashes](verification.json), [preservation audit](preservation.json), [safe visual manifest](visual-manifest.json), [code/build log](logs/check.log), [database log](logs/infra.log), [browser log](logs/browser.log), [capture log](logs/captures.log), [initial fixture error](logs/infra-initial.log), [initial timeout](logs/infra-timeout.log), [document check](logs/docs.log).

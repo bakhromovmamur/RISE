@@ -1,0 +1,136 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts
+
+[WebServer] (node:7794) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 39 tests using 2 workers
+
+(node:7795) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (873ms)
+  ✓   1 [chromium] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.6s)
+  ✓   4 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (589ms)
+  ✓   3 [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.3s)
+  ✓   5 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (588ms)
+  ✓   6 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (602ms)
+  ✓   7 [chromium] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (464ms)
+  ✓   8 [chromium] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (519ms)
+  ✓  10 [chromium] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (764ms)
+  ✓   9 [chromium] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (1.7s)
+  ✓  11 [chromium] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (1.6s)
+  ✓  12 [chromium] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.4s)
+(node:7862) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (1.7s)
+(node:7875) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  14 [webkit] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.4s)
+  ✓  15 [webkit] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (622ms)
+  ✓  17 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (582ms)
+  ✓  16 [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.2s)
+  ✓  18 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (571ms)
+  ✓  19 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (565ms)
+  ✓  20 [webkit] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (559ms)
+  ✓  21 [webkit] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (881ms)
+  ✓  23 [webkit] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (1.3s)
+  ✓  24 [webkit] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (2.5s)
+  ✓  22 [webkit] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (6.1s)
+  ✓  25 [webkit] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (1.6s)
+(node:7925) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  26 [webkit] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (2.0s)
+(node:7946) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  27 [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (15.5m)
+(node:7988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  28 [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (15.5m)
+(node:7991) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  30 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 1 existing profiles retain their authored content and activity (4.8s)
+  ✓  29 [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (6.0s)
+  ✓  31 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 2 existing profiles retain their authored content and activity (2.2s)
+  ✓  32 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 3 existing profiles retain their authored content and activity (2.3s)
+  ✓  33 [firefox] › tests/production/entry.production.spec.ts:64:3 › schema 4 existing profiles retain their authored content and activity (2.8s)
+  ✓  34 [firefox] › tests/production/entry.production.spec.ts:88:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (2.7s)
+  ✓  36 [firefox] › tests/production/prayer.production.spec.ts:15:1 › production first-use salah onboarding saves only the authored manual date and recovers it after reload (3.8s)
+  ✓  35 [firefox] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (6.5s)
+  ✓  37 [firefox] › tests/production/prayer.production.spec.ts:37:1 › production calculates offline and reloads 30 actual dates with a selected method and quarter-hour zone (5.8s)
+  ✓  38 [firefox] › tests/production/prayer.production.spec.ts:64:1 › production startup detects travel in a saved profile while retaining its selected place and prayer history (4.7s)
+  ✓  39 [firefox] › tests/production/prayer.production.spec.ts:82:1 › first calculation in an earlier civil date remains recordable after selecting New York (4.8s)
+
+
+  1) [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.check: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('checkbox', { name: /I understand/ })
+
+
+      23 |   await file.setInputFiles({ name: "backup.json", mimeType: "application/json", buffer: Buffer.from(raw) });
+      24 |   await expect(page.getByRole("heading", { name: "Review before replacing" })).toBeVisible();
+    > 25 |   await page.getByRole("checkbox", { name: /I understand/ }).check(); await page.getByRole("button", { name: "Replace with this backup" }).click();
+         |                                                              ^
+      26 |   await expect(page.getByText("Backup restored on this device.")).toBeVisible();
+      27 |   const restored = await stored(page); expect(restored.days).toEqual(before.days); expect(restored.prayers).toEqual(before.prayers);
+      28 |   expect(restored.life.groups).toEqual([]); expect(xpTotal(restored)).toBe(xpTotal(before));
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/backup.production.spec.ts:25:62
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/backup.production-producti-17cec-sion-with-no-review-harness-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/backup.production-producti-17cec-sion-with-no-review-harness-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/backup.production-producti-17cec-sion-with-no-review-harness-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/backup.production-producti-17cec-sion-with-no-review-harness-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.reload: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for navigation until "load"
+
+
+      28 |   const realDate = await page.evaluate(() => new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tashkent" }).format(new Date()));
+      29 |   expect(s.prayers.started).toBe(realDate); expect(s.timezone).toBe("Asia/Tashkent");
+    > 30 |   await page.reload(); expect(await stored(page)).toEqual(s);
+         |              ^
+      31 | });
+      32 |
+      33 | test("real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity", async ({ page }) => {
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/production/entry.production.spec.ts:30:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/production/entry.production-new-produ-cdf28-eviewer-tools-through-a-URL-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/production/entry.production-new-produ-cdf28-eviewer-tools-through-a-URL-firefox/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/production/entry.production-new-produ-cdf28-eviewer-tools-through-a-URL-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/production/entry.production-new-produ-cdf28-eviewer-tools-through-a-URL-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  Slow test file: [firefox] › tests/production/backup.production.spec.ts (15.5m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  2 failed
+    [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness 
+    [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL 
+  37 passed (16.3m)

@@ -1,0 +1,126 @@
+# Performance and resilience — work in progress
+
+24 October 2026 · QUALITY-03 / NFR-01–05 and NFR-07. Local work follows QUALITY-02 local acceptance. Cloud provisioning remains pending. This report is not sealed and does not establish release targets.
+
+The first desktop Node probe uses a synthetic profile with 100 active daily habits, 730 days, 73,000 occurrences and 10,754,306 serialized bytes. Three samples measure the existing public `validateState`, `parseStoredState`, `project`, `hydrate` and `applyDomainCommand` interfaces. Projection/hydration preserves all relational records and XP, an explicit check adds exactly 20 XP, and the original state remains unchanged.
+
+Median timings: validation 127.6 ms; parsing 230.9 ms; projection 29.0 ms; hydration 425.4 ms; pure habit check 95.2 ms. These are Node desktop discovery samples, not browser feedback, durable commit, physical mobile Web Vitals, p95 capacity or hosted acceptance. [Raw results](node-discovery-before.json) and [probe source](node-discovery-source.ts). The probe was run with `node --import tsx /tmp/rise-quality03-probe.ts`; its absolute source imports refer to the local workspace. No app source was changed for this measurement.
+
+Inspection found repeated scans of occurrence/window/version rows during account hydration. The device path also validates and serializes whole profiles at several boundaries. Next: measure the real IndexedDB/session path, optimize demonstrated repeated work without weakening unknown-input validation or transactional recovery, and verify equivalent records/actions, resilience and visual preservation. The 100-concurrent-user staging target and physical mobile measurements remain pending; local benchmarks must be labeled separately.
+
+The baseline application is the accepted QUALITY-02 build: production `index-C4owHKwZ.js`, review `index-D2JwkHzn.js`, CSS `index-DM2hzASY.css`. Production entry is 1,276.74 kB, 392.90 kB gzip; bundle size alone does not establish load or interaction timing. Existing source/reference hashes are preserved in the task-local baseline before optimization.
+
+## Increment 1 — measured CPU work and real storage
+
+24 October 2026, local macOS desktop. Account hydration now indexes child rows once per parent while preserving order. Stored parsing runs one bounded JSON safety traversal; descriptor inspection avoids per-record dictionaries without invoking accessors. Habit check-in materializes a dated result once while retaining archived-occurrence correction and captured-empty-day guards. No cache/schema version, migration, CSS, dependency or visual reference changes were required. [Exact source diff](increment-01/source-changes.patch), [source hashes](increment-01/source-hashes.json), [build hashes](increment-01/build-hashes.json).
+
+The final production entry is `index-vrcLFLAk.js`, review entry `index-d29YQB4X.js`; CSS remains `index-DM2hzASY.css`. Node medians for the same dense fixture are validation 55.0 ms, parsing 76.0 ms, hydration 57.5 ms and check-in 44.8 ms. [Final Node samples](increment-01/probe-after-domain.json).
+
+The opt-in real IndexedDB test initializes 100 habits × 730 dates, dispatches three rounds of check/Undo/draft, waits for durable acknowledgment and reopens the complete profile. All 73,000 occurrences, original XP after Undo, draft and nine committed revisions survive; the original recovery source stays unchanged. These three-sample medians are discovery results, not p95 acceptance:
+
+| Engine/version | Check dispatch / durable | Undo dispatch / durable | Draft dispatch / durable |
+| --- | --- | --- | --- |
+| Chromium 156.0.8078.4 | 137.5 / 399.6 ms | 155.9 / 414.4 ms | 131.7 / 389.4 ms |
+| WebKit 27.2 | 123 / 449 ms | 123 / 477 ms | 125 / 441 ms |
+| Firefox 157.0 | 219 / 783 ms | 221 / 789 ms | 222 / 802 ms |
+
+Chromium's pre-change check median was 268.6 ms dispatch / 691.9 ms durable. [Before](increment-01/local-before.json), [final three-engine measurements](increment-01/local-json-measurements.json). The earlier baseline transferred fixture objects through Playwright; the final test transfers JSON text at the test boundary, outside measured application operations. No original-source WebKit/Firefox baseline is claimed. Actual rendered feedback, supported physical devices and the 250 ms durable p95 target remain unverified; the measured durable medians exceed that target.
+
+### Checks and failures retained
+
+| Command | Result / scope |
+| --- | --- |
+| `npm run check` | 277 unit/tooling cases, lint/types and production/review builds pass on the final application source; [log](increment-01/logs/check-core.log) |
+| `npx playwright test --config playwright.performance.config.ts` | 3 pass, all three engines; [log](increment-01/logs/local-json.log), [report](increment-01/reports/local-json.json) |
+| `node --import tsx --test --test-concurrency=1 tests/infra/personal.test.ts tests/infra/sync.test.ts` | 16 pass against the real fixed local test database; owner/session isolation, direct RLS, history, receipt rollback/replay, import boundaries; [log](increment-01/logs/database-core.log) |
+| `npm run test:browser -- 'tests/(storage\|personal-commands).browser.spec.ts$' --workers=1` | 54 pass, three engines; migration, quota, conflict, lost reply and durable readback; [log](increment-01/logs/storage-core.log), [report](increment-01/reports/storage-core.json) |
+| `npm run test:visual` | 48 pass / 720 frozen comparisons; no reference update; [log](increment-01/logs/visual-core.log), [report](increment-01/reports/visual-core.json) |
+| `npm run typecheck` and `npm run lint` | Pass after correcting the benchmark's JSON transport; application source unchanged since the 277-case gate; [types](increment-01/logs/probe-typecheck.log), [lint](increment-01/logs/lint-final.log) |
+
+The first three-engine benchmark passed Chromium/WebKit but Firefox timed out in the initial `page.evaluate` with a 73,000-occurrence structured argument. The test now passes JSON text across the test protocol and validates it through existing profile boundaries. Application operations and the 180-second deadline were unchanged. Firefox then passed alone and in the full three-engine run. [Original test and failure diagnostics](diagnostics/structured-transfer-test.ts), [failed run](increment-01/logs/local-core.log), [focused successful rerun](increment-01/logs/firefox-json.log). This is a test-transfer observation, not proof of a Firefox application failure or its internal cause.
+
+Earlier focused 23/15/34-case runs and an intermediate 274-case gate remain archived with their narrower build scopes. [Preservation audit](increment-01/preservation.json) compares assets, historical evidence, server files, applied migrations, visual references and dependency metadata with the pre-QUALITY-03 hashes. The user's 4173 profile was never accessed. Synthetic accounts/subscriptions only; no cloud provisioning, real notification delivery or provider secrets are included.
+
+Increment 1 is complete; QUALITY-03 remains IN PROGRESS. Next work addresses remaining whole-profile save cost, bundle/loading behavior and the local capacity/fault matrix. Existing persisted formats remain compatible with the previous build; no migration rollback is needed for these CPU changes. Hosted/physical acceptance, monthly availability and the OPS-02 isolated restore drill remain open.
+
+## Increment 2 — schema and string allocation
+
+24 October 2026, the same local desktop environment and synthetic workload. Trusted shape validators now compile their field lists once. Strings whose UTF-16 length fits the limit avoid a character array; longer strings retain the original code-point count. IDs reuse their string validator and scan C0 control codes without allocating an array. No input validation results are cached. Tests cover emoji, combining marks, unpaired surrogates, empty values, required fields, patterns, invalid IDs and exact error paths. [Diff](increment-02/source-changes.patch), [source hashes](increment-02/source-hashes.json), [build hashes](increment-02/build-hashes.json).
+
+The production entry is `index-BZEPEK49.js`, review `index-DuTMhYp5.js`; CSS remains `index-DM2hzASY.css`. Node validation/parsing/hydration medians are 38.1/63.3/41.7 ms, with exact history and XP invariants retained. [Node samples](increment-02/node.json). Final three-sample browser medians follow; these remain discovery results, not accepted p95 or rendered feedback:
+
+| Engine | Check dispatch / durable | Undo dispatch / durable | Draft dispatch / durable |
+| --- | --- | --- | --- |
+| Chromium 156.0.8078.4 | 114.2 / 335.6 ms | 148.9 / 372.0 ms | 109.8 / 335.5 ms |
+| WebKit 27.2 | 105 / 393 ms | 104 / 426 ms | 104 / 387 ms |
+| Firefox 157.0 | 179 / 667 ms | 182 / 661 ms | 181 / 664 ms |
+
+[Raw measurements](increment-02/browser-measurements.json) retain startup, individual samples and recovery invariants. `npm run check` passes **279 unit/tooling cases**, lint/types and both builds ([log](increment-02/logs/check.log)); the unchanged performance command passes **3 cases** ([log](increment-02/logs/browser.log), [report](increment-02/reports/browser.json)); the unchanged storage command passes **54 cases** ([log](increment-02/logs/storage.log), [report](increment-02/reports/storage.json)). The focused validation/account/migration command passes **17 cases** ([log](increment-02/logs/targeted.log)). Exact commands are retained in the verification manifest. Increment 1's visual evidence applies to its recorded build; this second change touches only the validator and its tests, with all CSS/assets/references preserved.
+
+The real local database command from increment 1 also passes **16 cases** on the final source ([log](increment-02/logs/database.log)). The [verification manifest](increment-02/verification.json) records exact commands and environment; the [preservation audit](increment-02/preservation.json) verifies the original assets, historical evidence, server/migrations, dependency metadata and all 720 visual references against the pre-task baseline.
+
+The dense-profile durable target is still unmet in every engine. Further work must measure whole-profile serialization, cloning, IndexedDB read/write and rendering before selecting a larger change. Database/cache compatibility, strict durability, immutable command identity, input isolation and original recovery data remain required. QUALITY-03 remains IN PROGRESS; local load, rendered UI, bundle and fault evidence, plus hosted/physical acceptance, remain open.
+
+## Increment 3 — repository ownership and production feedback
+
+[The verified increment](increment-03/README.md) removes a second whole-profile copy after an already-isolated adapter result. Public mutation/replay tests preserve ownership and durable history. The source gate passes 280 cases; three-engine checks pass 6 session/repository measurements, 57 storage/recovery cases, 3 real production UI measurements and 54 production-entry cases. Durable check medians are now 300.6/346/608 ms. Production DOM feedback samples are 146.6/136/239 ms, so both performance targets remain unmet. The initial wrong-build UI assertion and corrected production setup are retained. No UI, CSS, assets, schema, dependency or reference changes; QUALITY-03 remains IN PROGRESS.
+
+## Increment 4 — deferred group screens
+
+[The verified increment](increment-04/README.md) moves group management/editing code out of the initial entry while retaining immediate Today rows and the existing component bodies. The entry falls by 96,228 bytes (7.5%); the complete offline shell still caches every screen, and the two split code files add 2,559 bytes overall. Localized loading/retry, keyboard focus, close-during-load recovery and cold offline opening are verified. Checks pass 280 source cases, 66 production, 45 PWA, 48 local journeys, 108 account-backed group cases and 48 visual cases / 720 unchanged references. CSS remains byte-identical. This is a bundle/loading change, not physical Web Vitals or dense-profile latency acceptance; QUALITY-03 remains IN PROGRESS.
+
+## Increment 5 — validated command preparation
+
+[The verified increment](increment-05/README.md) avoids descriptor inspection only on fresh JSON parser output and reuses the command result's validated serialized text. Arbitrary objects retain accessor checks; all bounds, schema/reference validation and durable/recovery semantics remain. The source gate passes 282 cases. Before/after measurements each pass 6 dense-profile and 3 production UI cases; final regressions pass 105 storage/backup/recovery, 21 database, 15 export/deletion browser, 66 production and 45 PWA cases. DOM completion samples improve from 145.6/153/222 to 128.3/119/192 ms. Every visible sample and durable median still exceeds its target, and some durable timings worsen; all data is retained. No UI, CSS, asset, dependency or persisted-format change. QUALITY-03 remains IN PROGRESS for latency, capacity/resilience and hosted/physical acceptance.
+
+## Increment 6 — account capacity baseline
+
+[The local capacity increment](increment-06/README.md) adds an opt-in test with 100 authorized synthetic accounts and 7.3 million occurrences. Its simultaneous full/Undo bursts fail the capacity target: 11/200 first attempts succeed, 189 return 503, and accepted p95 is 4,335.7 ms. All exact retries, receipt replays, complete history/XP readbacks and cleanup pass. Single-account profiling identifies repeated canonical record serialization as substantial CPU work. Overlap/interruption guards, tool types/lint and documentation checks pass. Application/server/schema/security settings remain unchanged. This is a reproducible local stress baseline, not complete NFR-03 mixed/shared or hosted acceptance; QUALITY-03 remains IN PROGRESS.
+
+## Increment 7 — account change detection
+
+[The verified server change](increment-07/README.md) replaces repeated canonical serialization only for comparison of validated records; hashes/identities, validation and transaction boundaries remain. Checks pass 282 source cases and 48 real database cases. Single-account full/Undo samples improve from 815.2/716.4 to 657.1/624.2 ms, and profiling confirms less comparison CPU work. The identical 100-user burst accepts 20/200 first attempts instead of 11, but accepted p95 worsens to 4,861.0 ms and the capacity gate still fails. All 180 exact retries, full-history/XP readbacks and cleanup pass. Frontend builds and formats are unchanged. QUALITY-03 remains IN PROGRESS for further latency, mixed/shared capacity and resilience work.
+
+[A subsequent query experiment](query-discovery/README.md) compares JSON/JSONB construction under the real restricted actor and forced RLS. All 73,000 returned rows match, but three warm-cache rounds do not establish a consistent request-latency improvement, so the current SQL remains. Its command/replay/readback and cleanup checks pass. The separate mixed workload is now [implemented and measured](../../PERFORMANCE.md#account-mixed-diagnostic); the burst failures remain open.
+
+## Increment 8 — mixed personal/shared capacity
+
+[The local mixed diagnostic](increment-08/README.md) uses 100 dense accounts, 50 joined families and the actual shared-content reader. Four rounds schedule 400 personal and 200 shared mutations with 15-second metadata refresh. Capacity fails: 359/600 first attempts succeed, 65 return 503 and 176 are deferred. Accepted personal/shared p95 including scheduling lateness is 5,348.9/4,936.7 ms. Among 110 accepted shared updates, 13 observations exceed 15 seconds and 16 remain missing. All 241 failed/deferred intentions recover exactly; every history, XP, final shared snapshot and cleanup check passes. Interruption cleanup and the original smoke mode also pass. The source gate passes 282 cases; final types/lint pass. Application/server/schema/security settings and all 52 frontend build files remain unchanged. QUALITY-03 remains IN PROGRESS for performance fixes and integrated resilience; cloud and physical acceptance stay pending.
+
+[A subsequent pure-worker experiment](worker-discovery/README.md) shortens main-thread stalls but makes single-job computation slower (165.2 ms inline versus 259.5–297.8 ms through one worker). Two workers barely improve a five-job batch. Every complete result matches and inputs remain unchanged; SQL/authorization/transaction costs are outside the probe. Whole-history worker transfer is not adopted, and the server remains unchanged.
+
+## Increment 9 — direct occurrence-column reads
+
+[The verified read optimization](increment-09/README.md) avoids constructing a whole JSON object for each occurrence while retaining JSON dates and complete validation. Increment 9 selects dense occurrence columns directly while preserving JSON civil dates, owner filtering, bounds and all validation/transaction rules. Checks pass 282 source cases, 49 database cases and date-format/process-timezone parity. Isolated 73,000-row reads improve from 174.9–241.4 to 86.6–108.0 ms. The identical single-thread mixed workload accepts 377/600 first intentions, with 66 HTTP failures and 157 deferred. Accepted personal/shared scheduled p95 is 5,631.2/4,913.1 ms. Of 121 accepted shared updates, 10 observations are late and 23 remain missing. All 223 failed/deferred intentions recover exactly; every history/XP/shared snapshot and cleanup check passes. Frontend builds are unchanged; QUALITY-03 remains IN PROGRESS.
+
+## Increment 10 — compare ordered histories before building maps
+
+[The verified writer optimization](increment-10/README.md). Increment 10 pairs equal-length, ordered occurrence identities and compares every value before constructing key maps only for changed rows; mismatches retain the existing path. CPU-only writer medians fall from about 109–111 to 23–24 ms with identical SQL/parameters. Checks pass 282 source cases and 50 database cases, including row versions, reindexing and old-receipt/barrier preservation. The unchanged mixed workload accepts 542/600 first intentions, with 20 HTTP failures and 38 deferred. Accepted personal/shared scheduled p95 is 4,715.8/4,599.1 ms. Of 177 accepted shared updates, 25 observations exceed 15 seconds and 11 remain missing. All 58 failed/deferred intentions recover exactly; complete histories, XP, shared snapshots and cleanup pass. Frontend builds are unchanged; QUALITY-03 remains IN PROGRESS.
+
+## Subsequent concurrency and real-HTTP discovery
+
+A subsequent concurrency experiment accepts all 600 mixed intentions through five BFF execution threads, with personal/shared scheduled p95 583.4/520.7 ms and all 200 shared updates observed within 15 seconds. The same total five connections through a real-HTTP, five-process cluster accepts 565/600; personal/shared p95 is 4,763.2/4,030.5 ms, with 29 late and eight missing observations. All 35 exact recoveries, every receipt/history/XP/shared readback and cleanup pass. These runtime/transport experiments do not isolate the cause of the difference; connection affinity is a follow-up hypothesis. No production runtime change is adopted. A separate same-revision transient-reader failure is reproduced and remains unfixed. [Reports and limits](bff-concurrency-discovery/README.md). Application and frontend build files remain unchanged; cloud provisioning stays pending.
+
+## Increment 11 — unavailable shared-read recovery
+
+Increment 11 lets unavailable family/squad reads recover after fresh authorized metadata at the same revision; owner invitation failures restore the new authorized first page. Busy/receipt updates cannot cause retry loops, and authority/late-response/account fences remain. Checks pass 290 source cases, 21 reader cases and 33 three-engine browser journeys, including a previously failing timer-only recovery. Stabilized equivalent-state captures are pixel-identical in all 96 comparisons. The normal dense mixed run still fails: 481/600 first intentions accepted, personal/shared scheduled p95 5,501.1/5,347.8 ms, with 18 late and nine missing observations. All 119 exact recoveries, complete histories/XP/shared snapshots and cleanup pass. A prior controlled HTTP run also shows that disabling connection reuse is insufficient. No server runtime, schema, CSS or persisted-format change is adopted; QUALITY-03 remains IN PROGRESS. [Verified increment and remaining work](increment-11/README.md). Cloud provisioning remains pending.
+
+## HTTP request distribution and bounded admission discovery
+
+The unchanged increment-11 app was measured through two test-only gateways with five execution threads, five total restricted connections, real HTTP/private Unix sockets and per-browser connection reuse. Both accept all 600 mixed intentions and pass exact receipt replay, complete personal history/XP, final shared snapshots and exact cleanup. Least-pending routing still fails personal/shared scheduled p95 at 1,637.4/1,204.6 ms and one late observation. Limiting each worker to one active request with a bounded FIFO queue worsens p95 to 7,123.1/6,627.9 ms and 26 late observations. Neither changes the application entry point. [Raw samples, exact comparison, scope limits and next profiling check](bff-http-admission-discovery/README.md). QUALITY-03 remains IN PROGRESS.
+
+## Request-phase discovery
+
+The isolated request-phase capture records 3,459 matching gateway/worker requests with no drops. Capacity still fails: 284/600 first intentions are accepted; personal/shared scheduled p95 is 6,319.4/4,941.2 ms, with 19 late and ten missing shared observations. All 316 exact recoveries, complete histories/XP/shared readbacks and fixture cleanup pass. Shared mutation pool-acquisition p95 is 4,829.9 ms versus 4,963.6 ms overall; owner-lock time averages 1.8 ms. Host memory pressure and duplicated worker heaps are also observed, without isolating causality. A five-round ordered JSON-aggregate query is rejected: median read time is 232.3 ms versus 129.5 ms for current direct columns. No application change is adopted. Next: compare fewer execution threads with the same five restricted connections and overlapping requests. Instrumentation/host load limit comparison with earlier runs. The initial full phase-capture failure and successful repair are retained. [Commands, phases, rejected query and scope](bff-phase-discovery/README.md). QUALITY-03 remains IN PROGRESS; cloud stays pending.
+
+## Two-thread pool partition discovery
+
+The two-thread/3+2-connection follow-up retains the same total five restricted connections and overlapping requests. It still fails capacity: 337/600 first intentions succeed, personal/shared scheduled p95 is 6,201.6/4,950.8 ms, and 33 shared observations are late with 11 missing. All 263 exact recoveries, complete histories/XP/shared readbacks and cleanup pass; 3,578 gateway/worker records match with no drops. Shared pool-acquisition p95 remains 4,812.5 ms. Per-thread CPU and heap maxima rise, and host-wide swapping continues. The partition is not adopted; these shared-host runs cannot isolate thread-count causality. Before another full runtime experiment, use a smaller diagnostic to separate pool hold time, same-session waits and per-request allocations. [Evidence and limits](bff-pool-partition-discovery/README.md). Application, builds, design and saved data remain unchanged; QUALITY-03 stays IN PROGRESS and cloud stays pending.
+
+## Bounded session admission — 24 October 2026
+
+Increment 12 prevents concurrent requests for one session from exhausting the restricted connection pool while waiting on that session's row. A bounded in-process FIFO admits work before database acquisition and rechecks current authorization afterward; SQL/RLS, receipts, connection budgets, deadlines and UI remain unchanged. The old class fails the new contention regression; the implementation passes 294 source/tooling cases, 24 focused database cases, 21 auth and 69 sync browser cases. The complete database recheck passes 169 cases; an initial large invitation-transfer 503 remains recorded as an unresolved timing-sensitive observation. The normal 100-account mixed capacity run is worse: 130/600 first intentions succeed, personal/shared scheduled p95 is 9,359.1/6,121.3 ms, with five late and two missing shared observations. All 470 exact recoveries, complete histories/XP/shared readbacks and cleanup pass. This is a narrow contention fix, not demonstrated capacity acceptance. QUALITY-03 remains IN PROGRESS and cloud stays pending. [Evidence, regressions and limits](increment-12/README.md).
+
+## Account projection increment — 24 October 2026
+
+Increment 13 removes per-object temporary filter/map/pair arrays from the fixed-field account projection. Own/defined allowlisted values, privacy exclusions, record order and stored formats are preserved. Two alternating-order dense-profile experiments reduce median projection wall time from 30.2–30.7 ms to 13.0–13.7 ms; this is a pure-function result, not API/device capacity. Checks pass 295 source/tooling cases, 39 targeted real-database cases and 69 three-engine sync cases with no flakes. CSS and screen code remain unchanged. No new 100-account capacity result is claimed; QUALITY-03 remains IN PROGRESS and cloud stays pending. [Evidence and limits](increment-13/README.md).

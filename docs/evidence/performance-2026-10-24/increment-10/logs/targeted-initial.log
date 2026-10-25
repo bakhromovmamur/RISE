@@ -1,0 +1,46 @@
+✖ habit corrections retain unrelated row versions and replay barriers across archive and removal (571.7055ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 807.910542
+
+✖ failing tests:
+
+test at tests/infra/personal.test.ts:1:7297
+✖ habit corrections retain unrelated row versions and replay barriers across archive and removal (571.7055ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      {
+        check_kind: 'full',
+        created_at: '2026-10-24T12:41:17.951261+00:00',
+        data: {
+  ...
+        owner_id: 'cc765bbf-e587-4ed9-b280-54833e0bc444',
+  +     position: 0,
+  +     revision: 8,
+  +     updated_at: '2026-10-24T12:41:18.111599+00:00',
+  -     position: 1,
+  -     revision: 5,
+  -     updated_at: '2026-10-24T12:41:18.019062+00:00',
+        xp: 20
+      }
+    ]
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/personal.test.ts:116:40)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { xp: 20, data: [Object], date: '2026-10-24', habit_id: '918440d1-719c-484e-a217-e6c300f8ce56', owner_id: 'cc765bbf-e587-4ed9-b280-54833e0bc444', position: 0, revision: 8, check_kind: 'full', created_at: '2026-10-24T12:41:17.951261+00:00', updated_at: '2026-10-24T12:41:18.111599+00:00' } ],
+    expected: [ { xp: 20, data: [Object], date: '2026-10-24', habit_id: '918440d1-719c-484e-a217-e6c300f8ce56', owner_id: 'cc765bbf-e587-4ed9-b280-54833e0bc444', position: 1, revision: 5, check_kind: 'full', created_at: '2026-10-24T12:41:17.951261+00:00', updated_at: '2026-10-24T12:41:18.019062+00:00' } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

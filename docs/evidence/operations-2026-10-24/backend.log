@@ -1,0 +1,38 @@
+
+> rise-prototype@1.0.0 test:backend
+> playwright test --config playwright.infrastructure.config.ts
+
+[WebServer] (node:19568) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 21 tests using 1 worker
+
+(node:19575) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.1s)
+  ✓   2 [chromium] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (875ms)
+  ✓   3 [chromium] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (91ms)
+  ✓   4 [chromium] › tests/infra/security.infrastructure.spec.ts:4:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (2.0s)
+  ✓   5 [chromium] › tests/infra/security.infrastructure.spec.ts:73:1 › policy attack probes › browser policy blocks injected script, handlers, evaluation and base replacement (449ms)
+  ✓   6 [chromium] › tests/infra/security.infrastructure.spec.ts:107:1 › policy attack probes › the application refuses embedding even by a same-origin page (152ms)
+  ✓   7 [chromium] › tests/infra/security.infrastructure.spec.ts:116:1 › authored markup stays inert plain text through legacy migration and reload (604ms)
+(node:19630) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [webkit] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (1.6s)
+  ✓   9 [webkit] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (902ms)
+  ✓  10 [webkit] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (92ms)
+  ✓  11 [webkit] › tests/infra/security.infrastructure.spec.ts:4:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (2.4s)
+  ✓  12 [webkit] › tests/infra/security.infrastructure.spec.ts:73:1 › policy attack probes › browser policy blocks injected script, handlers, evaluation and base replacement (867ms)
+  ✓  13 [webkit] › tests/infra/security.infrastructure.spec.ts:107:1 › policy attack probes › the application refuses embedding even by a same-origin page (390ms)
+  ✓  14 [webkit] › tests/infra/security.infrastructure.spec.ts:116:1 › authored markup stays inert plain text through legacy migration and reload (753ms)
+(node:19712) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  15 [firefox] › tests/infra/backend.infrastructure.spec.ts:4:1 › real backend keeps production entry, chosen habits and durable check-ins intact (6.0s)
+  ✓  16 [firefox] › tests/infra/backend.infrastructure.spec.ts:19:1 › backend serves a working public offline shell without caching health/private endpoints (3.4s)
+  ✓  17 [firefox] › tests/infra/backend.infrastructure.spec.ts:38:1 › only the production public files and safe health metadata are exposed (281ms)
+  ✓  18 [firefox] › tests/infra/security.infrastructure.spec.ts:4:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (4.8s)
+  ✓  19 [firefox] › tests/infra/security.infrastructure.spec.ts:73:1 › policy attack probes › browser policy blocks injected script, handlers, evaluation and base replacement (1.0s)
+  ✓  20 [firefox] › tests/infra/security.infrastructure.spec.ts:107:1 › policy attack probes › the application refuses embedding even by a same-origin page (679ms)
+  ✓  21 [firefox] › tests/infra/security.infrastructure.spec.ts:116:1 › authored markup stays inert plain text through legacy migration and reload (1.7s)
+
+  21 passed (37.9s)

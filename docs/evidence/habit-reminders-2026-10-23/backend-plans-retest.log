@@ -1,0 +1,21 @@
+✔ plan replay, generation CAS, privacy validation and transactional replacement (362.5385ms)
+✔ duplicate workers, durable restart leases, stale lease and accepted terminal receipt (163.692666ms)
+✔ transient failures retry within expiry; offline/late windows expire without sending (126.128875ms)
+✔ invalid endpoint retires subscription; logout cancels leased jobs (269.792291ms)
+✔ unrelated users and direct public roles cannot access plans; worker cannot alter intent (258.57ms)
+✔ primary takeover is explicit; competing generations commit once and failed writes roll back (188.43775ms)
+✔ quiet suppression defaults on; explicit plan override and coverage counts remain honest (128.943083ms)
+✔ acknowledgment cancels only dated wake jobs, preserves prayer records/XP and rejects stale worker (433.182292ms)
+✔ cancel receipts cannot cancel a later generation on lost-reply retry (167.627792ms)
+✔ dispatch and cancellation serialize: before-send stops, submitted sends cannot be recalled (223.398959ms)
+✔ plan readiness is current, installation-scoped and excludes obsolete subscription versions (664.170625ms)
+✔ habit plans validate saved eligibility, cancel completion/archive transactionally and dispatch through local transport (942.159792ms)
+✔ habit quiet hours cannot inherit the prayer override and disabling preferences cancels all coverage (748.035ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4943.975208

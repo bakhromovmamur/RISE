@@ -1,0 +1,9 @@
+/* Existing tokens and controls; the status strip exists only for an actionable lifecycle state. */
+.app-shell:has(> .pwa-notice) { display: flex; flex-direction: column; }
+.app-shell:has(> .pwa-notice) > .app-main { flex: 1; min-height: 0; height: auto; }
+.pwa-notice { flex-shrink: 0; max-height: 45%; overflow-y: auto; padding: 10px 16px; background: var(--surface); color: var(--ink); border-bottom: 1px solid var(--line); font-size: .8125rem; line-height: 1.5; }
+.pwa-notice p { margin: 0; overflow-wrap: anywhere; }
+.pwa-notice .button { margin-top: 8px; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.pwa-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.pwa-actions > * { flex: 1 1 180px; min-width: 0; }
+.pwa-settings .button { white-space: normal; overflow-wrap: anywhere; }

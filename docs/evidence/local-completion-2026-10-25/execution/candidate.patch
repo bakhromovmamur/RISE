@@ -1,0 +1,679 @@
+--- a/scripts/infra/release/entry.ts
++++ b/scripts/infra/release/entry.ts
+@@ -1,8 +1,6 @@
+ // Frozen runtime entry. Only the local release supervisor supplies stdin; no HTTP test controls.
+ import {loadConfig} from '../../../server/config.ts';
+-import {database} from '../../../server/database.ts';
+-import {createApp} from '../../../server/app.ts';
+-import {Sessions} from '../../../server/auth/sessions.ts';
++import {createExecutionApp} from '../../../server/execution/app.ts';
+ import {writePrivateJson} from '../../../server/operations/files.ts';
+ import {resolve} from 'node:path';
+ 
+@@ -12,18 +10,16 @@
+   const config=loadConfig(input.env);
+   if(!['local','test'].includes(config.environment))throw new Error('local_release_only');
+   config.previousStaticDirectory=input.previous;
+-  const store=database(config);
++  const app=await createExecutionApp(config);
+   try{
+-    await store.verify();
+-    const app=await createApp(config,store.verify,undefined,new Sessions(config,store.pool));
+     await app.listen({host:'127.0.0.1',port:input.probe?0:config.port});
+     let writing:Promise<void>|null=null;
+     const snapshot=()=>{if(input.probe||writing)return;writing=writePrivateJson(resolve('.rise-infra',config.environment,'operations',`bff-${config.port}.json`),app.operationsSnapshot()).catch(()=>{}).finally(()=>{writing=null;});};
+     snapshot();const timer=setInterval(snapshot,5000);timer.unref();
+     let stopping=false;
+-    const stop=async()=>{if(stopping)return;stopping=true;clearInterval(timer);await writing;await app.close();await store.close();process.disconnect?.();};
++    const stop=async()=>{if(stopping)return;stopping=true;clearInterval(timer);await writing;await app.close();process.disconnect?.();};
+     process.on('SIGTERM',()=>void stop());process.on('SIGINT',()=>void stop());process.once('disconnect',()=>void stop());
+     const address=app.server.address();if(!address||typeof address==='string')throw new Error('invalid_listener');
+     process.send?.({ready:true,port:address.port});
+-  }catch{await store.close();throw new Error('release_start_failed');}
++  }catch{await app.close();throw new Error('release_start_failed');}
+ }catch{process.exitCode=1;}
+--- a/server/app.ts
++++ b/server/app.ts
+@@ -1,4 +1,4 @@
+-import Fastify from "fastify";
++import Fastify, { type RouteOptions } from "fastify";
+ import { randomUUID } from "node:crypto";
+ import { readFile, realpath, stat } from "node:fs/promises";
+ import { createReadStream } from "node:fs";
+@@ -15,7 +15,7 @@
+ import { browserSecurityHeaders } from "./browserPolicy.ts";
+ 
+ const contentTypes: Record<string, string> = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".webmanifest": "application/manifest+json", ".svg": "image/svg+xml", ".png": "image/png", ".webp": "image/webp", ".woff2": "font/woff2" };
+-export async function createApp(config: ServerConfig, readiness: () => Promise<void>, log: (entry: object) => void = () => {}, sessions?: Sessions) {
++export async function createApp(config: ServerConfig, readiness: () => Promise<void>, log: (entry: object) => void = () => {}, sessions?: Sessions, onRoute?: (route: RouteOptions) => void) {
+   const directory = await realpath(resolve(config.staticDirectory));
+   const previous = config.previousStaticDirectory ? await realpath(config.previousStaticDirectory) : null;
+   const html = await readFile(resolve(directory, "index.html"), "utf8");
+@@ -25,6 +25,7 @@
+   // Diagnostic sink failures must never change a committed response.
+   const safeLog=(entry:object)=>{try{log(entry);}catch{/* The private aggregate snapshot remains independent of this sink. */}};
+   const app = Fastify({ logger: false, genReqId: () => randomUUID(), requestTimeout: 15000, connectionTimeout: 10000, bodyLimit: 65536, trustProxy: false, onProtoPoisoning: "error", onConstructorPoisoning: "error" });
++  if (onRoute) app.addHook("onRoute", onRoute);
+   app.addHook("onRequest", async (request, reply) => {
+     reply.header("X-Request-Id", request.id).header("X-Content-Type-Options", "nosniff").header("Referrer-Policy", "strict-origin-when-cross-origin").header("Cache-Control", "no-store");
+     reply.headers(browserSecurityHeaders);
+--- /dev/null
++++ b/server/execution/app.ts
+@@ -0,0 +1,58 @@
++import { createApp } from '../app.ts';
++import type { ServerConfig } from '../config.ts';
++import { sessionInput } from '../auth/routes.ts';
++import { hash } from '../auth/crypto.ts';
++import { RequestMetrics, requestArea, type RequestDiagnostic } from '../operations/requests.ts';
++import { ExecutionPool, type ExecutionOptions } from './pool.ts';
++import type { HTTPMethods } from 'fastify';
++
++/** One HTTP/static listener; no parent database pool. The existing createApp
++ * remains the direct integration-test seam and owns every worker's API rules. */
++export async function createExecutionApp(config: ServerConfig, log: (entry: object) => void = () => {}, options: ExecutionOptions = {}) {
++  const pool = await ExecutionPool.create(config, options);
++  const safeLog = (entry: object) => { try { log(entry); } catch { /* Diagnostics cannot alter a committed response. */ } };
++  try {
++    const app = await createApp(config, () => pool.verify(), entry => {
++      if ('event' in entry && entry.event !== 'request') safeLog(entry);
++    });
++    const originalSnapshot = app.operationsSnapshot();
++    const metrics = new RequestMetrics(config.release, originalSnapshot.webRelease);
++    app.operationsSnapshot = () => metrics.snapshot();
++    app.addHook('onResponse', async (request, reply) => {
++      const path = request.url.split('?')[0];
++      const id = reply.getHeader('x-request-id');
++      const entry: RequestDiagnostic = { event: 'request', requestId: typeof id === 'string' ? id : request.id,
++        area: requestArea(path.startsWith('/api/') ? path : '/*'), status: reply.statusCode,
++        durationMs: Math.max(0, Math.min(60000, Math.round(reply.elapsedTime))), release: config.release,
++        webRelease: originalSnapshot.webRelease, at: new Date().toISOString() };
++      metrics.record(entry); safeLog(entry);
++    });
++    await app.register(async forwarded => {
++      // Preserve raw JSON bytes for the real worker parser. Register the exact
++      // worker-declared limits at ingress too; do not collect a large sync body
++      // for an auth route that only permits 2048 bytes.
++      forwarded.removeAllContentTypeParsers();
++      forwarded.addContentTypeParser('*', { parseAs: 'buffer' }, (_request, body, done) => done(null, body));
++      const routes = pool.routes.filter(route => route.method !== 'HEAD' || !pool.routes.some(other => other.method === 'GET' && other.url === route.url));
++      for (const route of routes) forwarded.route({ method: route.method as HTTPMethods, url: route.url, bodyLimit: route.bodyLimit,
++        handler: async (request, reply) => {
++          try {
++            const session = sessionInput(request, config).session;
++            const response = await pool.request({ method: request.method, url: request.raw.url ?? request.url,
++              headers: request.headers, remoteAddress: request.ip,
++              ...(Buffer.isBuffer(request.body) ? { body: request.body } : {}) }, session ? hash(session).toString('hex') : undefined);
++            // These are trusted worker-generated headers, never client request IDs.
++            reply.code(response.status); reply.headers(response.headers);
++            return reply.send(Buffer.from(response.body));
++          } catch {
++            return reply.code(503).header('Cache-Control', 'no-store').header('Retry-After', '1').send({
++              error: { code: 'unavailable', messageKey: 'auth.unavailable', retryable: true, requestId: request.id },
++            });
++          }
++        },
++      });
++    });
++    app.addHook('preClose', async () => { await pool.close(); });
++    return app;
++  } catch { await pool.close(); throw new Error('execution_start_failed'); }
++}
+--- /dev/null
++++ b/server/execution/bootstrap.mjs
+@@ -0,0 +1,4 @@
++// Explicit loader registration also works in a frozen release with empty worker env.
++import { register } from 'tsx/esm/api';
++register();
++await import('./worker.ts');
+--- /dev/null
++++ b/server/execution/pool.ts
+@@ -0,0 +1,163 @@
++import { Worker } from 'node:worker_threads';
++import type { ServerConfig } from '../config.ts';
++import { SessionAdmission } from '../auth/admission.ts';
++import type { ExecutionRequest, ExecutionResponse, ExecutionRoute, WorkerRequest, WorkerResponse } from './protocol.ts';
++
++export class ExecutionUnavailable extends Error { constructor() { super('execution_unavailable'); } }
++interface Slot {
++  worker: Worker; ready: boolean; retiring: boolean; count: number; jobs: Set<number>; exited: Promise<void>; startupTimer?: NodeJS.Timeout;
++}
++interface Job { slot: Slot; resolve: (value: ExecutionResponse | boolean) => void; reject: (error: Error) => void; timer: NodeJS.Timeout; deadline: number }
++interface Limits { jobs: number; bytes: number; deadlineMs: number; startupMs: number; drainMs: number }
++const defaults: Limits = { jobs: 256, bytes: 32 * 1024 * 1024, deadlineMs: 15000, startupMs: 15000, drainMs: 15000 };
++/** Constructor seams are used by protocol tests, never selected by HTTP or environment input. */
++export interface ExecutionOptions { workerURL?: URL; limits?: Partial<Limits> }
++
++/** Full BFF work stays on five independent event loops, with one restricted DB
++ * connection each. Overlapping least-pending routing avoids serial-worker stalls.
++ * A failed/timed-out request is NEVER retried here: only its owner may retry its
++ * immutable operation, including when the database committed before worker loss. */
++export class ExecutionPool {
++  private readonly slots: Slot[] = [];
++  private readonly jobs = new Map<number, Job>();
++  private readonly admission = new SessionAdmission();
++  private readonly active = new Set<Promise<unknown>>();
++  private readonly limits: Limits;
++  private readonly workerURL: URL;
++  private serial = 0;
++  private retained = 0;
++  private accepted = 0;
++  private closing = false;
++  private closeResult: Promise<void> | null = null;
++  private verification: Promise<void> | null = null;
++  private manifest: ExecutionRoute[] | null = null;
++  private readonly replacements: number[][] = Array.from({ length: 5 }, () => []);
++
++  private constructor(private readonly config: ServerConfig, options: ExecutionOptions) {
++    if (config.database.max !== 5) throw new Error('execution_pool_budget_required');
++    this.limits = { ...defaults, ...options.limits };
++    this.workerURL = options.workerURL ?? new URL('./bootstrap.mjs', import.meta.url);
++  }
++  static async create(config: ServerConfig, options: ExecutionOptions = {}) {
++    const pool = new ExecutionPool(config, options);
++    try { await Promise.all(Array.from({ length: 5 }, (_, index) => pool.start(index))); return pool; }
++    catch { await pool.close(); throw new ExecutionUnavailable(); }
++  }
++  get available() { return !this.closing && this.slots.length === 5 && this.slots.every(slot => slot.ready && !slot.retiring); }
++  get routes(): readonly ExecutionRoute[] { return this.manifest ?? []; }
++
++  private start(index: number): Promise<void> {
++    // Dedicated typed-array backing stores prevent cloning unrelated bytes from
++    // Node's pooled Buffer allocations along with these narrow runtime keys.
++    const workerData = { ...this.config, sessionKey: Uint8Array.from(this.config.sessionKey),
++      ...(this.config.push ? { push: { ...this.config.push, dataKey: Uint8Array.from(this.config.push.dataKey) } } : {}) };
++    const worker = new Worker(this.workerURL, { workerData, execArgv: [], env: {}, stdout: true, stderr: true });
++    // Unexpected runtime/loader output may contain private details. Never forward it.
++    worker.stdout.resume(); worker.stderr.resume();
++    let ended!: () => void;
++    const slot: Slot = { worker, ready: false, retiring: false, count: 0, jobs: new Set(), exited: new Promise(resolve => { ended = resolve; }) };
++    this.slots[index] = slot;
++    return new Promise((resolve, reject) => {
++      let initialized = false;
++      const timer = setTimeout(() => { reject(new ExecutionUnavailable()); void this.retire(index, slot, false); }, this.limits.startupMs);
++      slot.startupTimer = timer;
++      const fail = () => {
++        clearTimeout(timer); reject(new ExecutionUnavailable());
++        void this.retire(index, slot, initialized);
++      };
++      worker.on('error', fail);
++      worker.on('exit', () => { ended(); if (!slot.retiring) fail(); });
++      worker.on('message', (message: WorkerResponse) => {
++        if (slot.retiring || this.slots[index] !== slot) return;
++        if (message.kind === 'ready') {
++          if (!Array.isArray(message.routes) || this.manifest && JSON.stringify(this.manifest) !== JSON.stringify(message.routes)) { fail(); return; }
++          this.manifest ??= message.routes;
++          clearTimeout(timer); initialized = true; slot.ready = true; resolve(); return;
++        }
++        if (message.kind === 'failed') { fail(); return; }
++        const job = this.jobs.get(message.id);
++        if (!job || job.slot !== slot) return;
++        if (performance.now() >= job.deadline) { void this.retire(index, slot, true); return; }
++        this.jobs.delete(message.id); slot.jobs.delete(message.id); clearTimeout(job.timer);
++        job.resolve(message.kind === 'verified' ? message.ok : message.response);
++      });
++    });
++  }
++  private async retire(index: number, slot: Slot, replace: boolean) {
++    if (slot.retiring) { await slot.exited; return; }
++    slot.retiring = true; slot.ready = false;
++    clearTimeout(slot.startupTimer);
++    // Fence the old worker and close its connections BEFORE replacement/admission.
++    await slot.worker.terminate().catch(() => {});
++    await slot.exited;
++    for (const id of slot.jobs) {
++      const job = this.jobs.get(id); if (!job) continue;
++      clearTimeout(job.timer); this.jobs.delete(id); job.reject(new ExecutionUnavailable());
++    }
++    slot.jobs.clear();
++    if (!replace || this.closing) return;
++    const now = performance.now(), attempts = this.replacements[index].filter(at => now - at < 60000);
++    if (attempts.length >= 3) return;
++    this.replacements[index] = [...attempts, now];
++    // A failed startup or repeated ready/crash cycle remains unavailable until
++    // process restart. Never create an unbounded retry loop or extra connections.
++    try { await this.start(index); } catch { /* Readiness remains fail-closed. */ }
++  }
++  private send(slot: Slot, request: Omit<Extract<WorkerRequest, { kind: 'request' }>, 'id'> | { kind: 'verify' }, deadline = performance.now() + this.limits.deadlineMs) {
++    return new Promise<ExecutionResponse | boolean>((resolve, reject) => {
++      if (this.closing || !slot.ready || slot.retiring || performance.now() >= deadline) { reject(new ExecutionUnavailable()); return; }
++      const id = ++this.serial;
++      const timer = setTimeout(() => { void this.retire(this.slots.indexOf(slot), slot, true); }, Math.max(1, deadline - performance.now()));
++      slot.jobs.add(id); slot.count++;
++      this.jobs.set(id, { slot, resolve, reject, timer, deadline });
++      try { slot.worker.postMessage({ ...request, id }); }
++      catch { void this.retire(this.slots.indexOf(slot), slot, true); }
++    });
++  }
++  async request(request: ExecutionRequest, sessionKey?: string): Promise<ExecutionResponse> {
++    const bytes = (request.body?.byteLength ?? 0) + Buffer.byteLength(request.url) + Buffer.byteLength(JSON.stringify(request.headers));
++    if (!this.available || this.accepted >= this.limits.jobs || bytes > this.limits.bytes - this.retained) throw new ExecutionUnavailable();
++    const deadline = performance.now() + this.limits.deadlineMs;
++    this.accepted++; this.retained += bytes;
++    const run = async () => {
++      if (!this.available) throw new ExecutionUnavailable();
++      const slot = [...this.slots].sort((a, b) => a.jobs.size - b.jobs.size || a.count - b.count)[0];
++      const result = await this.send(slot, { kind: 'request', request }, deadline);
++      if (typeof result === 'boolean') throw new ExecutionUnavailable();
++      return result;
++    };
++    // Admission precedes dispatch, so a session never occupies several worker
++    // connections while waiting on its own provider/row lock.
++    const work = sessionKey ? this.admission.run(sessionKey, run) : run();
++    this.active.add(work);
++    try { return await work; }
++    finally { this.active.delete(work); this.accepted--; this.retained -= bytes; }
++  }
++  verify(): Promise<void> {
++    if (!this.available) return Promise.reject(new ExecutionUnavailable());
++    if (!this.verification) this.verification = Promise.all(this.slots.map(slot => this.send(slot, { kind: 'verify' })))
++      .then(results => { if (!this.available || results.some(value => value !== true)) throw new ExecutionUnavailable(); })
++      .finally(() => { this.verification = null; });
++    return this.verification;
++  }
++  close(): Promise<void> {
++    if (this.closeResult) return this.closeResult;
++    this.closing = true;
++    this.closeResult = (async () => {
++      let timer: NodeJS.Timeout | undefined;
++      await Promise.race([Promise.allSettled(this.active), new Promise<void>(resolve => { timer = setTimeout(resolve, this.limits.drainMs); })]);
++      clearTimeout(timer);
++      await Promise.all(this.slots.map(async (slot, index) => {
++        if (!slot.retiring && !slot.jobs.size) {
++          slot.retiring = true; slot.ready = false;
++          clearTimeout(slot.startupTimer);
++          try { slot.worker.postMessage({ kind: 'close' }); } catch { /* Terminate below. */ }
++          let deadline: NodeJS.Timeout | undefined;
++          await Promise.race([slot.exited, new Promise<void>(resolve => { deadline = setTimeout(resolve, 3000); })]);
++          clearTimeout(deadline); await slot.worker.terminate().catch(() => {}); await slot.exited;
++        } else await this.retire(index, slot, false);
++      }));
++    })();
++    return this.closeResult;
++  }
++}
+--- /dev/null
++++ b/server/execution/protocol.ts
+@@ -0,0 +1,13 @@
++import type { IncomingHttpHeaders, OutgoingHttpHeaders } from 'node:http';
++
++/** Private in-process protocol. Credentials travel in memory only; never log envelopes. */
++export interface ExecutionRequest {
++  method: string; url: string; headers: IncomingHttpHeaders; remoteAddress: string; body?: Uint8Array;
++}
++export interface ExecutionResponse { status: number; headers: OutgoingHttpHeaders; body: Uint8Array }
++export interface ExecutionRoute { method: string; url: string; bodyLimit: number }
++export type WorkerRequest = { kind: 'request'; id: number; request: ExecutionRequest }
++  | { kind: 'verify'; id: number } | { kind: 'close' };
++export type WorkerResponse = { kind: 'ready'; routes: ExecutionRoute[] } | { kind: 'failed' }
++  | { kind: 'response'; id: number; response: ExecutionResponse }
++  | { kind: 'verified'; id: number; ok: boolean };
+--- /dev/null
++++ b/server/execution/worker.ts
+@@ -0,0 +1,42 @@
++import { parentPort, workerData } from 'node:worker_threads';
++import type { ServerConfig } from '../config.ts';
++import { database } from '../database.ts';
++import { createApp } from '../app.ts';
++import { Sessions } from '../auth/sessions.ts';
++import type { ExecutionRoute, WorkerRequest, WorkerResponse } from './protocol.ts';
++
++if (!parentPort) throw new Error('execution_parent_required');
++const port = parentPort;
++// Only the already-validated restricted runtime configuration crosses this boundary.
++const config = workerData as ServerConfig;
++if (config.database.max !== 5) throw new Error('execution_pool_budget_required');
++config.database = { ...config.database, max: 1 };
++config.sessionKey = Buffer.from(config.sessionKey);
++if (config.push) config.push.dataKey = Buffer.from(config.push.dataKey);
++const store = database(config);
++const send = (value: WorkerResponse) => port.postMessage(value);
++try {
++  await store.verify();
++  const routes: ExecutionRoute[] = [];
++  const app = await createApp(config, store.verify, undefined, new Sessions(config, store.pool), route => {
++    if (!route.url.startsWith('/api/v1/') || route.url.startsWith('/api/v1/health/')) return;
++    for (const method of Array.isArray(route.method) ? route.method : [route.method]) routes.push({ method, url: route.url, bodyLimit: route.bodyLimit ?? 65536 });
++  });
++  await app.ready();
++  port.on('message', (message: WorkerRequest) => {
++    void (async () => {
++      if (message.kind === 'close') { await app.close(); await store.close(); port.close(); return; }
++      if (message.kind === 'verify') {
++        let ok = true; try { await store.verify(); } catch { ok = false; }
++        send({ kind: 'verified', id: message.id, ok }); return;
++      }
++      const request = message.request;
++      const result = await app.inject({ method: request.method, url: request.url, headers: request.headers,
++        remoteAddress: request.remoteAddress, ...(request.body ? { payload: Buffer.from(request.body) } : {}) });
++      send({ kind: 'response', id: message.id, response: { status: result.statusCode, headers: result.headers, body: result.rawPayload } });
++    })().catch(() => { send({ kind: 'failed' }); });
++  });
++  send({ kind: 'ready', routes });
++} catch {
++  await store.close(); send({ kind: 'failed' }); port.close();
++}
+--- a/server/main.ts
++++ b/server/main.ts
+@@ -2,18 +2,14 @@
+ import { resolve } from "node:path";
+ import { writePrivateJson } from "./operations/files.ts";
+ import { loadConfig, ConfigurationError } from "./config.ts";
+-import { database } from "./database.ts";
+-import { createApp } from "./app.ts";
+-import { Sessions } from "./auth/sessions.ts";
++import { createExecutionApp } from "./execution/app.ts";
+ 
+ const log = (entry: object) => process.stdout.write(`${JSON.stringify(entry)}\n`);
+ try {
+   const config = loadConfig(process.env);
+   if(config.environment==="local"||config.environment==="test")config.release=await localRuntimeRelease();
+-  const store = database(config);
++  const app = await createExecutionApp(config, log);
+   try {
+-    await store.verify(); // A wrong database/Auth project never starts accepting requests.
+-    const app = await createApp(config, store.verify, log, new Sessions(config, store.pool));
+     await app.listen({ host: config.host, port: config.port });
+     let writing:Promise<void>|null=null;
+     const snapshot=()=>{
+@@ -24,9 +20,9 @@
+     snapshot();const monitor=setInterval(snapshot,5000);monitor.unref();
+     log({ event: "started", environment: config.environment, release: config.release });
+     let stopping = false;
+-    const stop = async () => { if (stopping) return; stopping = true; clearInterval(monitor); await writing; await app.close(); await store.close(); };
++    const stop = async () => { if (stopping) return; stopping = true; clearInterval(monitor); await writing; await app.close(); };
+     process.on("SIGTERM", () => { void stop(); }); process.on("SIGINT", () => { void stop(); });
+-  } catch { await store.close(); throw new Error("backend_not_ready"); }
++  } catch { await app.close(); throw new Error("backend_not_ready"); }
+ } catch (error) {
+   log({ event: "startup_failed", code: error instanceof ConfigurationError ? error.code : "backend_not_ready" }); process.exitCode = 1;
+ }
+--- a/server/operations/release.ts
++++ b/server/operations/release.ts
+@@ -3,11 +3,11 @@
+ import {resolve} from 'node:path';
+ import {fileURLToPath} from 'node:url';
+ /** Local checkouts have no required Git commit. Fingerprint only code and the pinned lockfile, never configuration. */
+-export async function localRuntimeRelease(){
+-  const root=fileURLToPath(new URL('../../',import.meta.url)),hash=createHash('sha256');
++export async function localRuntimeRelease(root=fileURLToPath(new URL('../../',import.meta.url))){
++  const hash=createHash('sha256');
+   async function visit(relative:string){
+     const entries=(await readdir(resolve(root,relative),{withFileTypes:true})).sort((a,b)=>a.name.localeCompare(b.name));
+-    for(const entry of entries){const name=`${relative}/${entry.name}`;if(entry.isDirectory())await visit(name);else if(entry.isFile()&&/\.tsx?$/.test(name)){hash.update(name+'\0');hash.update(await readFile(resolve(root,name)));}}
++    for(const entry of entries){const name=`${relative}/${entry.name}`;if(entry.isDirectory())await visit(name);else if(entry.isFile()&&/\.(?:tsx?|mjs)$/.test(name)){hash.update(name+'\0');hash.update(await readFile(resolve(root,name)));}}
+   }
+   await visit('server');await visit('src');hash.update(await readFile(resolve(root,'package-lock.json')));
+   return `local-${hash.digest('hex').slice(0,20)}`;
+--- /dev/null
++++ b/tests/execution.test.ts
+@@ -0,0 +1,133 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { mkdtemp, writeFile, mkdir, rm } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join } from 'node:path';
++import { ExecutionPool, ExecutionUnavailable } from '../server/execution/pool.ts';
++import { createExecutionApp } from '../server/execution/app.ts';
++import type { ServerConfig } from '../server/config.ts';
++import type { ExecutionRequest } from '../server/execution/protocol.ts';
++import { localRuntimeRelease } from '../server/operations/release.ts';
++
++const config: ServerConfig = { environment: 'test', origin: 'http://127.0.0.1:4191', installationOrigin: 'http://127.0.0.1:4191',
++  release: 'execution-test', installationId: '00000000-0000-4000-8000-000000000001', projectRef: 'rise-test', providerUrl: 'http://127.0.0.1:55421',
++  publishableKey: 'synthetic', host: '127.0.0.1', port: 4191, staticDirectory: 'dist', database: { max: 5 }, sessionKey: Buffer.alloc(32) };
++const workerURL = new URL('./support/execution-worker.mjs', import.meta.url);
++const request = (url = '/echo'): ExecutionRequest => ({ method: 'POST', url, headers: { host: '127.0.0.1:4191' }, remoteAddress: '127.0.0.2' });
++const decode = (body: Uint8Array) => JSON.parse(Buffer.from(body).toString()) as { threadId: number; overlap: number; body: string; ip: string; environmentEmpty: boolean; headers: Record<string, string> };
++
++test('local release identity includes worker bootstrap source and excludes private configuration', async () => {
++  const directory = await mkdtemp(join(tmpdir(), 'rise-execution-release-test-'));
++  try {
++    await mkdir(join(directory, 'server')); await mkdir(join(directory, 'src'));
++    await writeFile(join(directory, 'package-lock.json'), '{}');
++    await writeFile(join(directory, 'server/bootstrap.mjs'), 'export const version=1;');
++    const before = await localRuntimeRelease(directory);
++    await writeFile(join(directory, 'server/private.env'), 'PRIVATE_SYNTHETIC_CANARY');
++    assert.equal(await localRuntimeRelease(directory), before);
++    await writeFile(join(directory, 'server/bootstrap.mjs'), 'export const version=2;');
++    assert.notEqual(await localRuntimeRelease(directory), before);
++  } finally { await rm(directory, { recursive: true, force: true }); }
++});
++
++test('execution overlaps least-pending workers, preserves envelopes/binary and serializes only the same session', async () => {
++  const pool = await ExecutionPool.create(config, { workerURL });
++  try {
++    const replies = await Promise.all(Array.from({ length: 10 }, () => pool.request(request('/delay'))));
++    assert.equal(new Set(replies.map(r => decode(r.body).threadId)).size, 5);
++    assert.ok(replies.some(r => decode(r.body).overlap > 1), 'workers must overlap I/O instead of a serial FIFO');
++    const same = await Promise.all(Array.from({ length: 6 }, () => pool.request(request('/delay'), 'one-session')));
++    assert.ok(same.every(r => decode(r.body).overlap === 1));
++    const echo = await pool.request({ ...request(), body: Buffer.from('{"x":1,"x":2,"__proto__":{}}') });
++    assert.equal(decode(echo.body).body, '{"x":1,"x":2,"__proto__":{}}');
++    assert.equal(decode(echo.body).ip, '127.0.0.2'); assert.equal(decode(echo.body).environmentEmpty, true);
++    assert.deepEqual(echo.headers['set-cookie'], ['a=1; HttpOnly', 'b=2; HttpOnly']);
++    assert.deepEqual(Buffer.from((await pool.request(request('/binary'))).body), Buffer.from([0, 255, 1, 128]));
++    await pool.verify();
++  } finally { await pool.close(); }
++  await assert.rejects(pool.request(request()), ExecutionUnavailable);
++});
++
++test('execution admission is bounded by jobs and bytes without dropping accepted work', async () => {
++  const pool = await ExecutionPool.create(config, { workerURL, limits: { jobs: 1, bytes: 1024 } });
++  try {
++    const pending = pool.request(request('/delay'));
++    await assert.rejects(pool.request(request()), ExecutionUnavailable);
++    assert.equal((await pending).status, 201);
++    await assert.rejects(pool.request({ ...request(), body: Buffer.alloc(1024) }), ExecutionUnavailable);
++    assert.equal((await pool.request(request())).status, 201);
++  } finally { await pool.close(); }
++});
++
++test('execution close drains dispatched work, rejects waiting admission and is idempotent', async () => {
++  const pool = await ExecutionPool.create(config, { workerURL });
++  const first = pool.request(request('/delay'), 'same-session');
++  // Allow the admitted operation to cross the worker boundary.
++  await new Promise(resolve => setTimeout(resolve, 10));
++  const waiting = pool.request(request(), 'same-session').then(() => false, () => true);
++  const closing = pool.close();
++  assert.equal(await pool.close(), await closing);
++  assert.equal((await first).status, 201); assert.equal(await waiting, true);
++  assert.equal(pool.available, false);
++});
++
++test('worker crash/deadline fails once without replay and replacement re-verifies readiness', async () => {
++  for (const url of ['/crash', '/hang']) {
++    const pool = await ExecutionPool.create(config, { workerURL, limits: { deadlineMs: 100 } });
++    try {
++      await assert.rejects(pool.request(request(url)), ExecutionUnavailable);
++      for (let i = 0; i < 100 && !pool.available; i++) await new Promise(resolve => setTimeout(resolve, 10));
++      assert.equal(pool.available, true); await pool.verify();
++      assert.equal((await pool.request(request())).status, 201);
++    } finally { await pool.close(); }
++  }
++  await assert.rejects(ExecutionPool.create({ ...config, release: 'fail-start' }, { workerURL }), ExecutionUnavailable);
++  const pool = await ExecutionPool.create({ ...config, release: 'fail-verify' }, { workerURL });
++  try { await assert.rejects(pool.verify(), ExecutionUnavailable); } finally { await pool.close(); }
++});
++
++test('repeated ready/crash cycles exhaust the bounded replacement budget', async () => {
++  const pool = await ExecutionPool.create(config, { workerURL });
++  try {
++    for (let round = 0; round < 4; round++) {
++      const results = await Promise.allSettled(Array.from({ length: 5 }, () => pool.request(request('/crash'))));
++      assert.ok(results.every(result => result.status === 'rejected'));
++      if (round < 3) {
++        for (let i = 0; i < 100 && !pool.available; i++) await new Promise(resolve => setTimeout(resolve, 10));
++        assert.equal(pool.available, true);
++      }
++    }
++    await new Promise(resolve => setTimeout(resolve, 100));
++    assert.equal(pool.available, false);
++    await assert.rejects(pool.verify(), ExecutionUnavailable);
++    await assert.rejects(pool.request(request()), ExecutionUnavailable);
++  } finally { await pool.close(); }
++});
++
++test('HTTP coordinator preserves raw bytes, IP, cookie arrays, binary and correlated private metrics', async () => {
++  const directory = await mkdtemp(join(tmpdir(), 'rise-execution-test-'));
++  await writeFile(join(directory, 'index.html'), '<meta name="rise-build" content="production"><meta name="rise-release" content="0123456789abcdef0123">');
++  const entries: object[] = [];
++  const app = await createExecutionApp({ ...config, staticDirectory: directory }, entry => entries.push(entry), { workerURL });
++  try {
++    const response = await app.inject({ method: 'POST', url: '/api/v1/personal/commands', remoteAddress: '127.0.0.7',
++      headers: { host: '127.0.0.1:4191', origin: config.origin, 'content-type': 'application/json', 'x-forwarded-for': '192.0.2.99', 'x-request-id': 'PRIVATE_CANARY' },
++      payload: '{"duplicate":1,"duplicate":2}' });
++    assert.equal(response.statusCode, 201); assert.equal(response.json().body, '{"duplicate":1,"duplicate":2}');
++    assert.equal(response.json().ip, '127.0.0.7'); assert.deepEqual(response.headers['set-cookie'], ['a=1; HttpOnly', 'b=2; HttpOnly']);
++    assert.match(String(response.headers['x-request-id']), /^trusted-worker-/);
++    const metric = entries.at(-1) as { requestId: string; area: string };
++    assert.equal(metric.requestId, response.headers['x-request-id']); assert.equal(metric.area, 'personal');
++    assert.equal(JSON.stringify(entries).includes('PRIVATE_CANARY'), false); assert.equal(app.operationsSnapshot().requests, 1);
++    const wrongOrigin = await app.inject({ method: 'POST', url: '/api/v1/personal/commands', headers: { host: 'evil.invalid' } });
++    assert.equal(wrongOrigin.statusCode, 403);
++    const tooLarge = await app.inject({ method: 'POST', url: '/api/v1/personal/commands', headers: { host: '127.0.0.1:4191', 'content-type': 'application/json' }, payload: 'x'.repeat(512 * 1024 + 1) });
++    assert.equal(tooLarge.statusCode, 413);
++    for (const [url, limit] of [['/api/v1/auth/code', 2048], ['/api/v1/personal/commands', 65536], ['/api/v1/sync/commands', 524288]] as const) {
++      const headers = { host: '127.0.0.1:4191', 'content-type': 'application/json' };
++      assert.equal((await app.inject({ method: 'POST', url, headers, payload: 'x'.repeat(limit) })).statusCode, 201);
++      assert.equal((await app.inject({ method: 'POST', url, headers, payload: 'x'.repeat(limit + 1) })).statusCode, 413);
++    }
++    assert.equal((await app.inject({ method: 'HEAD', url: '/api/v1/binary', headers: { host: '127.0.0.1:4191' } })).body, '');
++  } finally { await app.close(); await rm(directory, { recursive: true, force: true }); }
++});
+--- /dev/null
++++ b/tests/infra/execution.test.ts
+@@ -0,0 +1,78 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import { randomUUID } from 'node:crypto';
++import { createExecutionApp } from '../../server/execution/app.ts';
++import { ExecutionPool } from '../../server/execution/pool.ts';
++import { authHarness, AuthBrowser, syntheticEmail } from '../support/auth.ts';
++
++test('real restricted execution workers preserve auth, route limits, RLS and exact replay after commit/worker loss', { timeout: 60000 }, async () => {
++  const setup = await authHarness();
++  // Never add worker connections on top of the original restricted pool budget.
++  await setup.store.close();
++  let app: Awaited<ReturnType<typeof createExecutionApp>> | undefined;
++  const email = syntheticEmail();
++  let owner: string | undefined;
++  try {
++    app = await createExecutionApp(setup.config, undefined, { workerURL: new URL('../support/execution-commit-loss.mjs', import.meta.url) });
++    const runtime = app, browser = new AuthBrowser({ ...setup, app });
++    const ready = async () => {
++      for (let i = 0; i < 100; i++) {
++        const response = await runtime.inject({ url: '/api/v1/health/ready', headers: { host: '127.0.0.1:4191' } });
++        if (response.statusCode === 200) return;
++        await new Promise(resolve => setTimeout(resolve, 30));
++      }
++      assert.fail('verified replacement must become ready');
++    };
++    const login = await browser.login(email); owner = login.session.json().account.id;
++    const headers = { host: '127.0.0.1:4191', origin: setup.config.origin, 'content-type': 'application/json' };
++    for (const [url, limit] of [
++      ['auth/code', 2048], ['auth/verify', 2048], ['auth/reauth/code', 2048], ['auth/reauth/verify', 2048], ['logout', 2048],
++      ['groups/commands', 8192], ['groups/invitations/preview', 1024], ['groups/receipt', 1024], ['squads/preview', 8192],
++      ['push', 8192], ['push/plan', 32768], ['push/cancel-plan', 32768], ['push/disable', 32768], ['push/test', 32768],
++      ['personal/commands', 65536], ['sync/review', 262144], ['sync/commands', 524288], ['sync/imports/page', 524288],
++      ['sync/pull', 2048], ['sync/changes', 2048], ['sync/imports', 2048], ['sync/imports/preview', 2048], ['sync/imports/commit', 2048], ['sync/imports/cancel', 2048],
++    ] as const) {
++      const response = await runtime.inject({ method: 'POST', url: `/api/v1/${url}`, headers, payload: 'x'.repeat(limit + 1) });
++      assert.equal(response.statusCode, 413, `unchanged ingress limit for ${url}`);
++    }
++    const operation = { protocolVersion: 1, operationId: randomUUID(), baseRevision: 0,
++      command: { kind: 'account.initialize', name: 'Synthetic execution', timezone: 'UTC', language: 'en' } };
++    const lost = await browser.request('personal/commands', operation);
++    assert.equal(lost.statusCode, 503, 'worker loss cannot manufacture a success response or auto-replay');
++    await ready();
++    const replay = await browser.request('personal/commands', operation);
++    assert.equal(replay.statusCode, 200); assert.deepEqual(replay.json(), { operationId: operation.operationId, operationRevision: 1, xp: 0, replayed: true });
++    assert.equal((await browser.request('personal/commands', { ...operation, command: { ...operation.command, name: 'Changed retry' } })).statusCode, 409);
++    const read = await browser.request('personal'); assert.equal(read.statusCode, 200); assert.equal(read.json().revision, 1);
++    assert.equal(read.json().records.profiles[0].name, 'Synthetic execution');
++    assert.equal((await app.inject({ url: '/api/v1/personal', headers: { host: '127.0.0.1:4191' } })).statusCode, 401);
++    assert.equal((await browser.request('personal/commands', operation, { origin: 'https://unrelated.invalid' })).statusCode, 403);
++    assert.equal((await setup.admin.query('select count(*)::int as n from rise.personal_receipts where owner_id=$1', [owner])).rows[0].n, 1);
++    const beforeCommit = { protocolVersion: 1, operationId: randomUUID(), baseRevision: 1, command: { kind: 'profile.name', name: 'After exact retry' } };
++    assert.equal((await browser.request('personal/commands', beforeCommit, { 'x-synthetic-precommit-loss': '1' })).statusCode, 503);
++    await ready();
++    assert.equal((await browser.request('personal')).json().revision, 1);
++    assert.equal((await setup.admin.query('select count(*)::int as n from rise.personal_receipts where owner_id=$1', [owner])).rows[0].n, 1);
++    assert.equal((await browser.request('personal/commands', beforeCommit)).statusCode, 200);
++    const secondReplay = await browser.request('personal/commands', beforeCommit);
++    assert.deepEqual(secondReplay.json(), { operationId: beforeCommit.operationId, operationRevision: 2, xp: 0, replayed: true });
++    assert.equal((await browser.request('personal')).json().records.profiles[0].name, 'After exact retry');
++    assert.equal((await setup.admin.query('select count(*)::int as n from rise.personal_receipts where owner_id=$1', [owner])).rows[0].n, 2);
++    const connections = await setup.admin.query("select count(*)::int as n from pg_stat_activity where application_name=$1 and usename='rise_bff_login'", [setup.config.database.application_name]);
++    assert.ok(connections.rows[0].n <= 5, 'replacement retains the total restricted connection budget');
++  } finally {
++    await app?.close(); await setup.app.close();
++    try {
++      await setup.admin.query('delete from auth.users where email=$1', [email]);
++      const remaining = await setup.admin.query("select count(*)::int as n from pg_stat_activity where application_name=$1 and usename='rise_bff_login'", [setup.config.database.application_name]);
++      assert.equal(remaining.rows[0].n, 0, 'graceful close releases every worker connection');
++    } finally { await setup.admin.end(); }
++  }
++});
++
++test('real execution startup rejects a crossed installation before accepting requests', { timeout: 30000 }, async () => {
++  const setup = await authHarness();
++  await setup.store.close();
++  try { await assert.rejects(ExecutionPool.create({ ...setup.config, installationId: randomUUID() }), { message: 'execution_unavailable' }); }
++  finally { await setup.app.close(); await setup.admin.end(); }
++});
+--- /dev/null
++++ b/tests/support/execution-commit-loss.mjs
+@@ -0,0 +1,18 @@
++// Fixed-test-only process fault: real BFF/DB commit succeeds, its first receipt
++// is lost with the worker. An exact replay is delivered normally. Never packaged.
++import { parentPort } from 'node:worker_threads';
++import { register } from 'tsx/esm/api';
++const send = parentPort.postMessage.bind(parentPort);
++parentPort.postMessage = message => {
++  if (message.kind === 'response' && message.response.status === 200) {
++    let value; try { value = JSON.parse(Buffer.from(message.response.body).toString()); } catch { /* Non-JSON response. */ }
++    if (value?.operationId && value.operationRevision === 1 && value.replayed === false) process.exit(1);
++  }
++  send(message);
++};
++// Registered before importing the worker, so this synchronous handler runs first.
++parentPort.on('message', message => {
++  if (message.kind === 'request' && message.request.headers['x-synthetic-precommit-loss'] === '1') process.exit(1);
++});
++register();
++await import('../../server/execution/worker.ts');
+--- /dev/null
++++ b/tests/support/execution-worker.mjs
+@@ -0,0 +1,32 @@
++// Synthetic transport peer only. Production never selects this module.
++import { parentPort, threadId, workerData } from 'node:worker_threads';
++if (workerData.release === 'fail-start') { parentPort.postMessage({ kind: 'failed' }); parentPort.close(); }
++else {
++  let active = 0;
++  parentPort.postMessage({ kind: 'ready', routes: [
++    {method:'POST',url:'/api/v1/personal/commands',bodyLimit:65536},
++    {method:'POST',url:'/api/v1/auth/code',bodyLimit:2048},
++    {method:'POST',url:'/api/v1/sync/commands',bodyLimit:524288},
++    {method:'GET',url:'/api/v1/binary',bodyLimit:65536},
++    {method:'HEAD',url:'/api/v1/binary',bodyLimit:65536},
++  ] });
++  parentPort.on('message', async message => {
++    if (message.kind === 'close') { parentPort.close(); return; }
++    if (message.kind === 'verify') { parentPort.postMessage({ kind: 'verified', id: message.id, ok: workerData.release !== 'fail-verify' }); return; }
++    const { request, id } = message;
++    if (request.url === '/crash') { process.exit(1); }
++    if (request.url === '/hang') return;
++    active++;
++    const overlap = active;
++    if (request.url === '/delay') await new Promise(resolve => setTimeout(resolve, 80));
++    active--;
++    const body = request.url === '/binary' ? new Uint8Array([0, 255, 1, 128]) : Buffer.from(JSON.stringify({
++      threadId, overlap, body: request.body ? Buffer.from(request.body).toString() : null,
++      ip: request.remoteAddress, url: request.url, headers: request.headers, environmentEmpty: Object.keys(process.env).length === 0,
++    }));
++    parentPort.postMessage({ kind: 'response', id, response: { status: 201, body, headers: {
++      'content-type': request.url === '/binary' ? 'application/octet-stream' : 'application/json',
++      'set-cookie': ['a=1; HttpOnly', 'b=2; HttpOnly'], 'x-request-id': `trusted-worker-${threadId}`,
++    } } });
++  });
++}

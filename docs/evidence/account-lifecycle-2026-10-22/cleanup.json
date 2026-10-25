@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-22T16:47:15.301Z",
+  "localStopped": true,
+  "testStopped": true,
+  "retainedOwnVolumes": [
+    "supabase_db_rise-local-0b488bde",
+    "supabase_db_rise-test-0b488bde"
+  ],
+  "unrelatedContainersRetained": true,
+  "unrelated": [
+    "investor-passport-local-app-1",
+    "trading_platform_redis",
+    "trading_platform_postgres",
+    "cryptoattack-postgres"
+  ],
+  "preview4173StillListening": true,
+  "previewDataAccessed": false,
+  "cloudProvisioned": false,
+  "deployed": false,
+  "commands": [
+    "npm run infra:stop -- test",
+    "npm run infra:stop -- local"
+  ]
+}

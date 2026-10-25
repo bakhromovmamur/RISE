@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-24",
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "status": "IN PROGRESS",
+  "capacity": "FAIL",
+  "recoveryAndCleanup": "PASS",
+  "environment": {
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "node": "24.16.0",
+    "npm": "11.13.0",
+    "postgres": "17.11",
+    "transport": "Fastify.inject; fixed test installation"
+  },
+  "commands": [
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts smoke",
+      "exit": 0,
+      "report": "smoke.json"
+    },
+    {
+      "command": "node --import tsx scripts/infra/check-account-load.ts full",
+      "exit": 1,
+      "report": "full.json",
+      "reason": "189 HTTP 503 first attempts; accepted p95 4335.7 ms"
+    },
+    {
+      "command": "npx tsc --noEmit -p tsconfig.server.json",
+      "exit": 0
+    },
+    {
+      "command": "npx oxlint scripts/infra/check-account-load.ts --deny-warnings",
+      "exit": 0
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0
+    }
+  ],
+  "negativeChecks": {
+    "overlap": "rejected before fixtures",
+    "invalidMode": "rejected before environment",
+    "SIGTERM": "interrupted; cleaned; zero measured requests"
+  },
+  "limitations": [
+    "Two simultaneous personal-command waves, not sustained/mixed/shared workload",
+    "No hosted/physical-browser/availability claim",
+    "Same application/build as increment 5; no browser regression rerun for a diagnostic-only change"
+  ]
+}

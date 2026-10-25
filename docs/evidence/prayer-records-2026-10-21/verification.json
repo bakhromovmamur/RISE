@@ -1,0 +1,66 @@
+{
+  "task": "PRAY-02",
+  "date": "2026-10-21",
+  "status": "complete",
+  "unitTooling": {
+    "passed": 137,
+    "failed": 0,
+    "log": "check.log"
+  },
+  "journeys": {
+    "verifiedUnique": 378,
+    "fullRun": {
+      "startTime": "2026-10-21T15:03:30.821Z",
+      "duration": 385989.923,
+      "expected": 375,
+      "skipped": 0,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "datedExpectationRetest": {
+      "startTime": "2026-10-21T15:10:36.938Z",
+      "duration": 5076.625,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "explanation": "The full run passed 375. Three engines still asserted an old Fajr draft should rebind from October 19 to October 20 on reload. Updated that expectation to the retained October 19 date, asserted the saved draft date, and reran the same scenario successfully in all three engines. No application code changed."
+  },
+  "focusedPrayer": {
+    "startTime": "2026-10-21T15:01:49.116Z",
+    "duration": 95086.914,
+    "expected": 36,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "production": {
+    "startTime": "2026-10-21T15:01:48.924Z",
+    "duration": 91990.384,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "uniqueBrowserScenariosVerified": 417,
+  "visual": {
+    "verifiedVariants": 48,
+    "comparisons": 720,
+    "details": "visual-verification.json"
+  },
+  "supplementalMidnightCheck": "fajr-midnight.log",
+  "finalTypecheckAndLint": true,
+  "scope": {
+    "fullRunInputs": "browser-full-inputs.json",
+    "finalInputs": "verification-inputs.json",
+    "assertionOnlyChangeAfterFullRun": [
+      "tests/full-day.browser.spec.ts"
+    ],
+    "applicationAndBuildsUnchanged": true,
+    "builds": "builds.json",
+    "goldensUpdated": false,
+    "personalOriginAccessed": false
+  },
+  "remaining": "PWA, accounts/sync, remote push/cancellation, deployment and physical-device release gates remain separate tasks."
+}

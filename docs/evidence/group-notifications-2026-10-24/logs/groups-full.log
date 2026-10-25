@@ -1,0 +1,133 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts
+
+[WebServer] (node:33026) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 93 tests using 1 worker
+
+(node:33027) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/groups/cache-race.groups.spec.ts:6:1 › personal priority sync and shared receipt cleanup can overlap without a false cache conflict (7.7s)
+  ✓   2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (15.1s)
+  ✓   3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (15.0s)
+  ✓   4 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (15.2s)
+  ✓   5 [chromium] › tests/groups/content-pagination.groups.spec.ts:13:1 › an open task stays loading while its later page refreshes and only a complete missing read shows unavailable (596ms)
+  ✓   6 [chromium] › tests/groups/content-recovery.groups.spec.ts:11:1 › lost task and Undo replies keep exact durable intent through reload and never duplicate an occurrence (4.1s)
+  ✓   7 [chromium] › tests/groups/content-recovery.groups.spec.ts:20:1 › two members converge, review competing edits and reject a removed member’s offline list write (34.2s)
+  ✓   8 [chromium] › tests/groups/content.groups.spec.ts:11:1 › family task saves, dated corrections and list changes reach the real account without XP (7.3s)
+  ✓   9 [chromium] › tests/groups/invitations.groups.spec.ts:8:1 › owner invitation pages remain bounded, keyboard focused and correctable without changing private data (3.6s)
+  ✘  10 [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en (15.1s)
+(node:33228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  11 [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · ru (15.7s)
+(node:33243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  12 [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · uz (15.2s)
+(node:33279) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [chromium] › tests/groups/membership.groups.spec.ts:26:1 › real creation and invitation acceptance preserve private data; owner removal revokes the member view (7.5s)
+  ✓  14 [chromium] › tests/groups/membership.groups.spec.ts:46:1 › lost group replies survive reload, block sign-out and replay once without a second group (3.6s)
+  ✓  15 [chromium] › tests/groups/membership.groups.spec.ts:55:1 › archive is reversible, owner exit is explicit and group deletion requires current email verification (5.2s)
+  ✓  16 [chromium] › tests/groups/membership.groups.spec.ts:64:1 › stale edits require review and account switching dismisses private forms (6.6s)
+  ✓  17 [chromium] › tests/groups/membership.groups.spec.ts:74:1 › session-only group intent blocks departure until an explicit discard and never creates a persistent account cache (3.2s)
+  ✘  18 [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent (321ms)
+
+
+  1) [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |    await page.setViewportSize({width,height:852});await page.evaluate(({theme,scale})=>{document.querySelector('.app-shell')?.setAttribute('data-theme',theme);document.documentElement.style.fontSize=`${scale}%`;},{theme,scale});
+      37 |    const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1)).toBe(false);
+    > 38 |    expect(await dialog.locator('.sheet-header').evaluate(el=>{const header=el.getBoundingClientRect(),title=el.querySelector('h2')!.getBoundingClientRect();return title.top>=header.top&&title.bottom<=header.bottom&&title.left>=header.left&&title.right<=header.right;})).toBe(true);
+         |                                                                                                                                                                                                                                                                               ^
+      39 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+      40 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(scene==='settings-enabled'){await page.getByRole('switch',{name:t('notifications'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      41 |   }
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:38:271)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:51:423
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-491b0-and-recoverable-errors-·-en-chromium/error-context.md
+
+  2) [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · ru 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      36 |    await page.setViewportSize({width,height:852});await page.evaluate(({theme,scale})=>{document.querySelector('.app-shell')?.setAttribute('data-theme',theme);document.documentElement.style.fontSize=`${scale}%`;},{theme,scale});
+      37 |    const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1)).toBe(false);
+    > 38 |    expect(await dialog.locator('.sheet-header').evaluate(el=>{const header=el.getBoundingClientRect(),title=el.querySelector('h2')!.getBoundingClientRect();return title.top>=header.top&&title.bottom<=header.bottom&&title.left>=header.left&&title.right<=header.right;})).toBe(true);
+         |                                                                                                                                                                                                                                                                               ^
+      39 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+      40 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(scene==='settings-enabled'){await page.getByRole('switch',{name:t('notifications'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+      41 |   }
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:38:271)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:51:423
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-426fb-and-recoverable-errors-·-ru-chromium/error-context.md
+
+  3) [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · uz 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      35 |   for(const theme of ['light','dark'])for(const width of [320,375,393,430,1440])for(const scale of [100,200]){
+      36 |    await page.setViewportSize({width,height:852});await page.evaluate(({theme,scale})=>{document.querySelector('.app-shell')?.setAttribute('data-theme',theme);document.documentElement.style.fontSize=`${scale}%`;},{theme,scale});
+    > 37 |    const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1)).toBe(false);
+         |                                                                                                                                                ^
+      38 |    expect(await dialog.locator('.sheet-header').evaluate(el=>{const header=el.getBoundingClientRect(),title=el.querySelector('h2')!.getBoundingClientRect();return title.top>=header.top&&title.bottom<=header.bottom&&title.left>=header.left&&title.right<=header.right;})).toBe(true);
+      39 |    const last=dialog.locator('button:visible').last();await last.scrollIntoViewIfNeeded();await expect(last).toBeInViewport();await expect(page.getByRole('button',{name:tr('Close','Yopish'),exact:true})).toBeInViewport();
+      40 |    if(info.project.name==='chromium'&&(theme==='light'&&width===393&&scale===100||theme==='dark'&&width===320&&scale===200)){if(['invite-page','invite-older','invite-error'].includes(scene))await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});if(scene==='settings-enabled'){await page.getByRole('switch',{name:t('notifications'),exact:true}).scrollIntoViewIfNeeded();await dialog.screenshot({path:info.outputPath(`groups-${scene}-controls-${language}-${theme}-${width}-${scale}.png`)});}await dialog.locator('.sheet-content').evaluate(el=>el.scrollTo(0,0)).catch(()=>{});await dialog.screenshot({path:info.outputPath(`groups-${scene}-${language}-${theme}-${width}-${scale}.png`)});}
+        at matrix (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:37:144)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/layout.groups.spec.ts:51:423
+
+    Error Context: test-results/groups/browser/layout.groups-group-screen-fc42e-and-recoverable-errors-·-uz-chromium/error-context.md
+
+  4) [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent 
+
+    Test was interrupted.
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('[data-storage-status="saved"]')
+    Expected: visible
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-storage-status="saved"]') with timeout 5000ms
+      - waiting for locator('[data-storage-status="saved"]')
+      - Test ended.
+
+
+       at ../support/syncBrowser.ts:12
+
+      10 | export async function seedSyncGuest(page:Page,language:Language="en"){
+      11 |   const state=syncGuest();state.life.language=language;const raw=JSON.stringify(state);
+    > 12 |   await page.addInitScript(raw=>{if(!localStorage.getItem("rise.local.v1"))localStorage.setItem("rise.local.v1",raw);},raw);await page.goto("/");await expect(page.locator('[data-storage-status="saved"]')).toBeVisible();
+         |                                                                                                                                                                                                              ^
+      13 |   // Wait for the existing startup calendar/device observation, not just the
+      14 |   // initial migration acknowledgment, before taking a preservation baseline.
+      15 |   await expect.poll(async()=>{const value=await stored(page);return !!value.life.deviceTimezone?.observed&&Object.keys(value.prayers.days).length>=30;}).toBe(true);return raw;
+        at seedSyncGuest (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/support/syncBrowser.ts:12:206)
+        at setup (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/membership.groups.spec.ts:13:47)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/membership.groups.spec.ts:81:16
+
+    Error Context: test-results/groups/browser/membership.groups-sign-out-9e046-usable-without-push-consent-chromium/error-context.md
+
+  3 failed
+    [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · en 
+    [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · ru 
+    [chromium] › tests/groups/layout.groups.spec.ts:13:49 › group screens reflow with long names and recoverable errors · uz 
+  1 interrupted
+    [chromium] › tests/groups/membership.groups.spec.ts:80:1 › sign-out after an empty account keeps the original device usable without push consent 
+  75 did not run
+  14 passed (3.0m)

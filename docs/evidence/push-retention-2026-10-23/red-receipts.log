@@ -1,0 +1,57 @@
+✖ bounded receipt cleanup fences old cancellations without deleting another owner or current receipts (509.531375ms)
+✖ expired job cleanup is bounded and leaves current delivery history intact (134.50175ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 994.653
+
+✖ failing tests:
+
+test at tests/infra/push-plans.test.ts:1:11902
+✖ bounded receipt cleanup fences old cancellations without deleting another owner or current receipts (509.531375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  422 !== 200
+  
+      at TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/push-plans.test.ts:106:69)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 422,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/infra/push-plans.test.ts:1:14136
+✖ expired job cleanup is bounded and leaves current delivery history intact (134.50175ms)
+  error: new row for relation "push_jobs" violates check constraint "push_jobs_check"
+      at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/pg-pool/index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/infra/push-plans.test.ts:130:3)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    length: 477,
+    severity: 'ERROR',
+    code: '23514',
+    detail: 'Failing row contains (86cb6173-3573-4027-9f0a-54224e0183ce, 66ac5674-dbda-4226-9cd8-20ef2f0d30a8, ad145231-56cc-4899-b368-dd216c88f654, 1, 1, a1e489e9-1921-4d27-8588-24c6c66ca7cc, 2026-10-21 11:54:45.281028+00, 2026-10-21 11:56:45.281029+00, queued, 0, 2026-10-23 11:55:45.264+00, null, null, null, f).',
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: undefined,
+    schema: 'rise',
+    table: 'push_jobs',
+    column: undefined,
+    dataType: undefined,
+    constraint: 'push_jobs_check',
+    file: 'execMain.c',
+    line: '2074',
+    routine: 'ExecConstraints'
+  }

@@ -1,0 +1,14 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts tests/production/entry.production.spec.ts --project=firefox --grep migration summary
+
+[WebServer] (node:16259) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:16262) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [firefox] › tests/production/entry.production.spec.ts:106:1 › migration summary is dated, explains mixed provenance and exports the exact original (4.1s)
+
+  1 passed (7.6s)

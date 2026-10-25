@@ -1,0 +1,154 @@
+{
+  "baseline": {
+    "captureId": "34c0a5c3-70b4-49ed-90c8-5e15f1f46d15",
+    "captured": 170,
+    "mutationsAccepted": 40,
+    "readsAccepted": 80,
+    "recoveries": 0,
+    "mutation": {
+      "count": 40,
+      "medianMs": 1956.4157499999992,
+      "p95Ms": 2897.536500000002,
+      "maxMs": 2897.6769999999997
+    },
+    "metadata": {
+      "count": 80,
+      "medianMs": 1961.8931459999985,
+      "p95Ms": 2888.674500000001,
+      "maxMs": 2889.5907079999997
+    },
+    "commandPhases": {
+      "pool.acquire": {
+        "count": 40,
+        "medianMs": 0.014604499999222753,
+        "p95Ms": 35.49958300000003,
+        "maxMs": 36.46404200000006
+      },
+      "pool.held": {
+        "count": 40,
+        "medianMs": 1918.1859164999996,
+        "p95Ms": 2888.0478760000005,
+        "maxMs": 2888.8022089999995
+      },
+      "personal.readRecords": {
+        "count": 40,
+        "medianMs": 1196.0428334999997,
+        "p95Ms": 1779.028875,
+        "maxMs": 1891.4465
+      },
+      "personal.hydrate": {
+        "count": 40,
+        "medianMs": 55.543708500000776,
+        "p95Ms": 85.19020799999998,
+        "maxMs": 86.04466700000012
+      },
+      "personal.domain": {
+        "count": 40,
+        "medianMs": 48.85843699999896,
+        "p95Ms": 57.533291000001554,
+        "maxMs": 65.33120899999994
+      },
+      "personal.validate": {
+        "count": 40,
+        "medianMs": 51.18412499999977,
+        "p95Ms": 79.90920800000004,
+        "maxMs": 90.55433400000038
+      },
+      "personal.project": {
+        "count": 40,
+        "medianMs": 36.17558350000036,
+        "p95Ms": 43.71350000000166,
+        "maxMs": 92.69083300000057
+      },
+      "personal.writeRecords": {
+        "count": 40,
+        "medianMs": 429.20147899999984,
+        "p95Ms": 788.3489169999993,
+        "maxMs": 1031.712958
+      },
+      "personal.total": {
+        "count": 40,
+        "medianMs": 88.50987449999866,
+        "p95Ms": 220.20787500000006,
+        "maxMs": 274.1684580000001
+      }
+    },
+    "correctnessAndCleanup": "PASS"
+  },
+  "implementation": {
+    "captureId": "a6fbece6-7318-4a36-914d-d673b5bcc59f",
+    "captured": 170,
+    "mutationsAccepted": 40,
+    "readsAccepted": 70,
+    "recoveries": 0,
+    "mutation": {
+      "count": 40,
+      "medianMs": 1900.4584794999992,
+      "p95Ms": 3272.6326670000017,
+      "maxMs": 3310.067500000001
+    },
+    "metadata": {
+      "count": 80,
+      "medianMs": 1899.4224784999988,
+      "p95Ms": 3035.9213750000017,
+      "maxMs": 3036.1073749999996
+    },
+    "commandPhases": {
+      "pool.acquire": {
+        "count": 40,
+        "medianMs": 0.008936999998695683,
+        "p95Ms": 8.798333999999954,
+        "maxMs": 10.088457999999946
+      },
+      "pool.held": {
+        "count": 40,
+        "medianMs": 1898.8356455000007,
+        "p95Ms": 3271.472167,
+        "maxMs": 3308.8714999999993
+      },
+      "personal.readRecords": {
+        "count": 40,
+        "medianMs": 1085.3707079999995,
+        "p95Ms": 2013.4517919999998,
+        "maxMs": 2298.0537079999995
+      },
+      "personal.hydrate": {
+        "count": 40,
+        "medianMs": 58.04375000000027,
+        "p95Ms": 139.183708999999,
+        "maxMs": 185.77287499999875
+      },
+      "personal.domain": {
+        "count": 40,
+        "medianMs": 48.19331199999988,
+        "p95Ms": 98.58295799999905,
+        "maxMs": 114.13341700000092
+      },
+      "personal.validate": {
+        "count": 40,
+        "medianMs": 51.08797949999962,
+        "p95Ms": 89.92141700000138,
+        "maxMs": 129.15070800000103
+      },
+      "personal.project": {
+        "count": 40,
+        "medianMs": 36.776396000000204,
+        "p95Ms": 79.03262499999983,
+        "maxMs": 198.30533300000025
+      },
+      "personal.writeRecords": {
+        "count": 40,
+        "medianMs": 514.9009584999994,
+        "p95Ms": 1079.1280829999996,
+        "maxMs": 1493.6310830000002
+      },
+      "personal.total": {
+        "count": 40,
+        "medianMs": 62.2512289999986,
+        "p95Ms": 89.75795899999957,
+        "maxMs": 779.5669170000001
+      }
+    },
+    "correctnessAndCleanup": "PASS"
+  }
+}

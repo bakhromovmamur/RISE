@@ -1,0 +1,190 @@
+{
+  "task": "RELEASE-01 Chromium activation correction",
+  "date": "2026-10-25",
+  "timezone": "Asia/Tashkent",
+  "webRelease": "f2b656101cbae1799720",
+  "sourceGates": {
+    "command": "npm run check",
+    "exitCode": 0,
+    "tests": 315,
+    "passed": 315,
+    "failed": 0,
+    "includes": [
+      "pinned runtime/dependencies",
+      "notices",
+      "lint",
+      "app/test/server types",
+      "unit/tooling tests",
+      "production build",
+      "review build"
+    ]
+  },
+  "completedSuites": [
+    {
+      "command": "npm run test:pwa",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:25:12.066Z",
+        "duration": 229977.89,
+        "expected": 63,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:visual",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:27:30.959Z",
+        "duration": 75890.195,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:production -- --workers=1",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:31:00.028Z",
+        "duration": 144302.961,
+        "expected": 78,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:rollout",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:31:00.945Z",
+        "duration": 305998.19700000004,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:auth",
+      "startedAt": "2026-10-25T06:36:25.904Z",
+      "finishedAt": "2026-10-25T06:37:02.059Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:36:26.785Z",
+        "duration": 35255.520000000004,
+        "expected": 21,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:sync",
+      "startedAt": "2026-10-25T06:37:02.059Z",
+      "finishedAt": "2026-10-25T06:43:41.246Z",
+      "exitCode": 1,
+      "stats": {
+        "startTime": "2026-10-25T06:37:02.481Z",
+        "duration": 398729.284,
+        "expected": 68,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:sync -- --project=webkit --grep 'account export and explicit device cleanup' --repeat-each=3",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:44:03.655Z",
+        "duration": 14412.059000000001,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "scope": "Focused reruns verify the scenario in isolation; do not diagnose or erase the earlier pre-update failure."
+    },
+    {
+      "command": "npm run test:push",
+      "startedAt": "2026-10-25T06:44:42.831Z",
+      "finishedAt": "2026-10-25T06:47:52.172Z",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T06:44:43.260Z",
+        "duration": 188882.405,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:groups",
+      "startedAt": "2026-10-25T06:47:52.173Z",
+      "finishedAt": "2026-10-25T07:07:26.083Z",
+      "exitCode": 1,
+      "stats": {
+        "startTime": "2026-10-25T06:47:52.721Z",
+        "duration": 1173295.226,
+        "expected": 110,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "command": "npm run test:groups -- --project=webkit --grep 'encrypted group delivery' --repeat-each=3",
+      "exitCode": 0,
+      "stats": {
+        "startTime": "2026-10-25T07:07:37.591Z",
+        "duration": 17158.73,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "scope": "Scenario passes in isolation; original full-suite queue-isolation failure remains open."
+    }
+  ],
+  "cloudProvisioning": "pending",
+  "sealedPackages": [
+    {
+      "package": "a",
+      "id": "513ba278fb212169c128a835ce52f401b6124d93de487c145fc9a1c63ebc27bd",
+      "webRelease": "71073a9789ef4bedc089",
+      "matchesFinalSource": true
+    },
+    {
+      "package": "b",
+      "id": "f9ef7e584de9296f693fb26f14dbb1ac81c5419198fac0e3a903bd6d4a926b17",
+      "webRelease": "18ff4420d34f33a249f9",
+      "matchesFinalSource": true
+    }
+  ],
+  "documentation": {
+    "command": "npm run check:docs",
+    "exitCode": 0,
+    "documents": 43,
+    "links": 714,
+    "anchors": 62,
+    "tasks": 38,
+    "requirements": 20,
+    "newEvidenceJsonFiles": 5,
+    "newEvidenceLocalLinks": 7
+  },
+  "scopeLimitations": [
+    "Full sync suite retains one pre-update sign-in failure despite three passing focused reruns.",
+    "Extended Chromium repetition retains a separate pre-update invalid-code failure after five successful replacement/rollback cases.",
+    "Full group suite retains one WebKit test-database precondition failure: 35 due push jobs where zero were required before notification delivery; no update hold entered.",
+    "No new full 453-case journey or 179-case infrastructure run is claimed; previous dated evidence remains unchanged.",
+    "No physical-device, hosted, participant-pilot or production-release acceptance is claimed."
+  ],
+  "activationCorrection": "locally verified",
+  "release01Status": "IN PROGRESS",
+  "completedAt": "2026-10-25T07:08:03.153324+00:00"
+}

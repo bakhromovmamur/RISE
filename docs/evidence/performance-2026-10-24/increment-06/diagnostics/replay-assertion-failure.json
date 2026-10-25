@@ -1,0 +1,24 @@
+{
+  "run": "cfa15de4-522f-44db-a6c8-6bbb6ce7dc0f",
+  "environment": "fixed test",
+  "transport": "Fastify inject; real Auth/BFF/Postgres, no network latency or hosted acceptance",
+  "users": 1,
+  "habitsPerUser": 100,
+  "daysPerUser": 730,
+  "occurrencesPerUser": 73000,
+  "pool": 5,
+  "samples": [
+    {
+      "wave": "full",
+      "user": 0,
+      "ms": 780.6656250000001,
+      "status": 200,
+      "recovery": false
+    }
+  ],
+  "seedMs": 1641.064542,
+  "databaseGrowthBytes": 33939456,
+  "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    operationId: '48b6aba3-06c0-4f7a-aac7-13fcf5fa3ce3',\n    operationRevision: 3,\n+   replayed: true,\n-   replayed: false,\n    xp: 1314010\n  }\n",
+  "cleanupErrors": [],
+  "cleaned": true
+}

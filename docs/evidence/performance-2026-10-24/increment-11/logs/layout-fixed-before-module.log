@@ -1,0 +1,29 @@
+[WebServer] (node:83108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] node:internal/modules/run_main:107
+[WebServer]     triggerUncaughtException(
+[WebServer]     ^
+[WebServer] 
+[WebServer] Error: Transform failed with 10 errors:
+[WebServer] /private/tmp/rise-reader-recovery-candidate/serve-baseline.ts:14:17: ERROR: Top-level await is currently not supported with the "cjs" output format
+[WebServer] /private/tmp/rise-reader-recovery-candidate/serve-baseline.ts:15:21: ERROR: Top-level await is currently not supported with the "cjs" output format
+[WebServer] /private/tmp/rise-reader-recovery-candidate/serve-baseline.ts:22:17: ERROR: Top-level await is currently not supported with the "cjs" output format
+[WebServer] /private/tmp/rise-reader-recovery-candidate/serve-baseline.ts:23:2: ERROR: Top-level await is currently not supported with the "cjs" output format
+[WebServer] /private/tmp/rise-reader-recovery-candidate/serve-baseline.ts:24:21: ERROR: Top-level await is currently not supported with the "cjs" output format
+[WebServer] ...
+[WebServer]     at failureErrorWithLog (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/esbuild/lib/main.js:1752:15)
+[WebServer]     at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/esbuild/lib/main.js:1019:50
+[WebServer]     at responseCallbacks.<computed> (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/esbuild/lib/main.js:886:9)
+[WebServer]     at handleIncomingPacket (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/esbuild/lib/main.js:941:12)
+[WebServer]     at Socket.readFromStdout (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/node_modules/esbuild/lib/main.js:864:7)
+[WebServer]     at Socket.emit (node:events:509:28)
+[WebServer]     at addChunk (node:internal/streams/readable:563:12)
+[WebServer]     at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)
+[WebServer]     at Readable.push (node:internal/streams/readable:394:5)
+[WebServer]     at Pipe.onStreamRead (node:internal/stream_base_commons:189:23) {
+[WebServer]   name: 'TransformError'
+[WebServer] }
+[WebServer] 
+[WebServer] Node.js v24.16.0
+Error: Process from config.webServer was not able to start. Exit code: 1
+

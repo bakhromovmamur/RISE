@@ -1,0 +1,5 @@
+
+> rise-prototype@1.0.0 typecheck
+> tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tools.json && tsc --noEmit -p tsconfig.server.json
+
+tests/shared-priorities.test.ts(30,65): error TS2353: Object literal may only specify known properties, and 'sharedPriorities' does not exist in type 'CommandContext'.

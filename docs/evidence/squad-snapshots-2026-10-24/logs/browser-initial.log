@@ -1,0 +1,93 @@
+[WebServer] (node:11757) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:11758) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/groups/squads.groups.spec.ts:21:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (9.5s)
+(node:11787) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chromium] › tests/groups/squads.groups.spec.ts:33:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.9s)
+  ✘  3 [chromium] › tests/groups/squads.groups.spec.ts:41:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (7.8s)
+(node:11796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 [chromium] › tests/groups/squads.groups.spec.ts:51:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (18.6s)
+
+
+  1) [chromium] › tests/groups/squads.groups.spec.ts:21:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off 
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  getByText('Never share this private habit name', { exact: true })
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" getByText('Never share this private habit name', { exact: true }) with timeout 5000ms
+      - waiting for getByText('Never share this private habit name', { exact: true })
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      24 |  await page.getByLabel(t('reflection'),{exact:true}).fill('A small, chosen win.');await page.getByRole('switch',{name:t('habitToggle'),exact:true}).click();await page.getByRole('switch',{name:t('prayerToggle'),exact:true}).click();const first=await preview(page);expect(first.snapshot).toEqual({week:first.snapshot.week,note:'A small, chosen win.',habits:0,prayers:0});
+      25 |  const personal=await(await page.request.get('/api/v1/personal')).json(),date=localDate(personal.records.profiles[0].timezone),habitId=crypto.randomUUID();await privateCommand(page,{kind:'habit.save',newId:habitId,draft:{...emptyDraft(),name:'Never share this private habit name',days:[0,1,2,3,4,5,6]}});await privateCommand(page,{kind:'calendar.refresh'});const checked=await privateCommand(page,{kind:'habit.check',habitId,date,check:'full'});
+    > 26 |  await expect(page.getByText(t('habitCount',[0]),{exact:true})).toBeVisible();await publish(page);expect((await feed(page,group.id,first.snapshot.week)).rows[0].snapshot).toEqual(first.snapshot);expect((await(await page.request.get('/api/v1/personal')).json()).xp).toBe(checked.xp);await expect(page.getByText('Never share this private habit name',{exact:true})).toHaveCount(0);
+         |                                                                                                                                                                                                                                                                                                                                                                            ^
+      27 |  await page.getByRole('button',{name:t('cheer'),exact:true}).click();await expect(page.getByRole('button',{name:new RegExp(t('cheer'))})).toHaveAttribute('aria-pressed','true');
+      28 |  await page.getByRole('button',{name:t('edit'),exact:true}).click();await page.getByLabel(t('reflection'),{exact:true}).fill('An explicitly reviewed edit.');await page.getByRole('switch',{name:t('prayerToggle'),exact:true}).click();const edited=await preview(page);expect(edited.snapshot.habits).toBe(1);expect(edited.snapshot.prayers).toBeUndefined();await publish(page);const latest=(await feed(page,group.id,first.snapshot.week)).rows[0];expect(latest.snapshot).toEqual(edited.snapshot);expect(latest.reactions.count).toBe(1);
+      29 |  await page.getByRole('button',{name:t('edit'),exact:true}).click();await page.getByRole('button',{name:t('withdraw'),exact:true}).click();await expect(page.getByText(t('withdrawHelp'),{exact:true})).toBeVisible();await confirm(page,t('withdraw'));await expect(page.getByText(t('empty'),{exact:true})).toBeVisible();expect((await feed(page,group.id,first.snapshot.week)).rows).toEqual([]);
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squads.groups.spec.ts:26:364
+
+    Error Context: test-results/groups/browser/squads.groups-squad-public-a7942-ost-starts-with-sharing-off-chromium/error-context.md
+
+  2) [chromium] › tests/groups/squads.groups.spec.ts:41:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication 
+
+    Error: expect(locator).toBeEnabled() failed
+
+    Locator: getByRole('button', { name: 'Retry saved change', exact: true })
+    Expected: enabled
+    Error: strict mode violation: getByRole('button', { name: 'Retry saved change', exact: true }) resolved to 2 elements:
+        1) <button type="button" class="button secondary ">Retry saved change</button> aka getByRole('tabpanel', { name: 'Today' }).getByRole('button', { name: 'Retry saved change' })
+        2) <button type="button" class="button secondary ">Retry saved change</button> aka getByRole('dialog', { name: 'Share my week' }).getByRole('button', { name: 'Retry saved change' })
+
+    Call log:
+      - Expect "toBeEnabled" getByRole('button', { name: 'Retry saved change', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'Retry saved change', exact: true })
+
+
+      44 |   await other.getByRole('button',{name:t('share'),exact:true}).click();await other.getByLabel(t('reflection'),{exact:true}).fill('A chosen member update.');const reviewed=await preview(other);await publish(other);
+      45 |   await openSquad(page,group.name);await expect(page.getByText('A chosen member update.',{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:t('editIcon'),exact:true})).toHaveCount(0);await page.getByRole('button',{name:`${t('remove')} · Second squad member`,exact:true}).click();await confirm(page,t('remove'));await expect(page.getByText(t('empty'),{exact:true})).toBeVisible();await refresh(other);await expect(other.getByText(t('empty'),{exact:true})).toBeVisible();
+    > 46 |   await other.getByRole('button',{name:t('share'),exact:true}).click();await other.getByLabel(t('reflection'),{exact:true}).fill('Pending private draft.');await preview(other);await groupFault(other,'offline');await other.getByRole('button',{name:t('publish'),exact:true}).click();await expect(other.getByRole('button',{name:g('retry'),exact:true})).toBeEnabled();const pending=(await accountCache(other))[0].state.life.drafts['server-group-intent'];
+         |                                                                                                                                                                                                                                                                                                                                                               ^
+      47 |   const current=(await readGroups(page)).find(row=>row.id===group.id)!;expect((await groupCommand(page,{kind:'group.remove',groupId:group.id,memberId:current.members.find(m=>m.name==='Second squad member')!.id},current.revision)).status()).toBe(200);await groupFault(other,'online');await other.getByRole('button',{name:g('retry'),exact:true}).click();await expect(other.getByRole('dialog').getByText(g('unavailable'),{exact:true}).first()).toBeVisible();await expect(other.getByText('Pending private draft.',{exact:true})).toHaveCount(0);expect((await accountCache(other))[0].state.life.drafts['server-group-intent']).toEqual(pending);expect((await feed(page,group.id,reviewed.snapshot.week)).rows).toEqual([]);expect(await stored(page)).toEqual(guest);
+      48 |  }finally{await second.close();expect(external).toEqual([]);}
+      49 | });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squads.groups.spec.ts:46:351
+
+    Error Context: test-results/groups/browser/squads.groups-members-shar-09196-jects-a-pending-publication-chromium/error-context.md
+
+  3) [chromium] › tests/groups/squads.groups.spec.ts:51:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview 
+
+    TimeoutError: locator.fill: Timeout 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('A little reflection', { exact: true })
+
+
+      51 | test('a stale published edit keeps its draft and requires explicit review before creating a new preview',async({page})=>{
+      52 |  await groupSetup(page);const group=await createSquad(page,'Review conflicting squad edits');await page.getByRole('button',{name:t('share'),exact:true}).click();await page.getByLabel(t('reflection'),{exact:true}).fill('Original');const original=await preview(page);await publish(page);
+    > 53 |  await page.getByRole('button',{name:t('edit'),exact:true}).click();await page.getByLabel(t('reflection'),{exact:true}).fill('My retained draft');const mine=await preview(page),identity=await(await page.request.get('/api/v1/session')).json(),personal=await(await page.request.get('/api/v1/personal')).json(),post=(await feed(page,group.id,original.snapshot.week)).rows[0],head=(await readGroups(page)).find(g=>g.id===group.id)!;
+         |                                                                                                                         ^
+      54 |  const other=await page.request.post('/api/v1/squads/preview',{headers:{Origin:'http://127.0.0.1:4191','X-Rise-CSRF':identity.csrfToken},data:{accountId:identity.account.id,groupId:group.id,groupRevision:head.revision,postId:post.id,postRevision:post.revision,personalRevision:personal.revision,week:original.snapshot.week,note:'A different accepted edit',choices:{habits:false,milestones:false,prayers:false}}});expect(other.status()).toBe(200);const their:SquadPreview=await other.json();expect((await groupCommand(page,{kind:'squad.publish',groupId:group.id,postId:their.postId,previewId:their.previewId,hash:their.hash},head.revision)).status()).toBe(200);
+      55 |  await page.getByRole('button',{name:t('publish'),exact:true}).click();await expect(page.getByRole('button',{name:g('retry'),exact:true})).toBeEnabled();await page.getByRole('button',{name:g('stop'),exact:true}).click();await confirm(page,g('stop'));await expect(page.getByText(t('changed'),{exact:true}).first()).toBeVisible();await page.getByRole('button',{name:t('reviewed'),exact:true}).click();await expect(page.getByLabel(t('reflection'),{exact:true})).toHaveValue('My retained draft');const replacement=await preview(page);expect(replacement.previewId).not.toBe(mine.previewId);await publish(page);expect((await feed(page,group.id,original.snapshot.week)).rows[0].snapshot.note).toBe('My retained draft');
+      56 | });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squads.groups.spec.ts:53:121
+
+    Error Context: test-results/groups/browser/squads.groups-a-stale-publ-4f3e8-fore-creating-a-new-preview-chromium/error-context.md
+
+  3 failed
+    [chromium] › tests/groups/squads.groups.spec.ts:21:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off 
+    [chromium] › tests/groups/squads.groups.spec.ts:41:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication 
+    [chromium] › tests/groups/squads.groups.spec.ts:51:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview 
+  1 passed (42.4s)

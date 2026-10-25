@@ -1,0 +1,20 @@
+
+> rise-prototype@1.0.0 test:backend
+> playwright test --config playwright.infrastructure.config.ts --grep security policy preserves
+
+[WebServer] (node:4699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:4701) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (1.5s)
+(node:4711) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [webkit] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (2.1s)
+(node:4750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [firefox] › tests/infra/security.infrastructure.spec.ts:3:1 › security policy preserves onboarding, deferred screens, backup workers and offline reload (2.1s)
+
+  3 passed (9.3s)

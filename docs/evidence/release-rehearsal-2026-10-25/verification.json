@@ -1,0 +1,345 @@
+{
+  "task": "RELEASE-01",
+  "date": "2026-10-25",
+  "timezone": "Asia/Tashkent",
+  "scope": "Synthetic local regression; no human pilot, physical-device, hosted or performance acceptance.",
+  "originalWebRelease": "c86bc7e9532f6158e490",
+  "finalWebRelease": "c2b58520045b4717c91a",
+  "sourceGates": [
+    {
+      "command": "npm run check",
+      "stage": "before PWA fix",
+      "exitCode": 0,
+      "unitToolingTests": 312,
+      "privateLogSha256": "7095e0a60980e14f1bc3760fcf6161d5e3075900014d4b20e61fb625311f5259"
+    },
+    {
+      "command": "npm run check",
+      "stage": "after PWA fix",
+      "exitCode": 0,
+      "unitToolingTests": 312,
+      "privateLogSha256": "2bd9a74f53f6afdbb70476b63f9c9755eafb68dd8de091ffc7d22cf99ac7cace"
+    }
+  ],
+  "originalFullRun": [
+    {
+      "suite": "browser",
+      "command": "npm run test:browser",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T20:47:25.987487+00:00",
+      "durationSeconds": 349.21,
+      "privateLogSha256": "c2d56624c5a493f89b19245fc708eb9cc8b604a36b375a131c4730ecaff8d412",
+      "counts": {
+        "startTime": "2026-10-24T20:47:26.320Z",
+        "duration": 348830.01200000005,
+        "expected": 453,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "production",
+      "command": "npm run test:production -- --workers=1",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T20:53:15.206476+00:00",
+      "durationSeconds": 134.28,
+      "privateLogSha256": "76640e66a59f626a419003957a14c25b9c7e549414716877070240adf0022db5",
+      "counts": {
+        "startTime": "2026-10-24T20:53:15.791Z",
+        "duration": 133680.56300000002,
+        "expected": 78,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "pwa",
+      "command": "npm run test:pwa",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T20:55:29.490865+00:00",
+      "durationSeconds": 92.71,
+      "privateLogSha256": "2b937c27340d1f7fc842c816ab084f5a5ea9ef0d6f69780bb28fe71097c37513",
+      "counts": {
+        "passed": 54,
+        "failed": 0,
+        "source": "completed original full-suite log; report later replaced by diagnostic runs"
+      }
+    },
+    {
+      "suite": "visual",
+      "command": "npm run test:visual",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T20:57:02.204202+00:00",
+      "durationSeconds": 62.41,
+      "privateLogSha256": "3414a3ea3f3d867c60d85c1d74a16fe701723f603cd42565df47ab317af18535",
+      "counts": {
+        "startTime": "2026-10-24T20:57:02.591Z",
+        "duration": 62029.486000000004,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "visualComparisons": 720
+    },
+    {
+      "suite": "infra",
+      "command": "npm run test:infra",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T20:58:04.616239+00:00",
+      "durationSeconds": 175.71,
+      "privateLogSha256": "8621057cc7f5dfa09787436bbfd49d38af51a09e1b455c1d6a069dc16e8fae96",
+      "counts": {
+        "tests": 179,
+        "passed": 179,
+        "failed": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "suite": "backend",
+      "command": "npm run test:backend",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T21:01:00.331149+00:00",
+      "durationSeconds": 18.03,
+      "privateLogSha256": "7f6e8f042c148da68cc6c75013729dadcf27d83104649cf3c04f353c587817e2",
+      "counts": {
+        "startTime": "2026-10-24T21:01:00.718Z",
+        "duration": 17598.799,
+        "expected": 21,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "auth",
+      "command": "npm run test:auth",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T21:01:18.369721+00:00",
+      "durationSeconds": 32.92,
+      "privateLogSha256": "8d7ca3d72f02f559ec8773789da3d26f7218d3317f11a6b1e8766dfee728303d",
+      "counts": {
+        "startTime": "2026-10-24T21:01:18.857Z",
+        "duration": 32392.453999999998,
+        "expected": 21,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "sync",
+      "command": "npm run test:sync",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T21:01:51.290972+00:00",
+      "durationSeconds": 411.57,
+      "privateLogSha256": "e52cf3184ac99624ea4b36f77f3ff2d3291fd2adbd17917c967781a27ade52f8",
+      "counts": {
+        "startTime": "2026-10-24T21:01:51.639Z",
+        "duration": 411184.94899999996,
+        "expected": 69,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "push",
+      "command": "npm run test:push",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T21:08:42.860038+00:00",
+      "durationSeconds": 191.4,
+      "privateLogSha256": "461c54024413ec204872031701ca1357ab1a1a6a7ac88e061eafb671ce8ed1b1",
+      "counts": {
+        "startTime": "2026-10-24T21:08:43.287Z",
+        "duration": 190946.577,
+        "expected": 54,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "groups",
+      "command": "npm run test:groups",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T21:11:54.266168+00:00",
+      "durationSeconds": 1162.24,
+      "privateLogSha256": "4bb5b6bc3c5df1f2eaef7a74c476950b8abfc73ba20245a7df153c090aa16cde",
+      "counts": {
+        "startTime": "2026-10-24T21:11:54.639Z",
+        "duration": 1161799.002,
+        "expected": 111,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "rollout",
+      "command": "npm run test:rollout",
+      "exitCode": 1,
+      "startedAt": "2026-10-24T21:31:16.513834+00:00",
+      "durationSeconds": 346.79,
+      "privateLogSha256": "88d7fd52c861df508e450d50d3c8c996c2eb4aed9a842b41f06aa402c42baff4",
+      "counts": {
+        "startTime": "2026-10-24T21:31:16.942Z",
+        "duration": 346324.37700000004,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    }
+  ],
+  "initialInterruptedBrowserRun": {
+    "startTime": "2026-10-24T20:43:41.967Z",
+    "duration": 79393.04100000001,
+    "expected": 11,
+    "skipped": 432,
+    "unexpected": 10,
+    "flaky": 0
+  },
+  "delayedActivationRegression": {
+    "redCommand": "npm run test:pwa -- --project=chromium --grep \"activation exceeds\"",
+    "greenCommand": "npm run test:pwa -- --grep \"activation exceeds\"",
+    "red": {
+      "startTime": "2026-10-24T21:47:55.651Z",
+      "duration": 21900.713,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "green": {
+      "startTime": "2026-10-24T21:54:26.256Z",
+      "duration": 51235.827,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "afterFixSuites": [
+    {
+      "suite": "pwa",
+      "command": "npm run test:pwa",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T22:03:25.467102+00:00",
+      "durationSeconds": 199.24,
+      "counts": {
+        "startTime": "2026-10-24T22:03:26.060Z",
+        "duration": 198569.027,
+        "expected": 60,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "production",
+      "command": "npm run test:production -- --workers=1",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T22:06:44.717027+00:00",
+      "durationSeconds": 202.71,
+      "counts": {
+        "startTime": "2026-10-24T22:06:45.358Z",
+        "duration": 202041.09,
+        "expected": 78,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "visual",
+      "command": "npm run test:visual",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T22:10:07.431269+00:00",
+      "durationSeconds": 100.32,
+      "counts": {
+        "startTime": "2026-10-24T22:10:07.960Z",
+        "duration": 99741.09300000001,
+        "expected": 48,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "suite": "rollout",
+      "command": "npm run test:rollout",
+      "exitCode": 0,
+      "startedAt": "2026-10-24T22:11:47.766051+00:00",
+      "durationSeconds": 418.92,
+      "counts": {
+        "startTime": "2026-10-24T22:11:48.622Z",
+        "duration": 418029.43000000005,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "humanPilot": {
+    "participantsRecruited": 0,
+    "feedbackCollected": false,
+    "actualCompleteDay": "not_observed",
+    "retention": "not_measured"
+  },
+  "cloudProvisioning": "pending",
+  "performanceGate": "QUALITY-03 IN PROGRESS; existing measured latency/capacity failures remain unresolved",
+  "additionalChecks": [
+    {
+      "command": "npm run test:browser -- 'accessibility.browser.spec.ts|backup.browser.spec.ts'",
+      "passed": 75
+    },
+    {
+      "command": "npm run test:production -- day-boundary.production.spec.ts --workers=1",
+      "passed": 3
+    },
+    {
+      "command": "npm run test:browser -- russian.browser.spec.ts --grep 'Russian goals'",
+      "passed": 3
+    },
+    {
+      "command": "npm run test:browser -- prayer-live.browser.spec.ts --grep 'render at|Russian large text'",
+      "passed": 15
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run check:docs",
+      "exitCode": 0,
+      "documents": 43,
+      "links": 707,
+      "anchors": 62
+    },
+    {
+      "check": "new protocol/evidence relative links and all A\u2013J test paths",
+      "results": {
+        "relativeLinks": 25,
+        "journeysWithExistingTests": 10,
+        "failures": []
+      }
+    }
+  ],
+  "releaseDecision": "IN PROGRESS: intermittent sealed-package Chromium activation stall remains unresolved, regardless of subsequent passes.",
+  "sealedRolloutPackages": {
+    "a": "01e95c8f273c143686592e189f1d1c56082e77e4326053a6e09554dcb35b6229",
+    "b": "5508c6a17f6a521ba713b87e3f0834f1473c503831d6f9c873c3d1a0ccaa1ed3",
+    "failed": "ad83377dba01f7d2d74fd50776cf2908d31d2b0e2cf77fd6daf7340f73f92494",
+    "webA": "7ce5ba3bcf1dcf0e1939",
+    "webB": "691ba53ece5d6db615d3"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "task": "QUALITY-03",
+  "requirements": [
+    "NFR-03",
+    "NFR-07"
+  ],
+  "date": "2026-10-24",
+  "commands": [
+    {
+      "command": "node --check /tmp/rise-bff-two-thread-probe/router.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --check /tmp/rise-bff-two-thread-probe/gateway.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --check /tmp/rise-bff-two-thread-probe/worker.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-two-thread-probe/run.mts smoke",
+      "exit": 0
+    },
+    {
+      "command": "node --import tsx /tmp/rise-bff-two-thread-probe/run.mts mixed",
+      "exit": 1,
+      "correctnessAndCleanup": "PASS"
+    },
+    {
+      "command": "python3 /tmp/rise-bff-two-thread-probe/analyze.py",
+      "exit": 0
+    },
+    {
+      "command": "npm run check:docs",
+      "exit": 0,
+      "documents": 37,
+      "links": 603,
+      "anchors": 59,
+      "tasks": 38,
+      "requirements": 20
+    }
+  ],
+  "capture": {
+    "captureId": "0ec8eb02-3ed8-46d3-82f1-fbb3db605c89",
+    "gatewayRecords": 3578,
+    "workerRecords": 3578,
+    "dropped": 0,
+    "pools": [
+      3,
+      2
+    ],
+    "terminalExit": 1,
+    "capacityGate": "FAIL",
+    "historyXpReceiptSharedReadbackCleanup": "PASS",
+    "exactRecoveries": 263,
+    "error": null,
+    "cleanupErrors": []
+  },
+  "applicationChanged": false,
+  "cloudProvisioned": false,
+  "preservation": {
+    "protectedFilesChecked": 2924,
+    "priorSealedFilesChecked": 631,
+    "protectedDifferencesFromIncrement03": [
+      "server/personal/records.ts"
+    ],
+    "serverWriterMatchesIncrement10": true,
+    "sourceFilesChecked": 52,
+    "buildFilesChecked": 52,
+    "identicalInstrumentedCopyFilesChecked": 191,
+    "relativeLinksChecked": 249,
+    "testPortReleased": true,
+    "probeProcessesTerminated": true,
+    "applicationChanged": false,
+    "savedPreviewAccessed": false,
+    "cloudProvisioned": false
+  }
+}

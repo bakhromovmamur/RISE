@@ -1,0 +1,148 @@
+--- a/src/data/validation.ts
++++ b/src/data/validation.ts
+@@ -65,6 +65,9 @@
+ export const MAX_BYTES = 50 * 1024 * 1024;
+ /** Limits count objects (records), not every scalar in a two-year profile. */
+ export function validateJson(value: unknown) {
++  validateJsonValue(value, false);
++}
++function validateJsonValue(value: unknown, parsed: boolean) {
+   let records = 0;
+   const visit = (v: unknown, depth: number) => {
+     if (depth > 20) throw new StoredDataError("depth");
+@@ -73,12 +76,16 @@
+     if (typeof v !== "object" || !v) throw new StoredDataError("JSON");
+     if (!Array.isArray(v) && ++records > 250000) throw new StoredDataError("record limit");
+     if (!Array.isArray(v)) object(v, "JSON");
+-    // Inspect descriptors without invoking accessors or allocating a descriptor
+-    // dictionary plus entry pairs for every record in a large profile.
++    // Fresh JSON.parse results cannot contain accessors. Arbitrary objects still
++    // require descriptor inspection, including hidden own fields and array length.
+     for (const k of Object.getOwnPropertyNames(v)) {
+-      const descriptor = Object.getOwnPropertyDescriptor(v, k);
+-      if (!descriptor || k === "__proto__" || k === "prototype" || k === "constructor" || !("value" in descriptor)) throw new StoredDataError("unsafe key");
+-      visit(descriptor.value, depth + 1);
++      if (k === "__proto__" || k === "prototype" || k === "constructor") throw new StoredDataError("unsafe key");
++      if (parsed) visit((v as Record<string, unknown>)[k], depth + 1);
++      else {
++        const descriptor = Object.getOwnPropertyDescriptor(v, k);
++        if (!descriptor || !("value" in descriptor)) throw new StoredDataError("unsafe key");
++        visit(descriptor.value, depth + 1);
++      }
+     }
+   };
+   visit(value, 0);
+@@ -86,6 +93,6 @@
+ export function parseJson(raw: string): unknown {
+   if (raw.length > MAX_BYTES || new TextEncoder().encode(raw).length > MAX_BYTES) throw new StoredDataError("size limit");
+   const value: unknown = JSON.parse(raw);
+-  validateJson(value);
++  validateJsonValue(value, true);
+   return value;
+ }
+--- a/src/data/deviceSession.ts
++++ b/src/data/deviceSession.ts
+@@ -89,8 +89,9 @@
+         baseRevision: this.queue.at(-1) ? this.queue.at(-1)!.baseRevision + 1 : this.saved.revision,
+         context: { date: current.mode === "demo" ? current.demoDate : localDate(current.timezone, new Date(now)), now, timezone: current.timezone }, command });
+       const next = applyDomainCommand(this.view.state, operation.command, operation.context);
+-      const state = parseStoredState(JSON.stringify(next));
+-      if (JSON.stringify(state) === JSON.stringify(this.view.state)) return this.view.state;
++      const json = JSON.stringify(next), state = parseStoredState(json);
++      // Parsing validates without normalizing; reuse the same serialized result.
++      if (json === JSON.stringify(this.view.state)) return this.view.state;
+       this.queue.push(operation);
+       this.emit({ state, status: "saving", error: null });
+       void this.flush();
+--- a/tests/validation.test.ts
++++ b/tests/validation.test.ts
+@@ -1,6 +1,6 @@
+ import { test } from "node:test";
+ import assert from "node:assert/strict";
+-import { validateJson, StoredDataError, string, id, shape, number } from "../src/data/validation.ts";
++import { validateJson, parseJson, MAX_BYTES, StoredDataError, string, id, shape, number } from "../src/data/validation.ts";
+ 
+ test("JSON validation rejects hidden unsafe fields and accessors without invoking them", () => {
+   let calls = 0;
+@@ -25,13 +25,41 @@
+   let depth: unknown = null;
+   for (let i = 0; i < 20; i++) depth = { child: depth };
+   validateJson(depth);
++  assert.deepEqual(parseJson(JSON.stringify(depth)), depth);
+   assert.throws(() => validateJson({ child: depth }), StoredDataError);
++  assert.throws(() => parseJson(JSON.stringify({ child: depth })), StoredDataError);
+   const records = Array.from({ length: 250000 }, () => ({}));
+   validateJson(records);
++  const parsed = parseJson(JSON.stringify(records));
++  assert.ok(Array.isArray(parsed)); assert.equal(parsed.length, records.length);
+   records.push({});
+   assert.throws(() => validateJson(records), StoredDataError);
++  assert.throws(() => parseJson(JSON.stringify(records)), StoredDataError);
+   const cycle: Record<string, unknown> = {}; cycle.self = cycle;
+   assert.throws(() => validateJson(cycle), StoredDataError);
++});
++
++test("parsed JSON preserves safe extensions and rejects unsafe keys, numbers and array depth", () => {
++  const value = { extension: { toJSON: "Authored text", note: "Привет · Salom · 🌱", values: [null, 3, true, -0] } };
++  const raw = JSON.stringify(value);
++  assert.equal(JSON.stringify(parseJson(raw)), raw);
++  for (const key of ["__proto__", "prototype", "constructor"]) {
++    for (const raw of [`{"${key}":null}`, `[{"nested":{"${key}":{}}}]`]) assert.throws(() => parseJson(raw), StoredDataError);
++  }
++  assert.throws(() => parseJson('{"\\u005f\\u005fproto__":null}'), StoredDataError);
++  for (const raw of ["1e400", "[1e400]", '{"value":-1e400}']) assert.throws(() => parseJson(raw), StoredDataError);
++  for (const raw of ["{", '"unterminated', "[1,]"]) assert.throws(() => parseJson(raw), SyntaxError);
++  // Empty arrays still have their own length property at the next depth.
++  parseJson("[".repeat(20) + "0" + "]".repeat(20));
++  assert.throws(() => parseJson("[".repeat(21) + "]".repeat(21)), StoredDataError);
++});
++
++test("parsed JSON enforces the UTF-8 byte boundary without dropping Unicode data", () => {
++  const text = "€".repeat(Math.floor((MAX_BYTES - 2) / 3));
++  const raw = JSON.stringify(text);
++  assert.equal(Buffer.byteLength(raw), MAX_BYTES);
++  assert.equal(parseJson(raw), text);
++  assert.throws(() => parseJson(JSON.stringify(text + "€")), StoredDataError);
+ });
+ 
+ test("stored string limits retain Unicode code-point and pattern semantics", () => {
+--- a/tests/storage.browser.spec.ts
++++ b/tests/storage.browser.spec.ts
+@@ -7,6 +7,37 @@
+ 
+ const synthetic = JSON.stringify(addLifeDemo(balancedFixture(), "prayer-pause"), null, 2);
+ async function harness(page: Page) { await page.goto("/?storage-test=1"); await expect(page.getByText("Storage test harness ready.")).toBeVisible(); }
++
++test("no-op personal edits create no receipt and preserve Unicode and unknown safe history", async ({ page }) => {
++  await harness(page);
++  const state = { ...makeFixture(), extension: { "10": "ten", "2": "two", note: "Привет · Salom · 🌱", values: [null, true, 3] } };
++  const raw = JSON.stringify(state), name = "Synthetic · Привет · 🌱";
++  const result = await page.evaluate(async ({ raw, name }) => {
++    localStorage.setItem("rise.local.v1", raw);
++    const api = window.riseStorageTest, session = await api.startDeviceSession(), db = await api.openDeviceStore();
++    try {
++      session.dispatch({ kind: "profile.name", name: session.getSnapshot().state.name });
++      if (!await session.whenSaved()) throw new Error("noop_failed");
++      const noChange = await db.read();
++      session.dispatch({ kind: "profile.name", name });
++      if (!await session.whenSaved()) throw new Error("edit_failed");
++      const changed = await db.read();
++      session.dispatch({ kind: "profile.name", name });
++      if (!await session.whenSaved()) throw new Error("repeated_edit_failed");
++      const final = await db.read(), original = await db.original();
++      return { noChangeRevision: noChange.revision, noChangeReceipts: noChange.receipts.length,
++        changedRevision: changed.revision, finalRevision: final.revision, receipts: final.receipts.length,
++        saved: JSON.stringify(final.state), original, status: session.getSnapshot().status };
++    } finally { session.close(); db.close(); }
++  }, { raw, name });
++  expect(result).toEqual({ noChangeRevision: 0, noChangeReceipts: 0, changedRevision: 1, finalRevision: 1,
++    receipts: 1, saved: JSON.stringify({ ...state, name }), original: raw, status: "saved" });
++  const reopened = await page.evaluate(async raw => {
++    const db = await window.riseStorageTest.openDeviceStore();
++    try { return JSON.stringify((await db.verify(raw)).state); } finally { db.close(); }
++  }, raw);
++  expect(reopened).toBe(result.saved);
++});
+ 
+ test("adapter and repository results cannot mutate saved records or each other's snapshots", async ({ page }) => {
+   await harness(page);

@@ -1,0 +1,88 @@
+[WebServer] (node:12807) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 8 tests using 1 worker
+
+(node:12808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en (167ms)
+(node:12825) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru (124ms)
+(node:12851) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz (125ms)
+(node:12872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [chromium] › tests/groups/squads.groups.spec.ts:22:1 › squad publication matches the exact preview, later private records do not change it and a new post starts with sharing off (5.2s)
+  ✓  5 [chromium] › tests/groups/squads.groups.spec.ts:34:1 › a lost publish reply survives reload with the original preview reference and exact retry (3.8s)
+  ✓  6 [chromium] › tests/groups/squads.groups.spec.ts:42:1 › members share chosen posts, owners remove abuse and revoked membership rejects a pending publication (9.7s)
+  ✓  7 [chromium] › tests/groups/squads.groups.spec.ts:52:1 › a stale published edit keeps its draft and requires explicit review before creating a new preview (5.9s)
+  ✓  8 [chromium] › tests/groups/squads.groups.spec.ts:59:1 › an expired server preview retains the draft and requires a newly reviewed preview (5.4s)
+
+
+  1) [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en 
+
+    CommandValidationError: Invalid command field: priorities.ensure.date
+
+       at ../../src/contracts/commands.ts:34
+
+      32 |   }
+      33 | }
+    > 34 | const invalid = (field: string): never => { throw new CommandValidationError(field); };
+         |                                                   ^
+      35 | const forbidden = new Set(["__proto__", "prototype", "constructor"]);
+      36 |
+      37 | /** Reject non-JSON objects, accessors, cycles, deep/large input and pollution keys before reading fields. */
+        at invalid (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/contracts/commands.ts:34:51)
+        at parseCommand (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/contracts/commands.ts:147:68)
+        at applyDomainCommand (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/domain/commands.ts:21:19)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:22:8
+
+    Error Context: test-results/groups/browser/squad-layout.groups-squad--bd92e-on-and-recovery-reflow-·-en-chromium/error-context.md
+
+  2) [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru 
+
+    CommandValidationError: Invalid command field: priorities.ensure.date
+
+       at ../../src/contracts/commands.ts:34
+
+      32 |   }
+      33 | }
+    > 34 | const invalid = (field: string): never => { throw new CommandValidationError(field); };
+         |                                                   ^
+      35 | const forbidden = new Set(["__proto__", "prototype", "constructor"]);
+      36 |
+      37 | /** Reject non-JSON objects, accessors, cycles, deep/large input and pollution keys before reading fields. */
+        at invalid (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/contracts/commands.ts:34:51)
+        at parseCommand (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/contracts/commands.ts:147:68)
+        at applyDomainCommand (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/domain/commands.ts:21:19)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:22:8
+
+    Error Context: test-results/groups/browser/squad-layout.groups-squad--31170-on-and-recovery-reflow-·-ru-chromium/error-context.md
+
+  3) [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz 
+
+    CommandValidationError: Invalid command field: priorities.ensure.date
+
+       at ../../src/contracts/commands.ts:34
+
+      32 |   }
+      33 | }
+    > 34 | const invalid = (field: string): never => { throw new CommandValidationError(field); };
+         |                                                   ^
+      35 | const forbidden = new Set(["__proto__", "prototype", "constructor"]);
+      36 |
+      37 | /** Reject non-JSON objects, accessors, cycles, deep/large input and pollution keys before reading fields. */
+        at invalid (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/contracts/commands.ts:34:51)
+        at parseCommand (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/contracts/commands.ts:147:68)
+        at applyDomainCommand (/Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/src/domain/commands.ts:21:19)
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/groups/squad-layout.groups.spec.ts:22:8
+
+    Error Context: test-results/groups/browser/squad-layout.groups-squad--9d0ac-on-and-recovery-reflow-·-uz-chromium/error-context.md
+
+  3 failed
+    [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · en 
+    [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · ru 
+    [chromium] › tests/groups/squad-layout.groups.spec.ts:17:49 › squad preview, moderation and recovery reflow · uz 
+  5 passed (33.1s)

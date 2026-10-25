@@ -1,0 +1,81 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts
+
+[WebServer] (node:99238) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:99236) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 30 tests using 1 worker
+
+(node:99355) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:99355) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓   1 [chromium] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (677ms)
+  ✓   2 [chromium] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (13.6s)
+  ✓   3 [chromium] › tests/push/installations.push.spec.ts:27:1 › denied permission never re-prompts; explicit refresh and enable recover (4.0s)
+  ✓   4 [chromium] › tests/push/installations.push.spec.ts:33:1 › offline disable stops the installation first and retries remote cancellation on reconnect (4.3s)
+  ✓   5 [chromium] › tests/push/installations.push.spec.ts:38:1 › another device and signed-out view never inherit subscription or detailed-copy consent (4.1s)
+  ✓   6 [chromium] › tests/push/installations.push.spec.ts:46:1 › failed consent storage cannot report success or leave a browser subscription active (3.0s)
+  ✘   7 [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan (24.3s)
+(node:241) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · en (5.4s)
+  ✓   9 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · ru (4.9s)
+  ✓  10 [chromium] › tests/push/layout.push.spec.ts:6:47 › notification setup, privacy and pending cancellation layout · uz (4.4s)
+(node:688) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:688) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  11 [webkit] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (824ms)
+  ✘  12 [webkit] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data (3.6s)
+
+
+  1) [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('region', { name: 'Background notifications', exact: true }).getByText('Reminder cancellation is waiting to sync. Already-sent notifications may still arrive.', { exact: true })
+    Expected: visible
+    Timeout: 20000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('region', { name: 'Background notifications', exact: true }).getByText('Reminder cancellation is waiting to sync. Already-sent notifications may still arrive.', { exact: true }) with timeout 20000ms
+      - waiting for getByRole('region', { name: 'Background notifications', exact: true }).getByText('Reminder cancellation is waiting to sync. Already-sent notifications may still arrive.', { exact: true })
+
+
+      58 |  await page.locator('summary').filter({hasText:'Habit reminders'}).click();
+      59 |  await request.post('/__infra_test__/network?offline=true',{timeout:5000});await page.getByLabel('Quiet hours start',{exact:true}).fill('23:00');
+    > 60 |  await pushSheet(page);await expect(region.getByText(t('cancelPending'),{exact:true})).toBeVisible({timeout:20000});
+         |                                                                                        ^
+      61 |  await request.post('/__infra_test__/network?offline=false',{timeout:5000});await page.evaluate(()=>window.dispatchEvent(new Event('online')));await expect(region.getByText(t('planBlocked'),{exact:true})).toBeVisible({timeout:30000});
+      62 |  expect(await page.evaluate(async()=>{const v=await(await fetch('/api/v1/push/plan')).json();return v.dispatchEnabled;})).toBe(false);
+      63 | });
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/installations.push.spec.ts:60:88
+
+    Error Context: test-results/push/browser/installations.push-offline-ba682-ies-without-enabling-a-plan-chromium/error-context.md
+
+  2) [webkit] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data 
+
+    Test was interrupted.
+
+    Error: page.waitForTimeout: Test ended.
+
+      14 |  await expect(region.getByRole("switch",{name:t("details"),exact:true})).toHaveAttribute("aria-checked","false");await region.getByRole("switch",{name:t("details"),exact:true}).click();
+      15 |  // A background status refresh cannot erase an unsaved privacy choice.
+    > 16 |  await page.waitForTimeout(5200);await expect(region.getByRole("switch",{name:t("details"),exact:true})).toHaveAttribute("aria-checked","true");
+         |             ^
+      17 |  await region.getByRole("button",{name:t("save"),exact:true}).click();await expect(region.getByText(t("saved"),{exact:true})).toBeVisible();
+      18 |  await page.reload({waitUntil:"domcontentloaded"});await expect(page.getByRole("tab",{name:"You",exact:true})).toBeVisible();await pushSheet(page);await expect(region.getByText(t("subscribed"),{exact:true})).toBeVisible();await expect(region.getByRole("switch",{name:t("details"),exact:true})).toHaveAttribute("aria-checked","true");
+      19 |  await region.getByRole("button",{name:t("test"),exact:true}).click();await expect(region.getByText(t("queued"),{exact:true})).toBeVisible();
+        at /Users/mamurbakhromov/Desktop/PROJECTS/habit tracker/tests/push/installations.push.spec.ts:16:13
+
+    Error Context: test-results/push/browser/installations.push-explici-d3985--enable-preserve-guest-data-webkit/error-context.md
+
+  1 failed
+    [chromium] › tests/push/installations.push.spec.ts:53:1 › offline quiet-hours edit keeps cancellation pending and retries without enabling a plan 
+  1 interrupted
+    [webkit] › tests/push/installations.push.spec.ts:9:1 › explicit device setup, private copy, reload, revoke and re-enable preserve guest data 
+  18 did not run
+  10 passed (1.4m)

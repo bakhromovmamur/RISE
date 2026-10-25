@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-24",
+  "exit": 1,
+  "personal": {
+    "planned": 400,
+    "accepted": 400,
+    "failed": 0,
+    "deferred": 0,
+    "p95Ms": 1636.9066250000033,
+    "p95ScheduledMs": 1637.439250000054,
+    "maxMs": 3321.814624999999,
+    "maxSchedulingLateMs": 7.100542000000132
+  },
+  "shared": {
+    "planned": 200,
+    "accepted": 200,
+    "failed": 0,
+    "deferred": 0,
+    "p95Ms": 1201.509791999997,
+    "p95ScheduledMs": 1204.6331670000218,
+    "maxMs": 2296.1427919999696,
+    "maxSchedulingLateMs": 4.178042000014102
+  },
+  "convergence": {
+    "expected": 200,
+    "accepted": 200,
+    "observed": 200,
+    "over15SecondsOrMissing": 1,
+    "p95Ms": 14072.331624999992,
+    "maxMs": 15424.289833999996
+  },
+  "exactReplayAndSharedReadback": true,
+  "historyAndXpRestored": true,
+  "cleanupErrors": [],
+  "cleaned": true,
+  "rounds": [
+    {
+      "kind": "personal",
+      "round": 0,
+      "count": 100,
+      "p50Ms": 584.1175830000138,
+      "p95Ms": 835.486459000007,
+      "maxMs": 1078.3067079999892
+    },
+    {
+      "kind": "personal",
+      "round": 1,
+      "count": 100,
+      "p50Ms": 626.9508750000095,
+      "p95Ms": 818.079665999976,
+      "maxMs": 990.7921659999993
+    },
+    {
+      "kind": "personal",
+      "round": 2,
+      "count": 100,
+      "p50Ms": 884.9012079999957,
+      "p95Ms": 2018.5003329999745,
+      "maxMs": 2599.0213329999824
+    },
+    {
+      "kind": "personal",
+      "round": 3,
+      "count": 100,
+      "p50Ms": 934.8853750000126,
+      "p95Ms": 1745.310165999981,
+      "maxMs": 3321.814624999999
+    },
+    {
+      "kind": "shared",
+      "round": 0,
+      "count": 50,
+      "p50Ms": 294.5745830000087,
+      "p95Ms": 558.7644170000276,
+      "maxMs": 581.7549160000053
+    },
+    {
+      "kind": "shared",
+      "round": 1,
+      "count": 50,
+      "p50Ms": 200.36724999998114,
+      "p95Ms": 821.242499999993,
+      "maxMs": 837.7754999999888
+    },
+    {
+      "kind": "shared",
+      "round": 2,
+      "count": 50,
+      "p50Ms": 676.6124999999884,
+      "p95Ms": 1811.1242079999647,
+      "maxMs": 2296.1427919999696
+    },
+    {
+      "kind": "shared",
+      "round": 3,
+      "count": 50,
+      "p50Ms": 93.82737500005169,
+      "p95Ms": 1201.509791999997,
+      "maxMs": 1717.4349159999983
+    }
+  ],
+  "reads": [
+    {
+      "collection": "groups",
+      "status": 200,
+      "count": 1107
+    },
+    {
+      "collection": "tasks",
+      "status": 200,
+      "count": 500
+    },
+    {
+      "collection": "occurrences",
+      "status": 200,
+      "count": 500
+    }
+  ]
+}

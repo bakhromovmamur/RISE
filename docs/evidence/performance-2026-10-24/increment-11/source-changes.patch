@@ -1,0 +1,283 @@
+--- before/src/groups/content.ts
++++ after/src/groups/content.ts
+@@ -1,13 +1,13 @@
+ import {AccountError} from '../auth/client';
+ import {parseSharedQuery,sharedTaskOccurs,type SharedQuery,type SharedPage,type SharedTask} from '../contracts/sharedContent';
+ import type {SharedPriority} from '../domain/priorityReferences';
+-import type {GroupSession} from './session';
++import type {GroupSession,GroupState} from './session';
+ import type {GroupClient} from './client';
+ 
+ export type ContentQuery=Omit<SharedQuery,'cursor'|'revision'>;
+ export interface ContentView {rows:SharedPage['rows'];revision:number|null;next:string|null;loaded:boolean;loading:boolean;error:string|null}
+ export const emptyContent:ContentView={rows:[],revision:null,next:null,loaded:false,loading:false,error:null};
+-type Entry={query:ContentQuery;view:ContentView;abort:AbortController};
++type Entry={query:ContentQuery;view:ContentView;abort:AbortController;failedGroups?:GroupState['groups']};
+ const key=(q:ContentQuery)=>JSON.stringify([q.groupId,q.collection,q.parentId??null,q.date??null]);
+ const rowKey=(r:SharedPage['rows'][number])=>'id'in r?r.id:`${r.taskId}/${r.date}`;
+ /** Shared text stays in memory. Each page is tied to a verified owner and one
+@@ -21,8 +21,10 @@
+  private group(id:string){return this.current()&&this.groups.getSnapshot().loaded?this.groups.getSnapshot().groups.find(g=>g.id===id&&g.kind==='family'):undefined;}
+  private emit(){this.version++;if(!this.closed)this.listeners.forEach(listener=>listener());}
+  private observe=()=>{
++  // A fresh authorized head may retry an unavailable read; busy/receipt updates cannot.
++  const head=this.groups.getSnapshot();
+   let changed=false;
+-  for(const[id,entry]of this.entries){const group=this.group(entry.query.groupId);if(!group||entry.view.revision!==group.revision){entry.abort.abort();this.entries.delete(id);changed=true;}}
++  for(const[id,entry]of this.entries){const group=this.group(entry.query.groupId);if(!group||entry.view.revision!==group.revision||entry.view.error==='unavailable'&&!head.readError&&entry.failedGroups!==head.groups){entry.abort.abort();this.entries.delete(id);changed=true;}}
+   if(changed)this.emit();
+  };
+  get=(query:ContentQuery):ContentView=>this.current()?this.entries.get(key(query))?.view??emptyContent:emptyContent;
+@@ -43,7 +45,7 @@
+    entry.view={rows,revision:page.revision,next:page.next,loaded:true,loading:false,error:null};this.emit();return true;
+   }catch(error){
+    if(!matches())return false;
+-   const code=error instanceof AccountError?error.code:'unavailable';entry.view={...emptyContent,revision:group.revision,error:code};this.emit();
++   const code=error instanceof AccountError?error.code:'unavailable';entry.failedGroups=this.groups.getSnapshot().groups;entry.view={...emptyContent,revision:group.revision,error:code};this.emit();
+    if(['group_changed','group_unavailable','sign_in_required','account_changed'].includes(code))await this.groups.refresh();return false;
+   }
+  }
+--- before/src/groups/squads.ts
++++ after/src/groups/squads.ts
+@@ -1,12 +1,12 @@
+ import {AccountError} from '../auth/client';
+ import {parseSquadQuery,type SquadQuery,type SquadPage} from '../contracts/squads';
+-import type {GroupSession} from './session';
++import type {GroupSession,GroupState} from './session';
+ import type {GroupClient} from './client';
+ 
+ export type SquadSelection=Omit<SquadQuery,'cursor'|'revision'>;
+ export interface SquadView {rows:SquadPage['rows'];revision:number|null;next:string|null;loaded:boolean;loading:boolean;error:string|null}
+ export const emptySquad:SquadView={rows:[],revision:null,next:null,loaded:false,loading:false,error:null};
+-type Entry={query:SquadSelection;view:SquadView;abort:AbortController};
++type Entry={query:SquadSelection;view:SquadView;abort:AbortController;failedGroups?:GroupState['groups']};
+ const key=(q:SquadSelection)=>JSON.stringify([q.groupId,q.week,q.authorMemberId??null]);
+ /** Published snapshots are memory-only and tied to current group membership.
+  * Each continuation asserts the same revision, including reaction changes. */
+@@ -19,7 +19,9 @@
+  private group(id:string){return this.current()&&this.groups.getSnapshot().loaded?this.groups.getSnapshot().groups.find(g=>g.id===id&&g.kind==='squad'):undefined;}
+  private emit(){this.version++;if(!this.closed)this.listeners.forEach(listener=>listener());}
+  private observe=()=>{
+-  let changed=false;for(const[id,entry]of this.entries){const group=this.group(entry.query.groupId);if(!group||entry.view.revision!==group.revision){entry.abort.abort();this.entries.delete(id);changed=true;}}
++  // A fresh authorized head may retry an unavailable read; busy/receipt updates cannot.
++  const head=this.groups.getSnapshot();
++  let changed=false;for(const[id,entry]of this.entries){const group=this.group(entry.query.groupId);if(!group||entry.view.revision!==group.revision||entry.view.error==='unavailable'&&!head.readError&&entry.failedGroups!==head.groups){entry.abort.abort();this.entries.delete(id);changed=true;}}
+   if(changed)this.emit();
+  };
+  get=(query:SquadSelection):SquadView=>this.current()?this.entries.get(key(query))?.view??emptySquad:emptySquad;
+@@ -36,7 +38,7 @@
+    const rows=append?[...prior!.view.rows,...page.rows]:page.rows;
+    if(new Set(rows.map(row=>row.id)).size!==rows.length||append&&page.next===prior!.view.next)throw new AccountError('unavailable');
+    entry.view={rows,revision:page.revision,next:page.next,loaded:true,loading:false,error:null};this.emit();return true;
+-  }catch(error){if(!matches())return false;const code=error instanceof AccountError?error.code:'unavailable';entry.view={...emptySquad,revision:group.revision,error:code};this.emit();
++  }catch(error){if(!matches())return false;const code=error instanceof AccountError?error.code:'unavailable';entry.failedGroups=this.groups.getSnapshot().groups;entry.view={...emptySquad,revision:group.revision,error:code};this.emit();
+    if(['group_changed','group_unavailable','sign_in_required','account_changed'].includes(code))await this.groups.refresh();return false;}
+  }
+  close(){this.closed=true;this.unsubscribe();for(const entry of this.entries.values())entry.abort.abort();this.entries.clear();this.listeners.clear();}
+--- before/src/groups/invitations.ts
++++ after/src/groups/invitations.ts
+@@ -1,11 +1,11 @@
+ import {AccountError} from '../auth/client';
+ import type {AccountGroup,GroupInvitation} from '../contracts/groups';
+-import type {GroupSession} from './session';
++import type {GroupSession,GroupState} from './session';
+ import type {GroupClient} from './client';
+ 
+ export interface InvitationView {rows:GroupInvitation[];revision:number|null;next:string|null;previous:boolean;loaded:boolean;loading:boolean;error:string|null}
+ export const emptyInvitations:InvitationView={rows:[],revision:null,next:null,previous:false,loaded:false,loading:false,error:null};
+-type Entry={view:InvitationView;cursor:string|null;history:(string|null)[];abort:AbortController};
++type Entry={view:InvitationView;cursor:string|null;history:(string|null)[];abort:AbortController;failedGroups?:GroupState['groups']};
+ /** Owner metadata stays in memory. Only one bounded page is displayed; older
+  * page navigation retains opaque cursors, not all invitations or any token. */
+ export class GroupInvitations {
+@@ -18,7 +18,9 @@
+  private emit(){this.version++;if(!this.closed)this.listeners.forEach(listener=>listener());}
+  private initial(group:AccountGroup):InvitationView{return {rows:group.invitations,revision:group.revision,next:group.invitationNext??null,previous:false,loaded:true,loading:false,error:null};}
+  private observe=()=>{
+-  let changed=false;for(const[id,entry]of this.entries){const group=this.group(id);if(!group||group.revision!==entry.view.revision){entry.abort.abort();this.entries.delete(id);changed=true;}}
++  // A fresh authorized head may retry an unavailable read; busy/receipt updates cannot.
++  const head=this.groups.getSnapshot();
++  let changed=false;for(const[id,entry]of this.entries){const group=this.group(id);if(!group||group.revision!==entry.view.revision||entry.view.error==='unavailable'&&!head.readError&&entry.failedGroups!==head.groups){entry.abort.abort();this.entries.delete(id);changed=true;}}
+   if(changed)this.emit();
+  };
+  get=(id:string):InvitationView=>{const group=this.group(id);const entry=this.entries.get(id);return group?entry?.view.revision===group.revision?entry.view:this.initial(group):emptyInvitations;};
+@@ -36,7 +38,7 @@
+    if(!matches())return false;
+    if(page.accountId!==this.owner||page.groupId!==id||page.revision!==revision||cursor!==null&&(page.next===cursor||page.rows.some(row=>row.id===cursor)))throw new AccountError('unavailable');
+    entry.view={rows:page.rows,revision:page.revision,next:page.next,previous:history.length>0,loaded:true,loading:false,error:null};this.emit();return true;
+-  }catch(error){if(!matches())return false;const code=error instanceof AccountError?error.code:'unavailable';entry.view={...emptyInvitations,revision,error:code};this.emit();
++  }catch(error){if(!matches())return false;const code=error instanceof AccountError?error.code:'unavailable';entry.failedGroups=this.groups.getSnapshot().groups;entry.view={...emptyInvitations,revision,error:code};this.emit();
+    if(['group_changed','group_unavailable','sign_in_required','account_changed'].includes(code))await this.groups.refresh();return false;}
+  }
+  close(){this.closed=true;this.unsubscribe();for(const entry of this.entries.values())entry.abort.abort();this.entries.clear();this.listeners.clear();}
+--- before/tests/shared-reader.test.ts
++++ after/tests/shared-reader.test.ts
+@@ -60,3 +60,39 @@
+   identity={signedIn:false,csrfToken:'a'.repeat(64),delivery:'email'};const count=requests.length;await assert.rejects(client.content(h.query));assert.equal(requests.length,count);
+  }finally{globalThis.fetch=originalFetch;h.content.close();}
+ });
++
++test('a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop',async()=>{
++ const h=setup();let attempts=0;
++ h.client.content=async()=>{attempts++;throw new AccountError('unavailable');};
++ try{
++  await h.content.load(h.query);const failed=h.content.get(h.query);
++  for(const busy of [true,false,true,false])h.set({busy});
++  assert.equal(h.content.get(h.query),failed);assert.equal(attempts,1);assert.equal(h.reads(),0);
++  h.set({groups:h.view().groups.map(g=>({...g})),readError:null});assert.equal(h.content.get(h.query),emptyContent);
++  await h.content.load(h.query);assert.equal(attempts,2);assert.equal(h.content.get(h.query).error,'unavailable');
++  h.set({busy:false});assert.equal(h.content.get(h.query).error,'unavailable');assert.equal(h.reads(),0);
++  h.client.content=async()=>{attempts++;return h.page([h.task()]);};
++  h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(await h.content.load(h.query),true);assert.equal(attempts,3);
++  const saved=h.content.get(h.query);h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),saved);
++ }finally{h.content.close();}
++});
++test('fresh metadata cannot clear authority failures or revive a transient read after account switching',async()=>{
++ const h=setup();let attempts=0;
++ try{
++  h.client.content=async()=>{attempts++;throw new AccountError('sign_in_required');};await h.content.load(h.query);
++  const denied=h.content.get(h.query);h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),denied);
++  h.client.content=async()=>{attempts++;throw new AccountError('unavailable');};await h.content.load(h.query);
++  h.setCurrent(false);h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),emptyContent);assert.equal(await h.content.load(h.query),false);assert.equal(attempts,2);
++ }finally{h.content.close();}
++});
++
++test('metadata received before a read failure cannot authorize retries from later busy updates',async()=>{
++ const h=setup();let reject!:(reason:unknown)=>void;
++ h.client.content=async()=>new Promise<SharedPage>((_,no)=>{reject=no;});
++ try{
++  const pending=h.content.load(h.query);h.set({groups:h.view().groups.map(g=>({...g}))});
++  assert.equal(h.content.get(h.query).loading,true);reject(new AccountError('unavailable'));assert.equal(await pending,false);
++  const failed=h.content.get(h.query);h.set({busy:true});h.set({busy:false});assert.equal(h.content.get(h.query),failed);
++  h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),emptyContent);
++ }finally{h.content.close();}
++});
+--- before/tests/squad-reader.test.ts
++++ after/tests/squad-reader.test.ts
+@@ -56,3 +56,39 @@
+   identity={signedIn:false,csrfToken:'a'.repeat(64),delivery:'email'};const count=requests.length;await assert.rejects(client.squad(h.query));await assert.rejects(client.squadPreview(input));assert.equal(requests.length,count);
+  }finally{globalThis.fetch=originalFetch;h.content.close();}
+ });
++
++test('a transient read waits for fresh authorized metadata, then retries without a revision change or a retry loop',async()=>{
++ const h=setup();let attempts=0;
++ h.client.squad=async()=>{attempts++;throw new AccountError('unavailable');};
++ try{
++  await h.content.load(h.query);const failed=h.content.get(h.query);
++  for(const busy of [true,false,true,false])h.set({busy});
++  assert.equal(h.content.get(h.query),failed);assert.equal(attempts,1);assert.equal(h.reads(),0);
++  h.set({groups:h.view().groups.map(g=>({...g})),readError:null});assert.equal(h.content.get(h.query),emptySquad);
++  await h.content.load(h.query);assert.equal(attempts,2);assert.equal(h.content.get(h.query).error,'unavailable');
++  h.set({busy:false});assert.equal(h.content.get(h.query).error,'unavailable');assert.equal(h.reads(),0);
++  h.client.squad=async()=>{attempts++;return h.page([h.post()]);};
++  h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(await h.content.load(h.query),true);assert.equal(attempts,3);
++  const saved=h.content.get(h.query);h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),saved);
++ }finally{h.content.close();}
++});
++test('fresh metadata cannot clear authority failures or revive a transient read after account switching',async()=>{
++ const h=setup();let attempts=0;
++ try{
++  h.client.squad=async()=>{attempts++;throw new AccountError('sign_in_required');};await h.content.load(h.query);
++  const denied=h.content.get(h.query);h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),denied);
++  h.client.squad=async()=>{attempts++;throw new AccountError('unavailable');};await h.content.load(h.query);
++  h.setCurrent(false);h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),emptySquad);assert.equal(await h.content.load(h.query),false);assert.equal(attempts,2);
++ }finally{h.content.close();}
++});
++
++test('metadata received before a read failure cannot authorize retries from later busy updates',async()=>{
++ const h=setup();let reject!:(reason:unknown)=>void;
++ h.client.squad=async()=>new Promise<SquadPage>((_,no)=>{reject=no;});
++ try{
++  const pending=h.content.load(h.query);h.set({groups:h.view().groups.map(g=>({...g}))});
++  assert.equal(h.content.get(h.query).loading,true);reject(new AccountError('unavailable'));assert.equal(await pending,false);
++  const failed=h.content.get(h.query);h.set({busy:true});h.set({busy:false});assert.equal(h.content.get(h.query),failed);
++  h.set({groups:h.view().groups.map(g=>({...g}))});assert.equal(h.content.get(h.query),emptySquad);
++ }finally{h.content.close();}
++});
+--- before/tests/group-invitations.test.ts
++++ after/tests/group-invitations.test.ts
+@@ -55,3 +55,22 @@
+   assert.throws(()=>parse({...h.group,members}));assert.deepEqual(parse({...h.group,members,invitations:[],invitationNext:null}).groups[0].invitations,[]);
+  }finally{h.reader.close();}
+ });
++
++test('fresh owner metadata recovers an unavailable invitation page without retrying on busy state',async()=>{
++ let attempts=0;const h=setup(async()=>{attempts++;throw new AccountError('unavailable');});
++ try{
++  assert.equal(await h.reader.load(groupId,'next'),false);const failed=h.reader.get(groupId);
++  h.view.busy=true;h.emit();h.view.busy=false;h.emit();assert.equal(h.reader.get(groupId),failed);assert.equal(attempts,1);assert.equal(h.refreshes(),0);
++  h.view.groups=h.view.groups.map(g=>({...g}));h.emit();const restored=h.reader.get(groupId);assert.equal(restored.error,null);assert.equal(restored.loaded,true);assert.deepEqual(restored.rows,first);assert.equal(restored.previous,false);assert.equal(attempts,1);
++  await h.reader.load(groupId,'next');assert.equal(attempts,2);assert.equal(h.reader.get(groupId).error,'unavailable');h.emit();assert.equal(h.reader.get(groupId).error,'unavailable');
++  h.switchOwner();h.view.groups=h.view.groups.map(g=>({...g}));h.emit();assert.equal(h.reader.get(groupId),emptyInvitations);assert.equal(await h.reader.load(groupId),false);assert.equal(attempts,2);
++ }finally{h.reader.close();}
++});
++test('fresh invitation metadata does not clear an authorization error or retain actions after ownership loss',async()=>{
++ const h=setup(async()=>{throw new AccountError('sign_in_required');});
++ try{
++  await h.reader.load(groupId,'next');const denied=h.reader.get(groupId);
++  h.view.groups=h.view.groups.map(g=>({...g}));h.emit();assert.equal(h.reader.get(groupId),denied);
++  h.view.groups=h.view.groups.map(g=>({...g,members:g.members.map(m=>({...m,role:'member' as const}))}));h.emit();assert.equal(h.reader.get(groupId),emptyInvitations);
++ }finally{h.reader.close();}
++});
+--- before/tests/groups/read-recovery.groups.spec.ts
++++ after/tests/groups/read-recovery.groups.spec.ts
+@@ -0,0 +1,25 @@
++import {test,expect,stored} from '../support/browser.ts';
++import {groupSetup,createFamily,openFamily,readGroups} from '../support/groupBrowser.ts';
++import {sharedText} from '../../src/groups/sharedText.ts';
++const t=sharedText('en');
++test.use({serviceWorkers:'block'});
++
++test('an unavailable family read recovers on the normal metadata timer without another edit or manual retry',async({page})=>{
++ const {guest}=await groupSetup(page),group=await createFamily(page,'Automatic read recovery');
++ await page.getByRole('button',{name:t('addTask'),exact:true}).click();await page.getByLabel(t('taskName'),{exact:true}).fill('Same revision task');await page.getByRole('button',{name:t('saveTask'),exact:true}).click();await expect(page.getByRole('heading',{name:'Same revision task',exact:true})).toBeVisible();
++ const revision=(await readGroups(page)).find(g=>g.id===group.id)!.revision;
++ let unavailable=true,failures=0,successfulReads=0;
++ await page.route(`**/api/v1/groups/${group.id}/content?*`,async route=>{
++  if(new URL(route.request().url()).searchParams.get('collection')!=='tasks')return route.continue();
++  if(unavailable){failures++;return route.fulfill({status:503,json:{error:{code:'unavailable'}}});}
++  successfulReads++;return route.continue();
++ });
++ const failed=page.waitForResponse(r=>new URL(r.url()).pathname===`/api/v1/groups/${group.id}/content`&&r.status()===503);
++ await page.reload();await failed;await openFamily(page,group.name);
++ await expect(page.getByRole('dialog').getByText(t('readFailed'),{exact:true})).toBeVisible();expect(failures).toBeGreaterThan(0);
++ unavailable=false;
++ // No focus/online event, edit, reload or retry click supplies the recovery.
++ await expect(page.getByRole('checkbox',{name:t('complete',['Same revision task']),exact:true})).toBeEnabled({timeout:20000});
++ expect(successfulReads).toBeGreaterThan(0);expect((await readGroups(page)).find(g=>g.id===group.id)!.revision).toBe(revision);
++ expect(await stored(page)).toEqual(guest);expect((await(await page.request.get('/api/v1/personal')).json()).xp).toBe(0);
++});
+--- before/tests/groups/content-layout.groups.spec.ts
++++ after/tests/groups/content-layout.groups.spec.ts
+@@ -20,7 +20,7 @@
+  const firstPage=[task,...Array.from({length:49},(_,i)=>({...task,id:`80000000-0000-4000-8000-${String(i+1).padStart(12,'0')}`,title:`Archived task ${i+1}`,archived:true}))],cursor=firstPage.at(-1)!.id;
+  const list:SharedList={id:listId,groupId:id,name:'SharedListWithoutSpaces'.repeat(3),archived:false,revision:1};
+  const item:SharedItem={id:itemId,listId,groupId:id,text:'AnItemWithALongAuthoredName'.repeat(4),quantity:'Quantity and optional shared note '.repeat(2),checked:false,position:1,revision:1};
+- const report:SharedOccurrence={taskId,groupId:id,date,completed:true,byMemberId:member,at:new Date().toISOString(),revision:1,snapshot:{title:task.title,notes:task.notes,assignee:member,time:task.time,timezone:group.timezone,taskRevision:1}};
++ const report:SharedOccurrence={taskId,groupId:id,date,completed:true,byMemberId:member,at:`${date}T12:00:00.000Z`,revision:1,snapshot:{title:task.title,notes:task.notes,assignee:member,time:task.time,timezone:group.timezone,taskRevision:1}};
+  let failReads=false,continued=false,heldReports:Promise<void>|null=null;
+  await page.route('**/api/v1/**',async route=>{const url=new URL(route.request().url()),path=url.pathname;
+   if(path==='/api/v1/session')return route.fulfill({json:{signedIn:true,csrfToken:'0'.repeat(64),delivery:'email',account:{id:owner,email:'visual-only@example.invalid',remembered:true,authenticatedAt:new Date().toISOString(),expiresAt:new Date(Date.now()+3600000).toISOString()}}});
+--- before/tests/groups/layout.groups.spec.ts
++++ after/tests/groups/layout.groups.spec.ts
+@@ -15,6 +15,8 @@
+ for(const language of ['en','ru','uz'] as const)test(`group screens reflow with long names and recoverable errors · ${language}`,async({page},info)=>{
+  test.setTimeout(120000);const owner='11111111-1111-4111-8111-111111111111',id='22222222-2222-4222-8222-222222222222',invitation='33333333-3333-4333-8333-333333333333';
+  const guest=syncGuest();guest.life.language=language;
++ // Stable visible expiry; authentication/fault clocks remain real.
++ const invitationExpiry=new Date(Date.now()+86400000).toISOString().slice(0,10)+'T12:00:00.000Z';
+  const installation='77777777-7777-4777-8777-777777777777',authenticatedAt=new Date().toISOString(),expiresAt=new Date(Date.now()+3600000).toISOString(),p=pushText(language),synthetic=await syntheticPushBrowser(page,'denied');let pushEnabled=false;
+  await page.addInitScript(()=>{Object.defineProperty(ServiceWorkerContainer.prototype,'getRegistration',{configurable:true,value:async()=>({pushManager:Object.getOwnPropertyDescriptor(ServiceWorkerRegistration.prototype,'pushManager')!.get!.call({})})});});
+  const proposal=await prepareGuestImport(guest,owner,{habitIds:['authored-reading'],goals:true,prayers:true,reflections:true,settings:true}),records=recordsFromEntries(proposal.entries),state=hydrate(records),t=groupText(language),tr=createTranslator(language),a=lifecycleText(language),archive=archiveText(language);
+@@ -26,9 +28,9 @@
+   if(path==='/api/v1/groups')return route.fulfill({json:{accountId:owner,groups:[group]}});
+   if(path==='/api/v1/push')return route.fulfill({json:{configured:pushEnabled,publicKey:pushEnabled?synthetic.subscription.keys.p256dh:null,installation:pushEnabled?{id:installation,version:1,enabled:true,details:false,language,needsReview:false}:null,test:null}});
+   if(path===`/api/v1/groups/${id}/invitations`){if(invitationPageFails)return route.fulfill({status:503,json:{error:{code:'unavailable'}}});const cursor=new URL(route.request().url()).searchParams.get('cursor');return route.fulfill({json:{accountId:owner,groupId:id,revision:group.revision,rows:cursor?[{id:invitation,expiresAt:'2099-10-30T00:00:00.000Z',revoked:false,consumed:false}]:group.invitations,next:cursor?null:group.invitationNext}});}
+-  if(path==='/api/v1/groups/commands'){const op=route.request().postDataJSON();if(op.command.kind==='group.invite'){const expiresAt=new Date(Date.now()+86400000).toISOString();group.invitations=[{id:invitation,expiresAt,revoked:false,consumed:false}];return route.fulfill({json:{operationId:op.operationId,groupId:id,revision:1,invitation:{id:invitation,expiresAt,link:'http://127.0.0.1:4191/#invite='+'x'.repeat(43)}}});}return route.fulfill({status:403,json:{error:{code:'recent_auth_required'}}});}
++  if(path==='/api/v1/groups/commands'){const op=route.request().postDataJSON();if(op.command.kind==='group.invite'){const expiresAt=invitationExpiry;group.invitations=[{id:invitation,expiresAt,revoked:false,consumed:false}];return route.fulfill({json:{operationId:op.operationId,groupId:id,revision:1,invitation:{id:invitation,expiresAt,link:'http://127.0.0.1:4191/#invite='+'x'.repeat(43)}}});}return route.fulfill({status:403,json:{error:{code:'recent_auth_required'}}});}
+   if(path==='/api/v1/auth/reauth/code')return route.fulfill({status:202,json:{challenge:'1'.repeat(64),resendAt:new Date(Date.now()+60000).toISOString(),expiresAt:new Date(Date.now()+600000).toISOString(),retryAfter:60}});
+-  if(path==='/api/v1/groups/invitations/preview')return route.fulfill({json:{id,name:group.name,kind:group.kind,timezone:group.timezone,expiresAt:new Date(Date.now()+86400000).toISOString()}});
++  if(path==='/api/v1/groups/invitations/preview')return route.fulfill({json:{id,name:group.name,kind:group.kind,timezone:group.timezone,expiresAt:invitationExpiry}});
+   return route.abort('blockedbyclient');
+  });
+  await seedSyncGuest(page,language);

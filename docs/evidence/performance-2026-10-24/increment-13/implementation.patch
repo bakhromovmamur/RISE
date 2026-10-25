@@ -1,0 +1,45 @@
+--- before/src/contracts/personalRecords.ts
++++ after/src/contracts/personalRecords.ts
+@@ -97,7 +97,13 @@
+   validateState(candidate); return candidate;
+ }
+ 
+-const pick = (value: object, keys: readonly string[]): Row => Object.fromEntries(keys.filter(key => Object.hasOwn(value, key) && Reflect.get(value, key) !== undefined).map(key => [key, Reflect.get(value, key)]));
++function pick(value: object, keys: readonly string[]): Row {
++  const row: Row = {};
++  for (const key of keys) {
++    if (Object.hasOwn(value, key) && Reflect.get(value, key) !== undefined) row[key] = Reflect.get(value, key);
++  }
++  return row;
++}
+ const fajrFields = ["bedtime", "wakeLead", "backupMinutes", "message", "placement", "enabled", "backupEnabled"];
+ export function project(state: State, started: string): Records {
+   const records: Records = Object.fromEntries(personalTables.map(t => [t.name, []]));
+--- before/tests/personal-records.test.ts
++++ after/tests/personal-records.test.ts
+@@ -51,3 +51,25 @@
+   assert.throws(() => hydrate(malformed));
+   assert.deepEqual(records, before);
+ });
++
++
++test("account projection keeps explicit false, zero and empty text without admitting private or inherited fields", () => {
++  const date = "2026-10-24", state = capacityProfile(date, 2, 2);
++  Object.assign(state.prayers.fajr, { enabled: false, backupMinutes: 0, message: "", backupEnabled: undefined, privateDraft: "device-only synthetic draft" });
++  Object.assign(state.prayers.preferences, { latitude: 41.3, longitude: 69.2, calculationKey: "device-only calculation" });
++  Object.defineProperty(state.habits[0], "archivedAt", { value: undefined, enumerable: true });
++  Object.setPrototypeOf(state.habits[1], { archivedAt: date });
++  const before = JSON.stringify(state), records = project(state, state.habits[0].created);
++  const settings = records.prayer_settings[0].data;
++  assert.ok(settings && typeof settings === "object" && "fajr" in settings && "preferences" in settings);
++  const fajr = settings.fajr, preferences = settings.preferences;
++  assert.ok(fajr && typeof fajr === "object" && "enabled" in fajr && "backupMinutes" in fajr && "message" in fajr);
++  assert.equal(fajr.enabled, false); assert.equal(fajr.backupMinutes, 0); assert.equal(fajr.message, "");
++  assert.equal(Object.hasOwn(fajr, "backupEnabled"), false); assert.equal(Object.hasOwn(fajr, "privateDraft"), false);
++  assert.ok(preferences && typeof preferences === "object");
++  for (const field of ["latitude", "longitude", "calculationKey"]) assert.equal(Object.hasOwn(preferences, field), false);
++  for (const habit of records.habits) {
++    assert.ok(habit.data && typeof habit.data === "object"); assert.equal(Object.hasOwn(habit.data, "archivedAt"), false);
++  }
++  assert.equal(JSON.stringify(state), before);
++});

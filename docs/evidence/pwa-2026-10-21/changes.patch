@@ -1,0 +1,531 @@
+--- before/src/App.tsx
++++ src/App.tsx
+@@ -1,3 +1,4 @@
++import { PwaNotice, usePwa } from "./pwa/Pwa";
+ import type { DeviceSession } from "./data/deviceSession";
+ import { StorageRecovery, StorageStatus } from "./data/StorageNotice";
+ import type { ReviewSupport } from "./review/types";
+@@ -196,6 +197,7 @@
+   }
+ }
+ export default function App({ review, storage }: { review?: ReviewSupport; storage: DeviceSession }) {
++  const pwa = usePwa();
+   const view = useSyncExternalStore(storage.subscribe, storage.getSnapshot);
+   const state = view.state, setState = storage.setState, dispatch = storage.dispatch;
+   const
+@@ -357,9 +359,10 @@
+             className={`app-shell ${state.prefs.reduceMotion ? "reduce-motion" : ""}`}
+             data-theme={theme}
+           >
++            <PwaNotice />
+             <div
+               className="app-main"
+-              inert={screens.length > 0 ? true : undefined}
++              inert={screens.length > 0 || pwa.updating ? true : undefined}
+             >
+               <StorageStatus session={storage} />
+               {state.onboarded ? (
+--- before/src/main.tsx
++++ src/main.tsx
+@@ -1,5 +1,7 @@
+ import { createRoot } from "react-dom/client";
+ import App from "./App";
++import { startPwa, attachPwaSession } from "./pwa/client";
++import "./pwa/pwa.css";
+ import type { ReviewSupport } from "./review/types";
+ import { startDeviceSession } from "./data/deviceSession";
+ import { StorageRecovery } from "./data/StorageNotice";
+@@ -16,6 +18,7 @@
+   starting = true;
+   try {
+     const storage = await startDeviceSession(review?.initialState);
++    if (!review) attachPwaSession(storage);
+     root.render(<App review={review} storage={storage} />);
+   } catch {
+     root.render(<StorageRecovery retry={() => { void start(review); }} />);
+@@ -35,5 +38,6 @@
+     root.render(<p role="alert">This review build requires an isolated local origin. Use port 4174 for review, or build RISE for production.</p>);
+   });
+ } else {
++  startPwa();
+   void start();
+ }
+--- before/src/Personal.tsx
++++ src/Personal.tsx
+@@ -1,3 +1,4 @@
++import { PwaSettings } from "./pwa/Pwa";
+ import { StorageStatus, StorageSummary } from "./data/StorageNotice";
+ import { createEmptyState } from "./data/initialState";
+ import { useEffect, useRef, useState } from "react";
+@@ -129,6 +130,7 @@
+       <p className="fine-print">{state.mode === "demo" ? t("Demo date: {0}. Only reviewer controls change it.", "Namuna sanasi: {1}. Uni faqat ko‘rib chiqish boshqaruvlari o‘zgartiradi.", [t.date(state.demoDate, { weekday: "long", year: "numeric", month: "long", day: "numeric" }), state.demoDate]) : t("Fresh Start follows your device timezone and real local date.", "Yangi boshlanish qurilmaning vaqt mintaqasi va haqiqiy sanasiga moslashadi.")}</p>
+       <p className="fine-print">{t("Stored only in this browser. Clearing browser storage removes it. Export a copy whenever you like.", "Faqat shu brauzerda saqlanadi. Brauzer xotirasi tozalansa, ma’lumotlar o‘chadi. Istalgan payt nusxa oling.")}</p>
+     </details>
++    <PwaSettings />
+     <p className="screen-footer">{t("RISE · ")}{t("Local prototype", "Mahalliy prototip")}</p>
+   </div>;
+ }
+--- before/src/prayerDelivery.ts
++++ src/prayerDelivery.ts
+@@ -1,3 +1,4 @@
++import { registerAppWorker } from "./pwa/registration";
+ import { Capacitor } from "@capacitor/core";
+ import { LocalNotifications, type LocalNotificationSchema } from "@capacitor/local-notifications";
+ import type { State } from "./model";
+@@ -70,11 +71,9 @@
+   return { ...permissions, confirmed, error: "", busy: false };
+ }
+ 
+-let webRegistration: Promise<ServiceWorkerRegistration> | undefined;
+ async function showBrowserNotification(title: string, body: string, tag: string, data?: unknown, silent = false) {
+   if ("serviceWorker" in navigator) {
+-    webRegistration ??= navigator.serviceWorker.register("/notifications-sw.js");
+-    const registration = await webRegistration;
++    const registration = await registerAppWorker();
+     // Wait only for this worker, never indefinitely for navigator.serviceWorker.ready.
+     if (!registration.active) await new Promise<void>((resolve, reject) => {
+       const worker = registration.installing ?? registration.waiting;
+--- before/src/data/deviceSession.ts
++++ src/data/deviceSession.ts
+@@ -41,6 +41,7 @@
+   private listeners = new Set<() => void>();
+   private running: Promise<void> | null = null;
+   private clearing = false;
++  private updateToken: string | null = null;
+   private rejectedJson: string | null = null;
+   private channel: BroadcastChannel | null = null;
+   constructor(private readonly store: DeviceStore, private saved: DeviceRecord) {
+@@ -66,7 +67,7 @@
+     this.emit({ ...this.view, status: "attention", error: error instanceof DeviceStorageError && (error.code === "conflict" || error.code === "legacy-changed") ? error.code : "save" });
+   }
+   setState = (action: SetStateAction<State>) => {
+-    if (this.view.error || this.clearing) return; // Keep pending edits available for export; never overwrite them with a reset.
++    if (this.view.error || this.clearing || this.updateToken) return; // Keep pending edits available for export; never overwrite them with a reset.
+     try {
+       const next = typeof action === "function" ? action(structuredClone(this.view.state)) : action;
+       const json = JSON.stringify(next);
+@@ -81,7 +82,7 @@
+     } catch { this.rejectedJson ??= JSON.stringify(this.view.state); this.emit({ ...this.view, status: "attention", error: "invalid-edit" }); }
+   };
+   dispatch = (command: DomainCommand): State | null => {
+-    if (this.view.error || this.clearing) return null;
++    if (this.view.error || this.clearing || this.updateToken) return null;
+     try {
+       const now = Date.now(), current = this.view.state;
+       const operation = parseOperation({ protocolVersion: 1, operationId: crypto.randomUUID(),
+@@ -104,6 +105,15 @@
+     await this.flush();
+     return !this.queue.length && !this.view.error;
+   }
++  /** Freeze new edits while an already-verified update waits for the durable queue. No schema changes. */
++  async holdForUpdate(token: string): Promise<boolean> {
++    if (this.clearing || this.view.error || (this.updateToken && this.updateToken !== token)) return false;
++    this.updateToken = token;
++    if (await this.whenSaved()) return true;
++    this.releaseUpdate(token);
++    return false;
++  }
++  releaseUpdate(token: string) { if (this.updateToken === token) this.updateToken = null; }
+   private flush(): Promise<void> {
+     if (this.running) return this.running;
+     this.running = (async () => {
+@@ -152,7 +162,7 @@
+   }
+   restorePoint = () => this.store.restorePoint();
+   async restore(preview: RestorePreview, operationId: string, recoveryId?: string) {
+-    if (this.clearing) throw new DeviceStorageError("unavailable");
++    if (this.clearing || this.updateToken) throw new DeviceStorageError("unavailable");
+     this.clearing = true;
+     try {
+       await this.flush();
+@@ -164,6 +174,7 @@
+     } finally { this.clearing = false; }
+   }
+   async reloadSaved() {
++    if (this.updateToken) return;
+     await this.running;
+     try {
+       const fresh = await this.store.verify(localStorage.getItem(STORAGE_KEY));
+@@ -171,7 +182,7 @@
+     } catch (error) { this.fail(error); }
+   }
+   clear = async (state: State): Promise<boolean> => {
+-    if (this.clearing) return false;
++    if (this.clearing || this.updateToken) return false;
+     this.clearing = true;
+     await this.flush();
+     if (this.view.error || this.queue.length) { this.clearing = false; return false; }
+--- before/tests/production/backup.production.spec.ts
++++ tests/production/backup.production.spec.ts
+@@ -11,7 +11,7 @@
+   expect(await page.evaluate(() => window.riseStorageTest)).toBeUndefined();
+   const before = await stored(page);
+   await page.locator("#tab-you").click(); await page.getByRole("button", { name: /^Settings Appearance/ }).click();
+-  await page.locator(".settings-content > .settings-disclosure > summary").last().click();
++  await page.getByRole("dialog").locator("summary").filter({ hasText: "Your data" }).click();
+   const download = page.waitForEvent("download"); await page.getByRole("button", { name: /^Export local data/ }).click();
+   const stream = await (await download).createReadStream(), chunks: Buffer[] = []; for await (const chunk of stream!) chunks.push(Buffer.from(chunk));
+   const raw = Buffer.concat(chunks).toString(), envelope = JSON.parse(raw);
+--- before/public/notifications-sw.js
++++ public/notifications-sw.js
+@@ -1,12 +1,158 @@
+-// Delivery comes from an executing RISE page; this worker is not a background alarm scheduler.
+-self.addEventListener('install', () => self.skipWaiting());
+-self.addEventListener('activate', event => event.waitUntil(self.clients.claim()));
+-self.addEventListener('notificationclick', event => {
+-  event.notification.close();
++// One root worker owns public offline assets and notification routing. No private data is cached.
++// Vite injects a verified public asset list only for production builds.
++const BUILD = /* RISE_BUILD */ null;
++const PREFIX = "rise-public-v1-";
++const cacheName = BUILD ? PREFIX + BUILD.release : null;
++const origin = self.location.origin;
++const assets = new Map((BUILD?.assets ?? []).map(asset => [asset.url, asset]));
++let updating = false;
++let pruning = null;
++
++async function verifiedResponse(asset) {
++  const controller = new AbortController();
++  const timer = setTimeout(() => controller.abort(), 20000);
++  try {
++    const response = await fetch(asset.url, { cache: "reload", credentials: "omit", redirect: "error", signal: controller.signal });
++    if (!response.ok || response.status !== 200 || response.redirected) throw new Error("Public asset unavailable");
++    const bytes = await response.clone().arrayBuffer();
++    const hash = [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))].map(byte => byte.toString(16).padStart(2, "0")).join("");
++    if (hash !== asset.sha256) throw new Error("Public asset integrity failed");
++    return response;
++  } finally { clearTimeout(timer); }
++}
++self.addEventListener("install", event => {
++  if (!BUILD) return;
+   event.waitUntil((async () => {
+-    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+-    const client = windows.find(item => new URL(item.url).origin === self.location.origin);
+-    if (client) { await client.focus(); client.postMessage({ type: 'rise-alert', alert: event.notification.data?.alert }); }
+-    else await self.clients.openWindow('/');
++    try {
++      const cache = await caches.open(cacheName);
++      // All required chunks, including migration/backup workers, must be available before installation succeeds.
++      await Promise.all([...assets.values()].map(async asset => cache.put(asset.url, await verifiedResponse(asset))));
++    } catch (error) { await caches.delete(cacheName); throw error; }
++    // Updates remain waiting. An explicit, coordinated request may activate them.
+   })());
+ });
++const windows = () => self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(clients => clients.filter(client => {
++  const url = new URL(client.url);
++  return url.origin === origin;
++}));
++function ask(client, message, timeout = 6000) {
++  return new Promise(resolve => {
++    const channel = new MessageChannel();
++    const timer = setTimeout(() => { channel.port1.close(); resolve(null); }, timeout);
++    channel.port1.onmessage = event => { clearTimeout(timer); channel.port1.close(); resolve(event.data); };
++    try { client.postMessage(message, [channel.port2]); }
++    catch { clearTimeout(timer); channel.port1.close(); resolve(null); }
++  });
++}
++async function prune() {
++  if (!BUILD) return;
++  const clients = await windows();
++  const replies = await Promise.all(clients.map(client => ask(client, { type: "RISE_CLIENT_STATUS" })));
++  // Unknown/old clients may still import old chunks; never delete their assets speculatively.
++  if (replies.some(reply => !reply || typeof reply.release !== "string")) return;
++  const keys = (await caches.keys()).filter(key => key.startsWith(PREFIX));
++  const keep = new Set([cacheName, ...replies.map(reply => PREFIX + reply.release), ...keys.filter(key => key !== cacheName).slice(-1)]);
++  await Promise.all(keys.filter(key => !keep.has(key)).map(key => caches.delete(key)));
++}
++function pruneOnce() {
++  pruning ??= prune().finally(() => { pruning = null; });
++  return pruning;
++}
++self.addEventListener("activate", event => {
++  event.waitUntil((async () => { await self.clients.claim(); await pruneOnce(); })());
++});
++self.addEventListener("fetch", event => {
++  if (!BUILD || event.request.method !== "GET") return;
++  const url = new URL(event.request.url);
++  if (url.origin !== origin) return;
++  const shell = event.request.mode === "navigate" && (url.pathname === "/" || url.pathname === "/index.html");
++  const path = shell ? "/index.html" : url.pathname;
++  // Private/API/auth/logout responses, cross-origin requests and mutations always bypass Cache Storage.
++  if (!shell && url.search) return;
++  if (!assets.has(path)) {
++    // Retained immutable chunks may still be requested by a tab loaded just before activation.
++    if (!/^\/assets\/[\w.-]+-[\w-]{8}\.(js|css)$/.test(path)) return;
++    event.respondWith((async () => {
++      for (const key of (await caches.keys()).filter(key => key.startsWith(PREFIX))) {
++        const hit = await (await caches.open(key)).match(path);
++        if (hit) return hit;
++      }
++      return fetch(event.request);
++    })());
++    return;
++  }
++  event.respondWith((async () => {
++    const cache = await caches.open(cacheName);
++    const hit = await cache.match(path);
++    if (hit) return hit;
++    try {
++      const response = await verifiedResponse(assets.get(path));
++      await cache.put(path, response.clone());
++      return response;
++    } catch {
++      return new Response(shell ? "RISE is unavailable offline. Reconnect and reopen. / RISE недоступен без сети. Подключитесь и откройте снова. / RISE oflayn ochilmadi. Internetga ulanib, qayta oching." : "Offline asset unavailable", {
++        status: 503, headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
++      });
++    }
++  })());
++});
++async function ready() {
++  if (!BUILD) return false;
++  const cache = await caches.open(cacheName);
++  return (await Promise.all([...assets.keys()].map(path => cache.match(path)))).every(Boolean);
++}
++self.addEventListener("message", event => {
++  if (!event.source || !event.ports[0]) return;
++  let url;
++  try { url = new URL(event.source.url); } catch { return; }
++  if (url.origin !== origin) return;
++  const data = event.data, port = event.ports[0];
++  if (data?.type === "RISE_STATUS") {
++    event.waitUntil(ready().then(offlineReady => port.postMessage({ release: BUILD?.release, contract: BUILD?.contract, offlineReady })));
++  } else if (data?.type === "RISE_PRUNE") {
++    event.waitUntil(pruneOnce().then(() => port.postMessage({ ok: true })));
++  } else if (data?.type === "RISE_APPLY_UPDATE" && BUILD && typeof data.token === "string" && /^[\w-]{1,80}$/.test(data.token)) {
++    event.waitUntil((async () => {
++      if (updating) { port.postMessage({ ok: false }); return; }
++      updating = true;
++      const token = data.token;
++      let clients = [];
++      try {
++        clients = await windows();
++        const replies = await Promise.all(clients.map(client => ask(client, { type: "RISE_PREPARE_UPDATE", token, contract: BUILD.contract })));
++        const latest = await windows();
++        const sameClients = latest.length === clients.length && latest.every(client => clients.some(old => old.id === client.id));
++        if (!sameClients || replies.some(reply => reply?.ok !== true || reply.token !== token || reply.contract !== BUILD.contract) || !await ready()) throw new Error("Open tab not ready");
++        await self.skipWaiting();
++        port.postMessage({ ok: true });
++      } catch {
++        for (const client of clients) client.postMessage({ type: "RISE_RELEASE_UPDATE", token });
++        port.postMessage({ ok: false });
++      } finally { updating = false; }
++    })());
++  }
++});
++
++// Future push delivery must validate through this same boundary; it must never record a prayer or wake acknowledgment.
++function validAlert(alert) {
++  return alert && typeof alert === "object" && typeof alert.id === "number" && Number.isSafeInteger(alert.id)
++    && typeof alert.key === "string" && alert.key.length <= 200 && /^\d{4}-\d{2}-\d{2}$/.test(alert.date)
++    && ["fajr", "dhuhr", "asr", "maghrib", "isha"].includes(alert.prayer)
++    && ["prepare", "due", "wake", "backup"].includes(alert.kind)
++    && Number.isFinite(alert.at) && Number.isFinite(alert.expiresAt) && alert.at <= Date.now() && alert.expiresAt > Date.now();
++}
++self.addEventListener("notificationclick", event => {
++  event.notification.close();
++  const alert = event.notification.data?.alert;
++  const test = event.notification.tag === "rise-test" && alert === undefined;
++  if (!test && !validAlert(alert)) return;
++  event.waitUntil((async () => {
++    const clients = await windows();
++    const client = clients[0];
++    if (client) {
++      await client.focus();
++      if (!test) client.postMessage({ type: "rise-alert", alert: { id: alert.id, key: alert.key, date: alert.date, prayer: alert.prayer, kind: alert.kind, at: alert.at, expiresAt: alert.expiresAt } });
++    }
++    else await self.clients.openWindow("/");
++  })());
++});
+--- before/.github/workflows/ci.yml
++++ .github/workflows/ci.yml
+@@ -41,6 +41,7 @@
+       - run: npx playwright install --with-deps ${{ matrix.browser }}
+       - run: npm run test:browser -- --project=${{ matrix.browser }}
+       - run: npm run test:production -- --project=${{ matrix.browser }}
++      - run: npm run test:pwa -- --project=${{ matrix.browser }}
+       - name: Retain synthetic test evidence
+         if: failure()
+         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+--- before/PRODUCT.md
++++ PRODUCT.md
+@@ -3,6 +3,8 @@
+ > Implementation snapshot as of 21 October 2026. The active production release is mobile web first and is specified in [PRD.md](PRD.md). This file records existing behavior; its native project references and prototype limitations do not redefine the new release scope. Proposed backend, sync and Web Push work remains unimplemented until supported by task evidence.
+ 
+ > Foundation update, 21 October 2026: pinned tooling, isolated three-engine browser checks and a 720-image visual baseline are now implemented. Sheet keyboard traversal now remains inside the dialog in WebKit as well as Chromium and Firefox. Appearance, domain rules and saved-profile behavior are preserved. See [the foundation evidence](docs/evidence/foundations-2026-10-21/README.md); the older review results below retain their original scope.
++
++> WEB-02 implementation, 21 October 2026: the production build now includes a manifest and icons derived from the existing sprout, a verified public offline shell, install guidance and optional persistent-storage requests. A waiting update coordinates every open tab, protects forms/migration/failed saves and reloads only after durable queues are safe. Private records stay in IndexedDB with unchanged schemas. New support states are localized; ordinary review screens retain their existing design. Physical Home Screen/PWA installation on the HTTPS release host remains an acceptance gate. See [PWA lifecycle](docs/PWA.md).
+ 
+ <!-- impeccable:product-schema 1 -->
+ > PRAY-02 update, 21 October 2026: records remain explicitly correctable after a backward clock change; streaks use saved UTC windows. Pause/resume retains overnight dates and rejects resumption before the pause start. New dated Fajr saves retain independent backup choices, unfinished drafts keep their original date, and real-profile wake previews cannot change live alarm state. Prayer history and habit XP remain separate. This is local mobile web behavior; accounts, remote cancellation and device certification remain future work.
+--- before/ARCHITECTURE.md
++++ ARCHITECTURE.md
+@@ -60,7 +60,7 @@
+ 
+ The application stores a validated schema-4 profile in IndexedDB and retains the exact legacy localStorage source for recovery. Atomic revisioned writes, backup preview and restore are implemented locally. Domain functions are mostly pure or clone/update state. The calendar, habit-calendar, prayer-ID and pause modules break the existing domain import cycles without changing screen imports. The command/repository/initial-state runtime graph contains no UI modules; see the [boundary inventory](docs/evidence/commands-entry-2026-10-21/module-boundaries.json).
+ 
+-Production first use creates an empty profile on the real device calendar. The separate review entry initializes fictional fixtures only on isolated loopback origins. Local family/squad membership is illustrative. Versioned private export, staged validation, explicit replacement and same-device rollback are implemented; imported shared content stays in read-only repository archives. The service worker only displays notifications/clicks; it has no remote push listener, app-shell cache or durable schedule.
++Production first use creates an empty profile on the real device calendar. The separate review entry initializes fictional fixtures only on isolated loopback origins. Local family/squad membership is illustrative. Versioned private export, staged validation, explicit replacement and same-device rollback are implemented; imported shared content stays in read-only repository archives. The single root service worker owns a verified public offline shell and validated notification clicks; it has no remote push listener or durable schedule. See [the implemented PWA lifecycle](docs/PWA.md).
+ 
+ Real calculation, date-specific manual timetables and native schedule reconciliation already exist. They are implementation foundations, not a production backend. Native folders are generated/synced, not device-verified.
+ 
+@@ -374,9 +374,11 @@
+ 
+ ### Service worker lifecycle
+ 
+-Consolidate caching, push and click handling into one scoped worker; do not register competing root workers. Cache fingerprinted public assets and an offline app shell. Do not cache auth responses or private API payloads in Cache Storage.
+-
+-Version the cache and IndexedDB schemas. A waiting worker activates only after drafts/outbox are durable; do not blindly copy today's `skipWaiting` behavior into a migration-sensitive release. Keep backward-compatible contracts through rollout. A failed asset update must leave the last usable shell available. See [service-worker lifecycle guidance](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers).
++WEB-02 retains `/notifications-sw.js` at root scope for app files and notification clicks. `scripts/pwa-build.ts` injects the public asset list, SHA-256 hashes, release ID and `db1-repository2-domain4` compatibility contract into production output. Review builds do not auto-register the worker or link the manifest. Public caches are separate from IndexedDB; private/API/auth/logout and mutation responses bypass Cache Storage. There is no generic runtime response cache or remote push listener.
++
++Install verifies all public assets before succeeding, without automatic `skipWaiting`. Explicit activation asks every app window to close forms, finish startup/migration/readback and hold its `DeviceSession` command queue. Temporary leases freeze new writes; failed saves, restore/clear, open dialogs, unknown clients or incompatible contracts keep the update waiting. Recheck the live window set before activation. Held clients reload on controller change; first adoption does not reload. A failed download retains the previous complete shell. Cleanup retains releases needed by live tabs and one previous public version, leaving unrelated caches and all personal storage untouched.
++
++No persistence schema changes are made by WEB-02. For a future incompatible schema, change the compatibility contract deliberately and migrate only after old windows are closed; never erase data to resolve a mismatch. See [PWA deployment, recovery and physical-device acceptance](docs/PWA.md).
+ 
+ ## 10. Configuration and environment separation
+ 
+--- before/README.md
++++ README.md
+@@ -32,6 +32,7 @@
+ | First browser launch | Empty real profile; fixtures restricted to isolated review builds | Preserve empty entry and demo isolation |
+ | Prayer times and records | Offline Adhan calculation, manual dates, UTC-aware history/streaks, private pause and dated Fajr plans/drafts | Preserve behavior; complete sync and physical-device verification |
+ | Prayer/Fajr alerts | Executing-page timer; worker displays notifications | Opt-in Web Push, durable scheduling, cancellation and honest readiness |
++| PWA | Manifest/icons, public offline shell, explicit safe updates and storage protection | Physical iPhone/Android installation and HTTPS release evidence |
+ | Habit reminders | Preferences and preview | Delivery through the consent-aware web pipeline |
+ | Family/squads | Fictional local membership, tasks, lists, invitations and snapshots | Real accounts, authorized shared records and revocable invitations |
+ | Languages | English, broad Russian, partial Uzbek | Complete reviewed English, Russian and Uzbek Latin |
+@@ -76,13 +77,14 @@
+ | Command | Actual behavior |
+ | --- | --- |
+ | `npm run dev` | Starts Vite development |
+-| `npm run build` | TypeScript checks and production `dist/` build, with review-module exclusion |
++| `npm run build` | TypeScript checks and production `dist/` build, with review-module exclusion and verified PWA asset manifest |
+ | `npm run build:review` | Isolated scenario/design build in `dist-review/` |
+ | `npm run dev:review` / `npm run preview:review` | Review development / built preview on loopback port 4174 |
+ | `npm run preview` | Serves the built web bundle locally |
+ | `npm test` | Domain tests through tsx and Node's test runner |
+ | `npm run test:browser` | Existing journeys against the review build in three browser engines |
+ | `npm run test:production` | Empty entry, real onboarding, legacy-profile preservation and recovery against the production build |
++| `npm run test:pwa` | Real service-worker install/offline/update/storage-failure checks against isolated production build versions |
+ | `npm run check:toolchain` | Verifies Node/npm, exact dependency pins and lockfile agreement |
+ | `npm run lint` | Oxlint correctness checks without automatic formatting |
+ | `npm run typecheck` | Type-checks the app, tests and configuration |
+@@ -92,7 +94,7 @@
+ | `npm run build:native` | Web build plus Capacitor asset/configuration sync |
+ | `npm run open:ios` / `npm run open:android` | Opens native projects if the required IDE is installed |
+ 
+-Backend startup, database migrations, PWA packaging and cloud deployment scripts do not exist yet. Do not present planned commands as runnable.
++PWA packaging is included in the production build. Backend startup, server database migrations and cloud deployment scripts do not exist yet. Do not present planned commands as runnable.
+ 
+ ### Verify a code change
+ 
+@@ -101,10 +103,11 @@
+ npx playwright install chromium webkit firefox
+ npm run test:browser
+ npm run test:production
++npm run test:pwa
+ npm run test:visual
+ ~~~
+ 
+-Install the Playwright browsers once when needed. Existing journeys run in Chromium, WebKit and Firefox against `dist-review/` on **4180**. Production-entry checks use `dist/` on **4181**. Visual comparisons use the review build on **4182**. Each server takes its own temporary copy of the corresponding completed build, binds to `127.0.0.1`, refuses an existing server and uses fresh contexts with an origin guard. Keep these ports free and build before testing. The test-server regression also reserves **4181** briefly: finish `npm run check` before starting browser suites. Never run fixture-loading tests against the user's saved profile on 4173.
++Install the Playwright browsers once when needed. Existing journeys run in Chromium, WebKit and Firefox against `dist-review/` on **4180**. Production-entry and PWA lifecycle suites use `dist/` on **4181**, sequentially. Visual comparisons use the review build on **4182**. Each server takes its own temporary copy of the corresponding completed build, binds to `127.0.0.1`, refuses an existing server and uses fresh contexts with an origin guard. Keep these ports free and build before testing. The test-server regression also reserves **4181** briefly: finish `npm run check` before starting browser suites. Never run fixture-loading tests against the user's saved profile on 4173.
+ 
+ The [foundation evidence](docs/evidence/foundations-2026-10-21/README.md) records the rerun domain/browser results, screenshot matrix, environment and known limitations. The original baseline was 71 domain tests plus 69 Chromium scenarios. The [commands and production-entry report](docs/evidence/commands-entry-2026-10-21/README.md) records the next implementation batch. The application now saves through the IndexedDB repository, with transactional operation receipts, revision conflict protection and verified legacy migration. See the [DATA-01 evidence](docs/evidence/storage-2026-10-21/README.md). Versioned portability and atomic restore are covered by the [DATA-02 evidence](docs/evidence/backup-2026-10-21/README.md). Cloud synchronization remains unimplemented. WebKit automation is not physical iPhone/Safari certification; backend, Web Push and production-security evidence remain separate work.
+ 
+@@ -120,7 +123,7 @@
+ 
+ One pre-import recovery point remains until the next restore/rollback or explicit clear. The original localStorage source is also retained until clearing. An old client changing it causes recovery mode, not an automatic overwrite. Restore and clear advance the repository envelope to format 2 so older DATA-01 clients fail closed. Application rollback must retain support for database version 1, repository formats 1/2 and the expanded personal command receipts with captured context; older clients fail closed on unknown receipts. Old localStorage-only assets are incompatible. Raw recovery archives preserve unrecognized or unsupported data but are not accepted by the normal restore screen.
+ 
+-IndexedDB completion confirms a device save; browser eviction, user clearing, private browsing and device loss still require an exported backup. Permission to request persistent storage and offline app-shell installation are separate PWA work. No private profile or operation is uploaded. Personal actions now use validated commands with stable operation IDs and captured action dates/instants. Habits, timers, priorities, goals, rewards, notes, settings and prayer plans commit with their replay receipts; timer completion and its check-in are one transaction. Drafts survive sheet navigation and reload. Save confirmations wait for transaction completion. The whole-profile compatibility setter remains only for local family/squad simulations and isolated review controls. See the [DATA-03 evidence](docs/evidence/personal-commands-2026-10-21/README.md).
++IndexedDB completion confirms a device save; browser eviction, user clearing, private browsing and device loss still require an exported backup. Settings → Install & offline reports actual app-file readiness and offers installation guidance, coordinated updates and an explicit persistent-storage request. See the [PWA lifecycle and recovery guide](docs/PWA.md). No private profile or operation is uploaded. Personal actions now use validated commands with stable operation IDs and captured action dates/instants. Habits, timers, priorities, goals, rewards, notes, settings and prayer plans commit with their replay receipts; timer completion and its check-in are one transaction. Drafts survive sheet navigation and reload. Save confirmations wait for transaction completion. The whole-profile compatibility setter remains only for local family/squad simulations and isolated review controls. See the [DATA-03 evidence](docs/evidence/personal-commands-2026-10-21/README.md).
+ 
+ ## Prayer dates and travel
+ 
+@@ -164,7 +167,7 @@
+ | `src/i18n.ts`, `src/messages.ru.ts`, `src/LifeUI.tsx` | Translation and formatting |
+ | `src/components.tsx`, `src/*.css` | Existing controls, tokens and composition |
+ | `public/assets/` | Pip/trail artwork and provenance |
+-| `public/notifications-sw.js` | Notification display/click worker; no offline caching or remote push handler |
++| `public/notifications-sw.js`, `src/pwa/`, `scripts/pwa-build.ts` | One root worker, verified public offline cache, installation guidance and safe update coordination; no remote push handler |
+ | `tests/` | Domain/browser tests |
+ | `ios/`, `android/`, `capacitor.config.ts` | Deferred native platform work |
+ | `screens/`, `.impeccable/review/` | Dated visual evidence, including superseded states |
+--- before/TASKS.md
++++ TASKS.md
+@@ -151,10 +151,13 @@
+ 
+ #### WEB-02 — Installable PWA and offline/update lifecycle
+ 
+-- [ ] **Status: TODO · P0 · L · Owner: Frontend · Depends: DATA-01, WEB-01**
++- [ ] **Status: REVIEW · P0 · L · Owner: Frontend · Depends: DATA-01, WEB-01**
+ - Add manifest/icons/install guidance and one worker for app-shell caching; prepare the worker's push extension seam.
+ - Protect drafts and migrations during activation; separate public asset caches from private state; provide offline cold/warm paths.
+ - Accept install/offline/update/logout tests on real mobile browsers with no duplicate root workers or stale incompatible schema. Covers PRD-04, PRD-17, SEC-03.
++
++- Implemented 21 October 2026: branded manifest/icons, one verified public-cache worker, offline cold/warm entry, localized install/storage guidance and explicit all-tab update coordination. Durable queues, drafts, startup/readback and save recovery are protected without changing persistence schemas. [WEB-02 evidence](docs/evidence/pwa-2026-10-21/README.md): 146 unit/tooling cases, 378 existing journey cases, 42 final PWA cases, 39 final production checks and 720 unchanged visual comparisons. The report records the final worker/support-state verification scope and export-test selector correction.
++- **Review gate:** run physical iPhone Safari/Home Screen and Android Chrome/PWA installation, offline cold launch and update checks on the HTTPS release host. The local implementation is complete; desktop engine tests do not accept that device gate. Real account logout/switch testing belongs to AUTH/SYNC; WEB-02 verifies public-cache bypass and guest clearing without inventing accounts. See [the device procedure](docs/PWA.md#verification-and-remaining-real-device-gate).
+ 
+ ### M2 — Identity and sync
+ 
+--- before/VERIFICATION.md
++++ VERIFICATION.md
+@@ -398,3 +398,8 @@
+ `npm run check` passed **137 unit/tooling tests**, lint/types and both builds. The focused prayer suite passed **36 checks** across Chromium/WebKit/Firefox. The broad run passed **375 journeys**; the same dated-draft scenario in three engines still expected the old date-rebinding behavior. Its expectation now retains the original date and all **3 targeted rechecks passed**, for **378 verified unique journey cases** on the unchanged application/build. Final test types/lint passed after that assertion update. Production checks passed **39**. Visual verification covers **48 variants / 720 exact comparisons**, with 47 passing in the matrix and one unchanged-build repeat passing after a capture timeout. No references were regenerated.
+ 
+ The scoped reflow fix retains the frozen design and handles actual 200% text at 320 px. Supplemental before-midnight Fajr acknowledgment confirms the following morning's date is canceled while later dates, prayer history and XP remain separate. The personal 4173 profile was not accessed. This remains local mobile web evidence; cloud sync, remote cancellation, background push, PWA lifecycle and physical-device certification are separate release tasks. [Report, source/build manifests, original failures and final scopes](docs/evidence/prayer-records-2026-10-21/README.md). Next: WEB-02.
++
++
++## WEB-02 — PWA implementation, 21 October 2026
++
++Local install/offline/update implementation is complete and recorded as REVIEW pending physical iPhone/Android acceptance on the HTTPS release host. Final checks pass 146 unit/tooling cases, 42 real-worker PWA cases, 39 production cases and 720 zero-difference visual comparisons. The earlier complete 378-case journey regression is followed by six focused notification/Settings confirmations after the final worker/support-state batch; counts and exact scope are documented in the [WEB-02 evidence](docs/evidence/pwa-2026-10-21/README.md). No persistence schema, original public art, design tokens or frozen visual reference changed. See the [PWA/device procedure](docs/PWA.md).
+--- before/package.json
++++ package.json
+@@ -21,7 +21,8 @@
+     "dev:review": "vite --mode review --host 127.0.0.1 --port 4174 --strictPort",
+     "build:review": "tsc -b && vite build --mode review",
+     "preview:review": "vite preview --mode review --host 127.0.0.1 --port 4174 --strictPort",
+-    "test:production": "playwright test --config playwright.production.config.ts"
++    "test:production": "playwright test --config playwright.production.config.ts",
++    "test:pwa": "playwright test --config playwright.pwa.config.ts"
+   },
+   "dependencies": {
+     "@capacitor/android": "8.5.3",
+--- before/AGENTS.md
++++ AGENTS.md
+@@ -121,10 +121,11 @@
+ npm run check
+ npm run test:browser
+ npm run test:production
++npm run test:pwa
+ npm run test:visual
+ ~~~
+ 
+-The journey suite runs the review build on isolated port **4180** in Chromium, WebKit and Firefox; production-entry checks use **4181**, and visual comparisons use the review build on **4182**. Build first: each test server freezes a temporary copy of the completed bundle so a later build cannot disrupt it. Keep those ports free. Finish `npm run check` before browser suites because its test-server regression briefly uses 4181. Install required Playwright browsers if missing. Import browser fixtures from `tests/support/browser.ts` to enforce the isolated origin and block external requests. The user's main preview/profile is on 4173; do not load fixtures into it.
++The journey suite runs the review build on isolated port **4180** in Chromium, WebKit and Firefox; production-entry checks use **4181**, and visual comparisons use the review build on **4182**. Build first: each test server freezes a temporary copy of the completed bundle so a later build cannot disrupt it. The real-worker PWA suite also uses 4181 and must run separately from production-entry checks. Its temporary server offers synthetic version/connection failure controls that are never deployed. Keep those ports free. Finish `npm run check` before browser suites because its test-server regression briefly uses 4181. Install required Playwright browsers if missing. Import browser fixtures from `tests/support/browser.ts` to enforce the isolated origin and block external requests. The user's main preview/profile is on 4173; do not load fixtures into it.
+ 
+ Current `npm run build:native` builds web assets and performs Capacitor sync. It does not compile/sign/install a native app. Native commands are not routine web-task gates unless shared native behavior changed.
+ 
+--- before/vite.config.ts
++++ vite.config.ts
+@@ -1,7 +1,8 @@
+ import { defineConfig } from "vite";
+ import react from "@vitejs/plugin-react";
++import { pwaBuild } from "./scripts/pwa-build.ts";
+ export default defineConfig(({ mode }) => ({
+-  plugins: [react(), {
++  plugins: [react(), pwaBuild(mode !== "review"), {
+     name: "rise-build-isolation",
+     transformIndexHtml() {
+       return [{ tag: "meta", attrs: { name: "rise-build", content: mode === "review" ? "review" : "production" }, injectTo: "head" }];
+--- before/SECURITY.md
++++ SECURITY.md
+@@ -175,7 +175,9 @@
+ 
+ Validate notification message schema, event IDs and allowed same-origin destinations. A notification click never executes arbitrary URLs or records a prayer/check-in automatically. Shared-group data is reauthorized after navigation.
+ 
+-Protect migrations from worker activation races. Test old/new worker and database versions, stale assets, interrupted update and logout while offline.
++WEB-02 implements release/digest-checked public caches and an explicit all-tab readiness protocol. Open forms, unverified startup/migration, pending/failed writes and active restore/clear prevent forced activation. A temporary non-persisted lease freezes writes while existing queues commit. Candidate cache failure cannot delete the previous shell; cleanup preserves unknown/live tab versions and never touches unrelated caches or IndexedDB. Notification clicks validate known nonexpired alerts and use a fixed same-origin destination. No service-worker timer is used as a background alarm. See [PWA lifecycle and deployment controls](docs/PWA.md).
++
++Automated isolated-browser checks cover stale/failed/incompatible updates, startup locks, failed commands, offline clearing and synthetic private/auth/logout cache bypass. Real account logout/switch cleanup remains AUTH/SYNC work; physical mobile installation and HTTPS host/security-header checks remain release gates. These local controls do not complete SEC-03 as a whole.
+ 
+ ## 7. Notification security — SEC-04
+ 

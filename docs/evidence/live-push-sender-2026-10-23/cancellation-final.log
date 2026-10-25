@@ -1,0 +1,25 @@
+
+> rise-prototype@1.0.0 test:push
+> playwright test --config playwright.push.config.ts cancellation
+
+[WebServer] (node:41710) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:41709) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:41716) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:41716) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  1 [chromium] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (309ms)
+(node:41721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:41721) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  2 [webkit] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (562ms)
+(node:41733) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:41733) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+  ✓  3 [firefox] › tests/push/cancellation.push.spec.ts:6:1 › page and worker share an atomic display ledger; canceled and stale plans only show generic fallback (607ms)
+
+  3 passed (3.9s)

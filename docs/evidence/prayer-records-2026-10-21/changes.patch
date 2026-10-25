@@ -1,0 +1,967 @@
+--- before/src/life.css
++++ after/src/life.css
+@@ -84,6 +84,19 @@
+ .large-text .fajr-preview-times { display: grid; grid-template-columns: 1fr; gap: 20px; }
+ .large-text .fajr-preview-times > div:last-child { text-align: left; justify-items: start; }
+ .large-text .fajr-preview-times > svg { justify-self: center; transform: rotate(90deg); }
++.fajr-planning, .prayer-pause { container: prayer-form / inline-size; }
++.sheet:has(:is(.fajr-planning, .prayer-pause, .alarm-preview)) .sheet-header h2 { min-width: 0; overflow-wrap: anywhere; }
++.workspace:not(.large-text) .sheet.full:has(:is(.fajr-planning, .prayer-pause, .alarm-preview)) .sheet-header { height: auto; min-height: 67px; }
++@media (max-width: 500px) {
++  .workspace:not(.large-text) .sheet.full:has(:is(.fajr-planning, .prayer-pause, .alarm-preview)) .sheet-header { min-height: calc(64px + env(safe-area-inset-top)); }
++}
++/* Follow the actual text size as well as the review-only large-text setting. */
++@container prayer-form (max-width: 16rem) {
++  .fajr-preview-times { display: grid; grid-template-columns: 1fr; gap: 20px; }
++  .fajr-preview-times > div:last-child { text-align: left; justify-items: start; }
++  .fajr-preview-times > svg { justify-self: center; transform: rotate(90deg); }
++  .life-two-fields { grid-template-columns: 1fr; }
++}
+ .alarm-preview { text-align: center; }
+ .alarm-preview .life-preview { text-align: left; }
+ .alarm-orbit { width: 124px; height: 124px; background: var(--mint); color: var(--green); border-radius: 50%; margin: 28px auto 25px; display: grid; place-items: center; }
+--- before/src/prayerSchedule.ts
++++ after/src/prayerSchedule.ts
+@@ -1,7 +1,6 @@
+ import type { State } from "./model";
+ import { isPrayerExcluded } from "./lifeModel";
+-import { PRAYERS, getCurrentPrayerDay, isManualPrayerDay, minuteOf, prayerDateAdd, type PrayerId } from "./prayerModel";
+-import { manualPrayerWindow, wallTimeInstant } from "./domain/zonedTime";
++import { PRAYERS, getCurrentPrayerDay, isManualPrayerDay, prayerWindowInstants, type PrayerId } from "./prayerModel";
+ export { wallTimeInstant } from "./domain/zonedTime";
+ 
+ export type PrayerAlert = {
+@@ -30,14 +29,11 @@
+     // A partially resolvable manual date is unavailable, rather than a partial
+     // alert plan. This also protects legacy manual data created before validation.
+     const manual = isManualPrayerDay(day);
+-    const legacyManual = manual && !!day.calculationKey;
+     if (manual && PRAYERS.some(({ id }) => {
+       const entry = day.entries[id];
+       if (!entry) return true;
+       if (entry.check) return false;
+-      if (legacyManual || !entry.beginsAt || !entry.targetAt || !entry.endsAt) return !manualPrayerWindow(date, entry, day.timezone);
+-      const start = Date.parse(entry.beginsAt), target = Date.parse(entry.targetAt), end = Date.parse(entry.endsAt);
+-      return ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end;
++      return !prayerWindowInstants(s, date, id);
+     })) continue;
+     // A time-zone change can leave yesterday's old-location Isha in the future.
+     // Retain that history, but never deliver a stale calculated schedule.
+@@ -45,22 +41,19 @@
+     for (const { id } of PRAYERS) {
+       const entry = day.entries[id];
+       if (!entry || entry.check || isPrayerExcluded(s, date, id)) continue;
+-      const start = !legacyManual && entry.beginsAt ? Date.parse(entry.beginsAt) : wallTimeInstant(date, entry.begins, day.timezone);
+-      const targetDate = minuteOf(entry.target) < minuteOf(entry.begins) ? prayerDateAdd(date, 1) : date;
+-      const endDate = minuteOf(entry.ends) <= minuteOf(entry.begins) ? prayerDateAdd(date, 1) : date;
+-      const target = !legacyManual && entry.targetAt ? Date.parse(entry.targetAt) : wallTimeInstant(targetDate, entry.target, day.timezone);
+-      const end = !legacyManual && entry.endsAt ? Date.parse(entry.endsAt) : wallTimeInstant(endDate, entry.ends, day.timezone);
+-      if (start === null || target === null || end === null || ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end) continue;
++      const window = prayerWindowInstants(s, date, id);
++      if (!window) continue;
++      const { start, target, end } = window;
+       if (s.prayers.preferences.reminders) {
+         if (s.life.reminderRules[id].preparation) add(date, id, "prepare", target - s.prayers.preferences.leadMinutes * 60000, target);
+         if (s.life.reminderRules[id].due) add(date, id, "due", target, end);
+       }
+       const plan = s.prayers.prepared[date] ?? s.prayers.fajr;
+-      if (id !== "fajr" || !s.prayers.fajr.enabled || !plan.enabled || preferences.acknowledgedFajr.includes(date)) continue;
++      if (id !== "fajr" || !plan.enabled || preferences.acknowledgedFajr.includes(date)) continue;
+       if (!Number.isFinite(plan.wakeLead) || plan.wakeLead < 0 || plan.wakeLead > 120) continue;
+       const wake = start - plan.wakeLead * 60000;
+       add(date, id, "wake", wake, end);
+-      if (s.life.backupEnabled && Number.isFinite(plan.backupMinutes) && plan.backupMinutes > 0)
++      if ((plan.backupEnabled ?? s.life.backupEnabled) && Number.isFinite(plan.backupMinutes) && plan.backupMinutes > 0)
+         add(date, id, "backup", wake + Math.max(minimumBackupMinutes, plan.backupMinutes) * 60000, end);
+     }
+   }
+--- before/src/Prayers.tsx
++++ after/src/Prayers.tsx
+@@ -12,7 +12,7 @@
+   PRAYERS, clockText, endMinute, getPrayerDay,
+   minuteOf, nextPrayer, phaseLabel, prayerDateAdd, prayerMoment, prayerName,
+   prayerDayOrigin, prayerPhase, prayerStreak, prayerTotals, prayerWindowState, preparationDate,
+-  validateTimetable, wrapRemaining,
++  validateTimetable, weeklyPrayers, wrapRemaining,
+   type PrayerCheck, type PrayerDay, type PrayerId, type PrayerMoment,
+ } from "./prayerModel";
+ 
+@@ -145,14 +145,14 @@
+       <h2>{t("Keep going from here.", "Shu yerdan davom eting.")}</h2>
+       <p>{t("{0}’s on-time streak starts again. Your earlier prayers, habit XP and earned rewards stay.", "{0}ning vaqtida o‘qish ketma-ketligi qayta boshlanadi. Avvalgi namoz qaydlari, odat XP va olingan mukofotlar saqlanadi.", [t(prayerName(id))])}</p>
+       <Button className="wide" onClick={() => { close(); setTab("today"); }}>{t("Back to Today", "Bugunga qaytish")}<ArrowRight size={17} /></Button>
+-    </div> : <p className="prayer-detail-guidance">{phase === "paused" ? t("This prayer is privately paused. It isn’t counted as completed or missed.") : started ? t("Record when you prayed, even if you’re logging it later.") : t("This prayer hasn’t begun. Come back to record it after you pray.")}</p>}
++    </div> : <p className="prayer-detail-guidance">{phase === "paused" ? t("This prayer is privately paused. It isn’t counted as completed or missed.") : started || entry.check ? t("Record when you prayed, even if you’re logging it later.") : t("This prayer hasn’t begun. Come back to record it after you pray.")}</p>}
+     {phase === "paused" && <Button variant="secondary" className="wide" onClick={() => open({ type: "period" })}>{t("Manage private pause")}</Button>}
+     <div className="prayer-record-actions">
+       {needsRecovery && <p className="fine-print">{t("Need to correct this record? Choose what happened.", "Qaydni tuzatish kerakmi? Nima bo‘lganini tanlang.")}</p>}
+-      <Button variant={needsRecovery ? "secondary" : "primary"} disabled={phase === "paused" || !started || entry.check === "on_time"} onClick={() => log("on_time")}><Check size={18} />{entry.check === "on_time" ? t("Recorded on time") : t("Prayed on time")}</Button>
+-      <div><Button variant="secondary" disabled={phase === "paused" || !ended || entry.check === "later"} onClick={() => log("later")}>{t("Prayed later")}</Button>
+-        <Button variant="ghost" disabled={phase === "paused" || !ended || entry.check === "missed"} onClick={() => log("missed")}>{t("Missed")}</Button></div>
+-      {!ended && started && <small className="muted">{t("“Later” and “Missed” become available after this window ends.")}</small>}
++      <Button variant={needsRecovery ? "secondary" : "primary"} disabled={phase === "paused" || (!started && !entry.check) || entry.check === "on_time"} onClick={() => log("on_time")}><Check size={18} />{entry.check === "on_time" ? t("Recorded on time") : t("Prayed on time")}</Button>
++      <div><Button variant="secondary" disabled={phase === "paused" || (!ended && !entry.check) || entry.check === "later"} onClick={() => log("later")}>{t("Prayed later")}</Button>
++        <Button variant="ghost" disabled={phase === "paused" || (!ended && !entry.check) || entry.check === "missed"} onClick={() => log("missed")}>{t("Missed")}</Button></div>
++      {!entry.check && !ended && started && <small className="muted">{t("“Later” and “Missed” become available after this window ends.")}</small>}
+       {entry.check && <button className="text-button" onClick={() => log(null)}>{t("Undo this record")}</button>}
+     </div>
+     <button className="prayer-streak-detail" onClick={() => open({ type: "prayerRules" })}>
+@@ -354,11 +354,7 @@
+   const start = sharedStart ?? prayerDateAdd(now.date, -((weekday + 6) % 7) + offset * 7);
+   const dates = Array.from({ length: 7 }, (_, i) => prayerDateAdd(start, i));
+   const totals = prayerTotals(state), all = prayerStreak(state, "all", now);
+-  const count = { on_time: 0, later: 0, missed: 0, unconfirmed: 0, paused: 0 };
+-  for (const date of dates) if (date >= state.prayers.started && date <= now.date) for (const { id } of prayerOptions) {
+-    const phase = prayerPhase(state, date, id, now);
+-    if (phase in count) count[phase as keyof typeof count]++;
+-  }
++  const count = weeklyPrayers(state, start, now);
+   return <div className={embedded ? "prayer-progress embedded-progress" : "screen prayer-progress"}>
+     {!embedded && <><header className="prayer-progress-heading"><h1>{t("Your rhythm.")}</h1><button className="icon-button" aria-label={t("How prayer streaks work")} onClick={() => open({ type: "prayerRules" })}><CircleHelp size={22} /></button></header>
+     <p className="muted">{t("Five daily anchors. A history of showing up.")}</p>
+@@ -376,7 +372,7 @@
+         return <div className="prayer-calendar-row" key={id}>
+           <div className="prayer-calendar-label"><span><PrayerIcon id={id} size={19} />{name}</span><small>{streak.pending ? t("Streak pending") : streak.current + t(" in a row")}</small></div>
+           <div className="prayer-calendar-cells">{dates.map((date) => {
+-            const tracked = date >= state.prayers.started, future = date > now.date;
++            const tracked = date >= state.prayers.started, future = date > now.date && !getPrayerDay(state, date)?.entries[id].check && !prayerWindowState(state, date, id, now)?.started;
+             const phase = prayerPhase(state, date, id, now);
+             return <button key={date} disabled={!tracked || future} className={tracked ? phase : "untracked"}
+               aria-label={name + ", " + t.shortDate(date) + ", " + (tracked ? t(phaseLabel[phase]) : t("Before tracking began"))}
+--- before/src/Life.tsx
++++ after/src/Life.tsx
+@@ -3,8 +3,8 @@
+ import { useApp } from "./context";
+ import { Button, GroupRow, SectionTitle, Toggle } from "./components";
+ import { LifeIntro, PreviewLabel, PrivacyNote, useLifeDraft, useText } from "./LifeUI";
+-import { CITIES, activePause, alarmTimes, illustrativeDay, isPrayerExcluded, type LifeState, type Readiness } from "./lifeModel";
+-import { PRAYERS, clockText, endMinute, getCurrentPrayerDay, getPrayerDay, isManualPrayerDay, minuteOf, prayerMoment, prayerPhase, preparationDate, type PrayerId } from "./prayerModel";
++import { CITIES, activePause, alarmTimes, illustrativeDay, isPrayerExcluded, prayerKey, type LifeState, type Readiness } from "./lifeModel";
++import { PRAYERS, getCurrentPrayerDay, getPrayerDay, isManualPrayerDay, pausePoint, prayerMoment, prayerPhase, preparationDate, type FajrPlan, type PrayerId } from "./prayerModel";
+ import { usePrayerClock } from "./Prayers";
+ import { addDays, today } from "./model";
+ import { DeliverySummary, LiveAlarmReadiness, LivePrayerSetup, PrayerLocationReview, useLiveText } from "./PrayerLive";
+@@ -176,25 +176,23 @@
+   const t = useText();
+   const l = useLiveText();
+   const prayerOptions = PRAYERS.map((item) => ({ ...item, name: t(item.name) }));
+-  const { state, dispatch, toast, back } = useApp(), now = prayerMoment(state), current = activePause(state);
+-  const day = getPrayerDay(state, now.date);
+-  const next = prayerOptions.find(({ id }) => day && endMinute(day.entries[id]) > now.minute)?.id ?? "fajr";
+-  const [draft, setDraft, clear] = useLifeDraft("prayer-pause", () => ({ date: now.date, prayer: next as PrayerId, includeCurrent: true }));
++  const { state, dispatch, toast, back } = useApp(), now = usePrayerClock(), current = activePause(state);
++  const [draft, setDraft, clear] = useLifeDraft("prayer-pause", () => ({ ...pausePoint(state, now), includeCurrent: true }));
+   const affected = prayerOptions.filter(({ id }, i) => i >= prayerOptions.findIndex((p) => p.id === draft.prayer) && !state.prayers.days[draft.date]?.entries[id].check);
+-  return <div className="life-screen">
++  return <div className="life-screen prayer-pause">
+     <PrivacyNote>{t("Only you can see this. Never included in squad updates or family views.", "Buni faqat siz ko‘rasiz. Guruh yangiliklari va oilaviy sahifalarda ko‘rsatilmaydi.")}</PrivacyNote>
+     <div className="period-art"><Moon size={45} strokeWidth={1.3} /></div>
+     <LifeIntro title={current ? t("Your rhythm can rest.", "Kun tartibingiz dam olishi mumkin.") : t("Make room for a pause.", "Tanaffus uchun joy ajrating.")}
+       text={t("Period mode pauses prayer tracking and reminder previews. Your habits, goals, and family plans are still here.", "Hayz davri rejimi namoz qaydlari va eslatma namunalarini to‘xtatadi. Odatlar, maqsadlar va oilaviy rejalar saqlanadi.")} />
+     {current && <div className="period-active"><Pause size={18} /><span>{t("Prayer tracking is paused", "Namoz qaydlari to‘xtatilgan")}<small>{t("Since", "Boshlangan sana")}: {t.date(current.from.slice(0, 10))}</small></span></div>}
+     <div className="life-two-fields">
+-      <label className="field">{t("Date", "Sana")}<input type="date" value={draft.date} max={now.date} min={state.prayers.started} onChange={(e) => setDraft({ ...draft, date: e.target.value })} /></label>
+-      <label className="field">{current ? t("Resume from", "Davom etish namozi") : t("Pause from", "Tanaffus boshlanishi")}<select aria-label={current ? t("Resume from", "Davom etish namozi") : t("Pause from", "Tanaffus boshlanishi")} value={draft.prayer} onChange={(e) => setDraft({ ...draft, prayer: e.target.value as PrayerId })}>{prayerOptions.map(({ id, name }) => <option value={id} key={id}>{name}</option>)}</select></label>
++      <label className="field">{t("Date", "Sana")}<input type="date" value={draft.date} max={now.date} min={current?.from.slice(0, 10) ?? state.prayers.started} onChange={(e) => setDraft({ ...draft, date: e.target.value })} /></label>
++      <label className="field">{current ? t("Resume from", "Davom etish namozi") : t("Pause from", "Tanaffus boshlanishi")}<select aria-label={current ? t("Resume from", "Davom etish namozi") : t("Pause from", "Tanaffus boshlanishi")} value={draft.prayer} onChange={(e) => setDraft({ ...draft, prayer: e.target.value as typeof draft.prayer })}>{prayerOptions.map(({ id, name }) => <option value={id} key={id} disabled={!!current && prayerKey(draft.date, id) < current.from}>{name}</option>)}</select></label>
+     </div>
+     {current ? <label className="check-choice"><input type="checkbox" checked={draft.includeCurrent} onChange={(e) => setDraft({ ...draft, includeCurrent: e.target.checked })} /><span>{t("Include this prayer when I resume", "Davom etganda shu namozni ham kiriting")}</span></label> :
+       <div className="pause-affected"><h2>{t("What changes", "Nima o‘zgaradi")}</h2><p>{affected.length ? affected.map((p) => p.name).join(" · ") : t("Existing records stay unchanged.", "Mavjud qaydlar o‘zgarmaydi.")}</p><small>{t("These unrecorded prayers and future prayers will be paused until you resume.", "Shu qayd qilinmagan va keyingi namozlar davom etguningizcha to‘xtatiladi.")}</small></div>}
+     <ul className="life-rules"><li>{t("Paused prayers are neither completed nor missed.", "To‘xtatilgan namozlar bajarilgan yoki qoldirilgan hisoblanmaydi.")}</li><li>{t("Your streak holds its place. It doesn’t grow during a pause.", "Ketma-ketlik saqlanadi. Tanaffusda u oshmaydi.")}</li><li>{t("No cycle prediction, reason, or health details needed.", "Davr bashorati, sabab yoki sog‘liq ma’lumotlari kerak emas.")}</li></ul>
+-    <Button className="wide" disabled={!draft.date || draft.date < state.prayers.started || draft.date > now.date} onClick={() => {
++    <Button className="wide" disabled={!draft.date || draft.date < state.prayers.started || draft.date > now.date || (!!current && prayerKey(draft.date, draft.prayer) < current.from)} onClick={() => {
+       dispatch(current ? { kind: "prayer.resume", date: draft.date, prayer: draft.prayer, includeCurrent: draft.includeCurrent } : { kind: "prayer.pause", pauseId: crypto.randomUUID(), date: draft.date, prayer: draft.prayer });
+       clear(); toast(current ? t("Prayer tracking resumed.", "Namoz qaydlari davom ettirildi.") : t("Your prayer tracking is privately paused.", "Namoz qaydlari shaxsiy to‘xtatildi.")); back();
+     }}>{current ? <Sunrise size={18} /> : <Pause size={18} />}{current ? t("Resume prayer tracking", "Namoz qaydlarini davom ettirish") : t("Pause prayer tracking", "Namoz qaydlarini to‘xtatish")}</Button>
+@@ -206,22 +204,27 @@
+   const t = useText();
+   const l = useLiveText();
+   const { state, dispatch, open, toast, close, setTab, storage } = useApp();
+-  const [date] = useState(() => preparationDate(state));
+-  const [plan, setPlan, clear] = useLifeDraft("fajr-plan", () => ({ ...(state.prayers.prepared[date] ?? state.prayers.fajr), backupEnabled: state.life.backupEnabled }));
++  const [fallbackDate] = useState(() => preparationDate(state));
++  const [plan, setDraft, clear] = useLifeDraft<FajrPlan & { date?: string; backupEnabled: boolean }>("fajr-plan", () => {
++    const initial = state.prayers.prepared[fallbackDate] ?? state.prayers.fajr;
++    return { ...initial, date: fallbackDate, backupEnabled: initial.backupEnabled ?? state.life.backupEnabled };
++  });
++  const date = plan.date ?? fallbackDate;
++  const setPlan = (next: typeof plan) => setDraft({ ...next, date });
+   const saved = state.prayers.prepared[date];
+-  const isSaved = storage.getSnapshot().status === "saved" && !!saved && (["bedtime", "wakeLead", "backupMinutes", "message", "placement", "enabled"] as const).every((key) => saved[key] === plan[key]) && state.life.backupEnabled === plan.backupEnabled;
++  const isSaved = storage.getSnapshot().status === "saved" && !!saved && (["bedtime", "wakeLead", "backupMinutes", "message", "placement", "enabled"] as const).every((key) => saved[key] === plan[key]) && (saved.backupEnabled ?? state.life.backupEnabled) === plan.backupEnabled;
+   const dateLabel = state.life.language === "uz" ? date.split("-").reverse().join(".") :
+     t.date(date, { weekday: "long", month: t.language === "ru" ? "long" : "short", day: "numeric" });
+   const prayer = getPrayerDay(state, date)?.entries.fajr;
+-  const wake = prayer ? clockText(minuteOf(prayer.begins) - plan.wakeLead) : "—";
++  const wake = alarmTimes(state, date, plan)?.wake ?? "—";
+   const save = () => {
+-    const { backupEnabled, ...fajr } = plan;
+-    dispatch({ kind: "fajr.plan", date, plan: fajr, backupEnabled });
++    const { date: plannedDate = date, backupEnabled, ...fajr } = plan;
++    dispatch({ kind: "fajr.plan", date: plannedDate, plan: fajr, backupEnabled });
+     clear(); toast(state.mode === "demo" ? t("Fajr plan saved. Alarm delivery is a preview.", "Bomdod rejasi saqlandi. Signal faqat namuna.") : l("Fajr plan saved. Check delivery status before you sleep.", "Bomdod rejasi saqlandi. Uxlashdan oldin yetkazilish holatini tekshiring.", "План Фаджра сохранён. Проверьте доставку перед сном."));
+   };
+-  return <div className="life-screen">
++  return <div className="life-screen fajr-planning">
+     {state.mode === "demo" ? <PreviewLabel>{t("Fajr plan · no real alarm delivery", "Bomdod rejasi · haqiqiy signal chalinmaydi")}</PreviewLabel> : <DeliverySummary />}
+-    <LifeIntro title={date === today(state) ? t("Make waking a little easier.", "Uyg‘onishni biroz osonlashtiring.") : t("Tomorrow starts tonight.", "Ertangi kun bugun kechadan boshlanadi.")}
++    <LifeIntro title={date <= today(state) ? t("Make waking a little easier.", "Uyg‘onishni biroz osonlashtiring.") : t("Tomorrow starts tonight.", "Ertangi kun bugun kechadan boshlanadi.")}
+       text={t("Fajr plan for {0}.", "{0} uchun bomdod rejasi.", [dateLabel])} />
+     <div className="fajr-preview-times"><div><Sunrise size={22} /><span>{t("Fajr begins", "Bomdod boshlanishi")}</span><strong>{prayer?.begins ?? "—"}</strong></div><ArrowRight size={20} /><div><AlarmClock size={22} /><span>{t("Your wake-up", "Uyg‘onish vaqtingiz")}</span><strong>{wake}</strong></div></div>
+     {!prayer && <Button variant="secondary" className="wide" onClick={() => open({ type: "prayerSetup" })}>{state.mode === "demo" ? t("Set up sample prayer times", "Namunaviy namoz vaqtlarini sozlash") : t("Prayer times", "Namoz vaqtlari")}</Button>}
+@@ -234,7 +237,7 @@
+     <label className="field">{t("A message from your evening self", "Kechki o‘zingizdan xabar")}<textarea rows={3} maxLength={160} value={plan.message} onChange={(e) => setPlan({ ...plan, message: e.target.value })} /></label>
+     <Button className="wide" disabled={!plan.bedtime} onClick={save}>{t("Save my Fajr plan", "Bomdod rejamni saqlash")}</Button>
+     {isSaved && <p className="life-success" role="status"><Check size={17} />{t("Plan saved on this device.", "Reja shu qurilmada saqlandi.")}</p>}
+-    <Button variant="secondary" className="wide" disabled={!prayer || !plan.bedtime} onClick={() => { save(); dispatch({ kind: "fajr.alarm", alarm: { date, stage: "ringing", backup: false } }); open({ type: "wake", date }); }}>{t("Save & preview wake-up", "Saqlash va uyg‘onish namunasini ko‘rish")}<ArrowRight size={18} /></Button>
++    <Button variant="secondary" className="wide" disabled={!prayer || !plan.bedtime} onClick={() => { save(); if (state.mode === "demo") dispatch({ kind: "fajr.alarm", alarm: { date, stage: "ringing", backup: false } }); open({ type: "wake", date }); }}>{t("Save & preview wake-up", "Saqlash va uyg‘onish namunasini ko‘rish")}<ArrowRight size={18} /></Button>
+     <button className="text-button" onClick={() => open({ type: "readiness" })}>{t("Check alarm readiness", "Signal tayyorligini tekshirish")}<ChevronRight size={16} /></button>
+     {isSaved && <Button variant="ghost" className="wide" onClick={() => { close(); setTab("today"); }}>{t("Back to Today", "Bugunga qaytish")}<ChevronRight size={18} /></Button>}
+   </div>;
+@@ -245,16 +248,22 @@
+   const l = useLiveText(), delivery = usePrayerDelivery();
+   useEffect(() => () => { if (live) stopAlarmAudio(); }, [live]);
+   const { state, dispatch, open, back, close, setTab } = useApp(), now = usePrayerClock();
+-  const date = requested ?? preparationDate(state), times = alarmTimes(state, date);
+-  if (live && times && deliveryPlatform === "android") times.backup = clockText(minuteOf(times.wake) + Math.max(10, (state.prayers.prepared[date] ?? state.prayers.fajr).backupMinutes));
+-  const alarm = state.life.alarm?.date === date ? state.life.alarm : { date, stage: "ringing" as const, backup: false };
++  const [preview, setPreview] = useState<LifeState["alarm"]>(null);
++  const date = requested ?? preparationDate(state), times = alarmTimes(state, date, undefined, live && deliveryPlatform === "android" ? 10 : 0);
++  const storedAlarm = live || state.mode === "demo" ? state.life.alarm : preview;
++  const alarm = live && state.life.delivery?.acknowledgedFajr.includes(date) ? { date, stage: "awake" as const, backup: false } : storedAlarm?.date === date ? storedAlarm : { date, stage: "ringing" as const, backup: false };
++  const backupEnabled = (state.prayers.prepared[date] ?? state.prayers.fajr).backupEnabled ?? state.life.backupEnabled;
+   const record = getPrayerDay(state, date)?.entries.fajr.check;
+   const phase = prayerPhase(state, date, "fajr", now);
+   const recordMessage = record === "on_time" ? t("Fajr recorded on time.", "Bomdod o‘z vaqtida qayd etildi.")
+     : record === "later" ? t("Fajr recorded as prayed later.", "Bomdod kechroq o‘qilgan deb qayd etildi.")
+     : t("Fajr recorded as missed.", "Bomdod o‘tkazib yuborilgan deb qayd etildi.");
+   const paused = isPrayerExcluded(state, date, "fajr");
+-  const change = (values: Partial<typeof alarm>) => dispatch({ kind: "fajr.alarm", alarm: { ...alarm, ...values } });
++  const change = (values: Partial<typeof alarm>) => {
++    const next = { ...alarm, ...values };
++    if (!live && state.mode !== "demo") setPreview(next);
++    else dispatch({ kind: "fajr.alarm", alarm: next });
++  };
+   return <div className="life-screen alarm-preview">
+     {!live && <PreviewLabel>{t("Alarm simulation · your device will not ring", "Signal namunasi · qurilmangiz chalinmaydi")}</PreviewLabel>}
+     <div className={`alarm-orbit ${alarm.stage === "awake" ? "awake" : ""}`}>{paused ? <Moon size={51} strokeWidth={1.2} /> : alarm.stage === "awake" ? <Footprints size={51} strokeWidth={1.2} /> : <Sunrise size={62} strokeWidth={1.2} />}</div>
+@@ -264,8 +273,8 @@
+     {times && <p className="muted">{t("Fajr begins", "Bomdod boshlanadi")} {times.begins} · {t.language === "ru" ? t.date(date, { day: "numeric", month: "long", year: "numeric" }) : date}</p>}
+     {!paused && alarm.stage !== "awake" && <Button className="wide" onClick={() => live ? delivery.acknowledge(date) : change({ stage: "awake" })}><Footprints size={19} />{t("I’m up", "Uyg‘ondim")}</Button>}
+     {!paused && alarm.stage === "ringing" && <Button variant="secondary" className="wide" onClick={() => { if (live) stopAlarmAudio(); change({ stage: "stopped" }); }}>{t("Stop this alarm", "Shu signalni to‘xtatish")}</Button>}
+-    {!live && !paused && alarm.stage !== "awake" && state.life.backupEnabled && !alarm.backup && <Button variant="ghost" className="wide" onClick={() => change({ stage: "ringing", backup: true })}>{t("Preview backup alarm", "Zaxira signalini ko‘rish")}</Button>}
+-    {!paused && alarm.stage === "awake" && <><p className="alarm-confirmation" role="status"><Check size={17} />{record ? recordMessage : !live && state.life.backupEnabled ? t("Backup dismissed in preview. No prayer recorded.", "Namunada zaxira signal bekor qilindi. Namoz qayd etilmadi.") : t("Wake-up acknowledged. No prayer recorded.", "Uyg‘onganingiz tasdiqlandi. Namoz qayd etilmadi.")}</p><Button variant="secondary" className="wide" onClick={() => open({ type: "prayer", prayer: "fajr", date })}>{record ? t("View Fajr record", "Bomdod qaydini ko‘rish") : phase === "upcoming" ? t("View Fajr time", "Bomdod vaqtini ko‘rish") : t("Record Fajr", "Bomdodni qayd etish")}<ChevronRight size={18} /></Button></>}
++    {!live && !paused && alarm.stage !== "awake" && backupEnabled && !alarm.backup && <Button variant="ghost" className="wide" onClick={() => change({ stage: "ringing", backup: true })}>{t("Preview backup alarm", "Zaxira signalini ko‘rish")}</Button>}
++    {!paused && alarm.stage === "awake" && <><p className="alarm-confirmation" role="status"><Check size={17} />{record ? recordMessage : !live && backupEnabled ? t("Backup dismissed in preview. No prayer recorded.", "Namunada zaxira signal bekor qilindi. Namoz qayd etilmadi.") : t("Wake-up acknowledged. No prayer recorded.", "Uyg‘onganingiz tasdiqlandi. Namoz qayd etilmadi.")}</p><Button variant="secondary" className="wide" onClick={() => open({ type: "prayer", prayer: "fajr", date })}>{record ? t("View Fajr record", "Bomdod qaydini ko‘rish") : phase === "upcoming" ? t("View Fajr time", "Bomdod vaqtini ko‘rish") : t("Record Fajr", "Bomdodni qayd etish")}<ChevronRight size={18} /></Button></>}
+     {paused && <Button className="wide" onClick={() => open({ type: "period" })}>{t("Manage private pause", "Shaxsiy tanaffusni boshqarish")}</Button>}
+     {live && alarm.stage === "awake" && <p className="fine-print">{l("Wake-up acknowledged. Your remaining wake alerts are being cancelled. No prayer was recorded.", "Uyg‘onganingiz tasdiqlandi. Qolgan uyg‘onish signallari bekor qilinmoqda. Namoz qayd etilmadi.", "Пробуждение подтверждено. Оставшиеся сигналы пробуждения отменяются. Молитва не записана.")}</p>}
+     <Button variant="ghost" className="wide" onClick={alarm.stage === "awake" ? () => { close(); setTab("today"); } : back}>{alarm.stage === "awake" ? t("Back to Today", "Bugunga qaytish") : live ? t("Close", "Yopish") : t("Close preview", "Namunani yopish")}</Button>
+--- before/src/lifeModel.ts
++++ after/src/lifeModel.ts
+@@ -2,7 +2,8 @@
+ export { prayerKey, activePause, isPrayerExcluded, startPause, resumePrayers } from "./domain/prayerPause";
+ import type { State } from "./model";
+ import { addDays, today, weekday, weekStart } from "./domain/calendar";
+-import { PRAYERS, clockText, minuteOf, saveTimetable, type PrayerDay, type PrayerId } from "./prayerModel";
++import { PRAYERS, clockText, minuteOf, prayerWindowInstants, saveTimetable, type PrayerDay, type PrayerId } from "./prayerModel";
++import { timeInZone } from "./domain/zonedTime";
+ 
+ import type { Language } from "./i18n";
+ import type { CalculationSettings } from "./prayerCalculation";
+@@ -75,10 +76,15 @@
+   for (let i = 0; i < 8; i++) s = saveTimetable(s, addDays(date, i), illustrativeDay(setup.city, setup.source, setup.offsets));
+   return s;
+ }
+-export function alarmTimes(s: State, date: string) {
++export function alarmTimes(s: State, date: string, plan = s.prayers.prepared[date] ?? s.prayers.fajr, minimumBackupMinutes = 0) {
+   const day = s.prayers.days[date];
+   if (!day) return null;
+-  const plan = s.prayers.prepared[date] ?? s.prayers.fajr;
++  if (s.mode !== "demo") {
++    const window = prayerWindowInstants(s, date, "fajr");
++    if (!window) return null;
++    const wake = window.start - plan.wakeLead * 60000;
++    return { begins: day.entries.fajr.begins, wake: timeInZone(wake, day.timezone), backup: timeInZone(wake + Math.max(minimumBackupMinutes, plan.backupMinutes || 3) * 60000, day.timezone) };
++  }
+   const wake = minuteOf(day.entries.fajr.begins) - plan.wakeLead;
+   return { begins: day.entries.fajr.begins, wake: clockText(wake), backup: clockText(wake + (plan.backupMinutes || 3)) };
+ }
+--- before/src/prayerModel.ts
++++ after/src/prayerModel.ts
+@@ -32,6 +32,7 @@
+   message: string;
+   placement: "away" | "bedside";
+   enabled: boolean;
++  backupEnabled?: boolean; // Older plans use the device's existing backup preference.
+ }
+ export interface WorkBreak {
+   date: string;
+@@ -183,18 +184,25 @@
+   return dateDifference(moment.date, date) * 1440 + moment.minute;
+ }
+ /** One window comparison for views and commands, including saved travel dates. */
+-export function prayerWindowState(s: State, date: string, id: PrayerId, moment = prayerMoment(s)) {
++export function prayerWindowInstants(s: State, date: string, id: PrayerId) {
+   const day = getPrayerDay(s, date), entry = day?.entries[id];
+   if (!day || !entry) return null;
+   if (!entry.check && prayerDayOrigin(day) === "review") return null;
++  const authored = !entry.check && !!day.calculationKey && isManualPrayerDay(day);
++  const manual = !authored && entry.beginsAt && entry.targetAt && entry.endsAt ? null : manualPrayerWindow(date, entry, day.timezone);
++  const start = !authored && entry.beginsAt ? Date.parse(entry.beginsAt) : manual?.start;
++  const target = !authored && entry.targetAt ? Date.parse(entry.targetAt) : manual?.target;
++  const end = !authored && entry.endsAt ? Date.parse(entry.endsAt) : manual?.end;
++  if (start === undefined || target === undefined || end === undefined || ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end) return null;
++  return { start, target, end };
++}
++export function prayerWindowState(s: State, date: string, id: PrayerId, moment = prayerMoment(s)) {
++  const day = getPrayerDay(s, date), entry = day?.entries[id];
++  if (!day || !entry || (!entry.check && prayerDayOrigin(day) === "review")) return null;
+   if (s.mode !== "demo" && moment.instant !== undefined) {
+-    const authored = !entry.check && !!day.calculationKey && isManualPrayerDay(day);
+-    const manual = !authored && entry.beginsAt && entry.targetAt && entry.endsAt ? null : manualPrayerWindow(date, entry, day.timezone);
+-    const start = !authored && entry.beginsAt ? Date.parse(entry.beginsAt) : manual?.start;
+-    const target = !authored && entry.targetAt ? Date.parse(entry.targetAt) : manual?.target;
+-    const end = !authored && entry.endsAt ? Date.parse(entry.endsAt) : manual?.end;
+-    if (start === undefined || target === undefined || end === undefined || ![start, target, end].every(Number.isFinite) || end <= start || target < start || target >= end) return null;
+-    return { started: moment.instant >= start, ended: moment.instant >= end, targetInMinutes: (target - moment.instant) / 60000, performedAt: timeInZone(moment.instant, day.timezone) };
++    const window = prayerWindowInstants(s, date, id);
++    if (!window) return null;
++    return { started: moment.instant >= window.start, ended: moment.instant >= window.end, targetInMinutes: (window.target - moment.instant) / 60000, performedAt: timeInZone(moment.instant, day.timezone) };
+   }
+   const elapsed = elapsedMinute(date, moment), start = minuteOf(entry.begins);
+   const target = minuteOf(entry.target) < start ? minuteOf(entry.target) + 1440 : minuteOf(entry.target);
+@@ -242,7 +250,7 @@
+     if (date < s.prayers.started) continue;
+     if (!getPrayerDay(s, date)) { counts.noTimes++; continue; }
+     for (const { id } of PRAYERS) {
+-      const phase = date > moment.date ? "upcoming" : prayerPhase(s, date, id, moment);
++      const phase = date > moment.date && !s.prayers.days[date]?.entries[id].check && !prayerWindowState(s, date, id, moment)?.started ? "upcoming" : prayerPhase(s, date, id, moment);
+       counts[phase]++;
+     }
+   }
+@@ -252,8 +260,9 @@
+   const day = getPrayerDay(s, date);
+   if (!day || date < s.prayers.started || isPrayerExcluded(s, date, id)) return s;
+   const entry = day.entries[id], window = prayerWindowState(s, date, id, moment);
+-  if (!window?.started) return s;
+-  if ((check === "missed" || check === "later") && !window.ended) return s;
++  // Existing reports remain explicitly correctable after a clock/location change.
++  // Creating a new report still requires the dated prayer window to have begun.
++  if (!entry.check && (!window?.started || ((check === "missed" || check === "later") && !window.ended))) return s;
+   if (entry.check === (check ?? undefined)) return s;
+   const updated = { ...entry };
+   delete updated.check;
+@@ -262,7 +271,7 @@
+   if (check) {
+     updated.check = check;
+     updated.recordedAt = new Date(now).toISOString();
+-    if (check === "on_time" && !window.ended)
++    if (check === "on_time" && window?.started && !window.ended)
+       updated.performedAt = window.performedAt;
+   }
+   return { ...s, prayers: { ...s.prayers, days: { ...s.prayers.days,
+@@ -296,7 +305,8 @@
+       if (e?.check === "on_time") return true;
+       if (e?.check) return false;
+       if (isPrayerExcluded(s, date, prayerId)) return "not-due";
+-      if (e && elapsedMinute(date, moment) < endMinute(e)) return "not-due";
++      const window = e && prayerWindowState(s, date, prayerId, moment);
++      if (window && !window.ended) return "not-due";
+       return date === moment.date && !e ? "not-due" : null;
+     });
+     points.push(checks.every((c) => c === true) ? true :
+@@ -317,10 +327,20 @@
+   }
+   return { onTime, later, missed, completeDays };
+ }
+-export function preparationDate(s: State) {
+-  const now = prayerMoment(s), day = getPrayerDay(s, now.date);
+-  return day && now.minute < minuteOf(day.entries.fajr.begins)
++export function preparationDate(s: State, now = prayerMoment(s)) {
++  const window = prayerWindowState(s, now.date, "fajr", now);
++  return window && !window.started
+     ? now.date : prayerDateAdd(now.date, 1);
++}
++/** Pause starts from the current window, including an already reported prayer. */
++export function pausePoint(s: State, now = prayerMoment(s)): { date: string; prayer: PrayerId } {
++  const date = prayerDateAdd(now.date, -1), overnight = prayerWindowState(s, date, "isha", now);
++  if (date >= s.prayers.started && overnight?.started && !overnight.ended) return { date, prayer: "isha" };
++  const prayer = PRAYERS.find(({ id }) => {
++    const window = prayerWindowState(s, now.date, id, now);
++    return window && !window.ended;
++  })?.id ?? "fajr";
++  return { date: now.date, prayer };
+ }
+ export function beginWorkBreak(s: State, id: PrayerId, date: string): State {
+   const old = s.prayers.work;
+--- before/src/contracts/prayerCommands.ts
++++ after/src/contracts/prayerCommands.ts
+@@ -27,7 +27,7 @@
+   "prayer.location-reviewed": { timezone: v.zone },
+   "prayer.calculated-setup": { settings: exact({ latitude: v.number(-90, 90), longitude: v.number(-180, 180), timezone: v.zone, label: v.string(160), method: v.oneOf("Karachi", "MuslimWorldLeague", "NorthAmerica", "Egyptian", "UmmAlQura", "MoonsightingCommittee", "Singapore", "Tehran"), madhab: v.oneOf("Hanafi", "Shafi"), highLatitude: v.oneOf("MiddleOfTheNight", "SeventhOfTheNight", "TwilightAngle") }), offsets },
+   "prayer.timetable": { date: v.date, preferences: exact(prefs), day: exact({ source: text, sample: v.bool, timezone: v.zone, calculationKey: v.optional(text), sunrise: v.optional(v.clock), entries: prayers(exact({ begins: v.clock, target: v.clock, ends: v.clock, beginsAt: v.optional(v.instant), targetAt: v.optional(v.instant), endsAt: v.optional(v.instant), check: v.optional(v.oneOf("on_time", "later", "missed")), performedAt: v.optional(v.clock), recordedAt: v.optional(v.instant) })) }) },
+-  "fajr.plan": { date: v.date, plan: exact({ bedtime: v.clock, wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool }), backupEnabled: v.optional(v.bool) },
++  "fajr.plan": { date: v.date, plan: exact({ bedtime: v.clock, wakeLead: v.number(0, 120), backupMinutes: v.number(0, 120), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool, backupEnabled: v.optional(v.bool) }), backupEnabled: v.optional(v.bool) },
+   "fajr.alarm": { alarm: exact({ date: v.date, stage: v.oneOf("ringing", "stopped", "awake"), backup: v.bool }) },
+   "delivery.preferences": { changes: exact({ enabled: v.optional(v.bool), sound: v.optional(v.bool) }) },
+   "readiness.preview": { readiness: v.oneOf("ready", "permission", "coverage", "waiting") },
+--- before/src/contracts/personalCommands.ts
++++ after/src/contracts/personalCommands.ts
+@@ -78,6 +78,7 @@
+   else if (key.startsWith("reflection:")) schema = exact({ manageable: text, smaller: text });
+   else if (key.startsWith("priorities:")) schema = v.array(priority, 3);
+   else if (key === "onboarding") schema = exact({ step: v.number(0, 10, true), areas: v.array(title, 3), selected: v.array(v.number(0, 4, true), 3), habits: v.array(habitDraft, 5), reminders: v.bool, name: v.string(80) });
++  else if (key === "fajr-plan") schema = exact({ date: v.optional(v.date), bedtime: v.string(160), wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool, backupEnabled: v.bool });
+   if (!schema) return false;
+   schema(value, key); return true;
+ }
+--- before/src/data/backupProjection.ts
++++ after/src/data/backupProjection.ts
+@@ -10,7 +10,7 @@
+ const pick = <T extends object, K extends keyof T>(value: T, keys: readonly K[]): Pick<T, K> =>
+   Object.fromEntries(keys.filter(key => value[key] !== undefined).map(key => [key, value[key]])) as Pick<T, K>;
+ const map = <T, R>(value: Record<string, T>, fn: (row: T) => R): Record<string, R> => Object.fromEntries(Object.entries(value).map(([key, row]) => [key, fn(row)]));
+-const fajr = (row: State["prayers"]["fajr"]) => pick(row, ["bedtime", "wakeLead", "backupMinutes", "message", "placement", "enabled"]);
++const fajr = (row: State["prayers"]["fajr"]) => pick(row, ["bedtime", "wakeLead", "backupMinutes", "message", "placement", "enabled", "backupEnabled"]);
+ const offsets = (row: LifeState["setup"]["offsets"]) => pick(row, ["fajr", "dhuhr", "asr", "maghrib", "isha"]);
+ const prayerKeys = ["fajr", "dhuhr", "asr", "maghrib", "isha"] as const;
+ const setup = (row: LifeState["setup"]) => ({ ...pick(row, ["configured", "city", "source"]), offsets: offsets(row.offsets) });
+@@ -31,12 +31,12 @@
+ function projectDraft(key: string, value: unknown): unknown {
+   const text = v.string(5000), short = v.string(160), flags = { habits: v.bool, milestones: v.bool, prayers: v.bool };
+   let fields: Record<string, v.Check>;
+-  if (validatePersonalDraft(key, value)) return value;
++  if (key !== "fajr-plan" && validatePersonalDraft(key, value)) return value;
+   if (key.startsWith("list-name:")) { short(value, key); return value; }
+   if (key === "prayer-setup") fields = { configured: v.bool, city: short, source: v.oneOf("local", "calculated"), offsets: v.dictionary(v.number(0, 120), v.oneOf("fajr", "dhuhr", "asr", "maghrib", "isha")) };
+   else if (key === "live-prayer-setup") fields = { latitude: short, longitude: short, timezone: short, label: short, method: short, madhab: short, highLatitude: short, offsets: v.dictionary(v.number(0, 120), v.oneOf("fajr", "dhuhr", "asr", "maghrib", "isha")) };
+   else if (key === "prayer-pause") fields = { date: short, prayer: v.oneOf("fajr", "dhuhr", "asr", "maghrib", "isha"), includeCurrent: v.bool };
+-  else if (key === "fajr-plan") fields = { bedtime: short, wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool, backupEnabled: v.bool };
++  else if (key === "fajr-plan") fields = { date: v.optional(v.date), bedtime: short, wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool, backupEnabled: v.bool };
+   else if (/^group-create:(family|squad)$/.test(key)) fields = { name: short, kind: v.oneOf("family", "squad") };
+   else if (key.startsWith("task:")) fields = { title: short, notes: text, assignee: short, date: short, time: short, weekdays: v.array(v.number(0, 6, true), 7) };
+   else if (key.startsWith("new-list:")) fields = { name: short };
+--- before/src/data/storedState.ts
++++ after/src/data/storedState.ts
+@@ -19,7 +19,7 @@
+ const prayers = (check: v.Check) => v.shape({ fajr: check, dhuhr: check, asr: check, maghrib: check, isha: check });
+ const entry = v.shape({ begins: v.clock, target: v.clock, ends: v.clock, beginsAt: v.optional(v.instant), targetAt: v.optional(v.instant), endsAt: v.optional(v.instant), check: v.optional(v.oneOf("on_time", "later", "missed")), performedAt: v.optional(v.clock), recordedAt: v.optional(v.instant) } satisfies Fields<PrayerEntry>);
+ const prayerDay = v.shape({ source: text, sample: v.bool, timezone: v.zone, calculationKey: v.optional(text), sunrise: v.optional(v.clock), entries: prayers(entry) } satisfies Fields<PrayerDay>);
+-const fajr = v.shape({ bedtime: v.clock, wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool } satisfies Fields<FajrPlan>);
++const fajr = v.shape({ bedtime: v.clock, wakeLead: v.number(0), backupMinutes: v.number(0), message: text, placement: v.oneOf("away", "bedside"), enabled: v.bool, backupEnabled: v.optional(v.bool) } satisfies Fields<FajrPlan>);
+ const work = v.shape({ date: v.date, prayer: prayerId, stage: v.oneOf("save", "away", "returned"), note: text, wrapUntil: v.nullable(v.number(0)), wrapUsed: v.bool } satisfies Fields<WorkBreak>);
+ export const prayerState = v.shape({ version: v.oneOf(1), started: v.date, demoMinute: v.number(0, 1440), days: v.dictionary(prayerDay, v.date), preferences: v.shape({ place: v.oneOf("home", "mosque"), leadMinutes: v.number(0), style: v.oneOf("gentle", "firm"), reminders: v.bool }), fajr, prepared: v.dictionary(fajr, v.date), work: v.nullable(work) } satisfies Fields<PrayerState>);
+ const milestone = v.shape({ id: v.id, title, completedOn: v.optional(v.date) } satisfies Fields<GoalMilestone>);
+--- before/src/domain/commands.ts
++++ after/src/domain/commands.ts
+@@ -2,7 +2,7 @@
+ import { changeGoalStatus, completeMilestone, enjoyReward, setPriorities, priorityKey } from "../developmentModel";
+ import { getPrayerDay, recordPrayer, prayerMoment } from "../prayerModel";
+ import { acknowledgeFajr } from "../prayerSchedule";
+-import { activePause, resumePrayers, startPause } from "./prayerPause";
++import { activePause, prayerKey, resumePrayers, startPause } from "./prayerPause";
+ import { isPrayerCommand } from "../contracts/prayerCommands";
+ import { reducePrayerCommand } from "./prayerCommands";
+ import { reducePersonalCommand } from "./personalCommands";
+@@ -55,14 +55,18 @@
+     case "prayer.record": {
+       requireRecord(getPrayerDay(s, c.date)?.entries[c.prayer]);
+       const next = recordPrayer(s, c.date, c.prayer, c.check, prayerMoment(s, new Date(context.now)), context.now), work = next.prayers.work;
+-      if (c.returnToWork && work?.date === c.date && work.prayer === c.prayer && (c.returnToWork === "always" || (c.check && next.prayers.days[c.date]?.entries[c.prayer].check === c.check))) return { ...next, prayers: { ...next.prayers, work: { ...work, stage: "returned" } } };
++      if (c.returnToWork && work?.date === c.date && work.prayer === c.prayer && c.check && next.prayers.days[c.date]?.entries[c.prayer].check === c.check) return { ...next, prayers: { ...next.prayers, work: { ...work, stage: "returned" } } };
+       return next;
+     }
+     case "prayer.pause":
++      requireRecord(c.date >= s.prayers.started && c.date <= date);
+       requireRecord(activePause(s) || !s.life.pauses.some(p => p.id === c.pauseId));
+       return startPause(s, c.date, c.prayer, c.pauseId);
+-    case "prayer.resume":
++    case "prayer.resume": {
++      requireRecord(c.date >= s.prayers.started && c.date <= date);
++      requireRecord(s.life.pauses.every(p => p.through || prayerKey(c.date, c.prayer) >= p.from));
+       return resumePrayers(s, c.date, c.prayer, c.includeCurrent);
++    }
+     case "fajr.acknowledge":
+       requireRecord(s.prayers.prepared[c.date] || s.life.alarm?.date === c.date || getPrayerDay(s, c.date)?.entries.fajr);
+       return acknowledgeFajr(s, c.date);
+--- before/src/domain/prayerCommands.ts
++++ after/src/domain/prayerCommands.ts
+@@ -29,10 +29,13 @@
+       next.prayers.preferences = c.preferences; return next;
+     }
+     case "fajr.plan":
+-      s.prayers.fajr = c.plan; s.prayers.prepared[c.date] = { ...c.plan };
++      s.prayers.fajr = { ...c.plan, backupEnabled: c.backupEnabled ?? c.plan.backupEnabled ?? s.life.backupEnabled };
++      s.prayers.prepared[c.date] = { ...s.prayers.fajr };
+       if (c.backupEnabled !== undefined) s.life.backupEnabled = c.backupEnabled;
+       return s;
+-    case "fajr.alarm": s.life.alarm = c.alarm; return s;
++    case "fajr.alarm":
++      s.life.alarm = s.mode !== "demo" && deliveryPreferences(s).acknowledgedFajr.includes(c.alarm.date) ? { ...c.alarm, stage: "awake" } : c.alarm;
++      return s;
+     case "delivery.preferences": s.life.delivery = { ...deliveryPreferences(s), ...c.changes }; return s;
+     case "readiness.preview":
+       if (s.mode !== "demo") throw new PersonalReferenceError();
+--- before/src/domain/prayerPause.ts
++++ after/src/domain/prayerPause.ts
+@@ -14,6 +14,7 @@
+   return { ...s, life: { ...s.life, alarm: null, pauses: [...s.life.pauses, { id: pauseId, from: prayerKey(date, id) }] } };
+ }
+ export function resumePrayers(s: State, date: string, id: PrayerId, includeCurrent = true): State {
++  if (!activePause(s) || s.life.pauses.some(p => !p.through && prayerKey(date, id) < p.from)) return s;
+   const index = PRAYERS.findIndex((p) => p.id === id);
+   const through = includeCurrent
+     ? index === 0 ? prayerKey(addDays(date, -1), "isha") : prayerKey(date, PRAYERS[index - 1].id)
+--- before/tests/full-day.browser.spec.ts
++++ after/tests/full-day.browser.spec.ts
+@@ -166,13 +166,14 @@
+   await dialog(page).getByLabel("Wake before Fajr", { exact: true }).selectOption("15");
+   await expect(dialog(page).getByRole("status")).toHaveCount(0);
+   const state = await stored(page);
++  expect(state.life.drafts["fajr-plan"]).toMatchObject({ date });
+   state.life.language = "uz";
+   await replaceStored(page, state);
+   await page.goto("/?review=1&text=large");
+   await page.getByRole("tab", { name: "Siz", exact: true }).click();
+   await page.getByRole("button", { name: /^Namoz sozlamalari / }).click();
+   await dialog(page).getByRole("button", { name: /^Bomdodga tayyorlanish / }).click();
+-  await expect(dialog(page)).toContainText("20.10.2026 uchun bomdod rejasi.");
++  await expect(dialog(page)).toContainText("19.10.2026 uchun bomdod rejasi.");
+   await expect(dialog(page).getByRole("combobox", { name: "Bomdoddan oldin uyg‘onish", exact: true })).toHaveValue("15");
+   for (const width of [375, 393, 430]) {
+     await page.setViewportSize({ width, height: 852 });
+--- before/PRODUCT.md
++++ after/PRODUCT.md
+@@ -5,6 +5,8 @@
+ > Foundation update, 21 October 2026: pinned tooling, isolated three-engine browser checks and a 720-image visual baseline are now implemented. Sheet keyboard traversal now remains inside the dialog in WebKit as well as Chromium and Firefox. Appearance, domain rules and saved-profile behavior are preserved. See [the foundation evidence](docs/evidence/foundations-2026-10-21/README.md); the older review results below retain their original scope.
+ 
+ <!-- impeccable:product-schema 1 -->
++> PRAY-02 update, 21 October 2026: records remain explicitly correctable after a backward clock change; streaks use saved UTC windows. Pause/resume retains overnight dates and rejects resumption before the pause start. New dated Fajr saves retain independent backup choices, unfinished drafts keep their original date, and real-profile wake previews cannot change live alarm state. Prayer history and habit XP remain separate. This is local mobile web behavior; accounts, remote cancellation and device certification remain future work.
++
+ ## Platform
+ web, iOS, Android
+ ## Stack
+--- before/ARCHITECTURE.md
++++ after/ARCHITECTURE.md
+@@ -171,6 +171,18 @@
+ Optional `life.deviceTimezone` stores the last observed device-zone identifier and the accepted review baseline (an initial matching zone, or a later explicit keep/save). `calendar.refresh` captures the observation in its validated command. `prayer.location-reviewed` acknowledges that exact observation, and a successful calculated-setup save also acknowledges it. Observation never changes the planning timezone or requests location permission. The marker is device-local and omitted from portable backups; raw same-device recovery retains it. Database version 1, repository formats 1/2, domain schema 4 and backup format 1 remain compatible.
+ 
+ The [PRAY-01 report](docs/evidence/prayer-timetable-2026-10-21/README.md) records the pinned reference vectors, runtime/ICU/tz-data versions, browser probes, preservation checks and limits. Browser Intl does not expose a tz-data version; report actual engine versions and behavior evidence instead of inventing one.
++
++### Implemented prayer records and dated planning (PRAY-02)
++
++`prayerWindowInstants` resolves the saved date's authoritative UTC start, target and end. `prayerWindowState`, the alert planner and Fajr clock display use this same window. Independent streaks wait for the actual end across travel and repeated DST clocks. Elapsed windows remain unconfirmed; no calendar refresh manufactures a record. Weekly counts and history controls retain explicit reports even when the device clock moves behind their date.
++
++Creating an unrecorded prayer report still requires its window to have begun; a new later/missed report requires the end. An existing explicit report can be corrected or removed after a backward clock change. Correction retains the dated window, removes obsolete report metadata and uses the captured command instant for the new audit timestamp. It does not infer an actual performance time outside the open window, or award habit XP. A work break reaches `returned` through a recording command only when the requested report exists after the command; rejected recording retains the note and stage.
++
++Pause/resume commands validate the tracking date and captured action date. Resume before the active pause's starting prayer is rejected rather than deleting its range. Resuming at that exact start with “include this prayer” removes an empty range; otherwise the excluded interval is retained. The form defaults to an open overnight Isha's original date, and prevents an earlier resumption point. Prior explicit reports remain correctable; Undo within an excluded interval leaves that prayer paused.
++
++New Fajr plan saves snapshot optional `backupEnabled` alongside each date's existing plan fields. That date's enable/backup choices govern its alerts independently of later dated saves. The last saved plan remains the default for unplanned dates. Older plans without the optional field retain the existing device backup preference; no past choice is invented or migrated. Fajr drafts now retain an optional explicit date through reload and portable backup. An older undated draft uses the date shown when opened and binds it on the next edit/save.
++
++Fresh-profile wake previews use component-local state. Stop, backup preview and preview “I'm up” cannot overwrite a live alarm or its cancellation ledger. Demo simulations retain their persisted rehearsal stages. A real acknowledgment suppresses wake/backup alerts for its date, leaves preparation/due reminders and prayer records separate, and wins over a stale ringing command. Portable restore still disables real delivery. The optional fields are backward compatible with database 1, repository 1/2, domain 4 and backup 1; no data rewrite or schema bump is required.
+ 
+ ## 5. Proposed relational model
+ 
+--- before/README.md
++++ after/README.md
+@@ -30,7 +30,7 @@
+ | Interface | Four tabs, sheets, habits, priorities, goals, Pip, rewards and recovery | Same design and domain behavior on mobile browsers |
+ | Personal data | IndexedDB version 1, validated personal commands, atomic saves, versioned backup, previewed restore and rollback | Optional account sync and device release verification |
+ | First browser launch | Empty real profile; fixtures restricted to isolated review builds | Preserve empty entry and demo isolation |
+-| Prayer times | Offline Adhan calculation, local timezone lookup, manual dates | Preserve behavior; broaden travel/timezone/device verification |
++| Prayer times and records | Offline Adhan calculation, manual dates, UTC-aware history/streaks, private pause and dated Fajr plans/drafts | Preserve behavior; complete sync and physical-device verification |
+ | Prayer/Fajr alerts | Executing-page timer; worker displays notifications | Opt-in Web Push, durable scheduling, cancellation and honest readiness |
+ | Habit reminders | Preferences and preview | Delivery through the consent-aware web pipeline |
+ | Family/squads | Fictional local membership, tasks, lists, invitations and snapshots | Real accounts, authorized shared records and revocable invitations |
+--- before/TASKS.md
++++ after/TASKS.md
+@@ -143,10 +143,11 @@
+ 
+ #### PRAY-02 — Harden records, pause and dated Fajr semantics
+ 
+-- [ ] **Status: TODO · P0 · M · Owner: Engineering/QA · Depends: PRAY-01, DATA-03**
++- [x] **Status: DONE · P0 · M · Owner: Engineering/QA · Depends: PRAY-01, DATA-03**
+ - Preserve unconfirmed versus explicit missed, independent streaks, private-pause exclusion, dated plans, preview isolation and work-break recovery.
+ - Accept that clock changes, pause/resume and “I'm up” do not record prayer/XP; cross-midnight and history-correction cases pass.
+ - Covers PRD-10–12.
++- Completed 21 October 2026: UTC-aware records/streaks, safe pause boundaries, dated Fajr backup/draft choices, live/preview isolation and overnight work-note recovery. [PRAY-02 evidence](docs/evidence/prayer-records-2026-10-21/README.md): 137 unit/tooling tests, 378 verified journey cases, 39 production checks and 720 unchanged visual comparisons. The report records the updated legacy draft-date expectation and one bounded visual timeout repeat; no application changes followed the full run.
+ 
+ #### WEB-02 — Installable PWA and offline/update lifecycle
+ 
+--- before/VERIFICATION.md
++++ after/VERIFICATION.md
+@@ -389,3 +389,12 @@
+ `npm run check` passed **126 unit/tooling tests** and both builds. The broad three-engine suite passed **342 journeys**. After the final legacy-review phase/detail guard, **75 focused prayer/delivery browser checks**, **39 production-entry checks** and **720 exact visual comparisons** passed on the completed build, with zero failed/skipped/flaky browser cases or regenerated references. A scoped manual-form reflow correction fixes large Russian text at 320 px. Existing design authorities/artwork remain unchanged. [Evidence, versions, source/build hashes and precise run scope](docs/evidence/prayer-timetable-2026-10-21/README.md).
+ 
+ The main 4173 profile was not used for fixtures or verification. No database/repository/domain/backup format or dependency version changed. This is local browser/calendar evidence, not physical-device, remote-push, offline-cold-start or complete product-release certification. PRAY-02 remains the next task.
++
++
++## 21 October 2026 — PRAY-02 records, private pause and dated Fajr
++
++PRD-10–12 local behavior is hardened: saved UTC windows govern streaks and wake clocks; explicit reports remain correctable after a backward clock change; an invalid resume cannot erase a pause; new dated Fajr saves retain independent backup choices and unfinished draft dates; real-profile preview stages cannot alter live acknowledgment. Overnight work expiry retains its note/date and rejected recording cannot complete the break. Prayer/pause/wake actions never grant habit XP or auto-record prayer. Existing data and schema versions remain.
++
++`npm run check` passed **137 unit/tooling tests**, lint/types and both builds. The focused prayer suite passed **36 checks** across Chromium/WebKit/Firefox. The broad run passed **375 journeys**; the same dated-draft scenario in three engines still expected the old date-rebinding behavior. Its expectation now retains the original date and all **3 targeted rechecks passed**, for **378 verified unique journey cases** on the unchanged application/build. Final test types/lint passed after that assertion update. Production checks passed **39**. Visual verification covers **48 variants / 720 exact comparisons**, with 47 passing in the matrix and one unchanged-build repeat passing after a capture timeout. No references were regenerated.
++
++The scoped reflow fix retains the frozen design and handles actual 200% text at 320 px. Supplemental before-midnight Fajr acknowledgment confirms the following morning's date is canceled while later dates, prayer history and XP remain separate. The personal 4173 profile was not accessed. This remains local mobile web evidence; cloud sync, remote cancellation, background push, PWA lifecycle and physical-device certification are separate release tasks. [Report, source/build manifests, original failures and final scopes](docs/evidence/prayer-records-2026-10-21/README.md). Next: WEB-02.
+--- before/AGENTS.md
++++ after/AGENTS.md
+@@ -57,6 +57,8 @@
+ | Time | Civil dates plus IANA timezone; absolute instants for dispatch/audit; never server-local time assumptions |
+ 
+ For prayer-calendar changes, use `zonedTime` and `prayerWindowState` for dated real-time comparisons. A manual save must not retain calculated keys/stale UTC timestamps or manufacture prayer records. Keep each manual date's timezone and checked snapshots; handle unavailable dates without sample substitution. Device-timezone observation is local metadata and prompts explicit review rather than changing the selected location.
++
++Use `prayerWindowInstants` for dated dispatch/display math and `prayerWindowState` for phase/streak decisions. Existing explicit prayer reports remain correctable after clock changes; fresh reports keep their start/end guards. Pause resume cannot precede its start. Newly saved Fajr plans own their optional backup choice per date; older plans fall back to the existing device preference. Fresh-profile wake previews stay local to the component and cannot write live alarm/acknowledgment state. Preserve dated drafts and the original legacy recovery source.
+ 
+ Verify behavior through the domain interface. Do not duplicate XP, streak, reward or prayer calculations in screen components.
+ 
+--- before/SECURITY.md
++++ after/SECURITY.md
+@@ -35,6 +35,8 @@
+ Local domain receipts now contain private command payloads, which can include earlier drafts, work notes, prayer/pause information and location settings. Treat the database and raw recovery archives as sensitive. Portable backups exclude operation history and project only the current supported state; they now include habit-edit, goal, reward, priority, reflection and onboarding drafts. Receipts remain local and cloud-ineligible, with no sender or automatic retention pruning. Explicit clearing removes them; future retention/compaction and cloud projections must preserve replay protection and deletion requirements.
+ 
+ PRAY-01 keeps calculation, coordinate-to-zone lookup and travel detection on the device. Travel detection reads the device timezone identifier, not location coordinates. The optional observed/reviewed timezone marker and its command receipts are private device metadata; portable backups omit the marker. No routine outbound serializer, account sync or background geolocation is added. Explicit manual saves validate the selected date/zone before commit, and unavailable dates cannot produce an alert plan. Legacy recovery sources and existing checked/manual records remain preserved. Ambiguous legacy clock-only changes are withheld from alerts until explicit manual review. Browser/OS timezone databases still require current device software; automated engine checks are not physical-device certification.
++
++PRAY-02 keeps dated Fajr backup choices and draft dates in the existing private device profile and validated private backup. It adds no pause reasons, health fields or external serializer. Prayer window/streak comparisons are pure; clock changes, pause/resume and wake acknowledgment cannot create prayer records or habit XP. Live acknowledgment and preview state are isolated, and an invalid resumption point cannot erase an exclusion interval. Captured client time remains untrusted provenance. Raw recovery and local receipts retain their existing sensitivity; no account sync or remote cancellation is implemented by this task.
+ 
+ Browser eviction, user storage clearing and loss before a transaction acknowledges remain possible. No account, server backup, remembered-device consent implementation or physical-device durability claim is implied by local tests. Forced termination before acknowledgment is not treated as a successful save.
+ 
+--- /dev/null
++++ after/tests/prayer-records.test.ts
+@@ -0,0 +1,153 @@
++import { test } from "node:test";
++import assert from "node:assert/strict";
++import { createEmptyState } from "../src/data/initialState.ts";
++import { validateState, parseStoredState } from "../src/data/storedState.ts";
++import { createBackup, previewRestore } from "../src/data/backup.ts";
++import { applyDomainCommand } from "../src/domain/commands.ts";
++import { isPrayerExcluded, startPause, resumePrayers, alarmTimes } from "../src/lifeModel.ts";
++import { pausePoint, prayerMoment, prayerPhase, prayerStreak, prayerTotals, preparationDate, recordPrayer, samplePrayerDay, saveTimetable, weeklyPrayers } from "../src/prayerModel.ts";
++import { buildPrayerSchedule } from "../src/prayerSchedule.ts";
++import { xpTotal } from "../src/model.ts";
++
++const date = "2026-10-21", next = "2026-10-22";
++const at = (clock: string) => Date.parse(`${date}T${clock}:00+05:00`);
++function profile() {
++  let s = createEmptyState();
++  s.onboarded = true; s.timezone = "Asia/Tashkent"; s.prayers.started = date;
++  for (const d of [date, next]) s = saveTimetable(s, d, { ...samplePrayerDay(s.timezone), sample: false, source: "Synthetic timetable" });
++  s.life.delivery = { enabled: true, sound: false, acknowledgedFajr: [] };
++  return s;
++}
++const context = (now: number, timezone = "Asia/Tashkent") => ({ date: prayerMoment({ ...profile(), timezone }, new Date(now)).date, now, timezone });
++
++test("clock changes leave unconfirmed prayers unrecorded and saved history explicitly correctable", () => {
++  const original = profile(), xp = xpTotal(original);
++  for (const clock of ["03:00", "05:30", "12:00", "23:59", "01:00"]) {
++    const state = applyDomainCommand(original, { kind: "calendar.refresh" }, context(at(clock)));
++    assert.deepEqual(state.prayers.days, original.prayers.days);
++    assert.deepEqual(prayerTotals(state), prayerTotals(original)); assert.equal(xpTotal(state), xp);
++  }
++  const recorded = applyDomainCommand(original, { kind: "prayer.record", date, prayer: "fajr", check: "missed" }, context(at("12:00")));
++  const corrected = applyDomainCommand(recorded, { kind: "prayer.record", date, prayer: "fajr", check: "on_time" }, context(at("03:00")));
++  assert.equal(corrected.prayers.days[date].entries.fajr.check, "on_time");
++  assert.equal(corrected.prayers.days[date].entries.fajr.performedAt, undefined);
++  const undone = applyDomainCommand(corrected, { kind: "prayer.record", date, prayer: "fajr", check: null }, context(at("03:00")));
++  assert.equal(undone.prayers.days[date].entries.fajr.check, undefined);
++  assert.equal(undone.prayers.days[date].entries.fajr.recordedAt, undefined);
++  assert.equal(xpTotal(undone), xp); assert.deepEqual(original.prayers.days, undone.prayers.days);
++  assert.strictEqual(recordPrayer(original, date, "fajr", "on_time", prayerMoment(original, new Date(at("03:00")))), original);
++});
++
++test("a saved record remains visible in its week after the device clock goes to yesterday", () => {
++  const s = profile(); s.prayers.days[next].entries.fajr.check = "on_time";
++  const week = weeklyPrayers(s, date, prayerMoment(s, new Date(at("00:00"))));
++  assert.equal(week.on_time, 1); assert.equal(prayerTotals(s).onTime, 1);
++});
++
++test("independent streaks use saved UTC windows across travel and repeated DST clocks", () => {
++  let s = profile(); s.timezone = "UTC";
++  s = saveTimetable(s, date, { ...samplePrayerDay("America/New_York"), sample: false, source: "Synthetic travel" });
++  const beforeEnd = prayerMoment(s, new Date(`${date}T09:30:00Z`));
++  assert.equal(prayerPhase(s, date, "fajr", beforeEnd), "open");
++  assert.equal(prayerStreak(s, "fajr", beforeEnd).pending, false);
++  assert.equal(prayerStreak(s, "fajr", prayerMoment(s, new Date(`${date}T10:40:00Z`))).pending, true);
++  const folded = "2026-11-01";
++  s.prayers.started = folded;
++  const day = { ...samplePrayerDay("America/New_York"), sample: false, source: "Synthetic DST" };
++  day.entries.fajr = { begins: "00:30", target: "01:00", ends: "01:30" };
++  s = saveTimetable(s, folded, day);
++  assert.equal(prayerPhase(s, folded, "fajr", prayerMoment(s, new Date(`${folded}T06:15:00Z`))), "unconfirmed");
++  assert.equal(prayerStreak(s, "fajr", prayerMoment(s, new Date(`${folded}T06:15:00Z`))).pending, true);
++});
++
++test("private pause across midnight holds independent streaks, retains records and earlier gaps", () => {
++  let s = profile(); s.prayers.days[date].entries.dhuhr.check = "on_time";
++  assert.deepEqual(pausePoint(s, prayerMoment(s, new Date(at("13:00")))), { date, prayer: "dhuhr" });
++  const history = structuredClone(s.prayers.days), xp = xpTotal(s);
++  s = startPause(s, date, "asr", "synthetic-pause");
++  s = resumePrayers(s, next, "dhuhr", true);
++  const moment = prayerMoment(s, new Date(`${next}T13:00:00+05:00`));
++  for (const [d, id] of [[date, "asr"], [date, "maghrib"], [date, "isha"], [next, "fajr"]] as const) assert.equal(isPrayerExcluded(s, d, id), true);
++  assert.equal(isPrayerExcluded(s, next, "dhuhr"), false);
++  assert.equal(prayerStreak(s, "fajr", moment).pending, true);
++  assert.equal(prayerStreak(s, "asr", moment).current, 0);
++  assert.equal(prayerStreak(s, "dhuhr", moment).confirmed, 1);
++  assert.deepEqual(s.prayers.days, history); assert.equal(xpTotal(s), xp);
++  assert.ok(!buildPrayerSchedule(s, at("00:00")).some(e => (e.date === date && ["asr", "maghrib", "isha"].includes(e.prayer)) || (e.date === next && e.prayer === "fajr")));
++  const restored = parseStoredState(JSON.stringify(s)); validateState(restored); assert.deepEqual(restored.life.pauses, s.life.pauses);
++});
++
++test("resume cannot erase a pause by selecting a point before it started", () => {
++  const s = startPause(profile(), next, "asr", "synthetic-pause");
++  assert.strictEqual(resumePrayers(s, date, "isha"), s);
++  assert.throws(() => applyDomainCommand(s, { kind: "prayer.resume", date, prayer: "isha", includeCurrent: true }, context(Date.parse(`${next}T19:00:00+05:00`))));
++  for (const invalid of ["2026-10-20", "2026-10-23"]) assert.throws(() => applyDomainCommand(profile(), { kind: "prayer.pause", date: invalid, prayer: "fajr", pauseId: "invalid-pause" }, context(at("12:00"))));
++  const included = resumePrayers(s, next, "asr", true);
++  assert.equal(included.life.pauses.length, 0);
++  const excluded = resumePrayers(s, next, "asr", false);
++  assert.equal(isPrayerExcluded(excluded, next, "asr"), true);
++});
++
++test("Undo during a pause excludes only the selected prayer and never restores its reminders", () => {
++  let s = profile(); s.prayers.days[date].entries.asr.check = "on_time";
++  s = startPause(s, date, "asr", "synthetic-pause");
++  const corrected = recordPrayer(s, date, "asr", "later", prayerMoment(s, new Date(at("20:00"))));
++  assert.equal(corrected.prayers.days[date].entries.asr.check, "later");
++  const undone = recordPrayer(corrected, date, "asr", null, prayerMoment(s, new Date(at("20:00"))));
++  assert.equal(prayerPhase(undone, date, "asr", prayerMoment(s, new Date(at("20:00")))), "paused");
++  assert.ok(!buildPrayerSchedule(undone, at("00:00")).some(e => e.prayer === "asr"));
++});
++
++test("dated Fajr enable and backup choices survive later plan edits and backup round trip", async () => {
++  let s = profile(); const plan = { ...s.prayers.fajr, wakeLead: 10, backupMinutes: 3, enabled: true };
++  s = applyDomainCommand(s, { kind: "fajr.plan", date, plan, backupEnabled: true }, context(at("00:00")));
++  s = applyDomainCommand(s, { kind: "fajr.plan", date: next, plan: { ...plan, enabled: false, wakeLead: 30 }, backupEnabled: false }, context(at("00:00")));
++  const events = buildPrayerSchedule(s, at("00:00"));
++  assert.equal(events.filter(e => e.date === date && ["wake", "backup"].includes(e.kind)).length, 2);
++  assert.equal(events.filter(e => e.date === next && ["wake", "backup"].includes(e.kind)).length, 0);
++  assert.equal(s.prayers.prepared[date].backupEnabled, true);
++  assert.equal(s.prayers.prepared[next].backupEnabled, false);
++  const snapshot = { state: s, archives: [], revision: 1 };
++  const backup = await createBackup(snapshot); const restored = await previewRestore(backup, snapshot);
++  assert.deepEqual(restored.content.personal.prayers.prepared, s.prayers.prepared);
++  assert.deepEqual(s.prayers.days, profile().prayers.days); assert.equal(xpTotal(s), 0);
++});
++
++test("Fajr preview commands cannot overwrite a live acknowledgment", () => {
++  let s = profile(); const before = structuredClone(s.prayers.days);
++  s = applyDomainCommand(s, { kind: "fajr.acknowledge", date }, context(at("05:00")));
++  s = applyDomainCommand(s, { kind: "fajr.alarm", alarm: { date, stage: "ringing", backup: true } }, context(at("05:01")));
++  assert.equal(s.life.alarm?.stage, "awake");
++  assert.deepEqual(s.life.delivery?.acknowledgedFajr, [date]);
++  assert.ok(!buildPrayerSchedule(s, at("00:00")).some(e => e.date === date && ["wake", "backup"].includes(e.kind)));
++  assert.equal(buildPrayerSchedule(s, at("00:00")).some(e => e.date === next && e.kind === "wake"), true);
++  assert.deepEqual(s.prayers.days, before); assert.equal(xpTotal(s), 0);
++});
++
++test("dated Fajr draft survives reload and portable backup with its original date", async () => {
++  const s = profile(), draft = { ...s.prayers.fajr, date, backupEnabled: true, message: "My synthetic evening note" };
++  const saved = applyDomainCommand(s, { kind: "draft.save", key: "fajr-plan", value: draft }, context(at("23:59")));
++  const snapshot = { state: saved, archives: [], revision: 1 };
++  const backup = await createBackup(snapshot); const restored = await previewRestore(backup, snapshot);
++  assert.deepEqual(restored.content.personal.life.drafts["fajr-plan"], draft);
++});
++
++test("Fajr planning and wake clocks use absolute subtraction across a repeated hour", () => {
++  let s = profile(); s.timezone = "America/New_York"; const folded = "2026-11-01";
++  const day = { ...samplePrayerDay(s.timezone), sample: false, source: "Synthetic DST" };
++  day.entries.fajr = { begins: "02:10", target: "02:10", ends: "03:30" };
++  s = saveTimetable(s, folded, day); s.prayers.fajr.wakeLead = 90;
++  assert.equal(alarmTimes(s, folded)?.wake, "01:40");
++  assert.equal(preparationDate(s, prayerMoment(s, new Date(`${folded}T06:50:00Z`))), folded);
++  // A stored second occurrence remains authoritative after travel / a clock correction.
++  s.prayers.days[folded].entries.fajr = { ...day.entries.fajr, begins: "01:30", target: "01:30", beginsAt: `${folded}T06:30:00.000Z`, targetAt: `${folded}T06:30:00.000Z`, endsAt: `${folded}T08:30:00.000Z` };
++  assert.equal(preparationDate(s, prayerMoment(s, new Date(`${folded}T05:45:00Z`))), folded);
++});
++
++test("a rejected prayer record cannot finish a work break or lose the return note", () => {
++  let s = profile(); s = applyDomainCommand(s, { kind: "work.begin", date, prayer: "asr" }, context(at("12:00")));
++  s = applyDomainCommand(s, { kind: "work.note", date, prayer: "asr", note: "Run the synthetic tests" }, context(at("12:00")));
++  s = applyDomainCommand(s, { kind: "prayer.record", date, prayer: "asr", check: "on_time", returnToWork: "always" }, context(at("12:00")));
++  assert.equal(s.prayers.work?.stage, "save"); assert.equal(s.prayers.work?.note, "Run the synthetic tests");
++  assert.equal(s.prayers.days[date].entries.asr.check, undefined); assert.equal(xpTotal(s), 0);
++});
+--- /dev/null
++++ after/tests/prayer-records.browser.spec.ts
+@@ -0,0 +1,181 @@
++import { test, expect, stored, reloadSaved, type Page } from "./support/browser";
++import { createEmptyState } from "../src/data/initialState";
++import { xpTotal, type State } from "../src/model";
++import { samplePrayerDay, saveTimetable, prayerTotals } from "../src/prayerModel";
++import { buildPrayerSchedule, type PrayerAlert } from "../src/prayerSchedule";
++import { createTranslator, type Language } from "../src/i18n";
++
++const date = "2026-10-21", next = "2026-10-22";
++const at = (day: string, time: string) => Date.parse(`${day}T${time}:00+05:00`);
++const dialog = (page: Page) => page.getByRole("dialog").last();
++function profile() {
++  let s = createEmptyState(); s.onboarded = true; s.name = "Synthetic"; s.timezone = "Asia/Tashkent";
++  s.prayers.started = date; s.prefs.reduceMotion = true;
++  for (const d of [date, next, "2026-10-23"]) s = saveTimetable(s, d, { ...samplePrayerDay(s.timezone), sample: false, source: "Synthetic timetable" });
++  return s;
++}
++async function seed(page: Page, state: State, now: number) {
++  await page.clock.install({ time: now }); await page.clock.setFixedTime(now);
++  await page.addInitScript(raw => { if (localStorage.getItem("rise.local.v1") === null) localStorage.setItem("rise.local.v1", raw); }, JSON.stringify(state));
++  await page.goto("/"); await stored(page);
++}
++async function closeSheets(page: Page) { while (await page.getByRole("dialog").count()) await page.keyboard.press("Escape"); }
++async function preferences(page: Page, language: Language = "en") {
++  const t = createTranslator(language);
++  await closeSheets(page); await page.locator("#tab-you").click();
++  await page.getByRole("button", { name: new RegExp(`^${t("Prayer preferences", "Namoz sozlamalari")}`) }).click();
++}
++async function plan(page: Page, language: Language = "en") {
++  await preferences(page, language);
++  await dialog(page).getByRole("button", { name: new RegExp(`^${createTranslator(language)("Prepare for Fajr", "Bomdodga tayyorlanish")}`) }).click();
++}
++async function incoming(page: Page, alert: PrayerAlert) {
++  await page.evaluate(alert => navigator.serviceWorker.dispatchEvent(new MessageEvent("message", { data: { type: "rise-alert", alert } })), alert);
++  await expect(page.getByRole("dialog", { name: "Fajr wake-up", exact: true })).toBeVisible();
++}
++
++test("saved future-dated history stays correctable after a backward clock change", async ({ page }) => {
++  const s = profile(); s.prayers.days[next].entries.fajr.check = "missed";
++  await seed(page, s, at(date, "03:00"));
++  await page.getByRole("tab", { name: "Progress", exact: true }).click();
++  await page.getByRole("tab", { name: "Salah", exact: true }).click();
++  const cell = page.getByRole("button", { name: `Fajr, ${createTranslator("en").shortDate(next)}, Missed`, exact: true });
++  await expect(cell).toBeEnabled(); await cell.click();
++  await dialog(page).getByRole("button", { name: "Prayed on time", exact: true }).click();
++  expect((await stored(page)).prayers.days[next].entries.fajr.check).toBe("on_time");
++  await dialog(page).getByRole("button", { name: "Undo this record", exact: true }).click();
++  await expect(dialog(page).getByRole("button", { name: "Prayed on time", exact: true })).toBeDisabled();
++  const saved = await stored(page); expect(saved.prayers.days).toEqual(profile().prayers.days); expect(xpTotal(saved)).toBe(0);
++  await reloadSaved(page); expect((await stored(page)).prayers.days).toEqual(saved.prayers.days);
++});
++
++test("pause defaults to the original overnight Isha date and resumes without hiding earlier gaps", async ({ page }) => {
++  let s = profile(); const day = structuredClone(s.prayers.days[date]); day.entries.isha.ends = "01:00";
++  s = saveTimetable(s, date, day); const before = structuredClone(s.prayers.days);
++  await seed(page, s, at(next, "00:30")); await preferences(page);
++  await dialog(page).getByRole("button", { name: /^Period mode/ }).click();
++  await expect(dialog(page).getByLabel("Date", { exact: true })).toHaveValue(date);
++  await expect(dialog(page).getByLabel("Pause from", { exact: true })).toHaveValue("isha");
++  await dialog(page).getByRole("button", { name: "Pause prayer tracking", exact: true }).click();
++  expect((await stored(page)).life.pauses[0].from).toBe(`${date}:4`);
++  await closeSheets(page); await reloadSaved(page); await preferences(page);
++  await dialog(page).getByRole("button", { name: /^Period mode/ }).click();
++  await expect(dialog(page).getByRole("option", { name: "Asr", exact: true })).toHaveAttribute("disabled", "");
++  await dialog(page).getByLabel("Date", { exact: true }).fill(next);
++  await dialog(page).getByLabel("Resume from", { exact: true }).selectOption("dhuhr");
++  await dialog(page).getByRole("button", { name: "Resume prayer tracking", exact: true }).click();
++  const saved = await stored(page);
++  expect(saved.life.pauses[0].through).toBe(`${next}:0`); expect(saved.prayers.days).toEqual(before); expect(xpTotal(saved)).toBe(0);
++  await closeSheets(page); await page.getByRole("tab", { name: "Progress", exact: true }).click();
++  await page.getByRole("tab", { name: "Salah", exact: true }).click();
++  await expect(page.locator(".prayer-calendar-row").first()).toContainText("Streak pending");
++});
++
++test("unfinished Fajr draft retains its original date across midnight and reload", async ({ page }) => {
++  const s = profile(); await seed(page, s, at(date, "23:55")); await plan(page);
++  await dialog(page).getByLabel("A message from your evening self").fill("Synthetic note for Thursday only");
++  const draft = (await stored(page)).life.drafts["fajr-plan"] as { date: string };
++  expect(draft.date).toBe(next);
++  await page.clock.setFixedTime(at("2026-10-23", "00:30")); await reloadSaved(page); await plan(page);
++  await expect(dialog(page)).toContainText("Thursday, Oct 22");
++  await expect(dialog(page).getByLabel("A message from your evening self")).toHaveValue("Synthetic note for Thursday only");
++  await dialog(page).getByRole("button", { name: "Save my Fajr plan", exact: true }).click();
++  const saved = await stored(page);
++  expect(saved.prayers.prepared[next].message).toBe("Synthetic note for Thursday only");
++  expect(saved.prayers.prepared["2026-10-23"]).toBeUndefined(); expect(saved.prayers.days).toEqual(s.prayers.days);
++  expect(saved.life.drafts["fajr-plan"]).toBeUndefined(); expect(xpTotal(saved)).toBe(0);
++});
++
++test("preview stop, backup and acknowledgment leave a different dated live alarm untouched", async ({ page }) => {
++  const s = profile(); s.life.alarm = { date, stage: "stopped", backup: true };
++  s.life.backupEnabled = true; s.life.delivery = { enabled: false, sound: false, acknowledgedFajr: [date] };
++  await seed(page, s, at(date, "20:00")); await plan(page);
++  await dialog(page).getByRole("button", { name: "Save & preview wake-up", exact: true }).click();
++  await dialog(page).getByRole("button", { name: "Stop this alarm", exact: true }).click();
++  await expect(dialog(page).getByRole("heading", { name: "Alarm stopped." })).toBeVisible();
++  await dialog(page).getByRole("button", { name: "Preview backup alarm", exact: true }).click();
++  await dialog(page).getByRole("button", { name: "I’m up", exact: true }).click();
++  const saved = await stored(page);
++  expect(saved.life.alarm).toEqual(s.life.alarm); expect(saved.life.delivery).toEqual(s.life.delivery);
++  expect(saved.prayers.days).toEqual(s.prayers.days); expect(xpTotal(saved)).toBe(0);
++  await closeSheets(page); await reloadSaved(page); expect((await stored(page)).life.alarm).toEqual(s.life.alarm);
++});
++
++test("preview of today's stopped live alert cannot acknowledge it; actual acknowledgment cancels only its dated wake alerts", async ({ page }) => {
++  const s = profile(); s.life.backupEnabled = true; s.prayers.preferences.reminders = false;
++  s.life.delivery = { enabled: true, sound: false, acknowledgedFajr: [] };
++  const events = buildPrayerSchedule(s, at(date, "05:00")), wake = events.find(e => e.date === date && e.kind === "wake")!, backup = events.find(e => e.date === date && e.kind === "backup")!;
++  await seed(page, s, wake.at + 1000); await incoming(page, wake);
++  await dialog(page).getByRole("button", { name: "Stop this alarm", exact: true }).click();
++  const stopped = await stored(page); expect(stopped.life.delivery?.acknowledgedFajr).toEqual([]);
++  expect(buildPrayerSchedule(stopped, wake.at + 1000).some(e => e.key === backup.key)).toBe(true);
++  await plan(page); await dialog(page).getByRole("button", { name: "Save & preview wake-up", exact: true }).click();
++  await dialog(page).getByRole("button", { name: "I’m up", exact: true }).click();
++  expect((await stored(page)).life.alarm?.stage).toBe("stopped");
++  expect((await stored(page)).life.delivery?.acknowledgedFajr).toEqual([]);
++  await closeSheets(page); await page.clock.setFixedTime(backup.at + 1000); await incoming(page, backup);
++  await dialog(page).getByRole("button", { name: "I’m up", exact: true }).click();
++  const acknowledged = await stored(page);
++  expect(acknowledged.life.delivery?.acknowledgedFajr).toEqual([date]);
++  const pending = buildPrayerSchedule(acknowledged, wake.at - 1);
++  expect(pending.some(e => e.date === date && ["wake", "backup"].includes(e.kind))).toBe(false);
++  expect(pending.some(e => e.date === next && e.kind === "wake")).toBe(true);
++  expect(acknowledged.prayers.days).toEqual(s.prayers.days); expect(xpTotal(acknowledged)).toBe(0);
++});
++
++test("overnight break expires in the open form without losing its note or reusing its wrap-up minute", async ({ page }) => {
++  let s = profile(); const day = structuredClone(s.prayers.days[date]); day.entries.isha.ends = "01:00";
++  s = saveTimetable(s, date, day);
++  s.prayers.work = { date, prayer: "isha", stage: "save", note: "Saved synthetic next step", wrapUntil: at(next, "00:31"), wrapUsed: true };
++  await seed(page, s, at(next, "00:30"));
++  await page.getByRole("button", { name: /Continue your prayer break/ }).click();
++  await dialog(page).getByLabel("When I come back, I’ll…", { exact: true }).fill("Keep this synthetic note across midnight");
++  await expect(dialog(page).getByRole("button", { name: "I need 60 seconds to save", exact: true })).toHaveCount(0);
++  await page.clock.setFixedTime(at(next, "01:01")); await page.clock.runFor(16000);
++  await expect(dialog(page)).toContainText("Isha’s window ended at 01:00.");
++  await expect(dialog(page).getByLabel("When I come back, I’ll…", { exact: true })).toHaveValue("Keep this synthetic note across midnight");
++  expect((await stored(page)).prayers.days).toEqual(s.prayers.days);
++  await reloadSaved(page);
++  await page.getByRole("button", { name: /Isha · record or return/ }).click();
++  await expect(dialog(page).getByLabel("When I come back, I’ll…", { exact: true })).toHaveValue("Keep this synthetic note across midnight");
++  await dialog(page).getByRole("button", { name: "Record Isha", exact: true }).click();
++  await dialog(page).getByRole("button", { name: "Prayed later", exact: true }).click();
++  await page.keyboard.press("Escape");
++  await dialog(page).getByRole("button", { name: "Back to Today", exact: true }).click();
++  await expect(page.getByRole("heading", { name: "Your day, Synthetic.", exact: true })).toBeFocused();
++  const saved = await stored(page);
++  expect(saved.prayers.work).toMatchObject({ date, stage: "returned", note: "Keep this synthetic note across midnight", wrapUsed: true });
++  expect(saved.prayers.days[date].entries.isha.check).toBe("later"); expect(prayerTotals(saved).later).toBe(1); expect(xpTotal(saved)).toBe(0);
++});
++
++for (const [language, appearance, width, scale] of [
++  ["en", "light", 375, 100], ["en", "dark", 1440, 100], ["ru", "light", 393, 100],
++  ["ru", "dark", 320, 200], ["uz", "light", 430, 200], ["uz", "dark", 375, 100],
++] as const) test(`prayer records and dated planning layout ${language}-${appearance}-${width}-${scale}`, async ({ page }, testInfo) => {
++  const s = profile(); s.life.language = language; s.prefs.appearance = appearance;
++  await page.setViewportSize({ width, height: 852 }); await seed(page, s, at(date, "20:00"));
++  if (scale === 200) await page.evaluate(() => document.documentElement.style.fontSize = "32px");
++  const t = createTranslator(language);
++  const capture = async (name: string) => {
++    await expect(dialog(page)).toBeVisible();
++    if (await page.locator(".toast.visible").isVisible()) await page.locator(".toast.visible button").click();
++    expect(await dialog(page).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
++    const headerFits = await dialog(page).locator(".sheet-header").evaluate(header => {
++      const box = header.getBoundingClientRect();
++      return [...header.children].every(child => {
++        const r = child.getBoundingClientRect();
++        return r.left >= box.left - 1 && r.right <= box.right + 1 && r.top >= box.top - 1 && r.bottom <= box.bottom + 1;
++      });
++    });
++    expect(headerFits, `${name}: title and controls stay inside the header`).toBe(true);
++    await page.locator(".app-shell").screenshot({ path: testInfo.outputPath(`${name}.png`) });
++  };
++  await plan(page, language); await capture("dated-fajr");
++  await dialog(page).getByRole("button", { name: t("Save & preview wake-up", "Saqlash va uyg‘onish namunasini ko‘rish"), exact: true }).click();
++  await dialog(page).getByRole("button", { name: t("I’m up", "Uyg‘ondim"), exact: true }).click();
++  await capture("preview-acknowledged");
++  await preferences(page, language);
++  await dialog(page).getByRole("button", { name: new RegExp(`^${t("Period mode", "Hayz davri rejimi")}`) }).click();
++  await capture("private-pause");
++  expect((await stored(page)).prayers.days).toEqual(s.prayers.days); expect(xpTotal(await stored(page))).toBe(0);
++});

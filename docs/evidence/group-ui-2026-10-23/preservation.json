@@ -1,0 +1,132 @@
+{
+  "baseline": "Start-of-goal inventory plus push-retention and GROUP-01 backend manifests",
+  "knownFiles": 1083,
+  "changedExisting": [
+    ".github/workflows/ci.yml",
+    ".impeccable/hook.cache.json",
+    "AGENTS.md",
+    "ARCHITECTURE.md",
+    "PRODUCT.md",
+    "README.md",
+    "SECURITY.md",
+    "TASKS.md",
+    "VERIFICATION.md",
+    "docs/ACCOUNT-LIFECYCLE.md",
+    "docs/GROUP-MEMBERSHIP.md",
+    "docs/PUSH-SUBSCRIPTIONS.md",
+    "package.json",
+    "scripts/infra/serve-test-backend.ts",
+    "server/groups/repository.ts",
+    "server/groups/routes.ts",
+    "src/App.tsx",
+    "src/Groups.tsx",
+    "src/account/AccountLifecycle.tsx",
+    "src/auth/client.ts",
+    "src/components.tsx",
+    "src/context.tsx",
+    "src/contracts/groups.ts",
+    "src/main.tsx",
+    "src/push/client.ts",
+    "src/sync/session.ts",
+    "src/sync/text.ts",
+    "src/sync/workspace.ts",
+    "tests/group-contract.test.ts",
+    "tests/infra/groups.test.ts",
+    "tests/support/pushBrowser.ts",
+    "tsconfig.tsbuildinfo"
+  ],
+  "newSource": [
+    "docs/evidence/group-ui-2026-10-23/README.md",
+    "playwright.groups.config.ts",
+    "src/groups/GroupProvider.tsx",
+    "src/groups/GroupScreens.tsx",
+    "src/groups/client.ts",
+    "src/groups/groups.css",
+    "src/groups/intent.ts",
+    "src/groups/invitation.ts",
+    "src/groups/session.ts",
+    "src/groups/text.ts",
+    "tests/group-session.test.ts",
+    "tests/groups/layout.groups.spec.ts",
+    "tests/groups/membership.groups.spec.ts"
+  ],
+  "historicalAppend": [
+    "docs/evidence/group-membership-2026-10-23/README.md"
+  ],
+  "missing": [],
+  "preserved": {
+    "personalDomainAndPersistence": {
+      "count": 28,
+      "unchanged": true
+    },
+    "design": {
+      "count": 9,
+      "unchanged": true
+    },
+    "publicAndOriginalImages": {
+      "count": 11,
+      "unchanged": true
+    },
+    "visualGoldens": {
+      "count": 720,
+      "unchanged": true
+    },
+    "migrations": {
+      "count": 26,
+      "unchanged": true
+    },
+    "dependencyLock": {
+      "count": 1,
+      "unchanged": true
+    }
+  },
+  "sha256": {
+    ".github/workflows/ci.yml": "ed7edfb8474d18770b2a436b666977d16132ae4f3b04c2dc0f5a3197ad177f50",
+    ".impeccable/hook.cache.json": "200b1c7dcb3568018e1e7e85f8a80fbf7be6dcceac55d73fe1d04a528999f096",
+    "AGENTS.md": "e3e2f7eb2d626fec434158d15f1224cdbfb834b718bb714d65265ebd3a5568fb",
+    "ARCHITECTURE.md": "b10446dc78c23b91ca0790810050486dd13d1a03566a8f73ee8bba1d6eed2de9",
+    "PRODUCT.md": "a624d995a1b539f25b4814b1a1b2c459f172b5b5f3b6ae1a48d1f061a3dce602",
+    "README.md": "338cd4872ff8d590accad8aaaff1badff98c9a4e0f70a7a59d82cad2e4570189",
+    "SECURITY.md": "9533f1a27af6b293478b83daeb21436a9fa136115be7c0e40c19d3b700e3ca14",
+    "TASKS.md": "83efa2f6860c2a359905db1db4bd6fb8436d1669b8b49c9e04121093ab23e423",
+    "VERIFICATION.md": "9cebbc1071a23059b921dc905e3c6e03c3d2ed09c3e8a085e41d781c40e958a0",
+    "docs/ACCOUNT-LIFECYCLE.md": "0dfce3f2cb054428b2fbf42a7207c772a1d7e350097ce05e1c0e28c5b6b9382f",
+    "docs/GROUP-MEMBERSHIP.md": "1f75594cc7bba8e4d5b6dfb961e747d4cab038276a2d6f6975942d4145e2d3e9",
+    "docs/PUSH-SUBSCRIPTIONS.md": "bb84e51eec549c2b90bcf26258753de5c56b28dd68640cd841a032c7b7807dec",
+    "docs/evidence/group-membership-2026-10-23/README.md": "383c373509a8bbbab924e400e38284c0f905cc4529f8b0185787fd28e35b6c3a",
+    "docs/evidence/group-ui-2026-10-23/README.md": "7bc30bbe048520418f06b3b9a2fd7d985d8f266b62b35b513750e574555f3af4",
+    "package.json": "5e3692b8f64752fd60b8800fe8d67842ad2ab53ec7d0bf8f551b3671e0968af4",
+    "playwright.groups.config.ts": "4527c691d2892471b0a9b988498cd3f7c6bf042fc43508755fe5a2d266945472",
+    "scripts/infra/serve-test-backend.ts": "cf9dd2fc64149d61dc3cdbf068677a536e9fbc70e6acf472766d6c7982abc92b",
+    "server/groups/repository.ts": "e2bf4175db8ace79fbd6ca6848223ef3d1fa0c52e301ca4bed5f1ef65900633d",
+    "server/groups/routes.ts": "2e2554610f772cec5c0b4ab7dd40e737d3f7fc6476c928394a408fb7a94e3d07",
+    "src/App.tsx": "2330d1a56a15cfe37ca0a537b9ed86109d53485584fba00691f27b797c0c6bc7",
+    "src/Groups.tsx": "71dab67e157b262b378ee1c413f2bfa4b7f8c3dbfdf9289e7ed4ed71164133d2",
+    "src/account/AccountLifecycle.tsx": "3d12f00ea1a2ad2a5b70770588d108173b78f051daf3c259b5eaeacb0aefb8a3",
+    "src/auth/client.ts": "6bf7ecba2d98ca6aa3ebec6d569e66436e16660d2ce43732f328ebbb65fdbe9e",
+    "src/components.tsx": "d743c34392c860b5d361b52f984d2ae40fef09e4025733322ad9df7610123e6f",
+    "src/context.tsx": "f8e6b56577c30dd0994ab072cc51f461a498009561bc15bea07ecbde5636753a",
+    "src/contracts/groups.ts": "7ce851b53fce912e63a3abbee1dcb703e22f1e397744df61dfe794b2f2fd73ef",
+    "src/groups/GroupProvider.tsx": "f7d3aa87299b48e287a0171e234fafdfe00e5e7a20228a71fc7417e9f935a4d3",
+    "src/groups/GroupScreens.tsx": "265c12615f8f09601f5f975b6733c38f3830d040eaa349a7d5d8053e9f5e284f",
+    "src/groups/client.ts": "680731dcec12a57738114aa8c0fcb93127357f2f3e0957e8a888519d6f1b148e",
+    "src/groups/groups.css": "eed5a1a1c00844b559a743c66e00f52e5204b607e806cbd34f035b07268002ba",
+    "src/groups/intent.ts": "cfdc9a897cfef5321bd4d717228e2e14c48a52d18a245ffbfed23a6575df9b61",
+    "src/groups/invitation.ts": "0f4281b966cec77d9082eccbe8d3b6dc2f5e510becfac0f4f0d44351af1d70f0",
+    "src/groups/session.ts": "52677a3720bbefd5aa902f19f69e86933794a7c4fa5dec24451d7e8ffd2c6e80",
+    "src/groups/text.ts": "32b08e122e2508d253231c851cebc47ff8ef5381dbd55f6e51966922bfb14215",
+    "src/main.tsx": "e16e06dd20e125cc9283a9699459530ad16fec2b127b293a90444ba5eb28f080",
+    "src/push/client.ts": "37ac222adb1611b53e2d2551840233030f17b86d44a59cd2ff9f59e532fbe4d1",
+    "src/sync/session.ts": "7cc644f1ec14c3fee4e59ce039028ef3f32ca0c29dcc376d17fba609fcaad549",
+    "src/sync/text.ts": "60fc8d4b68a77b024d14995e4d0ab8122a200464280c50db68aefcf1c1153dc9",
+    "src/sync/workspace.ts": "3cb5572d9a2f8f1bb170b4425fba986d25c8042f60fcb84b8dce3f5c510f143c",
+    "tests/group-contract.test.ts": "7791d9e70aee96f678b79f6ade73f545bb5c4a378cb160bcd0d8965b7ee0a40d",
+    "tests/group-session.test.ts": "766efe94553ebf4c5ac04122f6c4ed08021aacf0f33c698bab245dd69fd01981",
+    "tests/groups/layout.groups.spec.ts": "1026f6d36d7c33fdc09d87f7c9ce2e589874c03ec567b858142ab0e051e6c02c",
+    "tests/groups/membership.groups.spec.ts": "3ec888c9841ed5829c8eceded7cac694d31f9c680a52fffb440f2bffd6a18301",
+    "tests/infra/groups.test.ts": "fb822194444d3a2c2e1c4c172dee4320104ba2c7e5ba19a223f71ccb98920509",
+    "tests/support/pushBrowser.ts": "cb12da44056cbdfc6c446b9acae7aa676aac827ecc9b8ece774c4f071e29d16b",
+    "tsconfig.tsbuildinfo": "b75f16a8cf93e50d131431e6e98bb3b7c16584b52b149ced006d8b9d7c328bc3"
+  },
+  "note": "Existing guest/account data, protected keys and main 4173 profile were not accessed for fixtures. No Git repository exists. Compiler and Impeccable hook metadata changes are retained. Earlier backend evidence is only appended with a link to this separate increment."
+}

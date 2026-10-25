@@ -1,0 +1,26 @@
+
+> rise-prototype@1.0.0 test:groups
+> playwright test --config playwright.groups.config.ts tests/groups/content-layout.groups.spec.ts$
+
+[WebServer] (node:49230) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:49231) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (24.9s)
+  ✓  2 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (19.7s)
+  ✓  3 [chromium] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (20.0s)
+(node:49368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  4 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (25.6s)
+  ✓  5 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (22.7s)
+  ✓  6 [webkit] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (18.2s)
+(node:49515) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  7 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · en (22.1s)
+  ✓  8 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · ru (23.3s)
+  ✓  9 [firefox] › tests/groups/content-layout.groups.spec.ts:15:49 › shared task, list and priority screens reflow · uz (1.8m)
+
+  9 passed (4.9m)

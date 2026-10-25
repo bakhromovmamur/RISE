@@ -1,0 +1,176 @@
+{
+  "verifiedAt": "2026-10-22T16:45:09.185Z",
+  "timezone": "Asia/Tashkent",
+  "environment": {
+    "os": "Darwin 25.6.0 arm64",
+    "node": "24.16.0",
+    "playwright": "1.64.1",
+    "browsers": {
+      "chromium": "156.0.8078.4",
+      "webkit": "27.2",
+      "firefox": "157.0"
+    }
+  },
+  "check": {
+    "command": "npm run check",
+    "tests": 180,
+    "passed": 180,
+    "failed": 0,
+    "productionBuild": true,
+    "reviewBuild": true
+  },
+  "database": {
+    "command": "npm run test:infra",
+    "tests": 59,
+    "passed": 59,
+    "failed": 0
+  },
+  "sync": {
+    "command": "npm run test:sync",
+    "startTime": "2026-10-22T16:28:52.666Z",
+    "duration": 365671.332,
+    "expected": 69,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ],
+    "realSessionCases": 42,
+    "visualOnlyCases": 27,
+    "layoutStates": 810
+  },
+  "lifecycleFocused": {
+    "command": "npm run test:sync -- --grep lifecycle...",
+    "startTime": "2026-10-22T16:26:07.111Z",
+    "duration": 84101.162,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ],
+    "realSessionCases": 12,
+    "visualOnlyCases": 9,
+    "layoutStates": 324
+  },
+  "auth": {
+    "command": "npm run test:auth",
+    "startTime": "2026-10-22T16:34:58.731Z",
+    "duration": 32173.887,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "backend": {
+    "command": "npm run test:backend",
+    "startTime": "2026-10-22T16:35:31.265Z",
+    "duration": 6301.012,
+    "expected": 9,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "journeys": {
+    "command": "npm run test:browser",
+    "startTime": "2026-10-22T16:35:37.918Z",
+    "duration": 349209.151,
+    "expected": 378,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "production": {
+    "command": "npm run test:production",
+    "startTime": "2026-10-22T16:41:27.509Z",
+    "duration": 30622,
+    "expected": 39,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "pwa": {
+    "command": "npm run test:pwa",
+    "startTime": "2026-10-22T16:41:58.512Z",
+    "duration": 75045.34300000001,
+    "expected": 42,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      "chromium",
+      "webkit",
+      "firefox"
+    ]
+  },
+  "visual": {
+    "command": "npm run test:visual",
+    "startTime": "2026-10-22T16:43:13.919Z",
+    "duration": 55539.106999999996,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0,
+    "projects": [
+      ""
+    ],
+    "comparisons": 720,
+    "updatedReferences": false
+  },
+  "boundaries": {
+    "cloudProvisioned": false,
+    "deployed": false,
+    "externalEmailSent": false,
+    "user4173Accessed": false,
+    "customerAccountDeleted": false,
+    "userGuestStorageAltered": false,
+    "syntheticManagedAccountsPurged": true,
+    "gitInitialized": false,
+    "physicalDevicesCertified": false
+  },
+  "advisors": {
+    "local": "No issues found",
+    "test": "No issues found",
+    "threshold": "warn; fail-on warn"
+  },
+  "manualVisualInspection": [
+    "screens/lifecycle-delete-en-light-393-100.png",
+    "screens/lifecycle-reauth-ru-dark-320-200.png",
+    "screens/lifecycle-delete-uz-light-1440-100.png"
+  ],
+  "limits": [
+    "Hosted backup retention/supervision/deadline monitoring remain OPS-02.",
+    "Real group last-owner/shared-data and server push cleanup require integration; hooks fail closed.",
+    "Offline devices cannot be remotely erased; expired recognition can require explicit locked-cache cleanup.",
+    "Full account files retain all historical rows; guest restore uses their current personal projection.",
+    "Existing 4190 WebKit/Firefox entry observation remains INFRA-01.",
+    "No physical-device or full backup/RPO/RTO certification."
+  ],
+  "iterations": "test-iterations.json"
+}

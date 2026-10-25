@@ -1,0 +1,50 @@
+
+> rise-prototype@1.0.0 test:production
+> playwright test --config playwright.production.config.ts
+
+[WebServer] (node:32241) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 27 tests using 2 workers
+
+(node:32242) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (570ms)
+  ✓   2 [chromium] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (1.2s)
+  ✓   3 [chromium] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.2s)
+  ✓   4 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 1 existing profiles retain their authored content and activity (597ms)
+  ✓   5 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 2 existing profiles retain their authored content and activity (524ms)
+  ✓   6 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 3 existing profiles retain their authored content and activity (477ms)
+  ✓   7 [chromium] › tests/production/entry.production.spec.ts:62:3 › schema 4 existing profiles retain their authored content and activity (458ms)
+  ✓   8 [chromium] › tests/production/entry.production.spec.ts:86:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (574ms)
+(node:32276) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [chromium] › tests/production/entry.production.spec.ts:104:1 › migration summary is dated, explains mixed provenance and exports the exact original (619ms)
+(node:32287) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [webkit] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (1.4s)
+  ✓  10 [webkit] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (2.4s)
+  ✓  13 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 1 existing profiles retain their authored content and activity (845ms)
+  ✓  12 [webkit] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.9s)
+  ✓  14 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 2 existing profiles retain their authored content and activity (652ms)
+  ✓  15 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 3 existing profiles retain their authored content and activity (686ms)
+  ✓  16 [webkit] › tests/production/entry.production.spec.ts:62:3 › schema 4 existing profiles retain their authored content and activity (687ms)
+  ✓  17 [webkit] › tests/production/entry.production.spec.ts:86:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (685ms)
+(node:32325) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [webkit] › tests/production/entry.production.spec.ts:104:1 › migration summary is dated, explains mixed provenance and exports the exact original (750ms)
+(node:32328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  20 [firefox] › tests/production/entry.production.spec.ts:14:1 › new production entry is empty, real-time and cannot enable reviewer tools through a URL (2.0s)
+  ✓  19 [firefox] › tests/production/backup.production.spec.ts:6:1 › production exports and restores a validated backup while rejecting a future version, with no review harness (3.3s)
+  ✓  22 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 1 existing profiles retain their authored content and activity (651ms)
+  ✓  21 [firefox] › tests/production/entry.production.spec.ts:33:1 › real onboarding, tiny/full/Undo and reload preserve only the user's chosen activity (1.7s)
+  ✓  23 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 2 existing profiles retain their authored content and activity (817ms)
+  ✓  24 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 3 existing profiles retain their authored content and activity (931ms)
+  ✓  25 [firefox] › tests/production/entry.production.spec.ts:62:3 › schema 4 existing profiles retain their authored content and activity (830ms)
+  ✓  26 [firefox] › tests/production/entry.production.spec.ts:86:1 › malformed or unsupported legacy data remains byte-for-byte recoverable (775ms)
+  ✓  27 [firefox] › tests/production/entry.production.spec.ts:104:1 › migration summary is dated, explains mixed provenance and exports the exact original (1.0s)
+
+  27 passed (18.3s)

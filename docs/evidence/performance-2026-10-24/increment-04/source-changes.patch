@@ -1,0 +1,549 @@
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -2,7 +2,6 @@
+ import {HabitDeliveryProvider} from "./HabitDeliveryProvider";
+ import {PushRenewalProvider} from "./push/PushRenewal";
+ import {GroupProvider} from './groups/GroupProvider';
+-import {ServerGroupJoin} from './groups/GroupScreens';
+ import {groupText} from './groups/text';
+ import { PwaNotice, usePwa } from "./pwa/Pwa";
+ import { Account } from "./auth/Account";
+@@ -64,7 +63,7 @@
+ import { copy } from "./copy";
+ import { PrayerDeliveryProvider } from "./PrayerDeliveryProvider";
+ import { AlarmReadiness, FajrAlarmPreview, FajrPlanPreview, LanguagePicker, PeriodMode, PrayerNudge, PrayerReminderSettings, PrayerSetup } from "./Life";
+-import { FamilyTaskDetail, FamilyTaskForm, GroupCreate, GroupDetail, GroupSettings, GroupsHub, InvitationPreview, ListCreate, SharedListDetail, SquadCompose } from "./Groups";
++import {DeferredGroupScreen} from './groups/DeferredGroupScreen';
+ const nav = [
+   { id: "today", Icon: Home },
+   { id: "journey", Icon: Compass },
+@@ -137,17 +136,9 @@
+     case "readiness": return <AlarmReadiness />;
+     case "period": return <PeriodMode />;
+     case "language": return <LanguagePicker />;
+-    case "groups": return <GroupsHub initialKind={screen.kind} />;
+-    case "group": return <GroupDetail id={screen.id!} initialSection={screen.section} />;
+-    case "groupCreate": return <GroupCreate kind={screen.id} />;
+-    case "groupSettings": return <GroupSettings id={screen.id!} />;
+-    case "invite": return <InvitationPreview id={screen.id!} />;
+-    case "groupJoin": return <ServerGroupJoin/>;
+-    case "task": return <FamilyTaskDetail id={screen.id!} groupId={screen.groupId} date={screen.date} />;
+-    case "taskEdit": return <FamilyTaskForm id={screen.id} groupId={screen.groupId} date={screen.date} />;
+-    case "sharedList": return <SharedListDetail id={screen.id!} groupId={screen.groupId} />;
+-    case "listCreate": return <ListCreate groupId={screen.groupId!} />;
+-    case "squadCompose": return <SquadCompose groupId={screen.groupId!} week={screen.date} />;
++    case "groups": case "group": case "groupCreate": case "groupSettings": case "invite": case "groupJoin":
++    case "task": case "taskEdit": case "sharedList": case "listCreate": case "squadCompose":
++      return <DeferredGroupScreen screen={screen} />;
+     case "priorities":
+       return <PriorityPicker date={screen.date!} candidate={screen.groupId&&screen.id&&screen.occurrenceDate?{kind:'task',groupId:screen.groupId,taskId:screen.id,date:screen.occurrenceDate}:undefined} />;
+     case "goal":
+--- a/src/Balanced.tsx
++++ b/src/Balanced.tsx
+@@ -2,8 +2,8 @@
+ import { Check, ChevronLeft, ChevronRight, Gift, ListChecks, Moon, Pause, PenLine, Plus, Sparkles, Sunrise, Target } from "lucide-react";
+ import { useApp } from "./context";
+ import { PauseSummary, TodayPrayerMeta } from "./Life";
+-import { FamilyToday, TaskRow } from "./Groups";
+-import {SharedTaskPriority} from './groups/SharedScreens';
++import { FamilyToday, TaskRow } from "./groups/TodayGroups";
++import {SharedTaskPriority} from './groups/SharedToday';
+ import {useSharedFamily} from './groups/sharedHooks';
+ import {isSharedPriority} from './domain/priorityReferences';
+ import { activePause } from "./lifeModel";
+--- a/src/Groups.tsx
++++ b/src/Groups.tsx
+@@ -1,15 +1,16 @@
++import {TaskRow} from "./groups/TodayGroups";
+ import { useState } from "react";
+ import { ArrowDown, ArrowRight, ArrowUp, Bell, CalendarDays, Check, CheckCheck, ChevronLeft, ChevronRight, ClipboardList, Heart, Home, ListChecks, LockKeyhole, Pencil, Plus, Settings2, Share2, Sprout, Trash2, UserPlus, Users, X } from "lucide-react";
+ import { useApp } from "./context";
+ import { Button, GroupRow, SectionTitle, Toggle } from "./components";
+ import { LifeIntro, PreviewLabel, PrivacyNote, useLifeDraft, useText } from "./LifeUI";
+-import { availableGroups, availableTasks, completeTask, createGroup, taskOccurs, type FamilyTask, type LocalGroup, type SharedList, type SquadUpdate } from "./lifeModel";
++import { availableGroups, completeTask, createGroup, taskOccurs, type FamilyTask, type LocalGroup, type SharedList, type SquadUpdate } from "./lifeModel";
+ import { addDays, today, weekStart } from "./model";
+ import { weeklyHabits, weekGoalMovement } from "./developmentModel";
+ import { weeklyPrayers } from "./prayerModel";
+ import { weekLabel } from "./Development";
+ import {ServerGroupsHub,ServerGroupCreate,ServerGroupDetail,ServerGroupSettings,ServerGroupInvite} from './groups/GroupScreens';
+-import {SharedFamilyPlan,ServerTaskForm,ServerTaskDetail,ServerListCreate,ServerListDetail,ServerFamilyToday} from './groups/SharedScreens';
++import {SharedFamilyPlan,ServerTaskForm,ServerTaskDetail,ServerListCreate,ServerListDetail} from './groups/SharedScreens';
+ import {ServerSquadFeed,ServerSquadCompose} from './groups/SquadScreens';
+ 
+ export function GroupsHub(props:{initialKind?:'family'|'squad'}){return useApp().workspace?<ServerGroupsHub {...props}/>:<LocalGroupsHub {...props}/>;}
+@@ -64,37 +65,6 @@
+   </form>;
+ }
+ 
+-export function TaskRow({ task, date, priority = false }: { task: FamilyTask; date: string; priority?: boolean }) {
+-  const t = useText();
+-  const { state, setState, open } = useApp();
+-  const done = task.completions[date], group = state.life.groups.find((g) => g.id === task.groupId);
+-  const member = group?.members.find((m) => m.id === task.assignee);
+-  const unavailable = !group || group.archived || group.left || task.archived;
+-  if (unavailable) return <article className="family-task"><LockKeyhole size={19} /><div className="task-copy"><strong>{t("Family task unavailable", "Oilaviy vazifa mavjud emas")}</strong><small>{t("Edit your priorities to choose another action.", "Boshqa ishni tanlash uchun muhim ishlaringizni tahrirlang.")}</small></div></article>;
+-  return <article className={`family-task ${priority ? "priority-task" : ""} ${done ? "completed" : ""}`}>
+-    <button className={`task-check ${done ? "checked" : ""}`} role="checkbox" aria-checked={!!done} aria-label={`${t("Complete", "Bajarish")} ${task.title}`} disabled={unavailable} onClick={() => setState((s) => completeTask(s, task.id, date, !done))}>{done ? <Check size={19} /> : <span />}</button>
+-    <button className="task-copy" onClick={() => open({ type: "task", id: task.id, date })}><strong>{task.title}</strong><small>{task.assignee === "self" ? t("You", "Siz") : member?.name ?? t("Anyone", "Ixtiyoriy a’zo")}{task.time ? ` · ${task.time}` : ""}{done ? ` · ${t("Done", "Bajarildi")}` : ""}</small>{priority && <small className="task-family-label"><Home size={12} />{group?.name ?? t("Family task", "Oilaviy vazifa")}</small>}</button>
+-    <ChevronRight size={16} className="muted" />
+-  </article>;
+-}
+-export function FamilyToday(){return useApp().workspace?<ServerFamilyToday/>:<LocalFamilyToday/>;}
+-function LocalFamilyToday() {
+-  const t = useText();
+-  const { state, open } = useApp(), date = today(state);
+-  const pinned = new Set((state.dailyPriorities[date] ?? []).filter((p) => p.kind === "task").map((p) => p.taskId));
+-  const tasks = availableTasks(state, date).filter((task) => (task.assignee === "self" || !task.assignee) && !pinned.has(task.id));
+-  if (!availableGroups(state).some((g) => g.kind === "family")) return null;
+-  const pending = tasks.filter((task) => !task.completions[date]), done = tasks.filter((task) => task.completions[date]);
+-  return <details className="today-disclosure family-today">
+-    <summary><Home size={20} /><span><strong>{t("Family", "Oila")}</strong><small>{pending.length ? t("{0} to do together", "{0} birgalikda bajariladigan ish", [pending.length]) : t("A little breathing room", "Biroz erkin vaqt")}</small></span><ChevronRight size={18} /></summary>
+-    <div className="disclosure-content">
+-    {pending.map((task) => <TaskRow key={task.id} task={task} date={date} />)}
+-    {!pending.length && <p className="fine-print">{t("Nothing else assigned to you today.", "Bugun sizga boshqa vazifa berilmagan.")}</p>}
+-    {!!done.length && <details className="done-group"><summary>{t("Done together", "Birga bajarildi")} · {done.length}</summary>{done.map((task) => <TaskRow key={task.id} task={task} date={date} />)}</details>}
+-    <button className="text-button" onClick={() => open({ type: "groups" })}>{t("Tasks & shared lists", "Vazifalar va umumiy ro‘yxatlar")}<ChevronRight size={15} /></button>
+-    </div>
+-  </details>;
+-}
+ function LocalGroupDetail({ id, initialSection = "tasks" }: { id: string; initialSection?: "tasks" | "lists" }) {
+   const t = useText();
+   const { state, open } = useApp();
+--- a/src/groups/GroupScreens.tsx
++++ b/src/groups/GroupScreens.tsx
+@@ -1,3 +1,5 @@
++import {Confirm,Pending} from './GroupStatus';
++export {Confirm,Pending} from './GroupStatus';
+ import {useEffect,useRef,useState,useSyncExternalStore,type ReactNode} from 'react';
+ import {ChevronRight,Home,LockKeyhole,Plus,Settings2,Users} from 'lucide-react';
+ import {useApp} from '../context';
+@@ -8,12 +10,11 @@
+ import {useGroups} from './GroupProvider';
+ import {groupText,groupError,type GroupTextKey} from './text';
+ import {sharedText} from './sharedText';
+-import {squadText,squadError} from './squadText';
++import {squadText} from './squadText';
+ import {emptyInvitations} from './invitations';
+ import {GroupReauthentication} from './GroupReauthentication';
+ import {GroupExport} from './GroupExport';
+ import {formatDisplayDate,type Language} from '../i18n';
+-import './groups.css';
+ const noSubscribe=()=>()=>{},zero=()=>0;
+ 
+ const isOwner=(group:AccountGroup)=>group.members.some(m=>m.self&&m.role==='owner');
+@@ -22,34 +23,6 @@
+ function Avatar({name}:{name:string}){return <span className="member-avatar" aria-hidden="true">{name.trim().slice(0,1).toUpperCase()}</span>;}
+ function Gate(){const t=useCopy(),{open}=useApp();return <div className="life-screen server-groups"><LifeIntro title={t('title')} text={t('gate')}/><Button className="wide" onClick={()=>open({type:'account'})}>{t('account')}</Button><PrivacyNote>{t('privacy')}</PrivacyNote><p className="fine-print">{t('retained')}</p></div>;}
+ export function Missing(){const t=useCopy(),{open}=useApp(),{session}=useGroups();return <div className="life-screen server-groups"><p role="status">{t('unavailable')}</p><Pending/><Button variant="secondary" onClick={()=>void session?.refresh()}>{t('refresh')}</Button><Button onClick={()=>open({type:'groups'})}>{t('people')}</Button></div>;}
+-export function Confirm({title,help,busy,onConfirm,onCancel}:{title:string;help:string;busy:boolean;onConfirm:()=>void;onCancel:()=>void}){
+- const t=useCopy(),heading=useRef<HTMLHeadingElement>(null),[checked,setChecked]=useState(false);
+- useEffect(()=>{const from=document.activeElement;heading.current?.focus({preventScroll:true});return()=>{if(from instanceof HTMLElement&&from.isConnected)from.focus({preventScroll:true});};},[]);
+- return <section className="group-confirm"><h2 ref={heading} tabIndex={-1}>{title}</h2><p className="fine-print">{help}</p><label className="checkbox-label"><input type="checkbox" checked={checked} disabled={busy} onChange={e=>setChecked(e.target.checked)}/><span>{t('confirm')}</span></label><Button type="button" variant="danger" disabled={!checked||busy} onClick={onConfirm}>{title}</Button><Button type="button" variant="ghost" disabled={busy} onClick={onCancel}>{t('cancel')}</Button></section>;
+-}
+-function useGroupRetry(){
+- const {view,session,clearInvitation}=useGroups(),t=useCopy(),{close,open,toast}=useApp();
+- return async()=>{const intent=view.pending,receipt=await session?.retry();if(!receipt)return;
+-  // Recovery can finish after its original form has gone away. Replace that
+-  // stack so a completed confirmation cannot be submitted again on Back.
+-  close();
+-  if(intent?.type==='join'){clearInvitation();open({type:'group',id:receipt.groupId});}
+-  else if(intent?.type==='command'){const command=intent.operation.command,kind=command.kind;
+-   if('taskId'in command)open({type:'task',id:command.taskId,groupId:receipt.groupId,...('date'in command?{date:command.date}:{})});
+-   else if('listId'in command)open({type:'sharedList',id:command.listId,groupId:receipt.groupId});
+-   else open(kind==='group.leave'||kind==='group.delete'?{type:'groups'}:{type:kind==='group.invite'?'invite':'group',id:receipt.groupId});}
+-  toast(t('saved'));
+- };
+-}
+-export function Pending(){
+- const {view,session}=useGroups(),t=useCopy(),retry=useGroupRetry(),[stopping,setStopping]=useState(false),pending=!!view.pending||view.invalidPending;
+- const language=useApp().state.life.language,shared=sharedText(language),squad=squadError(view.error??''),error=squad?squadText(language)(squad):view.error==='shared_limit'?shared('limit'):view.error==='shared_archived'?shared('archived'):view.error==='shared_unavailable'?shared('unavailable'):view.error==='occurrence_unavailable'?shared('notScheduled'):t(groupError(view.error??''));
+- return <>{pending&&<section className="group-pending" aria-label={t('pending')}><p role="status" className="fine-print">{t(view.invalidPending?'invalidPending':'pending')}</p>
+-  {!view.invalidPending&&<Button type="button" variant="secondary" disabled={view.busy} onClick={()=>void retry()}>{t(view.busy?'working':'retry')}</Button>}
+-  <Button type="button" variant="ghost" disabled={view.busy} onClick={()=>setStopping(true)}>{t('stop')}</Button>
+-  {stopping&&<Confirm title={t('stop')} help={t('stopHelp')} busy={view.busy} onCancel={()=>setStopping(false)} onConfirm={()=>void session?.discard().then(ok=>{if(ok)setStopping(false);})}/>}
+- </section>}{view.error&&view.error!=='recent_auth_required'&&<p className="field-error" role="alert">{error}</p>}{view.error==='recent_auth_required'&&<GroupReauthentication help={t('verifyHelp')} blocked={view.busy} onVerified={retry}/>}</>;
+-}
+ export function GroupBoundary({id,children}:{id:string;children:(group:AccountGroup)=>ReactNode}){
+  const {session,view}=useGroups(),t=useCopy();if(!session)return <Gate/>;
+  const group=view.groups.find(g=>g.id===id);if(!view.loaded&&!view.readError)return <p className="life-screen" role="status">{t('loading')}</p>;
+--- a/src/groups/SharedScreens.tsx
++++ b/src/groups/SharedScreens.tsx
+@@ -1,5 +1,6 @@
+-import {useEffect,useRef,useState,type ReactNode} from 'react';
+-import {ArrowDown,ArrowUp,Check,CheckCheck,ChevronLeft,ChevronRight,ClipboardList,Home,ListChecks,LockKeyhole,Pencil,Plus,Settings2,Trash2} from 'lucide-react';
++import {useCopy,useWrite,ReadStatus,collectionReady,memberName,isTask,isOccurrence,SharedTaskRow} from './SharedToday';
++import {useState,type ReactNode} from 'react';
++import {ArrowDown,ArrowUp,Check,CheckCheck,ChevronLeft,ChevronRight,ClipboardList,ListChecks,Pencil,Plus,Settings2,Trash2} from 'lucide-react';
+ import {useApp} from '../context';
+ import {Button,GroupRow,SectionTitle} from '../components';
+ import {LifeIntro,PrivacyNote,useText} from '../LifeUI';
+@@ -7,52 +8,18 @@
+ import {priorityKey} from '../developmentModel';
+ import type {SharedPriority} from '../domain/priorityReferences';
+ import {parseGroupOperation,type AccountGroup} from '../contracts/groups';
+-import {sharedTaskOccurs,type SharedCommand,type SharedTask,type SharedList,type SharedItem,type SharedOccurrence} from '../contracts/sharedContent';
++import {sharedTaskOccurs,type SharedTask,type SharedList,type SharedItem,type SharedOccurrence} from '../contracts/sharedContent';
+ import {useGroups} from './GroupProvider';
+ import {GroupBoundary,Missing,Pending,useDraft} from './GroupScreens';
+-import {useCollection,useSharedFamily} from './sharedHooks';
++import {useCollection} from './sharedHooks';
+ import {sharedText} from './sharedText';
+ import {taskDraft,listDraft,itemDraft,taskCommand,type TaskDraft} from './sharedDrafts';
+ import {formatDisplayDate} from '../i18n';
+ 
+-const useCopy=()=>sharedText(useApp().state.life.language);
+-const isTask=(r:SharedTask|SharedList|SharedItem|SharedOccurrence):r is SharedTask=>'weekdays'in r;
+ const isList=(r:SharedTask|SharedList|SharedItem|SharedOccurrence):r is SharedList=>'name'in r;
+ const isItem=(r:SharedTask|SharedList|SharedItem|SharedOccurrence):r is SharedItem=>'position'in r;
+-const isOccurrence=(r:SharedTask|SharedList|SharedItem|SharedOccurrence):r is SharedOccurrence=>'snapshot'in r;
+-function useWrite(){
+- const {session,view}=useGroups(),{workspace,toast}=useApp(),t=useCopy(),alive=useRef(true);
+- useEffect(()=>{alive.current=true;return()=>{alive.current=false;};},[]);
+- const locked=view.busy||!!view.pending||view.invalidPending;
+- const write=async(command:SharedCommand,revision:number)=>{if(!session||locked)return null;const receipt=await session.execute(command,revision);if(!alive.current||workspace?.scope!==session.owner)return null;if(receipt)toast(t('saved'));return receipt;};
+- return{write,locked};
+-}
+-function ReadStatus({result}:{result:ReturnType<typeof useCollection>}){
+- const t=useCopy();return <>{result.loading&&<p role="status" className="fine-print">{t('loading')}</p>}{result.error&&<div role="alert"><p className="field-error">{t('readFailed')}</p><Button variant="secondary" onClick={()=>void result.load()}>{t('retry')}</Button></div>}{result.loaded&&result.next&&!result.loading&&<Button variant="ghost" onClick={()=>void result.load(true)}>{t('more')}</Button>}</>;
+-}
+-const collectionReady=(result:ReturnType<typeof useCollection>)=>result.loaded&&!result.loading&&!result.error&&!result.next;
+ function Review({old,current,disabled,onReview,children}:{old:number;current:number;disabled:boolean;onReview:()=>void;children:ReactNode}){
+  const t=useCopy();if(old===current)return null;return <section className="shared-review"><p role="status">{t('changed')}</p><h2>{t('current')}</h2>{children}<Button type="button" variant="secondary" disabled={disabled} onClick={onReview}>{t('reviewed')}</Button></section>;
+-}
+-function memberName(group:AccountGroup,id:string|null,t:ReturnType<typeof sharedText>){if(!id)return t('anyone');const member=group.members.find(m=>m.id===id);return member?.self?t('you'):member?.name??t('former');}
+-
+-export function SharedTaskRow({task,group,date,occurrence,priority=false}:{task:SharedTask;group:AccountGroup;date:string;occurrence?:SharedOccurrence;priority?:boolean}){
+- const t=useCopy(),{open}=useApp(),{write,locked}=useWrite(),done=!!occurrence?.completed,snapshot=occurrence?.snapshot;
+- const title=snapshot?.title??task.title,assignee=snapshot?snapshot.assignee:task.assignee,time=snapshot?snapshot.time:task.time;
+- return <article className={`family-task ${priority?'priority-task':''} ${done?'completed':''}`}>
+-  <button className={`task-check ${done?'checked':''}`} role="checkbox" aria-checked={done} aria-label={t('complete',[title])} disabled={locked||group.archived||!done&&!sharedTaskOccurs(task,date)} onClick={()=>void write({kind:'task.complete',groupId:group.id,taskId:task.id,date,completed:!done},group.revision)}>{done?<Check size={19}/>:<span/>}</button>
+-  <button className="task-copy" onClick={()=>open({type:'task',groupId:group.id,id:task.id,date})}><strong>{title}</strong><small>{memberName(group,assignee,t)}{time?` · ${time}`:''}{done?` · ${t('done')}`:''}</small>{priority&&<small className="task-family-label"><Home size={12}/>{group.name}</small>}</button><ChevronRight size={16} className="muted"/>
+- </article>;
+-}
+-export function SharedTaskPriority({priority}:{priority:SharedPriority}){
+- const t=useCopy(),{view,session}=useGroups(),group=view.groups.find(g=>g.id===priority.groupId);
+- const tasks=useCollection(group?{groupId:group.id,collection:'tasks'}:null),reports=useCollection(group?{groupId:group.id,collection:'occurrences',date:priority.date}:null);
+- const task=tasks.rows.filter(isTask).find(t=>t.id===priority.taskId),report=reports.rows.filter(isOccurrence).find(r=>r.taskId===priority.taskId);
+- const ready=collectionReady(tasks)&&collectionReady(reports);
+- if(group&&task&&ready&&!group.archived&&(!task.archived||report?.completed))return <SharedTaskRow task={task} group={group} date={priority.date} occurrence={report} priority/>;
+- if(!view.loaded&&!view.readError||group&&!ready&&!tasks.error&&!reports.error)return <article className="family-task"><LockKeyhole size={19}/><p role="status" className="task-copy">{t('loading')}</p></article>;
+- const failed=!!(tasks.error||reports.error||view.readError);
+- return <article className="family-task"><LockKeyhole size={19}/><div className="task-copy"><strong>{t('unavailable')}</strong><small>{t('unavailableHelp')}</small>{failed&&<><p role="alert" className="field-error">{t('readFailed')}</p><Button variant="ghost" onClick={()=>{if(view.readError)void session?.refresh();else{void tasks.load();void reports.load();}}}>{t('retry')}</Button></>}</div></article>;
+ }
+ export function SharedFamilyPlan({group,initialSection='tasks'}:{group:AccountGroup;initialSection?:'tasks'|'lists'}){
+  const t=useCopy(),x=useText(),{open}=useApp(),{locked}=useWrite(),[section,setSection]=useState(initialSection),[date,setDate]=useState(()=>localDate(group.timezone));
+@@ -155,10 +122,3 @@
+  </div>;
+ }
+ 
+-export function ServerFamilyToday(){
+- const t=useCopy(),{state,open}=useApp(),{session,view}=useGroups(),date=today(state),family=useSharedFamily(state.dailyPriorities[date]),pinned=new Set((state.dailyPriorities[date]??[]).map(priorityKey));
+- if(!session||!view.groups.some(g=>g.kind==='family')&&!view.pending)return null;
+- const choices=family.choices.filter(({group,task,priority})=>family.ready(priority)&&(!task.assignee||group.members.some(m=>m.self&&m.id===task.assignee))&&!pinned.has(priorityKey(priority))),pending=choices.filter(c=>!family.occurrence(c.priority)?.completed),done=choices.filter(c=>family.occurrence(c.priority)?.completed);
+- const row=(c:typeof choices[number])=><SharedTaskRow key={priorityKey(c.priority)} task={c.task} group={c.group} date={c.priority.date} occurrence={family.occurrence(c.priority)}/>;
+- return <><Pending/><details className="today-disclosure family-today server-groups"><summary><Home size={20}/><span><strong>{t('family')}</strong><small>{family.loading?t('loading'):pending.length?t('together',[pending.length]):t('emptyTasks')}</small></span><ChevronRight size={18}/></summary><div className="disclosure-content">{family.error&&<p role="alert">{t('readFailed')} <button className="text-button" onClick={family.retry}>{t('retry')}</button></p>}{pending.map(row)}{!family.loading&&!pending.length&&<p className="fine-print">{t('familyEmpty')}</p>}{done.length>0&&<details className="done-group"><summary>{t('doneTogether')} · {done.length}</summary>{done.map(row)}</details>}<button className="text-button" onClick={()=>open({type:'groups'})}>{t('tasksLists')}<ChevronRight size={15}/></button></div></details></>;
+-}
+--- a/src/main.tsx
++++ b/src/main.tsx
+@@ -1,3 +1,4 @@
++import "./groups/groups.css";
+ import { createRoot } from "react-dom/client";
+ import App from "./App";
+ import { startPwa, attachPwaSession } from "./pwa/client";
+--- a/tests/pwa/lifecycle.pwa.spec.ts
++++ b/tests/pwa/lifecycle.pwa.spec.ts
+@@ -84,6 +84,24 @@
+   const download = cold.waitForEvent("download"); await cold.getByRole("button", { name: /Export local data/ }).click();
+   expect((await download).suggestedFilename()).toMatch(/\.json$/);
+   await reconnect(cold, context, browserName); await expect(cold.locator(".pwa-notice")).toHaveCount(0);
++});
++
++test("an unopened deferred group screen remains available on a cold offline start", async ({page,context,browserName})=>{
++  await onboard(page);
++  const before=await stored(page);
++  await disconnect(page,context,browserName);
++  try{
++    await page.close();const cold=await context.newPage();
++    const response=await cold.goto('/');expect(response?.fromServiceWorker()).toBe(true);
++    await cold.getByRole('tab',{name:'You',exact:true}).click();
++    await cold.getByRole('button',{name:/^Family Tasks/}).click();
++    await expect(cold.getByRole('dialog').getByRole('button',{name:'Choose your account',exact:true})).toBeVisible();
++    expect(await stored(cold)).toEqual(before);
++    await reconnect(cold,context,browserName);
++  }finally{
++    if(browserName==='firefox')await context.request.post('/__pwa_test__/network?offline=false');
++    else await context.setOffline(false);
++  }
+ });
+ 
+ test("private/auth/logout responses and mutations never enter public caches", async ({ page, context }) => {
+--- /dev/null
++++ b/src/groups/TodayGroups.tsx
+@@ -0,0 +1,38 @@
++import {Check,ChevronRight,Home,LockKeyhole} from 'lucide-react';
++import {useApp} from '../context';
++import {useText} from '../LifeUI';
++import {availableGroups,availableTasks,completeTask,type FamilyTask} from '../lifeModel';
++import {today} from '../model';
++import {ServerFamilyToday} from './SharedToday';
++
++export function TaskRow({ task, date, priority = false }: { task: FamilyTask; date: string; priority?: boolean }) {
++  const t = useText();
++  const { state, setState, open } = useApp();
++  const done = task.completions[date], group = state.life.groups.find((g) => g.id === task.groupId);
++  const member = group?.members.find((m) => m.id === task.assignee);
++  const unavailable = !group || group.archived || group.left || task.archived;
++  if (unavailable) return <article className="family-task"><LockKeyhole size={19} /><div className="task-copy"><strong>{t("Family task unavailable", "Oilaviy vazifa mavjud emas")}</strong><small>{t("Edit your priorities to choose another action.", "Boshqa ishni tanlash uchun muhim ishlaringizni tahrirlang.")}</small></div></article>;
++  return <article className={`family-task ${priority ? "priority-task" : ""} ${done ? "completed" : ""}`}>
++    <button className={`task-check ${done ? "checked" : ""}`} role="checkbox" aria-checked={!!done} aria-label={`${t("Complete", "Bajarish")} ${task.title}`} disabled={unavailable} onClick={() => setState((s) => completeTask(s, task.id, date, !done))}>{done ? <Check size={19} /> : <span />}</button>
++    <button className="task-copy" onClick={() => open({ type: "task", id: task.id, date })}><strong>{task.title}</strong><small>{task.assignee === "self" ? t("You", "Siz") : member?.name ?? t("Anyone", "Ixtiyoriy a’zo")}{task.time ? ` · ${task.time}` : ""}{done ? ` · ${t("Done", "Bajarildi")}` : ""}</small>{priority && <small className="task-family-label"><Home size={12} />{group?.name ?? t("Family task", "Oilaviy vazifa")}</small>}</button>
++    <ChevronRight size={16} className="muted" />
++  </article>;
++}
++export function FamilyToday(){return useApp().workspace?<ServerFamilyToday/>:<LocalFamilyToday/>;}
++function LocalFamilyToday() {
++  const t = useText();
++  const { state, open } = useApp(), date = today(state);
++  const pinned = new Set((state.dailyPriorities[date] ?? []).filter((p) => p.kind === "task").map((p) => p.taskId));
++  const tasks = availableTasks(state, date).filter((task) => (task.assignee === "self" || !task.assignee) && !pinned.has(task.id));
++  if (!availableGroups(state).some((g) => g.kind === "family")) return null;
++  const pending = tasks.filter((task) => !task.completions[date]), done = tasks.filter((task) => task.completions[date]);
++  return <details className="today-disclosure family-today">
++    <summary><Home size={20} /><span><strong>{t("Family", "Oila")}</strong><small>{pending.length ? t("{0} to do together", "{0} birgalikda bajariladigan ish", [pending.length]) : t("A little breathing room", "Biroz erkin vaqt")}</small></span><ChevronRight size={18} /></summary>
++    <div className="disclosure-content">
++    {pending.map((task) => <TaskRow key={task.id} task={task} date={date} />)}
++    {!pending.length && <p className="fine-print">{t("Nothing else assigned to you today.", "Bugun sizga boshqa vazifa berilmagan.")}</p>}
++    {!!done.length && <details className="done-group"><summary>{t("Done together", "Birga bajarildi")} · {done.length}</summary>{done.map((task) => <TaskRow key={task.id} task={task} date={date} />)}</details>}
++    <button className="text-button" onClick={() => open({ type: "groups" })}>{t("Tasks & shared lists", "Vazifalar va umumiy ro‘yxatlar")}<ChevronRight size={15} /></button>
++    </div>
++  </details>;
++}
+--- /dev/null
++++ b/src/groups/GroupStatus.tsx
+@@ -0,0 +1,38 @@
++import {useEffect,useRef,useState} from 'react';
++import {useApp} from '../context';
++import {Button} from '../components';
++import {useGroups} from './GroupProvider';
++import {groupText,groupError} from './text';
++import {sharedText} from './sharedText';
++import {squadText,squadError} from './squadText';
++import {GroupReauthentication} from './GroupReauthentication';
++const useCopy=()=>groupText(useApp().state.life.language);
++
++export function Confirm({title,help,busy,onConfirm,onCancel}:{title:string;help:string;busy:boolean;onConfirm:()=>void;onCancel:()=>void}){
++ const t=useCopy(),heading=useRef<HTMLHeadingElement>(null),[checked,setChecked]=useState(false);
++ useEffect(()=>{const from=document.activeElement;heading.current?.focus({preventScroll:true});return()=>{if(from instanceof HTMLElement&&from.isConnected)from.focus({preventScroll:true});};},[]);
++ return <section className="group-confirm"><h2 ref={heading} tabIndex={-1}>{title}</h2><p className="fine-print">{help}</p><label className="checkbox-label"><input type="checkbox" checked={checked} disabled={busy} onChange={e=>setChecked(e.target.checked)}/><span>{t('confirm')}</span></label><Button type="button" variant="danger" disabled={!checked||busy} onClick={onConfirm}>{title}</Button><Button type="button" variant="ghost" disabled={busy} onClick={onCancel}>{t('cancel')}</Button></section>;
++}
++function useGroupRetry(){
++ const {view,session,clearInvitation}=useGroups(),t=useCopy(),{close,open,toast}=useApp();
++ return async()=>{const intent=view.pending,receipt=await session?.retry();if(!receipt)return;
++  // Recovery can finish after its original form has gone away. Replace that
++  // stack so a completed confirmation cannot be submitted again on Back.
++  close();
++  if(intent?.type==='join'){clearInvitation();open({type:'group',id:receipt.groupId});}
++  else if(intent?.type==='command'){const command=intent.operation.command,kind=command.kind;
++   if('taskId'in command)open({type:'task',id:command.taskId,groupId:receipt.groupId,...('date'in command?{date:command.date}:{})});
++   else if('listId'in command)open({type:'sharedList',id:command.listId,groupId:receipt.groupId});
++   else open(kind==='group.leave'||kind==='group.delete'?{type:'groups'}:{type:kind==='group.invite'?'invite':'group',id:receipt.groupId});}
++  toast(t('saved'));
++ };
++}
++export function Pending(){
++ const {view,session}=useGroups(),t=useCopy(),retry=useGroupRetry(),[stopping,setStopping]=useState(false),pending=!!view.pending||view.invalidPending;
++ const language=useApp().state.life.language,shared=sharedText(language),squad=squadError(view.error??''),error=squad?squadText(language)(squad):view.error==='shared_limit'?shared('limit'):view.error==='shared_archived'?shared('archived'):view.error==='shared_unavailable'?shared('unavailable'):view.error==='occurrence_unavailable'?shared('notScheduled'):t(groupError(view.error??''));
++ return <>{pending&&<section className="group-pending" aria-label={t('pending')}><p role="status" className="fine-print">{t(view.invalidPending?'invalidPending':'pending')}</p>
++  {!view.invalidPending&&<Button type="button" variant="secondary" disabled={view.busy} onClick={()=>void retry()}>{t(view.busy?'working':'retry')}</Button>}
++  <Button type="button" variant="ghost" disabled={view.busy} onClick={()=>setStopping(true)}>{t('stop')}</Button>
++  {stopping&&<Confirm title={t('stop')} help={t('stopHelp')} busy={view.busy} onCancel={()=>setStopping(false)} onConfirm={()=>void session?.discard().then(ok=>{if(ok)setStopping(false);})}/>}
++ </section>}{view.error&&view.error!=='recent_auth_required'&&<p className="field-error" role="alert">{error}</p>}{view.error==='recent_auth_required'&&<GroupReauthentication help={t('verifyHelp')} blocked={view.busy} onVerified={retry}/>}</>;
++}
+--- /dev/null
++++ b/src/groups/SharedToday.tsx
+@@ -0,0 +1,55 @@
++import {useEffect,useRef} from 'react';
++import {Check,ChevronRight,Home,LockKeyhole} from 'lucide-react';
++import {useApp} from '../context';
++import {Button} from '../components';
++import {today} from '../model';
++import {priorityKey} from '../developmentModel';
++import type {SharedPriority} from '../domain/priorityReferences';
++import type {AccountGroup} from '../contracts/groups';
++import {sharedTaskOccurs,type SharedCommand,type SharedTask,type SharedList,type SharedItem,type SharedOccurrence} from '../contracts/sharedContent';
++import {useGroups} from './GroupProvider';
++import {Pending} from './GroupStatus';
++import {useCollection,useSharedFamily} from './sharedHooks';
++import {sharedText} from './sharedText';
++
++export const useCopy=()=>sharedText(useApp().state.life.language);
++export const isTask=(r:SharedTask|SharedList|SharedItem|SharedOccurrence):r is SharedTask=>'weekdays'in r;
++export const isOccurrence=(r:SharedTask|SharedList|SharedItem|SharedOccurrence):r is SharedOccurrence=>'snapshot'in r;
++export function useWrite(){
++ const {session,view}=useGroups(),{workspace,toast}=useApp(),t=useCopy(),alive=useRef(true);
++ useEffect(()=>{alive.current=true;return()=>{alive.current=false;};},[]);
++ const locked=view.busy||!!view.pending||view.invalidPending;
++ const write=async(command:SharedCommand,revision:number)=>{if(!session||locked)return null;const receipt=await session.execute(command,revision);if(!alive.current||workspace?.scope!==session.owner)return null;if(receipt)toast(t('saved'));return receipt;};
++ return{write,locked};
++}
++export function ReadStatus({result}:{result:ReturnType<typeof useCollection>}){
++ const t=useCopy();return <>{result.loading&&<p role="status" className="fine-print">{t('loading')}</p>}{result.error&&<div role="alert"><p className="field-error">{t('readFailed')}</p><Button variant="secondary" onClick={()=>void result.load()}>{t('retry')}</Button></div>}{result.loaded&&result.next&&!result.loading&&<Button variant="ghost" onClick={()=>void result.load(true)}>{t('more')}</Button>}</>;
++}
++export const collectionReady=(result:ReturnType<typeof useCollection>)=>result.loaded&&!result.loading&&!result.error&&!result.next;
++export function memberName(group:AccountGroup,id:string|null,t:ReturnType<typeof sharedText>){if(!id)return t('anyone');const member=group.members.find(m=>m.id===id);return member?.self?t('you'):member?.name??t('former');}
++
++export function SharedTaskRow({task,group,date,occurrence,priority=false}:{task:SharedTask;group:AccountGroup;date:string;occurrence?:SharedOccurrence;priority?:boolean}){
++ const t=useCopy(),{open}=useApp(),{write,locked}=useWrite(),done=!!occurrence?.completed,snapshot=occurrence?.snapshot;
++ const title=snapshot?.title??task.title,assignee=snapshot?snapshot.assignee:task.assignee,time=snapshot?snapshot.time:task.time;
++ return <article className={`family-task ${priority?'priority-task':''} ${done?'completed':''}`}>
++  <button className={`task-check ${done?'checked':''}`} role="checkbox" aria-checked={done} aria-label={t('complete',[title])} disabled={locked||group.archived||!done&&!sharedTaskOccurs(task,date)} onClick={()=>void write({kind:'task.complete',groupId:group.id,taskId:task.id,date,completed:!done},group.revision)}>{done?<Check size={19}/>:<span/>}</button>
++  <button className="task-copy" onClick={()=>open({type:'task',groupId:group.id,id:task.id,date})}><strong>{title}</strong><small>{memberName(group,assignee,t)}{time?` · ${time}`:''}{done?` · ${t('done')}`:''}</small>{priority&&<small className="task-family-label"><Home size={12}/>{group.name}</small>}</button><ChevronRight size={16} className="muted"/>
++ </article>;
++}
++export function SharedTaskPriority({priority}:{priority:SharedPriority}){
++ const t=useCopy(),{view,session}=useGroups(),group=view.groups.find(g=>g.id===priority.groupId);
++ const tasks=useCollection(group?{groupId:group.id,collection:'tasks'}:null),reports=useCollection(group?{groupId:group.id,collection:'occurrences',date:priority.date}:null);
++ const task=tasks.rows.filter(isTask).find(t=>t.id===priority.taskId),report=reports.rows.filter(isOccurrence).find(r=>r.taskId===priority.taskId);
++ const ready=collectionReady(tasks)&&collectionReady(reports);
++ if(group&&task&&ready&&!group.archived&&(!task.archived||report?.completed))return <SharedTaskRow task={task} group={group} date={priority.date} occurrence={report} priority/>;
++ if(!view.loaded&&!view.readError||group&&!ready&&!tasks.error&&!reports.error)return <article className="family-task"><LockKeyhole size={19}/><p role="status" className="task-copy">{t('loading')}</p></article>;
++ const failed=!!(tasks.error||reports.error||view.readError);
++ return <article className="family-task"><LockKeyhole size={19}/><div className="task-copy"><strong>{t('unavailable')}</strong><small>{t('unavailableHelp')}</small>{failed&&<><p role="alert" className="field-error">{t('readFailed')}</p><Button variant="ghost" onClick={()=>{if(view.readError)void session?.refresh();else{void tasks.load();void reports.load();}}}>{t('retry')}</Button></>}</div></article>;
++}
++export function ServerFamilyToday(){
++ const t=useCopy(),{state,open}=useApp(),{session,view}=useGroups(),date=today(state),family=useSharedFamily(state.dailyPriorities[date]),pinned=new Set((state.dailyPriorities[date]??[]).map(priorityKey));
++ if(!session||!view.groups.some(g=>g.kind==='family')&&!view.pending)return null;
++ const choices=family.choices.filter(({group,task,priority})=>family.ready(priority)&&(!task.assignee||group.members.some(m=>m.self&&m.id===task.assignee))&&!pinned.has(priorityKey(priority))),pending=choices.filter(c=>!family.occurrence(c.priority)?.completed),done=choices.filter(c=>family.occurrence(c.priority)?.completed);
++ const row=(c:typeof choices[number])=><SharedTaskRow key={priorityKey(c.priority)} task={c.task} group={c.group} date={c.priority.date} occurrence={family.occurrence(c.priority)}/>;
++ return <><Pending/><details className="today-disclosure family-today server-groups"><summary><Home size={20}/><span><strong>{t('family')}</strong><small>{family.loading?t('loading'):pending.length?t('together',[pending.length]):t('emptyTasks')}</small></span><ChevronRight size={18}/></summary><div className="disclosure-content">{family.error&&<p role="alert">{t('readFailed')} <button className="text-button" onClick={family.retry}>{t('retry')}</button></p>}{pending.map(row)}{!family.loading&&!pending.length&&<p className="fine-print">{t('familyEmpty')}</p>}{done.length>0&&<details className="done-group"><summary>{t('doneTogether')} · {done.length}</summary>{done.map(row)}</details>}<button className="text-button" onClick={()=>open({type:'groups'})}>{t('tasksLists')}<ChevronRight size={15}/></button></div></details></>;
++}
+--- /dev/null
++++ b/src/groups/GroupScreenBody.tsx
+@@ -0,0 +1,20 @@
++import type {Screen} from '../context';
++import {ServerGroupJoin} from './GroupScreens';
++import { FamilyTaskDetail, FamilyTaskForm, GroupCreate, GroupDetail, GroupSettings, GroupsHub, InvitationPreview, ListCreate, SharedListDetail, SquadCompose } from '../Groups';
++
++export default function GroupScreenBody({screen}:{screen:Screen}){
++  switch(screen.type){
++    case "groups": return <GroupsHub initialKind={screen.kind} />;
++    case "group": return <GroupDetail id={screen.id!} initialSection={screen.section} />;
++    case "groupCreate": return <GroupCreate kind={screen.id} />;
++    case "groupSettings": return <GroupSettings id={screen.id!} />;
++    case "invite": return <InvitationPreview id={screen.id!} />;
++    case "groupJoin": return <ServerGroupJoin/>;
++    case "task": return <FamilyTaskDetail id={screen.id!} groupId={screen.groupId} date={screen.date} />;
++    case "taskEdit": return <FamilyTaskForm id={screen.id} groupId={screen.groupId} date={screen.date} />;
++    case "sharedList": return <SharedListDetail id={screen.id!} groupId={screen.groupId} />;
++    case "listCreate": return <ListCreate groupId={screen.groupId!} />;
++    case "squadCompose": return <SquadCompose groupId={screen.groupId!} week={screen.date} />;
++    default: return null;
++  }
++}
+--- /dev/null
++++ b/src/groups/DeferredGroupScreen.tsx
+@@ -0,0 +1,30 @@
++import {useEffect,useState,type ComponentType} from 'react';
++import {useApp,type Screen} from '../context';
++import {Button} from '../components';
++
++type Body=ComponentType<{screen:Screen}>;
++let loaded:Body|null=null;
++let pending:Promise<Body>|null=null;
++function load(){
++  pending??=import('./GroupScreenBody').then(module=>loaded=module.default).catch(error=>{pending=null;throw error;});
++  return pending;
++}
++const copy={
++  en:{loading:'Loading this screen…',failed:'This screen could not load. Check your connection and try again.',retry:'Try again'},
++  ru:{loading:'Загружаем экран…',failed:'Не удалось загрузить экран. Проверьте подключение и попробуйте ещё раз.',retry:'Попробовать снова'},
++  uz:{loading:'Sahifa yuklanmoqda…',failed:'Sahifa yuklanmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.',retry:'Qayta urinish'},
++};
++
++/** Only module code is shared. Form state still belongs to the scoped sheet. */
++export function DeferredGroupScreen({screen}:{screen:Screen}){
++  const {state}=useApp(),t=copy[state.life.language];
++  const [Body,setBody]=useState<Body|null>(()=>loaded),[failed,setFailed]=useState(false),[attempt,setAttempt]=useState(0);
++  useEffect(()=>{
++    if(Body)return;
++    let active=true;
++    void load().then(component=>{if(active)setBody(()=>component);},()=>{if(active)setFailed(true);});
++    return()=>{active=false;};
++  },[Body,attempt]);
++  if(Body)return <Body screen={screen}/>;
++  return <div className="life-screen">{failed?<><p role="alert" className="field-error">{t.failed}</p><Button variant="secondary" onClick={()=>{setFailed(false);setAttempt(value=>value+1);}}>{t.retry}</Button></>:<p role="status" className="fine-print">{t.loading}</p>}</div>;
++}
+--- /dev/null
++++ b/tests/production/deferred.production.spec.ts
+@@ -0,0 +1,70 @@
++import {test,expect,stored} from '../support/browser';
++import {makeFixture} from '../../src/review/fixtures';
++import {createTranslator} from '../../src/i18n';
++import {groupText} from '../../src/groups/text';
++
++test.use({serviceWorkers:'block'});
++const copy={
++  en:{loading:'Loading this screen…',failed:'This screen could not load. Check your connection and try again.',retry:'Try again'},
++  ru:{loading:'Загружаем экран…',failed:'Не удалось загрузить экран. Проверьте подключение и попробуйте ещё раз.',retry:'Попробовать снова'},
++  uz:{loading:'Sahifa yuklanmoqda…',failed:'Sahifa yuklanmadi. Internet aloqasini tekshirib, qayta urinib ko‘ring.',retry:'Qayta urinish'},
++};
++for(const language of ['en','ru','uz'] as const)test(`${language} deferred groups load only on demand and recover from an interrupted download`,async({page},info)=>{
++  const state=makeFixture();state.life.language=language;
++  const t=createTranslator(language),g=groupText(language),text=copy[language];
++  await page.addInitScript(raw=>localStorage.setItem('rise.local.v1',raw),JSON.stringify(state));
++  let release:()=>void=()=>{},requests=0;
++  const held=new Promise<void>(resolve=>{release=resolve;});
++  await page.route('**/assets/GroupScreenBody-*.js',async route=>{
++    requests++;
++    if(requests===1){await held;await route.abort('failed');}else await route.continue();
++  });
++  await page.goto('/');const original=await stored(page);
++  expect(requests).toBe(0);
++  await page.getByRole('tab',{name:language==='uz'?'Siz':t('You'),exact:true}).click();
++  expect(requests).toBe(0);
++  const opener=page.locator('.you-destinations').getByRole('button').filter({hasText:t('Family')});
++  await opener.click();
++  const dialog=page.getByRole('dialog');
++  await expect(dialog.getByRole('status')).toHaveText(text.loading);
++  release();
++  await expect(dialog.getByRole('alert')).toHaveText(text.failed);
++  for(const width of [320,375,393,430]){
++    await page.setViewportSize({width,height:852});
++    for(const theme of ['light','dark']){
++      await page.evaluate(theme=>{document.documentElement.style.fontSize='200%';document.querySelector('.app-shell')?.setAttribute('data-theme',theme);},theme);
++      expect(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
++      const button=dialog.getByRole('button',{name:text.retry,exact:true});
++      const box=await button.boundingBox();expect(box?.height).toBeGreaterThanOrEqual(44);
++    }
++  }
++  if(info.project.name==='chromium')await page.screenshot({path:info.outputPath(`${language}-deferred-error-dark-200.png`)});
++  await page.evaluate(()=>{document.documentElement.style.fontSize='';});
++  await page.setViewportSize({width:393,height:852});
++  await dialog.getByRole('button',{name:text.retry,exact:true}).focus();
++  await page.keyboard.press('Enter');
++  await expect(dialog.getByRole('button',{name:g('account'),exact:true})).toBeVisible();
++  expect(requests).toBe(2);
++  expect(await dialog.evaluate(el=>el.contains(document.activeElement))).toBe(true);
++  await page.keyboard.press('Escape');await expect(opener).toBeFocused();
++  await opener.click();await expect(dialog.getByRole('button',{name:g('account'),exact:true})).toBeVisible();
++  expect(requests).toBe(2);
++  expect(await stored(page)).toEqual(original);
++});
++
++test('closing a loading sheet cannot reopen it when the module arrives',async({page})=>{
++  await page.addInitScript(raw=>localStorage.setItem('rise.local.v1',raw),JSON.stringify(makeFixture()));
++  let release:()=>void=()=>{};
++  const held=new Promise<void>(resolve=>{release=resolve;});
++  await page.route('**/assets/GroupScreenBody-*.js',async route=>{await held;await route.continue();});
++  await page.goto('/');const before=await stored(page);
++  await page.getByRole('tab',{name:'You',exact:true}).click();
++  const opener=page.locator('.you-destinations').getByRole('button').filter({hasText:'Family'});
++  await opener.click();await expect(page.getByRole('dialog').getByRole('status')).toHaveText(copy.en.loading);
++  await page.keyboard.press('Escape');await expect(opener).toBeFocused();
++  const arrived=page.waitForResponse(response=>/\/GroupScreenBody-[^/]+\.js$/.test(new URL(response.url()).pathname));
++  release();await arrived;
++  await expect(page.getByRole('dialog')).toHaveCount(0);
++  await opener.click();await expect(page.getByRole('dialog').getByRole('button',{name:groupText('en')('account'),exact:true})).toBeVisible();
++  expect(await stored(page)).toEqual(before);
++});
