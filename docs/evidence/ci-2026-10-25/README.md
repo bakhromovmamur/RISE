@@ -2,6 +2,22 @@
 
 Scope: FND-02 automated verification and GROUP-01/GROUP-04 invitation history; PRD-14 and NFR-03/NFR-06/NFR-07. Cloud provisioning and deployment remain pending. This record does not close QUALITY-03 or RELEASE-01.
 
+## Final verified result
+
+[Run 40218685041](https://github.com/bakhromovmamur/RISE/actions/runs/40218685041) completed successfully on **25 October 2026 at 18:18:25 UTC**, attempt **1**, for source commit **`9e1ec427487d16c90834edb74994288e2b93b6fc`**. All six Ubuntu 24.04 jobs passed. No failed job was rerun in this attempt; no browser case was reported failed, flaky or skipped. The sections below retain earlier failed runs and intermediate checkpoints as dated evidence, not the current CI verdict.
+
+| Browser | Web job | Backend job | Final result |
+| --- | --- | --- | --- |
+| Chromium | `121245299096` | `121245299129` | Both passed |
+| WebKit | `121245298928` | `121245299076` | Both passed |
+| Firefox | `121245299150` | `121245299086` | Both passed |
+
+Each web job passed toolchain/notices/lint/types, **337 source/tooling tests**, both builds, **153 journeys**, **26 production-entry tests** and **21 PWA tests**. Each backend job passed **185 database tests**, **7 entry**, **10 authentication**, **23 sync**, **18 push**, **37 group** and **2 rollout browser cases**. Together these are **891 browser cases**; the 337 source/tooling and 185 database cases are deliberately repeated on their three respective runners. Both local/test database advisors reported **No issues found** on every backend runner, and every runner completed its scoped cleanup. Firefox web browser installation was slow but completed within the unchanged 20-minute job limit.
+
+The previously failing WebKit live-sender import case passed in this run. Its earlier trigger remains unconfirmed; [bounded failure diagnostics and the distinct local stall](PUSH-IMPORT-DIAGNOSTICS.md) remain recorded rather than being attributed to an unproven fix. This successful run establishes current CI acceptance, not absence of all intermittent defects or completion of broader release/performance requirements.
+
+The final application change reuses explicit-zone formatters without caching results or private state. Earlier SQL changes are additive function migrations; before/after retained-local table digests matched. Test corrections preserve original domain/security/layout assertions and deadlines. Design, functionality, stored-data formats and saved user profiles remain intact. Cloud provisioning, server deployment, physical-device acceptance and the existing QUALITY-03/RELEASE-01 gates remain pending. The subsequent completion-record commit changes documentation only and uses `[skip ci]`; the exact tested source remains the commit above.
+
 ## Initial hosted failure
 
 [Run 40207253372](https://github.com/bakhromovmamur/RISE/actions/runs/40207253372), commit `3074f591034f466a926926868d9d7a1709a79701`, failed in all three web jobs before browser testing: four server unit tests required an existing `dist/` directory although `npm test` precedes the builds. The infrastructure job built production output only; its private-file scan also requires `dist-review/`. Its 100,000-row invitation-history case separately returned HTTP 503 during group ownership transfer.
