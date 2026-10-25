@@ -21,13 +21,13 @@ for(const language of ['en','ru','uz'] as const)test(`group screens reflow with 
  await page.addInitScript(()=>{Object.defineProperty(ServiceWorkerContainer.prototype,'getRegistration',{configurable:true,value:async()=>({pushManager:Object.getOwnPropertyDescriptor(ServiceWorkerRegistration.prototype,'pushManager')!.get!.call({})})});});
  const proposal=await prepareGuestImport(guest,owner,{habitIds:['authored-reading'],goals:true,prayers:true,reflections:true,settings:true}),records=recordsFromEntries(proposal.entries),state=hydrate(records),t=groupText(language),tr=createTranslator(language),a=lifecycleText(language),archive=archiveText(language);
  const group:AccountGroup={id,kind:'family',name:'Our family · Очень длинное название · Oila rejalarimiz',timezone:'Asia/Tashkent',revision:1,archived:false,members:[{id:'44444444-4444-4444-8444-444444444444',name:'Owner chosen name',role:'owner',self:true},{id:'55555555-5555-4555-8555-555555555555',name:'ОченьДлинноеВыбранноеИмяБезПробелов'.repeat(2),role:'member',self:false}],preferences:{muted:false,quietStart:'22:00',quietEnd:'07:00'},invitations:[]};
- let invitationPageFails=false;
+ let invitationPageError:'rate_limited'|'unavailable'|null=null;
  await page.route('**/api/v1/**',route=>{const path=new URL(route.request().url()).pathname;
   if(path==='/api/v1/session')return route.fulfill({json:{signedIn:true,csrfToken:'0'.repeat(64),delivery:'email',account:{id:owner,email:'visual-only@example.invalid',remembered:true,authenticatedAt,expiresAt}}});
   if(path==='/api/v1/sync/head')return route.fulfill({json:{accountId:owner,initialized:true,revision:1,xp:20}});
   if(path==='/api/v1/groups')return route.fulfill({json:{accountId:owner,groups:[group]}});
   if(path==='/api/v1/push')return route.fulfill({json:{configured:pushEnabled,publicKey:pushEnabled?synthetic.subscription.keys.p256dh:null,installation:pushEnabled?{id:installation,version:1,enabled:true,details:false,language,needsReview:false}:null,test:null}});
-  if(path===`/api/v1/groups/${id}/invitations`){if(invitationPageFails)return route.fulfill({status:503,json:{error:{code:'unavailable'}}});const cursor=new URL(route.request().url()).searchParams.get('cursor');return route.fulfill({json:{accountId:owner,groupId:id,revision:group.revision,rows:cursor?[{id:invitation,expiresAt:'2099-10-30T00:00:00.000Z',revoked:false,consumed:false}]:group.invitations,next:cursor?null:group.invitationNext}});}
+  if(path===`/api/v1/groups/${id}/invitations`){if(invitationPageError)return route.fulfill({status:invitationPageError==='rate_limited'?429:503,json:{error:{code:invitationPageError}}});const cursor=new URL(route.request().url()).searchParams.get('cursor');return route.fulfill({json:{accountId:owner,groupId:id,revision:group.revision,rows:cursor?[{id:invitation,expiresAt:'2099-10-30T00:00:00.000Z',revoked:false,consumed:false}]:group.invitations,next:cursor?null:group.invitationNext}});}
   if(path==='/api/v1/groups/commands'){const op=route.request().postDataJSON();if(op.command.kind==='group.invite'){const expiresAt=invitationExpiry;group.invitations=[{id:invitation,expiresAt,revoked:false,consumed:false}];return route.fulfill({json:{operationId:op.operationId,groupId:id,revision:1,invitation:{id:invitation,expiresAt,link:'http://127.0.0.1:4191/#invite='+'x'.repeat(43)}}});}return route.fulfill({status:403,json:{error:{code:'recent_auth_required'}}});}
   if(path==='/api/v1/auth/reauth/code')return route.fulfill({status:202,json:{challenge:'1'.repeat(64),resendAt:new Date(Date.now()+60000).toISOString(),expiresAt:new Date(Date.now()+600000).toISOString(),retryAfter:60}});
   if(path==='/api/v1/groups/invitations/preview')return route.fulfill({json:{id,name:group.name,kind:group.kind,timezone:group.timezone,expiresAt:invitationExpiry}});
@@ -40,7 +40,9 @@ for(const language of ['en','ru','uz'] as const)test(`group screens reflow with 
  const matrix=async(scene:string)=>{
   for(const theme of ['light','dark'])for(const width of [320,375,393,430,1440])for(const scale of [100,200]){
    await page.setViewportSize({width,height:852});await page.evaluate(({theme,scale})=>{document.querySelector('.app-shell')?.setAttribute('data-theme',theme);document.documentElement.style.fontSize=`${scale}%`;},{theme,scale});
-   const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1)).toBe(false);
+   const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
+   if(scene==='invite-error'){await expect(dialog.getByText(t('invitationsFailed'),{exact:true})).toBeVisible();await expect(dialog.getByRole('button',{name:t('invitationsReload'),exact:true})).toBeEnabled();await expect(dialog.getByRole('button',{name:t('revoke'),exact:true})).toHaveCount(0);}
+   expect(await dialog.evaluate(el=>el.scrollWidth>el.clientWidth+1)).toBe(false);
    const header=await dialog.locator('.sheet-header').evaluate(el=>{const h=el.getBoundingClientRect(),t=el.querySelector('h2')!.getBoundingClientRect();return {within:t.top>=h.top&&t.bottom<=h.bottom&&t.left>=h.left&&t.right<=h.right,header:h.toJSON(),title:t.toJSON()};});
    if(!header.within)await dialog.screenshot({path:info.outputPath(`groups-failed-header-${scene}-${language}-${theme}-${width}-${scale}.png`)}); // Unverified visual fixture only; no credentials.
    expect(header.within,JSON.stringify({scene,theme,width,scale,...header})).toBe(true);
@@ -58,8 +60,18 @@ for(const language of ['en','ru','uz'] as const)test(`group screens reflow with 
  if(language==='uz'){const dates=page.locator('.server-groups .group-row small');await expect(dates).toHaveCount(20);for(const date of await dates.allTextContents()){expect(date).toMatch(/30 okt 2099/);expect(date).toContain('05:00');expect(date).not.toMatch(/\bM10\b/);}}
  await matrix('invite-page');
  await page.getByRole('button',{name:t('invitationsOlder'),exact:true}).click();await expect(page.getByRole('heading',{name:t('invitations'),exact:true})).toBeFocused();await matrix('invite-older');
- invitationPageFails=true;await page.getByRole('button',{name:t('invitationsPrevious'),exact:true}).click();await expect(page.getByText(t('invitationsFailed'),{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:t('revoke'),exact:true})).toHaveCount(0);await matrix('invite-error');
- invitationPageFails=false;await page.getByRole('button',{name:t('invitationsReload'),exact:true}).click();await expect(page.getByRole('heading',{name:t('invitations'),exact:true})).toBeFocused();
+ // A synthetic rate-limit error keeps this visual scene stable across fresh owner reads.
+ // Transient unavailable errors intentionally recover automatically, checked below.
+ invitationPageError='rate_limited';await page.getByRole('button',{name:t('invitationsPrevious'),exact:true}).click();await expect(page.getByText(t('invitationsFailed'),{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:t('revoke'),exact:true})).toHaveCount(0);
+ const errorRefresh=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/v1/groups');await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await errorRefresh;
+ await expect(page.getByText(t('invitationsFailed'),{exact:true})).toBeVisible();await matrix('invite-error');
+ invitationPageError=null;await page.getByRole('button',{name:t('invitationsReload'),exact:true}).click();await expect(page.getByRole('heading',{name:t('invitations'),exact:true})).toBeFocused();
+ await expect(page.getByRole('button',{name:t('revoke'),exact:true})).toHaveCount(20);await expect(page.getByRole('button',{name:t('invitationsPrevious'),exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:t('invitationsOlder'),exact:true})).toBeEnabled();
+ // Keep the paging endpoint unavailable: a fresh authorized group head itself restores page one.
+ invitationPageError='unavailable';const unavailable=page.waitForResponse(r=>new URL(r.url()).pathname===`/api/v1/groups/${id}/invitations`&&r.status()===503);
+ await page.getByRole('button',{name:t('invitationsOlder'),exact:true}).click();await (await unavailable).finished();
+ const recovered=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/v1/groups');await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await recovered;
+ await expect(page.getByText(t('invitationsFailed'),{exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:t('invitationsReload'),exact:true})).toHaveCount(0);await expect(page.getByRole('button',{name:t('revoke'),exact:true})).toHaveCount(20);await expect(page.getByRole('button',{name:t('invitationsPrevious'),exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:t('invitationsOlder'),exact:true})).toBeEnabled();invitationPageError=null;
  await page.keyboard.press('Escape');await page.getByRole('button',{name:t('settings'),exact:true}).click();await matrix('settings');
  await page.getByRole('button',{name:archive('title'),exact:true}).click();await matrix('export-family');await page.getByRole('button',{name:archive('cancel'),exact:true}).click();await expect(page.getByRole('button',{name:archive('title'),exact:true})).toBeFocused();
  group.kind='squad';group.revision++;let exportRefresh=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/v1/groups');await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await exportRefresh;
