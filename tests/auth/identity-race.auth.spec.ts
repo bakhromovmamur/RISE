@@ -3,7 +3,8 @@ import {seedSyncGuest,accountSheet,browserLogin} from '../support/syncBrowser.ts
 test.use({serviceWorkers:'block'});
 
 for(const {latestFails,olderLast} of [{latestFails:false,olderLast:false},{latestFails:true,olderLast:false},{latestFails:true,olderLast:true}])test(`opening Account during a background identity refresh ${latestFails?'reports the latest failure and retries':'keeps a usable sign-in form'}${olderLast?' after the newer failure has settled':''}`,async({page})=>{
-  const now=new Date();await page.clock.install({time:now});await page.clock.pauseAt(now);
+  // Start paused before navigation; a running install could advance beyond this target.
+  const now=new Date();await page.clock.pauseAt(now);
   const pending:(()=>void)[]=[];let hold=true;
   await page.route('**/api/v1/session',async route=>{
     const response=await route.fetch();
@@ -11,7 +12,7 @@ for(const {latestFails,olderLast} of [{latestFails:false,olderLast:false},{lates
     await route.fulfill({response});
   });
   try{
-    await seedSyncGuest(page);
+    await seedSyncGuest(page);expect(await page.evaluate(()=>Date.now())).toBe(now.getTime());
     await expect.poll(()=>pending.length).toBe(1);
     // Start the form's read just before the existing background timer fires;
     // its own fifteen-second network deadline must not expire in this test.

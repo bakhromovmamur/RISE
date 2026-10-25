@@ -7,14 +7,15 @@ const now=Date.parse('2026-10-23T08:59:00Z');
 async function seed(page:Page,language:Language='en'){
  let s=createEmptyState();s.timezone='UTC';s.onboarded=true;s.life.language=language;s.prefs.reminders=true;s.prefs.quietStart=s.prefs.quietEnd='00:00';
  s=saveHabit(s,{...emptyDraft(),name:'Synthetic private habit',reminder:'09:00',days:[0,1,2,3,4,5,6]},'synthetic-habit','2026-10-23');
- await page.clock.install({time:now});await page.clock.pauseAt(now);
+ // pauseAt installs the clock itself; install(now) first would let time advance past the pause target.
+ await page.clock.pauseAt(now);
  await page.addInitScript(s=>{
   if(!localStorage.getItem('rise.local.v1'))localStorage.setItem('rise.local.v1',JSON.stringify(s));
   class N{static get permission(){return localStorage.getItem('__permission')??'default';}static async requestPermission(){localStorage.setItem('__permission','granted');localStorage.setItem('__asked','yes');return 'granted';}}
   Object.defineProperty(window,'Notification',{configurable:true,value:N});
   Object.defineProperty(ServiceWorkerRegistration.prototype,'showNotification',{configurable:true,value:async(title:string,options:NotificationOptions)=>{const shown=JSON.parse(localStorage.getItem('__shown')??'[]');shown.push({title,options});localStorage.setItem('__shown',JSON.stringify(shown));}});
  },s);
- await page.goto('/');await stored(page);
+ await page.goto('/');await stored(page);expect(await page.evaluate(()=>Date.now())).toBe(now);
 }
 async function settings(page:Page,language:Language='en'){
  const t=createTranslator(language);await page.getByRole('tab',{name:t('You','Siz'),exact:true}).click();await page.getByRole('button',{name:`${t('Settings','Sozlamalar')} ${t('Appearance, language, habits & data','Ko‘rinish, til, odatlar va ma’lumotlar')}`,exact:true}).click();

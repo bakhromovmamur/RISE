@@ -1,5 +1,5 @@
 import { test, expect, stored, reloadSaved } from "../support/browser";
-import { xpTotal } from "../../src/model";
+import { ensureDays, xpTotal } from "../../src/model";
 
 test("an empty production journey keeps a corrected tiny day intact across midnight and a new full check-in", async ({ page }) => {
   // Accelerated synthetic civil dates, real production UI and IndexedDB; no fixture injection.
@@ -29,6 +29,8 @@ test("an empty production journey keeps a corrected tiny day intact across midni
 
   await page.clock.setFixedTime(new Date("2026-10-26T08:00:00+05:00"));
   await reloadSaved(page);
+  // Reload first exposes the saved prior day; the mount refresh materializes today separately.
+  await expect.poll(async () => (await stored(page)).days["2026-10-26"]).toEqual(ensureDays(evening, "2026-10-26").days["2026-10-26"]);
   const morning = await stored(page);
   expect(morning.days["2026-10-25"]).toEqual(evening.days["2026-10-25"]);
   expect(morning.days["2026-10-26"].every(row => !row.check)).toBe(true);
