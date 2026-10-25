@@ -19,5 +19,5 @@ export function Diagnostics(){
     }catch{setFailed(true);}
     finally{link?.remove();if(url){const downloadUrl=url;setTimeout(()=>URL.revokeObjectURL(downloadUrl),30000);}}
   }
-  return <><div className="group"><GroupRow icon={<Download size={20}/>} title={t('download')} detail={t('detail')} onClick={download}/></div><p className="fine-print">{t('help')}</p>{failed&&<p role="alert" className="form-error">{t('failed')}</p>}</>;
+  return <><div className="group diagnostics-group"><GroupRow icon={<Download size={20}/>} title={t('download')} detail={t('detail')} onClick={download}/></div><p className="fine-print">{t('help')}</p>{failed&&<p role="alert" className="form-error">{t('failed')}</p>}</>;
 }

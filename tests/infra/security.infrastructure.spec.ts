@@ -1,5 +1,6 @@
 import { test, expect, stored } from "../support/browser.ts";
 import { makeFixture } from "../../src/review/fixtures.ts";
+import { ensurePriorities } from "../../src/developmentModel.ts";
 
 test("security policy preserves onboarding, deferred screens, backup workers and offline reload", async ({ page, context, browserName }) => {
   await page.clock.install({ time: new Date("2026-10-21T03:00:00Z") });
@@ -119,7 +120,11 @@ test("authored markup stays inert plain text through legacy migration and reload
   for (const rows of Object.values(state.days)) for (const row of rows) if (row.habitId === state.habits[0].id) row.name = payload;
   await page.addInitScript(raw => { if (!localStorage.getItem("rise.local.v1")) localStorage.setItem("rise.local.v1", raw); }, JSON.stringify(state));
   let dialogs = 0; page.on("dialog", async dialog => { dialogs++; await dialog.dismiss(); });
-  await page.goto("/"); const before = await stored(page);
+  await page.goto("/");
+  // Migration is saved before Today mounts and durably ensures its priorities.
+  // Capture the reload baseline only after that expected startup command settles.
+  await expect.poll(async () => (await stored(page)).dailyPriorities).toEqual(ensurePriorities(state).dailyPriorities);
+  const before = await stored(page);
   await expect(page.getByText(payload, { exact: true }).first()).toBeVisible();
   expect(await page.locator('img[src="/api/v1/session"]').count()).toBe(0);
   await page.reload(); expect(await stored(page)).toEqual(before);

@@ -27,6 +27,19 @@ for(const language of ['en','ru','uz'] as const){
       expect(await dialog.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
       if(width===393&&scale===200&&info.project.name==='chromium')await page.screenshot({path:info.outputPath(`${language}-${theme}-diagnostics.png`)});
     }
+    if(language==='uz'){
+      // Wider fallback glyphs reproduce Linux WebKit's long-word overflow on
+      // other hosts too. Keep the complete title inside its own text column.
+      await page.setViewportSize({width:320,height:852});
+      const title=control.locator('.row-copy > strong');await title.evaluate(el=>{el.style.fontFamily='monospace';});
+      for(const theme of ['light','dark']){
+        await page.evaluate(theme=>document.querySelector('.app-shell')?.setAttribute('data-theme',theme),theme);
+        await control.scrollIntoViewIfNeeded();
+        const row=await control.evaluate(el=>({scroll:el.scrollWidth,width:el.clientWidth}));expect(row.scroll).toBeLessThanOrEqual(row.width+1);
+        const text=await title.evaluate(el=>({scroll:el.scrollWidth,width:el.clientWidth}));expect(text.scroll).toBeLessThanOrEqual(text.width+1);
+      }
+      await title.evaluate(el=>{el.style.fontFamily='';});
+    }
     expect(JSON.stringify(await stored(page))).toBe(before);
   });
   test(`${language}: diagnostic download failure stays visible and retry succeeds`,async({page})=>{
