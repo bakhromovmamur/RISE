@@ -1,5 +1,6 @@
 import {test,expect,stored} from '../support/browser';
 import {makeFixture} from '../../src/review/fixtures';
+import {ensurePriorities} from '../../src/developmentModel';
 import {createTranslator} from '../../src/i18n';
 import {groupText} from '../../src/groups/text';
 
@@ -19,7 +20,10 @@ for(const language of ['en','ru','uz'] as const)test(`${language} deferred group
     requests++;
     if(requests===1){await held;await route.abort('failed');}else await route.continue();
   });
-  await page.goto('/');const original=await stored(page);
+  await page.goto('/');
+  // The initial migration save precedes Today's durable priority initialization.
+  await expect.poll(async()=> (await stored(page)).dailyPriorities).toEqual(ensurePriorities(state).dailyPriorities);
+  const original=await stored(page);
   expect(requests).toBe(0);
   await page.getByRole('tab',{name:language==='uz'?'Siz':t('You'),exact:true}).click();
   expect(requests).toBe(0);
@@ -53,11 +57,14 @@ for(const language of ['en','ru','uz'] as const)test(`${language} deferred group
 });
 
 test('closing a loading sheet cannot reopen it when the module arrives',async({page})=>{
-  await page.addInitScript(raw=>localStorage.setItem('rise.local.v1',raw),JSON.stringify(makeFixture()));
+  const state=makeFixture();
+  await page.addInitScript(raw=>localStorage.setItem('rise.local.v1',raw),JSON.stringify(state));
   let release:()=>void=()=>{};
   const held=new Promise<void>(resolve=>{release=resolve;});
   await page.route('**/assets/GroupScreenBody-*.js',async route=>{await held;await route.continue();});
-  await page.goto('/');const before=await stored(page);
+  await page.goto('/');
+  await expect.poll(async()=> (await stored(page)).dailyPriorities).toEqual(ensurePriorities(state).dailyPriorities);
+  const before=await stored(page);
   await page.getByRole('tab',{name:'You',exact:true}).click();
   const opener=page.locator('.you-destinations').getByRole('button').filter({hasText:'Family'});
   await opener.click();await expect(page.getByRole('dialog').getByRole('status')).toHaveText(copy.en.loading);

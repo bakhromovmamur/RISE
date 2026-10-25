@@ -1,5 +1,6 @@
 import { test, expect, stored } from "../support/browser";
 import { createEmptyState } from "../../src/data/initialState";
+import { ensurePriorities } from "../../src/developmentModel";
 import { pwaText } from "../../src/pwa/messages";
 
 for (const language of ["en", "ru", "uz"] as const) test(`${language} install and offline controls reflow in both themes and large text`, async ({ page, context }, info) => {
@@ -9,6 +10,8 @@ for (const language of ["en", "ru", "uz"] as const) test(`${language} install an
   await page.addInitScript(state => { if (location.origin === "http://127.0.0.1:4181" && !localStorage.getItem("rise.local.v1")) localStorage.setItem("rise.local.v1", JSON.stringify(state)); }, state);
   await page.goto("/");
   await expect.poll(async () => (await stored(page)).life.deviceTimezone?.observed).toBe("Asia/Tashkent");
+  // Observe the expected durable startup command before freezing the full state.
+  await expect.poll(async () => (await stored(page)).dailyPriorities).toEqual(ensurePriorities(state).dailyPriorities);
   const original = await stored(page), text = pwaText(language);
   await page.locator("#tab-you").click();
   await page.locator("#panel-you .you-destinations .group-row").last().click();
