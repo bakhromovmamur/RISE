@@ -46,8 +46,29 @@ test('maximum retained invitation history remains owner-only and paged while cle
   const anchor=(await h.admin.query('select id from rise.group_invitations where group_id=$1 order by expires_at,id limit 1',[id])).rows[0].id;
   const pruned=await worker.query('select rise_private.prune_group_invitations(500) as n');assert.equal(pruned.rows[0].n,500);
   assert.equal((await owner.browser.request(`groups/${id}/invitations?revision=${first.revision}&cursor=${anchor}`)).statusCode,409);
-  assert.equal((await owner.browser.request('groups/commands',pending)).statusCode,200);assert.equal((await owner.browser.request(path)).statusCode,409);
-  const current=await group(owner,id);await command(owner,{kind:'group.transfer',groupId:id,memberId:current.members.find(m=>!m.self)!.id});assert.equal((await owner.browser.request(`groups/${id}/invitations`)).statusCode,404);assert.equal((await member.browser.request(`groups/${id}/invitations`)).statusCode,200);
+  const activeInvite=await owner.browser.request('groups/commands',pending);assert.equal(activeInvite.statusCode,200);assert.equal((await owner.browser.request(path)).statusCode,409);
+  const current=await group(owner,id),transfer=operation(owner,{kind:'group.transfer',groupId:id,memberId:current.members.find(m=>!m.self)!.id},current.revision);
+  const transferred=await owner.browser.request('groups/commands',transfer);assert.equal(transferred.statusCode,200,transferred.json().error?.code);
+  assert.deepEqual((await owner.browser.request('groups/commands',transfer)).json(),transferred.json());
+  assert.equal((await owner.browser.request(`groups/${id}/invitations`)).statusCode,404);assert.equal((await member.browser.request(`groups/${id}/invitations`)).statusCode,200);
+  // Transfer revokes the live link, preserving terminal history and its original
+  // retention timestamps. The same maximum-size history also exercises archive.
+  const history=async()=>(await h.admin.query(`select count(*)::int as total,
+   count(*) filter(where expires_at<=now() and revoked_at is null)::int as expired,
+   count(*) filter(where consumed_at is not null and revoked_at is null)::int as consumed,
+   count(*) filter(where revoked_at is not null)::int as revoked from rise.group_invitations where group_id=$1`,[id])).rows[0];
+  assert.deepEqual(await history(),{total:99501,expired:99499,consumed:1,revoked:1});
+  const transferredToken=new URL(activeInvite.json<GroupReceipt>().invitation!.link).hash.slice(8);
+  const transferRejected=await other.browser.request('groups/commands',operation(other,{kind:'group.accept',token:transferredToken,nickname:'Other'},0));assert.equal(transferRejected.statusCode,404);assert.equal(transferRejected.json().error.code,'invitation_unavailable');
+  const revoked=(await h.admin.query('select revoked_at from rise.group_invitations where id=$1',[pending.operationId])).rows[0].revoked_at;
+  const live=await command(member,{kind:'group.invite',groupId:id});assert.ok(live.invitation);
+  const token=new URL(live.invitation.link).hash.slice(8),archive=operation(member,{kind:'group.archive',groupId:id},(await group(member,id)).revision);
+  const archived=await member.browser.request('groups/commands',archive);assert.equal(archived.statusCode,200,archived.json().error?.code);
+  assert.deepEqual((await member.browser.request('groups/commands',archive)).json(),archived.json());
+  assert.deepEqual(await history(),{total:99502,expired:99499,consumed:1,revoked:2});
+  assert.deepEqual((await h.admin.query('select revoked_at from rise.group_invitations where id=$1',[pending.operationId])).rows[0].revoked_at,revoked);
+  await command(member,{kind:'group.restore',groupId:id});
+  const rejected=await other.browser.request('groups/commands',operation(other,{kind:'group.accept',token,nickname:'Other'},0));assert.equal(rejected.statusCode,404);assert.equal(rejected.json().error.code,'invitation_unavailable');
  }finally{await h.admin.query('update rise_private.group_limits set invitations_per_group=$1,invites_per_hour=$2',[limits.invitations_per_group,limits.invites_per_hour]);}
 });
 
@@ -69,4 +90,27 @@ test('invitation owner-set policy rechecks current membership and active session
  assert.deepEqual(await directInvitations(id,oldClaims),[]);assert.equal((await directInvitations(id,memberClaims)).length,1);
  const owned=await group(member,id);await command(member,{kind:'group.remove',groupId:id,memberId:owned.members.find(m=>!m.self)!.id});assert.deepEqual(await directInvitations(id,oldClaims),[]);
  assert.equal((await member.browser.request('logout',{})).statusCode,200);assert.deepEqual(await directInvitations(id,memberClaims),[]);
+});
+
+for(const action of ['transfer','archive'] as const)test(`invitation acceptance rechecks expiry after ${action} despite an older transaction clock`,async()=>{
+ const owner=await actor(),member=await actor(),other=await actor(),id=await create(owner),join=await command(owner,{kind:'group.invite',groupId:id});assert.ok(join.invitation);
+ await command(member,{kind:'group.accept',token:new URL(join.invitation.link).hash.slice(8),nickname:'Member'});
+ const invitation=await command(owner,{kind:'group.invite',groupId:id});assert.ok(invitation.invitation);
+ const identity=await claims(other),c=await h.store.pool.connect();let revision:number|undefined;
+ try{
+  await c.query('begin');await c.query("select set_config('request.jwt.claims',$1,true)",[JSON.stringify(identity)]);
+  // Pause this real restricted transaction before it obtains the group lock.
+  // Advance only this synthetic invitation past expiry after its now() was fixed.
+  await h.admin.query("update rise.group_invitations set created_at=clock_timestamp()-interval '1 day',expires_at=clock_timestamp() where id=$1",[invitation.invitation.id]);
+  if(action==='transfer')await command(owner,{kind:'group.transfer',groupId:id,memberId:(await group(owner,id)).members.find(m=>!m.self)!.id});
+  else{await command(owner,{kind:'group.archive',groupId:id});await command(owner,{kind:'group.restore',groupId:id});}
+  revision=(await h.admin.query('select revision from rise.groups where id=$1',[id])).rows[0].revision;
+  const stored=(await h.admin.query('select expires_at::text,revoked_at,consumed_at from rise.group_invitations where id=$1',[invitation.invitation.id])).rows[0];assert.equal(stored.revoked_at,null);assert.equal(stored.consumed_at,null);
+  const boundary=(await c.query('select now()<$1::timestamptz as started_before,clock_timestamp()>=$1::timestamptz as expired',[stored.expires_at])).rows[0];assert.equal(boundary.started_before,true);assert.equal(boundary.expired,true);
+  await assert.rejects(c.query('select * from rise_private.accept_group_invite($1,$2,$3)',[hash(new URL(invitation.invitation.link).hash.slice(8)),randomUUID(),'Other']),error=>!!error&&typeof error==='object'&&'code' in error&&error.code==='P0001'&&'message' in error&&error.message==='invitation_unavailable');
+ }finally{await c.query('rollback');c.release();}
+ assert.equal((await h.admin.query('select revision from rise.groups where id=$1',[id])).rows[0].revision,revision);
+ assert.equal((await h.admin.query('select count(*)::int as n from rise.group_receipts where group_id=$1 and user_id=$2',[id,other.owner])).rows[0].n,0);
+ assert.equal((await h.admin.query('select count(*)::int as n from rise.memberships where group_id=$1 and user_id=$2',[id,other.owner])).rows[0].n,0);
+ assert.equal((await h.admin.query('select consumed_at from rise.group_invitations where id=$1',[invitation.invitation.id])).rows[0].consumed_at,null);
 });

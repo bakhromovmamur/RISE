@@ -1,4 +1,4 @@
-import { test } from "node:test";
+import { test, type TestContext } from "node:test";
 import assert from "node:assert/strict";
 import { mkdtemp, mkdir, writeFile, rm, symlink, stat, readFile, link } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -29,11 +29,17 @@ test("repeated local setup preserves mounted email template identity and updates
 function vars(): NodeJS.ProcessEnv {
   return { DEPLOY_ENV: "test", APP_ORIGIN: "http://127.0.0.1:4191", SUPABASE_PROJECT_REF: "rise-test", SUPABASE_URL: "http://127.0.0.1:55421", SUPABASE_PUBLISHABLE_KEY: "sb_publishable_synthetic-0000000000000000", DATABASE_URL: `postgresql://rise_bff_login:${"a".repeat(64)}@127.0.0.1:55422/postgres`, INSTALLATION_ID: "f4f7f748-cffc-40b7-8b01-bb887b6e9ce9", RELEASE_ID: "synthetic-test", SESSION_ENCRYPTION_KEY: "b".repeat(64) };
 }
+async function staticBuild(t: TestContext) {
+  const directory = await mkdtemp(join(tmpdir(), "rise-server-shell-"));
+  t.after(() => rm(directory, { recursive: true, force: true }));
+  await writeFile(join(directory, "index.html"), '<html><head><meta name="rise-build" content="production"></head><body>Synthetic current shell</body></html>');
+  return directory;
+}
 test("server write pause rejects queued mutations without changing read/session/logout authorization", async t => {
   assert.equal(loadConfig(vars()).writesEnabled,true);
   for(const value of ["", "1", "yes"])assert.throws(()=>loadConfig({...vars(),RISE_WRITES_ENABLED:value}),ConfigurationError);
   const config=loadConfig({...vars(),RISE_WRITES_ENABLED:"false"});
-  const app=await createApp(config,async()=>{});t.after(()=>app.close());
+  const app=await createApp({...config,staticDirectory:await staticBuild(t)},async()=>{});t.after(()=>app.close());
   const headers={host:"127.0.0.1:4191",origin:"http://127.0.0.1:4191"};
   assert.equal((await app.inject({url:"/api/v1/health/ready",headers})).statusCode,200);
   const paused=await app.inject({method:"POST",url:"/api/v1/sync/commands?retry=1",headers,payload:{synthetic:true}});
@@ -48,7 +54,7 @@ test("rollback serves previous fingerprinted chunks but never previous HTML or p
   await mkdir(join(directory,"assets"));await writeFile(join(directory,"assets/old-abcdefgh.js"),"old chunk");
   await writeFile(join(directory,"index.html"),"old HTML");await writeFile(join(directory,"favicon.svg"),"old icon");
   const config=loadConfig(vars());config.previousStaticDirectory=directory;
-  const app=await createApp(config,async()=>{});t.after(()=>app.close());const headers={host:"127.0.0.1:4191"};
+  const app=await createApp({...config,staticDirectory:await staticBuild(t)},async()=>{});t.after(()=>app.close());const headers={host:"127.0.0.1:4191"};
   assert.equal((await app.inject({url:"/assets/old-abcdefgh.js",headers})).body,"old chunk");
   assert.notEqual((await app.inject({url:"/",headers})).body,"old HTML");
   assert.equal((await app.inject({url:"/server/config.ts",headers})).statusCode,404);
@@ -87,7 +93,7 @@ test("local browser entry keeps installation identity and rejects arbitrary orig
     assert.throws(() => loadConfig({ ...env, LOCAL_BROWSER_ORIGIN: alias }), ConfigurationError);
   }
   assert.throws(() => loadConfig({ ...vars(), LOCAL_BROWSER_ORIGIN: config.origin }), ConfigurationError);
-  const app = await createApp(config, async () => {});
+  const app = await createApp({ ...config, staticDirectory: await staticBuild(t) }, async () => {});
   t.after(() => app.close());
   assert.equal((await app.inject({ url: "/api/v1/health/live", headers: { host: "127.0.0.1:4192" } })).statusCode, 200);
   assert.equal((await app.inject({ url: "/api/v1/health/live", headers: { host: "127.0.0.1:4190" } })).statusCode, 403);
@@ -164,7 +170,7 @@ test("BFF serves a production shell with a narrow public-file boundary and safe 
 });
 
 test("diagnostic sink failure cannot change a completed action or expose an error payload", async t => {
-  const app=await createApp(loadConfig(vars()),async()=>{},()=>{throw new Error('synthetic_sink_failure');});t.after(()=>app.close());
+  const app=await createApp({...loadConfig(vars()),staticDirectory:await staticBuild(t)},async()=>{},()=>{throw new Error('synthetic_sink_failure');});t.after(()=>app.close());
   let completed=0;
   app.post('/diagnostic-action',async()=>{completed++;return {saved:true};});
   app.get('/diagnostic-error',async()=>{throw new Error('PRIVATE_ERROR_CANARY');});
